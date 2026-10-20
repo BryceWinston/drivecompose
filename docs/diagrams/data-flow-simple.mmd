@@ -1,0 +1,40 @@
+flowchart LR
+  subgraph OFFLINE["离线：从驾驶日志构建固定世界"]
+    direction TB
+    LOG["多相机驾驶日志<br/>图像、时间戳、标定、可选自车位姿"]
+    ENC["Driving Log Encoder<br/>共享特征、几何、实例身份与逐帧状态"]
+    DEC["Scene–Asset Decomposer<br/>背景 / 车辆 / 人体 / 天空查询<br/>规范化、跨视图聚合、可见性标记"]
+    DIT["分类型潜码编码 + Joint Completion DiT<br/>锁定已观测潜码，补全未知区域，清零自由空间"]
+    HEADS["三路解码<br/>背景与天空 / 刚体车辆 / 绑定人体"]
+    CHECK["ObservedViewValidator<br/>原视角重渲染，检查观测一致性<br/>仅通过检查的结果进入固定世界"]
+    WORLD[("WorldVault：固定可组合高斯世界<br/>背景、天空、规范资产、支撑范围与种子")]
+    LOG --> ENC --> DEC --> DIT --> HEADS --> CHECK
+    CHECK --> WORLD
+  end
+
+  subgraph ONLINE["在线：同一世界上的仿真闭环"]
+    direction TB
+    STATE["SimulationState：当前状态<br/>自车位姿、活动车辆位姿、人体根位姿与骨架"]
+    RENDER["State-driven Renderer<br/>状态装配 + 外接多相机高斯渲染"]
+    OBS["CameraObservation<br/>RGB、depth、alpha、coverage"]
+    POLICY["驾驶策略 DrivingPolicy【外接】"]
+    ENGINE["Simulation Bridge + DynamicsEngine【外接】<br/>结合道路 / 碰撞代理，根据动作与步长<br/>推进自车、其他车辆与人体状态"]
+    STATE --> RENDER --> OBS --> POLICY
+    POLICY -->|转向、加速度| ENGINE
+    ENGINE -->|下一状态；重复闭环| STATE
+  end
+
+  OFFLINE -->|WorldVault 固定内容<br/>跨轨迹复用| ONLINE
+
+  classDef input fill:#EFF6FF,stroke:#2563EB,color:#172554;
+  classDef process fill:#F8FAFC,stroke:#64748B,color:#0F172A;
+  classDef generation fill:#F3E8FF,stroke:#9333EA,color:#3B0764;
+  classDef store fill:#ECFDF5,stroke:#059669,color:#064E3B;
+  classDef check fill:#FFF7ED,stroke:#EA580C,color:#7C2D12;
+  classDef external fill:#FFFFFF,stroke:#475569,stroke-dasharray:5 4,color:#0F172A;
+  class LOG,STATE input;
+  class ENC,DEC,HEADS,RENDER,OBS process;
+  class DIT generation;
+  class WORLD store;
+  class CHECK check;
+  class POLICY,ENGINE external;

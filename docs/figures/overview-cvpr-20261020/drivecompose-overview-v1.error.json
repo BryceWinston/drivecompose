@@ -1,0 +1,11 @@
+{
+  "http": 400,
+  "model": "gpt-image-2.5-sunburst",
+  "api_url": "https://www.codex2api.com/v1/images/generations",
+  "body": {
+    "error": {
+      "message": "The requested image size is invalid.",
+      "type": "upstream_error"
+    }
+  }
+}

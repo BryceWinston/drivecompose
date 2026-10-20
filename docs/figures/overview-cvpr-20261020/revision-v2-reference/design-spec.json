@@ -1,0 +1,98 @@
+{
+  "figure_id": "drivecompose-reference-redesign-v2",
+  "source_contract": "../design-spec.json",
+  "scientific_topology_change": false,
+  "user_request": "More open composition and stronger color; use supplied four-paper overview collage as the visual reference.",
+  "execution": {
+    "deliverable": "one regenerated raster overview",
+    "renderer": "built-in Image Gen",
+    "output": "drivecompose-overview-v2.png",
+    "editable_ppt_requested": false,
+    "actual_pixels": [
+      1672,
+      941
+    ],
+    "artifact_role": "generated visual design draft",
+    "source_editability": "raster; no editable PPT requested or created"
+  },
+  "template_binding": "same overview-template.txt as the parent figure; actual path recorded in parent spec",
+  "production_prompt": "production-prompt-final.txt",
+  "prompt_counts": {
+    "raw": 27559,
+    "non_whitespace": 23216,
+    "template_non_whitespace": 15356,
+    "length_check_pass": true
+  },
+  "prompt_sha256": "3f1aa66b2d298e32da3ae80de9c2a93cf90da38ec7dfedf99dc06e1f34f0eacb",
+  "visual_reference": "user-four-paper-style-reference.png",
+  "reference_role": "composition, shape grammar, contrast and spatial evidence mass; no imported algorithm or empirical pixels",
+  "style_dna": {
+    "composition": "three broad stages with a lower constraint inset and a lower state reuse scene",
+    "proportions": [
+      0.24,
+      0.41,
+      0.35
+    ],
+    "aspect_ratio": "16:9",
+    "focal_point": "saturated local-group column with one shared purple memory relation; substantial accepted 3D world",
+    "spatial_mass": "large single checked driving world; recognizable input camera frames and canonical assets",
+    "palette": {
+      "observed": "#0076E8",
+      "completed": "#FF7A00",
+      "memory": "#7836D3",
+      "decoder": "#79AF13",
+      "unknown": "#B8C3D0",
+      "arrows": "#303640"
+    },
+    "whitespace": "two stage gutters, separated latent rows, dedicated memory and feedback routes",
+    "forbidden": "old five-column inventory, faint dots, copied watermarks, imported motion/causal/refinement heads"
+  },
+  "abstraction_map": {
+    "encoder_and_evidence": "front-end wedge and three canonical support illustrations",
+    "typed_codec": "same-size typed latent strips",
+    "typed_decoders": "one tall three-port typed-head grouping; three class-specific inputs; one candidate output",
+    "observed_check_operands": "local Ref. glyph; definition retained in caption",
+    "flow_constraints": "lower mechanism inset; preserve observed and zero free code each step; zero free opacity at decoding",
+    "accepted_world": "one spatial scene after checking",
+    "simulation": "external policy/dynamics supply State; State and fixed content enter renderer; output feedback omitted from overview, retained in detailed data-flow diagrams",
+    "global_memory_exchange": "one double-headed link between memory and the group of three parallel local operators"
+  },
+  "evidence_budget": {
+    "role": "mechanism illustration only",
+    "real_learned_results_supplied": false,
+    "no_metrics_or_comparison_claims": true
+  },
+  "review": {
+    "source_contract": "reused",
+    "user_reference_inspected": true,
+    "generated_output": "selected third raster candidate inspected",
+    "editable_reconstruction": "not requested",
+    "scientific_self_review": "principal topology legible; grouped abstractions recorded; publication-level object/arrow polishing pending",
+    "user_visual_approval": "pending",
+    "publication_validation": "not performed"
+  },
+  "output_sha256": "ffaf2ef82f377daf5a442828ffc0ae53085ec1ddf9976bb242037602843339dd",
+  "permitted_omissions": [
+    {
+      "relation": "observation feedback into external policy",
+      "reason": "overview concentrates on content/state separation; external state owner remains visible; full loop in existing detailed Mermaid diagrams"
+    }
+  ],
+  "generation_attempts": [
+    {
+      "image": "drivecompose-reference-v2-candidate.png",
+      "backend": "built-in Image Gen",
+      "outcome": "color and scene style established; several incorrect arrows; not selected"
+    },
+    {
+      "image": "drivecompose-reference-v2-correction-attempt.png",
+      "backend": "built-in Image Gen",
+      "outcome": "local correction attempt did not resolve routing; not selected"
+    },
+    {
+      "image": "drivecompose-overview-v2.png",
+      "backend": "built-in Image Gen",
+      "outcome": "selected visual draft; simpler grouped memory and typed-head abstraction; open external state input"
+    }
+  ]
+}

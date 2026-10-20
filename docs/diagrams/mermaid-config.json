@@ -1,0 +1,18 @@
+{
+  "theme": "base",
+  "fontFamily": "Microsoft YaHei, Noto Sans CJK SC, sans-serif",
+  "flowchart": {
+    "htmlLabels": true,
+    "curve": "linear",
+    "wrappingWidth": 320,
+    "nodeSpacing": 32,
+    "rankSpacing": 48,
+    "padding": 14
+  },
+  "themeVariables": {
+    "fontSize": "15px",
+    "clusterBkg": "#FAFBFC",
+    "clusterBorder": "#CBD5E1",
+    "lineColor": "#64748B"
+  }
+}

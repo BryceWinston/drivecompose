@@ -1,0 +1,16 @@
+{
+  "scene": {
+    "bounds_m": [[-20, -30, -3], [80, 30, 15]],
+    "background_grid": [20, 12, 6],
+    "vehicle_grid": [8, 4, 4],
+    "sky_face_resolution": 4,
+    "lighting": "fixed",
+    "vehicle_motion": "rigid"
+  },
+  "encoder": {"width": 128, "patch_size": 16, "actor_slots": 24, "joints": 17, "heads": 4},
+  "codec": {"feature_dim": 129, "latent_dim": 128, "children": 4},
+  "completion": {"latent_dim": 128, "context_dim": 129, "width": 128, "heads": 4, "layers": 4, "memory_tokens": 16},
+  "sampling": {"steps": 24, "seed": 7},
+  "visibility": {"depth_tolerance": 0.15, "relative_tolerance": 0.02, "confidence_threshold": 0.8, "free_votes": 2},
+  "observation_validation": {"max_rgb_regression": 0.03, "max_front_fraction": 0.01, "depth_tolerance": 0.15, "confidence_threshold": 0.8, "max_absolute_rgb": 0.15, "max_absolute_depth": 0.75, "minimum_coverage": 0.9}
+}

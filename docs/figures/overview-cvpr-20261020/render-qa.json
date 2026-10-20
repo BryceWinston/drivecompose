@@ -1,0 +1,17 @@
+{
+  "svgCanvas": [
+    2400,
+    1120
+  ],
+  "pngPixels": [
+    3600,
+    1680
+  ],
+  "textCount": 51,
+  "minFontPx": 34,
+  "minFontPtAt178mm": 7.148031496062993,
+  "outOfBoundsText": [],
+  "overlappingTextBoxes": [],
+  "rasterImageElements": 0,
+  "vectorElements": 1375
+}

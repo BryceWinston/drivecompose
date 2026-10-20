@@ -1,0 +1,51 @@
+flowchart LR
+  subgraph A["a · 部分驾驶观测与规范支撑"]
+    direction TB
+    LOG["多相机驾驶日志<br/>RGB、标定、时间与位姿"]
+    ENC["共享恢复与轨迹关联"]
+    QUERY["异构规范查询<br/>背景：世界坐标；车辆：局部坐标<br/>人体：规范空间；天空：方向域"]
+    LOG --> ENC --> QUERY
+  end
+
+  subgraph B["b · 核心：观测锚定的联合补全"]
+    direction TB
+    TOK["分类型潜码 + 固定查询布局<br/>known / free / unknown<br/>规范坐标与参考世界坐标"]
+    JOINT["Joint Completion DiT<br/>组内局部建模 ↔ 全局记忆交换<br/>背景与资产共享场景条件"]
+    CLAMP["未知区域的条件流积分<br/>每步锁定 known，清零 free"]
+    TOK --> JOINT --> CLAMP
+    CLAMP -->|下一积分步| JOINT
+  end
+
+  subgraph C["c · 解码为固定三维内容"]
+    direction TB
+    HEAD["三路解码<br/>背景与天空 / 刚体车辆 / 骨架人体"]
+    CHECK["原视角观测验证<br/>候选世界与仅观测基线对比"]
+    WORLD[("固定可组合高斯世界 W<br/>已见表面 + 补全表面<br/>固定规范资产与骨架绑定")]
+    HEAD --> CHECK -->|通过检查| WORLD
+  end
+
+  subgraph D["d · 同一世界上的状态干预"]
+    direction TB
+    STATE["当前状态 s_k<br/>相机 / 车辆位姿、人体骨架"]
+    RENDER["状态装配与高斯渲染<br/>车辆刚体变换；人体蒙皮"]
+    OBS["当前多相机观测<br/>多条轨迹共享同一份 W"]
+    DYN["外部策略与动力学<br/>动作推进下一状态"]
+    STATE --> RENDER --> OBS --> DYN --> STATE
+  end
+
+  A -->|聚合观测潜码与场景条件| B
+  B -->|流积分结束后的联合潜码| C
+  C -->|固定三维内容；每步复用| D
+
+  classDef observed fill:#EFF6FF,stroke:#2563EB,color:#172554;
+  classDef focal fill:#F3E8FF,stroke:#9333EA,stroke-width:2px,color:#3B0764;
+  classDef operation fill:#F8FAFC,stroke:#64748B,color:#0F172A;
+  classDef world fill:#ECFDF5,stroke:#059669,color:#064E3B;
+  classDef check fill:#FFF7ED,stroke:#EA580C,color:#7C2D12;
+  classDef external fill:#FFFFFF,stroke:#475569,stroke-dasharray:5 4,color:#0F172A;
+  class LOG,QUERY,TOK,STATE observed;
+  class JOINT,CLAMP focal;
+  class ENC,HEAD,RENDER,OBS operation;
+  class WORLD world;
+  class CHECK check;
+  class DYN external;
