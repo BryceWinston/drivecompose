@@ -1,0 +1,161 @@
+{
+  "date": "2026-10-20T07:10:15.609253+00:00",
+  "scope": "Bilingual non-experiment manuscript restructuring, natural-language editing, native vector overview and layout.",
+  "frozen_files": {
+    "paper/sec/4_experiments.tex": {
+      "baseline": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41",
+      "current": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41",
+      "unchanged": true
+    },
+    "paper/zh/4_experiments_zh.tex": {
+      "baseline": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1",
+      "current": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1",
+      "unchanged": true
+    },
+    "paper/fig/pointforward/Waymo.pdf": {
+      "baseline": "5aa9f67f7a4def61d82b4dcd992cdbc4eb612c7212223e6d581e0acc72d1e27c",
+      "current": "5aa9f67f7a4def61d82b4dcd992cdbc4eb612c7212223e6d581e0acc72d1e27c",
+      "unchanged": true
+    },
+    "paper/fig/pointforward/nuScenes.pdf": {
+      "baseline": "5883099966eeec7b475fa4f9a0d1e018b3518bfc68e98e0ea1a37b0e981467c6",
+      "current": "5883099966eeec7b475fa4f9a0d1e018b3518bfc68e98e0ea1a37b0e981467c6",
+      "unchanged": true
+    },
+    "paper/fig/pointforward/Shift.pdf": {
+      "baseline": "97224c1de956fa8a5d5ef5f78d37e6fce065e8bea1805060c484899092a95dec",
+      "current": "97224c1de956fa8a5d5ef5f78d37e6fce065e8bea1805060c484899092a95dec",
+      "unchanged": true
+    },
+    "paper/main.bib": {
+      "baseline": "731697b24227b75015d690a2a048cb298bdaca9aeb6f4cfb9870cfdcbc37b970",
+      "current": "731697b24227b75015d690a2a048cb298bdaca9aeb6f4cfb9870cfdcbc37b970",
+      "unchanged": true
+    },
+    "paper/cvpr.sty": {
+      "baseline": "2602473285d1a7df2a445ac89b76e1afa0acab78e056f0369d19770245190153",
+      "current": "2602473285d1a7df2a445ac89b76e1afa0acab78e056f0369d19770245190153",
+      "unchanged": true
+    },
+    "paper/lineno.sty": {
+      "baseline": "e12f4151f6e86448168fad536850c641c789e8a11babd9d7e8dbe36a38965f37",
+      "current": "e12f4151f6e86448168fad536850c641c789e8a11babd9d7e8dbe36a38965f37",
+      "unchanged": true
+    },
+    "paper/ieeenat_fullname.bst": {
+      "baseline": "e38e6166bd7b1e6d23a1b79dcdb55c656e4fcdbe91bdf6b50d827e6b5d1aacfc",
+      "current": "e38e6166bd7b1e6d23a1b79dcdb55c656e4fcdbe91bdf6b50d827e6b5d1aacfc",
+      "unchanged": true
+    },
+    "paper/preamble.tex": {
+      "baseline": "d28f6b5f7b04a9986a63c1dfb815c0f8c79c9329dd613649b2d4a2e32af3cf25",
+      "current": "d28f6b5f7b04a9986a63c1dfb815c0f8c79c9329dd613649b2d4a2e32af3cf25",
+      "unchanged": true
+    }
+  },
+  "frozen_label_numbers": {
+    "en": {
+      "sec:experiments": {
+        "before": "4",
+        "after": "4",
+        "unchanged": true
+      },
+      "sec:experimental_setup": {
+        "before": "4.1",
+        "after": "4.1",
+        "unchanged": true
+      },
+      "sec:temporal_evaluation": {
+        "before": "4.2",
+        "after": "4.2",
+        "unchanged": true
+      },
+      "tab:temporal_current": {
+        "before": "1",
+        "after": "1",
+        "unchanged": true
+      },
+      "tab:regions_current": {
+        "before": "2",
+        "after": "2",
+        "unchanged": true
+      },
+      "sec:spatial_evaluation": {
+        "before": "4.3",
+        "after": "4.3",
+        "unchanged": true
+      },
+      "tab:spatial_current": {
+        "before": "3",
+        "after": "3",
+        "unchanged": true
+      }
+    },
+    "zh": {
+      "sec:experiments": {
+        "before": "4",
+        "after": "4",
+        "unchanged": true
+      },
+      "tab:exp_waymo": {
+        "before": "1",
+        "after": "1",
+        "unchanged": true
+      },
+      "fig:pf_waymo": {
+        "before": "2",
+        "after": "2",
+        "unchanged": true
+      },
+      "tab:exp_context": {
+        "before": "2",
+        "after": "2",
+        "unchanged": true
+      },
+      "tab:exp_transfer": {
+        "before": "3",
+        "after": "3",
+        "unchanged": true
+      },
+      "fig:pf_nuscenes": {
+        "before": "3",
+        "after": "3",
+        "unchanged": true
+      },
+      "tab:exp_shift": {
+        "before": "4",
+        "after": "4",
+        "unchanged": true
+      },
+      "fig:pf_shift": {
+        "before": "4",
+        "after": "4",
+        "unchanged": true
+      },
+      "tab:exp_ablation": {
+        "before": "5",
+        "after": "5",
+        "unchanged": true
+      }
+    }
+  },
+  "all_frozen_exact": true,
+  "experiment_values_and_figures_unchanged": true,
+  "experimental_sources_not_synchronized_by_design": true,
+  "english_rough_prose_word_counts_excluding_math_and_citation_syntax": {
+    "0_abstract": 161,
+    "1_introduction": 632,
+    "2_related_work": 315,
+    "3_method": 1334,
+    "5_discussion": 85,
+    "6_conclusion": 100
+  },
+  "source_check_report": "verification.json",
+  "pdf_qa_report": "pdf-qa.json",
+  "known_limits": [
+    "Experiment sections remain frozen and still contain inherited content.",
+    "CVPR 2027 final author-kit was not obtained; inherited style remains.",
+    "Fandol CJK glyphs render correctly but lack ToUnicode, so Chinese extraction/copying is incomplete.",
+    "Built-in app compiler unavailable: Windows sandbox setup required. Local bundled Tectonic compiled both PDFs successfully."
+  ]
+}

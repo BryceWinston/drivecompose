@@ -1,0 +1,101 @@
+{
+  "archive_root": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261020-cleanup",
+  "invalid_archive_files": [],
+  "archived_file_count": 91,
+  "frozen_hashes": {
+    "sec/4_experiments.tex": {
+      "sha256": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41",
+      "original_sha256": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41"
+    },
+    "zh/4_experiments_zh.tex": {
+      "sha256": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1",
+      "original_sha256": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1"
+    },
+    "fig/pointforward/Waymo.pdf": {
+      "sha256": "5aa9f67f7a4def61d82b4dcd992cdbc4eb612c7212223e6d581e0acc72d1e27c",
+      "original_sha256": "5aa9f67f7a4def61d82b4dcd992cdbc4eb612c7212223e6d581e0acc72d1e27c"
+    },
+    "fig/pointforward/nuScenes.pdf": {
+      "sha256": "5883099966eeec7b475fa4f9a0d1e018b3518bfc68e98e0ea1a37b0e981467c6",
+      "original_sha256": "5883099966eeec7b475fa4f9a0d1e018b3518bfc68e98e0ea1a37b0e981467c6"
+    },
+    "fig/pointforward/Shift.pdf": {
+      "sha256": "97224c1de956fa8a5d5ef5f78d37e6fce065e8bea1805060c484899092a95dec",
+      "original_sha256": "97224c1de956fa8a5d5ef5f78d37e6fce065e8bea1805060c484899092a95dec"
+    },
+    "cvpr.sty": {
+      "sha256": "2602473285d1a7df2a445ac89b76e1afa0acab78e056f0369d19770245190153",
+      "original_sha256": "2602473285d1a7df2a445ac89b76e1afa0acab78e056f0369d19770245190153"
+    },
+    "lineno.sty": {
+      "sha256": "e12f4151f6e86448168fad536850c641c789e8a11babd9d7e8dbe36a38965f37",
+      "original_sha256": "e12f4151f6e86448168fad536850c641c789e8a11babd9d7e8dbe36a38965f37"
+    },
+    "ieeenat_fullname.bst": {
+      "sha256": "e38e6166bd7b1e6d23a1b79dcdb55c656e4fcdbe91bdf6b50d827e6b5d1aacfc",
+      "original_sha256": "e38e6166bd7b1e6d23a1b79dcdb55c656e4fcdbe91bdf6b50d827e6b5d1aacfc"
+    },
+    "preamble.tex": {
+      "sha256": "d28f6b5f7b04a9986a63c1dfb815c0f8c79c9329dd613649b2d4a2e32af3cf25",
+      "original_sha256": "d28f6b5f7b04a9986a63c1dfb815c0f8c79c9329dd613649b2d4a2e32af3cf25"
+    }
+  },
+  "source_git_commit": "7c1acf4aa02b432a3173f167e1663a5f274cb844",
+  "raster_overview_role": "historical design draft; current entries use native TikZ",
+  "invalid_migration_source_evidence": [],
+  "changed_project_sources_since_migration": [
+    "README.md",
+    "docs/paper-positioning.md"
+  ],
+  "historical_source_copies": {
+    "README.md": "before-edit/README.md",
+    "docs/paper-positioning.md": "before-edit/docs/paper-positioning.md"
+  },
+  "en:missing_citations": [],
+  "en:missing_files": [],
+  "zh:missing_citations": [],
+  "zh:missing_files": [],
+  "displayed_method_math_blocks": {
+    "en": 13,
+    "zh": 13
+  },
+  "bibliography_entries": 16,
+  "frozen_experiments_intentionally_not_synchronized": true,
+  "checks": {
+    "migration_manifest_unchanged": true,
+    "archive_moves_manifest_unchanged": true,
+    "archived_files_exact": true,
+    "archive_copy_exact": true,
+    "unchanged:sec/4_experiments.tex": true,
+    "unchanged:zh/4_experiments_zh.tex": true,
+    "unchanged:fig/pointforward/Waymo.pdf": true,
+    "unchanged:fig/pointforward/nuScenes.pdf": true,
+    "unchanged:fig/pointforward/Shift.pdf": true,
+    "unchanged:cvpr.sty": true,
+    "unchanged:lineno.sty": true,
+    "unchanged:ieeenat_fullname.bst": true,
+    "unchanged:preamble.tex": true,
+    "overview_copy_exact": true,
+    "native_overview_exists": true,
+    "main.tex:native_overview_active": true,
+    "main_zh.tex:native_overview_active": true,
+    "migration_source_snapshot_preserved": true,
+    "unique_bibliography_keys": true,
+    "en:cvpr2027": true,
+    "en:resolved_citations": true,
+    "en:unique_labels": true,
+    "en:resolved_references": true,
+    "en:resolved_files": true,
+    "en:new_prose_has_no_old_modules": true,
+    "zh:cvpr2027": true,
+    "zh:resolved_citations": true,
+    "zh:unique_labels": true,
+    "zh:resolved_references": true,
+    "zh:resolved_files": true,
+    "zh:new_prose_has_no_old_modules": true,
+    "active_bibliography_has_no_unused_entries": true,
+    "bilingual_method_math_identical": true,
+    "bilingual_method_inline_math_identical": true
+  },
+  "passed": true
+}
