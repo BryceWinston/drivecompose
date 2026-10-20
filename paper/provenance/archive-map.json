@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-20",
+  "archive_root_relative_to_project": "../_archive/drivecompose/20261020-cleanup",
+  "archive_root_override": "--archive-root PATH",
+  "moves_manifest": "moves.json",
+  "moves_manifest_sha256": "982c2e564b9639fa66237ee8910c760b2d3126bc6c5c105f2b7799f72e431cbb",
+  "source_manifest_sha256": "b6ce74d0797bb84f4a27635b907b828088a3657d6e40cc2f0eaefb1d3388f1ee",
+  "original_manuscript_zip": "files/paper/archive/MOSAIC-original.zip",
+  "language_before_zip": "files/paper/archive/language-before-20261020.zip",
+  "overview_original": "files/docs/figures/overview-cvpr-20261020/revision-v2-reference/drivecompose-overview-v2.png",
+  "historical_source_copies": {
+    "README.md": "before-edit/README.md",
+    "docs/paper-positioning.md": "before-edit/docs/paper-positioning.md"
+  },
+  "internal_relocations": {
+    "paper/archive/source-manifest.json": "paper/provenance/source-manifest.json"
+  },
+  "history_reports": [
+    "files/paper/MIGRATION.md",
+    "files/paper/BUILD_REPORT.md",
+    "files/paper/build/language-baseline.json",
+    "files/paper/build/language-edit-audit.json",
+    "files/paper/build/language-edit-counts.json"
+  ],
+  "semantics": "source-manifest.json is the unchanged migration snapshot; current README and figure links are updated during cleanup."
+}

@@ -1,0 +1,147 @@
+\section{Method}
+\label{sec:method}
+
+DriveCompose constructs a world once and renders it under changing states. Offline construction recovers evidence from a driving log, aggregates it on canonical supports, completes unknown latent codes, and checks the decoded content in the observed views. The accepted background and assets are then fixed; online composition uses only the current camera and actor states (Fig.~\ref{fig:teaser}).
+
+\subsection{Problem formulation and world representation}
+\label{sec:representation}
+
+The input is a synchronized log of images $\mathbf I_{t,v}$, timestamps, camera intrinsics $\mathbf K_v$, and camera-to-rig calibration $\mathbf T^r_{c_v}$. Rig world poses $\mathbf T^w_r(t)$ are supplied by the log or estimated relative to its first frame. The camera world pose is $\mathbf T^w_{c_v}(t)=\mathbf T^w_r(t)\mathbf T^r_{c_v}$. Transforms act on column vectors, and distances are measured in meters. Images use linear RGB and a rectified pinhole model; distortion, rolling shutter, and exposure differences are handled before aggregation.
+
+We construct a world
+\begin{equation}
+\mathcal W=\bigl(\mathcal G_b,C_{\rm sky},V_{\rm sky},
+\{\mathcal A_a\},\mathcal B,\xi\bigr),
+\end{equation}
+where $\mathcal G_b$ is the world-coordinate background, $C_{\rm sky}$ a cubemap with supported directions $V_{\rm sky}$, $\mathcal A_a$ a canonical asset for identity $a$, $\mathcal B$ the finite spatial support, and $\xi$ the completion seed. Each Gaussian stores a center $\boldsymbol\mu$, positive-definite covariance $\boldsymbol\Sigma$, opacity $\alpha$, and first-order local directional appearance. Vehicles store fixed local geometry and dimensions. Humans additionally store a rest skeleton and skinning weights. These parameters remain fixed after acceptance.
+
+\paragraph{Shared recovery.}
+The Driving Log Encoder embeds camera calibration and time with image features. Cross-view/time summaries provide scene context. A trajectory-level slot identifies each actor, and state attention predicts its root pose and human joint rotations at each time. Geometry heads recover camera-axis depth, normals, confidence, semantics, and instance assignment. Actor poses are predicted in the rig frame and mapped to world coordinates with $\mathbf T^w_r(t)$. Each human has one shape code throughout the log, selecting a template with consistent canonical support and binding.
+
+\subsection{Canonical queries and evidence aggregation}
+\label{sec:queries}
+
+A query contains its canonical position $\mathbf q_i$, cell scale $\boldsymbol\delta_i$, type $k_i$, local group $g_i$, and reference-world coordinate $\mathbf q_i^w$. Background supports combine reliable depth anchors with a finite world grid. Vehicle supports combine motion-normalized anchors with a local volume grid. Human queries lie on an identity-specific canonical surface; sky queries are directions grouped by cubemap face. The layout stays fixed during completion. The reference-world coordinate places a query at the first input time, including the human skinning transform, so local identity and scene placement enter the model separately.
+
+To aggregate image evidence, we place the query at the actor state of each frame:
+\begin{equation}
+\mathbf p_i(t)=
+\begin{cases}
+\mathbf q_i,& k_i=\mathrm{background},\\
+\operatorname{xyz}(\mathbf T^w_a(t)\bar{\mathbf q}_i),& k_i=\mathrm{vehicle},\\
+\operatorname{xyz}(\mathbf T^w_h(t)\mathbf A_i(t)\bar{\mathbf q}_i),& k_i=\mathrm{human}.
+\end{cases}
+\label{eq:query-placement}
+\end{equation}
+Here $\bar{\mathbf q}_i$ is homogeneous, $\operatorname{xyz}$ extracts Euclidean coordinates, and $\mathbf A_i(t)$ is the weighted skinning transform. Sky projection uses camera rotation alone.
+
+Projection gives camera-axis depth $z_{i,t,v}$ and an image location. Let $\boldsymbol\phi_{i,t,v}$, $d_{i,t,v}$, and $c_{i,t,v}$ be the sampled feature, predicted depth, and confidence. With tolerance $\eta=\eta_{\rm abs}+\eta_{\rm rel}d$, the normalized depth residual is $r=(d-z)/\eta$. A surface observation must be inside the image, have reliable depth and confidence, belong to the query's instance, and satisfy $|r|\leq1$. Background queries also require static-background semantics. For validity $a_{i,t,v}$,
+\begin{align}
+w_{i,t,v}&=a_{i,t,v}c_{i,t,v}\exp(-r_{i,t,v}^2/2),\\
+\mathbf h_i&=\frac{\sum_{t,v}w_{i,t,v}[\boldsymbol\phi_{i,t,v};r_{i,t,v}]}
+{\max(\varepsilon,\sum_{t,v}w_{i,t,v})}.
+\end{align}
+The query confidence is the maximum among its accepted observations. A reliable ray votes for free space only if the whole support cell lies in front of the observed surface:
+\begin{equation}
+z_{i,t,v}+\tfrac12\|\boldsymbol\delta_i\|_2<d_{i,t,v}-\eta.
+\end{equation}
+Sky features use reliable sky semantics, zero depth residual, and no free-space votes. Positive aggregation mass marks an observed query. Otherwise, enough free-space votes mark it free; the remainder is unknown. The mutually exclusive masks $m_i$, $f_i$, and $u_i$ satisfy $m_i+f_i+u_i=1$.
+
+Type-specific encoders map $[\mathbf h_i;\mathbf q_i;\boldsymbol\delta_i]$ to observed codes $\mathbf z_i^{\rm obs}\in\mathbb R^D$. Unobserved codes are zeroed before conditioning. Visibility flags and confidence enter the completion network separately, keeping the intrinsic codec definition shared between partial and complete targets.
+
+\subsection{Observation-anchored joint completion}
+\label{sec:completion}
+
+\paragraph{Local groups and global memory.}
+The Joint Completion DiT receives current and observed codes, masks, confidence, type, both coordinate descriptions, cell scales, and log summaries. Background groups follow spatial neighborhoods; each asset forms a group; sky groups follow cubemap faces. Local self-attention updates each group. Shared memory then reads all groups and returns scene context:
+\begin{align}
+\mathbf M'&=\mathbf M+\operatorname{Attn}_{r}
+ (\mathbf M,\widetilde{\mathbf X},\widetilde{\mathbf X}),\\
+\mathbf U&=\widetilde{\mathbf X}+\operatorname{Attn}_{w}
+ (\operatorname{LN}(\widetilde{\mathbf X}),\mathbf M',\mathbf M').
+\label{eq:memory-exchange}
+\end{align}
+$\widetilde{\mathbf X}$ concatenates locally updated query tokens; the three attention arguments are queries, keys, and values. A residual feed-forward update follows $\mathbf U$. Flow-time modulation enters local normalization, and memory is initialized from learned tokens and log summaries. This exchange lets groups use shared scene conditions while their queries retain separate coordinates and motion models.
+
+\paragraph{Conditional flow.}
+We learn a velocity field by flow matching~\cite{lipman2022flowmatching}. A complete target $\mathbf z_1$ and Gaussian noise $\boldsymbol\epsilon\sim\mathcal N(0,\mathbf I)$ share the fixed query layout. For flow time $\tau\in[0,1]$,
+\begin{equation}
+\mathbf z_\tau=m\odot\mathbf z^{\rm obs}
++u\odot[(1-\tau)\boldsymbol\epsilon+\tau\mathbf z_1].
+\label{eq:flow-path}
+\end{equation}
+Free-space codes stay zero. Unknown queries have target velocity $\mathbf z_1-\boldsymbol\epsilon$. With an optional loss selector $s_i$,
+\begin{equation}
+\mathcal L_{\rm flow}=
+\frac{\sum_i u_i s_i\|\mathbf v_\theta(\mathbf z_\tau,\tau,C)_i
+-(\mathbf z_{1,i}-\boldsymbol\epsilon_i)\|_2^2}
+{D\max(1,\sum_i u_i s_i)}.
+\label{eq:flow-loss}
+\end{equation}
+$C$ collects observed evidence and query conditions. Every unknown query interpolated in Eq.~\ref{eq:flow-path} needs a valid complete target; $s_i$ selects loss terms within that valid set.
+
+Starting at $\tau=0$, we take $S$ Euler steps of size $\Delta\tau=1/S$:
+\begin{equation}
+\mathbf z^{j+1}=\Pi_{m,f}\!\left[
+\mathbf z^j+\Delta\tau\,u\odot
+\mathbf v_\theta(\mathbf z^j,j/S,C)\right].
+\label{eq:sampling}
+\end{equation}
+$\Pi_{m,f}$ restores observed codes and clears free-space codes after every step. The seed selects one completion realization. Flow time indexes offline generation; simulation time indexes subsequent state changes.
+
+\subsection{Decoding and observation checks}
+\label{sec:decoding}
+
+\paragraph{Typed decoding.}
+Background, vehicle, and human heads decode each query independently into $K$ child Gaussians. A child center is
+\begin{equation}
+\boldsymbol\mu_{i,k}=\mathbf q_i+
+\tfrac12\boldsymbol\delta_i\odot\tanh(\mathbf b_{i,k}).
+\end{equation}
+Positive scales and normalized rotations determine covariance. Opacity is multiplied by $1-f_i$; human children inherit their support query's skinning weights. A separate head predicts sky colors, retaining the observation-supported validity domain. Appearance stores a constant RGB term and three local directional coefficients per channel. With a fixed per-query codec, observed child parameters are unchanged by Eq.~\ref{eq:sampling}. Disabling non-observed queries gives the observed-only reference.
+
+\paragraph{Rendered acceptance.}
+New content can occlude that reference even when its parameters are unchanged. We compose candidate and reference at the original actor states, then render both from the input cameras. Let $e_{\rm cand}(p)$ and $e_{\rm obs}(p)$ be their mean absolute RGB errors at pixel $p$. We average the positive regression
+\begin{equation}
+\Delta e(p)=\max\{e_{\rm cand}(p)-e_{\rm obs}(p),0\}
+\end{equation}
+over reliable non-ego pixels, preventing an improvement elsewhere from cancelling local degradation. We also bound absolute RGB and valid-depth errors, view coverage, and foreground intrusion. Intrusion means a newly added surface lies in front of the predicted reference depth while being absent from the observed-only render; its rate is normalized over reliable non-sky geometry pixels. Acceptance combines aggregate and worst-view bounds with minimum coverage. Predicted depth supplies the reference for these consistency checks; independent geometric accuracy uses a separate reference.
+
+\subsection{Learning stages and objectives}
+\label{sec:training}
+
+\paragraph{Recovery and codec fitting.}
+The first stage supervises geometry, semantics, instance assignment, identity, and state. One trajectory-level matching assigns predicted slots to target identities across all frames. The second stage freezes recovery and trains the typed codec. Partial and more complete observations use the same query positions, types, order, and ownership. Rendering or set matching supervises the decoded representation; direct coordinate losses apply only when child correspondences are known.
+
+\paragraph{Completion prior.}
+The third stage freezes both recovery and codec, and trains the completion network with Eq.~\ref{eq:flow-loss} on complete scene or asset targets. The fourth stage keeps those modules frozen and differentiates through flow integration, decoding, and rendering to adapt completion to partial real logs.
+
+\paragraph{Observation-based adaptation.}
+Write $\langle\ell\rangle_{\Omega}$ for a mean over valid elements in mask $\Omega$. RGB and depth terms are masked L1 errors: $\mathcal L_{\rm rgb}=\langle\|\widehat{\mathbf I}-\mathbf I\|_1/3\rangle_{\Omega_I}$ and $\mathcal L_{\rm depth}=\langle|\widehat d-d|\rangle_{\Omega_d}$. For accumulated opacity $a_r$ on known-free rays, foot signed distance $d_f$ (positive above ground), contact mask $\Omega_c$, and penetration depth $d_p$ (positive inside another actor),
+\begin{align}
+\mathcal L_{\rm scene}={}&\lambda_e\langle a_r^2\rangle
++\lambda_g\langle[-d_f]_+^2\rangle\nonumber\\
+&+\lambda_c\langle|d_f|\rangle_{\Omega_c}
++\lambda_p\langle[d_p]_+^2\rangle,\\
+\mathcal L_{\rm adapt}={}&\lambda_r\mathcal L_{\rm rgb}
++\lambda_d\mathcal L_{\rm depth}+\mathcal L_{\rm scene}.
+\label{eq:adaptation}
+\end{align}
+Here $[x]_+=\max(x,0)$; unmasked means run over supplied ray or geometry samples. Terms use only available observations and backend geometry. Free-ray opacity constrains added content along rays, beyond the per-cell free-space mask. Hard latent restoration and frozen decoding enforce the observed anchors. The adaptation objective measures the image and geometric effects of added content. The $\lambda$ coefficients weight the active soft constraints. Encoder, codec, query-schema, and completion versions are recorded together so targets and sampling conditions use the same representation.
+
+\subsection{State-driven composition and reuse}
+\label{sec:composition}
+
+At online step $k$, state $s_k$ specifies the ego pose, active assets, vehicle transforms, and human root and joint poses. For a vehicle,
+\begin{equation}
+\boldsymbol\mu^w=\mathbf R\boldsymbol\mu^a+\mathbf t,
+\qquad\boldsymbol\Sigma^w=\mathbf R\boldsymbol\Sigma^a\mathbf R^\top.
+\end{equation}
+For humans, the weighted skinning transform is $\mathbf A_i=\sum_j w_{ij}\mathbf P_j\mathbf B_j^{-1}$, where $\mathbf B_j$ and $\mathbf P_j$ are rest and current global joints in the root frame. The center becomes $\bar{\boldsymbol\mu}_i^w=\mathbf T^w_h\mathbf A_i\bar{\boldsymbol\mu}_i^h$. The combined local linear map $\mathbf J_i$ gives covariance $\mathbf J_i\boldsymbol\Sigma_i\mathbf J_i^\top$ and maps world viewing directions back with $\mathbf J_i^{-1}$ for local appearance evaluation. Nearly singular skinning transforms are rejected. The root pose controls overall placement; the root joint retains its rest transform.
+
+The renderer composites the background, active assets, and valid sky. Policy actions and external dynamics advance the state:
+\begin{align}
+o_k&=\mathcal R(\operatorname{Compose}(\mathcal W,s_k),\mathcal C_k),\\
+s_{k+1}&=F_{\rm dyn}(s_k,\pi(o_k),\Delta t).
+\end{align}
+Resetting a trajectory changes state but preserves $\mathcal W$ and its seed. Finite spatial support and supported sky directions determine coverage. Road meshes and collision proxies share the visual assets' coordinates and are maintained by the physical backend.

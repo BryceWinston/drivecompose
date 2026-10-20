@@ -1,0 +1,178 @@
+% Generated from workspace.json by tools/render-experiments.cjs.
+% Imported PointForward qualitative grids remain in assets/pointforward-source; the manuscript body uses numerical tables.
+% Ours cells are unmeasured. Source numerical values remain attributed to PointForward.
+\section{实验}
+\label{sec:experiments}
+
+我们首先评估稀疏时序观测下的动态场景重建，重点考察运动对象区域的渲染质量。
+
+\subsection{Waymo 动态场景重建}
+\paragraph{数据与协议}
+我们使用 Waymo Open Dataset 的 798 个训练序列和 202 个验证序列。遵循 STORM，将验证序列划分为互不重叠的 2 秒片段，每段包含以 10 Hz 采集的 20 帧。输入来自前视、左前和右前三个相机，帧索引为 0、5、10 和 15。我们在其余帧上评估，分别报告时间内插与时间外推结果。RGB 预测与参考图像统一缩放至 240×160 像素后计算指标。~\cite{yang2025storm}
+
+\paragraph{对比方法}
+我们与 STORM、DGGT、StreetForward、PointForward 和 Instant NuRec 比较，使用相同的上下文图像与目标帧。MOSAIC 接收图像和相机标定，在模型内部预测对象轨迹。我们区分基于图像的重建与使用 LiDAR 或外部对象轨迹的变体，并记录各方法的训练数据及相机位姿需求。~\cite{chi2026pointforward,yang2025storm,chen2025dggt,yu2026streetforward,huang2026instantnurec}
+
+\paragraph{评价指标}
+我们在非天空像素和动态区域上报告 PSNR 与 SSIM，各方法使用一致的评测掩码。深度 RMSE 在有效的 LiDAR 投影采样点上计算。此外，分别统计车辆与行人区域，以评估刚体和关节对象的重建质量。指标先在每个序列内平均，再对序列取平均。
+
+\begingroup
+\nolinenumbers
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\captionsetup{width=\linewidth}
+\caption{Waymo 图像与深度评估. 已列数值据 PointForward~\cite{chi2026pointforward}。}
+\label{tab:exp_waymo}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+Method & Dynamic PSNR & SSIM & D-RMSE & Full PSNR & SSIM & D-RMSE \\
+\midrule
+EmerNeRF & 17.79 & 0.255 & 40.88 & 24.51 & 0.738 & 33.99 \\
+3DGS & 17.13 & 0.267 & 13.88 & 25.13 & 0.741 & 19.68 \\
+PVG & 15.51 & 0.128 & 15.91 & 22.38 & 0.661 & 13.01 \\
+DeformableGS & 17.10 & 0.266 & 12.14 & 25.29 & 0.761 & 14.79 \\
+LGM & 19.58 & 0.443 & 9.43 & 23.59 & 0.691 & 8.02 \\
+GS-LRM & 20.02 & 0.520 & 9.95 & 25.18 & 0.753 & 7.94 \\
+Depth Anything 3 & 15.96 & 0.429 & 12.20 & 23.27 & 0.686 & 11.66 \\
+AnySplat & 15.99 & 0.418 & 10.45 & 23.32 & 0.687 & 10.31 \\
+STORM & 22.10 & 0.624 & 7.50 & 26.38 & 0.794 & 5.48 \\
+DGGT & 22.80 & 0.651 & 6.55 & 27.41 & 0.846 & 3.47 \\
+PointForward & 25.01 & 0.768 & 6.07 & 28.48 & 0.861 & 3.35 \\
+Ours & -- & -- & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}}
+\end{table*}
+\endgroup
+\begingroup
+\nolinenumbers
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig/pointforward/Waymo.pdf}
+\caption{PointForward 的 Waymo 视角对比. 来源：PointForward~\cite{chi2026pointforward}.}
+\label{fig:pf_waymo}
+\end{figure*}
+\endgroup
+\subsection{实现细节}
+我们从运动对齐的观测中恢复类别专属对象资产，并与静态背景组合。完整重建耗时包含预处理、资产生成与场景组合。
+
+\begingroup
+\nolinenumbers
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\captionsetup{width=0.86\linewidth}
+\caption{Waymo 上下文帧重建. 已列数值据 PointForward~\cite{chi2026pointforward}。}
+\label{tab:exp_context}
+\resizebox{0.92\linewidth}{!}{%
+\begin{tabular}{lcc}
+\toprule
+Method & PSNR & SSIM \\
+\midrule
+AnySplat & 24.59 & 0.730 \\
+STORM & 26.55 & 0.851 \\
+DGGT & 30.54 & 0.884 \\
+PointForward & 33.96 & 0.951 \\
+Ours & -- & -- \\
+\bottomrule
+\end{tabular}}
+\end{table}
+\endgroup
+\begingroup
+\nolinenumbers
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\captionsetup{width=0.86\linewidth}
+\caption{nuScenes 零样本迁移与微调. 已列数值据 PointForward~\cite{chi2026pointforward}。}
+\label{tab:exp_transfer}
+\resizebox{0.92\linewidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+Method & Zero PSNR & SSIM & Fine PSNR & SSIM \\
+\midrule
+STORM & 17.77 & 0.669 & 24.54 & 0.784 \\
+DGGT & 25.31 & 0.794 & 26.63 & 0.813 \\
+PointForward & 26.54 & 0.821 & 27.50 & 0.826 \\
+Ours & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}}
+\end{table}
+\endgroup
+\begingroup
+\nolinenumbers
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig/pointforward/nuScenes.pdf}
+\caption{PointForward 在 nuScenes 上的跨数据集视角. 来源：PointForward~\cite{chi2026pointforward}.}
+\label{fig:pf_nuscenes}
+\end{figure*}
+\endgroup
+\subsection{外推视角}
+我们评估 1、2、3、4、6 米的横向相机偏移。具有配对目标图像的视角使用图像指标；无配对真值的离轨视角使用 FID 与跨视角结构一致性，各方法采用相同参考图像集合。对象结果按可见表面覆盖率分组。
+\begingroup
+\nolinenumbers
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\captionsetup{width=0.86\linewidth}
+\caption{Waymo 横向相机偏移的 FID. 已列数值据 PointForward~\cite{chi2026pointforward}。}
+\label{tab:exp_shift}
+\resizebox{0.92\linewidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+Shift (m) & STORM & DGGT & PointForward & Ours \\
+\midrule
+1 & 47.31 & 49.51 & 16.95 & -- \\
+2 & 63.09 & 61.35 & 25.80 & -- \\
+3 & 81.54 & 77.51 & 33.71 & -- \\
+4 & 102.19 & 96.96 & 42.63 & -- \\
+6 & 140.17 & 139.79 & 65.99 & -- \\
+\bottomrule
+\end{tabular}}
+\end{table}
+\endgroup
+\begingroup
+\nolinenumbers
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig/pointforward/Shift.pdf}
+\caption{PointForward 相机向左偏移 3 米的视角. 来源：PointForward~\cite{chi2026pointforward}.}
+\label{fig:pf_shift}
+\end{figure*}
+\endgroup
+\subsection{消融}
+我们分别分析运动对齐、类别专属分支、对象空间补全和持久资产复用。各变体使用相同观测和训练预算，按序列及对象类别报告图像质量与运动补偿一致性。
+\begingroup
+\nolinenumbers
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\captionsetup{width=0.86\linewidth}
+\caption{Waymo 组件消融. 已列数值据 PointForward~\cite{chi2026pointforward}。}
+\label{tab:exp_ablation}
+\resizebox{0.92\linewidth}{!}{%
+\begin{tabular}{lcc}
+\toprule
+Variant & PSNR & SSIM \\
+\midrule
+PF w/o weighted fusion & 28.01 & 0.851 \\
+PF w/o depth-aware fusion & 28.28 & 0.855 \\
+PF w/o lifespan & 27.56 & 0.840 \\
+PF w/o LiDAR depth & 28.00 & 0.847 \\
+PointForward (full) & 28.48 & 0.861 \\
+Ours w/o motion alignment & -- & -- \\
+Ours w/o category branches & -- & -- \\
+Ours w/o completion & -- & -- \\
+Ours w/o asset reuse & -- & -- \\
+Ours & -- & -- \\
+\bottomrule
+\end{tabular}}
+\end{table}
+\endgroup

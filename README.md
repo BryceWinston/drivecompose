@@ -22,12 +22,19 @@ DriveCompose 从多相机驾驶日志恢复背景、刚体车辆和可驱动人�
 - [完整架构与流程图](docs/architecture.md)
 - [Mermaid 数据流程图：简化版与详细版](docs/data-flow.md)
 - [CVPR 论文定位、总览图与消融实验方案](docs/paper-positioning.md)
-- [CVPR 风格方法总览图与近期论文视觉参考](docs/figures/overview-cvpr-20261020/README.md)
+- [当前方法总览图与设计说明](docs/figures/overview/README.md)
 - [表示、坐标和张量契约](docs/representations.md)
 - [分解与补全的算法细节](docs/algorithm.md)
 - [分阶段训练与损失](docs/training.md)
 - [评估与消融计划](docs/evaluation_plan.md)
 - [设计选择](docs/decisions.md)
+- [CVPR 2027 中英文论文工程](paper/README.md)
+
+## 项目目录
+
+`src/`、`configs/`、`tests/` 和 `examples/` 分别保存实现、配置、数值检查和使用示例；`docs/` 保存当前设计与流程图，`paper/` 保存双语 LaTeX 工程。论文图仅在 `paper/fig/` 保存活动文件，设计文档通过链接引用。
+
+旧图候选、制作过程、MOSAIC 原包、语言终校前备份及历史排版截图已移至项目外的 [2026-10-20 归档](../_archive/drivecompose/20261020-cleanup/README.md)。文件位置与哈希见 [归档索引](paper/provenance/README.md)，后续生成的缓存和编译中间文件仍由 `.gitignore` 排除。
 
 `src/drivecompose/` 中的数值核心使用 NumPy；`networks/`、`training.py` 与 `pipeline.py` 使用 PyTorch。
 

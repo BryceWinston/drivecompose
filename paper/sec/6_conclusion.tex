@@ -1,0 +1,4 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+DriveCompose constructs a reusable Gaussian driving world by jointly completing background and canonical asset codes. Canonical supports preserve each category's geometry and motion model, while reference-world coordinates let the completion network use shared scene context. Hard latent constraints retain observed parameters and suppress free space; an observed-view rendering check evaluates the effects of added content before acceptance. The accepted world then stays fixed as camera placement, vehicle motion, and human articulation change through explicit state transforms. This construction/use separation gives multiple trajectories a common completed scene, with observation consistency checked at construction and state changes handled during composition.

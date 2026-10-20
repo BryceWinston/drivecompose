@@ -1,0 +1,11 @@
+\section{相关工作}
+\label{sec:related}
+
+\paragraph{可组合重建与仿真。}
+Street Gaussians 将背景与跟踪车辆表示为独立的高斯组件~\cite{yan2024street}。OmniRe 采用类别相关的规范表示，同时容纳刚体与关节资产~\cite{chen2025omnire}。HUGSIM 将重建内容与交互式状态更新、仿真后端结合~\cite{zhou2024hugsim}。这些工作建立了内容与状态分离及各类资产运动建模的基础。DriveCompose 沿用这一分离方式来定义补全的输出：一份固定背景，以及跨轨迹保持身份、局部几何和绑定的规范资产。补全变量共同覆盖这些组件，使各组件的未见表面在生成过程中相互关联。
+
+\paragraph{驾驶场景前馈重建。}
+STORM、DGGT、StreetForward 和 PointForward 从时序观测恢复驾驶场景表示~\cite{yang2025storm,chen2025dggt,yu2026streetforward,chi2026pointforward}。我们用时序恢复建立补全所需的条件证据：前端预测几何、身份和状态，固定查询布局随后记录表面支撑、自由空间与未知区域。条件流在离线构建阶段处理未知潜码。此后的渲染读取已接受的内容和当前状态，无须为每条轨迹重新执行潜空间补全。
+
+\paragraph{生成式场景与资产补全。}
+StreetCrafter 用 LiDAR 渲染条件控制视频扩散，再以生成视图指导高斯重建~\cite{streetcrafter}；HorizonForge 将可编辑的高斯--网格内容与视频扩散结合~\cite{wang2026horizonforge}。WorldSplat 在高斯生成后精修渲染视频~\cite{zhu2025worldsplat}。DriveCompose 直接补全状态驱动高斯渲染器使用的三维内容。潜空间方法中，GenAssets 面向驾驶资产，CompleteSplat 面向高斯场景补全，JRM 通过潜空间流匹配聚合共享对象的未对齐观测~\cite{yang2025genassets,liao2025complete,wu2026jrm}。LatentWorld 则提供以实体为中心的语义占据生成控制~\cite{park2026latentworld}。这些方法采用不同的生成单位：单个资产、场景，或由多份观测恢复的共享对象。DriveCompose 让这些单位处于同一查询布局，保留各类变换，并共享原视角检查。本文的变量将世界空间背景与刚体、关节规范资产联合建模；已见与自由空间约束作用于采样和解码，接受检查决定补全组件如何进入同一份可复用的 RGB 渲染世界。

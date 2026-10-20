@@ -122,7 +122,7 @@ z_{\tau+\Delta\tau}=\Pi_{m,f}\left[z_\tau+\Delta\tau\,u\odot v_\theta(z_\tau,\ta
 
 [Mermaid 结构草图](diagrams/paper-overview.mmd) · [SVG 预览](diagrams/paper-overview.svg)。它是论文图的语义骨架；最终论文图按下面的视觉场景制作。
 
-2026-10-20 已据此完成 [CVPR 风格总览图](figures/overview-cvpr-20261020/README.md)，提供原生 SVG、PNG、绘图源码及三篇 2026 年论文的原始总览图参考。
+当前论文使用 [三阶段总览图](figures/overview/README.md)，活动 PNG 保存在论文图目录，图注和设计规格集中在该说明页。前版原生 SVG、绘图源码、旧候选和论文风格参考已移入项目外归档，入口见该页的来源记录。
 
 | 区域 | 建议面积 | 应画出的可见变化 |
 | --- | --- | --- |

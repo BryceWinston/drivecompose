@@ -1,0 +1,14 @@
+% Portable Times-compatible Unicode fonts; CVPR geometry is unchanged.
+\usepackage{iftex}
+\ifXeTeX
+  \usepackage{fontspec}
+  \setmainfont{texgyretermes-regular.otf}[
+    BoldFont=texgyretermes-bold.otf,ItalicFont=texgyretermes-italic.otf,
+    BoldItalicFont=texgyretermes-bolditalic.otf]
+  \setsansfont{texgyreheros-regular.otf}[
+    BoldFont=texgyreheros-bold.otf,ItalicFont=texgyreheros-italic.otf,
+    BoldItalicFont=texgyreheros-bolditalic.otf]
+  \setmonofont{texgyrecursor-regular.otf}[
+    BoldFont=texgyrecursor-bold.otf,ItalicFont=texgyrecursor-italic.otf,
+    BoldItalicFont=texgyrecursor-bolditalic.otf]
+\fi

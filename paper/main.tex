@@ -1,0 +1,43 @@
+% !TEX program = xelatex
+% DriveCompose manuscript for CVPR 2027; inherited CVPR style files.
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage[review]{cvpr}
+\input{preamble}
+\input{fontsetup}
+\usepackage{tikz}
+\usepackage{needspace}
+\usetikzlibrary{arrows.meta,patterns}
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+\usepackage{url}
+\def\paperID{*****}
+\def\confName{CVPR}
+\def\confYear{2027}
+\title{DriveCompose: Observation-Anchored Joint Completion of Composable Gaussian Driving Worlds}
+\author{Anonymous CVPR Submission}
+\begin{document}
+\maketitle
+\input{sec/0_abstract}
+\begin{figure*}[t]
+  \centering
+  \input{fig/drivecompose-overview-vector}
+  \caption{\textbf{DriveCompose construction and reuse.} (a) A shared front end recovers evidence on world-space and canonical supports. (b) Local query groups exchange context through global memory; each flow step restores observed codes and clears free space. (c) Typed heads decode the completed codes. An observed-view check compares the candidate with the images and an observed-only decode; rejected candidates do not enter the fixed world. External policy and dynamics supply the states used for subsequent composition and RGB rendering. All scene marks are schematic.}
+  \label{fig:teaser}
+\end{figure*}
+\def\CVPRMAIN{}
+\input{sec/1_introduction}
+\input{sec/2_related_work}
+\input{sec/3_method}
+% Frozen verbatim from the supplied MOSAIC archive, by user instruction.
+\input{sec/4_experiments}
+\FloatBarrier
+\Needspace{13\baselineskip}
+\input{sec/5_discussion}
+\Needspace{17\baselineskip}
+\input{sec/6_conclusion}
+\FloatBarrier
+{\small
+\bibliographystyle{ieeenat_fullname}
+\bibliography{main}
+}
+\end{document}

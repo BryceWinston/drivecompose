@@ -1,0 +1,147 @@
+\section{方法}
+\label{sec:method}
+
+DriveCompose 构建一次世界，再在变化的状态下渲染。离线构建从驾驶日志恢复证据，将其聚合到规范支撑上，补全未知潜码，并在已见视图中检查解码内容。通过检查的背景和资产保持固定，在线装配仅使用当前相机与资产状态（图~\ref{fig:teaser}）。
+
+\subsection{问题定义与世界表示}
+\label{sec:representation}
+
+输入为同步日志，包括图像 $\mathbf I_{t,v}$、时间戳、相机内参 $\mathbf K_v$ 和相机到 rig 的标定 $\mathbf T^r_{c_v}$。Rig 世界位姿 $\mathbf T^w_r(t)$ 由日志提供，或相对首帧估计。相机世界位姿为 $\mathbf T^w_{c_v}(t)=\mathbf T^w_r(t)\mathbf T^r_{c_v}$。变换作用于列向量，距离单位为米。图像采用线性 RGB 和校正后的针孔模型；畸变、滚动快门与曝光差异在聚合前处理。
+
+我们构建世界
+\begin{equation}
+\mathcal W=\bigl(\mathcal G_b,C_{\rm sky},V_{\rm sky},
+\{\mathcal A_a\},\mathcal B,\xi\bigr),
+\end{equation}
+其中，$\mathcal G_b$ 为世界坐标背景，$C_{\rm sky}$ 为天空立方体贴图，$V_{\rm sky}$ 为其支持方向，$\mathcal A_a$ 为身份 $a$ 的规范资产，$\mathcal B$ 为有限空间支撑，$\xi$ 为补全种子。每个高斯保存中心 $\boldsymbol\mu$、正定协方差 $\boldsymbol\Sigma$、不透明度 $\alpha$ 及一阶局部方向外观。车辆保存固定局部几何与尺寸，人体额外保存静止骨架和蒙皮权重。接受候选后，这些参数保持固定。
+
+\paragraph{共享恢复。}
+Driving Log Encoder 将相机标定、时间与图像特征共同编码，跨视角与跨时间摘要提供场景上下文。轨迹级槽表示资产身份，状态注意力预测各时刻的根位姿与人体关节旋转。几何头恢复相机轴向深度、法线、置信度、语义和实例归属。资产位姿先在 rig 坐标中预测，再用 $\mathbf T^w_r(t)$ 映射至世界坐标。每个人体在整条日志中共享一个体型码，用于选择规范支撑与绑定一致的模板。
+
+\subsection{规范查询与证据聚合}
+\label{sec:queries}
+
+查询包含规范位置 $\mathbf q_i$、单元尺度 $\boldsymbol\delta_i$、类型 $k_i$、局部分组 $g_i$ 和参考世界坐标 $\mathbf q_i^w$。背景支撑结合可靠深度锚点与有限世界网格；车辆支撑结合运动归一化锚点与局部体积网格；人体查询位于身份相关的规范表面；天空查询为按立方体面分组的方向。布局在补全过程中固定。参考世界坐标将查询放置到首个输入时刻，并包含人体蒙皮变换，使局部身份与场景位置分别进入模型。
+
+聚合图像证据时，我们按各帧资产状态放置查询：
+\begin{equation}
+\mathbf p_i(t)=
+\begin{cases}
+\mathbf q_i,& k_i=\mathrm{background},\\
+\operatorname{xyz}(\mathbf T^w_a(t)\bar{\mathbf q}_i),& k_i=\mathrm{vehicle},\\
+\operatorname{xyz}(\mathbf T^w_h(t)\mathbf A_i(t)\bar{\mathbf q}_i),& k_i=\mathrm{human}.
+\end{cases}
+\label{eq:query-placement}
+\end{equation}
+这里，$\bar{\mathbf q}_i$ 为齐次坐标，$\operatorname{xyz}$ 提取欧氏坐标，$\mathbf A_i(t)$ 为加权蒙皮变换。天空投影仅使用相机旋转。
+
+投影给出相机轴向深度 $z_{i,t,v}$ 与图像位置。令 $\boldsymbol\phi_{i,t,v}$、$d_{i,t,v}$ 和 $c_{i,t,v}$ 分别为采样特征、预测深度与置信度。容差为 $\eta=\eta_{\rm abs}+\eta_{\rm rel}d$，归一化深度残差为 $r=(d-z)/\eta$。表面观测必须位于图像内，深度与置信度可靠，实例与查询一致，且满足 $|r|\leq1$；背景查询还需满足静态背景语义。对于有效性 $a_{i,t,v}$，
+\begin{align}
+w_{i,t,v}&=a_{i,t,v}c_{i,t,v}\exp(-r_{i,t,v}^2/2),\\
+\mathbf h_i&=\frac{\sum_{t,v}w_{i,t,v}[\boldsymbol\phi_{i,t,v};r_{i,t,v}]}
+{\max(\varepsilon,\sum_{t,v}w_{i,t,v})}.
+\end{align}
+查询置信度取已接受观测的最大值。仅当整个支撑单元位于已见表面之前时，可靠射线才投出自由空间票：
+\begin{equation}
+z_{i,t,v}+\tfrac12\|\boldsymbol\delta_i\|_2<d_{i,t,v}-\eta.
+\end{equation}
+天空特征使用可靠天空语义，深度残差设为零，不进行自由空间投票。聚合质量为正的查询标为已见；其余查询若获得足够的自由空间票则标为自由空间，否则标为未知。互斥掩码 $m_i$、$f_i$ 和 $u_i$ 满足 $m_i+f_i+u_i=1$。
+
+类型专属编码器将 $[\mathbf h_i;\mathbf q_i;\boldsymbol\delta_i]$ 映射为已见潜码 $\mathbf z_i^{\rm obs}\in\mathbb R^D$。用作条件前，未观测潜码清零。可见性标记与置信度单独进入补全网络，使部分目标与完整目标共享本征 codec 定义。
+
+\subsection{观测锚定联合补全}
+\label{sec:completion}
+
+\paragraph{局部分组与全局记忆。}
+Joint Completion DiT 接收当前与已见潜码、掩码、置信度、类型、两种坐标描述、单元尺度及日志摘要。背景按空间邻域分组，每个资产形成一组，天空按立方体面分组。局部自注意力更新各组后，共享记忆读取所有组，并将场景上下文写回查询：
+\begin{align}
+\mathbf M'&=\mathbf M+\operatorname{Attn}_{r}
+ (\mathbf M,\widetilde{\mathbf X},\widetilde{\mathbf X}),\\
+\mathbf U&=\widetilde{\mathbf X}+\operatorname{Attn}_{w}
+ (\operatorname{LN}(\widetilde{\mathbf X}),\mathbf M',\mathbf M').
+\label{eq:memory-exchange}
+\end{align}
+$\widetilde{\mathbf X}$ 拼接局部更新后的查询 token；注意力的三个输入依次为 query、key 和 value。$\mathbf U$ 之后执行残差前馈更新。流时间调制作用于局部归一化，记忆由可学习 token 和日志摘要初始化。组间由此共享场景条件，查询仍保留各自的坐标与运动模型。
+
+\paragraph{条件流。}
+我们通过 Flow Matching 学习速度场~\cite{lipman2022flowmatching}。完整目标 $\mathbf z_1$ 与高斯噪声 $\boldsymbol\epsilon\sim\mathcal N(0,\mathbf I)$ 共享固定查询布局。对于流时间 $\tau\in[0,1]$，
+\begin{equation}
+\mathbf z_\tau=m\odot\mathbf z^{\rm obs}
++u\odot[(1-\tau)\boldsymbol\epsilon+\tau\mathbf z_1].
+\label{eq:flow-path}
+\end{equation}
+自由空间潜码保持为零，未知查询的目标速度为 $\mathbf z_1-\boldsymbol\epsilon$。采用可选的损失选择器 $s_i$，
+\begin{equation}
+\mathcal L_{\rm flow}=
+\frac{\sum_i u_i s_i\|\mathbf v_\theta(\mathbf z_\tau,\tau,C)_i
+-(\mathbf z_{1,i}-\boldsymbol\epsilon_i)\|_2^2}
+{D\max(1,\sum_i u_i s_i)}.
+\label{eq:flow-loss}
+\end{equation}
+$C$ 汇集已见证据和查询条件。式~\ref{eq:flow-path} 中每个参与插值的未知查询都需要有效完整目标，$s_i$ 在这个有效集合中选择计入损失的项。
+
+从 $\tau=0$ 开始，我们以步长 $\Delta\tau=1/S$ 执行 $S$ 个 Euler 步：
+\begin{equation}
+\mathbf z^{j+1}=\Pi_{m,f}\!\left[
+\mathbf z^j+\Delta\tau\,u\odot
+\mathbf v_\theta(\mathbf z^j,j/S,C)\right].
+\label{eq:sampling}
+\end{equation}
+$\Pi_{m,f}$ 在每步后恢复已见潜码并清零自由空间潜码。种子决定一次补全结果。流时间索引离线生成过程，仿真时间索引此后的状态变化。
+
+\subsection{解码与观测检查}
+\label{sec:decoding}
+
+\paragraph{按类型解码。}
+背景、车辆和人体头独立地将每个查询解码为 $K$ 个子高斯，子高斯中心为
+\begin{equation}
+\boldsymbol\mu_{i,k}=\mathbf q_i+
+\tfrac12\boldsymbol\delta_i\odot\tanh(\mathbf b_{i,k}).
+\end{equation}
+正尺度与归一化旋转确定协方差。不透明度乘以 $1-f_i$；人体子高斯继承支撑查询的蒙皮权重。独立头预测天空颜色，有效域仍由观测支撑确定。每个外观通道保存一个恒定 RGB 项与三个局部方向系数。在固定逐查询 codec 下，式~\ref{eq:sampling} 不改变已见子高斯参数。关闭非已见查询后，得到仅观测参照。
+
+\paragraph{渲染接受检查。}
+即使参照参数不变，新增内容仍可能遮挡参照。我们按原始资产状态装配候选和参照，再从输入相机渲染两者。令 $e_{\rm cand}(p)$ 和 $e_{\rm obs}(p)$ 为像素 $p$ 处的平均绝对 RGB 误差，在可靠非自车像素上平均正向退化
+\begin{equation}
+\Delta e(p)=\max\{e_{\rm cand}(p)-e_{\rm obs}(p),0\}
+\end{equation}
+使其他位置的改善不能抵消局部退化。检查还约束绝对 RGB 误差、有效深度误差、视图覆盖率与前景侵入。若新增表面位于预测参照深度之前，且未出现在仅观测渲染中，则记为侵入；其比例以可靠非天空几何像素归一化。接受条件结合聚合与最差视图的上界，并要求最低覆盖率。预测深度用于这些一致性检查，独立几何精度采用另外的参照。
+
+\subsection{训练阶段与目标}
+\label{sec:training}
+
+\paragraph{恢复与 codec 拟合。}
+第一阶段监督几何、语义、实例归属、身份和状态，一次轨迹级匹配将预测槽分配给目标身份，并用于所有帧。第二阶段冻结恢复模块，训练类型专属 codec。部分观测与更完整观测使用相同的查询位置、类型、顺序和归属。解码表示采用渲染或集合匹配监督；只有已知子高斯对应关系时，才使用直接坐标损失。
+
+\paragraph{补全先验。}
+第三阶段冻结恢复模块与 codec，用完整场景或资产目标，通过式~\ref{eq:flow-loss} 训练补全网络。第四阶段保持上述模块冻结，通过流积分、解码与渲染反向传播，将补全网络适配到部分真实日志。
+
+\paragraph{基于观测的适配。}
+记 $\langle\ell\rangle_{\Omega}$ 为掩码 $\Omega$ 中有效元素的均值。RGB 与深度项采用带掩码的 L1 误差：$\mathcal L_{\rm rgb}=\langle\|\widehat{\mathbf I}-\mathbf I\|_1/3\rangle_{\Omega_I}$，$\mathcal L_{\rm depth}=\langle|\widehat d-d|\rangle_{\Omega_d}$。对于已知自由射线上的累计不透明度 $a_r$、脚点有符号距离 $d_f$（地面上方为正）、接触掩码 $\Omega_c$ 以及穿透深度 $d_p$（进入其他资产内部为正），
+\begin{align}
+\mathcal L_{\rm scene}={}&\lambda_e\langle a_r^2\rangle
++\lambda_g\langle[-d_f]_+^2\rangle\nonumber\\
+&+\lambda_c\langle|d_f|\rangle_{\Omega_c}
++\lambda_p\langle[d_p]_+^2\rangle,\\
+\mathcal L_{\rm adapt}={}&\lambda_r\mathcal L_{\rm rgb}
++\lambda_d\mathcal L_{\rm depth}+\mathcal L_{\rm scene}.
+\label{eq:adaptation}
+\end{align}
+其中，$[x]_+=\max(x,0)$；未标掩码的均值在后端提供的射线或几何样本上计算。各项只使用可用观测与后端几何量。自由射线不透明度约束新增内容在射线方向上的影响，补充逐单元自由空间掩码的作用。潜码硬恢复与冻结解码保持已见锚点，适配目标则度量新增内容在图像和几何上的影响。$\lambda$ 系数控制有效软约束的相对权重。编码器、codec、查询规范与补全版本共同记录，确保目标和采样条件采用相同表示。
+
+\subsection{状态驱动装配与复用}
+\label{sec:composition}
+
+在线第 $k$ 步，状态 $s_k$ 给出自车位姿、活动资产、车辆变换以及人体根与关节位姿。对于车辆，
+\begin{equation}
+\boldsymbol\mu^w=\mathbf R\boldsymbol\mu^a+\mathbf t,
+\qquad\boldsymbol\Sigma^w=\mathbf R\boldsymbol\Sigma^a\mathbf R^\top.
+\end{equation}
+对于人体，加权蒙皮变换为 $\mathbf A_i=\sum_j w_{ij}\mathbf P_j\mathbf B_j^{-1}$，其中 $\mathbf B_j$ 与 $\mathbf P_j$ 为根坐标中的静止与当前全局关节变换。中心变为 $\bar{\boldsymbol\mu}_i^w=\mathbf T^w_h\mathbf A_i\bar{\boldsymbol\mu}_i^h$。组合后的局部线性映射 $\mathbf J_i$ 给出协方差 $\mathbf J_i\boldsymbol\Sigma_i\mathbf J_i^\top$；外观求值时，用 $\mathbf J_i^{-1}$ 将世界观察方向映回局部坐标。接近奇异的蒙皮变换予以拒绝。根位姿控制整体放置，根关节保留静止变换。
+
+渲染器合成背景、活动资产与有效天空，策略动作和外部动力学推进状态：
+\begin{align}
+o_k&=\mathcal R(\operatorname{Compose}(\mathcal W,s_k),\mathcal C_k),\\
+s_{k+1}&=F_{\rm dyn}(s_k,\pi(o_k),\Delta t).
+\end{align}
+重置轨迹改变状态，但保留 $\mathcal W$ 及其种子。有限空间支撑与受支持天空方向决定覆盖范围。道路网格和碰撞代理与视觉资产共享坐标，由物理后端维护。
