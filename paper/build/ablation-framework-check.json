@@ -46,9 +46,9 @@
   "compiled_outputs": [
     {
       "language": "en",
-      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\integrated\\en\\main.pdf",
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
       "pages": 14,
-      "sha256": "af1908fe0963bcf933c58097a33f0919134078434b0f083cfe6a5fa21ebfb3c7",
+      "sha256": "2d012a4377287b40f5f836aa69b033be2926715cdd7b4af972fec2d13b42c742",
       "compiler_exit_code": 0,
       "final_log_warnings": [
         "Overfull \\hbox (18.6724pt too wide) in alignment at lines 170--206"
@@ -57,20 +57,26 @@
       "visually_reviewed_pages": [
         8,
         9
-      ]
+      ],
+      "pixel_equivalent_to_previously_reviewed_pdf": true,
+      "pixel_comparison_dpi": 96,
+      "final_log_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\compiler-intermediates\\en\\main.log"
     },
     {
       "language": "zh",
       "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
       "pages": 11,
-      "sha256": "0f3cea01039f02f110c640667c767ba339da46ffb38b403a2002fffea2fa52b5",
+      "sha256": "c1ff81998c0756191da3473cabae81be0f3860207fe18d4f7f1c3c8ffb0db6af",
       "compiler_exit_code": 0,
       "final_log_warnings": [],
       "visually_reviewed_pages": [
         5,
         6,
         7
-      ]
+      ],
+      "pixel_equivalent_to_previously_reviewed_pdf": true,
+      "pixel_comparison_dpi": 96,
+      "final_log_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\compiler-intermediates\\zh\\main_zh.log"
     }
   ],
   "validation": {
@@ -92,7 +98,7 @@
     "remote_nonablation_results_verified": false,
     "superseded_english_output": {
       "language": "en",
-      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\before-build\\en\\main.pdf",
       "pages": 12,
       "sha256": "47ffed11491c53342eed6e67667ffda75f8618aa51812e3a196979dcee676b32",
       "compiler_exit_code": 0,
@@ -103,7 +109,7 @@
         8
       ]
     },
-    "alternate_output_reason": "The pre-merge English PDF is locked by a reader; the integrated PDF is written to build/integrated/en/.",
+    "alternate_output_reason": "A reader lock previously required a temporary integrated output; the lock is resolved and both PDFs are rebuilt at canonical paths.",
     "compiled_references": {
       "en": {
         "component_table": 5,
@@ -117,6 +123,9 @@
         "figure": 2,
         "regression_equation": 16
       }
-    }
-  }
+    },
+    "alternate_output_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\integrated",
+    "canonical_outputs_restored": true
+  },
+  "directory_cleanup": "build-directory-cleanup-20261021.json"
 }

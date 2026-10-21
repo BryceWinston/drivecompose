@@ -1058,7 +1058,7 @@ Package rerunfilecheck Warning: File `main_zh.brf' has changed.
  )
 Output written on main_zh.xdv (11 pages, 541680 bytes).
 Transcript written on main_zh.log.
-note: Rerunning TeX because "main_zh.brf" changed ...
+note: Rerunning TeX because "main_zh.aux" changed ...
 (main_zh.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-02-24> (article.cls
@@ -1175,11 +1175,11 @@ ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
 Output written on main_zh.xdv (11 pages, 557748 bytes).
 Transcript written on main_zh.log.
 note: Running xdvipdfmx ...
-[1][2][3][4][5][6][7][8][9][10][11]2256702 bytes written
+[1][2][3][4][5][6][7][8][9][10][11]2256701 bytes written
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.brf` (4.599609375 KiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.log` (37.83203125 KiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.bbl` (34.8740234375 KiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.blg` (199 B)
 note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.aux` (42.9775390625 KiB)
 note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.out` (1.3759765625 KiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.bbl` (34.8740234375 KiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.pdf` (2.152158737182617 MiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.log` (37.83203125 KiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.brf` (4.599609375 KiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.blg` (199 B)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.pdf` (2.152157783508301 MiB)

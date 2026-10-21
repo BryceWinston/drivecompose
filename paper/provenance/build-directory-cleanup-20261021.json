@@ -1,0 +1,155 @@
+{
+  "date": "2026-10-21",
+  "instruction": "PDF 阅读器已关闭，统一当前构建目录并重新推送",
+  "base_commit": "575f0c95b3adbc23c8d7ea42dd7e4c3eaee2d743",
+  "archive_root": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup",
+  "pre_cleanup_snapshot": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\before-build",
+  "snapshot_manifest": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\before-build-manifest.json",
+  "snapshot_manifest_sha256": "e5fcdb4661f7adc7c8435238009a4503e5b0d96442a843d655a266f167d8ecc0",
+  "canonical_pdfs": [
+    "build/en/main.pdf",
+    "build/zh/main_zh.pdf"
+  ],
+  "manuscript_sources_changed": false,
+  "ablation_results_filled": false,
+  "ablation_images_added": false,
+  "pixel_equivalence": [
+    {
+      "language": "en",
+      "pages": 14,
+      "all_pages_pixel_identical": true,
+      "comparison_dpi": 96,
+      "current_pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "previous_pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\integrated\\en\\main.pdf"
+    },
+    {
+      "language": "zh",
+      "pages": 11,
+      "all_pages_pixel_identical": true,
+      "comparison_dpi": 96,
+      "current_pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+      "previous_pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\before-build\\zh\\main_zh.pdf"
+    }
+  ],
+  "compiled_references": {
+    "en": {
+      "component_table": 5,
+      "input_table": 6,
+      "figure": 2,
+      "regression_equation": 16
+    },
+    "zh": {
+      "component_table": 1,
+      "input_table": 2,
+      "figure": 2,
+      "regression_equation": 16
+    }
+  },
+  "archived_files": [
+    {
+      "old_path": "build/bilingual-check.json",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\historical-checks\\bilingual-check.json",
+      "sha256": "6a4c0e329f259cda91bbcc3b36114e0124a109db2f9b42ec01c0fd6fcc0a49f2"
+    },
+    {
+      "old_path": "build/compilation-check.json",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\historical-checks\\compilation-check.json",
+      "sha256": "fdbc126236befb538e9e391aacb0a622150820c09b88473e91263ea436d10a77"
+    },
+    {
+      "old_path": "build/experiments-empty-check.json",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\historical-checks\\experiments-empty-check.json",
+      "sha256": "b19af894f82f8b6f6ca432569f9f42574139f09aac1a69fe996c2e2053a8e00a"
+    },
+    {
+      "old_path": "build/pdf-qa.json",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\historical-checks\\pdf-qa.json",
+      "sha256": "75bd86ac4abcb099bfb9ac53edffc8c3f08a659284697a9f57e6127a731e0ad4"
+    },
+    {
+      "old_path": "build/revision-check.json",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\historical-checks\\revision-check.json",
+      "sha256": "41eee853b2bd359a3e18097ab1feec4b04cea79766744b64f47c6b0998e9127b"
+    },
+    {
+      "old_path": "build/integrated/en/compile-result.json",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\integrated\\en\\compile-result.json",
+      "sha256": "0ea868193e68c35421645c85d991bc5996a12d8e3e5b1058fd4a157cca94476a"
+    },
+    {
+      "old_path": "build/integrated/en/compiler-output.txt",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\integrated\\en\\compiler-output.txt",
+      "sha256": "5abb7b497a6ef4ed88c26624a9e0a9563d88dffc0268d1d4591de4319f60fcc8"
+    },
+    {
+      "old_path": "build/integrated/en/main.brf",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\integrated\\en\\main.brf",
+      "sha256": "b757cb399ff6914ce2f33ca69e32a0a8d3d5de0c3fda284119f18428bb4de27d"
+    },
+    {
+      "old_path": "build/integrated/en/main.pdf",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\integrated\\en\\main.pdf",
+      "sha256": "af1908fe0963bcf933c58097a33f0919134078434b0f083cfe6a5fa21ebfb3c7"
+    },
+    {
+      "old_path": "build/en/main.aux",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\compiler-intermediates\\en\\main.aux",
+      "sha256": "57a96f98b8cf0d3935102ea4c4d6453181ad8edf558a95f04d795296313852ff"
+    },
+    {
+      "old_path": "build/en/main.bbl",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\compiler-intermediates\\en\\main.bbl",
+      "sha256": "120e8c71f43073e869bb98e5ecff2ad7251c8ccdc59cf7cb82072dd5b8ef3f40"
+    },
+    {
+      "old_path": "build/en/main.blg",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\compiler-intermediates\\en\\main.blg",
+      "sha256": "5c4be67aa5e75cb2b17ba550f078321eb06cfa4eebbf6e0a33ba106c2309f455"
+    },
+    {
+      "old_path": "build/en/main.brf",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\compiler-intermediates\\en\\main.brf",
+      "sha256": "b757cb399ff6914ce2f33ca69e32a0a8d3d5de0c3fda284119f18428bb4de27d"
+    },
+    {
+      "old_path": "build/en/main.log",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\compiler-intermediates\\en\\main.log",
+      "sha256": "ef7bda749bcd87c38c617782318028a92a5b05d99680e6eac0e047300a79e3d4"
+    },
+    {
+      "old_path": "build/en/main.out",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\compiler-intermediates\\en\\main.out",
+      "sha256": "503b8cbaae358f9e19a59ba9eea3b4a3d9bb27d6ddddb101ec39ed0b1c3c104d"
+    },
+    {
+      "old_path": "build/zh/main_zh.aux",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\compiler-intermediates\\zh\\main_zh.aux",
+      "sha256": "63b834494cdec1509967934c83b4cc2fc0666531b1a39fd05f3fb2f9a932646d"
+    },
+    {
+      "old_path": "build/zh/main_zh.bbl",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\compiler-intermediates\\zh\\main_zh.bbl",
+      "sha256": "120e8c71f43073e869bb98e5ecff2ad7251c8ccdc59cf7cb82072dd5b8ef3f40"
+    },
+    {
+      "old_path": "build/zh/main_zh.blg",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\compiler-intermediates\\zh\\main_zh.blg",
+      "sha256": "799904f331cbb6ea9ebb4bbb6a69e6a1264b98446fb678994d0309b19742ce32"
+    },
+    {
+      "old_path": "build/zh/main_zh.brf",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\compiler-intermediates\\zh\\main_zh.brf",
+      "sha256": "f23b95da12cf6bb34db0895c1b9cae26e2ebe3010176c6adaf8ed0ed3e9d0c12"
+    },
+    {
+      "old_path": "build/zh/main_zh.log",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\compiler-intermediates\\zh\\main_zh.log",
+      "sha256": "e13cc7b382955e5c0e64f7ae7fe9e54afe25a4cde5a9b70f8f834c74c6fbec45"
+    },
+    {
+      "old_path": "build/zh/main_zh.out",
+      "archive_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-build-directory-cleanup\\compiler-intermediates\\zh\\main_zh.out",
+      "sha256": "99167dcf3bf174b4512651bd664574e07945e4bf78041a51c4002211519839d5"
+    }
+  ]
+}

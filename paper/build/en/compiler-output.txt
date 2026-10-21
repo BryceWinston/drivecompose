@@ -45,7 +45,8 @@ CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
 (hycolor.sty) (letltxmacro.sty) (auxhook.sty) (pd1enc.def) (intcalc.sty)
 (etexcmds.sty) (puenc.def) (backref.sty (rerunfilecheck.sty (atveryend-ltx.sty)
  (uniquecounter.sty (bigintcalc.sty)))) (bitset.sty) (atbegshi-ltx.sty))
-(hxetex.def (stringenc.sty)) (cleveref.sty)
+(hxetex.def (stringenc.sty)) (float.sty) (colortbl.sty (array.sty))
+(cleveref.sty)
 No file main.aux.
 (ts1cmr.fd) ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
 (gettitlestring.sty))
@@ -488,28 +489,102 @@ LaTeX Warning: Reference `eq:flow-loss' on page 6 undefined on input line 207.
 
 LaTeX Warning: Reference `eq:flow-path' on page 6 undefined on input line 207.
 
-) (sec/4_experiments [6]
+) (sec/4_experiments
 
-LaTeX Warning: Reference `eq:regression' on page 7 undefined on input line 21.
-
-
-LaTeX Warning: Reference `fig:ablation-reuse' on page 7 undefined on input line
- 28.
+LaTeX Warning: Reference `sec:temporal_evaluation' on page 6 undefined on input
+ line 6.
 
 
-LaTeX Warning: Reference `tab:ablation-components' on page 7 undefined on input
- line 69.
+LaTeX Warning: Reference `sec:spatial_evaluation' on page 6 undefined on input 
+line 8.
 
 
-LaTeX Warning: Reference `tab:ablation-inputs' on page 7 undefined on input lin
-e 106.
+LaTeX Warning: Reference `sec:generalization' on page 6 undefined on input line
+ 10.
 
-) (sec/5_discussion) (sec/6_conclusion [7])
+
+LaTeX Warning: Reference `sec:ablations' on page 6 undefined on input line 12.
+
+[6]
+
+Package natbib Warning: Citation `yang2025storm' on page 7 undefined on input l
+ine 18.
+
+
+Package natbib Warning: Citation `huang2026instantnurec' on page 7 undefined on
+ input line 18.
+
+
+Package natbib Warning: Citation `yang2025storm' on page 7 undefined on input l
+ine 21.
+
+
+Package natbib Warning: Citation `chen2025dggt' on page 7 undefined on input li
+ne 21.
+
+
+Package natbib Warning: Citation `yu2026streetforward' on page 7 undefined on i
+nput line 21.
+
+
+Package natbib Warning: Citation `chi2026pointforward' on page 7 undefined on i
+nput line 21.
+
+
+Package natbib Warning: Citation `huang2026instantnurec' on page 7 undefined on
+ input line 24.
+
+
+LaTeX Warning: Reference `tab:regions_current' on page 7 undefined on input lin
+e 34.
+
+
+LaTeX Warning: Reference `tab:temporal_current' on page 7 undefined on input li
+ne 60.
+
+
+Package natbib Warning: Citation `zhu2025worldsplat' on page 7 undefined on inp
+ut line 88.
+
+
+Package natbib Warning: Citation `chi2026pointforward' on page 7 undefined on i
+nput line 88.
+
+
+LaTeX Warning: Reference `tab:spatial_current' on page 7 undefined on input lin
+e 90.
+
+[7]
+
+LaTeX Warning: Reference `tab:generalization' on page 8 undefined on input line
+ 151.
+
+
+warning: sec/4_experiments:206: Overfull \hbox (18.6724pt too wide) in alignment at lines 170--206
+Overfull \hbox (18.6724pt too wide) in alignment at lines 170--206
+[] [] [] [] [] [] [] 
+
+LaTeX Warning: Reference `eq:regression' on page 8 undefined on input line 226.
+
+
+
+LaTeX Warning: Reference `fig:ablation-reuse' on page 8 undefined on input line
+ 233.
+
+
+LaTeX Warning: Reference `tab:ablation-components' on page 8 undefined on input
+ line 274.
+
+
+LaTeX Warning: Reference `tab:ablation-inputs' on page 8 undefined on input lin
+e 311.
+
+[8]) (sec/5_discussion) (sec/6_conclusion) [9]
 No file main.bbl.
 
 Package natbib Warning: There were undefined citations.
 
-[8] (main.aux)
+[10] (main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -522,7 +597,8 @@ Package rerunfilecheck Warning: File `main.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
  )
-Output written on main.xdv (8 pages, 393320 bytes).
+(see the transcript file for additional information)
+Output written on main.xdv (10 pages, 460288 bytes).
 Transcript written on main.log.
 note: Running BibTeX on main.aux ...
 note: Rerunning TeX because bibtex was run ...
@@ -571,10 +647,10 @@ CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
 (hycolor.sty) (letltxmacro.sty) (auxhook.sty) (pd1enc.def) (intcalc.sty)
 (etexcmds.sty) (puenc.def) (backref.sty (rerunfilecheck.sty (atveryend-ltx.sty)
  (uniquecounter.sty (bigintcalc.sty)))) (bitset.sty) (atbegshi-ltx.sty))
-(hxetex.def (stringenc.sty)) (cleveref.sty) (main.aux) (ts1cmr.fd)
-ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
-(gettitlestring.sty)) (main.out) (main.out) (umsa.fd) (umsb.fd) (sec/0_abstract
-) (sec/1_introduction
+(hxetex.def (stringenc.sty)) (float.sty) (colortbl.sty (array.sty))
+(cleveref.sty) (main.aux) (ts1cmr.fd) ABD: EveryShipout initializing macros
+(nameref.sty (refcount.sty) (gettitlestring.sty)) (main.out) (main.out)
+(umsa.fd) (umsb.fd) (sec/0_abstract) (sec/1_introduction
 
 Package natbib Warning: Citation `sun2020waymo' on page 1 undefined on input li
 ne 4.
@@ -963,18 +1039,58 @@ line 100.
 Package natbib Warning: Citation `lipman2022flowmatching' on page 4 undefined o
 n input line 100.
 
-[4] [5]) (sec/4_experiments [6]) (sec/5_discussion) (sec/6_conclusion [7])
-(main.bbl
+[4] [5]) (sec/4_experiments [6]
+
+Package natbib Warning: Citation `yang2025storm' on page 7 undefined on input l
+ine 18.
+
+
+Package natbib Warning: Citation `huang2026instantnurec' on page 7 undefined on
+ input line 18.
+
+
+Package natbib Warning: Citation `yang2025storm' on page 7 undefined on input l
+ine 21.
+
+
+Package natbib Warning: Citation `chen2025dggt' on page 7 undefined on input li
+ne 21.
+
+
+Package natbib Warning: Citation `yu2026streetforward' on page 7 undefined on i
+nput line 21.
+
+
+Package natbib Warning: Citation `chi2026pointforward' on page 7 undefined on i
+nput line 21.
+
+
+Package natbib Warning: Citation `huang2026instantnurec' on page 7 undefined on
+ input line 24.
+
+
+Package natbib Warning: Citation `zhu2025worldsplat' on page 7 undefined on inp
+ut line 88.
+
+
+Package natbib Warning: Citation `chi2026pointforward' on page 7 undefined on i
+nput line 88.
+
+[7]
+warning: sec/4_experiments:206: Overfull \hbox (18.6724pt too wide) in alignment at lines 170--206
+Overfull \hbox (18.6724pt too wide) in alignment at lines 170--206
+[] [] [] [] [] [] [] 
+[8]) (sec/5_discussion) (sec/6_conclusion) [9] (main.bbl
 No file main.brf.
 
 Package lineno Warning: Label(s) may have changed. Rerun to get cross-reference
 s right. on input line 1.
 
-[8] [9] [10] [11])
+[10] [11] [12] [13])
 
 Package natbib Warning: There were undefined citations.
 
-[12] (main.aux
+[14] (main.aux
 
 Package natbib Warning: Citation(s) may have changed.
 (natbib)                Rerun to get citations correct.
@@ -985,7 +1101,8 @@ Package rerunfilecheck Warning: File `main.brf' has changed.
 (rerunfilecheck)                Rerun to get bibliographical references right.
 
  )
-Output written on main.xdv (12 pages, 686364 bytes).
+(see the transcript file for additional information)
+Output written on main.xdv (14 pages, 755376 bytes).
 Transcript written on main.log.
 note: Rerunning TeX because "main.aux" changed ...
 (main.tex
@@ -1033,17 +1150,22 @@ CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
 (hycolor.sty) (letltxmacro.sty) (auxhook.sty) (pd1enc.def) (intcalc.sty)
 (etexcmds.sty) (puenc.def) (backref.sty (rerunfilecheck.sty (atveryend-ltx.sty)
  (uniquecounter.sty (bigintcalc.sty)))) (bitset.sty) (atbegshi-ltx.sty))
-(hxetex.def (stringenc.sty)) (cleveref.sty) (main.aux) (ts1cmr.fd)
-ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
-(gettitlestring.sty)) (main.out) (main.out) (umsa.fd) (umsb.fd) (sec/0_abstract
-) (sec/1_introduction [1]) (sec/2_related_work [2]) (sec/3_method [3] [4]
-[5]) (sec/4_experiments [6]) (sec/5_discussion) (sec/6_conclusion [7])
-(main.bbl (main.brf) [8] [9] [10] [11]
+(hxetex.def (stringenc.sty)) (float.sty) (colortbl.sty (array.sty))
+(cleveref.sty) (main.aux) (ts1cmr.fd) ABD: EveryShipout initializing macros
+(nameref.sty (refcount.sty) (gettitlestring.sty)) (main.out) (main.out)
+(umsa.fd) (umsb.fd) (sec/0_abstract) (sec/1_introduction [1])
+(sec/2_related_work [2]) (sec/3_method [3] [4] [5]) (sec/4_experiments [6]
+[7]
+warning: sec/4_experiments:206: Overfull \hbox (18.6724pt too wide) in alignment at lines 170--206
+Overfull \hbox (18.6724pt too wide) in alignment at lines 170--206
+[] [] [] [] [] [] [] 
+[8]) (sec/5_discussion) (sec/6_conclusion) [9] (main.bbl (main.brf) [10]
+[11] [12] [13]
 
 Package lineno Warning: Label(s) may have changed. Rerun to get cross-reference
 s right. on input line 693.
 
-) [12] (main.aux)
+) [14] (main.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
@@ -1052,7 +1174,8 @@ Package rerunfilecheck Warning: File `main.brf' has changed.
 (rerunfilecheck)                Rerun to get bibliographical references right.
 
  )
-Output written on main.xdv (12 pages, 703468 bytes).
+(see the transcript file for additional information)
+Output written on main.xdv (14 pages, 774056 bytes).
 Transcript written on main.log.
 note: Rerunning TeX because "main.brf" changed ...
 (main.tex
@@ -1100,18 +1223,24 @@ CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
 (hycolor.sty) (letltxmacro.sty) (auxhook.sty) (pd1enc.def) (intcalc.sty)
 (etexcmds.sty) (puenc.def) (backref.sty (rerunfilecheck.sty (atveryend-ltx.sty)
  (uniquecounter.sty (bigintcalc.sty)))) (bitset.sty) (atbegshi-ltx.sty))
-(hxetex.def (stringenc.sty)) (cleveref.sty) (main.aux) (ts1cmr.fd)
-ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
-(gettitlestring.sty)) (main.out) (main.out) (umsa.fd) (umsb.fd) (sec/0_abstract
-) (sec/1_introduction [1]) (sec/2_related_work [2]) (sec/3_method [3] [4]
-[5]) (sec/4_experiments [6]) (sec/5_discussion) (sec/6_conclusion [7])
-(main.bbl (main.brf) [8] [9] [10] [11]
+(hxetex.def (stringenc.sty)) (float.sty) (colortbl.sty (array.sty))
+(cleveref.sty) (main.aux) (ts1cmr.fd) ABD: EveryShipout initializing macros
+(nameref.sty (refcount.sty) (gettitlestring.sty)) (main.out) (main.out)
+(umsa.fd) (umsb.fd) (sec/0_abstract) (sec/1_introduction [1])
+(sec/2_related_work [2]) (sec/3_method [3] [4] [5]) (sec/4_experiments [6]
+[7]
+warning: sec/4_experiments:206: Overfull \hbox (18.6724pt too wide) in alignment at lines 170--206
+Overfull \hbox (18.6724pt too wide) in alignment at lines 170--206
+[] [] [] [] [] [] [] 
+[8]) (sec/5_discussion) (sec/6_conclusion) [9] (main.bbl (main.brf) [10]
+[11] [12] [13]
 
 Package lineno Warning: Label(s) may have changed. Rerun to get cross-reference
 s right. on input line 693.
 
-) [12] (main.aux) )
-Output written on main.xdv (12 pages, 719564 bytes).
+) [14] (main.aux) )
+(see the transcript file for additional information)
+Output written on main.xdv (14 pages, 791196 bytes).
 Transcript written on main.log.
 note: Rerunning TeX because "main.aux" changed ...
 (main.tex
@@ -1159,20 +1288,27 @@ CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
 (hycolor.sty) (letltxmacro.sty) (auxhook.sty) (pd1enc.def) (intcalc.sty)
 (etexcmds.sty) (puenc.def) (backref.sty (rerunfilecheck.sty (atveryend-ltx.sty)
  (uniquecounter.sty (bigintcalc.sty)))) (bitset.sty) (atbegshi-ltx.sty))
-(hxetex.def (stringenc.sty)) (cleveref.sty) (main.aux) (ts1cmr.fd)
-ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
-(gettitlestring.sty)) (main.out) (main.out) (umsa.fd) (umsb.fd) (sec/0_abstract
-) (sec/1_introduction [1]) (sec/2_related_work [2]) (sec/3_method [3] [4]
-[5]) (sec/4_experiments [6]) (sec/5_discussion) (sec/6_conclusion [7])
-(main.bbl (main.brf) [8] [9] [10] [11]) [12] (main.aux) )
-Output written on main.xdv (12 pages, 719564 bytes).
+(hxetex.def (stringenc.sty)) (float.sty) (colortbl.sty (array.sty))
+(cleveref.sty) (main.aux) (ts1cmr.fd) ABD: EveryShipout initializing macros
+(nameref.sty (refcount.sty) (gettitlestring.sty)) (main.out) (main.out)
+(umsa.fd) (umsb.fd) (sec/0_abstract) (sec/1_introduction [1])
+(sec/2_related_work [2]) (sec/3_method [3] [4] [5]) (sec/4_experiments [6]
+[7]
+warning: sec/4_experiments:206: Overfull \hbox (18.6724pt too wide) in alignment at lines 170--206
+Overfull \hbox (18.6724pt too wide) in alignment at lines 170--206
+[] [] [] [] [] [] [] 
+[8]) (sec/5_discussion) (sec/6_conclusion) [9] (main.bbl (main.brf) [10]
+[11] [12] [13]) [14] (main.aux) )
+(see the transcript file for additional information)
+Output written on main.xdv (14 pages, 791180 bytes).
 Transcript written on main.log.
+warning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.
 note: Running xdvipdfmx ...
-[1][2][3][4][5][6][7][8][9][10][11][12]1876350 bytes written
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.out` (2.5400390625 KiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.brf` (4.599609375 KiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.blg` (196 B)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.log` (33.341796875 KiB)
+[1][2][3][4][5][6][7][8][9][10][11][12][13][14]1892669 bytes written
 note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.bbl` (34.8740234375 KiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.aux` (46.15234375 KiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.pdf` (1.7894268035888672 MiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.log` (34.001953125 KiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.aux` (52.703125 KiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.pdf` (1.8049898147583008 MiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.blg` (196 B)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.out` (3.380859375 KiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.brf` (5.072265625 KiB)

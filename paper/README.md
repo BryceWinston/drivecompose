@@ -21,7 +21,7 @@
 - `provenance/source-manifest.json`：原始来源哈希及实验冻结清单，内容保持迁移时的版本。
 - [归档索引](provenance/README.md)：MOSAIC 原包、迁移报告、终校备份与历史编译检查记录。
 - `EVIDENCE.md`：主张、代码依据与材料缺口；`REFERENCES.md`：引用核验记录。
-- `build/integrated/en/main.pdf` / `build/zh/main_zh.pdf`：中英文当前构建路径；英文旧 PDF 被阅读器占用，合并版另行输出。实际构建状态以各目录的 `compile-result.json` 为准；`build/en/main.pdf` 保留合并前版本。
+- `build/en/main.pdf` / `build/zh/main_zh.pdf`：中英文唯一当前构建路径；两版均已重新编译。实际构建状态以各目录的 `compile-result.json` 为准。临时合并目录和旧输出已移至项目外归档，见 [构建目录整理记录](provenance/build-directory-cleanup-20261021.json)。
 
 ## 编译与检查
 
@@ -51,13 +51,13 @@ python tools/check_manuscript.py
 
 `tools/check_manuscript.py` 按当前消融框架记录，在消融范围内核对两张表的版本与空结果格、16 个空图片槽和双语公式，同时保留原实验备份、依赖图哈希、归档完整性、会议年份、引用和方法公式检查。归档位置由 `provenance/archive-map.json` 指定；若归档另存他处，使用 `python tools/check_manuscript.py --archive-root "归档目录"`。缺少归档时检查会报错，论文编译本身不依赖外部归档。
 
-来源清单保留旧路径和原哈希，当前文档链接的改动另行记录。校验时，已更新的两份设计文档与其整理前快照核对，其余设计与实现文件仍与原清单核对；检查结果分别列出历史证据完整性和当前文档变化。编译日志、`build/verification.json` 及 `build/pdf-qa.json` 保存在当前 `build/` 目录。
+来源清单保留旧路径和原哈希，当前文档链接的改动另行记录。校验时，已更新的两份设计文档与其整理前快照核对，其余设计与实现文件仍与原清单核对；检查结果分别列出历史证据完整性和当前文档变化。当前构建目录保留中英文 PDF、编译记录与日志、`build/verification.json` 和 `build/ablation-framework-check.json`。历史检查与编译中间文件移至项目外，旧路径及归档位置见 [整理记录](provenance/build-directory-cleanup-20261021.json)。
 
 ## 模板状态
 
 两版 `confYear` 均为 2027，保留匿名 review 模式和待填写的论文 ID。2026-10-20 检查时，[CVPR 官方 author-kit 的 main.tex](https://raw.githubusercontent.com/cvpr-org/author-kit/main/main.tex) 仍标记 2026。本次保留压缩包内的原样式，不将修改年份表述为已经采用官方 2027 模板；正式投稿时再核对对应届次模板与要求。
 
-2026-10-20 非实验改写：中英文按同一层级重整摘要至结论，方法保留六个编号二级节，短主题采用行内粗体标题。实验源文件及依赖图冻结；实验之后的浮动边界只用于避免讨论、结论被浮动图拆开。详见本轮结构记录及 `build/revision-check.json`。
+2026-10-20 非实验改写：中英文按同一层级重整摘要至结论，方法保留六个编号二级节，短主题采用行内粗体标题。实验源文件及依赖图冻结；实验之后的浮动边界只用于避免讨论、结论被浮动图拆开。详见本轮结构记录；当时的 `build/revision-check.json` 现按 [整理记录](provenance/build-directory-cleanup-20261021.json) 归档。
 
 ## 2026-10-21 生成式重建改写
 
