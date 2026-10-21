@@ -34,7 +34,7 @@
   },
   "source_git_commit": "7c1acf4aa02b432a3173f167e1663a5f274cb844",
   "raster_overview_role": "historical design draft; current entries use generated overview 20261021",
-  "experiment_state": "Bilingual ablation protocol, two tables with blank numerical cells, and one native three-panel figure layout with sixteen empty image slots; no results or empirical conclusions.",
+  "experiment_state": "Bilingual ablation protocol with 38 blank numerical cells and 16 empty image slots; English non-ablation experiments retained from origin/main without result verification.",
   "invalid_migration_source_evidence": [],
   "changed_project_sources_since_migration": [
     "README.md",

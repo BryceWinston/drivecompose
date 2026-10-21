@@ -6,7 +6,7 @@
 
 非实验正文及图注已完成一轮中英文自然表达终校；修改前的版本保存在项目外的 [语言终校前备份](../../_archive/drivecompose/20261020-cleanup/files/paper/archive/language-before-20261020.zip)。
 
-**当前实验状态：已写入最终消融设置和空结果框架。** 中英文同步包含五个版本、输入稀疏度协议、两张空数值表和一张含 16 个空图片槽的多面板图；没有实验结果或性能结论。状态记录见 [消融框架记录](provenance/ablation-framework-20261021.json)，完整实施方案见 [最终消融方案](../docs/evaluation_plan.md)。此前的原样导入及实验全部留空均为历史步骤，相关记录和原始内容继续保留。
+**当前消融状态：已写入最终消融设置和空结果框架。** 中英文消融同步包含五个版本、输入稀疏度协议、两张空数值表和一张含 16 个空图片槽的多面板图；消融结果与性能结论留空。推送前合并远程提交 `172ab81`，保留英文新增的非消融实验内容，并用本次确认的方案替换其消融段落。非消融内容未纳入本次结果核验或双语同步范围。状态记录见 [消融框架记录](provenance/ablation-framework-20261021.json)，完整实施方案见 [最终消融方案](../docs/evaluation_plan.md)。此前的原样导入及实验全部留空均为历史步骤，相关记录和原始内容继续保留。
 
 ## 文件入口
 
@@ -17,11 +17,11 @@
 - [总览图说明](../docs/figures/overview/README.md)：当前光栅总览图的设计、图注与审核记录；前版制作过程在项目外归档。
 - [结构参考与改写依据](provenance/structure-study-20261020.md)：四篇录用论文的章节观察和本轮采用的安排。
 - `fig/pointforward/`：原实验章节依赖的三张来源图，原样保留。
-- `sec/4_experiments.tex` / `zh/4_experiments_zh.tex`：按用户最新要求写入消融协议、空结果表和空图片框架；原实验数值及来源图不进入正文。
+- `sec/4_experiments.tex` / `zh/4_experiments_zh.tex`：同步消融协议、空结果表和空图片框架；英文同时保留远程新增的非消融实验内容。
 - `provenance/source-manifest.json`：原始来源哈希及实验冻结清单，内容保持迁移时的版本。
 - [归档索引](provenance/README.md)：MOSAIC 原包、迁移报告、终校备份与历史编译检查记录。
 - `EVIDENCE.md`：主张、代码依据与材料缺口；`REFERENCES.md`：引用核验记录。
-- `build/en/main.pdf` / `build/zh/main_zh.pdf`：中英文当前构建路径；实际构建状态以各目录的 `compile-result.json` 为准。历史 PDF 保存在项目外归档。
+- `build/integrated/en/main.pdf` / `build/zh/main_zh.pdf`：中英文当前构建路径；英文旧 PDF 被阅读器占用，合并版另行输出。实际构建状态以各目录的 `compile-result.json` 为准；`build/en/main.pdf` 保留合并前版本。
 
 ## 编译与检查
 
@@ -49,7 +49,7 @@ python tools/check_manuscript.py
 
 这一本地构建入口可在应用内置编译接口尚未完成沙箱初始化时使用；它不改变应用设置，也不替代内置预览的初始化步骤。
 
-`tools/check_manuscript.py` 按当前消融框架记录核对两张表的版本与空结果格、16 个空图片槽和双语实验公式，同时保留原实验备份、依赖图哈希、归档完整性、会议年份、引用和方法公式检查。归档位置由 `provenance/archive-map.json` 指定；若归档另存他处，使用 `python tools/check_manuscript.py --archive-root "归档目录"`。缺少归档时检查会报错，论文编译本身不依赖外部归档。
+`tools/check_manuscript.py` 按当前消融框架记录，在消融范围内核对两张表的版本与空结果格、16 个空图片槽和双语公式，同时保留原实验备份、依赖图哈希、归档完整性、会议年份、引用和方法公式检查。归档位置由 `provenance/archive-map.json` 指定；若归档另存他处，使用 `python tools/check_manuscript.py --archive-root "归档目录"`。缺少归档时检查会报错，论文编译本身不依赖外部归档。
 
 来源清单保留旧路径和原哈希，当前文档链接的改动另行记录。校验时，已更新的两份设计文档与其整理前快照核对，其余设计与实现文件仍与原清单核对；检查结果分别列出历史证据完整性和当前文档变化。编译日志、`build/verification.json` 及 `build/pdf-qa.json` 保存在当前 `build/` 目录。
 

@@ -1,7 +1,7 @@
 {
   "date": "2026-10-21",
   "instruction": "按最终消融方案将实验设置和表格框架写入中英文论文，结果数值和图片留空",
-  "active_state": "Bilingual ablation protocol, two tables with blank numerical cells, and one native three-panel figure layout with sixteen empty image slots; no results or empirical conclusions.",
+  "active_state": "Bilingual ablation protocol with 38 blank numerical cells and 16 empty image slots; English non-ablation experiments retained from origin/main without result verification.",
   "supersedes": [
     "experiments-empty-20261021.json"
   ],
@@ -37,24 +37,26 @@
   "actual_renderings_added": false,
   "backup_manifest": "E:/Users/changan/Desktop/论文/pre-research/_archive/drivecompose/20261021-ablation-manuscript/backup-manifest.json",
   "source_sha256": {
-    "main.tex": "9f8e8149b902cc2de11ee237ecece52a2e1d5e1d9ffda31fbb08aecd2687af24",
+    "main.tex": "1fb8a1161f24ece643ae24d231d2543a67b19cd03d38bde49069414409964cde",
     "main_zh.tex": "55e787f01a3507249c331c674c76a6fb2c72487b7e7aec555c470e33834d1f21",
-    "sec/4_experiments.tex": "26ebdb75034d852d21b8a646762c465c3a429e8a4bd692c7391f0f0a94b79617",
+    "sec/4_experiments.tex": "749c4e4619cd82001ee58e9188db4408e16561308960dd7c8b6ba6bef400aca6",
     "zh/4_experiments_zh.tex": "c46249b3a1425208c6322c853ff3224b6220165f91056f2ab45a12871bfbce57",
-    "tools/check_manuscript.py": "98b5a0257323ad3d3ff2585dba4a11e7dd52d3361eada76937e558f0effb279d"
+    "tools/check_manuscript.py": "acc4040e55a8cd6f71c88e0c283a6a9461dcd8e9ec9848c1a2bb978906daf8f8"
   },
   "compiled_outputs": [
     {
       "language": "en",
-      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
-      "pages": 12,
-      "sha256": "47ffed11491c53342eed6e67667ffda75f8618aa51812e3a196979dcee676b32",
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\integrated\\en\\main.pdf",
+      "pages": 14,
+      "sha256": "af1908fe0963bcf933c58097a33f0919134078434b0f083cfe6a5fa21ebfb3c7",
       "compiler_exit_code": 0,
-      "final_log_warnings": [],
+      "final_log_warnings": [
+        "Overfull \\hbox (18.6724pt too wide) in alignment at lines 170--206"
+      ],
+      "warning_scope": "The retained remote cross-dataset table has one overfull alignment; ablation tables and figure have no overflow.",
       "visually_reviewed_pages": [
-        6,
-        7,
-        8
+        8,
+        9
       ]
     },
     {
@@ -78,8 +80,43 @@
     "empty_image_slots": 16,
     "bilingual_experiment_math_identical": true,
     "figure_frame_layout": "native LaTeX; no experiment image files loaded",
-    "render_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-ablation-manuscript",
+    "render_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-ablation-push",
     "model_source_changed": false,
-    "training_executed": false
+    "training_executed": false,
+    "scope": "ablation protocol and analyses; other experiments excluded from blank-result and bilingual-math checks"
+  },
+  "integration": {
+    "remote_commit": "172ab819b1cec1dab0b357094c3866ffd1cb9164",
+    "remote_nonablation_prefix_preserved": true,
+    "remote_ablation_replaced_with_confirmed_framework": true,
+    "remote_nonablation_results_verified": false,
+    "superseded_english_output": {
+      "language": "en",
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "pages": 12,
+      "sha256": "47ffed11491c53342eed6e67667ffda75f8618aa51812e3a196979dcee676b32",
+      "compiler_exit_code": 0,
+      "final_log_warnings": [],
+      "visually_reviewed_pages": [
+        6,
+        7,
+        8
+      ]
+    },
+    "alternate_output_reason": "The pre-merge English PDF is locked by a reader; the integrated PDF is written to build/integrated/en/.",
+    "compiled_references": {
+      "en": {
+        "component_table": 5,
+        "input_table": 6,
+        "figure": 2,
+        "regression_equation": 16
+      },
+      "zh": {
+        "component_table": 1,
+        "input_table": 2,
+        "figure": 2,
+        "regression_equation": 16
+      }
+    }
   }
 }

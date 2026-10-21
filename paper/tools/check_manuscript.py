@@ -35,6 +35,15 @@ def math_blocks(name: str) -> list[str]:
     ]
 
 
+def ablation_source(source: str) -> str:
+    """Select the ablation protocol and its analyses, excluding other experiments."""
+    marker = source.find(r"\label{sec:ablation-protocol}")
+    if marker < 0:
+        return ""
+    start = source.rfind(r"\subsection{", 0, marker)
+    return source[start:] if start >= 0 else ""
+
+
 def blank_ablation_tables(source: str) -> tuple[bool, bool]:
     """Allow variant IDs/input counts, but require every result cell to be empty."""
     tables = re.findall(r"\\begin\{table\}(.*?)\\end\{table\}", source, re.S)
@@ -134,14 +143,15 @@ def main() -> int:
                 source.startswith("\\section{" + heading + "}")
                 and all(source.count("\\label{" + label + "}") == 1 for label in required)
             )
-            components_empty, inputs_empty = blank_ablation_tables(source)
+            scoped_source = ablation_source(source)
+            components_empty, inputs_empty = blank_ablation_tables(scoped_source)
             checks[language + ":component_results_blank"] = components_empty
             checks[language + ":input_results_blank"] = inputs_empty
             checks[language + ":ablation_images_blank"] = (
-                source.count(r"\begin{figure*}") == 1
-                and source.count(r"\dcablationcell{") == 16
-                and r"\includegraphics" not in source
-                and r"\fbox{\rule{0pt}{#2}\rule{.90\linewidth}{0pt}}" in source
+                scoped_source.count(r"\begin{figure*}") == 1
+                and scoped_source.count(r"\dcablationcell{") == 16
+                and r"\includegraphics" not in scoped_source
+                and r"\fbox{\rule{0pt}{#2}\rule{.90\linewidth}{0pt}}" in scoped_source
             )
         else:
             expected = "\\section{" + heading + "}\n\\label{sec:experiments}"
@@ -212,7 +222,7 @@ def main() -> int:
     if framework_record:
         experiment_math = []
         for name in ("sec/4_experiments.tex", "zh/4_experiments_zh.tex"):
-            source = uncomment((ROOT / name).read_text(encoding="utf-8"))
+            source = ablation_source(uncomment((ROOT / name).read_text(encoding="utf-8")))
             experiment_math.append(sorted(re.sub(r"\s+", "", part) for part in
                                           re.findall(r"(?<!\\)\$(.*?)(?<!\\)\$", source, re.S)))
         checks["bilingual_ablation_inline_math_identical"] = experiment_math[0] == experiment_math[1]
