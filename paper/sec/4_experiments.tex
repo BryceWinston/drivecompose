@@ -1,2 +1,243 @@
 \section{Experiments}
 \label{sec:experiments}
+We evaluate our method along four axes:
+\textit{(i)} dynamic scene reconstruction quality on Waymo Open Dataset,
+covering temporal interpolation and extrapolation
+(\S~\ref{sec:temporal_evaluation});
+\textit{(ii)} off-trajectory view synthesis under lateral
+camera shifts (\S~\ref{sec:spatial_evaluation});
+\textit{(iii)} cross-dataset transfer from Waymo to nuScenes
+(\S~\ref{sec:generalization}); and
+\textit{(iv)} ablations of the main design choices
+(\S~\ref{sec:ablations}).
+
+\subsection{Experimental Setup}
+\label{sec:experimental_setup}
+
+\paragraph{Datasets and protocol.}
+We use the Waymo Open Dataset with 798 training and 202 validation sequences. Following STORM, each validation sequence is divided into non-overlapping 2-second clips of 20 frames at 10 \, Hz~\cite{yang2025storm}. The FRONT, FRONT\_LEFT, and FRONT\_RIGHT cameras provide observations at zero-based frame indices $\{0,5,10,15\}$. The remaining 16 frames are used for evaluation: 12 frames for temporal interpolation and four frames for prediction beyond the last observation. Predictions and reference images are resized to $240\times160$ pixels for evaluation~\cite{huang2026instantnurec}.
+
+\paragraph{Baselines.}
+We compare with STORM, DGGT, StreetForward~\cite{yang2025storm,chen2025dggt,yu2026streetforward}. Methods use the same context timestamps and target views, with model-specific preprocessing. Camera parameters, additional geometric inputs, and rendering adapters are documented with the implementation settings. For spatial extrapolation, we compare Gaussian renderings before diffusion refinement, following PointForward~\cite{chi2026pointforward}.
+
+\paragraph{Metrics.}
+We report PSNR and SSIM over the full image and shared annotated regions. Depth quality is measured using AbsRel and $\delta_1$ at valid projected LiDAR samples after per-frame scale alignment~\cite{huang2026instantnurec}. Scores are averaged over frames within each clip and then over clips within each sequence; sequences receive equal weight. Novel-trajectory renderings are evaluated using FID and FVD against a fixed real-image and video reference population.
+
+\paragraph{Implementation details.}
+DriveCompose reconstructs category-specific actor assets from motion-aligned observations and composes them with a static background. Reconstruction time includes preprocessing, asset generation, and scene composition. Rendering time is measured separately, and asset reuse is evaluated across repeated scene queries.
+% Fill in verified DriveCompose training schedule, resolution, hardware and checkpoint.
+% Do not copy baseline training configurations into DriveCompose implementation details.
+
+\subsection{Dynamic Reconstruction and Temporal Prediction}
+\label{sec:temporal_evaluation}
+
+We evaluate reconstruction at unobserved times along the recorded camera trajectory. Table~\ref{tab:regions_current} reports image and depth quality. The regional comparison focuses on actor appearance, and synchronized visualizations examine object position, shape, and occlusion changes.
+% Add measured DriveCompose findings here after replacing the development numbers.
+\begin{table}[!htbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{1.3pt}
+\renewcommand{\arraystretch}{1.08}
+\setlength{\belowcaptionskip}{5pt}
+\caption{Dynamic scene reconstruction on Waymo. Image quality is reported over the full image and annotated regions; depth is evaluated at valid LiDAR samples.}
+\label{tab:regions_current}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+& \multicolumn{2}{c}{Full image} & \multicolumn{2}{c}{\shortstack{Dynamic Region}} & \multicolumn{2}{c}{Depth} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Method & PSNR $\uparrow$ & SSIM $\uparrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ & AbsRel $\downarrow$ & $\delta_1$ $\uparrow$ \\
+\midrule
+STORM & 26.191 & 0.833 & 22.083 & 0.654 & 0.129 & 0.867 \\
+DGGT & 26.056 & 0.809 & 20.809 & 0.603 & 0.168 & 0.779 \\
+StreetForward & 25.256 & 0.814 & 21.844 & 0.636 & 0.122 & 0.860 \\
+\midrule
+DriveCompose & -- & -- & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Temporal interpolation and prediction.}
+Table~\ref{tab:temporal_current} separates temporal interpolation from prediction at 0.1--0.4 seconds beyond the last context frame.
+
+\begin{table}[!htbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{1.3pt}
+\renewcommand{\arraystretch}{1.08}
+\setlength{\belowcaptionskip}{5pt}
+\caption{Temporal interpolation and extrapolation on Waymo. PSNR and SSIM are reported separately for interpolation and extrapolation; context frames are excluded.}
+\label{tab:temporal_current}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+& \multicolumn{2}{c}{Interp.} & \multicolumn{2}{c}{Extrap.} & \multicolumn{2}{c}{All targets} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Method & PSNR $\uparrow$ & SSIM $\uparrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ \\
+\midrule
+STORM & 26.427 & 0.842 & 25.481 & 0.807 & 26.191 & 0.833 \\
+DGGT & 26.265 & 0.817 & 25.429 & 0.788 & 26.056 & 0.809 \\
+StreetForward & 25.653 & 0.827 & 24.065 & 0.776 & 25.256 & 0.814 \\
+\midrule
+DriveCompose & -- & -- & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Off-Trajectory View Synthesis}
+\label{sec:spatial_evaluation}
+
+We shift the camera trajectory laterally by 1, 2, and 4 meters to the left and right, keeping camera orientation, intrinsics, and timestamps fixed. This evaluation tests the stability of scene structure and the rendering of newly visible surfaces as the viewpoint moves away from the observations~\cite{zhu2025worldsplat,chi2026pointforward}.
+
+Table~\ref{tab:spatial_current} reports FID and FVD
+at each displacement magnitude, averaged over separately
+evaluated left and right shifts. Both metrics use the
+same real reference population across methods.
+Qualitative comparisons use matched scenes, timestamps,
+and camera offsets to examine vehicle shape, road layout,
+and occlusion boundaries.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.08}
+\caption{Novel-view synthesis under lateral camera shifts.
+FID and FVD are averaged over left and right shifts
+at each displacement magnitude. Lower is better.}
+\label{tab:spatial_current}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}l|rr|rr|rr@{}}
+\toprule
+Method
+& \multicolumn{2}{c|}{Shift $\pm 1$ m}
+& \multicolumn{2}{c|}{Shift $\pm 2$ m}
+& \multicolumn{2}{c}{Shift $\pm 4$ m} \\
+\cmidrule(lr){2-3}
+\cmidrule(lr){4-5}
+\cmidrule(lr){6-7}
+& FID $\downarrow$ & FVD $\downarrow$
+& FID $\downarrow$ & FVD $\downarrow$
+& FID $\downarrow$ & FVD $\downarrow$ \\
+\midrule
+STORM
+& 61.97 & 722.27
+& 83.72 & 1029.36
+& 132.57 & 1704.16 \\
+DGGT
+& 73.99 & 984.00
+& 93.36 & 1197.03
+& 128.01 & 1661.70 \\
+StreetForward
+& 84.30 & 878.95
+& 103.31 & 1095.02
+& 123.58 & 1578.63 \\
+\midrule
+\rowcolor{gray!10}
+DriveCompose
+& -- & --
+& -- & --
+& -- & -- \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+% Avoid stretching paragraph gaps beside the taller single-column table.
+\raggedbottom
+\subsection{Cross-Dataset Generalization}
+\label{sec:generalization}
+
+We evaluate transfer from Waymo to nuScenes under zero-shot and fine-tuning settings. Zero-shot evaluation directly applies the Waymo-trained checkpoint without target-domain updates. Fine-tuning adapts the same initialization using the nuScenes training split and evaluates it on the held-out validation split. Both settings use the same target evaluation scenes, context sampling, and metrics.
+
+Table~\ref{tab:generalization} reports the two settings separately. The zero-shot comparison assesses transfer to new environments, while the fine-tuning comparison measures adaptation to the target domain. Full-image and annotated-region scores distinguish overall scene quality from actor reconstruction.
+% Planned protocol: all cells below are unmeasured. Fill the target split,
+% fine-tuning data budget, update count and camera mapping before evaluation.
+% Span both columns so the generalization comparison is not stranded in the
+% right column beside an empty float area.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.08}
+\caption{Cross-dataset generalization and target-domain adaptation.
+Zero-shot models are evaluated directly on the target datasets, while
+trained models are fine-tuned on the target domain. Higher PSNR and SSIM,
+and lower LPIPS are better.}
+\label{tab:generalization}
+\begin{tabular*}{\columnwidth}{
+    @{\extracolsep{\fill}}l
+    ccc@{\hskip 5pt}|@{\hskip 5pt}ccc
+}
+\toprule
+& \multicolumn{3}{c}{\textbf{Full image}}
+& \multicolumn{3}{c}{\textbf{Dynamic regions}} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+\textbf{Method}
+& PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$
+& PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ \\
+\midrule
+
+\multicolumn{7}{l}{\textbf{Zero-shot}} \\
+STORM
+& -- & -- & --
+& -- & -- & -- \\
+DGGT
+& -- & -- & --
+& -- & -- & -- \\
+StreetForward
+& -- & -- & --
+& -- & -- & -- \\
+\rowcolor{gray!12}
+\textbf{DriveCompose}
+& \textbf{--} & \textbf{--} & \textbf{--}
+& \textbf{--} & \textbf{--} & \textbf{--} \\
+
+\midrule
+\multicolumn{7}{l}{\textbf{Trained}} \\
+STORM
+& -- & -- & --
+& -- & -- & -- \\
+\rowcolor{gray!12}
+\textbf{DriveCompose}
+& \textbf{--} & \textbf{--} & \textbf{--}
+& \textbf{--} & \textbf{--} & \textbf{--} \\
+
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\subsection{Ablation Study}
+\label{sec:ablations}
+
+We isolate motion alignment, category-specific branches, object-space completion, and persistent asset reuse. Architectural variants use the same observations and training budget. Temporal reconstruction evaluates the contribution of motion alignment; category-specific comparisons examine vehicles and pedestrians separately. Spatial extrapolation tests object-space completion, while repeated scene queries measure the quality and computational effects of asset reuse.
+
+Table~\ref{tab:ablations} summarizes reconstruction, spatial extrapolation, and efficiency. For the spatial comparison, left and right trajectories at the same displacement are pooled before computing FID. Runtime includes the reconstruction stages and reports asset initialization and reuse costs separately.
+% Planned ablation protocol. Pooled FID must be recomputed from features:
+% never average the left/right FID values. No ablation results are measured.
+\begin{table}[H]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{1.3pt}
+\renewcommand{\arraystretch}{1.08}
+\setlength{\belowcaptionskip}{5pt}
+\caption{Ablations of DriveCompose: temporal reconstruction, spatial extrapolation, and reconstruction time.}
+\label{tab:ablations}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+& \multicolumn{2}{c}{Temporal PSNR $\uparrow$} & \multicolumn{2}{c}{Spatial FID $\downarrow$} & \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Variant & Interp. & Extrap. & $\pm2$ m & $\pm4$ m & Time (s) $\downarrow$ \\
+\midrule
+w/o alignment & -- & -- & -- & -- & -- \\
+Shared branch & -- & -- & -- & -- & -- \\
+w/o completion & -- & -- & -- & -- & -- \\
+w/o asset reuse & -- & -- & -- & -- & -- \\
+\midrule
+DriveCompose & -- & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Flush experiment floats BEFORE the parent document starts Discussion or
+% Conclusion. Do not move this barrier after those sections.
+\FloatBarrier
