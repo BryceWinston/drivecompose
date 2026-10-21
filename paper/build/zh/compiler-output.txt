@@ -489,12 +489,29 @@ LaTeX Warning: Reference `eq:flow-loss' on page 5 undefined on input line 207.
 
 LaTeX Warning: Reference `eq:flow-path' on page 5 undefined on input line 207.
 
-) (zh/4_experiments_zh) (zh/5_discussion_zh) (zh/6_conclusion_zh)
+) (zh/4_experiments_zh
+
+LaTeX Warning: Reference `eq:regression' on page 5 undefined on input line 21.
+
+
+LaTeX Warning: Reference `fig:ablation-reuse' on page 5 undefined on input line
+ 28.
+
+
+LaTeX Warning: Reference `tab:ablation-components' on page 5 undefined on input
+ line 69.
+
+[5]
+
+LaTeX Warning: Reference `tab:ablation-inputs' on page 6 undefined on input lin
+e 106.
+
+) [6] (zh/5_discussion_zh) (zh/6_conclusion_zh)
 No file main_zh.bbl.
 
 Package natbib Warning: There were undefined citations.
 
-[5] (main_zh.aux)
+[7] (main_zh.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -507,7 +524,7 @@ Package rerunfilecheck Warning: File `main_zh.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
  )
-Output written on main_zh.xdv (5 pages, 191980 bytes).
+Output written on main_zh.xdv (7 pages, 231432 bytes).
 Transcript written on main_zh.log.
 note: Running BibTeX on main_zh.aux ...
 note: Rerunning TeX because bibtex was run ...
@@ -949,18 +966,18 @@ line 100.
 Package natbib Warning: Citation `lipman2022flowmatching' on page 4 undefined o
 n input line 100.
 
-[4]) (zh/4_experiments_zh) (zh/5_discussion_zh) (zh/6_conclusion_zh)
+[4]) (zh/4_experiments_zh [5]) [6] (zh/5_discussion_zh) (zh/6_conclusion_zh)
 (main_zh.bbl
 No file main_zh.brf.
 
 Package lineno Warning: Label(s) may have changed. Rerun to get cross-reference
 s right. on input line 1.
 
-[5] [6] [7] [8])
+[7] [8] [9] [10])
 
 Package natbib Warning: There were undefined citations.
 
-[9] (main_zh.aux
+[11] (main_zh.aux
 
 Package natbib Warning: Citation(s) may have changed.
 (natbib)                Rerun to get citations correct.
@@ -971,7 +988,7 @@ Package rerunfilecheck Warning: File `main_zh.brf' has changed.
 (rerunfilecheck)                Rerun to get bibliographical references right.
 
  )
-Output written on main_zh.xdv (9 pages, 484108 bytes).
+Output written on main_zh.xdv (11 pages, 524308 bytes).
 Transcript written on main_zh.log.
 note: Rerunning TeX because "main_zh.aux" changed ...
 (main_zh.tex
@@ -1024,13 +1041,13 @@ CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
 ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
 (gettitlestring.sty)) (main_zh.out) (main_zh.out) (umsa.fd) (umsb.fd)
 (zh/0_abstract_zh) (zh/1_introduction_zh) (zh/2_related_work_zh [1])
-(zh/3_method_zh [2] [3] [4]) (zh/4_experiments_zh) (zh/5_discussion_zh)
-(zh/6_conclusion_zh) (main_zh.bbl (main_zh.brf) [5] [6] [7] [8]
+(zh/3_method_zh [2] [3] [4]) (zh/4_experiments_zh [5]) [6] (zh/5_discussion_zh)
+(zh/6_conclusion_zh) (main_zh.bbl (main_zh.brf) [7] [8] [9] [10]
 
 Package lineno Warning: Label(s) may have changed. Rerun to get cross-reference
 s right. on input line 693.
 
-) [9] (main_zh.aux)
+) [11] (main_zh.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
@@ -1039,9 +1056,9 @@ Package rerunfilecheck Warning: File `main_zh.brf' has changed.
 (rerunfilecheck)                Rerun to get bibliographical references right.
 
  )
-Output written on main_zh.xdv (9 pages, 501456 bytes).
+Output written on main_zh.xdv (11 pages, 541680 bytes).
 Transcript written on main_zh.log.
-note: Rerunning TeX because "main_zh.aux" changed ...
+note: Rerunning TeX because "main_zh.brf" changed ...
 (main_zh.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-02-24> (article.cls
@@ -1092,14 +1109,14 @@ CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
 ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
 (gettitlestring.sty)) (main_zh.out) (main_zh.out) (umsa.fd) (umsb.fd)
 (zh/0_abstract_zh) (zh/1_introduction_zh) (zh/2_related_work_zh [1])
-(zh/3_method_zh [2] [3] [4]) (zh/4_experiments_zh) (zh/5_discussion_zh)
-(zh/6_conclusion_zh) (main_zh.bbl (main_zh.brf) [5] [6] [7] [8]
+(zh/3_method_zh [2] [3] [4]) (zh/4_experiments_zh [5]) [6] (zh/5_discussion_zh)
+(zh/6_conclusion_zh) (main_zh.bbl (main_zh.brf) [7] [8] [9] [10]
 
 Package lineno Warning: Label(s) may have changed. Rerun to get cross-reference
 s right. on input line 693.
 
-) [9] (main_zh.aux) )
-Output written on main_zh.xdv (9 pages, 517568 bytes).
+) [11] (main_zh.aux) )
+Output written on main_zh.xdv (11 pages, 557768 bytes).
 Transcript written on main_zh.log.
 note: Rerunning TeX because "main_zh.aux" changed ...
 (main_zh.tex
@@ -1152,17 +1169,17 @@ CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
 ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
 (gettitlestring.sty)) (main_zh.out) (main_zh.out) (umsa.fd) (umsb.fd)
 (zh/0_abstract_zh) (zh/1_introduction_zh) (zh/2_related_work_zh [1])
-(zh/3_method_zh [2] [3] [4]) (zh/4_experiments_zh) (zh/5_discussion_zh)
-(zh/6_conclusion_zh) (main_zh.bbl (main_zh.brf) [5] [6] [7] [8]) [9]
+(zh/3_method_zh [2] [3] [4]) (zh/4_experiments_zh [5]) [6] (zh/5_discussion_zh)
+(zh/6_conclusion_zh) (main_zh.bbl (main_zh.brf) [7] [8] [9] [10]) [11]
 (main_zh.aux) )
-Output written on main_zh.xdv (9 pages, 517564 bytes).
+Output written on main_zh.xdv (11 pages, 557748 bytes).
 Transcript written on main_zh.log.
 note: Running xdvipdfmx ...
-[1][2][3][4][5][6][7][8][9]2210079 bytes written
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\_archive\drivecompose\20261021-source-experiment-match\final-build\zh\main_zh.brf` (4.599609375 KiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\_archive\drivecompose\20261021-source-experiment-match\final-build\zh\main_zh.blg` (199 B)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\_archive\drivecompose\20261021-source-experiment-match\final-build\zh\main_zh.bbl` (34.8740234375 KiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\_archive\drivecompose\20261021-source-experiment-match\final-build\zh\main_zh.pdf` (2.1076955795288086 MiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\_archive\drivecompose\20261021-source-experiment-match\final-build\zh\main_zh.log` (37.8193359375 KiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\_archive\drivecompose\20261021-source-experiment-match\final-build\zh\main_zh.out` (1.0810546875 KiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\_archive\drivecompose\20261021-source-experiment-match\final-build\zh\main_zh.aux` (38.4951171875 KiB)
+[1][2][3][4][5][6][7][8][9][10][11]2256702 bytes written
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.aux` (42.9775390625 KiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.out` (1.3759765625 KiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.bbl` (34.8740234375 KiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.pdf` (2.152158737182617 MiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.log` (37.83203125 KiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.brf` (4.599609375 KiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\zh\main_zh.blg` (199 B)

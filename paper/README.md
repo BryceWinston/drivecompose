@@ -6,7 +6,7 @@
 
 非实验正文及图注已完成一轮中英文自然表达终校；修改前的版本保存在项目外的 [语言终校前备份](../../_archive/drivecompose/20261020-cleanup/files/paper/archive/language-before-20261020.zip)。
 
-**实验按用户指定目录原样迁入，由后续实验负责人修改。** 来源为 `E:/Users/changan/Downloads/edge/MOSAIC__Motion_Aware_Multi_Object_Feed_Forward_4D_Reconstruction_for_Driving_Scenes`。2026-10-21 分别复制中英文实验 TeX，内容与复制前相同，三张依赖图也与来源一致。两种语言仍保留来源各自的协议、数值和表图，本轮不翻译或统一实验。来源和逐字节核对见 [迁入清单](provenance/experiment-import-20261021.json)；历史差异见 [双语核对记录](provenance/bilingual-audit-20261021.md)。
+**当前实验状态：已写入最终消融设置和空结果框架。** 中英文同步包含五个版本、输入稀疏度协议、两张空数值表和一张含 16 个空图片槽的多面板图；没有实验结果或性能结论。状态记录见 [消融框架记录](provenance/ablation-framework-20261021.json)，完整实施方案见 [最终消融方案](../docs/evaluation_plan.md)。此前的原样导入及实验全部留空均为历史步骤，相关记录和原始内容继续保留。
 
 ## 文件入口
 
@@ -17,11 +17,11 @@
 - [总览图说明](../docs/figures/overview/README.md)：当前光栅总览图的设计、图注与审核记录；前版制作过程在项目外归档。
 - [结构参考与改写依据](provenance/structure-study-20261020.md)：四篇录用论文的章节观察和本轮采用的安排。
 - `fig/pointforward/`：原实验章节依赖的三张来源图，原样保留。
-- `sec/4_experiments.tex` / `zh/4_experiments_zh.tex`：按用户最新要求，仅保留实验章节标题；原实验内容及英文图片补充文件已备份到项目外。
+- `sec/4_experiments.tex` / `zh/4_experiments_zh.tex`：按用户最新要求写入消融协议、空结果表和空图片框架；原实验数值及来源图不进入正文。
 - `provenance/source-manifest.json`：原始来源哈希及实验冻结清单，内容保持迁移时的版本。
 - [归档索引](provenance/README.md)：MOSAIC 原包、迁移报告、终校备份与历史编译检查记录。
 - `EVIDENCE.md`：主张、代码依据与材料缺口；`REFERENCES.md`：引用核验记录。
-- `build/en/main.pdf` / `build/zh/main_zh.pdf`：当前实验留空版，已替换原文件名。旧版构建文件已移至 [项目外归档](../../_archive/drivecompose/20261021-bilingual-audit/build-old/)；原 `revision-20261021` 的内容已迁入 `build/` 主目录，并在这里重新编译。
+- `build/en/main.pdf` / `build/zh/main_zh.pdf`：中英文当前构建路径；实际构建状态以各目录的 `compile-result.json` 为准。历史 PDF 保存在项目外归档。
 
 ## 编译与检查
 
@@ -49,7 +49,7 @@ python tools/check_manuscript.py
 
 这一本地构建入口可在应用内置编译接口尚未完成沙箱初始化时使用；它不改变应用设置，也不替代内置预览的初始化步骤。
 
-`tools/check_manuscript.py` 核对两版实验留空、原实验备份与依赖图的哈希、外部归档完整性、会议年份、正文命名、引用、图片/输入依赖及中英文方法公式。归档位置由 `provenance/archive-map.json` 指定；若归档另存他处，使用 `python tools/check_manuscript.py --archive-root "归档目录"`。缺少归档时检查会报错，论文编译本身不依赖外部归档。
+`tools/check_manuscript.py` 按当前消融框架记录核对两张表的版本与空结果格、16 个空图片槽和双语实验公式，同时保留原实验备份、依赖图哈希、归档完整性、会议年份、引用和方法公式检查。归档位置由 `provenance/archive-map.json` 指定；若归档另存他处，使用 `python tools/check_manuscript.py --archive-root "归档目录"`。缺少归档时检查会报错，论文编译本身不依赖外部归档。
 
 来源清单保留旧路径和原哈希，当前文档链接的改动另行记录。校验时，已更新的两份设计文档与其整理前快照核对，其余设计与实现文件仍与原清单核对；检查结果分别列出历史证据完整性和当前文档变化。编译日志、`build/verification.json` 及 `build/pdf-qa.json` 保存在当前 `build/` 目录。
 
@@ -82,8 +82,14 @@ python tools/check_manuscript.py
 
 原英文实验文件只有数值表格，没有图环境或图片加载命令；中文实验文件则直接加载了三张来源图。现通过独立的图片补充文件为英文加入相同图件，并保留 PointForward 来源和图中“Ours”的归属说明。实验原文与数值未修改。修复及渲染对照见 [检查记录](provenance/experiment-figure-fix-20261021.md)。
 
-## 实验全部留空（2026-10-21 最新要求）
+## 实验全部留空（2026-10-21 历史步骤，已由消融框架替代）
 
 按用户“实验部分全部留空”的指令，中英文实验仅保留章节标题和 `sec:experiments` 标签。实验文字、表格、图片、引用及额外图片段落均不再进入 PDF；其他章节、方法公式、书目和总览图未改动。此前的实验导入与图片恢复记录是历史记录，以 [本次状态](provenance/experiments-empty-20261021.json) 为准。原始内容、移出文件和修改前 PDF 保存在项目外 `pre-research/_archive/drivecompose/20261021-source-experiment-match/`。
 
 本次两版编译均成功；阅读器关闭后，已将实验留空版替换至 `build/en/main.pdf` 与 `build/zh/main_zh.pdf`。编译记录的 `pdf` 字段指向当前输出，`compiler_pdf` 保存编译器原始输出位置。临时文件名已移至项目外归档。
+
+## 消融设置与空结果框架（2026-10-21 当前状态）
+
+按最终方案写入中英文实验章节：完整方法及 A1/A2/A3/A7 对照、嵌套输入与固定目标、指标和重复规则。表 1 为五行组件对照，表 2 为 A0/A2 在 2/4/8 时刻下的六行对照；图 2 保留两行机制裁剪和一行状态复用，共 16 个空图片槽。数值格、实际图片和结果分析均留空，不包含性能结论。
+
+旧留空版本及修改前 PDF 已备份至项目外 `pre-research/_archive/drivecompose/20261021-ablation-manuscript/`。核验脚本按新状态检查空结果格、空图片槽、双语实验公式和引用依赖，历史归档哈希检查继续保留。正式训练和真实渲染尚未执行。

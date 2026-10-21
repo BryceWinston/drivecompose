@@ -34,7 +34,7 @@
   },
   "source_git_commit": "7c1acf4aa02b432a3173f167e1663a5f274cb844",
   "raster_overview_role": "historical design draft; current entries use generated overview 20261021",
-  "experiment_state": "Only section heading and sec:experiments label in both languages; no experimental text, tables, figures, citations, or addendum.",
+  "experiment_state": "Bilingual ablation protocol, two tables with blank numerical cells, and one native three-panel figure layout with sixteen empty image slots; no results or empirical conclusions.",
   "invalid_migration_source_evidence": [],
   "changed_project_sources_since_migration": [
     "README.md",
@@ -53,7 +53,9 @@
     "zh": 15
   },
   "bibliography_entries": 84,
-  "bilingual_experiments_intentionally_empty": true,
+  "bilingual_experiments_intentionally_empty": false,
+  "ablation_results_and_images_blank": true,
+  "experiment_contract": "provenance\\ablation-framework-20261021.json",
   "checks": {
     "migration_manifest_unchanged": true,
     "archive_moves_manifest_unchanged": true,
@@ -72,8 +74,14 @@
     "generated_overview_exists": true,
     "main.tex:generated_overview_active": true,
     "main_zh.tex:generated_overview_active": true,
-    "en:experiments_empty": true,
-    "zh:experiments_empty": true,
+    "en:ablation_structure": true,
+    "en:component_results_blank": true,
+    "en:input_results_blank": true,
+    "en:ablation_images_blank": true,
+    "zh:ablation_structure": true,
+    "zh:component_results_blank": true,
+    "zh:input_results_blank": true,
+    "zh:ablation_images_blank": true,
     "no_experiment_figure_addendum": true,
     "migration_source_snapshot_preserved": true,
     "unique_bibliography_keys": true,
@@ -91,7 +99,8 @@
     "zh:new_prose_has_no_old_modules": true,
     "active_bibliography_has_no_unused_entries": true,
     "bilingual_method_math_identical": true,
-    "bilingual_method_inline_math_identical": true
+    "bilingual_method_inline_math_identical": true,
+    "bilingual_ablation_inline_math_identical": true
   },
   "passed": true
 }

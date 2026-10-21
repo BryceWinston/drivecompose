@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-21",
+  "instruction": "按最终消融方案将实验设置和表格框架写入中英文论文，结果数值和图片留空",
+  "active_state": "Bilingual ablation protocol, two tables with blank numerical cells, and one native three-panel figure layout with sixteen empty image slots; no results or empirical conclusions.",
+  "supersedes": [
+    "experiments-empty-20261021.json"
+  ],
+  "plan": "../docs/evaluation_plan.md",
+  "sources": [
+    "sec/4_experiments.tex",
+    "zh/4_experiments_zh.tex"
+  ],
+  "variants": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A7"
+  ],
+  "tables": {
+    "tab:ablation-components": {
+      "rows": 5,
+      "result_columns": 4
+    },
+    "tab:ablation-inputs": {
+      "rows": 6,
+      "result_columns": 3
+    }
+  },
+  "figure": {
+    "label": "fig:ablation-reuse",
+    "panels": 3,
+    "empty_image_slots": 16
+  },
+  "training_executed": false,
+  "results_filled": false,
+  "actual_renderings_added": false,
+  "backup_manifest": "E:/Users/changan/Desktop/论文/pre-research/_archive/drivecompose/20261021-ablation-manuscript/backup-manifest.json",
+  "source_sha256": {
+    "main.tex": "9f8e8149b902cc2de11ee237ecece52a2e1d5e1d9ffda31fbb08aecd2687af24",
+    "main_zh.tex": "55e787f01a3507249c331c674c76a6fb2c72487b7e7aec555c470e33834d1f21",
+    "sec/4_experiments.tex": "26ebdb75034d852d21b8a646762c465c3a429e8a4bd692c7391f0f0a94b79617",
+    "zh/4_experiments_zh.tex": "c46249b3a1425208c6322c853ff3224b6220165f91056f2ab45a12871bfbce57",
+    "tools/check_manuscript.py": "98b5a0257323ad3d3ff2585dba4a11e7dd52d3361eada76937e558f0effb279d"
+  },
+  "compiled_outputs": [
+    {
+      "language": "en",
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "pages": 12,
+      "sha256": "47ffed11491c53342eed6e67667ffda75f8618aa51812e3a196979dcee676b32",
+      "compiler_exit_code": 0,
+      "final_log_warnings": [],
+      "visually_reviewed_pages": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "language": "zh",
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+      "pages": 11,
+      "sha256": "0f3cea01039f02f110c640667c767ba339da46ffb38b403a2002fffea2fa52b5",
+      "compiler_exit_code": 0,
+      "final_log_warnings": [],
+      "visually_reviewed_pages": [
+        5,
+        6,
+        7
+      ]
+    }
+  ],
+  "validation": {
+    "structural_checks": 44,
+    "all_passed": true,
+    "empty_numeric_cells": 38,
+    "empty_image_slots": 16,
+    "bilingual_experiment_math_identical": true,
+    "figure_frame_layout": "native LaTeX; no experiment image files loaded",
+    "render_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-ablation-manuscript",
+    "model_source_changed": false,
+    "training_executed": false
+  }
+}

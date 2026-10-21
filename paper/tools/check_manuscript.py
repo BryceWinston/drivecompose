@@ -1,4 +1,4 @@
-"""Check empty experiments, archived sources, dependencies and bilingual math."""
+"""Check the current experiment contract, archives, dependencies and bilingual math."""
 from __future__ import annotations
 
 import argparse
@@ -35,6 +35,33 @@ def math_blocks(name: str) -> list[str]:
     ]
 
 
+def blank_ablation_tables(source: str) -> tuple[bool, bool]:
+    """Allow variant IDs/input counts, but require every result cell to be empty."""
+    tables = re.findall(r"\\begin\{table\}(.*?)\\end\{table\}", source, re.S)
+    if len(tables) != 2:
+        return False, False
+    expected_ids = (["A0", "A1", "A2", "A3", "A7"],
+                    ["A0", "A2", "A0", "A2", "A0", "A2"])
+    results = []
+    for index, table in enumerate(tables):
+        body = re.search(r"\\midrule(.*?)\\bottomrule", table, re.S)
+        if body is None:
+            results.append(False)
+            continue
+        rows = [[cell.strip() for cell in row.strip().split("&")]
+                for row in re.split(r"\\\\", body.group(1)) if row.strip()]
+        ids = [re.search(r"\((A\d+)\)", row[0]) for row in rows]
+        valid = (all(ids) and [match.group(1) for match in ids] == expected_ids[index]
+                 and all(len(row) == 5 for row in rows))
+        if index == 0:
+            valid = valid and all(not cell for row in rows for cell in row[1:])
+        else:
+            valid = (valid and [row[1] for row in rows] == ["2", "2", "4", "4", "8", "8"]
+                     and all(not cell for row in rows for cell in row[2:]))
+        results.append(bool(valid))
+    return results[0], results[1]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--archive-root", type=Path,
@@ -63,6 +90,9 @@ def main() -> int:
     archive_path = archive_root / archive_map["original_manuscript_zip"]
     checks["archive_copy_exact"] = digest(archive_path.read_bytes()) == manifest["source_zip_sha256"]
     empty_record = json.loads((provenance / "experiments-empty-20261021.json").read_text(encoding="utf-8"))
+    framework_path = provenance / "ablation-framework-20261021.json"
+    framework_record = (json.loads(framework_path.read_text(encoding="utf-8"))
+                        if framework_path.is_file() else None)
     frozen = [
         "fig/pointforward/Waymo.pdf", "fig/pointforward/nuScenes.pdf",
         "fig/pointforward/Shift.pdf", "cvpr.sty", "lineno.sty",
@@ -96,13 +126,31 @@ def main() -> int:
     for language, name, heading in (("en", "sec/4_experiments.tex", "Experiments"),
                                      ("zh", "zh/4_experiments_zh.tex", "实验")):
         source = uncomment((ROOT / name).read_text(encoding="utf-8")).strip()
-        expected = "\\section{" + heading + "}\n\\label{sec:experiments}"
-        checks[language + ":experiments_empty"] = source == expected
+        if framework_record:
+            required = ["sec:experiments", "sec:ablation-protocol", "sec:ablation-studies",
+                        "sec:ablation-reuse", "tab:ablation-components", "tab:ablation-inputs",
+                        "fig:ablation-reuse"]
+            checks[language + ":ablation_structure"] = (
+                source.startswith("\\section{" + heading + "}")
+                and all(source.count("\\label{" + label + "}") == 1 for label in required)
+            )
+            components_empty, inputs_empty = blank_ablation_tables(source)
+            checks[language + ":component_results_blank"] = components_empty
+            checks[language + ":input_results_blank"] = inputs_empty
+            checks[language + ":ablation_images_blank"] = (
+                source.count(r"\begin{figure*}") == 1
+                and source.count(r"\dcablationcell{") == 16
+                and r"\includegraphics" not in source
+                and r"\fbox{\rule{0pt}{#2}\rule{.90\linewidth}{0pt}}" in source
+            )
+        else:
+            expected = "\\section{" + heading + "}\n\\label{sec:experiments}"
+            checks[language + ":experiments_empty"] = source == expected
     checks["no_experiment_figure_addendum"] = (
         not (ROOT / "sec/4_reference_figures.tex").exists()
         and "4_reference_figures" not in uncomment((ROOT / "main.tex").read_text(encoding="utf-8"))
     )
-    details["experiment_state"] = empty_record["active_state"]
+    details["experiment_state"] = (framework_record or empty_record)["active_state"]
     source_hashes = manifest["current_sources_sha256"]
     historical_copies = archive_map["historical_source_copies"]
     missing_source_evidence = []
@@ -160,7 +208,16 @@ def main() -> int:
     checks["bilingual_method_inline_math_identical"] = inline_math[0] == inline_math[1]
     details["displayed_method_math_blocks"] = {"en": len(en_math), "zh": len(zh_math)}
     details["bibliography_entries"] = len(keys)
-    details["bilingual_experiments_intentionally_empty"] = True
+    details["bilingual_experiments_intentionally_empty"] = not bool(framework_record)
+    if framework_record:
+        experiment_math = []
+        for name in ("sec/4_experiments.tex", "zh/4_experiments_zh.tex"):
+            source = uncomment((ROOT / name).read_text(encoding="utf-8"))
+            experiment_math.append(sorted(re.sub(r"\s+", "", part) for part in
+                                          re.findall(r"(?<!\\)\$(.*?)(?<!\\)\$", source, re.S)))
+        checks["bilingual_ablation_inline_math_identical"] = experiment_math[0] == experiment_math[1]
+        details["ablation_results_and_images_blank"] = True
+        details["experiment_contract"] = str(framework_path.relative_to(ROOT))
     details["checks"] = checks
     details["passed"] = all(checks.values())
     target = ROOT / "build/verification.json"

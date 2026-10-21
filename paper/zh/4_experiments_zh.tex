@@ -1,2 +1,137 @@
 \section{实验}
 \label{sec:experiments}
+% 按已批准方案写入设置与框架；结果数值、结果分析及实际渲染图片留空。
+
+\subsection{消融实验协议}
+\label{sec:ablation-protocol}
+
+\paragraph{输入与固定条件。}
+隐藏表面的配对评价定义在具有独立完整参考的场景上；Waymo 日志用于记录视角评价。
+每个窗口含 29 个时间戳，使用前向、左前和右前三路同步相机。
+嵌套输入为 $\mathcal T_2=\{0,28\}$、$\mathcal T_4=\{0,8,20,28\}$ 和 $\mathcal T_8=\{0,4,\ldots,28\}$，共同目标时刻为 $\{2,6,\ldots,26\}$。
+目标图像不参与证据与查询构造；所有变体获得相同的目标相机与资产状态。
+恢复模块和编解码器冻结，在每档输入下对齐查询布局、数据曝光和优化预算。
+训练时等概率采样 $T\in\{2,4,8\}$，补全采用 24 步 Euler 积分。
+四个可训练版本使用训练种子 $\{0,1,2\}$ 和世界种子 $\{7,17,27\}$；A1 为确定性版本。
+超参数和接受阈值在内部开发集选定，再评价与训练场景及身份隔离的数据。
+
+\paragraph{指标。}
+New-MAE 在独立判定为所有输入均不可见的表面上计算线性 RGB 误差；NVS-MAE 覆盖全部留出目标像素。
+跨输入档位比较时，New-MAE 使用相对 $\mathcal T_8$ 仍不可见的共同区域。
+Obs-Reg 对原始输入视角中式~\ref{eq:regression} 的正退化取平均。
+Cov.\ 为目标非天空区域中支撑覆盖度 $>0.5$、不透明度 $>0.1$ 且深度有限为正的像素比例。
+未覆盖像素统一填零 RGB 后计入误差。
+Pass 为固定检查器接受的世界占全部申请世界的比例，构建失败保留在分母中。
+图像指标纳入全部可渲染候选，包括被拒绝的世界；不可渲染数量单独记录。
+先在场景内平均，再对场景及训练种子汇总。
+
+图~\ref{fig:ablation-reuse} 为补全与观测保持预留相同裁剪，并在同一世界上设置三种状态干预。
+
+\begin{figure*}[t]
+  \centering
+  \begingroup
+  \newcommand{\dcablationcell}[3]{%
+    \begin{minipage}[t]{#1}
+      \centering
+      \parbox[c][2.2\baselineskip][c]{\linewidth}{\centering\small #3}\par
+      \fbox{\rule{0pt}{#2}\rule{.90\linewidth}{0pt}}
+    \end{minipage}}
+  {\small\textbf{(a) 新暴露表面补全}}\par\smallskip
+  \dcablationcell{.158\textwidth}{12mm}{GT}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{No completion\\(A1)}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{Independent\\(A2)}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{No world coord.\\(A3)}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{Soft observation\\(A7)}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{Full\\(A0)}
+  \par\medskip
+  {\small\textbf{(b) 输入视角观测保持}}\par\smallskip
+  \dcablationcell{.158\textwidth}{12mm}{GT / Input}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{No completion\\(A1)}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{Independent\\(A2)}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{No world coord.\\(A3)}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{Soft observation\\(A7)}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{Full\\(A0)}
+  \par\medskip
+  {\small\textbf{(c) 同一固定世界的不同状态（A0）}}\par\smallskip
+  \dcablationcell{.235\textwidth}{20mm}{原始配置 $s_0$}\hfill
+  \dcablationcell{.235\textwidth}{20mm}{相机 $+1\,\mathrm m$}\hfill
+  \dcablationcell{.235\textwidth}{20mm}{车辆 $+30^\circ$}\hfill
+  \dcablationcell{.235\textwidth}{20mm}{人体姿态 $H_1$}
+  \endgroup
+  \caption{\textbf{消融与复用版面。}（a）五个版本及独立参考中同一新暴露区域的对照。（b）原始输入视角的相同局部裁剪。（c）从世界种子 7 对应的一份 A0 世界分别改变相机、车辆或人体状态，其他状态与光照固定。所有图片槽位均留空。}
+  \label{fig:ablation-reuse}
+\end{figure*}
+
+\subsection{消融分析}
+\label{sec:ablation-studies}
+
+\paragraph{补全与场景上下文。}
+表~\ref{tab:ablation-components} 将完整版本 Full（A0）与三个对照比较。
+无补全版本 No completion（A1）关闭所有非已见、非天空查询的不透明度。
+独立版本 Independent（A2）在每一层隔离组件记忆，同时共享参数并保留相同的全局日志条件。
+无世界坐标版本 No world coord.（A3）仅将补全网络的显式参考世界坐标通道置零，规范几何与渲染变换保持不变。
+可训练对照均重新执行阶段三、四，记忆机制引起的计算差异单独记录。
+
+\paragraph{观测保持。}
+软观测版本 Soft observation（A7）允许已见潜码演化，取消其硬恢复。
+已见查询的流路径为 $(1-\tau)\mathbf z^{\rm obs}+\tau\mathbf z_1$，目标速度为 $\mathbf z_1-\mathbf z^{\rm obs}$。
+已见与未知流损失分别归一化并等权相加。
+渲染适配增加已见潜码变化的均方惩罚，其权重从 $\{0.1,1,10\}$ 中通过开发集选定。
+已见条件、自由空间约束、编解码器和检查器保持不变。
+该比较检验补全质量与输入视角保持之间的权衡。
+
+\begin{table}[t]
+  \centering
+  \caption{\textbf{组件消融。}所有版本采用 $T=8$、相同的恢复模块与编解码器及统一评价掩码。质量在接受筛选前计算，Pass 包含全部申请世界；A1 无需训练补全模型。结果单元格留空。}
+  \label{tab:ablation-components}
+  \small
+  \setlength{\tabcolsep}{3pt}
+  \begin{tabular}{@{}lrrrr@{}}
+    \toprule
+    变体 & \shortstack{New-MAE\\$\downarrow$}
+      & \shortstack{Obs-Reg\\$\downarrow$}
+      & \shortstack{Cov.\\(\%) $\uparrow$}
+      & \shortstack{Pass\\(\%) $\uparrow$}\\
+    \midrule
+    Full (A0)            & & & & \\
+    No completion (A1)   & & & & \\
+    Independent (A2)     & & & & \\
+    No world coord. (A3) & & & & \\
+    Soft obs. (A7)       & & & & \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{输入稀疏度。}
+表~\ref{tab:ablation-inputs} 复用 A0/A2 的权重，在 $T=2,4,8$ 下分别输入 6/12/24 张图像。
+时间跨度、目标视图和共同未见区域掩码固定，证据与查询由各档输入重新构建。
+这项比较不重新训练模型。
+
+\begin{table}[t]
+  \centering
+  \caption{\textbf{输入时刻数量敏感性。}嵌套输入共享三路相机和固定时间跨度。各档 $T$ 复用同一组模型权重和目标图像，New-MAE 使用共同未见区域。结果单元格留空。}
+  \label{tab:ablation-inputs}
+  \small
+  \setlength{\tabcolsep}{3pt}
+  \begin{tabular}{@{}lr rrr@{}}
+    \toprule
+    变体 & $T$ & \shortstack{NVS-MAE\\$\downarrow$}
+      & \shortstack{New-MAE\\$\downarrow$}
+      & \shortstack{Cov.\\(\%) $\uparrow$}\\
+    \midrule
+    Full (A0)        & 2 & & & \\
+    Independent (A2) & 2 & & & \\
+    Full (A0)        & 4 & & & \\
+    Independent (A2) & 4 & & & \\
+    Full (A0)        & 8 & & & \\
+    Independent (A2) & 8 & & & \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{状态驱动复用}
+\label{sec:ablation-reuse}
+
+
+以时刻 14、世界种子 7 为参照，各干预分别沿相机局部 $+x$ 轴平移 $1\,\mathrm m$、绕车辆根位置及世界竖直轴转动 $30^\circ$，或在根位置固定时施加留出的有效人体姿态 $H_1$。
+光照与规范资产保持固定，状态变化不重新采样补全内容。

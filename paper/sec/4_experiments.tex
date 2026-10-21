@@ -1,2 +1,137 @@
 \section{Experiments}
 \label{sec:experiments}
+% Protocol scaffold: numerical results, result analysis, and rendered images remain blank.
+
+\subsection{Ablation protocol}
+\label{sec:ablation-protocol}
+
+\paragraph{Inputs and controls.}
+Paired evaluation of hidden surfaces is defined on independent complete-reference scenes; Waymo logs provide recorded-view evaluation.
+Each 29-timestamp window uses three synchronized cameras: front, front-left, and front-right.
+The nested input sets are $\mathcal T_2=\{0,28\}$, $\mathcal T_4=\{0,8,20,28\}$, and $\mathcal T_8=\{0,4,\ldots,28\}$, with shared target timestamps $\{2,6,\ldots,26\}$.
+Target images are excluded from evidence and query construction; target camera and actor states are supplied equally to every variant.
+The recovery module and codec are frozen, with matched query layouts, data exposure, and optimization budgets at each input setting.
+Training samples $T\in\{2,4,8\}$ uniformly; completion uses 24 Euler steps.
+The four learned variants use training seeds $\{0,1,2\}$ and world seeds $\{7,17,27\}$; A1 is deterministic.
+Hyperparameters and acceptance thresholds are selected on an internal development split before evaluation on scene- and identity-disjoint data.
+
+\paragraph{Metrics.}
+New-MAE measures linear-RGB error on independently identified surfaces unseen in every input; NVS-MAE covers all held-out target pixels.
+Across input settings, New-MAE uses the common region unseen even under $\mathcal T_8$.
+Obs-Reg averages the positive input-view regression in Eq.~\ref{eq:regression}.
+Cov.\ is the non-sky target fraction with support coverage $>0.5$, opacity $>0.1$, and finite positive depth.
+Uncovered pixels receive the same zero-RGB fill for error measurement.
+Pass is the fraction of all requested worlds accepted by the fixed checker, including construction failures in its denominator.
+Image metrics include every renderable candidate, including rejected worlds; non-renderable counts are recorded separately.
+Metrics are averaged within each scene and then across scenes and training seeds.
+
+Figure~\ref{fig:ablation-reuse} reserves matched crops for completion and observation preservation, followed by three state interventions from the same world.
+
+\begin{figure*}[t]
+  \centering
+  \begingroup
+  \newcommand{\dcablationcell}[3]{%
+    \begin{minipage}[t]{#1}
+      \centering
+      \parbox[c][2.2\baselineskip][c]{\linewidth}{\centering\small #3}\par
+      \fbox{\rule{0pt}{#2}\rule{.90\linewidth}{0pt}}
+    \end{minipage}}
+  {\small\textbf{(a) Unseen-surface completion}}\par\smallskip
+  \dcablationcell{.158\textwidth}{12mm}{GT}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{No completion\\(A1)}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{Independent\\(A2)}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{No world coord.\\(A3)}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{Soft observation\\(A7)}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{Full\\(A0)}
+  \par\medskip
+  {\small\textbf{(b) Input-view preservation}}\par\smallskip
+  \dcablationcell{.158\textwidth}{12mm}{GT / Input}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{No completion\\(A1)}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{Independent\\(A2)}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{No world coord.\\(A3)}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{Soft observation\\(A7)}\hfill
+  \dcablationcell{.158\textwidth}{12mm}{Full\\(A0)}
+  \par\medskip
+  {\small\textbf{(c) One fixed world, different states (A0)}}\par\smallskip
+  \dcablationcell{.235\textwidth}{20mm}{Original $s_0$}\hfill
+  \dcablationcell{.235\textwidth}{20mm}{Camera $+1\,\mathrm m$}\hfill
+  \dcablationcell{.235\textwidth}{20mm}{Vehicle $+30^\circ$}\hfill
+  \dcablationcell{.235\textwidth}{20mm}{Human pose $H_1$}
+  \endgroup
+  \caption{\textbf{Ablation and reuse layout.} (a) The same newly exposed region across five variants and an independent reference. (b) Matched crops in an original input view. (c) Independent camera, vehicle, and human-state changes from one A0 world with seed 7; the other states and lighting are fixed. All image slots are intentionally empty.}
+  \label{fig:ablation-reuse}
+\end{figure*}
+
+\subsection{Ablation studies}
+\label{sec:ablation-studies}
+
+\paragraph{Completion and scene context.}
+Table~\ref{tab:ablation-components} compares Full (A0) with three controls.
+No completion (A1) disables the opacity of every non-observed, non-sky query.
+Independent (A2) isolates component memories at every layer while sharing parameters and retaining the same global log context.
+No world coord.\ (A3) zeros only the explicit reference-world coordinate channels in the completion network; canonical geometry and rendering transforms remain unchanged.
+The learned controls are retrained through Stages 3--4; memory-related compute differences are recorded.
+
+\paragraph{Observation preservation.}
+Soft observation (A7) allows observed codes to evolve instead of hard resetting them.
+Its observed flow path is $(1-\tau)\mathbf z^{\rm obs}+\tau\mathbf z_1$, with target velocity $\mathbf z_1-\mathbf z^{\rm obs}$.
+Observed and unknown flow losses are separately normalized and equally weighted.
+Rendering adaptation adds a mean-squared penalty on observed-code changes, with its weight selected from $\{0.1,1,10\}$ on development data.
+Observed conditioning, free-space constraints, the codec, and the checker remain fixed.
+This comparison examines the tradeoff between completion and input-view preservation.
+
+\begin{table}[t]
+  \centering
+  \caption{\textbf{Component ablations.} All variants use $T=8$, a shared recovery module and codec, and the same evaluation masks. Quality is measured before acceptance filtering; Pass includes all requested worlds. A1 requires no completion training. Numerical cells are left blank.}
+  \label{tab:ablation-components}
+  \small
+  \setlength{\tabcolsep}{3pt}
+  \begin{tabular}{@{}lrrrr@{}}
+    \toprule
+    Variant & \shortstack{New-MAE\\$\downarrow$}
+      & \shortstack{Obs-Reg\\$\downarrow$}
+      & \shortstack{Cov.\\(\%) $\uparrow$}
+      & \shortstack{Pass\\(\%) $\uparrow$}\\
+    \midrule
+    Full (A0)            & & & & \\
+    No completion (A1)   & & & & \\
+    Independent (A2)     & & & & \\
+    No world coord. (A3) & & & & \\
+    Soft obs. (A7)       & & & & \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Input sparsity.}
+Table~\ref{tab:ablation-inputs} reuses the A0/A2 checkpoints at $T=2,4,8$, with 6/12/24 input images.
+The time span, target views, and common unseen-region mask remain fixed; evidence and queries are rebuilt from each input subset.
+No model is retrained for this comparison.
+
+\begin{table}[t]
+  \centering
+  \caption{\textbf{Input-timestamp sensitivity.} Three cameras and a fixed time span are shared across the nested input sets. The same checkpoints and target images are used at every $T$; New-MAE uses the common unseen region. Numerical cells are left blank.}
+  \label{tab:ablation-inputs}
+  \small
+  \setlength{\tabcolsep}{3pt}
+  \begin{tabular}{@{}lr rrr@{}}
+    \toprule
+    Variant & $T$ & \shortstack{NVS-MAE\\$\downarrow$}
+      & \shortstack{New-MAE\\$\downarrow$}
+      & \shortstack{Cov.\\(\%) $\uparrow$}\\
+    \midrule
+    Full (A0)        & 2 & & & \\
+    Independent (A2) & 2 & & & \\
+    Full (A0)        & 4 & & & \\
+    Independent (A2) & 4 & & & \\
+    Full (A0)        & 8 & & & \\
+    Independent (A2) & 8 & & & \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{State-driven reuse}
+\label{sec:ablation-reuse}
+
+
+At timestamp 14 and world seed 7, the interventions independently translate the camera by $1\,\mathrm m$ along its local $+x$ axis, rotate a vehicle by $30^\circ$ about its root and the world vertical axis, or apply a held-out valid human pose $H_1$ with fixed root placement.
+Lighting and canonical assets remain fixed, without resampling completion.

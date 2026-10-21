@@ -488,12 +488,28 @@ LaTeX Warning: Reference `eq:flow-loss' on page 6 undefined on input line 207.
 
 LaTeX Warning: Reference `eq:flow-path' on page 6 undefined on input line 207.
 
-) (sec/4_experiments) (sec/5_discussion) (sec/6_conclusion [6])
+) (sec/4_experiments [6]
+
+LaTeX Warning: Reference `eq:regression' on page 7 undefined on input line 21.
+
+
+LaTeX Warning: Reference `fig:ablation-reuse' on page 7 undefined on input line
+ 28.
+
+
+LaTeX Warning: Reference `tab:ablation-components' on page 7 undefined on input
+ line 69.
+
+
+LaTeX Warning: Reference `tab:ablation-inputs' on page 7 undefined on input lin
+e 106.
+
+) (sec/5_discussion) (sec/6_conclusion [7])
 No file main.bbl.
 
 Package natbib Warning: There were undefined citations.
 
-[7] (main.aux)
+[8] (main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -506,7 +522,7 @@ Package rerunfilecheck Warning: File `main.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
  )
-Output written on main.xdv (7 pages, 333152 bytes).
+Output written on main.xdv (8 pages, 393320 bytes).
 Transcript written on main.log.
 note: Running BibTeX on main.aux ...
 note: Rerunning TeX because bibtex was run ...
@@ -947,18 +963,18 @@ line 100.
 Package natbib Warning: Citation `lipman2022flowmatching' on page 4 undefined o
 n input line 100.
 
-[4] [5]) (sec/4_experiments) (sec/5_discussion) (sec/6_conclusion [6])
+[4] [5]) (sec/4_experiments [6]) (sec/5_discussion) (sec/6_conclusion [7])
 (main.bbl
 No file main.brf.
 
 Package lineno Warning: Label(s) may have changed. Rerun to get cross-reference
 s right. on input line 1.
 
-[7] [8] [9] [10])
+[8] [9] [10] [11])
 
 Package natbib Warning: There were undefined citations.
 
-[11] (main.aux
+[12] (main.aux
 
 Package natbib Warning: Citation(s) may have changed.
 (natbib)                Rerun to get citations correct.
@@ -969,7 +985,7 @@ Package rerunfilecheck Warning: File `main.brf' has changed.
 (rerunfilecheck)                Rerun to get bibliographical references right.
 
  )
-Output written on main.xdv (11 pages, 625132 bytes).
+Output written on main.xdv (12 pages, 686364 bytes).
 Transcript written on main.log.
 note: Rerunning TeX because "main.aux" changed ...
 (main.tex
@@ -1021,13 +1037,13 @@ CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
 ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
 (gettitlestring.sty)) (main.out) (main.out) (umsa.fd) (umsb.fd) (sec/0_abstract
 ) (sec/1_introduction [1]) (sec/2_related_work [2]) (sec/3_method [3] [4]
-[5]) (sec/4_experiments) (sec/5_discussion) (sec/6_conclusion [6]) (main.bbl
-(main.brf) [7] [8] [9] [10]
+[5]) (sec/4_experiments [6]) (sec/5_discussion) (sec/6_conclusion [7])
+(main.bbl (main.brf) [8] [9] [10] [11]
 
 Package lineno Warning: Label(s) may have changed. Rerun to get cross-reference
 s right. on input line 693.
 
-) [11] (main.aux)
+) [12] (main.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
@@ -1036,9 +1052,9 @@ Package rerunfilecheck Warning: File `main.brf' has changed.
 (rerunfilecheck)                Rerun to get bibliographical references right.
 
  )
-Output written on main.xdv (11 pages, 642252 bytes).
+Output written on main.xdv (12 pages, 703468 bytes).
 Transcript written on main.log.
-note: Rerunning TeX because "main.aux" changed ...
+note: Rerunning TeX because "main.brf" changed ...
 (main.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-02-24> (article.cls
@@ -1088,14 +1104,14 @@ CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
 ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
 (gettitlestring.sty)) (main.out) (main.out) (umsa.fd) (umsb.fd) (sec/0_abstract
 ) (sec/1_introduction [1]) (sec/2_related_work [2]) (sec/3_method [3] [4]
-[5]) (sec/4_experiments) (sec/5_discussion) (sec/6_conclusion [6]) (main.bbl
-(main.brf) [7] [8] [9] [10]
+[5]) (sec/4_experiments [6]) (sec/5_discussion) (sec/6_conclusion [7])
+(main.bbl (main.brf) [8] [9] [10] [11]
 
 Package lineno Warning: Label(s) may have changed. Rerun to get cross-reference
 s right. on input line 693.
 
-) [11] (main.aux) )
-Output written on main.xdv (11 pages, 658364 bytes).
+) [12] (main.aux) )
+Output written on main.xdv (12 pages, 719564 bytes).
 Transcript written on main.log.
 note: Rerunning TeX because "main.aux" changed ...
 (main.tex
@@ -1147,16 +1163,16 @@ CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
 ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
 (gettitlestring.sty)) (main.out) (main.out) (umsa.fd) (umsb.fd) (sec/0_abstract
 ) (sec/1_introduction [1]) (sec/2_related_work [2]) (sec/3_method [3] [4]
-[5]) (sec/4_experiments) (sec/5_discussion) (sec/6_conclusion [6]) (main.bbl
-(main.brf) [7] [8] [9] [10]) [11] (main.aux) )
-Output written on main.xdv (11 pages, 658348 bytes).
+[5]) (sec/4_experiments [6]) (sec/5_discussion) (sec/6_conclusion [7])
+(main.bbl (main.brf) [8] [9] [10] [11]) [12] (main.aux) )
+Output written on main.xdv (12 pages, 719564 bytes).
 Transcript written on main.log.
 note: Running xdvipdfmx ...
-[1][2][3][4][5][6][7][8][9][10][11]1858858 bytes written
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\_archive\drivecompose\20261021-source-experiment-match\final-build\en\main.brf` (4.599609375 KiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\_archive\drivecompose\20261021-source-experiment-match\final-build\en\main.aux` (41.04296875 KiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\_archive\drivecompose\20261021-source-experiment-match\final-build\en\main.out` (2.1123046875 KiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\_archive\drivecompose\20261021-source-experiment-match\final-build\en\main.blg` (196 B)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\_archive\drivecompose\20261021-source-experiment-match\final-build\en\main.log` (33.3388671875 KiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\_archive\drivecompose\20261021-source-experiment-match\final-build\en\main.bbl` (34.8740234375 KiB)
-note: Writing `E:\Users\changan\Desktop\论文\pre-research\_archive\drivecompose\20261021-source-experiment-match\final-build\en\main.pdf` (1.772745132446289 MiB)
+[1][2][3][4][5][6][7][8][9][10][11][12]1876350 bytes written
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.out` (2.5400390625 KiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.brf` (4.599609375 KiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.blg` (196 B)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.log` (33.341796875 KiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.bbl` (34.8740234375 KiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.aux` (46.15234375 KiB)
+note: Writing `E:\Users\changan\Desktop\论文\pre-research\drivecompose\paper\build\en\main.pdf` (1.7894268035888672 MiB)
