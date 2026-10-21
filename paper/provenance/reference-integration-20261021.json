@@ -1,0 +1,2019 @@
+{
+  "date": "2026-10-21",
+  "input": "docs/DriveCompose_75篇顶会参考文献.docx",
+  "input_count": 75,
+  "existing_overlap": 9,
+  "new_entries": 66,
+  "retained_outside_input": 9,
+  "total_entries": 84,
+  "references": [
+    {
+      "docx_id": 1,
+      "key": "barron2021mipnerf",
+      "title": "Mip-NeRF: A Multiscale Representation for Anti-Aliasing Neural Radiance Fields",
+      "source_url": "https://openaccess.thecvf.com/content/ICCV2021/html/Barron_Mip-NeRF_A_Multiscale_Representation_for_Anti-Aliasing_Neural_Radiance_Fields_ICCV_2021_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/ICCV2021/html/Barron_Mip-NeRF_A_Multiscale_Representation_for_Anti-Aliasing_Neural_Radiance_Fields_ICCV_2021_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 5,
+          "paragraph": "Radiance representations."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 5,
+          "paragraph": "辐射场表示。"
+        }
+      ]
+    },
+    {
+      "docx_id": 2,
+      "key": "black2023bedlam",
+      "title": "BEDLAM: A Synthetic Dataset of Bodies Exhibiting Detailed Lifelike Animated Motion",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2023/html/Black_BEDLAM_A_Synthetic_Dataset_of_Bodies_Exhibiting_Detailed_Lifelike_Animated_CVPR_2023_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2023/html/Black_BEDLAM_A_Synthetic_Dataset_of_Bodies_Exhibiting_Detailed_Lifelike_Animated_CVPR_2023_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 17,
+          "paragraph": "Canonical and animatable assets."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 17,
+          "paragraph": "规范与可驱动资产。"
+        }
+      ]
+    },
+    {
+      "docx_id": 3,
+      "key": "caesar2020nuscenes",
+      "title": "nuScenes: A Multimodal Dataset for Autonomous Driving",
+      "source_url": "https://openaccess.thecvf.com/content_CVPR_2020/html/Caesar_nuScenes_A_Multimodal_Dataset_for_Autonomous_Driving_CVPR_2020_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content_CVPR_2020/html/Caesar_nuScenes_A_Multimodal_Dataset_for_Autonomous_Driving_CVPR_2020_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/1_introduction.tex",
+          "line": 4,
+          "paragraph": "Introduction"
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/1_introduction_zh.tex",
+          "line": 4,
+          "paragraph": "引言"
+        }
+      ]
+    },
+    {
+      "docx_id": 4,
+      "key": "charatan2024pixelsplat",
+      "title": "pixelSplat: 3D Gaussian Splats from Image Pairs for Scalable Generalizable 3D Reconstruction",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2024/html/Charatan_pixelSplat_3D_Gaussian_Splats_from_Image_Pairs_for_Scalable_Generalizable_CVPR_2024_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2024/html/Charatan_pixelSplat_3D_Gaussian_Splats_from_Image_Pairs_for_Scalable_Generalizable_CVPR_2024_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 11,
+          "paragraph": "Feed-forward reconstruction."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 11,
+          "paragraph": "前馈重建。"
+        }
+      ]
+    },
+    {
+      "docx_id": 5,
+      "key": "chen2025dggt",
+      "title": "DGGT: Feedforward 4D Reconstruction of Dynamic Driving Scenes using Unposed Images",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2026/html/Chen_DGGT_Feedforward_4D_Reconstruction_of_Dynamic_Driving_Scenes_using_Unposed_CVPR_2026_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2026/html/Chen_DGGT_Feedforward_4D_Reconstruction_of_Dynamic_Driving_Scenes_using_Unposed_CVPR_2026_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": true,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/1_introduction.tex",
+          "line": 6,
+          "paragraph": "Introduction"
+        },
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 14,
+          "paragraph": "Driving-scene inference."
+        },
+        {
+          "language": "en",
+          "file": "paper/sec/4_experiments.tex",
+          "line": 19,
+          "paragraph": "Baselines and inference settings."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/1_introduction_zh.tex",
+          "line": 6,
+          "paragraph": "引言"
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 14,
+          "paragraph": "驾驶场景推断。"
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/4_experiments_zh.tex",
+          "line": 14,
+          "paragraph": "对比方法"
+        }
+      ]
+    },
+    {
+      "docx_id": 6,
+      "key": "chen2024mvsplat",
+      "title": "MVSplat: Efficient 3D Gaussian Splatting from Sparse Multi-View Images",
+      "source_url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/3187_ECCV_2024_paper.php",
+      "verified_source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/3187_ECCV_2024_paper.php",
+      "metadata_origin": "supplied DOCX, checked against primary landing-page title and author listing",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 11,
+          "paragraph": "Feed-forward reconstruction."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 11,
+          "paragraph": "前馈重建。"
+        }
+      ]
+    },
+    {
+      "docx_id": 7,
+      "key": "chen2025omnire",
+      "title": "OmniRe: Omni Urban Scene Reconstruction",
+      "source_url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/d4938496368e1c5806138bea8837595c-Abstract-Conference.html",
+      "verified_source": "https://proceedings.iclr.cc/paper_files/paper/3018-/bibtex",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": true,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/1_introduction.tex",
+          "line": 8,
+          "paragraph": "Introduction"
+        },
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 8,
+          "paragraph": "Urban scenes and control."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/1_introduction_zh.tex",
+          "line": 8,
+          "paragraph": "引言"
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 8,
+          "paragraph": "城市场景与控制。"
+        }
+      ]
+    },
+    {
+      "docx_id": 8,
+      "key": "deitke2023objaverse",
+      "title": "Objaverse: A Universe of Annotated 3D Objects",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2023/html/Deitke_Objaverse_A_Universe_of_Annotated_3D_Objects_CVPR_2023_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2023/html/Deitke_Objaverse_A_Universe_of_Annotated_3D_Objects_CVPR_2023_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 20,
+          "paragraph": "Generative reconstruction and completion."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 20,
+          "paragraph": "生成式重建与补全。"
+        }
+      ]
+    },
+    {
+      "docx_id": 9,
+      "key": "dosovitskiy2021vit",
+      "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+      "source_url": "https://openreview.net/forum?id=YicbFdNTTy",
+      "verified_source": "https://arxiv.org/abs/2010.11929",
+      "metadata_origin": "supplied DOCX, checked against primary landing-page title and author listing",
+      "verification": "primary_record_confirmed_via_fallback",
+      "note": "Author arXiv record confirms title and authors; supplied ICLR 2021 venue corroborated by official OpenReview indexed listing.",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/3_method.tex",
+          "line": 36,
+          "paragraph": "Shared visual encoding."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/3_method_zh.tex",
+          "line": 36,
+          "paragraph": "共享视觉编码。"
+        }
+      ]
+    },
+    {
+      "docx_id": 10,
+      "key": "gao2024cat3d",
+      "title": "CAT3D: Create Anything in 3D with Multi-View Diffusion Models",
+      "source_url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/89e4433fec4b99f1d859db57af1e0a0f-Abstract-Conference.html",
+      "verified_source": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/89e4433fec4b99f1d859db57af1e0a0f-Abstract-Conference.html",
+      "metadata_origin": "official HTML citation metadata",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 20,
+          "paragraph": "Generative reconstruction and completion."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 20,
+          "paragraph": "生成式重建与补全。"
+        }
+      ]
+    },
+    {
+      "docx_id": 11,
+      "key": "gao2024magicdrive",
+      "title": "MagicDrive: Street View Generation with Diverse 3D Geometry Control",
+      "source_url": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/635351dc3d18116d1a44ca31592e2f9a-Abstract-Conference.html",
+      "verified_source": "https://proceedings.iclr.cc/paper_files/paper/5297-/bibtex",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 23,
+          "paragraph": "Controlled driving-video generation."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 23,
+          "paragraph": "可控驾驶视频生成。"
+        }
+      ]
+    },
+    {
+      "docx_id": 12,
+      "key": "gao2025magicdrivev2",
+      "title": "MagicDrive-V2: High-Resolution Long Video Generation for Autonomous Driving with Adaptive Control",
+      "source_url": "https://openaccess.thecvf.com/content/ICCV2025/html/Gao_MagicDrive-V2_High-Resolution_Long_Video_Generation_for_Autonomous_Driving_with_Adaptive_ICCV_2025_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/ICCV2025/html/Gao_MagicDrive-V2_High-Resolution_Long_Video_Generation_for_Autonomous_Driving_with_Adaptive_ICCV_2025_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 23,
+          "paragraph": "Controlled driving-video generation."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 23,
+          "paragraph": "可控驾驶视频生成。"
+        }
+      ]
+    },
+    {
+      "docx_id": 13,
+      "key": "gao2024vista",
+      "title": "Vista: A Generalizable Driving World Model with High Fidelity and Versatile Controllability",
+      "source_url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/a6a066fb44f2fe0d36cf740c873b8890-Abstract-Conference.html",
+      "verified_source": "https://proceedings.neurips.cc/paper_files/paper/27221-/bibtex",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 23,
+          "paragraph": "Controlled driving-video generation."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 23,
+          "paragraph": "可控驾驶视频生成。"
+        }
+      ]
+    },
+    {
+      "docx_id": 14,
+      "key": "goel2023humans4d",
+      "title": "Humans in 4D: Reconstructing and Tracking Humans with Transformers",
+      "source_url": "https://openaccess.thecvf.com/content/ICCV2023/html/Goel_Humans_in_4D_Reconstructing_and_Tracking_Humans_with_Transformers_ICCV_2023_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/ICCV2023/html/Goel_Humans_in_4D_Reconstructing_and_Tracking_Humans_with_Transformers_ICCV_2023_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 17,
+          "paragraph": "Canonical and animatable assets."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 17,
+          "paragraph": "规范与可驱动资产。"
+        }
+      ]
+    },
+    {
+      "docx_id": 15,
+      "key": "guo2023vid2avatar",
+      "title": "Vid2Avatar: 3D Avatar Reconstruction From Videos in the Wild via Self-Supervised Scene Decomposition",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2023/html/Guo_Vid2Avatar_3D_Avatar_Reconstruction_From_Videos_in_the_Wild_via_CVPR_2023_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2023/html/Guo_Vid2Avatar_3D_Avatar_Reconstruction_From_Videos_in_the_Wild_via_CVPR_2023_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 17,
+          "paragraph": "Canonical and animatable assets."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 17,
+          "paragraph": "规范与可驱动资产。"
+        }
+      ]
+    },
+    {
+      "docx_id": 16,
+      "key": "hess2025splatad",
+      "title": "SplatAD: Real-Time Lidar and Camera Rendering with 3D Gaussian Splatting for Autonomous Driving",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2025/html/Hess_SplatAD_Real-Time_Lidar_and_Camera_Rendering_with_3D_Gaussian_Splatting_CVPR_2025_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2025/html/Hess_SplatAD_Real-Time_Lidar_and_Camera_Rendering_with_3D_Gaussian_Splatting_CVPR_2025_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 8,
+          "paragraph": "Urban scenes and control."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 8,
+          "paragraph": "城市场景与控制。"
+        }
+      ]
+    },
+    {
+      "docx_id": 17,
+      "key": "hong2024lrm",
+      "title": "LRM: Large Reconstruction Model for Single Image to 3D",
+      "source_url": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/dcad3425f5c8c36b5b3885c091bf1257-Abstract-Conference.html",
+      "verified_source": "https://proceedings.iclr.cc/paper_files/paper/5272-/bibtex",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 11,
+          "paragraph": "Feed-forward reconstruction."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 11,
+          "paragraph": "前馈重建。"
+        }
+      ]
+    },
+    {
+      "docx_id": 18,
+      "key": "hu2024gaussianavatar",
+      "title": "GaussianAvatar: Towards Realistic Human Avatar Modeling from a Single Video via Animatable 3D Gaussians",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2024/html/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2024/html/Hu_GaussianAvatar_Towards_Realistic_Human_Avatar_Modeling_from_a_Single_Video_CVPR_2024_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 17,
+          "paragraph": "Canonical and animatable assets."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 17,
+          "paragraph": "规范与可驱动资产。"
+        }
+      ]
+    },
+    {
+      "docx_id": 19,
+      "key": "hu2024gauhuman",
+      "title": "GauHuman: Articulated Gaussian Splatting from Monocular Human Videos",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2024/html/Hu_GauHuman_Articulated_Gaussian_Splatting_from_Monocular_Human_Videos_CVPR_2024_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2024/html/Hu_GauHuman_Articulated_Gaussian_Splatting_from_Monocular_Human_Videos_CVPR_2024_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 17,
+          "paragraph": "Canonical and animatable assets."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 17,
+          "paragraph": "规范与可驱动资产。"
+        }
+      ]
+    },
+    {
+      "docx_id": 20,
+      "key": "kerbl2023gaussians",
+      "title": "3D Gaussian Splatting for Real-Time Radiance Field Rendering",
+      "source_url": "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/",
+      "verified_source": "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": true,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 5,
+          "paragraph": "Radiance representations."
+        },
+        {
+          "language": "en",
+          "file": "paper/sec/3_method.tex",
+          "line": 18,
+          "paragraph": "Problem formulation and compositional representation"
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 5,
+          "paragraph": "辐射场表示。"
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/3_method_zh.tex",
+          "line": 18,
+          "paragraph": "问题定义与可组合表示"
+        }
+      ]
+    },
+    {
+      "docx_id": 21,
+      "key": "kirillov2023sam",
+      "title": "Segment Anything",
+      "source_url": "https://openaccess.thecvf.com/content/ICCV2023/html/Kirillov_Segment_Anything_ICCV_2023_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/ICCV2023/html/Kirillov_Segment_Anything_ICCV_2023_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 17,
+          "paragraph": "Canonical and animatable assets."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 17,
+          "paragraph": "规范与可驱动资产。"
+        }
+      ]
+    },
+    {
+      "docx_id": 22,
+      "key": "kocabas2024hugs",
+      "title": "HUGS: Human Gaussian Splats",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2024/html/Kocabas_HUGS_Human_Gaussian_Splats_CVPR_2024_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2024/html/Kocabas_HUGS_Human_Gaussian_Splats_CVPR_2024_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 17,
+          "paragraph": "Canonical and animatable assets."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 17,
+          "paragraph": "规范与可驱动资产。"
+        }
+      ]
+    },
+    {
+      "docx_id": 23,
+      "key": "leroy2024mast3r",
+      "title": "Grounding Image Matching in 3D with MASt3R",
+      "source_url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/9080_ECCV_2024_paper.php",
+      "verified_source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/9080_ECCV_2024_paper.php",
+      "metadata_origin": "supplied DOCX, checked against primary landing-page title and author listing",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 11,
+          "paragraph": "Feed-forward reconstruction."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 11,
+          "paragraph": "前馈重建。"
+        }
+      ]
+    },
+    {
+      "docx_id": 24,
+      "key": "lipman2022flowmatching",
+      "title": "Flow Matching for Generative Modeling",
+      "source_url": "https://openreview.net/forum?id=PqvMRDCJT9t",
+      "verified_source": "https://openreview.net/pdf?id=PqvMRDCJT9t",
+      "metadata_origin": "supplied DOCX, checked against primary landing-page title and author listing",
+      "verification": "primary_record_confirmed_via_fallback",
+      "note": "Official paper states ICLR 2023; arXiv:2210.02747 confirms authors. Forum page served a browser challenge.",
+      "already_in_bibliography": true,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/3_method.tex",
+          "line": 100,
+          "paragraph": "Scene-conditioned transformer."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/3_method_zh.tex",
+          "line": 100,
+          "paragraph": "场景条件 Transformer。"
+        }
+      ]
+    },
+    {
+      "docx_id": 25,
+      "key": "liu2023zero123",
+      "title": "Zero-1-to-3: Zero-shot One Image to 3D Object",
+      "source_url": "https://openaccess.thecvf.com/content/ICCV2023/html/Liu_Zero-1-to-3_Zero-shot_One_Image_to_3D_Object_ICCV_2023_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/ICCV2023/html/Liu_Zero-1-to-3_Zero-shot_One_Image_to_3D_Object_ICCV_2023_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 20,
+          "paragraph": "Generative reconstruction and completion."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 20,
+          "paragraph": "生成式重建与补全。"
+        }
+      ]
+    },
+    {
+      "docx_id": 26,
+      "key": "loper2015smpl",
+      "title": "SMPL: A Skinned Multi-Person Linear Model",
+      "source_url": "https://smpl.is.tue.mpg.de/",
+      "verified_source": "https://smpl.is.tue.mpg.de/",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 17,
+          "paragraph": "Canonical and animatable assets."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 17,
+          "paragraph": "规范与可驱动资产。"
+        }
+      ]
+    },
+    {
+      "docx_id": 27,
+      "key": "lu2025urbancad",
+      "title": "UrbanCAD: Towards Highly Controllable and Photorealistic 3D Vehicles for Urban Scene Simulation",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2025/html/Lu_UrbanCAD_Towards_Highly_Controllable_and_Photorealistic_3D_Vehicles_for_Urban_CVPR_2025_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2025/html/Lu_UrbanCAD_Towards_Highly_Controllable_and_Photorealistic_3D_Vehicles_for_Urban_CVPR_2025_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 17,
+          "paragraph": "Canonical and animatable assets."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 17,
+          "paragraph": "规范与可驱动资产。"
+        }
+      ]
+    },
+    {
+      "docx_id": 28,
+      "key": "martinbrualla2021nerfw",
+      "title": "NeRF in the Wild: Neural Radiance Fields for Unconstrained Photo Collections",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2021/html/Martin-Brualla_NeRF_in_the_Wild_Neural_Radiance_Fields_for_Unconstrained_Photo_CVPR_2021_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2021/html/Martin-Brualla_NeRF_in_the_Wild_Neural_Radiance_Fields_for_Unconstrained_Photo_CVPR_2021_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 5,
+          "paragraph": "Radiance representations."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 5,
+          "paragraph": "辐射场表示。"
+        }
+      ]
+    },
+    {
+      "docx_id": 29,
+      "key": "miao2025evolsplat",
+      "title": "EVolSplat: Efficient Volume-based Gaussian Splatting for Urban View Synthesis",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2025/html/Miao_EVolSplat_Efficient_Volume-based_Gaussian_Splatting_for_Urban_View_Synthesis_CVPR_2025_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2025/html/Miao_EVolSplat_Efficient_Volume-based_Gaussian_Splatting_for_Urban_View_Synthesis_CVPR_2025_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 8,
+          "paragraph": "Urban scenes and control."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 8,
+          "paragraph": "城市场景与控制。"
+        }
+      ]
+    },
+    {
+      "docx_id": 30,
+      "key": "mildenhall2020nerf",
+      "title": "NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis",
+      "source_url": "https://www.ecva.net/papers/eccv_2020/papers_ECCV/html/1473_ECCV_2020_paper.php",
+      "verified_source": "https://www.ecva.net/papers/eccv_2020/papers_ECCV/html/1473_ECCV_2020_paper.php",
+      "metadata_origin": "supplied DOCX, checked against primary landing-page title and author listing",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 5,
+          "paragraph": "Radiance representations."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 5,
+          "paragraph": "辐射场表示。"
+        }
+      ]
+    },
+    {
+      "docx_id": 31,
+      "key": "moenne2024gaussianraytracing",
+      "title": "3D Gaussian Ray Tracing: Fast Tracing of Particle Scenes",
+      "source_url": "https://research.nvidia.com/labs/toronto-ai/3DGRT/",
+      "verified_source": "https://research.nvidia.com/labs/toronto-ai/3DGRT/",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 5,
+          "paragraph": "Radiance representations."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 5,
+          "paragraph": "辐射场表示。"
+        }
+      ]
+    },
+    {
+      "docx_id": 32,
+      "key": "ost2021neuralgraphs",
+      "title": "Neural Scene Graphs for Dynamic Scenes",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2021/html/Ost_Neural_Scene_Graphs_for_Dynamic_Scenes_CVPR_2021_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2021/html/Ost_Neural_Scene_Graphs_for_Dynamic_Scenes_CVPR_2021_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 8,
+          "paragraph": "Urban scenes and control."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 8,
+          "paragraph": "城市场景与控制。"
+        }
+      ]
+    },
+    {
+      "docx_id": 33,
+      "key": "pavlakos2019smplx",
+      "title": "Expressive Body Capture: 3D Hands, Face, and Body From a Single Image",
+      "source_url": "https://openaccess.thecvf.com/content_CVPR_2019/html/Pavlakos_Expressive_Body_Capture_3D_Hands_Face_and_Body_From_a_CVPR_2019_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content_CVPR_2019/html/Pavlakos_Expressive_Body_Capture_3D_Hands_Face_and_Body_From_a_CVPR_2019_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 17,
+          "paragraph": "Canonical and animatable assets."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 17,
+          "paragraph": "规范与可驱动资产。"
+        }
+      ]
+    },
+    {
+      "docx_id": 34,
+      "key": "peebles2023dit",
+      "title": "Scalable Diffusion Models with Transformers",
+      "source_url": "https://openaccess.thecvf.com/content/ICCV2023/html/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/ICCV2023/html/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": true,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/3_method.tex",
+          "line": 100,
+          "paragraph": "Scene-conditioned transformer."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/3_method_zh.tex",
+          "line": 100,
+          "paragraph": "场景条件 Transformer。"
+        }
+      ]
+    },
+    {
+      "docx_id": 35,
+      "key": "poole2023dreamfusion",
+      "title": "DreamFusion: Text-to-3D using 2D Diffusion",
+      "source_url": "https://openreview.net/pdf/fc5d88df1a06d30ae79fb23e87030f0fb2c8bd76.pdf",
+      "verified_source": "https://dreamfusion3d.github.io/",
+      "metadata_origin": "supplied DOCX, checked against primary landing-page title and author listing",
+      "verification": "primary_record_confirmed_via_fallback",
+      "note": "Author project and arXiv:2209.14988 confirm title/authors; ICLR 2023 official award listing confirms conference.",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 20,
+          "paragraph": "Generative reconstruction and completion."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 20,
+          "paragraph": "生成式重建与补全。"
+        }
+      ]
+    },
+    {
+      "docx_id": 36,
+      "key": "pumarola2021dnerf",
+      "title": "D-NeRF: Neural Radiance Fields for Dynamic Scenes",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2021/html/Pumarola_D-NeRF_Neural_Radiance_Fields_for_Dynamic_Scenes_CVPR_2021_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2021/html/Pumarola_D-NeRF_Neural_Radiance_Fields_for_Dynamic_Scenes_CVPR_2021_paper.html",
+      "metadata_origin": "supplied DOCX, checked against primary landing-page title and author listing",
+      "verification": "primary_record_confirmed_via_fallback",
+      "note": "Official CVF search record supplies full BibTeX; direct fetch hit a transient SSL error.",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 5,
+          "paragraph": "Radiance representations."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 5,
+          "paragraph": "辐射场表示。"
+        }
+      ]
+    },
+    {
+      "docx_id": 37,
+      "key": "qian2024avatar",
+      "title": "3DGS-Avatar: Animatable Avatars via Deformable 3D Gaussian Splatting",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2024/html/Qian_3DGS-Avatar_Animatable_Avatars_via_Deformable_3D_Gaussian_Splatting_CVPR_2024_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2024/html/Qian_3DGS-Avatar_Animatable_Avatars_via_Deformable_3D_Gaussian_Splatting_CVPR_2024_paper.html",
+      "metadata_origin": "supplied DOCX, checked against primary landing-page title and author listing",
+      "verification": "primary_record_confirmed_via_fallback",
+      "note": "Official CVF search record supplies full BibTeX; direct fetch hit a transient SSL error.",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 17,
+          "paragraph": "Canonical and animatable assets."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 17,
+          "paragraph": "规范与可驱动资产。"
+        }
+      ]
+    },
+    {
+      "docx_id": 38,
+      "key": "qiu2025lhm",
+      "title": "LHM: Large Animatable Human Reconstruction Model for Single Image to 3D in Seconds",
+      "source_url": "https://openaccess.thecvf.com/content/ICCV2025/html/Qiu_LHM_Large_Animatable_Human_Reconstruction_Model_for_Single_Image_to_ICCV_2025_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/ICCV2025/html/Qiu_LHM_Large_Animatable_Human_Reconstruction_Model_for_Single_Image_to_ICCV_2025_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 17,
+          "paragraph": "Canonical and animatable assets."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 17,
+          "paragraph": "规范与可驱动资产。"
+        }
+      ]
+    },
+    {
+      "docx_id": 39,
+      "key": "rematas2022urban",
+      "title": "Urban Radiance Fields",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2022/html/Rematas_Urban_Radiance_Fields_CVPR_2022_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2022/html/Rematas_Urban_Radiance_Fields_CVPR_2022_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 8,
+          "paragraph": "Urban scenes and control."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 8,
+          "paragraph": "城市场景与控制。"
+        }
+      ]
+    },
+    {
+      "docx_id": 40,
+      "key": "ren2026tokengs",
+      "title": "TokenGS: Decoupling 3D Gaussian Prediction from Pixels with Learnable Tokens",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2026/html/Ren_TokenGS_Decoupling_3D_Gaussian_Prediction_from_Pixels_with_Learnable_Tokens_CVPR_2026_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2026/html/Ren_TokenGS_Decoupling_3D_Gaussian_Prediction_from_Pixels_with_Learnable_Tokens_CVPR_2026_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 11,
+          "paragraph": "Feed-forward reconstruction."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 11,
+          "paragraph": "前馈重建。"
+        }
+      ]
+    },
+    {
+      "docx_id": 41,
+      "key": "ren2025gen3c",
+      "title": "GEN3C: 3D-Informed World-Consistent Video Generation with Precise Camera Control",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2025/html/Ren_GEN3C_3D-Informed_World-Consistent_Video_Generation_with_Precise_Camera_Control_CVPR_2025_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2025/html/Ren_GEN3C_3D-Informed_World-Consistent_Video_Generation_with_Precise_Camera_Control_CVPR_2025_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 23,
+          "paragraph": "Controlled driving-video generation."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 23,
+          "paragraph": "可控驾驶视频生成。"
+        }
+      ]
+    },
+    {
+      "docx_id": 42,
+      "key": "shi2024mvdream",
+      "title": "MVDream: Multi-view Diffusion for 3D Generation",
+      "source_url": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/adbe936993aa7cf41e45054d8b72f183-Abstract-Conference.html",
+      "verified_source": "https://proceedings.iclr.cc/paper_files/paper/4919-/bibtex",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 20,
+          "paragraph": "Generative reconstruction and completion."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 20,
+          "paragraph": "生成式重建与补全。"
+        }
+      ]
+    },
+    {
+      "docx_id": 43,
+      "key": "shin2024canonicalfusion",
+      "title": "CanonicalFusion: Generating Drivable 3D Human Avatars from Multiple Images",
+      "source_url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/3322_ECCV_2024_paper.php",
+      "verified_source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/3322_ECCV_2024_paper.php",
+      "metadata_origin": "supplied DOCX, checked against primary landing-page title and author listing",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 17,
+          "paragraph": "Canonical and animatable assets."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 17,
+          "paragraph": "规范与可驱动资产。"
+        }
+      ]
+    },
+    {
+      "docx_id": 44,
+      "key": "shin2024wham",
+      "title": "WHAM: Reconstructing World-grounded Humans with Accurate 3D Motion",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2024/html/Shin_WHAM_Reconstructing_World-grounded_Humans_with_Accurate_3D_Motion_CVPR_2024_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2024/html/Shin_WHAM_Reconstructing_World-grounded_Humans_with_Accurate_3D_Motion_CVPR_2024_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 17,
+          "paragraph": "Canonical and animatable assets."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 17,
+          "paragraph": "规范与可驱动资产。"
+        }
+      ]
+    },
+    {
+      "docx_id": 45,
+      "key": "sun2020waymo",
+      "title": "Scalability in Perception for Autonomous Driving: Waymo Open Dataset",
+      "source_url": "https://openaccess.thecvf.com/content_CVPR_2020/html/Sun_Scalability_in_Perception_for_Autonomous_Driving_Waymo_Open_Dataset_CVPR_2020_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content_CVPR_2020/html/Sun_Scalability_in_Perception_for_Autonomous_Driving_Waymo_Open_Dataset_CVPR_2020_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/1_introduction.tex",
+          "line": 4,
+          "paragraph": "Introduction"
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/1_introduction_zh.tex",
+          "line": 4,
+          "paragraph": "引言"
+        }
+      ]
+    },
+    {
+      "docx_id": 46,
+      "key": "tancik2022blocknerf",
+      "title": "Block-NeRF: Scalable Large Scene Neural View Synthesis",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2022/html/Tancik_Block-NeRF_Scalable_Large_Scene_Neural_View_Synthesis_CVPR_2022_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2022/html/Tancik_Block-NeRF_Scalable_Large_Scene_Neural_View_Synthesis_CVPR_2022_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 8,
+          "paragraph": "Urban scenes and control."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 8,
+          "paragraph": "城市场景与控制。"
+        }
+      ]
+    },
+    {
+      "docx_id": 47,
+      "key": "tang2024lgm",
+      "title": "LGM: Large Multi-View Gaussian Model for High-Resolution 3D Content Creation",
+      "source_url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/465_ECCV_2024_paper.php",
+      "verified_source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/465_ECCV_2024_paper.php",
+      "metadata_origin": "supplied DOCX, checked against primary landing-page title and author listing",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 11,
+          "paragraph": "Feed-forward reconstruction."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 11,
+          "paragraph": "前馈重建。"
+        }
+      ]
+    },
+    {
+      "docx_id": 48,
+      "key": "tian2025drivingforward",
+      "title": "DrivingForward: Feed-forward 3D Gaussian Splatting for Driving Scene Reconstruction from Flexible Surround-view Input",
+      "source_url": "https://ojs.aaai.org/index.php/AAAI/article/view/32793",
+      "verified_source": "https://ojs.aaai.org/index.php/AAAI/article/view/32793",
+      "metadata_origin": "supplied DOCX, checked against primary landing-page title and author listing",
+      "verification": "primary_record_confirmed_via_fallback",
+      "note": "Official AAAI indexed record confirms 39(7), 7374--7382 and DOI 10.1609/aaai.v39i7.32793; direct fetch failed.",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 14,
+          "paragraph": "Driving-scene inference."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 14,
+          "paragraph": "驾驶场景推断。"
+        }
+      ]
+    },
+    {
+      "docx_id": 49,
+      "key": "tonderski2024neurad",
+      "title": "NeuRAD: Neural Rendering for Autonomous Driving",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2024/html/Tonderski_NeuRAD_Neural_Rendering_for_Autonomous_Driving_CVPR_2024_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2024/html/Tonderski_NeuRAD_Neural_Rendering_for_Autonomous_Driving_CVPR_2024_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 8,
+          "paragraph": "Urban scenes and control."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 8,
+          "paragraph": "城市场景与控制。"
+        }
+      ]
+    },
+    {
+      "docx_id": 50,
+      "key": "vaswani2017attention",
+      "title": "Attention is All you Need",
+      "source_url": "https://proceedings.neurips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html",
+      "verified_source": "https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Bibtex.bib",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/3_method.tex",
+          "line": 36,
+          "paragraph": "Shared visual encoding."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/3_method_zh.tex",
+          "line": 36,
+          "paragraph": "共享视觉编码。"
+        }
+      ]
+    },
+    {
+      "docx_id": 51,
+      "key": "wang2025vggt",
+      "title": "VGGT: Visual Geometry Grounded Transformer",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2025/html/Wang_VGGT_Visual_Geometry_Grounded_Transformer_CVPR_2025_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2025/html/Wang_VGGT_Visual_Geometry_Grounded_Transformer_CVPR_2025_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 11,
+          "paragraph": "Feed-forward reconstruction."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 11,
+          "paragraph": "前馈重建。"
+        }
+      ]
+    },
+    {
+      "docx_id": 52,
+      "key": "wang2025cut3r",
+      "title": "Continuous 3D Perception Model with Persistent State",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2025/html/Wang_Continuous_3D_Perception_Model_with_Persistent_State_CVPR_2025_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2025/html/Wang_Continuous_3D_Perception_Model_with_Persistent_State_CVPR_2025_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 11,
+          "paragraph": "Feed-forward reconstruction."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 11,
+          "paragraph": "前馈重建。"
+        }
+      ]
+    },
+    {
+      "docx_id": 53,
+      "key": "wang2025fresa",
+      "title": "FRESA: Feedforward Reconstruction of Personalized Skinned Avatars from Few Images",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2025/html/Wang_FRESA_Feedforward_Reconstruction_of_Personalized_Skinned_Avatars_from_Few_Images_CVPR_2025_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2025/html/Wang_FRESA_Feedforward_Reconstruction_of_Personalized_Skinned_Avatars_from_Few_Images_CVPR_2025_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 17,
+          "paragraph": "Canonical and animatable assets."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 17,
+          "paragraph": "规范与可驱动资产。"
+        }
+      ]
+    },
+    {
+      "docx_id": 54,
+      "key": "wang2024dust3r",
+      "title": "DUSt3R: Geometric 3D Vision Made Easy",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2024/html/Wang_DUSt3R_Geometric_3D_Vision_Made_Easy_CVPR_2024_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2024/html/Wang_DUSt3R_Geometric_3D_Vision_Made_Easy_CVPR_2024_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 11,
+          "paragraph": "Feed-forward reconstruction."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 11,
+          "paragraph": "前馈重建。"
+        }
+      ]
+    },
+    {
+      "docx_id": 55,
+      "key": "wang2024drivedreamer",
+      "title": "DriveDreamer: Towards Real-world-driven World Models for Autonomous Driving",
+      "source_url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/6416_ECCV_2024_paper.php",
+      "verified_source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/6416_ECCV_2024_paper.php",
+      "metadata_origin": "supplied DOCX, checked against primary landing-page title and author listing",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 23,
+          "paragraph": "Controlled driving-video generation."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 23,
+          "paragraph": "可控驾驶视频生成。"
+        }
+      ]
+    },
+    {
+      "docx_id": 56,
+      "key": "weng2022humannerf",
+      "title": "HumanNeRF: Free-Viewpoint Rendering of Moving People From Monocular Video",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2022/html/Weng_HumanNeRF_Free-Viewpoint_Rendering_of_Moving_People_From_Monocular_Video_CVPR_2022_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2022/html/Weng_HumanNeRF_Free-Viewpoint_Rendering_of_Moving_People_From_Monocular_Video_CVPR_2022_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 17,
+          "paragraph": "Canonical and animatable assets."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 17,
+          "paragraph": "规范与可驱动资产。"
+        }
+      ]
+    },
+    {
+      "docx_id": 57,
+      "key": "wu2025difix3d",
+      "title": "DIFIX3D+: Improving 3D Reconstructions with Single-Step Diffusion Models",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2025/html/Wu_DIFIX3D_Improving_3D_Reconstructions_with_Single-Step_Diffusion_Models_CVPR_2025_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2025/html/Wu_DIFIX3D_Improving_3D_Reconstructions_with_Single-Step_Diffusion_Models_CVPR_2025_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 23,
+          "paragraph": "Controlled driving-video generation."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 23,
+          "paragraph": "可控驾驶视频生成。"
+        }
+      ]
+    },
+    {
+      "docx_id": 58,
+      "key": "wu2025gut",
+      "title": "3DGUT: Enabling Distorted Cameras and Secondary Rays in Gaussian Splatting",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2025/html/Wu_3DGUT_Enabling_Distorted_Cameras_and_Secondary_Rays_in_Gaussian_Splatting_CVPR_2025_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2025/html/Wu_3DGUT_Enabling_Distorted_Cameras_and_Secondary_Rays_in_Gaussian_Splatting_CVPR_2025_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 5,
+          "paragraph": "Radiance representations."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 5,
+          "paragraph": "辐射场表示。"
+        }
+      ]
+    },
+    {
+      "docx_id": 59,
+      "key": "xiang2025trellis",
+      "title": "Structured 3D Latents for Scalable and Versatile 3D Generation",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2025/html/Xiang_Structured_3D_Latents_for_Scalable_and_Versatile_3D_Generation_CVPR_2025_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2025/html/Xiang_Structured_3D_Latents_for_Scalable_and_Versatile_3D_Generation_CVPR_2025_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 20,
+          "paragraph": "Generative reconstruction and completion."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 20,
+          "paragraph": "生成式重建与补全。"
+        }
+      ]
+    },
+    {
+      "docx_id": 60,
+      "key": "xiang2026trellis2",
+      "title": "Native and Compact Structured Latents for 3D Generation",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2026/html/Xiang_Native_and_Compact_Structured_Latents_for_3D_Generation_CVPR_2026_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2026/html/Xiang_Native_and_Compact_Structured_Latents_for_3D_Generation_CVPR_2026_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 20,
+          "paragraph": "Generative reconstruction and completion."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 20,
+          "paragraph": "生成式重建与补全。"
+        }
+      ]
+    },
+    {
+      "docx_id": 61,
+      "key": "xu2025depthsplat",
+      "title": "DepthSplat: Connecting Gaussian Splatting and Depth",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2025/html/Xu_DepthSplat_Connecting_Gaussian_Splatting_and_Depth_CVPR_2025_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2025/html/Xu_DepthSplat_Connecting_Gaussian_Splatting_and_Depth_CVPR_2025_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 11,
+          "paragraph": "Feed-forward reconstruction."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 11,
+          "paragraph": "前馈重建。"
+        }
+      ]
+    },
+    {
+      "docx_id": 62,
+      "key": "yan2024street",
+      "title": "Street Gaussians: Modeling Dynamic Urban Scenes with Gaussian Splatting",
+      "source_url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/9243_ECCV_2024_paper.php",
+      "verified_source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/9243_ECCV_2024_paper.php",
+      "metadata_origin": "supplied DOCX, checked against primary landing-page title and author listing",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": true,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/1_introduction.tex",
+          "line": 8,
+          "paragraph": "Introduction"
+        },
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 8,
+          "paragraph": "Urban scenes and control."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/1_introduction_zh.tex",
+          "line": 8,
+          "paragraph": "引言"
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 8,
+          "paragraph": "城市场景与控制。"
+        }
+      ]
+    },
+    {
+      "docx_id": 63,
+      "key": "streetcrafter",
+      "title": "StreetCrafter: Street View Synthesis with Controllable Video Diffusion Models",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2025/html/Yan_StreetCrafter_Street_View_Synthesis_with_Controllable_Video_Diffusion_Models_CVPR_2025_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2025/html/Yan_StreetCrafter_Street_View_Synthesis_with_Controllable_Video_Diffusion_Models_CVPR_2025_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": true,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/1_introduction.tex",
+          "line": 8,
+          "paragraph": "Introduction"
+        },
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 23,
+          "paragraph": "Controlled driving-video generation."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/1_introduction_zh.tex",
+          "line": 8,
+          "paragraph": "引言"
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 23,
+          "paragraph": "可控驾驶视频生成。"
+        }
+      ]
+    },
+    {
+      "docx_id": 64,
+      "key": "yang2025fast3r",
+      "title": "Fast3R: Towards 3D Reconstruction of 1000+ Images in One Forward Pass",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2025/html/Yang_Fast3R_Towards_3D_Reconstruction_of_1000_Images_in_One_Forward_CVPR_2025_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2025/html/Yang_Fast3R_Towards_3D_Reconstruction_of_1000_Images_in_One_Forward_CVPR_2025_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 11,
+          "paragraph": "Feed-forward reconstruction."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 11,
+          "paragraph": "前馈重建。"
+        }
+      ]
+    },
+    {
+      "docx_id": 65,
+      "key": "yang2024emernerf",
+      "title": "EmerNeRF: Emergent Spatial-Temporal Scene Decomposition via Self-Supervision",
+      "source_url": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/47fc64d05a394955b1ae2487bfef1ab0-Abstract-Conference.html",
+      "verified_source": "https://proceedings.iclr.cc/paper_files/paper/4992-/bibtex",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 8,
+          "paragraph": "Urban scenes and control."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 8,
+          "paragraph": "城市场景与控制。"
+        }
+      ]
+    },
+    {
+      "docx_id": 66,
+      "key": "yang2025storm",
+      "title": "STORM: Spatio-TempOral Reconstruction Model For Large-Scale Outdoor Scenes",
+      "source_url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/7dee643a6c5abcdafee51496420c84dc-Abstract-Conference.html",
+      "verified_source": "https://proceedings.iclr.cc/paper_files/paper/1321-/bibtex",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": true,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/1_introduction.tex",
+          "line": 6,
+          "paragraph": "Introduction"
+        },
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 14,
+          "paragraph": "Driving-scene inference."
+        },
+        {
+          "language": "en",
+          "file": "paper/sec/4_experiments.tex",
+          "line": 16,
+          "paragraph": "Dataset and temporal sampling."
+        },
+        {
+          "language": "en",
+          "file": "paper/sec/4_experiments.tex",
+          "line": 19,
+          "paragraph": "Baselines and inference settings."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/1_introduction_zh.tex",
+          "line": 6,
+          "paragraph": "引言"
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 14,
+          "paragraph": "驾驶场景推断。"
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/4_experiments_zh.tex",
+          "line": 11,
+          "paragraph": "数据与协议"
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/4_experiments_zh.tex",
+          "line": 14,
+          "paragraph": "对比方法"
+        }
+      ]
+    },
+    {
+      "docx_id": 67,
+      "key": "yang2023unisim",
+      "title": "UniSim: A Neural Closed-Loop Sensor Simulator",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2023/html/Yang_UniSim_A_Neural_Closed-Loop_Sensor_Simulator_CVPR_2023_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2023/html/Yang_UniSim_A_Neural_Closed-Loop_Sensor_Simulator_CVPR_2023_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 8,
+          "paragraph": "Urban scenes and control."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 8,
+          "paragraph": "城市场景与控制。"
+        }
+      ]
+    },
+    {
+      "docx_id": 68,
+      "key": "yang2025genassets",
+      "title": "GenAssets: Generating in-the-wild 3D Assets in Latent Space",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2025/html/Yang_GenAssets_Generating_in-the-wild_3D_Assets_in_Latent_Space_CVPR_2025_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2025/html/Yang_GenAssets_Generating_in-the-wild_3D_Assets_in_Latent_Space_CVPR_2025_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": true,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/1_introduction.tex",
+          "line": 8,
+          "paragraph": "Introduction"
+        },
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 20,
+          "paragraph": "Generative reconstruction and completion."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/1_introduction_zh.tex",
+          "line": 8,
+          "paragraph": "引言"
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 20,
+          "paragraph": "生成式重建与补全。"
+        }
+      ]
+    },
+    {
+      "docx_id": 69,
+      "key": "yang2024deformablegs",
+      "title": "Deformable 3D Gaussians for High-Fidelity Monocular Dynamic Scene Reconstruction",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2024/html/Yang_Deformable_3D_Gaussians_for_High-Fidelity_Monocular_Dynamic_Scene_Reconstruction_CVPR_2024_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2024/html/Yang_Deformable_3D_Gaussians_for_High-Fidelity_Monocular_Dynamic_Scene_Reconstruction_CVPR_2024_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 5,
+          "paragraph": "Radiance representations."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 5,
+          "paragraph": "辐射场表示。"
+        }
+      ]
+    },
+    {
+      "docx_id": 70,
+      "key": "yu2024mipsplatting",
+      "title": "Mip-Splatting: Alias-free 3D Gaussian Splatting",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2024/html/Yu_Mip-Splatting_Alias-free_3D_Gaussian_Splatting_CVPR_2024_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2024/html/Yu_Mip-Splatting_Alias-free_3D_Gaussian_Splatting_CVPR_2024_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 5,
+          "paragraph": "Radiance representations."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 5,
+          "paragraph": "辐射场表示。"
+        }
+      ]
+    },
+    {
+      "docx_id": 71,
+      "key": "zhang2024gslrm",
+      "title": "GS-LRM: Large Reconstruction Model for 3D Gaussian Splatting",
+      "source_url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/3212_ECCV_2024_paper.php",
+      "verified_source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/3212_ECCV_2024_paper.php",
+      "metadata_origin": "supplied DOCX, checked against primary landing-page title and author listing",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 11,
+          "paragraph": "Feed-forward reconstruction."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 11,
+          "paragraph": "前馈重建。"
+        }
+      ]
+    },
+    {
+      "docx_id": 72,
+      "key": "zhang2018lpips",
+      "title": "The Unreasonable Effectiveness of Deep Features as a Perceptual Metric",
+      "source_url": "https://openaccess.thecvf.com/content_cvpr_2018/html/Zhang_The_Unreasonable_Effectiveness_CVPR_2018_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content_cvpr_2018/html/Zhang_The_Unreasonable_Effectiveness_CVPR_2018_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 23,
+          "paragraph": "Controlled driving-video generation."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 23,
+          "paragraph": "可控驾驶视频生成。"
+        }
+      ]
+    },
+    {
+      "docx_id": 73,
+      "key": "zhou2024holistichugs",
+      "title": "HUGS: Holistic Urban 3D Scene Understanding via Gaussian Splatting",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2024/html/Zhou_HUGS_Holistic_Urban_3D_Scene_Understanding_via_Gaussian_Splatting_CVPR_2024_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2024/html/Zhou_HUGS_Holistic_Urban_3D_Scene_Understanding_via_Gaussian_Splatting_CVPR_2024_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 8,
+          "paragraph": "Urban scenes and control."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 8,
+          "paragraph": "城市场景与控制。"
+        }
+      ]
+    },
+    {
+      "docx_id": 74,
+      "key": "zhou2024drivinggaussian",
+      "title": "DrivingGaussian: Composite Gaussian Splatting for Surrounding Dynamic Autonomous Driving Scenes",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2024/html/Zhou_DrivingGaussian_Composite_Gaussian_Splatting_for_Surrounding_Dynamic_Autonomous_Driving_Scenes_CVPR_2024_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2024/html/Zhou_DrivingGaussian_Composite_Gaussian_Splatting_for_Surrounding_Dynamic_Autonomous_Driving_Scenes_CVPR_2024_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 8,
+          "paragraph": "Urban scenes and control."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 8,
+          "paragraph": "城市场景与控制。"
+        }
+      ]
+    },
+    {
+      "docx_id": 75,
+      "key": "zhuang2025idol",
+      "title": "IDOL: Instant Photorealistic 3D Human Creation from a Single Image",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2025/html/Zhuang_IDOL_Instant_Photorealistic_3D_Human_Creation_from_a_Single_Image_CVPR_2025_paper.html",
+      "verified_source": "https://openaccess.thecvf.com/content/CVPR2025/html/Zhuang_IDOL_Instant_Photorealistic_3D_Human_Creation_from_a_Single_Image_CVPR_2025_paper.html",
+      "metadata_origin": "official BibTeX; supplied DOCX fills omitted bibliographic fields",
+      "verification": "primary_title_confirmed",
+      "note": "",
+      "already_in_bibliography": false,
+      "usage": [
+        {
+          "language": "en",
+          "file": "paper/sec/2_related_work.tex",
+          "line": 17,
+          "paragraph": "Canonical and animatable assets."
+        },
+        {
+          "language": "zh",
+          "file": "paper/zh/2_related_work_zh.tex",
+          "line": 17,
+          "paragraph": "规范与可驱动资产。"
+        }
+      ]
+    }
+  ],
+  "existing_STORM_author_order_updated_from_official_ICLR": true,
+  "flow_matching_updated_to_ICLR_2023": true,
+  "input_sha256": "82bff23df8f6c19fcbd831f65de79574b806c07d3c86f88127e5dab2ddc5996b",
+  "page_budget": "Deferred by user; full introduction retained; no font, margin or line-spacing compression.",
+  "git_base": "a2cdacce531c1f1e4060fa8272feee3b54e63d61",
+  "git_policy": "No staging, commit or push for this revision until explicit user confirmation.",
+  "all_75_cited_in_both_languages": true,
+  "active_reference_count": 84,
+  "primary_source_routes": {
+    "direct_landing_page_title_confirmed": 69,
+    "primary_fallback_for_retrieval_failures": 6
+  },
+  "bibliography_sha256": "a98d6f9937d0f7b0a29eb403440155730630f03909a42dfa6e0b4322c67ec4d8"
+}

@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-21",
+  "instruction": "实验部分全部留空",
+  "active_state": "Only section heading and sec:experiments label in both languages; no experimental text, tables, figures, citations, or addendum.",
+  "supersedes": [
+    "experiment-import-20261021.json",
+    "experiment-figure-fix-20261021.md"
+  ],
+  "archive_directory": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-source-experiment-match",
+  "files": {
+    "sec/4_experiments.tex": {
+      "active_sha256": "9d2c37ef94e2547174908f35685342cbecdb9bb69cd0fe2714f16dd1e07f8318",
+      "previous_source_backup": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-source-experiment-match\\before\\sec\\4_experiments.tex",
+      "previous_sha256": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41"
+    },
+    "zh/4_experiments_zh.tex": {
+      "active_sha256": "268c7b7c83ede70675b1246b3038724229c887c93f4460205086b084a133695b",
+      "previous_source_backup": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-source-experiment-match\\before\\zh\\4_experiments_zh.tex",
+      "previous_sha256": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1"
+    }
+  },
+  "source_mosaic_directory_unchanged": true,
+  "git_commit_or_push_authorized": false,
+  "canonical_pdf_replacement": {
+    "date": "2026-10-21T07:10:01.318990+00:00",
+    "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-canonical-pdf-replacement",
+    "outputs": [
+      {
+        "language": "en",
+        "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+        "sha256": "90fc13b9b5b2111a63cb55d7d979f34233f9534b0a334dcd453c9eabf7d4ab90",
+        "pages": 11,
+        "source_alias": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main-experiments-empty.pdf",
+        "before_backup": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-canonical-pdf-replacement\\before\\en\\main.pdf",
+        "archived_alias": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-canonical-pdf-replacement\\temporary-names\\en\\main-experiments-empty.pdf"
+      },
+      {
+        "language": "zh",
+        "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+        "sha256": "9d815bbedc0930045748d137428a268ac24e09325bc3f59c1073201d89d5cc12",
+        "pages": 9,
+        "source_alias": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh-experiments-empty.pdf",
+        "before_backup": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-canonical-pdf-replacement\\before\\zh\\main_zh.pdf",
+        "archived_alias": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-canonical-pdf-replacement\\temporary-names\\zh\\main_zh-experiments-empty.pdf"
+      }
+    ],
+    "same_bytes_as_rendered_pdfs": true
+  }
+}

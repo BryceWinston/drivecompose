@@ -1,14 +1,6 @@
 {
   "date": "2026-10-21",
   "title": "DriveCompose: Generative Reconstruction of Compositional Driving Scenes",
-  "frozen_files": {
-    "paper/sec/4_experiments.tex": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41",
-    "paper/zh/4_experiments_zh.tex": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1",
-    "paper/fig/pointforward/nuScenes.pdf": "5883099966eeec7b475fa4f9a0d1e018b3518bfc68e98e0ea1a37b0e981467c6",
-    "paper/fig/pointforward/Shift.pdf": "97224c1de956fa8a5d5ef5f78d37e6fce065e8bea1805060c484899092a95dec",
-    "paper/fig/pointforward/Waymo.pdf": "5aa9f67f7a4def61d82b4dcd992cdbc4eb612c7212223e6d581e0acc72d1e27c"
-  },
-  "frozen_hashes_match": true,
   "modified_tex": [
     "paper/main.tex",
     "paper/main_zh.tex",
@@ -42,46 +34,68 @@
   "pdfs": {
     "en": {
       "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
-      "pages": 9,
-      "sha256": "15cc6b3231a7b7eabfd650eb5d164acc4e915aa744d434fadd41fa46308f8e95",
+      "pages": 11,
+      "sha256": "90fc13b9b5b2111a63cb55d7d979f34233f9534b0a334dcd453c9eabf7d4ab90",
       "compiler_exit": 0,
-      "final_latex_warnings": []
+      "bibliography_items": 84,
+      "experiment_heading_page": 6
     },
     "zh": {
       "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
       "pages": 9,
-      "sha256": "8e9e2d9073877a6bae30971a91a1e8cf9a3bf40d58c2de3996da8a98a3bf83e1",
+      "sha256": "9d815bbedc0930045748d137428a268ac24e09325bc3f59c1073201d89d5cc12",
       "compiler_exit": 0,
-      "final_latex_warnings": []
+      "bibliography_items": 84,
+      "experiment_heading_page": 5
     }
   },
   "source_hashes": {
     "paper/fontsetup.tex": "c715bb95da7c540a8de404c0a69ba214726a7023f832765dc407cbe895489b7b",
-    "paper/main.tex": "df59961c5a6dc04110ff4356d3242e080c2da5f33b4e8466a33b3c406e25469e",
-    "paper/main_zh.tex": "8f00d266fa6d963a9e31629a704440389e47a4fe1041f95b2798bb77946eba9b",
+    "paper/main.tex": "35362219eac84d59973239babf08a60a6dc250ce869781a113dde4bc6729aa82",
+    "paper/main_zh.tex": "8923da3377fa5595df181a5ad0218352dab9656b15317fd0402f0bf5e7924428",
     "paper/preamble.tex": "d28f6b5f7b04a9986a63c1dfb815c0f8c79c9329dd613649b2d4a2e32af3cf25",
     "paper/fig/drivecompose-overview-vector.tex": "8a607a7f200f5b858d2a94ac9eb7a9aa6397f58ddccbbd446eb0bb15ea233c78",
     "paper/sec/0_abstract.tex": "9b30c619631e54af5a7c3eca6e35fbf7412d15653ded66f15fe7c2519014c69c",
-    "paper/sec/1_introduction.tex": "20807d5f0d23dcc00f7c9c1ca920bd7ebad4efe97234546109d6786e98418eb3",
-    "paper/sec/2_related_work.tex": "f399f086dea35864b8438927c53ff310ffaa3a2a67a0fdd7484996feeaad21bd",
-    "paper/sec/3_method.tex": "ee69c0b504c1ee52698a7ac396375fed93f0d55e3c89eb846d5310cb5c5db154",
-    "paper/sec/4_experiments.tex": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41",
+    "paper/sec/1_introduction.tex": "758b00c730a748a77b87c4ee4cf1323240d499f7c9be06eeddf74ac5b027667f",
+    "paper/sec/2_related_work.tex": "6b04e47ef76be8c179e91383ae825f25267ef4bb6cad3b0c2b694ae71f6e370b",
+    "paper/sec/3_method.tex": "5f7edb2a09e99b393c22978fd11cdd77cf1a35e2d93d63912af739dd99c1915e",
+    "paper/sec/4_experiments.tex": "9d2c37ef94e2547174908f35685342cbecdb9bb69cd0fe2714f16dd1e07f8318",
     "paper/sec/5_discussion.tex": "e02b0f747c5a4ae1bfce9583e8f3480b74ba6acc94f1e595b430cae51fc6d0f5",
     "paper/sec/6_conclusion.tex": "4f940e464710fed877fd6ad0b43c9f438e92134b7a31242892754f32a41e82c7",
     "paper/zh/0_abstract_zh.tex": "cbec7d6dc90906419bce121fb241480cf64e6787de1a1bf6ffd3adc68349fb5b",
-    "paper/zh/1_introduction_zh.tex": "2f71be2fa842e6f8bb9ca2c5f33a9b607cbf378355a31e2812db2cdce6f9306d",
-    "paper/zh/2_related_work_zh.tex": "fcde56476e595a42bdd208ef4f155454ab474346e31bdbe825072f14c197019f",
-    "paper/zh/3_method_zh.tex": "01acb01b9688a31103fb7b85ca72356239e1ff639d2594d80d25cac26d738046",
-    "paper/zh/4_experiments_zh.tex": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1",
+    "paper/zh/1_introduction_zh.tex": "39ffc0f9f193cd8bfa5a17c8d32e8c1f821bbe869e6faa7b0829c89c5ecc53a7",
+    "paper/zh/2_related_work_zh.tex": "869dfeaffb53fdfff256031ad0dd5145f1ca8e7374df1cb1af9d6ee639334ba2",
+    "paper/zh/3_method_zh.tex": "9c5e02dbc92fe38e8f5e240c7cdeecd3cde3110110388b9c22ba264708e9eead",
+    "paper/zh/4_experiments_zh.tex": "268c7b7c83ede70675b1246b3038724229c887c93f4460205086b084a133695b",
     "paper/zh/5_discussion_zh.tex": "8e5bcad1d21be4a8492d87cc9e535bcdd6bc7a623d1b1343d508a016873a3350",
     "paper/zh/6_conclusion_zh.tex": "105734c6f7da7adb39185e01498c42eb643ac18c371ac59355e9372807a9d7ec",
-    "paper/main.bib": "113f84df211305e89e7f5cbd53ff19c6e8de6196b13e3f7592fc6dfa33699cde",
+    "paper/main.bib": "a98d6f9937d0f7b0a29eb403440155730630f03909a42dfa6e0b4322c67ec4d8",
     "paper/fig/drivecompose-overview-20261021.png": "a5c0bc4bb93711d7406377b58f95be0df4e7531399af022987aa3d883f661c22"
   },
-  "last_updated": "2026-10-21T04:47:51.460814+00:00",
-  "current_revision": "20261021-bilingual-audit",
-  "full_manuscript_bilingually_aligned": false,
-  "experiments_note": "Preserved exactly; English and Chinese differ already in the original source ZIP and commits f2fa6f3/b677a00.",
-  "bilingual_report": "paper/provenance/bilingual-audit-20261021.md",
-  "archive_root_relative_to_project": "../_archive/drivecompose/20261021-bilingual-audit"
+  "last_updated": "2026-10-21T07:07:18.914797+00:00",
+  "current_revision": "20261021-experiments-empty",
+  "full_manuscript_bilingually_aligned": true,
+  "experiments_note": "Only corresponding chapter headings and sec:experiments labels remain, by latest user instruction.",
+  "bilingual_report": "paper/provenance/reference-integration-20261021.md",
+  "archive_root_relative_to_project": "../_archive/drivecompose/20261021-source-experiment-match",
+  "references": 84,
+  "historical_frozen_files": {
+    "paper/sec/4_experiments.tex": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41",
+    "paper/zh/4_experiments_zh.tex": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1",
+    "paper/fig/pointforward/nuScenes.pdf": "5883099966eeec7b475fa4f9a0d1e018b3518bfc68e98e0ea1a37b0e981467c6",
+    "paper/fig/pointforward/Shift.pdf": "97224c1de956fa8a5d5ef5f78d37e6fce065e8bea1805060c484899092a95dec",
+    "paper/fig/pointforward/Waymo.pdf": "5aa9f67f7a4def61d82b4dcd992cdbc4eb612c7212223e6d581e0acc72d1e27c"
+  },
+  "experiment_state": "empty in both languages, by latest user instruction",
+  "current_task_changed_sources": [
+    "main.tex",
+    "main_zh.tex",
+    "sec/4_experiments.tex",
+    "sec/4_reference_figures.tex",
+    "tools/check_manuscript.py",
+    "zh/4_experiments_zh.tex"
+  ],
+  "current_task_other_sources_unchanged": true,
+  "experiment_report": "paper/provenance/experiments-empty-20261021.json",
+  "canonical_pdf_restored_at": "2026-10-21T07:10:01.318990+00:00"
 }

@@ -6,21 +6,22 @@
 
 非实验正文及图注已完成一轮中英文自然表达终校；修改前的版本保存在项目外的 [语言终校前备份](../../_archive/drivecompose/20261020-cleanup/files/paper/archive/language-before-20261020.zip)。
 
-**实验章节尚未双语同步。** 2026-10-21 逐节核对并追溯 Git 历史后确认：原始 MOSAIC 压缩包、首次加入论文的 `f2fa6f3`、上次提交 `b677a00` 和当前工作区的两份实验文件分别字节一致，但两种语言原本就是不同内容。英文采用 40 序列、单 FRONT 相机的本地基线评测，中文采用旧三相机协议和 PointForward 来源表图。按已有“实验暂不改”要求保留，不能将整份 PDF 称为已双语对齐或完成实验核验。详见 [双语核对与实验历史](provenance/bilingual-audit-20261021.md)。
+**实验按用户指定目录原样迁入，由后续实验负责人修改。** 来源为 `E:/Users/changan/Downloads/edge/MOSAIC__Motion_Aware_Multi_Object_Feed_Forward_4D_Reconstruction_for_Driving_Scenes`。2026-10-21 分别复制中英文实验 TeX，内容与复制前相同，三张依赖图也与来源一致。两种语言仍保留来源各自的协议、数值和表图，本轮不翻译或统一实验。来源和逐字节核对见 [迁入清单](provenance/experiment-import-20261021.json)；历史差异见 [双语核对记录](provenance/bilingual-audit-20261021.md)。
 
 ## 文件入口
 
 - `main.tex`：英文入口；`sec/`：英文各章节。
 - `main_zh.tex`：中文入口；`zh/`：中文各章节，采用与英文相同的方法符号与结构。
-- `main.bib`：两版共用的 18 条当前引用；旧版完整 40 条书目保存在原始压缩包中。
+- `main.bib`：两版共用的 84 条当前引用。用户 DOCX 的 75 条全部纳入，9 条与原书目重复、新增 66 条；文档之外的 9 条项目近邻工作保留。逐条引用位置见 [引用接入记录](provenance/reference-integration-20261021.md)。
 - `fig/drivecompose-overview-20261021.png`：两版共用的 Image Gen 总览图，参考 DGGT 的分区与中间表示视觉语言；场景全部为机制示意。旧 TikZ 与旧 PNG 保留，不再进入当前正文。
 - [总览图说明](../docs/figures/overview/README.md)：当前光栅总览图的设计、图注与审核记录；前版制作过程在项目外归档。
 - [结构参考与改写依据](provenance/structure-study-20261020.md)：四篇录用论文的章节观察和本轮采用的安排。
 - `fig/pointforward/`：原实验章节依赖的三张来源图，原样保留。
+- `sec/4_experiments.tex` / `zh/4_experiments_zh.tex`：按用户最新要求，仅保留实验章节标题；原实验内容及英文图片补充文件已备份到项目外。
 - `provenance/source-manifest.json`：原始来源哈希及实验冻结清单，内容保持迁移时的版本。
 - [归档索引](provenance/README.md)：MOSAIC 原包、迁移报告、终校备份与历史编译检查记录。
 - `EVIDENCE.md`：主张、代码依据与材料缺口；`REFERENCES.md`：引用核验记录。
-- `build/en/main.pdf` / `build/zh/main_zh.pdf`：当前中英文编译产物。旧版构建文件已移至 [项目外归档](../../_archive/drivecompose/20261021-bilingual-audit/build-old/)；原 `revision-20261021` 的内容已迁入 `build/` 主目录，并在这里重新编译。
+- `build/en/main.pdf` / `build/zh/main_zh.pdf`：当前实验留空版，已替换原文件名。旧版构建文件已移至 [项目外归档](../../_archive/drivecompose/20261021-bilingual-audit/build-old/)；原 `revision-20261021` 的内容已迁入 `build/` 主目录，并在这里重新编译。
 
 ## 编译与检查
 
@@ -48,7 +49,7 @@ python tools/check_manuscript.py
 
 这一本地构建入口可在应用内置编译接口尚未完成沙箱初始化时使用；它不改变应用设置，也不替代内置预览的初始化步骤。
 
-`tools/check_manuscript.py` 核对实验和依赖图的冻结哈希、外部归档完整性、会议年份、正文命名、引用、图片/输入依赖及中英文方法公式。归档位置由 `provenance/archive-map.json` 指定；若归档另存他处，使用 `python tools/check_manuscript.py --archive-root "归档目录"`。缺少归档时检查会报错，论文编译本身不依赖外部归档。
+`tools/check_manuscript.py` 核对两版实验留空、原实验备份与依赖图的哈希、外部归档完整性、会议年份、正文命名、引用、图片/输入依赖及中英文方法公式。归档位置由 `provenance/archive-map.json` 指定；若归档另存他处，使用 `python tools/check_manuscript.py --archive-root "归档目录"`。缺少归档时检查会报错，论文编译本身不依赖外部归档。
 
 来源清单保留旧路径和原哈希，当前文档链接的改动另行记录。校验时，已更新的两份设计文档与其整理前快照核对，其余设计与实现文件仍与原清单核对；检查结果分别列出历史证据完整性和当前文档变化。编译日志、`build/verification.json` 及 `build/pdf-qa.json` 保存在当前 `build/` 目录。
 
@@ -70,3 +71,19 @@ python tools/check_manuscript.py
 ```
 
 当前统一使用默认 `build/en/`、`build/zh/` 路径。`--out-root` 仅在需要单独的临时输出时使用，历史版本保存在项目外归档。
+
+## 2026-10-21 文献接入与实验迁入
+
+75 条文献均在中英文正文中实际引用，相关工作按七个主题组织；引言加入驾驶数据来源，方法加入图像 patch 与注意力的基础引用。新增内容完成双语对应和自然表达检查，完整方法、公式及技术细节保留。按用户要求暂不约束篇幅，也不通过排版压缩页数。
+
+本轮修改以已推送的 `a2cdacc` 为基线，留在工作区等待用户确认，再提交和推送。修改前的构建产物、源稿、文献页面与临时检查材料保存在项目外 `pre-research/_archive/drivecompose/20261021-reference-integration/`。
+
+## 英文实验图片恢复（2026-10-21 历史步骤，现已撤销）
+
+原英文实验文件只有数值表格，没有图环境或图片加载命令；中文实验文件则直接加载了三张来源图。现通过独立的图片补充文件为英文加入相同图件，并保留 PointForward 来源和图中“Ours”的归属说明。实验原文与数值未修改。修复及渲染对照见 [检查记录](provenance/experiment-figure-fix-20261021.md)。
+
+## 实验全部留空（2026-10-21 最新要求）
+
+按用户“实验部分全部留空”的指令，中英文实验仅保留章节标题和 `sec:experiments` 标签。实验文字、表格、图片、引用及额外图片段落均不再进入 PDF；其他章节、方法公式、书目和总览图未改动。此前的实验导入与图片恢复记录是历史记录，以 [本次状态](provenance/experiments-empty-20261021.json) 为准。原始内容、移出文件和修改前 PDF 保存在项目外 `pre-research/_archive/drivecompose/20261021-source-experiment-match/`。
+
+本次两版编译均成功；阅读器关闭后，已将实验留空版替换至 `build/en/main.pdf` 与 `build/zh/main_zh.pdf`。编译记录的 `pdf` 字段指向当前输出，`compiler_pdf` 保存编译器原始输出位置。临时文件名已移至项目外归档。

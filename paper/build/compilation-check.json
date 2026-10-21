@@ -6,7 +6,7 @@
       "-X",
       "compile",
       "--outdir",
-      "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en",
+      "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-source-experiment-match\\final-build\\en",
       "--outfmt",
       "pdf",
       "--print",
@@ -16,15 +16,17 @@
       "main.tex"
     ],
     "exit_code": 0,
-    "started_at": "2026-10-21T04:42:54.263201+00:00",
-    "finished_at": "2026-10-21T04:43:08.379294+00:00",
-    "elapsed_seconds": 14.125,
+    "started_at": "2026-10-21T07:03:31.928603+00:00",
+    "finished_at": "2026-10-21T07:03:45.264255+00:00",
+    "elapsed_seconds": 13.344,
     "fontconfig_file": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\tools\\fontconfig.conf",
-    "source_sha256": "df59961c5a6dc04110ff4356d3242e080c2da5f33b4e8466a33b3c406e25469e",
+    "source_sha256": "35362219eac84d59973239babf08a60a6dc250ce869781a113dde4bc6729aa82",
     "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
     "pdf_exists": true,
     "pdf_written_this_run": true,
-    "pdf_sha256": "15cc6b3231a7b7eabfd650eb5d164acc4e915aa744d434fadd41fa46308f8e95"
+    "pdf_sha256": "90fc13b9b5b2111a63cb55d7d979f34233f9534b0a334dcd453c9eabf7d4ab90",
+    "compiler_pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-source-experiment-match\\final-build\\en\\main.pdf",
+    "published_by_copy": true
   },
   "zh": {
     "language": "zh",
@@ -33,7 +35,7 @@
       "-X",
       "compile",
       "--outdir",
-      "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh",
+      "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-source-experiment-match\\final-build\\zh",
       "--outfmt",
       "pdf",
       "--print",
@@ -43,14 +45,17 @@
       "main_zh.tex"
     ],
     "exit_code": 0,
-    "started_at": "2026-10-21T04:43:08.405583+00:00",
-    "finished_at": "2026-10-21T04:43:26.292669+00:00",
-    "elapsed_seconds": 17.891,
+    "started_at": "2026-10-21T07:03:45.270257+00:00",
+    "finished_at": "2026-10-21T07:04:00.425338+00:00",
+    "elapsed_seconds": 15.156,
     "fontconfig_file": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\tools\\fontconfig.conf",
-    "source_sha256": "8f00d266fa6d963a9e31629a704440389e47a4fe1041f95b2798bb77946eba9b",
+    "source_sha256": "8923da3377fa5595df181a5ad0218352dab9656b15317fd0402f0bf5e7924428",
     "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
     "pdf_exists": true,
     "pdf_written_this_run": true,
-    "pdf_sha256": "8e9e2d9073877a6bae30971a91a1e8cf9a3bf40d58c2de3996da8a98a3bf83e1"
-  }
+    "pdf_sha256": "9d815bbedc0930045748d137428a268ac24e09325bc3f59c1073201d89d5cc12",
+    "compiler_pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261021-source-experiment-match\\final-build\\zh\\main_zh.pdf",
+    "published_by_copy": true
+  },
+  "canonical_pdf_restored_at": "2026-10-21T07:10:01.318990+00:00"
 }

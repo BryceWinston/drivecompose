@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-21",
-  "scope": "Non-experimental text checked semantically; structured checks below do not test translation meaning. Experiments preserved and NOT synchronized.",
+  "date": "2026-10-21T07:07:18.914797+00:00",
+  "scope": "Non-experimental sources unchanged from the prior bilingual review; both experimental sections now intentionally contain only their corresponding heading and sec:experiments label.",
   "pairs": {
     "0_abstract": {
       "heading_structure": {
@@ -23,19 +23,10 @@
         "en_count": 0,
         "zh_count": 0
       },
-      "inline_math": {
-        "same_terms_and_multiplicities": true,
-        "same_occurrence_order": true,
-        "en_count": 0,
-        "zh_count": 0
-      },
-      "sha256": {
+      "inline_math_same_terms_and_counts": true,
+      "source_sha256": {
         "en": "9b30c619631e54af5a7c3eca6e35fbf7412d15653ded66f15fe7c2519014c69c",
         "zh": "cbec7d6dc90906419bce121fb241480cf64e6787de1a1bf6ffd3adc68349fb5b"
-      },
-      "prose_blocks_excluding_contribution_items": {
-        "en": 1,
-        "zh": 1
       }
     },
     "1_introduction": {
@@ -56,29 +47,20 @@
       },
       "citation_order": {
         "equal": true,
-        "en_count": 4,
-        "zh_count": 4
+        "en_count": 5,
+        "zh_count": 5
       },
-      "inline_math": {
-        "same_terms_and_multiplicities": true,
-        "same_occurrence_order": true,
-        "en_count": 0,
-        "zh_count": 0
-      },
-      "sha256": {
-        "en": "20807d5f0d23dcc00f7c9c1ca920bd7ebad4efe97234546109d6786e98418eb3",
-        "zh": "2f71be2fa842e6f8bb9ca2c5f33a9b607cbf378355a31e2812db2cdce6f9306d"
-      },
-      "prose_blocks_excluding_contribution_items": {
-        "en": 7,
-        "zh": 7
+      "inline_math_same_terms_and_counts": true,
+      "source_sha256": {
+        "en": "758b00c730a748a77b87c4ee4cf1323240d499f7c9be06eeddf74ac5b027667f",
+        "zh": "39ffc0f9f193cd8bfa5a17c8d32e8c1f821bbe869e6faa7b0829c89c5ecc53a7"
       }
     },
     "2_related_work": {
       "heading_structure": {
         "equal": true,
-        "en_count": 4,
-        "zh_count": 4
+        "en_count": 8,
+        "zh_count": 8
       },
       "labels": {
         "equal": true,
@@ -92,22 +74,13 @@
       },
       "citation_order": {
         "equal": true,
-        "en_count": 10,
-        "zh_count": 10
+        "en_count": 40,
+        "zh_count": 40
       },
-      "inline_math": {
-        "same_terms_and_multiplicities": true,
-        "same_occurrence_order": true,
-        "en_count": 0,
-        "zh_count": 0
-      },
-      "sha256": {
-        "en": "f399f086dea35864b8438927c53ff310ffaa3a2a67a0fdd7484996feeaad21bd",
-        "zh": "fcde56476e595a42bdd208ef4f155454ab474346e31bdbe825072f14c197019f"
-      },
-      "prose_blocks_excluding_contribution_items": {
-        "en": 3,
-        "zh": 3
+      "inline_math_same_terms_and_counts": true,
+      "source_sha256": {
+        "en": "6b04e47ef76be8c179e91383ae825f25267ef4bb6cad3b0c2b694ae71f6e370b",
+        "zh": "869dfeaffb53fdfff256031ad0dd5145f1ca8e7374df1cb1af9d6ee639334ba2"
       }
     },
     "3_method": {
@@ -128,23 +101,13 @@
       },
       "citation_order": {
         "equal": true,
-        "en_count": 3,
-        "zh_count": 3
+        "en_count": 5,
+        "zh_count": 5
       },
-      "inline_math": {
-        "same_terms_and_multiplicities": true,
-        "same_occurrence_order": false,
-        "en_count": 85,
-        "zh_count": 85,
-        "reviewed_difference": "Child k of query i versus query i, child k: both refer to the same center formula; Chinese noun order reverses two inline indices."
-      },
-      "sha256": {
-        "en": "ee69c0b504c1ee52698a7ac396375fed93f0d55e3c89eb846d5310cb5c5db154",
-        "zh": "01acb01b9688a31103fb7b85ca72356239e1ff639d2594d80d25cac26d738046"
-      },
-      "prose_blocks_excluding_contribution_items": {
-        "en": 42,
-        "zh": 42
+      "inline_math_same_terms_and_counts": true,
+      "source_sha256": {
+        "en": "5f7edb2a09e99b393c22978fd11cdd77cf1a35e2d93d63912af739dd99c1915e",
+        "zh": "9c5e02dbc92fe38e8f5e240c7cdeecd3cde3110110388b9c22ba264708e9eead"
       }
     },
     "5_discussion": {
@@ -168,19 +131,10 @@
         "en_count": 0,
         "zh_count": 0
       },
-      "inline_math": {
-        "same_terms_and_multiplicities": true,
-        "same_occurrence_order": true,
-        "en_count": 0,
-        "zh_count": 0
-      },
-      "sha256": {
+      "inline_math_same_terms_and_counts": true,
+      "source_sha256": {
         "en": "e02b0f747c5a4ae1bfce9583e8f3480b74ba6acc94f1e595b430cae51fc6d0f5",
         "zh": "8e5bcad1d21be4a8492d87cc9e535bcdd6bc7a623d1b1343d508a016873a3350"
-      },
-      "prose_blocks_excluding_contribution_items": {
-        "en": 1,
-        "zh": 1
       }
     },
     "6_conclusion": {
@@ -204,81 +158,47 @@
         "en_count": 0,
         "zh_count": 0
       },
-      "inline_math": {
-        "same_terms_and_multiplicities": true,
-        "same_occurrence_order": true,
-        "en_count": 0,
-        "zh_count": 0
-      },
-      "sha256": {
+      "inline_math_same_terms_and_counts": true,
+      "source_sha256": {
         "en": "4f940e464710fed877fd6ad0b43c9f438e92134b7a31242892754f32a41e82c7",
         "zh": "105734c6f7da7adb39185e01498c42eb643ac18c371ac59355e9372807a9d7ec"
+      }
+    },
+    "4_experiments": {
+      "heading_structure": {
+        "equal": true,
+        "en_count": 1,
+        "zh_count": 1
       },
-      "prose_blocks_excluding_contribution_items": {
-        "en": 1,
-        "zh": 1
+      "labels": {
+        "equal": true,
+        "en_count": 1,
+        "zh_count": 1
+      },
+      "body_empty": true,
+      "source_sha256": {
+        "en": "9d2c37ef94e2547174908f35685342cbecdb9bb69cd0fe2714f16dd1e07f8318",
+        "zh": "268c7b7c83ede70675b1246b3038724229c887c93f4460205086b084a133695b"
       }
     }
   },
   "structural_checks_pass": true,
-  "experiment_history": {
-    "commits": {
-      "7c1acf4": {
-        "paper_files": 0,
-        "experiment_paths": []
-      },
-      "f2fa6f3": {
-        "paper_files": 40,
-        "experiment_paths": [
-          "paper/sec/4_experiments.tex",
-          "paper/zh/4_experiments_zh.tex"
-        ]
-      },
-      "b677a00": {
-        "paper_files": 52,
-        "experiment_paths": [
-          "paper/sec/4_experiments.tex",
-          "paper/zh/4_experiments_zh.tex"
-        ]
-      }
-    },
-    "experiments": {
-      "sec/4_experiments.tex": {
-        "current_sha256": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41",
-        "original_zip_sha256": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41",
-        "f2fa6f3_sha256": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41",
-        "f2fa6f3_same_content_ignoring_line_endings": true,
-        "b677a00_sha256": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41",
-        "b677a00_same_content_ignoring_line_endings": true,
-        "current_matches_original_zip_bytes": true
-      },
-      "zh/4_experiments_zh.tex": {
-        "current_sha256": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1",
-        "original_zip_sha256": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1",
-        "f2fa6f3_sha256": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1",
-        "f2fa6f3_same_content_ignoring_line_endings": true,
-        "b677a00_sha256": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1",
-        "b677a00_same_content_ignoring_line_endings": true,
-        "current_matches_original_zip_bytes": true
-      }
-    }
-  },
+  "full_manuscript_bilingually_aligned": true,
   "pdfs": {
     "en": {
       "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
-      "pages": 9,
-      "sha256": "15cc6b3231a7b7eabfd650eb5d164acc4e915aa744d434fadd41fa46308f8e95",
-      "warnings": [],
-      "first_page_excerpt": "CVPR\n#*****\nCVPR\n#*****\nCVPR 2027 Submission #*****. CONFIDENTIAL REVIEW COPY . DO NOT DISTRIBUTE.\nDriveCompose: Generative Reconstruction of Compositional Driving Scenes\nAnonymous CVPR submission\nPaper ID *****\nAbstract\nReusing a driving scene under new camera and actor states001\nexposes surfaces t"
+      "pages": 11,
+      "sha256": "90fc13b9b5b2111a63cb55d7d979f34233f9534b0a334dcd453c9eabf7d4ab90"
     },
     "zh": {
       "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
       "pages": 9,
-      "sha256": "8e9e2d9073877a6bae30971a91a1e8cf9a3bf40d58c2de3996da8a98a3bf83e1",
-      "warnings": [],
-      "first_page_excerpt": "CVPR\n#*****\nCVPR\n#*****\nCVPR 2027 Submission #*****. CONFIDENTIAL REVIEW COPY . DO NOT DISTRIBUTE.\nDriveComposeࡹ\nAnonymous CVPR submission\nPaper ID *****\nAbstract\nВ001\nđླေ002\n۱۲003\nb໡ૌิԛ DriveComposeđ004\nb005\nᆃ006\n֥ܿ007\nቆ008\nమ009\nථМ010\nӱ011\nႿ012\nܠބ013\nࣲ֥014\nᛴಙđ ໭ླ015\nb016\n1. ႄ࿽017\nު018\nӚ019\n൐ՎభФᅻ020",
-      "text_extraction_note": "pypdf does not recover Chinese text reliably for this PDF font encoding. Chinese semantics checked against TeX; rendered pages inspected separately."
+      "sha256": "9d815bbedc0930045748d137428a268ac24e09325bc3f59c1073201d89d5cc12"
     }
   },
-  "full_manuscript_bilingually_aligned": false
+  "experiment_figure_check": "paper/build/experiments-empty-check.json",
+  "experiment_state": "empty in both languages, by latest user instruction",
+  "latest_instruction_supersedes_experiment_differences": true,
+  "experiments_empty_manifest": "paper/provenance/experiments-empty-20261021.json",
+  "canonical_pdf_restored_at": "2026-10-21T07:10:01.318990+00:00"
 }

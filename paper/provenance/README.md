@@ -28,3 +28,27 @@
 - [本轮归档目录](../../../_archive/drivecompose/20261021-bilingual-audit/)：旧版构建产物、修正前新版和源稿、PDF 检查材料。
 
 当前 PDF 统一位于 `paper/build/en/main.pdf` 和 `paper/build/zh/main_zh.pdf`。非实验部分已核对；两版实验在原始压缩包中即不一致，尚未同步，不能将整个 PDF 称为完全对应的双语稿。
+
+## 文献接入与实验迁入（2026-10-21 后续）
+
+- [75 条文献的来源与引用位置](reference-integration-20261021.md)
+- [书目接入清单](reference-integration-20261021.json)
+- [用户指定实验目录的复制记录](experiment-import-20261021.json)
+- [本轮修改前快照与临时材料](../../../_archive/drivecompose/20261021-reference-integration/)
+
+当前书目为 84 条，用户已明确暂不限制篇幅。实验以指定目录的中英文文件分别为准；本轮不统一其内容，由后续实验负责人处理。本轮新修改等待用户确认，尚未提交或推送。
+
+## 英文实验图片恢复（2026-10-21 后续）
+
+- [原因、修复和中英文渲染对照](experiment-figure-fix-20261021.md)
+- [PDF 图片资源与图号检查](../../../_archive/drivecompose/20261021-source-experiment-match/build-before/experiment-figure-check.json)
+- [修复前文件与渲染快照](../../../_archive/drivecompose/20261021-experiment-figure-fix/)
+
+原始实验文件继续保留；英文通过独立文件加载与中文相同的三张来源图。图件内容对齐不代表两版实验协议已统一。
+
+## 实验全部留空（2026-10-21 最新状态）
+
+- [当前实验留空与备份记录](experiments-empty-20261021.json)
+- [修改前源码、PDF、原目录编译和对比材料](../../../_archive/drivecompose/20261021-source-experiment-match/)
+
+按用户最新指令，两版仅保留实验章节标题，先前导入与英文图片补充已撤出当前稿。前文的实验导入和图片恢复条目保留为历史记录；其他章节不变，本轮不提交或推送。

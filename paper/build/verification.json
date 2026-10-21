@@ -3,14 +3,6 @@
   "invalid_archive_files": [],
   "archived_file_count": 91,
   "frozen_hashes": {
-    "sec/4_experiments.tex": {
-      "sha256": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41",
-      "original_sha256": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41"
-    },
-    "zh/4_experiments_zh.tex": {
-      "sha256": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1",
-      "original_sha256": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1"
-    },
     "fig/pointforward/Waymo.pdf": {
       "sha256": "5aa9f67f7a4def61d82b4dcd992cdbc4eb612c7212223e6d581e0acc72d1e27c",
       "original_sha256": "5aa9f67f7a4def61d82b4dcd992cdbc4eb612c7212223e6d581e0acc72d1e27c"
@@ -42,6 +34,7 @@
   },
   "source_git_commit": "7c1acf4aa02b432a3173f167e1663a5f274cb844",
   "raster_overview_role": "historical design draft; current entries use generated overview 20261021",
+  "experiment_state": "Only section heading and sec:experiments label in both languages; no experimental text, tables, figures, citations, or addendum.",
   "invalid_migration_source_evidence": [],
   "changed_project_sources_since_migration": [
     "README.md",
@@ -59,15 +52,15 @@
     "en": 15,
     "zh": 15
   },
-  "bibliography_entries": 18,
-  "frozen_experiments_intentionally_not_synchronized": true,
+  "bibliography_entries": 84,
+  "bilingual_experiments_intentionally_empty": true,
   "checks": {
     "migration_manifest_unchanged": true,
     "archive_moves_manifest_unchanged": true,
     "archived_files_exact": true,
     "archive_copy_exact": true,
-    "unchanged:sec/4_experiments.tex": true,
-    "unchanged:zh/4_experiments_zh.tex": true,
+    "archived_original:sec/4_experiments.tex": true,
+    "archived_original:zh/4_experiments_zh.tex": true,
     "unchanged:fig/pointforward/Waymo.pdf": true,
     "unchanged:fig/pointforward/nuScenes.pdf": true,
     "unchanged:fig/pointforward/Shift.pdf": true,
@@ -79,6 +72,9 @@
     "generated_overview_exists": true,
     "main.tex:generated_overview_active": true,
     "main_zh.tex:generated_overview_active": true,
+    "en:experiments_empty": true,
+    "zh:experiments_empty": true,
+    "no_experiment_figure_addendum": true,
     "migration_source_snapshot_preserved": true,
     "unique_bibliography_keys": true,
     "en:cvpr2027": true,

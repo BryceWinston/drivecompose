@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-21",
+  "authority": "User-selected extracted MOSAIC directory; copy experiment sections only, preserve each language without translation or protocol changes.",
+  "source_directory": "E:\\Users\\changan\\Downloads\\edge\\MOSAIC__Motion_Aware_Multi_Object_Feed_Forward_4D_Reconstruction_for_Driving_Scenes",
+  "files": [
+    {
+      "source": "E:\\Users\\changan\\Downloads\\edge\\MOSAIC__Motion_Aware_Multi_Object_Feed_Forward_4D_Reconstruction_for_Driving_Scenes\\sec\\4_experiments.tex",
+      "destination": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\sec\\4_experiments.tex",
+      "sha256": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41",
+      "matches_source_bytes": true,
+      "content_changed": false
+    },
+    {
+      "source": "E:\\Users\\changan\\Downloads\\edge\\MOSAIC__Motion_Aware_Multi_Object_Feed_Forward_4D_Reconstruction_for_Driving_Scenes\\zh\\4_experiments_zh.tex",
+      "destination": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\zh\\4_experiments_zh.tex",
+      "sha256": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1",
+      "matches_source_bytes": true,
+      "content_changed": false
+    }
+  ],
+  "existing_figure_dependencies": [
+    {
+      "path": "fig/pointforward/Waymo.pdf",
+      "matches_source_bytes": true,
+      "sha256": "5aa9f67f7a4def61d82b4dcd992cdbc4eb612c7212223e6d581e0acc72d1e27c"
+    },
+    {
+      "path": "fig/pointforward/nuScenes.pdf",
+      "matches_source_bytes": true,
+      "sha256": "5883099966eeec7b475fa4f9a0d1e018b3518bfc68e98e0ea1a37b0e981467c6"
+    },
+    {
+      "path": "fig/pointforward/Shift.pdf",
+      "matches_source_bytes": true,
+      "sha256": "97224c1de956fa8a5d5ef5f78d37e6fce065e8bea1805060c484899092a95dec"
+    }
+  ],
+  "bilingual_experiments_aligned": false,
+  "editorial_ownership": "External collaborators; no experiment content edits in this task.",
+  "english_figure_rendering_fix": {
+    "date": "2026-10-21",
+    "addendum": "paper/sec/4_reference_figures.tex",
+    "sha256": "29efe21af75b9c1a452d43ec9aba409875de3c16f9d58e34eecd8b0187b2bb60",
+    "original_experiment_files_unchanged": true,
+    "reference_figures_aligned": true
+  }
+}

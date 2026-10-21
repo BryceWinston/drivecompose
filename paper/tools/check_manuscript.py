@@ -1,4 +1,4 @@
-"""Check frozen experiments, manuscript dependencies, citations and bilingual math."""
+"""Check empty experiments, archived sources, dependencies and bilingual math."""
 from __future__ import annotations
 
 import argparse
@@ -62,13 +62,19 @@ def main() -> int:
     details["archived_file_count"] = len(moves)
     archive_path = archive_root / archive_map["original_manuscript_zip"]
     checks["archive_copy_exact"] = digest(archive_path.read_bytes()) == manifest["source_zip_sha256"]
-    frozen = manifest["frozen_experiments"] + [
+    empty_record = json.loads((provenance / "experiments-empty-20261021.json").read_text(encoding="utf-8"))
+    frozen = [
         "fig/pointforward/Waymo.pdf", "fig/pointforward/nuScenes.pdf",
         "fig/pointforward/Shift.pdf", "cvpr.sty", "lineno.sty",
         "ieeenat_fullname.bst", "preamble.tex",
     ]
     with zipfile.ZipFile(archive_path) as archive:
         frozen_hashes = {}
+        for name in manifest["frozen_experiments"]:
+            backup = Path(empty_record["files"][name]["previous_source_backup"])
+            checks["archived_original:" + name] = (
+                backup.is_file() and digest(backup.read_bytes()) == digest(archive.read(name))
+            )
         for name in frozen:
             actual, original = digest((ROOT / name).read_bytes()), digest(archive.read(name))
             checks["unchanged:" + name] = actual == original
@@ -87,6 +93,16 @@ def main() -> int:
             r"\includegraphics[width=\textwidth]{fig/drivecompose-overview-20261021.png}" in source
             and "drivecompose-overview.png" not in source
         )
+    for language, name, heading in (("en", "sec/4_experiments.tex", "Experiments"),
+                                     ("zh", "zh/4_experiments_zh.tex", "实验")):
+        source = uncomment((ROOT / name).read_text(encoding="utf-8")).strip()
+        expected = "\\section{" + heading + "}\n\\label{sec:experiments}"
+        checks[language + ":experiments_empty"] = source == expected
+    checks["no_experiment_figure_addendum"] = (
+        not (ROOT / "sec/4_reference_figures.tex").exists()
+        and "4_reference_figures" not in uncomment((ROOT / "main.tex").read_text(encoding="utf-8"))
+    )
+    details["experiment_state"] = empty_record["active_state"]
     source_hashes = manifest["current_sources_sha256"]
     historical_copies = archive_map["historical_source_copies"]
     missing_source_evidence = []
@@ -144,7 +160,7 @@ def main() -> int:
     checks["bilingual_method_inline_math_identical"] = inline_math[0] == inline_math[1]
     details["displayed_method_math_blocks"] = {"en": len(en_math), "zh": len(zh_math)}
     details["bibliography_entries"] = len(keys)
-    details["frozen_experiments_intentionally_not_synchronized"] = True
+    details["bilingual_experiments_intentionally_empty"] = True
     details["checks"] = checks
     details["passed"] = all(checks.values())
     target = ROOT / "build/verification.json"
