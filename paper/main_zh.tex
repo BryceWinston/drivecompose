@@ -23,15 +23,15 @@
 \def\paperID{*****}
 \def\confName{CVPR}
 \def\confYear{2027}
-\title{DriveCompose：面向可组合高斯驾驶世界的观测锚定联合补全}
+\title{DriveCompose：可组合驾驶场景的生成式重建}
 \author{Anonymous CVPR Submission}
 \begin{document}
 \maketitle
 \input{zh/0_abstract_zh}
 \begin{figure*}[t]
   \centering
-  \input{fig/drivecompose-overview-vector}
-  \caption{\textbf{DriveCompose 的构建与复用。}（a）共享前端在世界空间与规范支撑上恢复证据。（b）局部查询组通过全局记忆交换上下文，每个流积分步恢复已见潜码并清零自由空间。（c）类型专属头解码补全潜码，原视角检查将候选与输入图像、仅观测解码参照比较；被拒绝的候选不进入固定世界。外部策略与动力学提供后续装配和 RGB 渲染所用的状态。图中场景标记均为机制示意。}
+  \includegraphics[width=\textwidth]{fig/drivecompose-overview-20261021.png}
+  \caption{\textbf{DriveCompose 总览。}（a）从有标定图像恢复几何、身份与运动证据，在背景和规范资产支撑上聚合并编码为结构化潜码。（b）场景条件流 Transformer 补全未知潜码，同时保留已见内容并抑制自由空间。（c）类型解码器输出高斯组件，在原始视角下检查后复用场景；相机与资产状态控制后续装配和渲染。图中场景为机制示意，不是实验输出。}
   \label{fig:teaser}
 \end{figure*}
 \def\CVPRMAIN{}

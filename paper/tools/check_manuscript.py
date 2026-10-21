@@ -78,13 +78,13 @@ def main() -> int:
 
     overview_source = archive_root / archive_map["overview_original"]
     checks["overview_copy_exact"] = digest((ROOT / "fig/drivecompose-overview.png").read_bytes()) == digest(overview_source.read_bytes())
-    details["raster_overview_role"] = "historical design draft; current entries use native TikZ"
-    overview = ROOT / "fig/drivecompose-overview-vector.tex"
-    checks["native_overview_exists"] = overview.is_file()
+    details["raster_overview_role"] = "historical design draft; current entries use generated overview 20261021"
+    overview = ROOT / "fig/drivecompose-overview-20261021.png"
+    checks["generated_overview_exists"] = overview.is_file()
     for entry in ("main.tex", "main_zh.tex"):
         source = uncomment((ROOT / entry).read_text(encoding="utf-8"))
-        checks[entry + ":native_overview_active"] = (
-            r"\input{fig/drivecompose-overview-vector}" in source
+        checks[entry + ":generated_overview_active"] = (
+            r"\includegraphics[width=\textwidth]{fig/drivecompose-overview-20261021.png}" in source
             and "drivecompose-overview.png" not in source
         )
     source_hashes = manifest["current_sources_sha256"]

@@ -45,6 +45,8 @@ def find_tectonic() -> Path | None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--language", choices=("en", "zh", "both"), default="both")
+    parser.add_argument("--out-root", type=Path, default=ROOT / "build",
+                        help="Output root; use a new directory when an open PDF locks the default output.")
     args = parser.parse_args()
     executable = find_tectonic()
     if executable is None:
@@ -56,7 +58,7 @@ def main() -> int:
     for language, source in (("en", "main.tex"), ("zh", "main_zh.tex")):
         if args.language not in (language, "both"):
             continue
-        out = ROOT / "build" / language
+        out = args.out_root.resolve() / language
         out.mkdir(parents=True, exist_ok=True)
         pdf = out / Path(source).with_suffix(".pdf")
         previous_mtime = pdf.stat().st_mtime_ns if pdf.is_file() else None

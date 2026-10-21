@@ -28,3 +28,10 @@
 检索式包括 STORM / DGGT / Instant NuRec / StreetForward 的完整题名，以及 GenAssets、Complete Gaussian Splats、Grounded Latents、Flow Matching 的完整题名。工具为现有网页搜索与原始页面读取；未使用聚合解读作为技术论断来源。OpenReview 的一个 Flow Matching 页面出现浏览器校验，改用 arXiv 原始记录。
 
 模板来源另核对 [cvpr-org/author-kit](https://github.com/cvpr-org/author-kit) 和其 [main.tex](https://raw.githubusercontent.com/cvpr-org/author-kit/main/main.tex)：访问时主文件仍标记 2026，故本轮只统一目标年份，不宣称已采用官方 2027 最终模板。
+
+## 2026-10-21 新增基础来源
+
+- `kerbl2023gaussians`：Kerbl, Kopanas, Leimkühler, Drettakis. 3D Gaussian Splatting for Real-Time Radiance Field Rendering. ACM TOG 42(4), 2023。作者页及其 BibTeX 核验，支持高斯表示与泼溅基础来源。https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/
+- `peebles2023dit`：William Peebles, Saining Xie. Scalable Diffusion Models with Transformers. ICCV 2023。作者项目页确认题名、作者与 ICCV 2023 Oral；CVF 直接页面访问 403，改用作者页。支持 DiT 风格生成骨干的来源，不表示本文复制其全部结构或训练协议。https://www.wpeebles.com/DiT
+
+访问日期 2026-10-21。DGGT 作为写作与图形语言参考使用 arXiv:2512.03004v1，详细读取范围与本地 PDF 哈希见本轮改写记录。

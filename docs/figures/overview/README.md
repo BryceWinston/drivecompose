@@ -1,14 +1,12 @@
 # DriveCompose 当前总览图
 
-当前中英文入口共同引用 [原生 TikZ 图源](../../../paper/fig/drivecompose-overview-vector.tex)。图随论文编译为矢量文字和图元，没有嵌入生成图片；画布为 495 × 225 pt，普通标签 8.3 pt，阶段标题 9.5 pt。
+2026-10-21 更新。两版论文共同使用 [总览图](../../../paper/fig/drivecompose-overview-20261021.png)。内置 Image Gen 生成，场景为机制示意，不是实验结果；PNG 是光栅图，不宣称为可编辑矢量。
 
-图的主张：已见规范查询通过硬约束保持，未知查询在场景上下文中联合补全；候选通过原视角检查后进入固定世界，外部状态驱动后续装配和渲染。图中的相机平面、查询色块与高斯标记均为机制示意，没有实验图像或量化结果。
+三部分依次说明视觉恢复与规范聚合、结构潜码上的条件生成、类型解码与状态驱动复用。DGGT 图 2 提供分区、视觉密度及中间表示的参考；其方法、结果和原始图像未移入本图。采样内部过程归入 Conditional flow，检查内部比较在正文第 3.5 节展开。
 
-- [同步图注](caption.md)
-- [当前设计规格](design-spec.json)
-- [结构参考](../../../paper/provenance/structure-study-20261020.md)
-- [本轮备份与图审记录](../../../../_archive/drivecompose/20261020-paper-revision/)
+- [最终完整生成指令](production-prompt-20261021-v4.txt)
+- [设计规格](design-spec-20261021.json)
+- [图注](caption.md)
+- [改写与核验记录](../../../paper/provenance/revision-20261021.md)
 
-图分三阶段：规范证据、联合补全、检查与复用。虚线只表示下一步流积分；实线传递数据。观测图像与仅观测渲染作为检查参照；拒绝候选在 discard 支路终止，不进入固定世界。外部状态和固定内容分别输入渲染器。
-
-旧 [PNG 设计稿](../../../paper/fig/drivecompose-overview.png) 保持原字节用于来源核对，当前论文不引用它。`production-prompt-final.txt` 属于该历史光栅稿。旧 README、规格及图注的改写前版本保存在本轮项目外备份，早期生成记录仍在 [整理归档](../../../../_archive/drivecompose/20261020-cleanup/README.md)。
+最终指令 23,277 个非空白字符，绑定模板 15,356 字符，长度检查通过。候选与生成失败记录保存在项目外 `_archive/drivecompose/20261021-generative-rewrite/`。旧 TikZ 和历史 PNG 保留作为可追溯来源，当前正文不引用。

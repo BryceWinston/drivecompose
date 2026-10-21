@@ -1,4 +1,4 @@
-\section{Discussion}
+\section{Limitations}
 \label{sec:discussion}
 
-DriveCompose covers a finite region under fixed illumination. Its observation anchors inherit errors in recovered depth, identity, and canonical pose. Vehicles remain rigid; human geometry uses fixed clothing volume and skeleton binding, so poses outside the template's support can expose missing content. Reference-world coordinates describe the construction scene, while contact and collision validity after an asset moves are handled by the physical backend. The observed-view check constrains consistency with recorded evidence; geometry beyond that evidence and behavior under new states require their own assessment.
+DriveCompose represents a finite region under fixed illumination. Errors in recovered depth, identity, or canonical pose can enter the observed anchors and constrain later completion incorrectly. Vehicles are rigid, and humans retain fixed clothing volume and skeleton binding; poses outside the template's support can expose missing geometry. Reference-world coordinates provide context at construction, while contact and collision validity after an edit depend on the physical backend. The observation check assesses agreement with recorded evidence. Geometry outside that evidence and appearance under changed illumination require separate supervision or modeling.

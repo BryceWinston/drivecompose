@@ -1,0 +1,203 @@
+{
+  "figure_id": "drivecompose-generative-overview-20261021",
+  "execution": {
+    "requested_deliverable": "manuscript overview raster",
+    "renderer": "built-in Image Gen",
+    "output": "paper/fig/drivecompose-overview-20261021.png",
+    "editability_required": false
+  },
+  "claim": "Calibrated driving observations become structured background and canonical asset evidence, are conditionally completed, and decode into fixed components for state-driven reuse.",
+  "mode": "manuscript adaptation of DGGT visual grammar",
+  "reference": "../_archive/drivecompose/20261021-dggt-review/dggt-04.png (top architecture only)",
+  "publication_width_mm": 175,
+  "aspect_ratio": "about 3:1",
+  "panels": {
+    "a": {
+      "fraction": 0.35,
+      "role": "visual recovery and canonical aggregation"
+    },
+    "b": {
+      "fraction": 0.33,
+      "role": "conditional generative completion"
+    },
+    "c": {
+      "fraction": 0.32,
+      "role": "typed decoding, observed-view check and state-driven reuse"
+    }
+  },
+  "narrative_map": {
+    "first_glance": "images to spatial supports to generated scene to state edits",
+    "working": "fixed query layout and anchors, conditional flow, typed ownership",
+    "technical": "shared memory, reset at each step, observed-only reference, external runtime state"
+  },
+  "nodes": [
+    [
+      "input",
+      "calibrated images",
+      "src/drivecompose/contracts.py"
+    ],
+    [
+      "encoder",
+      "visual encoder",
+      "src/drivecompose/networks/encoder.py"
+    ],
+    [
+      "geometry",
+      "geometry and tracks",
+      "src/drivecompose/networks/encoder.py"
+    ],
+    [
+      "aggregate",
+      "canonical aggregation",
+      "src/drivecompose/decomposition.py"
+    ],
+    [
+      "codes",
+      "typed codes",
+      "src/drivecompose/networks/decoders.py"
+    ],
+    [
+      "dit",
+      "conditional flow transformer",
+      "src/drivecompose/networks/completion.py"
+    ],
+    [
+      "memory",
+      "local groups and global memory",
+      "src/drivecompose/networks/completion.py"
+    ],
+    [
+      "projection",
+      "retain observed and clear free",
+      "src/drivecompose/networks/completion.py"
+    ],
+    [
+      "decode",
+      "typed decoders",
+      "src/drivecompose/networks/decoders.py"
+    ],
+    [
+      "check",
+      "candidate versus observations/reference",
+      "src/drivecompose/validation.py"
+    ],
+    [
+      "world",
+      "fixed scene",
+      "src/drivecompose/pipeline.py"
+    ],
+    [
+      "state",
+      "external camera and actor state",
+      "src/drivecompose/rendering.py"
+    ],
+    [
+      "render",
+      "compose and render",
+      "src/drivecompose/rendering.py"
+    ]
+  ],
+  "edges": [
+    [
+      "input",
+      "encoder"
+    ],
+    [
+      "encoder",
+      "geometry"
+    ],
+    [
+      "encoder",
+      "aggregate"
+    ],
+    [
+      "geometry",
+      "aggregate"
+    ],
+    [
+      "aggregate",
+      "codes"
+    ],
+    [
+      "codes",
+      "dit"
+    ],
+    [
+      "dit",
+      "projection"
+    ],
+    [
+      "projection",
+      "dit"
+    ],
+    [
+      "projection",
+      "decode"
+    ],
+    [
+      "decode",
+      "check"
+    ],
+    [
+      "input",
+      "check"
+    ],
+    [
+      "check",
+      "world"
+    ],
+    [
+      "world",
+      "render"
+    ],
+    [
+      "state",
+      "render"
+    ]
+  ],
+  "operands": {
+    "flow": "current/observed codes, noise, flow time, type, canonical/ref-world coordinates, masks, confidence, log summaries",
+    "check": "candidate render, observed-only render, original input at recorded states",
+    "render": "fixed world and supplied state"
+  },
+  "negative_paths": [
+    "runtime states must not regenerate latent content",
+    "no image diffusion refiner",
+    "no learned policy/dynamics",
+    "no empirical results from synthetic scene depictions",
+    "rejected candidate must not enter reusable scene"
+  ],
+  "abstraction_map": {
+    "sky": "within background, sky directions and support domain",
+    "four-stage learning": "method text, omitted from overview to preserve readable inference topology",
+    "full validation metrics": "method text; check node preserves acceptance boundary",
+    "sampling": "DiT velocity and projected integration grouped inside Conditional flow; full update in manuscript Eq. sampling",
+    "acceptance": "Observation check includes candidate-versus-reference rendering; recorded-image operand shown, reference and rejection expanded in manuscript Sec. 3.5"
+  },
+  "visual_grammar_receipt": {
+    "primary_spine": "left-to-right three-stage construction with local runtime branch",
+    "focal_zone": "typed spatial latents and conditional completion",
+    "role_shapes": "images as frames; supports as grids; latents as token strips; operators as blocks; outputs as Gaussian objects",
+    "connector_levels": "solid main flow; thin context; local sampling return",
+    "palette": "blue observed, gray unknown, orange generated, hatched free, purple memory",
+    "typography": "52-58 px headings, 44-49 operators, 40-44 secondary at 3200 px width",
+    "evidence_role": "all scene examples are schematic; no performance claim",
+    "reference_firewall": "retain DGGT composition grammar only, replace data/topology/objects/labels",
+    "whitespace_functions": [
+      "grouping",
+      "connector_lane",
+      "focal_protection"
+    ],
+    "review_sizes": [
+      "full output",
+      "175 mm PDF placement"
+    ]
+  },
+  "prompt_template": "E:/Users/changan/Desktop/论文/.agents/skills/design-scientific-figure/references/templates/overview-template.txt",
+  "prompt_non_whitespace_chars": 23277,
+  "template_non_whitespace_chars": 15356,
+  "status": "selected v4 inserted and reviewed in both compiled PDFs",
+  "selected_candidate": "v4",
+  "final_prompt": "production-prompt-20261021-v4.txt",
+  "review": "self-review; mechanism schematic; primary flow inspected; fine labels also available in full-resolution PNG"
+}

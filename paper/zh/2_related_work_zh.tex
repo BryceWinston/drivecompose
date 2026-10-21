@@ -1,11 +1,11 @@
 \section{相关工作}
 \label{sec:related}
 
-\paragraph{可组合重建与仿真。}
-Street Gaussians 将背景与跟踪车辆表示为独立的高斯组件~\cite{yan2024street}。OmniRe 采用类别相关的规范表示，同时容纳刚体与关节资产~\cite{chen2025omnire}。HUGSIM 将重建内容与交互式状态更新、仿真后端结合~\cite{zhou2024hugsim}。这些工作建立了内容与状态分离及各类资产运动建模的基础。DriveCompose 沿用这一分离方式来定义补全的输出：一份固定背景，以及跨轨迹保持身份、局部几何和绑定的规范资产。补全变量共同覆盖这些组件，使各组件的未见表面在生成过程中相互关联。
+\paragraph{学习式驾驶场景重建。}
+前馈模型用从图像观测中学习的推断替代逐场景重复拟合。STORM 预测高斯与场景流以恢复动态户外场景~\cite{yang2025storm}；DGGT 引入免位姿重建、时间可见性和运动引导的插值~\cite{chen2025dggt}。StreetForward、PointForward 和 Instant NuRec 分别探索时序处理、点对齐表示及面向仿真的前馈重建~\cite{yu2026streetforward,chi2026pointforward,huang2026instantnurec}。我们沿用图像恢复模块提供几何和运动证据的作用，并将输出变量组织为背景与规范资产潜码，在新状态渲染之前完成条件补全。
 
-\paragraph{驾驶场景前馈重建。}
-STORM、DGGT、StreetForward 和 PointForward 从时序观测恢复驾驶场景表示~\cite{yang2025storm,chen2025dggt,yu2026streetforward,chi2026pointforward}。我们用时序恢复建立补全所需的条件证据：前端预测几何、身份和状态，固定查询布局随后记录表面支撑、自由空间与未知区域。条件流在离线构建阶段处理未知潜码。此后的渲染读取已接受的内容和当前状态，无须为每条轨迹重新执行潜空间补全。
+\paragraph{可组合场景与控制。}
+Street Gaussians 将跟踪车辆与静态背景分开建模~\cite{yan2024street}，OmniRe 通过适合各类别的运动模型将这一组织方式扩展到多类参与者~\cite{chen2025omnire}。HUGSIM 基于重建内容提供控制驱动的状态更新与交互仿真~\cite{zhou2024hugsim}。这些方法将持久几何、外观与运动分离。我们在生成表示中保留这种分离，使补全表面继承明确的资产身份及其刚体或关节变换。
 
-\paragraph{生成式场景与资产补全。}
-StreetCrafter 用 LiDAR 渲染条件控制视频扩散，再以生成视图指导高斯重建~\cite{streetcrafter}；HorizonForge 将可编辑的高斯--网格内容与视频扩散结合~\cite{wang2026horizonforge}。WorldSplat 在高斯生成后精修渲染视频~\cite{zhu2025worldsplat}。DriveCompose 直接补全状态驱动高斯渲染器使用的三维内容。潜空间方法中，GenAssets 面向驾驶资产，CompleteSplat 面向高斯场景补全，JRM 通过潜空间流匹配聚合共享对象的未对齐观测~\cite{yang2025genassets,liao2025complete,wu2026jrm}。LatentWorld 则提供以实体为中心的语义占据生成控制~\cite{park2026latentworld}。这些方法采用不同的生成单位：单个资产、场景，或由多份观测恢复的共享对象。DriveCompose 让这些单位处于同一查询布局，保留各类变换，并共享原视角检查。本文的变量将世界空间背景与刚体、关节规范资产联合建模；已见与自由空间约束作用于采样和解码，接受检查决定补全组件如何进入同一份可复用的 RGB 渲染世界。
+\paragraph{生成式重建与补全。}
+StreetCrafter 根据三维条件生成视图以指导重建，HorizonForge 将可编辑场景内容与视频扩散结合~\cite{streetcrafter,wang2026horizonforge}。WorldSplat 通过潜模型生成像素对齐高斯，并细化其渲染视频~\cite{zhu2025worldsplat}。GenAssets 学习驾驶资产先验，CompleteSplat 根据图像证据补全高斯场景，JRM 则通过潜空间流匹配融合共享对象的未对齐观测~\cite{yang2025genassets,liao2025complete,wu2026jrm}。LatentWorld 围绕场景实体组织语义占据生成~\cite{park2026latentworld}。DriveCompose 以驾驶日志的恢复结果为条件，在统一查询布局上补全可供 RGB 渲染的背景与规范资产。生成作用于未知潜码，观测证据同时约束采样过程和装配后的渲染结果。

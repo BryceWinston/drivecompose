@@ -1,161 +1,87 @@
 {
-  "date": "2026-10-20T07:10:15.609253+00:00",
-  "scope": "Bilingual non-experiment manuscript restructuring, natural-language editing, native vector overview and layout.",
+  "date": "2026-10-21",
+  "title": "DriveCompose: Generative Reconstruction of Compositional Driving Scenes",
   "frozen_files": {
-    "paper/sec/4_experiments.tex": {
-      "baseline": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41",
-      "current": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41",
-      "unchanged": true
-    },
-    "paper/zh/4_experiments_zh.tex": {
-      "baseline": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1",
-      "current": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1",
-      "unchanged": true
-    },
-    "paper/fig/pointforward/Waymo.pdf": {
-      "baseline": "5aa9f67f7a4def61d82b4dcd992cdbc4eb612c7212223e6d581e0acc72d1e27c",
-      "current": "5aa9f67f7a4def61d82b4dcd992cdbc4eb612c7212223e6d581e0acc72d1e27c",
-      "unchanged": true
-    },
-    "paper/fig/pointforward/nuScenes.pdf": {
-      "baseline": "5883099966eeec7b475fa4f9a0d1e018b3518bfc68e98e0ea1a37b0e981467c6",
-      "current": "5883099966eeec7b475fa4f9a0d1e018b3518bfc68e98e0ea1a37b0e981467c6",
-      "unchanged": true
-    },
-    "paper/fig/pointforward/Shift.pdf": {
-      "baseline": "97224c1de956fa8a5d5ef5f78d37e6fce065e8bea1805060c484899092a95dec",
-      "current": "97224c1de956fa8a5d5ef5f78d37e6fce065e8bea1805060c484899092a95dec",
-      "unchanged": true
-    },
-    "paper/main.bib": {
-      "baseline": "731697b24227b75015d690a2a048cb298bdaca9aeb6f4cfb9870cfdcbc37b970",
-      "current": "731697b24227b75015d690a2a048cb298bdaca9aeb6f4cfb9870cfdcbc37b970",
-      "unchanged": true
-    },
-    "paper/cvpr.sty": {
-      "baseline": "2602473285d1a7df2a445ac89b76e1afa0acab78e056f0369d19770245190153",
-      "current": "2602473285d1a7df2a445ac89b76e1afa0acab78e056f0369d19770245190153",
-      "unchanged": true
-    },
-    "paper/lineno.sty": {
-      "baseline": "e12f4151f6e86448168fad536850c641c789e8a11babd9d7e8dbe36a38965f37",
-      "current": "e12f4151f6e86448168fad536850c641c789e8a11babd9d7e8dbe36a38965f37",
-      "unchanged": true
-    },
-    "paper/ieeenat_fullname.bst": {
-      "baseline": "e38e6166bd7b1e6d23a1b79dcdb55c656e4fcdbe91bdf6b50d827e6b5d1aacfc",
-      "current": "e38e6166bd7b1e6d23a1b79dcdb55c656e4fcdbe91bdf6b50d827e6b5d1aacfc",
-      "unchanged": true
-    },
-    "paper/preamble.tex": {
-      "baseline": "d28f6b5f7b04a9986a63c1dfb815c0f8c79c9329dd613649b2d4a2e32af3cf25",
-      "current": "d28f6b5f7b04a9986a63c1dfb815c0f8c79c9329dd613649b2d4a2e32af3cf25",
-      "unchanged": true
-    }
+    "paper/sec/4_experiments.tex": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41",
+    "paper/zh/4_experiments_zh.tex": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1",
+    "paper/fig/pointforward/nuScenes.pdf": "5883099966eeec7b475fa4f9a0d1e018b3518bfc68e98e0ea1a37b0e981467c6",
+    "paper/fig/pointforward/Shift.pdf": "97224c1de956fa8a5d5ef5f78d37e6fce065e8bea1805060c484899092a95dec",
+    "paper/fig/pointforward/Waymo.pdf": "5aa9f67f7a4def61d82b4dcd992cdbc4eb612c7212223e6d581e0acc72d1e27c"
   },
-  "frozen_label_numbers": {
+  "frozen_hashes_match": true,
+  "modified_tex": [
+    "paper/main.tex",
+    "paper/main_zh.tex",
+    "paper/sec/0_abstract.tex",
+    "paper/sec/1_introduction.tex",
+    "paper/sec/2_related_work.tex",
+    "paper/sec/3_method.tex",
+    "paper/sec/5_discussion.tex",
+    "paper/sec/6_conclusion.tex",
+    "paper/zh/0_abstract_zh.tex",
+    "paper/zh/1_introduction_zh.tex",
+    "paper/zh/2_related_work_zh.tex",
+    "paper/zh/3_method_zh.tex",
+    "paper/zh/5_discussion_zh.tex",
+    "paper/zh/6_conclusion_zh.tex"
+  ],
+  "bilingual_displayed_and_inline_math": "verified by check_manuscript.py",
+  "language_review": "humanizer and humanizer-zh; changes saved before final compile",
+  "figure": {
+    "path": "paper/fig/drivecompose-overview-20261021.png",
+    "sha256": "a5c0bc4bb93711d7406377b58f95be0df4e7531399af022987aa3d883f661c22",
+    "size": [
+      2172,
+      724
+    ],
+    "mode": "raster mechanism illustration",
+    "selected_candidate": "v4",
+    "overview_topology": "visual self-review against manuscript; flow internals grouped; check internals in method",
+    "review_scope": "whole pages and enlarged non-experimental pages; no independent blind review claimed"
+  },
+  "pdfs": {
     "en": {
-      "sec:experiments": {
-        "before": "4",
-        "after": "4",
-        "unchanged": true
-      },
-      "sec:experimental_setup": {
-        "before": "4.1",
-        "after": "4.1",
-        "unchanged": true
-      },
-      "sec:temporal_evaluation": {
-        "before": "4.2",
-        "after": "4.2",
-        "unchanged": true
-      },
-      "tab:temporal_current": {
-        "before": "1",
-        "after": "1",
-        "unchanged": true
-      },
-      "tab:regions_current": {
-        "before": "2",
-        "after": "2",
-        "unchanged": true
-      },
-      "sec:spatial_evaluation": {
-        "before": "4.3",
-        "after": "4.3",
-        "unchanged": true
-      },
-      "tab:spatial_current": {
-        "before": "3",
-        "after": "3",
-        "unchanged": true
-      }
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "pages": 9,
+      "sha256": "15cc6b3231a7b7eabfd650eb5d164acc4e915aa744d434fadd41fa46308f8e95",
+      "compiler_exit": 0,
+      "final_latex_warnings": []
     },
     "zh": {
-      "sec:experiments": {
-        "before": "4",
-        "after": "4",
-        "unchanged": true
-      },
-      "tab:exp_waymo": {
-        "before": "1",
-        "after": "1",
-        "unchanged": true
-      },
-      "fig:pf_waymo": {
-        "before": "2",
-        "after": "2",
-        "unchanged": true
-      },
-      "tab:exp_context": {
-        "before": "2",
-        "after": "2",
-        "unchanged": true
-      },
-      "tab:exp_transfer": {
-        "before": "3",
-        "after": "3",
-        "unchanged": true
-      },
-      "fig:pf_nuscenes": {
-        "before": "3",
-        "after": "3",
-        "unchanged": true
-      },
-      "tab:exp_shift": {
-        "before": "4",
-        "after": "4",
-        "unchanged": true
-      },
-      "fig:pf_shift": {
-        "before": "4",
-        "after": "4",
-        "unchanged": true
-      },
-      "tab:exp_ablation": {
-        "before": "5",
-        "after": "5",
-        "unchanged": true
-      }
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+      "pages": 9,
+      "sha256": "8e9e2d9073877a6bae30971a91a1e8cf9a3bf40d58c2de3996da8a98a3bf83e1",
+      "compiler_exit": 0,
+      "final_latex_warnings": []
     }
   },
-  "all_frozen_exact": true,
-  "experiment_values_and_figures_unchanged": true,
-  "experimental_sources_not_synchronized_by_design": true,
-  "english_rough_prose_word_counts_excluding_math_and_citation_syntax": {
-    "0_abstract": 161,
-    "1_introduction": 632,
-    "2_related_work": 315,
-    "3_method": 1334,
-    "5_discussion": 85,
-    "6_conclusion": 100
+  "source_hashes": {
+    "paper/fontsetup.tex": "c715bb95da7c540a8de404c0a69ba214726a7023f832765dc407cbe895489b7b",
+    "paper/main.tex": "df59961c5a6dc04110ff4356d3242e080c2da5f33b4e8466a33b3c406e25469e",
+    "paper/main_zh.tex": "8f00d266fa6d963a9e31629a704440389e47a4fe1041f95b2798bb77946eba9b",
+    "paper/preamble.tex": "d28f6b5f7b04a9986a63c1dfb815c0f8c79c9329dd613649b2d4a2e32af3cf25",
+    "paper/fig/drivecompose-overview-vector.tex": "8a607a7f200f5b858d2a94ac9eb7a9aa6397f58ddccbbd446eb0bb15ea233c78",
+    "paper/sec/0_abstract.tex": "9b30c619631e54af5a7c3eca6e35fbf7412d15653ded66f15fe7c2519014c69c",
+    "paper/sec/1_introduction.tex": "20807d5f0d23dcc00f7c9c1ca920bd7ebad4efe97234546109d6786e98418eb3",
+    "paper/sec/2_related_work.tex": "f399f086dea35864b8438927c53ff310ffaa3a2a67a0fdd7484996feeaad21bd",
+    "paper/sec/3_method.tex": "ee69c0b504c1ee52698a7ac396375fed93f0d55e3c89eb846d5310cb5c5db154",
+    "paper/sec/4_experiments.tex": "e7128b4b78bea519ebf883eb034759262418561fdadd1abf93b69d402cfb8c41",
+    "paper/sec/5_discussion.tex": "e02b0f747c5a4ae1bfce9583e8f3480b74ba6acc94f1e595b430cae51fc6d0f5",
+    "paper/sec/6_conclusion.tex": "4f940e464710fed877fd6ad0b43c9f438e92134b7a31242892754f32a41e82c7",
+    "paper/zh/0_abstract_zh.tex": "cbec7d6dc90906419bce121fb241480cf64e6787de1a1bf6ffd3adc68349fb5b",
+    "paper/zh/1_introduction_zh.tex": "2f71be2fa842e6f8bb9ca2c5f33a9b607cbf378355a31e2812db2cdce6f9306d",
+    "paper/zh/2_related_work_zh.tex": "fcde56476e595a42bdd208ef4f155454ab474346e31bdbe825072f14c197019f",
+    "paper/zh/3_method_zh.tex": "01acb01b9688a31103fb7b85ca72356239e1ff639d2594d80d25cac26d738046",
+    "paper/zh/4_experiments_zh.tex": "a7f6b2510505617f991fdec23aa12a7eed87c289dd9028a7d132094c5d6625e1",
+    "paper/zh/5_discussion_zh.tex": "8e5bcad1d21be4a8492d87cc9e535bcdd6bc7a623d1b1343d508a016873a3350",
+    "paper/zh/6_conclusion_zh.tex": "105734c6f7da7adb39185e01498c42eb643ac18c371ac59355e9372807a9d7ec",
+    "paper/main.bib": "113f84df211305e89e7f5cbd53ff19c6e8de6196b13e3f7592fc6dfa33699cde",
+    "paper/fig/drivecompose-overview-20261021.png": "a5c0bc4bb93711d7406377b58f95be0df4e7531399af022987aa3d883f661c22"
   },
-  "source_check_report": "verification.json",
-  "pdf_qa_report": "pdf-qa.json",
-  "known_limits": [
-    "Experiment sections remain frozen and still contain inherited content.",
-    "CVPR 2027 final author-kit was not obtained; inherited style remains.",
-    "Fandol CJK glyphs render correctly but lack ToUnicode, so Chinese extraction/copying is incomplete.",
-    "Built-in app compiler unavailable: Windows sandbox setup required. Local bundled Tectonic compiled both PDFs successfully."
-  ]
+  "last_updated": "2026-10-21T04:47:51.460814+00:00",
+  "current_revision": "20261021-bilingual-audit",
+  "full_manuscript_bilingually_aligned": false,
+  "experiments_note": "Preserved exactly; English and Chinese differ already in the original source ZIP and commits f2fa6f3/b677a00.",
+  "bilingual_report": "paper/provenance/bilingual-audit-20261021.md",
+  "archive_root_relative_to_project": "../_archive/drivecompose/20261021-bilingual-audit"
 }

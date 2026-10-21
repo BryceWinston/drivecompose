@@ -41,7 +41,7 @@
     }
   },
   "source_git_commit": "7c1acf4aa02b432a3173f167e1663a5f274cb844",
-  "raster_overview_role": "historical design draft; current entries use native TikZ",
+  "raster_overview_role": "historical design draft; current entries use generated overview 20261021",
   "invalid_migration_source_evidence": [],
   "changed_project_sources_since_migration": [
     "README.md",
@@ -56,10 +56,10 @@
   "zh:missing_citations": [],
   "zh:missing_files": [],
   "displayed_method_math_blocks": {
-    "en": 13,
-    "zh": 13
+    "en": 15,
+    "zh": 15
   },
-  "bibliography_entries": 16,
+  "bibliography_entries": 18,
   "frozen_experiments_intentionally_not_synchronized": true,
   "checks": {
     "migration_manifest_unchanged": true,
@@ -76,9 +76,9 @@
     "unchanged:ieeenat_fullname.bst": true,
     "unchanged:preamble.tex": true,
     "overview_copy_exact": true,
-    "native_overview_exists": true,
-    "main.tex:native_overview_active": true,
-    "main_zh.tex:native_overview_active": true,
+    "generated_overview_exists": true,
+    "main.tex:generated_overview_active": true,
+    "main_zh.tex:generated_overview_active": true,
     "migration_source_snapshot_preserved": true,
     "unique_bibliography_keys": true,
     "en:cvpr2027": true,

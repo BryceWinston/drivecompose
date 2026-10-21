@@ -1,0 +1,123 @@
+{
+  "archive_root_relative_to_project": "../_archive/drivecompose/20261021-bilingual-audit",
+  "moves": [
+    {
+      "original_path": "paper/build/compilation-check.json",
+      "archive_path": "build-old/compilation-check.json",
+      "sha256": "881dfb6d277c379f83e912906fbe05897a26d9ffa91b21d5aee3438dc8766368"
+    },
+    {
+      "original_path": "paper/build/en/compile-result.json",
+      "archive_path": "build-old/en/compile-result.json",
+      "sha256": "8331c1c5cce71619b2f3ef9b820f0ab7d8a76bf7a163f7553f896a9ec7f460c4"
+    },
+    {
+      "original_path": "paper/build/en/compiler-output.txt",
+      "archive_path": "build-old/en/compiler-output.txt",
+      "sha256": "0ea505a5f244a67a911044a9afe4944507595213d1598c0f2f2d16ec97eb953b"
+    },
+    {
+      "original_path": "paper/build/en/main.aux",
+      "archive_path": "build-old/en/main.aux",
+      "sha256": "de732fca3c4db957fe3481451e8b87aba1976b8ea6fd9335271bc7ef625134f3"
+    },
+    {
+      "original_path": "paper/build/en/main.bbl",
+      "archive_path": "build-old/en/main.bbl",
+      "sha256": "a9e1d8104abbdbfdbc08f2f7ea30a6e68b41ff47c8c5969a4c7560d3fa55dc37"
+    },
+    {
+      "original_path": "paper/build/en/main.blg",
+      "archive_path": "build-old/en/main.blg",
+      "sha256": "5c4be67aa5e75cb2b17ba550f078321eb06cfa4eebbf6e0a33ba106c2309f455"
+    },
+    {
+      "original_path": "paper/build/en/main.brf",
+      "archive_path": "build-old/en/main.brf",
+      "sha256": "ab490ab544428f5de296ca356df6ef294e1737c5784973433ddcabb94d4a89ae"
+    },
+    {
+      "original_path": "paper/build/en/main.log",
+      "archive_path": "build-old/en/main.log",
+      "sha256": "a21226f6d351df4d24b92e36027d177d91ed5e40c07dae73f35f61a7190c0f5e"
+    },
+    {
+      "original_path": "paper/build/en/main.out",
+      "archive_path": "build-old/en/main.out",
+      "sha256": "5515d9217c9e894a64ce567873d7ac03cf8cffc13741b2228179158da9620ec6"
+    },
+    {
+      "original_path": "paper/build/en/main.pdf",
+      "archive_path": "build-old/en/main.pdf",
+      "sha256": "cf2df29352f870007c3d0842a8ff55892a23a99ba85c2482e0c15dd05b7011b3"
+    },
+    {
+      "original_path": "paper/build/pdf-qa.json",
+      "archive_path": "build-old/pdf-qa.json",
+      "sha256": "e881bc10f842c3f6db392fb44853c36f7801772c26ecba192c11b775a6c06011"
+    },
+    {
+      "original_path": "paper/build/revision-check.json",
+      "archive_path": "build-old/revision-check.json",
+      "sha256": "1c6d0efd4effec06fd91cc44131787e57e4d083e9e6fc2d76a1e54d6e4af490d"
+    },
+    {
+      "original_path": "paper/build/verification.json",
+      "archive_path": "build-old/verification.json",
+      "sha256": "b6fd1dfa99e2ece75b54413fed45fb8115b9a26193d82795f7adb8a1929375d5"
+    },
+    {
+      "original_path": "paper/build/zh/compile-result.json",
+      "archive_path": "build-old/zh/compile-result.json",
+      "sha256": "0212bc2ac8ef280b47dea9502c9f9f3bebfdee1b582c8d00cc548c65569d43bc"
+    },
+    {
+      "original_path": "paper/build/zh/compiler-output.txt",
+      "archive_path": "build-old/zh/compiler-output.txt",
+      "sha256": "67cf5cf6b7009e67a8979001c2b362c589e7d382a54050b2e599606bb3a15f9e"
+    },
+    {
+      "original_path": "paper/build/zh/main_zh.aux",
+      "archive_path": "build-old/zh/main_zh.aux",
+      "sha256": "c965f389c7c5f190a3b62f7041b1cd6ebca70a2a84ef5be4541e772089f3b044"
+    },
+    {
+      "original_path": "paper/build/zh/main_zh.bbl",
+      "archive_path": "build-old/zh/main_zh.bbl",
+      "sha256": "a9e1d8104abbdbfdbc08f2f7ea30a6e68b41ff47c8c5969a4c7560d3fa55dc37"
+    },
+    {
+      "original_path": "paper/build/zh/main_zh.blg",
+      "archive_path": "build-old/zh/main_zh.blg",
+      "sha256": "799904f331cbb6ea9ebb4bbb6a69e6a1264b98446fb678994d0309b19742ce32"
+    },
+    {
+      "original_path": "paper/build/zh/main_zh.brf",
+      "archive_path": "build-old/zh/main_zh.brf",
+      "sha256": "5669ef8574c01c336b9757f093b8d39812d985795571d63b1aca7aaac119cf0e"
+    },
+    {
+      "original_path": "paper/build/zh/main_zh.log",
+      "archive_path": "build-old/zh/main_zh.log",
+      "sha256": "b08edbb296184c8da35d9787b526b74e7ba4894637b18ccd424ce4f532b1d9a4"
+    },
+    {
+      "original_path": "paper/build/zh/main_zh.out",
+      "archive_path": "build-old/zh/main_zh.out",
+      "sha256": "b45b9930ead855c976f399b21ee4dfb7ab757d9aeb5cb08b33a490bb85a00f55"
+    },
+    {
+      "original_path": "paper/build/zh/main_zh.pdf",
+      "archive_path": "build-old/zh/main_zh.pdf",
+      "sha256": "0ab09ad5f6ec304298dc264e72300e115061b405d9d87f5269e62827c1dba24d"
+    }
+  ],
+  "new_default_outputs": [
+    "paper/build/en/main.pdf",
+    "paper/build/zh/main_zh.pdf"
+  ],
+  "old_pdf_matches_HEAD": {
+    "en": true,
+    "zh": true
+  }
+}
