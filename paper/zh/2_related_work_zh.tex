@@ -1,23 +1,14 @@
 \section{相关工作}
 \label{sec:related}
 
-\paragraph{辐射场表示。}
-NeRF 通过连续辐射场表示几何与外观~\cite{mildenhall2020nerf}，后续方法扩展到非受控照片和多尺度采样~\cite{martinbrualla2021nerfw,barron2021mipnerf}。高斯泼溅提供用于渲染的显式基元~\cite{kerbl2023gaussians}；Mip-Splatting 处理混叠~\cite{yu2024mipsplatting}，高斯光线追踪和 3DGUT 扩展射线处理与相机模型~\cite{moenne2024gaussianraytracing,wu2025gut}。D-NeRF 和可变形高斯引入随时间变化的形变~\cite{pumarola2021dnerf,yang2024deformablegs}。这些表示为场景分解与资产控制提供了渲染基础。
+\paragraph{驾驶场景重建。}
+NeRF 与高斯泼溅为城市重建提供辐射表示~\cite{mildenhall2020nerf,kerbl2023gaussians}，NeuRAD 和 SplatAD 进一步发展面向驾驶场景的渲染~\cite{tonderski2024neurad,hess2025splatad}。前馈方法从图像学习几何恢复与高斯预测~\cite{hong2024lrm,charatan2024pixelsplat,chen2024mvsplat,wang2024dust3r,wang2025vggt}。对于驾驶日志，STORM 通过场景流聚合动态高斯，DGGT 则结合相机恢复、时间可见性和运动引导插值~\cite{yang2025storm,chen2025dggt}。DrivingForward、StreetForward、PointForward 和 Instant NuRec 进一步探索环视输入、时序处理、点对齐表示及面向仿真的重建~\cite{tian2025drivingforward,yu2026streetforward,chi2026pointforward,huang2026instantnurec}。TokenGS 也通过可学习 token 解耦像素与高斯预测~\cite{ren2026tokengs}。DriveCompose 将恢复的证据聚合到背景与规范资产支撑上，再通过条件生成补全缺失内容并解码为高斯。
 
-\paragraph{城市场景与控制。}
-Urban Radiance Fields 和 Block-NeRF 面向大规模城市采集~\cite{rematas2022urban,tancik2022blocknerf}。NeuRAD、EVolSplat 和 SplatAD 将神经渲染适配到驾驶场景与传感器~\cite{tonderski2024neurad,miao2025evolsplat,hess2025splatad}。Neural Scene Graphs 和 EmerNeRF 通过对象结构或自监督分解组织动态内容~\cite{ost2021neuralgraphs,yang2024emernerf}。Street Gaussians、DrivingGaussian 和面向城市场景的 HUGS 区分前景与背景~\cite{yan2024street,zhou2024drivinggaussian,zhou2024holistichugs}；OmniRe 将重建扩展到多类参与者~\cite{chen2025omnire}。UniSim 和 HUGSIM 将重建场景接入闭环仿真~\cite{yang2023unisim,zhou2024hugsim}。我们在用于生成式补全的变量中保留组件身份与运动规则。
-
-\paragraph{前馈重建。}
-LRM、LGM 和 GS-LRM 学习从图像到三维的预测~\cite{hong2024lrm,tang2024lgm,zhang2024gslrm}。pixelSplat、MVSplat 和 DepthSplat 从稀疏视图恢复高斯~\cite{charatan2024pixelsplat,chen2024mvsplat,xu2025depthsplat}，DUSt3R、MASt3R 和 VGGT 则通过 Transformer 恢复几何与对应关系~\cite{wang2024dust3r,leroy2024mast3r,wang2025vggt}。Fast3R 和 CUT3R 探索图像集合的联合与递归处理~\cite{yang2025fast3r,wang2025cut3r}。TokenGS 通过可学习 token 明确解耦像素与高斯预测~\cite{ren2026tokengs}。本文的区别在于变量组织与推断任务：先通过条件生成补全背景和规范资产潜码，再将其解码为可复用场景。
-
-\paragraph{驾驶场景推断。}
-STORM 预测动态高斯，并通过场景流聚合~\cite{yang2025storm}。DrivingForward 研究灵活的环视输入~\cite{tian2025drivingforward}，DGGT 结合免位姿重建、时间可见性和运动引导的插值~\cite{chen2025dggt}。StreetForward、PointForward 和 Instant NuRec 分别研究时序处理、点对齐表示及面向仿真的重建~\cite{yu2026streetforward,chi2026pointforward,huang2026instantnurec}。DriveCompose 利用恢复的几何与运动，在持久支撑上汇集证据，使缺失内容在状态变化将其暴露之前得到补全。
-
-\paragraph{规范与可驱动资产。}
-SMPL 和 SMPL-X 定义关节化人体模型~\cite{loper2015smpl,pavlakos2019smplx}；Humans in 4D 和 WHAM 从图像恢复人体形状与运动~\cite{goel2023humans4d,shin2024wham}。HumanNeRF 和 Vid2Avatar 从视频重建人体~\cite{weng2022humannerf,guo2023vid2avatar}，GaussianAvatar、GauHuman、面向人体的 HUGS 和 3DGS-Avatar 使用可驱动高斯~\cite{hu2024gaussianavatar,hu2024gauhuman,kocabas2024hugs,qian2024avatar}。CanonicalFusion、FRESA、LHM 和 IDOL 从一张或多张图像推断可驱动人体资产~\cite{shin2024canonicalfusion,wang2025fresa,qiu2025lhm,zhuang2025idol}。UrbanCAD 则面向可控车辆资产~\cite{lu2025urbancad}。分割模型与合成人体数据提供互补的监督资源~\cite{kirillov2023sam,black2023bedlam}。我们通过类别专属支撑，在整个补全过程中保留各资产的坐标系与运动绑定。
+\paragraph{可组合场景与可控资产。}
+Neural Scene Graphs、Street Gaussians 和 DrivingGaussian 将场景分为背景与运动组件~\cite{ost2021neuralgraphs,yan2024street,zhou2024drivinggaussian}。OmniRe 包含刚体与关节化参与者的规范表示，UniSim 和 HUGSIM 则将重建内容接入闭环仿真~\cite{chen2025omnire,yang2023unisim,zhou2024hugsim}。在资产层面，基于 SMPL 的人体模型和可驱动高斯方法提供规范表面与运动绑定~\cite{loper2015smpl,pavlakos2019smplx,hu2024gauhuman,kocabas2024hugs,qian2024avatar}；LHM 与 IDOL 推断可驱动人体，UrbanCAD 面向可控车辆~\cite{qiu2025lhm,zhuang2025idol,lu2025urbancad}。这些工作建立了操控场景组件所需的表示与控制机制。本文的补全变量保留这一组件结构，使生成表面继承资产身份、坐标系和运动绑定。
 
 \paragraph{生成式重建与补全。}
-DreamFusion 将二维扩散先验蒸馏为三维内容~\cite{poole2023dreamfusion}；Zero-1-to-3、MVDream 和 CAT3D 为三维创建生成新视角或多视图图像~\cite{liu2023zero123,shi2024mvdream,gao2024cat3d}。Objaverse 为三维学习提供显式资产数据~\cite{deitke2023objaverse}。GenAssets 学习驾驶资产先验~\cite{yang2025genassets}，结构化潜模型则联合编码几何与外观以支持生成~\cite{xiang2025trellis,xiang2026trellis2}。CompleteSplat 补全高斯场景，JRM 通过潜空间流匹配融合未对齐的对象观测，LatentWorld 围绕实体组织语义占据生成~\cite{liao2025complete,wu2026jrm,park2026latentworld}。DriveCompose 在共享查询布局上补全可供 RGB 渲染的背景与规范资产，以已见潜码和自由空间约束未知内容。
+图像条件三维生成可通过生成视图~\cite{liu2023zero123,shi2024mvdream,gao2024cat3d}或编码几何与外观的结构化潜变量实现~\cite{xiang2025trellis,xiang2026trellis2}。GenAssets 学习驾驶资产先验，CompleteSplat 补全隐藏的高斯内容，JRM 通过潜空间流匹配聚合未对齐的对象观测~\cite{yang2025genassets,liao2025complete,wu2026jrm}。LatentWorld 围绕实体和背景潜变量组织语义占据生成~\cite{park2026latentworld}，是结构化场景生成的重要比较对象。DriveCompose 面向以驾驶日志为条件、可供 RGB 渲染的重建：共享补全模型在世界空间背景与规范车辆、人体潜码之间交换上下文。已见潜码和已知自由空间约束采样，原始视角渲染在复用前检查装配结果。
 
-\paragraph{可控驾驶视频生成。}
-MagicDrive、MagicDrive-V2、DriveDreamer 和 Vista 以场景结构或控制信号为条件生成驾驶图像~\cite{gao2024magicdrive,gao2025magicdrivev2,wang2024drivedreamer,gao2024vista}。GEN3C 使用三维信息进行相机可控的视频生成~\cite{ren2025gen3c}。StreetCrafter 和 HorizonForge 将可控扩散与场景重建或编辑结合~\cite{streetcrafter,wang2026horizonforge}；WorldSplat 生成高斯并细化其渲染视频~\cite{zhu2025worldsplat}，DIFIX3D+ 则通过扩散图像细化改善重建~\cite{wu2025difix3d}。LPIPS 等感知相似性度量评估渲染外观~\cite{zhang2018lpips}。本文的建模还为补全内容指定持久身份、坐标系和运动规则，使后续状态变化复用同一份三维补全。
+\paragraph{驾驶场景与视频生成。}
+MagicDrive、DriveDreamer 和 Vista 以场景结构或控制为条件生成驾驶图像~\cite{gao2024magicdrive,wang2024drivedreamer,gao2024vista}。StreetCrafter 用生成视图监督动态高斯重建，HorizonForge 将场景编辑与视频扩散结合~\cite{streetcrafter,wang2026horizonforge}。WorldSplat 生成高斯并细化其渲染视频，DIFIX3D+ 则通过扩散模型细化图像~\cite{zhu2025worldsplat,wu2025difix3d}。这些方法在不同阶段连接生成图像与三维场景表示。DriveCompose 在场景构建阶段完成补全并保存背景与规范资产，后续相机、刚体与骨架状态均渲染同一份补全内容。
