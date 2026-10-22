@@ -1,6 +1,21 @@
 \section{实验}
 \label{sec:experiments}
-% 按已批准方案写入设置与框架；结果数值、结果分析及实际渲染图片留空。
+% 主实验加入用户提供的定性对比图；消融结果数值及图片槽继续留空。
+
+\subsection{动态场景重建}
+\label{sec:temporal_evaluation}
+
+图~\ref{fig:dynamic-reconstruction} 展示第一个主实验的五组场景重建对比，比较参与者轮廓、车辆边界和街道结构。
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig/experiment1-dynamic-reconstruction.png}
+  \caption{\textbf{动态场景重建的定性对比。}每行展示一个样例，从左至右依次为真实图像、DGGT、STORM、StreetForward 和 DriveCompose（Ours）。样例覆盖行人、交通车辆与城市背景，用于比较参与者轮廓、车辆边界以及道路和建筑结构。}
+  \label{fig:dynamic-reconstruction}
+\end{figure*}
+
+\paragraph{定性比较。}
+图~\ref{fig:dynamic-reconstruction} 中，DriveCompose 保留了第一行的行人轮廓和第二行中央车辆的尾部外形，同时恢复周围街道布局。基线渲染在上方样例中出现参与者轮廓偏移或重复，在下方样例中出现道路结构模糊或畸变。DriveCompose 在这些展示样例中更接近参考结构，第三行行人周围及最后一行停放的皮卡附近仍有残余伪影。
 
 \subsection{消融实验协议}
 \label{sec:ablation-protocol}

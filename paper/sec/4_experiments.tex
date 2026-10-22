@@ -1,8 +1,7 @@
 \section{Experiments}
 \label{sec:experiments}
 We evaluate our method along four axes:
-\textit{(i)} dynamic scene reconstruction quality on Waymo Open Dataset,
-covering temporal interpolation and extrapolation
+\textit{(i)} dynamic scene reconstruction quality on Waymo Open Dataset
 (\S~\ref{sec:temporal_evaluation});
 \textit{(ii)} off-trajectory view synthesis under lateral
 camera shifts (\S~\ref{sec:spatial_evaluation});
@@ -28,11 +27,24 @@ DriveCompose reconstructs category-specific actor assets from motion-aligned obs
 % Fill in verified DriveCompose training schedule, resolution, hardware and checkpoint.
 % Do not copy baseline training configurations into DriveCompose implementation details.
 
-\subsection{Dynamic Reconstruction and Temporal Prediction}
+\subsection{Dynamic Scene Reconstruction}
 \label{sec:temporal_evaluation}
 
-We evaluate reconstruction at unobserved times along the recorded camera trajectory. Table~\ref{tab:regions_current} reports image and depth quality. The regional comparison focuses on actor appearance, and synchronized visualizations examine object position, shape, and occlusion changes.
-% Add measured DriveCompose findings here after replacing the development numbers.
+We evaluate reconstruction at unobserved times along the recorded camera trajectory. Table~\ref{tab:regions_current} reports full-image, dynamic-region, and depth quality; Fig.~\ref{fig:dynamic-reconstruction} compares rendered appearance across five examples.
+
+\paragraph{Quantitative comparison.}
+DriveCompose achieves the best scores across all six metrics in Table~\ref{tab:regions_current}. Full-image and dynamic-region PSNR exceed the strongest baseline in each category by 1.154 and 2.340 dB, respectively. The corresponding SSIM scores reach 0.901 and 0.862, while depth AbsRel decreases to 0.095 and $\delta_1$ reaches 0.877.
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig/experiment1-dynamic-reconstruction.png}
+  \caption{\textbf{Qualitative comparison for dynamic scene reconstruction.} Each row shows one example. Columns, from left to right, are ground truth, DGGT, STORM, StreetForward, and DriveCompose (Ours). The examples cover pedestrians, traffic, and urban backgrounds, allowing comparison of actor silhouettes, vehicle boundaries, and road and building structure.}
+  \label{fig:dynamic-reconstruction}
+\end{figure*}
+
+\paragraph{Qualitative comparison.}
+Figure~\ref{fig:dynamic-reconstruction} shows that DriveCompose retains the pedestrian silhouette in the first row and the rear profile of the central vehicle in the second row, while preserving the surrounding street layout. The baseline renderings exhibit displaced or repeated actor contours in the upper rows and blurred or distorted road structure in the lower rows. DriveCompose more closely follows these reference structures in the displayed examples, with residual artifacts around the pedestrians in the third row and the parked pickup in the last row.
+% Table 1 results supplied by the author on 2026-10-22.
 \begin{table}[!htbp]
 \centering
 \footnotesize
@@ -41,43 +53,17 @@ We evaluate reconstruction at unobserved times along the recorded camera traject
 \setlength{\belowcaptionskip}{5pt}
 \caption{Dynamic scene reconstruction on Waymo. Image quality is reported over the full image and annotated regions; depth is evaluated at valid LiDAR samples.}
 \label{tab:regions_current}
-\begin{tabular}{@{}lrrrrrr@{}}
+\begin{tabular}{@{}lcccccc@{}}
 \toprule
 & \multicolumn{2}{c}{Full image} & \multicolumn{2}{c}{\shortstack{Dynamic Region}} & \multicolumn{2}{c}{Depth} \\
 \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
 Method & PSNR $\uparrow$ & SSIM $\uparrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ & AbsRel $\downarrow$ & $\delta_1$ $\uparrow$ \\
 \midrule
-STORM & 26.191 & 0.833 & 22.083 & 0.654 & 0.129 & 0.867 \\
-DGGT & 26.056 & 0.809 & 20.809 & 0.603 & 0.168 & 0.779 \\
-StreetForward & 25.256 & 0.814 & 21.844 & 0.636 & 0.122 & 0.860 \\
+STORM & 26.380 & 0.826 & 22.100 & 0.624 & 0.178 & 0.741 \\
+DGGT & 27.410 & 0.794 & 22.710 & 0.651 & 0.249 & 0.668 \\
+StreetForward & 27.010 & 0.818 & 20.919 & 0.592 & 0.197 & 0.759 \\
 \midrule
-DriveCompose & -- & -- & -- & -- & -- & -- \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\paragraph{Temporal interpolation and prediction.}
-Table~\ref{tab:temporal_current} separates temporal interpolation from prediction at 0.1--0.4 seconds beyond the last context frame.
-
-\begin{table}[!htbp]
-\centering
-\footnotesize
-\setlength{\tabcolsep}{1.3pt}
-\renewcommand{\arraystretch}{1.08}
-\setlength{\belowcaptionskip}{5pt}
-\caption{Temporal interpolation and extrapolation on Waymo. PSNR and SSIM are reported separately for interpolation and extrapolation; context frames are excluded.}
-\label{tab:temporal_current}
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-& \multicolumn{2}{c}{Interp.} & \multicolumn{2}{c}{Extrap.} & \multicolumn{2}{c}{All targets} \\
-\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
-Method & PSNR $\uparrow$ & SSIM $\uparrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ \\
-\midrule
-STORM & 26.427 & 0.842 & 25.481 & 0.807 & 26.191 & 0.833 \\
-DGGT & 26.265 & 0.817 & 25.429 & 0.788 & 26.056 & 0.809 \\
-StreetForward & 25.653 & 0.827 & 24.065 & 0.776 & 25.256 & 0.814 \\
-\midrule
-DriveCompose & -- & -- & -- & -- & -- & -- \\
+Ours & \textbf{28.564} & \textbf{0.901} & \textbf{25.050} & \textbf{0.862} & \textbf{0.095} & \textbf{0.877} \\
 \bottomrule
 \end{tabular}
 \end{table}
