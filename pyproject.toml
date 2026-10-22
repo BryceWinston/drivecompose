@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "drivecompose"
 version = "0.1.0"
-description = "Composable Gaussian worlds from driving logs"
+description = "Generative Reconstruction of Compositional Driving Scenes via Joint Completion"
 requires-python = ">=3.10"
 dependencies = ["numpy>=1.24"]
 

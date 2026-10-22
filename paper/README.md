@@ -1,8 +1,8 @@
 # DriveCompose 双语论文工程
 
-目标会议：CVPR 2027。更新日期：2026-10-21。
+目标会议：CVPR 2027。更新日期：2026-10-22。
 
-本工程由用户提供的 MOSAIC 压缩包迁移而来。当前题名为 **DriveCompose: Generative Reconstruction of Compositional Driving Scenes**。非实验正文按生成式重建框架组织，覆盖视觉恢复、规范聚合、结构潜表示、条件流、类型解码、状态装配与四阶段训练。
+本工程由用户提供的 MOSAIC 压缩包迁移而来。当前题名为 **DriveCompose: Generative Reconstruction of Compositional Driving Scenes via Joint Completion**，中文题名为 **DriveCompose：通过联合补全实现可组合驾驶场景的生成式重建**。非实验正文按生成式重建框架组织，覆盖视觉恢复、规范聚合、结构潜表示、条件流、类型解码、状态装配与四阶段训练。
 
 非实验正文及图注已完成一轮中英文自然表达终校；修改前的版本保存在项目外的 [语言终校前备份](../../_archive/drivecompose/20261020-cleanup/files/paper/archive/language-before-20261020.zip)。
 
