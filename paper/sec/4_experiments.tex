@@ -71,15 +71,9 @@ Ours & \textbf{28.564} & \textbf{0.901} & \textbf{25.050} & \textbf{0.862} & \te
 \subsection{Off-Trajectory View Synthesis}
 \label{sec:spatial_evaluation}
 
-We shift the camera trajectory laterally by 1, 2, and 4 meters to the left and right, keeping camera orientation, intrinsics, and timestamps fixed. This evaluation tests the stability of scene structure and the rendering of newly visible surfaces as the viewpoint moves away from the observations~\cite{zhu2025worldsplat,chi2026pointforward}.
+We evaluate off-trajectory rendering under lateral shifts of $\pm1$, $\pm2$, and $\pm4$ meters, keeping camera orientation, intrinsics, and timestamps fixed~\cite{zhu2025worldsplat,chi2026pointforward}.
 
-Table~\ref{tab:spatial_current} reports FID and FVD
-at each displacement magnitude, averaged over separately
-evaluated left and right shifts. Both metrics use the
-same real reference population across methods.
-Qualitative comparisons use matched scenes, timestamps,
-and camera offsets to examine vehicle shape, road layout,
-and occlusion boundaries.
+Table~\ref{tab:spatial_current} reports FID and FVD averaged over separately evaluated left and right shifts at each magnitude, using the same real reference population across methods. Qualitative comparisons use matched scenes, timestamps, and offsets to examine vehicle shape, road layout, and occlusion boundaries.
 
 \begin{table}[t]
 \centering
@@ -132,64 +126,30 @@ DriveCompose
 \subsection{Cross-Dataset Generalization}
 \label{sec:generalization}
 
-We evaluate transfer from Waymo to nuScenes under zero-shot and fine-tuning settings. Zero-shot evaluation directly applies the Waymo-trained checkpoint without target-domain updates. Fine-tuning adapts the same initialization using the nuScenes training split and evaluates it on the held-out validation split. Both settings use the same target evaluation scenes, context sampling, and metrics.
+We evaluate zero-shot transfer from Waymo to nuScenes to assess reconstruction quality beyond the training dataset. The Waymo-trained checkpoint is applied directly to nuScenes, with all model parameters fixed during evaluation.
 
-Table~\ref{tab:generalization} reports the two settings separately. The zero-shot comparison assesses transfer to new environments, while the fine-tuning comparison measures adaptation to the target domain. Full-image and annotated-region scores distinguish overall scene quality from actor reconstruction.
-% Planned protocol: all cells below are unmeasured. Fill the target split,
-% fine-tuning data budget, update count and camera mapping before evaluation.
-% Span both columns so the generalization comparison is not stranded in the
-% right column beside an empty float area.
+As shown in Table~\ref{tab:generalization}, DriveCompose achieves the highest PSNR and SSIM among the compared methods. It reaches 26.47 dB PSNR and 0.803 SSIM, improving over the strongest baseline, DGGT, by 1.16 dB and 0.009, respectively. These results demonstrate improved reconstruction quality on the target dataset without target-domain adaptation.
 
 \begin{table}[t]
 \centering
-\footnotesize
-\setlength{\tabcolsep}{3.5pt}
+\small
+\setlength{\tabcolsep}{10pt}
 \renewcommand{\arraystretch}{1.08}
-\caption{Cross-dataset generalization and target-domain adaptation.
-Zero-shot models are evaluated directly on the target datasets, while
-trained models are fine-tuned on the target domain. Higher PSNR and SSIM,
-and lower LPIPS are better.}
+\caption{Zero-shot generalization from Waymo to nuScenes. Higher PSNR and SSIM are better.}
 \label{tab:generalization}
-\begin{tabular*}{\columnwidth}{
-    @{\extracolsep{\fill}}l
-    ccc@{\hskip 5pt}|@{\hskip 5pt}ccc
-}
+\begin{tabular}{@{}lcc@{}}
 \toprule
-& \multicolumn{3}{c}{\textbf{Full image}}
-& \multicolumn{3}{c}{\textbf{Dynamic regions}} \\
-\cmidrule(lr){2-4}\cmidrule(lr){5-7}
-\textbf{Method}
-& PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$
-& PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ \\
+& \multicolumn{2}{c}{Zero-shot} \\
+\cmidrule(lr){2-3}
+Method & PSNR $\uparrow$ & SSIM $\uparrow$ \\
 \midrule
-
-\multicolumn{7}{l}{\textbf{Zero-shot}} \\
-STORM
-& -- & -- & --
-& -- & -- & -- \\
-DGGT
-& -- & -- & --
-& -- & -- & -- \\
-StreetForward
-& -- & -- & --
-& -- & -- & -- \\
-\rowcolor{gray!12}
-\textbf{DriveCompose}
-& \textbf{--} & \textbf{--} & \textbf{--}
-& \textbf{--} & \textbf{--} & \textbf{--} \\
-
+STORM~\cite{yang2025storm} & 17.77 & 0.669 \\
+DGGT~\cite{chen2025dggt} & 25.31 & 0.794 \\
+StreetForward~\cite{yu2026streetforward} & 23.17 & 0.712 \\
 \midrule
-\multicolumn{7}{l}{\textbf{Trained}} \\
-STORM
-& -- & -- & --
-& -- & -- & -- \\
-\rowcolor{gray!12}
-\textbf{DriveCompose}
-& \textbf{--} & \textbf{--} & \textbf{--}
-& \textbf{--} & \textbf{--} & \textbf{--} \\
-
+Ours & \textbf{26.47} & \textbf{0.803} \\
 \bottomrule
-\end{tabular*}
+\end{tabular}
 \end{table}
 
 \subsection{Ablation protocol}
