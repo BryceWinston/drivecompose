@@ -1,0 +1,199 @@
+{
+  "figure_id": "drivecompose-overview-20261023",
+  "mode": "source-grounded redesign following user-approved recommendations",
+  "execution": {
+    "requested_deliverable": "redrawn overview with editable labels and connectors",
+    "renderer": "Python vector drawing to PDF and SVG, Poppler PNG preview; Image Gen for independent illustrative input asset",
+    "editability": "SVG text, shapes, paths; single raster input vignette",
+    "outputs": [
+      "paper/fig/drivecompose-overview-20261023.pdf",
+      "paper/fig/drivecompose-overview-20261023.svg",
+      "paper/fig/drivecompose-overview-20261023.png"
+    ]
+  },
+  "claim": "Observed driving evidence is organized on fixed canonical supports, jointly completed under hard observation constraints, checked, and reused as the same content under different states.",
+  "canvas": {
+    "width": 1200,
+    "height": 650,
+    "publication_width_pt": 495,
+    "publication_width_mm": 174.625,
+    "min_font_px": 19.4,
+    "min_effective_font_pt": 8
+  },
+  "narrative_map": {
+    "first_glance": "Partial evidence -> joint completion -> reusable world",
+    "working": "Local groups exchange via shared memory; only unknown codes evolve; observed-only reference gates candidate; world content is reused.",
+    "technical": "Source method Secs 3.2-3.5 retain detailed operators, thresholds, physical constraints and training."
+  },
+  "sources": [
+    "paper/sec/3_method.tex",
+    "src/drivecompose/decomposition.py",
+    "src/drivecompose/networks/completion.py",
+    "src/drivecompose/networks/decoders.py",
+    "src/drivecompose/pipeline.py",
+    "src/drivecompose/validation.py",
+    "src/drivecompose/rendering.py"
+  ],
+  "nodes": [
+    "log",
+    "visual_encoder",
+    "motion_aware_aggregation",
+    "query_supports",
+    "typed_encoders",
+    "local_attention",
+    "shared_memory",
+    "flow_step",
+    "hard_projection",
+    "typed_decoders",
+    "candidate",
+    "observed_only_reference",
+    "original_view_render_check",
+    "fixed_world",
+    "state_driven_composer",
+    "state_branches"
+  ],
+  "edges": [
+    [
+      "log",
+      "visual_encoder"
+    ],
+    [
+      "visual_encoder",
+      "motion_aware_aggregation"
+    ],
+    [
+      "motion_aware_aggregation",
+      "query_supports"
+    ],
+    [
+      "query_supports",
+      "typed_encoders"
+    ],
+    [
+      "typed_encoders",
+      "local_attention"
+    ],
+    [
+      "local_attention",
+      "shared_memory"
+    ],
+    [
+      "shared_memory",
+      "local_attention"
+    ],
+    [
+      "local_attention",
+      "flow_step"
+    ],
+    [
+      "flow_step",
+      "hard_projection"
+    ],
+    [
+      "hard_projection",
+      "local_attention"
+    ],
+    [
+      "hard_projection",
+      "typed_decoders"
+    ],
+    [
+      "typed_encoders",
+      "observed_only_reference"
+    ],
+    [
+      "typed_decoders",
+      "candidate"
+    ],
+    [
+      "candidate",
+      "original_view_render_check"
+    ],
+    [
+      "observed_only_reference",
+      "original_view_render_check"
+    ],
+    [
+      "log",
+      "original_view_render_check"
+    ],
+    [
+      "original_view_render_check",
+      "fixed_world"
+    ],
+    [
+      "fixed_world",
+      "state_driven_composer"
+    ],
+    [
+      "state_branches",
+      "state_driven_composer"
+    ]
+  ],
+  "operands": {
+    "completion": "Observed/current latents, masks/confidence, type, canonical/reference-world coordinates, log summaries, flow time.",
+    "projection": "Restore observed, clear free at EVERY integration step; unknown-only velocity.",
+    "decoding": "Per-query typed decoders; free Gaussian opacity zero; human binding retained; sky separate head.",
+    "validation": "Candidate and observed-only reference rendered at original camera/actor states and compared with recorded views.",
+    "reuse": "Same fixed world with changed camera/vehicle/human states; no resampling."
+  },
+  "negative_paths": [
+    "No orange generated content before completion",
+    "Runtime state must not feed generation",
+    "Validation rejection must not enter reusable world",
+    "Shared memory groups are per region/instance, not just per type",
+    "Observed parameters fixed does not guarantee pixel invariance"
+  ],
+  "abstraction_map": {
+    "training": "Omitted from inference overview; method Sec 3.6",
+    "sky": "Grouped visually with background; explicit + sky label",
+    "exact_thresholds": "Method Sec 3.5",
+    "reference_path": "Explicit observed-only branch in checking inset; same codec noted",
+    "physics": "External state control only; no claimed implemented physics backend"
+  },
+  "evidence_ledger": [
+    {
+      "id": "input_scene",
+      "role": "schematic input vignette",
+      "producer": "built-in Image Gen",
+      "prompt": "asset-prompt-20261023.txt",
+      "empirical": false
+    },
+    {
+      "id": "supports_and_world",
+      "role": "deterministic vector mechanism schematic",
+      "empirical": false
+    }
+  ],
+  "visual_grammar_receipt": {
+    "primary_spine": "left-to-right offline, lower-right state branches",
+    "dominant_focal_zone": "joint completion with shared memory and constrained token evolution",
+    "role_to_shape_mapping": "images: frames; queries: spatial motifs; latents: strips; operators: rectangles; world: spatial Gaussian schematic",
+    "connector_prominence_levels": "1.7 px primary and 1.1 px context; dashed conditional/reference routes",
+    "typography_roles": "24-26 px titles, 21-22 px operators, >=19.4 px detail",
+    "semantic_palette": {
+      "observed": "#2878B8",
+      "unknown": "#DBDFE5",
+      "generated": "#E99739",
+      "free": "hatched white",
+      "memory": "#8662B0"
+    },
+    "grayscale_plan": "render title-hidden and title/L3-hidden vectors to gray previews",
+    "whitespace_functions": [
+      "grouping",
+      "connector_lane",
+      "focal_protection"
+    ],
+    "forbidden_motifs": [
+      "gradient panel background",
+      "colored asset-type semantics",
+      "generated content before completion",
+      "photo-like experimental outputs"
+    ]
+  },
+  "bound_template": {
+    "existing": "overview-template.txt",
+    "scope": "Historical whole-raster generation; retained for provenance, not used to generate this native vector figure. Independent input-illustration prompt follows asset-production.md."
+  },
+  "review": "pending"
+}

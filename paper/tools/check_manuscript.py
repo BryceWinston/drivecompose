@@ -71,6 +71,45 @@ def blank_ablation_tables(source: str) -> tuple[bool, bool]:
     return results[0], results[1]
 
 
+def reported_ablation_tables(source: str, record: dict) -> dict[str, bool]:
+    """Compare each retained result, variant name and input count at recorded precision."""
+    tables = re.findall(r"\\begin\{table\}(.*?)\\end\{table\}", source, re.S)
+    checks = {"ablation_table_count": len(tables) == len(record["tables"])}
+    parsed = {}
+    for label, expected in record["tables"].items():
+        matches = [table for table in tables if "\\label{" + label + "}" in table]
+        rows = []
+        if len(matches) == 1:
+            body = re.search(r"\\midrule(.*?)\\bottomrule", matches[0], re.S)
+            if body:
+                grouped_body = re.sub(r"\\midrule", "", body.group(1))
+                input_t = None
+                for row in re.split(r"\\\\", grouped_body):
+                    if not row.strip():
+                        continue
+                    cells = [re.sub(r"\\textbf\{([^{}]+)\}", r"\1", cell.strip())
+                             for cell in row.split("&")]
+                    cells = [re.sub(r"\\multirow\{2\}\{\*\}\{([^{}]+)\}", r"\1", cell)
+                             for cell in cells]
+                    cells = ["-" if cell == "--" else cell for cell in cells]
+                    if label == "tab:ablation-inputs" and len(cells) == 5:
+                        input_t = cells[0] or input_t
+                        cells = [cells[1], input_t, *cells[2:]]
+                    rows.append(cells)
+        parsed[label] = rows
+        checks[label + ":reported_values_exact"] = rows == expected["rows"]
+    components = {row[0]: row for row in parsed.get("tab:ablation-components", [])
+                  if len(row) == 5}
+    t8 = [row for row in parsed.get("tab:ablation-inputs", [])
+          if len(row) == 5 and row[1] == "8"]
+    checks["ablation_t8_consistent"] = (
+        len(t8) == 2 and {row[0] for row in t8} == {"Ours", "w/o CCM"}
+        and all(row[0] in components and row[3:5] ==
+                [components[row[0]][1], components[row[0]][3]] for row in t8)
+    )
+    return checks
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--archive-root", type=Path,
@@ -102,6 +141,9 @@ def main() -> int:
     framework_path = provenance / "ablation-framework-20261021.json"
     framework_record = (json.loads(framework_path.read_text(encoding="utf-8"))
                         if framework_path.is_file() else None)
+    results_path = provenance / "ablation-results-20261023.json"
+    results_record = (json.loads(results_path.read_text(encoding="utf-8"))
+                      if results_path.is_file() else None)
     frozen = [
         "fig/pointforward/Waymo.pdf", "fig/pointforward/nuScenes.pdf",
         "fig/pointforward/Shift.pdf", "cvpr.sty", "lineno.sty",
@@ -137,22 +179,40 @@ def main() -> int:
         source = uncomment((ROOT / name).read_text(encoding="utf-8")).strip()
         if framework_record:
             required = ["sec:experiments", "sec:ablation-protocol", "sec:ablation-studies",
-                        "sec:ablation-reuse", "tab:ablation-components", "tab:ablation-inputs",
-                        "fig:ablation-reuse"]
+                        "sec:ablation-reuse", "tab:ablation-components", "tab:ablation-inputs"]
+            empty_image_slots = results_record["empty_image_slots"] if results_record else 16
+            if empty_image_slots:
+                required.append("fig:ablation-reuse")
             checks[language + ":ablation_structure"] = (
                 source.startswith("\\section{" + heading + "}")
                 and all(source.count("\\label{" + label + "}") == 1 for label in required)
             )
             scoped_source = ablation_source(source)
-            components_empty, inputs_empty = blank_ablation_tables(scoped_source)
-            checks[language + ":component_results_blank"] = components_empty
-            checks[language + ":input_results_blank"] = inputs_empty
-            checks[language + ":ablation_images_blank"] = (
-                scoped_source.count(r"\begin{figure*}") == 1
-                and scoped_source.count(r"\dcablationcell{") == 16
-                and r"\includegraphics" not in scoped_source
-                and r"\fbox{\rule{0pt}{#2}\rule{.90\linewidth}{0pt}}" in scoped_source
-            )
+            if results_record:
+                checks.update({language + ":" + key: value for key, value in
+                               reported_ablation_tables(scoped_source, results_record).items()})
+                checks[language + ":ablation_error_scale_explicit"] = (
+                    r"$[0,1]$" in scoped_source and "RGB" in scoped_source
+                )
+                checks[language + ":ablation_names_without_ids"] = not re.search(
+                    r"\bA\d+\b", scoped_source
+                )
+            else:
+                components_empty, inputs_empty = blank_ablation_tables(scoped_source)
+                checks[language + ":component_results_blank"] = components_empty
+                checks[language + ":input_results_blank"] = inputs_empty
+            if empty_image_slots:
+                checks[language + ":ablation_images_blank"] = (
+                    scoped_source.count(r"\begin{figure*}") == 1
+                    and scoped_source.count(r"\dcablationcell{") == empty_image_slots
+                    and r"\includegraphics" not in scoped_source
+                    and r"\fbox{\rule{0pt}{#2}\rule{.90\linewidth}{0pt}}" in scoped_source
+                )
+            else:
+                checks[language + ":ablation_figure_removed"] = all(
+                    token not in scoped_source for token in
+                    ("fig:ablation-reuse", r"\begin{figure", r"\dcablationcell", r"\includegraphics")
+                )
         else:
             expected = "\\section{" + heading + "}\n\\label{sec:experiments}"
             checks[language + ":experiments_empty"] = source == expected
@@ -160,7 +220,7 @@ def main() -> int:
         not (ROOT / "sec/4_reference_figures.tex").exists()
         and "4_reference_figures" not in uncomment((ROOT / "main.tex").read_text(encoding="utf-8"))
     )
-    details["experiment_state"] = (framework_record or empty_record)["active_state"]
+    details["experiment_state"] = (results_record or framework_record or empty_record)["active_state"]
     source_hashes = manifest["current_sources_sha256"]
     historical_copies = archive_map["historical_source_copies"]
     missing_source_evidence = []
@@ -226,8 +286,16 @@ def main() -> int:
             experiment_math.append(sorted(re.sub(r"\s+", "", part) for part in
                                           re.findall(r"(?<!\\)\$(.*?)(?<!\\)\$", source, re.S)))
         checks["bilingual_ablation_inline_math_identical"] = experiment_math[0] == experiment_math[1]
-        details["ablation_results_and_images_blank"] = True
-        details["experiment_contract"] = str(framework_path.relative_to(ROOT))
+        details["ablation_results_and_images_blank"] = not bool(results_record)
+        details["ablation_results_filled"] = bool(results_record)
+        details["ablation_images_blank"] = bool(
+            results_record["empty_image_slots"] if results_record else 16
+        )
+        details["ablation_figure_removed"] = bool(
+            results_record and results_record.get("ablation_figure_removed")
+        )
+        details["experiment_contract"] = str(
+            (results_path if results_record else framework_path).relative_to(ROOT))
     details["checks"] = checks
     details["passed"] = all(checks.values())
     target = ROOT / "build/verification.json"

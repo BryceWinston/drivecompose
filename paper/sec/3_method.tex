@@ -95,9 +95,9 @@ Appearance uses a constant RGB term and three local directional coefficients per
 \subsection{Conditional generative reconstruction}
 \label{sec:completion}
 
-\paragraph{Scene-conditioned transformer.}
+\paragraph{Generative completion module.}
 
-We parameterize the completion velocity with a DiT-style transformer~\cite{peebles2023dit} trained by flow matching~\cite{lipman2022flowmatching}. Its input combines current and observed codes, masks, confidence, type, both coordinate descriptions, cell scales, and pooled log features. Background groups follow spatial neighborhoods, each asset forms a local group, and sky directions are grouped by cubemap face. Local self-attention processes these groups separately. Shared memory then communicates their context:
+Our generative completion module (GCM) combines a scene-conditioned flow transformer with constrained sampling. We parameterize its completion velocity with a DiT-style transformer~\cite{peebles2023dit} trained by flow matching~\cite{lipman2022flowmatching}. Its input combines current and observed codes, masks, confidence, type, both coordinate descriptions, cell scales, and pooled log features. Background groups follow spatial neighborhoods, each asset forms a local group, and sky directions are grouped by cubemap face. Local self-attention processes these groups separately. A cross-component memory (CCM) module then exchanges context through shared memory:
 
 \begin{align}
 \mathbf M'&=\mathbf M+\operatorname{Attn}_{r}

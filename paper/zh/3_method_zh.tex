@@ -95,9 +95,9 @@ z_{i,t,v}+\tfrac12\|\boldsymbol\delta_i\|_2<d_{i,t,v}-\eta.
 \subsection{条件生成式重建}
 \label{sec:completion}
 
-\paragraph{场景条件 Transformer。}
+\paragraph{生成式补全模块。}
 
-我们采用 DiT 风格的 Transformer~\cite{peebles2023dit} 参数化补全速度场，并通过流匹配训练~\cite{lipman2022flowmatching}。输入结合当前潜码、已见潜码、掩码、置信度、类型、两种坐标描述、单元尺度和池化日志特征。背景按空间邻域分组，每个资产构成一个局部组，天空方向按立方体贴图面分组。局部自注意力分别处理各组，共享记忆随后交换上下文：
+生成式补全模块（Generative Completion Module，GCM）由场景条件流 Transformer 与约束采样组成。我们采用 DiT 风格的 Transformer~\cite{peebles2023dit} 参数化补全速度场，并通过流匹配训练~\cite{lipman2022flowmatching}。输入结合当前潜码、已见潜码、掩码、置信度、类型、两种坐标描述、单元尺度和池化日志特征。背景按空间邻域分组，每个资产构成一个局部组，天空方向按立方体贴图面分组。局部自注意力分别处理各组，跨组件记忆模块（Cross-Component Memory，CCM）随后通过共享记忆交换上下文：
 
 \begin{align}
 \mathbf M'&=\mathbf M+\operatorname{Attn}_{r}

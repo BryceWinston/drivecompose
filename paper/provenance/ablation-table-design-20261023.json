@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-23",
+  "sources": [
+    {
+      "title": "CrossSDF, CVPR 2025, Tables 4 and 5",
+      "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Walker_CrossSDF_3D_Reconstruction_of_Thin_Structures_From_Cross-Sections_CVPR_2025_paper.pdf",
+      "observation": "Uses w/o + removed component and a full-model label; input-count sensitivity separates methods and input-count groups.",
+      "access": "CVF paper search extract; direct PDF fetch returned HTTP 403."
+    },
+    {
+      "title": "GS-RGBN, CVPR 2025, Tables 2 and 3 / Figure 6",
+      "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Shen_High-fidelity_3D_Object_Generation_from_Single_Image_with_RGBN-Volume_Gaussian_CVPR_2025_paper.pdf",
+      "observation": "Uses w/o labels for removed components and Full model; compact tables separate input-view count from reconstruction metrics.",
+      "access": "CVF paper search extract."
+    }
+  ],
+  "design_decisions": [
+    "Use w/o GCM, w/o CCM and Ours. Define Generative Completion Module (GCM) and Cross-Component Memory (CCM) in both method sections. GCM combines the scene-conditioned flow transformer and constrained sampling; CCM exchanges context within GCM.",
+    "Keep two 9-pt single-column tables with matching width and one-line headers; metric names, units and direction arrows share the same baseline.",
+    "Group input sensitivity by T in the first column, spanning the two comparison rows. Put the ablated variant before the full model consistently.",
+    "Use horizontal booktabs rules and no vertical grid; avoid a nine-metric-column pivot that would require a wider table or smaller font.",
+    "Represent the author-withdrawn Obs-Reg entry by a dash, exclude it from best-value selection, and remove the corresponding zero-regression prose."
+  ],
+  "result_values_changed": [
+    {
+      "variant": "w/o GCM",
+      "metric": "Obs-Reg",
+      "old": "0.000",
+      "new": "-",
+      "authority": "Explicit user request"
+    }
+  ],
+  "other_numeric_results_unchanged": true,
+  "author_follow_up": "Use Ours as the full-model label and component names for both ablated variants. Use single-line headers with metric name, unit and arrow together.",
+  "component_names": {
+    "GCM": {
+      "english": "Generative Completion Module",
+      "chinese": "生成式补全模块",
+      "ablation": "Bypass completion; disable opacity for non-observed, non-sky queries."
+    },
+    "CCM": {
+      "english": "Cross-Component Memory",
+      "chinese": "跨组件记忆模块",
+      "ablation": "Replace shared cross-component memory with isolated per-component memories."
+    }
+  },
+  "validation": {
+    "record": "../build/verification.json",
+    "structural_checks": 52,
+    "all_passed": true,
+    "result_cells_per_language": 29,
+    "unreported_cells_per_language": 1,
+    "best_value_emphasis_verified": true,
+    "remaining_numeric_values_unchanged": true,
+    "bilingual_math_identical": true,
+    "non_ablation_experiment_content_preserved": true,
+    "method_change": "Name existing modules GCM and CCM; formulas and algorithms unchanged.",
+    "headers_single_line": true,
+    "render_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261023-ablation-table-design\\rendered-final"
+  },
+  "preview": "../build/ablation-tables-preview.png"
+}

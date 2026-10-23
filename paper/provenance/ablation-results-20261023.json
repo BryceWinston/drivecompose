@@ -1,0 +1,224 @@
+{
+  "date": "2026-10-23",
+  "source": "User-provided component ablation and input-count sensitivity results in this chat.",
+  "active_state": "Bilingual ablations use Ours, w/o GCM and w/o CCM; component and input-sensitivity tables contain 29 numeric results and one unreported Obs-Reg entry, with Figure 3 and its qualitative placeholders removed. Tables use single-line headers and T-grouped input comparisons.",
+  "supersedes": [
+    "ablation-framework-20261021.json"
+  ],
+  "sources": [
+    "sec/4_experiments.tex",
+    "zh/4_experiments_zh.tex"
+  ],
+  "conditions": {
+    "component_input_timestamps": 8,
+    "cameras": 3,
+    "completion_steps": 24,
+    "completion_disabled_variant": "w/o GCM",
+    "error_scale": "[0,1] linear RGB for New-MAE, NVS-MAE and Obs-Reg",
+    "coverage_and_pass_unit": "percent",
+    "input_timestamps": [
+      2,
+      4,
+      8
+    ],
+    "input_images": [
+      6,
+      12,
+      24
+    ]
+  },
+  "variants": {
+    "Ours": "完整方法 / Ours",
+    "w/o CCM": "移除跨组件记忆模块 / w/o CCM",
+    "w/o GCM": "移除生成式补全模块 / w/o GCM"
+  },
+  "tables": {
+    "tab:ablation-components": {
+      "columns": [
+        "variant",
+        "New-MAE",
+        "Obs-Reg",
+        "Cov. (%)",
+        "Pass (%)"
+      ],
+      "rows": [
+        [
+          "w/o GCM",
+          "0.186",
+          "-",
+          "74.6",
+          "95.0"
+        ],
+        [
+          "w/o CCM",
+          "0.078",
+          "0.005",
+          "94.5",
+          "87.0"
+        ],
+        [
+          "Ours",
+          "0.062",
+          "0.003",
+          "96.3",
+          "93.0"
+        ]
+      ],
+      "unreported_cells": [
+        {
+          "variant": "w/o GCM",
+          "metric": "Obs-Reg",
+          "reason": "Author requested a dash instead of the previously reported 0.000; excluded from best-value comparison."
+        }
+      ]
+    },
+    "tab:ablation-inputs": {
+      "columns": [
+        "variant",
+        "T",
+        "NVS-MAE",
+        "New-MAE",
+        "Cov. (%)"
+      ],
+      "rows": [
+        [
+          "w/o CCM",
+          "2",
+          "0.052",
+          "0.119",
+          "88.5"
+        ],
+        [
+          "Ours",
+          "2",
+          "0.043",
+          "0.092",
+          "91.7"
+        ],
+        [
+          "w/o CCM",
+          "4",
+          "0.038",
+          "0.094",
+          "92.3"
+        ],
+        [
+          "Ours",
+          "4",
+          "0.032",
+          "0.074",
+          "94.6"
+        ],
+        [
+          "w/o CCM",
+          "8",
+          "0.030",
+          "0.078",
+          "94.5"
+        ],
+        [
+          "Ours",
+          "8",
+          "0.026",
+          "0.062",
+          "96.3"
+        ]
+      ],
+      "display_columns": [
+        "T",
+        "variant",
+        "NVS-MAE",
+        "New-MAE",
+        "Cov. (%)"
+      ],
+      "row_grouping": "T spans two rows; ablated variant first, full model second."
+    }
+  },
+  "results_filled": true,
+  "training_executed_by_this_task": false,
+  "raw_logs_independently_verified": false,
+  "inherited_protocol": "Existing scene/mask/seed/aggregation settings are retained; the new user message supplies summary results and the conditions above, not run-level records.",
+  "uncertainty": "No scene-level values, dispersion or confidence intervals were supplied; none are inferred.",
+  "actual_ablation_renderings_added": false,
+  "empty_image_slots": 0,
+  "backup_manifest": "E:/Users/changan/Desktop/论文/pre-research/_archive/drivecompose/20261023-ablation-results/backup-manifest.json",
+  "validation": {
+    "record": "../build/verification.json",
+    "structural_checks": 52,
+    "all_passed": true,
+    "result_cells_per_language": 29,
+    "unreported_cells_per_language": 1,
+    "best_value_emphasis_verified": true,
+    "remaining_numeric_values_unchanged": true,
+    "bilingual_math_identical": true,
+    "non_ablation_experiment_content_preserved": true,
+    "method_change": "Name existing modules GCM and CCM; formulas and algorithms unchanged.",
+    "headers_single_line": true,
+    "render_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261023-remove-figure3\\rendered",
+    "figure3_removed": true,
+    "tables_unchanged": true
+  },
+  "compiled_outputs": [
+    {
+      "language": "en",
+      "pages": 12,
+      "review_pages": [
+        8,
+        9
+      ],
+      "final_log_warnings": [],
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "figure3_removed": true,
+      "sha256": "e2a88d3b9d671dbf6002be752720434402635b84e410621715225e4bb35f19a3",
+      "compiler_exit_code": 0,
+      "visually_verified": true,
+      "final_log_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261023-remove-figure3\\compiler-intermediates\\en\\main.log"
+    },
+    {
+      "language": "zh",
+      "pages": 9,
+      "review_pages": [
+        5,
+        6
+      ],
+      "final_log_warnings": [],
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+      "figure3_removed": true,
+      "sha256": "200cf5a617da34106ad3535544be5054cf37d1389b7a3c2f63139b7749eae523",
+      "compiler_exit_code": 0,
+      "visually_verified": true,
+      "final_log_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261023-remove-figure3\\compiler-intermediates\\zh\\main_zh.log"
+    }
+  ],
+  "source_sha256": {
+    "main.tex": "6dd903083aa6ca127550fc81790fcbffd75e84a2ddff597da784380f7269e0f7",
+    "main_zh.tex": "6b515cb137908a5423ee8ec52d045e166015b60b839e1e5698ab08b2c3648c7d",
+    "sec/3_method.tex": "9943aa34a468a646fe60dee8c0e3da949930e22138402ef68c29642e8ca9af17",
+    "zh/3_method_zh.tex": "92b0e45d84d72cadcb9cf5fdf38b4aa1db5536e98596a043cb31b60740374617",
+    "sec/4_experiments.tex": "693eb409206c92cb0bb7b220c443ec3f9597855f8dd3eb747951c2c8cbe2b83b",
+    "zh/4_experiments_zh.tex": "47eabe6e1a07bfb96c8e5fd8868bab9b532b0e02764a981d5e5e2b8220dfe8cc",
+    "tools/check_manuscript.py": "dec240e9f65841861438e72f325d20d967a1814f0533e04b820e8d378cd77fa0"
+  },
+  "revision_history": [
+    {
+      "date": "2026-10-23",
+      "request": "Delete A3 and A7 and remove all A-number variant labels from the manuscript.",
+      "previous_results_record": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261023-ablation-simplification\\paper\\provenance\\ablation-results-20261023.json"
+    },
+    {
+      "date": "2026-10-23",
+      "request": "Replace No completion Obs-Reg by a dash, redesign Tables 4/5, and research and improve variant names. Follow-up: label the full model Ours. Follow-up: use a component name instead of latent exchange; name and define Cross-Component Memory (CCM). Follow-up: use a component name for completion; name and define Generative Completion Module (GCM). Follow-up: place metric names, units and arrows together in a single header row in both tables.",
+      "previous_results_record": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261023-ablation-table-design\\paper\\provenance\\ablation-results-20261023.json"
+    }
+  ],
+  "component_names": {
+    "CCM": "Cross-Component Memory / 跨组件记忆模块",
+    "GCM": "Generative Completion Module / 生成式补全模块"
+  },
+  "revision": {
+    "date": "2026-10-23",
+    "request": "Remove Figure 3 and its textual references from both language versions.",
+    "previous_results_record": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261023-remove-figure3\\paper\\provenance\\ablation-results-20261023.json"
+  },
+  "ablation_figure_removed": true
+}
