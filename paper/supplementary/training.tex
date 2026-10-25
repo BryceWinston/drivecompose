@@ -23,7 +23,7 @@ The notation $\langle\ell\rangle_{\Omega}$ denotes a mean over valid elements of
 
 \paragraph{Stage 3: completion-prior learning.}
 
-We freeze recovery and the entire codec, encode complete targets as $\mathbf z_1$, and optimize the completion transformer with Eq.~(10) of the main paper. Complete scene or asset examples must provide a valid target for every unknown query in Eq.~(9) of the main paper; partial real logs alone do not meet this condition. Complete scenes provide cross-component context, while complete assets supply within-object content. A validity test rejects targets with unsupported unknown queries.
+We freeze recovery and the entire codec, encode complete targets as $\mathbf z_1$, and optimize the completion transformer with Eq.~(9) of the main paper. Complete scene or asset examples must provide a valid target for every unknown query in Eq.~(8) of the main paper; partial real logs alone do not meet this condition. Complete scenes provide cross-component context, while complete assets supply within-object content. A validity test rejects targets with unsupported unknown queries.
 
 Conditioning masks simulate contiguous unseen surfaces, background holes, long occlusions, short tracks, and uneven camera coverage. Perturbations to recovered poses, instance assignments, and confidence expose the generator to imperfect evidence. Target codes and input codes retain the same codec and query definition throughout this stage.
 

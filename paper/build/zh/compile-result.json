@@ -1,11 +1,11 @@
 {
   "language": "zh",
-  "engine": "XeLaTeX + xdvipdfmx (TeX Live 2026)",
+  "engine": "latexmk / XeLaTeX + xdvipdfmx",
   "exit_code": 0,
-  "finished_at": "2026-10-25T11:56:43.660113+00:00",
+  "finished_at": "2026-10-25T14:23:52.617701+00:00",
   "pdf": "build/zh/main_zh.pdf",
   "pdf_exists": true,
   "pdf_written_this_run": true,
   "pages": 9,
-  "pdf_sha256": "f9086193d86910b349217987929133ad9830cd71a6feaf03f6a8638d06d7f06e"
+  "pdf_sha256": "78d06b4c8ae2490f1f71936a7d7599a13486c4947e7f2882fd52dc84dce6f43f"
 }

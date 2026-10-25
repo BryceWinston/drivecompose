@@ -35,11 +35,12 @@
   \label{fig:waymo-left-shift}
 \end{figure*}
 
-\subsection{消融实验协议}
+\subsection{消融分析}
 \label{sec:ablation-protocol}
 \label{sec:ablations}
+\label{sec:ablation-studies}
 
-\paragraph{输入与固定条件。}
+\paragraph{实验协议。}
 隐藏表面的配对评价定义在具有独立完整参考的场景上；Waymo 日志用于记录视角评价。
 每个窗口含 29 个时间戳，使用前向、左前和右前三路同步相机。
 嵌套输入为 $\mathcal T_2=\{0,28\}$、$\mathcal T_4=\{0,8,20,28\}$ 和 $\mathcal T_8=\{0,4,\ldots,28\}$，共同目标时刻为 $\{2,6,\ldots,26\}$。
@@ -60,9 +61,6 @@ Pass 为固定检查器接受的世界占全部申请世界的比例，构建失
 图像指标纳入全部可渲染候选，包括被拒绝的世界；不可渲染数量单独记录。
 先在场景内平均，再对场景及训练种子汇总。
 
-\subsection{消融分析}
-\label{sec:ablation-studies}
-
 \paragraph{补全与场景上下文。}
 表~\ref{tab:ablation-components} 将完整版本 Ours 与两个对照比较。
 w/o GCM 跳过生成式补全模块，并关闭所有非已见、非天空查询的不透明度。
@@ -75,7 +73,7 @@ CCM 将 New-MAE 从 w/o CCM 的 0.078 降至 Ours 的 0.062，相对降低 20.5\
 
 \begin{table}[t]
   \centering
-  \caption{\textbf{组件消融。}GCM 和 CCM 分别为生成式补全模块与跨组件记忆模块。所有版本采用 $T=8$、三路相机（24 张输入图像）、相同的恢复模块与编解码器及统一评价掩码。启用补全时采用 24 步。New-MAE 和 Obs-Reg 使用 $[0,1]$ 线性 RGB 尺度。质量在接受筛选前计算，Pass 包含全部申请世界。横线表示该指标未报告；粗体表示各列已报告的最优值。}
+  \caption{\textbf{组件消融。}所有版本采用 $T=8$（24 张图像）、相同的恢复模块与编解码器及统一评价掩码。质量在接受筛选前计算，Pass 包含全部申请世界。横线表示该指标未报告；粗体表示各列已报告的最优值。}
   \label{tab:ablation-components}
   \small
   \setlength{\tabcolsep}{3pt}
@@ -103,7 +101,7 @@ CCM 将 New-MAE 从 w/o CCM 的 0.078 降至 Ours 的 0.062，相对降低 20.5\
 
 \begin{table}[t]
   \centering
-  \caption{\textbf{输入时刻数量敏感性。}每组固定 $T$，比较 w/o CCM 与完整模型。三路相机在 $T=2,4,8$ 时提供 6/12/24 张图像，共享时间跨度、模型权重、目标图像和 24 步补全设置。MAE 使用 $[0,1]$ 线性 RGB 尺度；New-MAE 使用共同未见区域。$T=8$ 的结果与表~\ref{tab:ablation-components} 一致。粗体表示每组内的较优值。}
+  \caption{\textbf{输入时刻数量敏感性。}每档 $T$ 比较 w/o CCM 与完整模型，权重和目标视图固定。New-MAE 使用共同未见区域。$T=8$ 的结果与表~\ref{tab:ablation-components} 一致；粗体表示每组内的较优值。}
   \label{tab:ablation-inputs}
   \small
   \setlength{\tabcolsep}{3pt}

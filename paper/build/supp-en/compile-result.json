@@ -1,11 +1,11 @@
 {
   "language": "supp-en",
-  "engine": "XeLaTeX + xdvipdfmx (TeX Live 2026)",
+  "engine": "latexmk / XeLaTeX + xdvipdfmx",
   "exit_code": 0,
-  "finished_at": "2026-10-25T11:56:35.797246+00:00",
+  "finished_at": "2026-10-25T13:56:46.564280+00:00",
   "pdf": "build/supp-en/main.pdf",
   "pdf_exists": true,
   "pdf_written_this_run": true,
-  "pages": 3,
-  "pdf_sha256": "bec5f7cfce7b72136518c9554000f438e448689d639c47814cd96152e7568421"
+  "pages": 4,
+  "pdf_sha256": "61f2bd791da2f2aacf4a93bf91dd3212beeba4d5d5da4a71431fa37041969bf9"
 }
