@@ -1,5 +1,18 @@
 # DriveCompose 双语论文工程
 
+## 独立补充材料（2026-10-25）
+
+原英文 4.4 跨数据集泛化及表 3 已完整迁入 `supplementary/cross_dataset.tex`，并补齐中文 `cross_dataset_zh.tex`。两版补充材料均采用与主稿相同的 CVPR 双栏样式，编号为附录 A、表 S1。`supplementary/` 是独立可编译项目，复用主稿的 `cvpr.sty`、`fontsetup.tex`、`ieeenat_fullname.bst`，`references.bib` 仅包含本补充材料实际引用的三条主书目记录。
+
+在 `paper/supplementary/` 下执行：
+
+```powershell
+latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=../build/supp-en' main.tex
+latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=../build/supp-zh' main_zh.tex
+```
+
+正式输出为 `build/supp-en/main.pdf`、`build/supp-zh/main_zh.pdf`；主稿仍使用 `build/en/main.pdf`、`build/zh/main_zh.pdf`。后续更新模板或这些参考文献时须同时核对两个项目。主稿的 8 页压缩目前仅形成[具体方案](../docs/paper-revision-workflow.md)，尚未执行 Method 等章节的压缩。
+
 目标会议：CVPR 2027。更新日期：2026-10-23。
 
 本工程由用户提供的 MOSAIC 压缩包迁移而来。当前题名为 **DriveCompose: Generative Reconstruction of Compositional Driving Scenes via Joint Completion**，中文题名为 **DriveCompose：通过联合补全实现可组合驾驶场景的生成式重建**。非实验正文按生成式重建框架组织，覆盖视觉恢复、规范聚合、结构潜表示、条件流、类型解码、状态装配与四阶段训练。

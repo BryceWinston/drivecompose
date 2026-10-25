@@ -1,0 +1,15 @@
+% Keep lineno's column marker before the column contents (legacy wrapper).
+% The inherited CVPR style with this TeX version places the hook marker after
+% the contents in the standalone supplementary title path.
+\makeatletter
+\RemoveFromHook{build/column/before}[lineno]
+\let\DCoriginalmakecol\@makecol
+\def\@makecol{%
+  \DCoriginalmakecol
+  \setbox\@outputbox\vbox{%
+    \boxmaxdepth\@maxdepth
+    \protected@write\@auxout{}{%
+      \string\def\string\@LN@column{\if@firstcolumn1\else2\fi}}%
+    \box\@outputbox}}
+\let\@LN@makecol\@makecol
+\makeatother

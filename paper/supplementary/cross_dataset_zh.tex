@@ -1,0 +1,29 @@
+\section{跨数据集泛化}
+\label{sec:generalization}
+
+我们评价从 Waymo 到 nuScenes 的零样本迁移，以考察模型在训练数据集之外的重建质量。将在 Waymo 上训练的检查点直接应用于 nuScenes，评价时固定全部模型参数。
+
+如表~\ref{tab:generalization} 所示，DriveCompose 在所比较方法中取得最高的 PSNR 和 SSIM，分别达到 26.47 dB 和 0.803，比表现最好的基线 DGGT 分别提高 1.16 dB 和 0.009。这些结果表明，在不进行目标域适配的情况下，DriveCompose 提升了目标数据集上的重建质量。
+
+\begin{table}[!htbp]
+\centering
+\small
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.08}
+\caption{从 Waymo 到 nuScenes 的零样本泛化。PSNR 和 SSIM 越高越好。}
+\label{tab:generalization}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+& \multicolumn{2}{c}{Zero-shot} \\
+\cmidrule(lr){2-3}
+Method & PSNR $\uparrow$ & SSIM $\uparrow$ \\
+\midrule
+STORM~\cite{yang2025storm} & 17.77 & 0.669 \\
+DGGT~\cite{chen2025dggt} & 25.31 & 0.794 \\
+StreetForward~\cite{yu2026streetforward} & 23.17 & 0.712 \\
+\midrule
+Ours & \textbf{26.47} & \textbf{0.803} \\
+\bottomrule
+\end{tabular}
+\end{table}
+

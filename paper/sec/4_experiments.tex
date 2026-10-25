@@ -1,14 +1,13 @@
 \section{Experiments}
 \label{sec:experiments}
-We evaluate our method along four axes:
+We evaluate our method along three axes:
 \textit{(i)} dynamic scene reconstruction quality on Waymo Open Dataset
 (\S~\ref{sec:temporal_evaluation});
 \textit{(ii)} off-trajectory view synthesis under lateral
-camera shifts (\S~\ref{sec:spatial_evaluation});
-\textit{(iii)} cross-dataset transfer from Waymo to nuScenes
-(\S~\ref{sec:generalization}); and
-\textit{(iv)} ablations of the main design choices
+camera shifts (\S~\ref{sec:spatial_evaluation}); and
+\textit{(iii)} ablations of the main design choices
 (\S~\ref{sec:ablations}).
+Additional cross-dataset generalization results are provided in the supplementary material.
 
 \subsection{Experimental Setup}
 \label{sec:experimental_setup}
@@ -127,37 +126,8 @@ Ours
 }
 \end{table}
 
-% Avoid stretching paragraph gaps beside the taller single-column table.
+% Keep natural paragraph spacing around the remaining experiment tables.
 \raggedbottom
-\subsection{Cross-Dataset Generalization}
-\label{sec:generalization}
-
-We evaluate zero-shot transfer from Waymo to nuScenes to assess reconstruction quality beyond the training dataset. The Waymo-trained checkpoint is applied directly to nuScenes, with all model parameters fixed during evaluation.
-
-As shown in Table~\ref{tab:generalization}, DriveCompose achieves the highest PSNR and SSIM among the compared methods. It reaches 26.47 dB PSNR and 0.803 SSIM, improving over the strongest baseline, DGGT, by 1.16 dB and 0.009, respectively. These results demonstrate improved reconstruction quality on the target dataset without target-domain adaptation.
-
-\begin{table}[t]
-\centering
-\small
-\setlength{\tabcolsep}{10pt}
-\renewcommand{\arraystretch}{1.08}
-\caption{Zero-shot generalization from Waymo to nuScenes. Higher PSNR and SSIM are better.}
-\label{tab:generalization}
-\begin{tabular}{@{}lcc@{}}
-\toprule
-& \multicolumn{2}{c}{Zero-shot} \\
-\cmidrule(lr){2-3}
-Method & PSNR $\uparrow$ & SSIM $\uparrow$ \\
-\midrule
-STORM~\cite{yang2025storm} & 17.77 & 0.669 \\
-DGGT~\cite{chen2025dggt} & 25.31 & 0.794 \\
-StreetForward~\cite{yu2026streetforward} & 23.17 & 0.712 \\
-\midrule
-Ours & \textbf{26.47} & \textbf{0.803} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
 \subsection{Ablation protocol}
 \label{sec:ablation-protocol}
 \label{sec:ablations}

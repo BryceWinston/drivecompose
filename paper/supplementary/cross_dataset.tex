@@ -1,0 +1,29 @@
+\section{Cross-Dataset Generalization}
+\label{sec:generalization}
+
+We evaluate zero-shot transfer from Waymo to nuScenes to assess reconstruction quality beyond the training dataset. The Waymo-trained checkpoint is applied directly to nuScenes, with all model parameters fixed during evaluation.
+
+As shown in Table~\ref{tab:generalization}, DriveCompose achieves the highest PSNR and SSIM among the compared methods. It reaches 26.47 dB PSNR and 0.803 SSIM, improving over the strongest baseline, DGGT, by 1.16 dB and 0.009, respectively. These results demonstrate improved reconstruction quality on the target dataset without target-domain adaptation.
+
+\begin{table}[!htbp]
+\centering
+\small
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.08}
+\caption{Zero-shot generalization from Waymo to nuScenes. Higher PSNR and SSIM are better.}
+\label{tab:generalization}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+& \multicolumn{2}{c}{Zero-shot} \\
+\cmidrule(lr){2-3}
+Method & PSNR $\uparrow$ & SSIM $\uparrow$ \\
+\midrule
+STORM~\cite{yang2025storm} & 17.77 & 0.669 \\
+DGGT~\cite{chen2025dggt} & 25.31 & 0.794 \\
+StreetForward~\cite{yu2026streetforward} & 23.17 & 0.712 \\
+\midrule
+Ours & \textbf{26.47} & \textbf{0.803} \\
+\bottomrule
+\end{tabular}
+\end{table}
+

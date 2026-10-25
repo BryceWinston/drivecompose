@@ -2,10 +2,10 @@
   "language": "zh",
   "engine": "XeLaTeX + xdvipdfmx (TeX Live 2026)",
   "exit_code": 0,
-  "finished_at": "2026-10-25T07:35:36.5025486Z",
+  "finished_at": "2026-10-25T11:56:43.660113+00:00",
   "pdf": "build/zh/main_zh.pdf",
   "pdf_exists": true,
   "pdf_written_this_run": true,
-  "pages": 10,
-  "pdf_sha256": "858dd883a5a589b9a50f2c981be5708f3480fd628d619cfea710c24ba2604194"
+  "pages": 9,
+  "pdf_sha256": "f9086193d86910b349217987929133ad9830cd71a6feaf03f6a8638d06d7f06e"
 }

@@ -2,6 +2,12 @@
 \label{sec:experiments}
 % 消融数值由用户于 2026-10-23 提供。
 
+我们从三个方面评价方法：
+\textit{（i）}Waymo Open Dataset 上的动态场景重建质量（第~\ref{sec:temporal_evaluation} 节）；
+\textit{（ii）}横向相机偏移下的轨迹外视图合成（第~\ref{sec:spatial_evaluation} 节）；
+\textit{（iii）}主要设计的消融分析（第~\ref{sec:ablations} 节）。
+跨数据集泛化结果见补充材料。
+
 \subsection{动态场景重建}
 \label{sec:temporal_evaluation}
 
@@ -31,6 +37,7 @@
 
 \subsection{消融实验协议}
 \label{sec:ablation-protocol}
+\label{sec:ablations}
 
 \paragraph{输入与固定条件。}
 隐藏表面的配对评价定义在具有独立完整参考的场景上；Waymo 日志用于记录视角评价。
