@@ -17,6 +17,18 @@
 \paragraph{定性比较。}
 图~\ref{fig:dynamic-reconstruction} 中，DriveCompose 保留了第一行的行人轮廓和第二行中央车辆的尾部外形，同时恢复周围街道布局。基线渲染在上方样例中出现参与者轮廓偏移或重复，在下方样例中出现道路结构模糊或畸变。DriveCompose 在这些展示样例中更接近参考结构，第三行行人周围及最后一行停放的皮卡附近仍有残余伪影。
 
+\subsection{轨迹外视图合成}
+\label{sec:spatial_evaluation}
+
+图~\ref{fig:waymo-left-shift} 展示 Waymo 数据集上相机向左偏移 $2\,\mathrm{m}$ 的定性视图外推结果，通过五组场景比较车辆外形、道路布局与遮挡边界。
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig/assets/Shift.pdf}
+  \caption{\textbf{Waymo 数据集上相机向左偏移 2 m 的定性视图外推结果。}每列展示一个场景，从上至下依次为参考图像（GT）、STORM、DGGT 和 DriveCompose（Ours）。}
+  \label{fig:waymo-left-shift}
+\end{figure*}
+
 \subsection{消融实验协议}
 \label{sec:ablation-protocol}
 
