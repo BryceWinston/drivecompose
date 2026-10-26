@@ -25,8 +25,8 @@
 \input{sec/0_abstract}
 \begin{figure*}[t]
   \centering
-  \includegraphics[width=\textwidth]{fig/drivecompose-overview-20261021.png}
-  \caption{\textbf{DriveCompose overview.} (a) Calibrated images provide geometry, identity, and motion evidence, which is aggregated on background and canonical asset supports and encoded into structured latents. (b) A scene-conditioned flow transformer completes unknown codes while retaining observed content and suppressing free space. (c) Typed decoders produce Gaussian components. A check in the original views precedes scene reuse; camera and actor states then control composition and rendering. Scene depictions are schematic, not experimental outputs.}
+  \includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}
+  \caption{\textbf{DriveCompose overview.} (a) A shared ViT extracts visual evidence, which is aggregated on background and canonical asset supports and encoded into structured latents. (b) Joint completion applies local attention within groups and shares context through cross-component memory (CCM). (c) Type-specific decoders produce the Gaussian background, canonical vehicle and human assets, and a sky map.}
   \label{fig:teaser}
 \end{figure*}
 \def\CVPRMAIN{}

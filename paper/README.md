@@ -26,7 +26,7 @@ latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=../build/supp-
 - `main.tex`：英文入口；`sec/`：英文各章节。
 - `main_zh.tex`：中文入口；`zh/`：中文各章节，采用与英文相同的方法符号与结构。
 - `main.bib`：两版共用的 84 条当前引用。用户 DOCX 的 75 条全部纳入，9 条与原书目重复、新增 66 条；文档之外的 9 条项目近邻工作保留。逐条引用位置见 [引用接入记录](provenance/reference-integration-20261021.md)。
-- `fig/drivecompose-overview-20261021.png`：两版共用的 Image Gen 总览图，参考 DGGT 的分区与中间表示视觉语言；场景全部为机制示意。旧 TikZ 与旧 PNG 保留，不再进入当前正文。
+- `fig/drivecompose-inference-overview.png`：两版共用的 Image Gen 总览图，展示结构化编码、联合 DiT 与高斯解码；ViT 到 DiT 之间使用抽象潜码，场景全部为机制示意。旧 TikZ、历史 PNG 和未采用草稿已移至[项目外归档](../../_archive/drivecompose/20261026-tracked-intermediates)。
 - [总览图说明](../docs/figures/overview/README.md)：当前光栅总览图的设计、图注与审核记录；前版制作过程在项目外归档。
 - [结构参考与改写依据](provenance/structure-study-20261020.md)：四篇录用论文的章节观察和本轮采用的安排。
 - `fig/pointforward/`：原实验章节依赖的三张来源图，原样保留。
@@ -64,7 +64,7 @@ python tools/check_manuscript.py
 
 `tools/check_manuscript.py` 按当前消融结果记录逐格核对两张表的版本、输入数量与全部数值，并检查 T=8 跨表一致性、RGB 尺度说明、图 3 及其引用已移除和双语公式；原实验备份、依赖图哈希、归档完整性、会议年份、引用和方法公式检查继续保留。归档位置由 `provenance/archive-map.json` 指定；若归档另存他处，使用 `python tools/check_manuscript.py --archive-root "归档目录"`。缺少归档时检查会报错，论文编译本身不依赖外部归档。
 
-来源清单保留旧路径和原哈希，当前文档链接的改动另行记录。校验时，已更新的两份设计文档与其整理前快照核对，其余设计与实现文件仍与原清单核对；检查结果分别列出历史证据完整性和当前文档变化。当前构建目录保留中英文 PDF、编译记录与日志、`build/verification.json` 和 `build/ablation-framework-check.json`。历史检查与编译中间文件移至项目外，旧路径及归档位置见 [整理记录](provenance/build-directory-cleanup-20261021.json)。
+来源清单保留旧路径和原哈希，当前文档链接的改动另行记录。校验时，已更新的两份设计文档与其整理前快照核对，其余设计与实现文件仍与原清单核对；检查结果分别列出历史证据完整性和当前文档变化。当前构建目录保留主稿及补充材料的双语正式 PDF、`compile-result.json`、`build/verification.json` 和总览图最终核验记录。历史检查、预览、基线快照及编译文本日志已归档。历史检查与编译中间文件移至项目外，旧路径及归档位置见 [整理记录](provenance/build-directory-cleanup-20261021.json)。
 
 ## 模板状态
 

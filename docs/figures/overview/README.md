@@ -1,12 +1,13 @@
 # DriveCompose 当前总览图
 
-2026-10-21 更新。两版论文共同使用 [总览图](../../../paper/fig/drivecompose-overview-20261021.png)。内置 Image Gen 生成，场景为机制示意，不是实验结果；PNG 是光栅图，不宣称为可编辑矢量。
+2026-10-26 更新。用户明确指定 `repair-attempt.png`（原图已移入项目外归档）后，两版论文共同使用[主推理流程总览图](../../../paper/fig/drivecompose-inference-overview.png)。内置 Image Gen 生成，场景为机制示意，不是实验结果；PNG 是光栅图，不宣称为可编辑矢量。
 
-三部分依次说明视觉恢复与规范聚合、结构潜码上的条件生成、类型解码与状态驱动复用。DGGT 图 2 提供分区、视觉密度及中间表示的参考；其方法、结果和原始图像未移入本图。采样内部过程归入 Conditional flow，检查内部比较在正文第 3.5 节展开。
+三部分依次说明结构化编码、联合 DiT 补全和类型高斯解码，重点展示局部注意力与跨组件记忆 CCM。ViT 到 DiT 之间只画抽象特征与潜码；检查、状态复用、仿真及 known/unknown 图例不在本图展示，相关方法定义仍保留在正文和补充材料。两张用户提供的参考图只提供视觉风格。
 
-- [最终完整生成指令](production-prompt-20261021-v4.txt)
-- [设计规格](design-spec-20261021.json)
+- [最终完整生成指令](drafts/inference-overview/production-prompt.txt)
+- [设计规格与采用记录](drafts/inference-overview/design-spec.json)
 - [图注](caption.md)
-- [改写与核验记录](../../../paper/provenance/revision-20261021.md)
+- [前后对照与替换理由](../../paper-revision-changes.md)
+- [候选生成记录](drafts/inference-overview/README.md)
 
-最终指令 23,277 个非空白字符，绑定模板 15,356 字符，长度检查通过。候选与生成失败记录保存在项目外 `_archive/drivecompose/20261021-generative-rewrite/`。旧 TikZ 和历史 PNG 保留作为可追溯来源，当前正文不引用。
+活动图尺寸 2079 × 756，按论文跨栏宽度原比例放置。对应指令 26,503 个非空白字符，绑定模板 15,356 字符，长度检查通过。候选图、中间产物与本轮修改前基线已移入[项目外归档](../../../../_archive/drivecompose/20261026-overview-intermediates)，具体路径及 SHA256 见[归档清单](../../../../_archive/drivecompose/20261026-overview-intermediates/archive-manifest.json)；旧 TikZ、历史 PNG、旧指令及未采用训练图已移入[历史图件归档](../../../../_archive/drivecompose/20261026-tracked-intermediates)，仍可按原路径层级追溯。2026-10-21 的制作记录保留在原文件中，不作为当前图的核验结论。

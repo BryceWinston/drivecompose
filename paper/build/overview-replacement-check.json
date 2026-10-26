@@ -1,0 +1,52 @@
+{
+  "asset_sha256": "79eb11de6e2257b089647fe5d314e93414b85381eb276fe3656937ad06c1701c",
+  "approved_image_copied_exactly": true,
+  "image_pixels": [
+    2079,
+    756
+  ],
+  "selected_source": "../_archive/drivecompose/20261026-overview-intermediates/docs/figures/overview/drafts/inference-overview/work/repair-attempt.png",
+  "integration_baseline": "../_archive/drivecompose/20261026-push-integration/integration.json",
+  "previous_caption_check": "../_archive/drivecompose/20261026-push-integration/local-overview-check.json",
+  "remote_commit": "1e2dd7903fb64801f68a5e5915e0888ac91b72a1",
+  "local_pre_rebase_commit": "f0a79bb6183f1bdd37b4be0a8fee37ed471038e3",
+  "remote_title_and_introduction_preserved": true,
+  "local_overview_and_method_scope_preserved": true,
+  "manuscript_checks_passed": 52,
+  "languages": {
+    "en": {
+      "pages": 11,
+      "figure_page": 2,
+      "approved_image_pixels_match": true,
+      "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "pdf_sha256": "eaf302588c4b5ec605b408761a4d4a7bab9ab4c93705ea9160689e73de02c927",
+      "bad_log_lines": [],
+      "conclusion_pages": [
+        9
+      ],
+      "references_start_page": 9,
+      "body_end_page": 9,
+      "body_page_limit_met": false,
+      "remote_before_merge_body_end_page": 9
+    },
+    "zh": {
+      "pages": 9,
+      "figure_page": 2,
+      "approved_image_pixels_match": true,
+      "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+      "pdf_sha256": "b4b055f0fde592b1f2edee3e2bfbea93f14e7d12cf3a9ef033d4f4fa2a2ba045",
+      "bad_log_lines": []
+    }
+  },
+  "visual_review": {
+    "status": "pass",
+    "overlap_or_clipping": false,
+    "reviewed_renderings": [
+      "../_archive/drivecompose/20261026-push-integration/en-page1.png",
+      "../_archive/drivecompose/20261026-push-integration/en-page2.png",
+      "../_archive/drivecompose/20261026-push-integration/zh-page2.png",
+      "../_archive/drivecompose/20261026-push-integration/en-page8.png",
+      "../_archive/drivecompose/20261026-push-integration/en-page9.png"
+    ]
+  }
+}

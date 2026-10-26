@@ -52,3 +52,7 @@
 - [修改前源码、PDF、原目录编译和对比材料](../../../_archive/drivecompose/20261021-source-experiment-match/)
 
 按用户最新指令，两版仅保留实验章节标题，先前导入与英文图片补充已撤出当前稿。前文的实验导入和图片恢复条目保留为历史记录；其他章节不变，本轮不提交或推送。
+
+## 已提交过程文件归档（2026-10-26）
+
+旧总览图及制作文件、未采用训练/推理图草稿、历史预览和基线、四份编译文本日志已移至[项目外归档](../../../_archive/drivecompose/20261026-tracked-intermediates)；[逐文件清单与哈希](../../../_archive/drivecompose/20261026-tracked-intermediates/archive-manifest.json)记录 30 个文件的原路径。旧总览图副本改由 `archive-map.json` 的 `overview_copy_relative_to_project` 定位，继续与原始归档核对哈希。正式主稿、补充材料 PDF、当前图像、算法源码和原始实验来源保留。

@@ -1,0 +1,154 @@
+{
+  "status": "adopted_in_bilingual_manuscripts",
+  "scope": "approved main-inference overview adopted as Figure 1",
+  "baseline": {
+    "git_head": "d741912c7a666308c5363cfb79a6c51b11b76e2b",
+    "image": "../../../../../../_archive/drivecompose/20261026-tracked-intermediates/docs/figures/overview/drafts/20261023-reference-style/candidate-v5.png",
+    "sha256": "55b02eb44ad8c2404e691e3348f2da84b013108fb037693db81025af2e7a1188"
+  },
+  "changes": [
+    "Remove check, reuse, simulation, solver details and evidence-state legend",
+    "No scene/object imagery between ViT and output decoders",
+    "Enlarge joint DiT and show local groups exchanging with one CCM",
+    "End at typed Gaussian components"
+  ],
+  "nodes": [
+    "Driving images",
+    "ViT",
+    "Visual features",
+    "Canonical aggregation",
+    "Typed latent encoders",
+    "Structured latents",
+    "Joint completion DiT",
+    "Local attention",
+    "CCM",
+    "Completed latents",
+    "Typed Gaussian decoders",
+    "Gaussian components"
+  ],
+  "permitted_abstractions": {
+    "joint_completion": "Entire conditional-flow inference grouped; local attention and CCM expanded, numerical integration omitted",
+    "background": "Background and sky grouped",
+    "masks": "Omitted from display per explicit user instruction; method unchanged"
+  },
+  "references": [
+    "../../../../../../_archive/drivecompose/20261026-tracked-intermediates/docs/figures/overview/drafts/20261023-reference-style/style-reference-1.png",
+    "../../../../../../_archive/drivecompose/20261026-tracked-intermediates/docs/figures/overview/drafts/20261023-reference-style/style-reference-2.png"
+  ],
+  "sources": [
+    "paper/sec/3_method.tex",
+    "src/drivecompose/pipeline.py",
+    "src/drivecompose/networks/completion.py"
+  ],
+  "execution": {
+    "backend": "built-in Image Gen",
+    "output": "../../../../../paper/fig/drivecompose-inference-overview.png",
+    "editability": false,
+    "manuscript_modified": true,
+    "manuscript_asset": "paper/fig/drivecompose-inference-overview.png",
+    "selected_existing_file": true
+  },
+  "image_pixels": [
+    2079,
+    756
+  ],
+  "prompt_non_whitespace_chars": 26503,
+  "template_non_whitespace_chars": 15356,
+  "review": {
+    "mode": "user_selected_existing_image",
+    "user_confirmation": "User explicitly selected work/repair-attempt.png on 2026-10-26; use this exact file without further drawing edits.",
+    "manuscript_insertion": true,
+    "empirical_results": false,
+    "pdf_validation": "paper/build/overview-replacement-check.json",
+    "image_identity": "Archived selected source and manuscript asset are byte-identical; embedded PDF pixels were verified before archival. The duplicate candidate was archived."
+  },
+  "repair_baseline": {
+    "git_head": "d741912c7a666308c5363cfb79a6c51b11b76e2b",
+    "image": "../../../../../../_archive/drivecompose/20261026-overview-intermediates/docs/figures/overview/drafts/inference-overview/baseline/candidate.png",
+    "sha256": "35085490d036fbbf87fcf13caa55d458eeb5bf78380bf5c44fc815193934cb89"
+  },
+  "current_sha256": "79eb11de6e2257b089647fe5d314e93414b85381eb276fe3656937ad06c1701c",
+  "historical_review": {
+    "image_sha256": "cd605b62dce191e14fddf4231c071b44d0fb20b39b23668505c604d0e8546175",
+    "review": {
+      "mode": "self_review",
+      "scope": "main-inference candidate only",
+      "removed": [
+        "observation check",
+        "reuse",
+        "simulation",
+        "known/unknown/free legend",
+        "sampling notes"
+      ],
+      "representation_check": "Images only at input and after Gaussian decoders; ViT-to-DiT intermediates are abstract tokens.",
+      "shape_check": "E contracts left-to-right; D expands left-to-right.",
+      "flow_check": "Shared encoder, aggregation fan-out, three typed lanes through joint completion, matched typed decoders; bidirectional local/CCM exchange.",
+      "manuscript_insertion": true,
+      "user_confirmation": "approved for replacement by user on 2026-10-26",
+      "empirical_results": false,
+      "six_fixes": [
+        {
+          "id": 1,
+          "status": "pass",
+          "finding": "Completed-latent arrows start at outer DiT boundary ports; no direct outgoing connection from CCM."
+        },
+        {
+          "id": 2,
+          "status": "pass",
+          "finding": "Exactly one bidirectional component-memory link in each of the three rows."
+        },
+        {
+          "id": 3,
+          "status": "pass",
+          "finding": "Local-attention dashed frame and upper-left ghost line removed."
+        },
+        {
+          "id": 4,
+          "status": "pass",
+          "finding": "Central blue region is now the widest; two input images. Actual boundaries recorded by color scan rather than assuming exact prompt percentages."
+        },
+        {
+          "id": 5,
+          "status": "pass",
+          "finding": "Background output depicts static road, buildings, vegetation and sky without visible traffic participants; actor outputs remain separate."
+        },
+        {
+          "id": 6,
+          "status": "pass",
+          "finding": "Local group label is Background region; instance labels Vehicle i and Human j retained."
+        }
+      ],
+      "method": "Full-image visual self-review, source-linked scoped correction; not a publication or empirical-results certification.",
+      "pdf_validation": "paper/build/overview-replacement-check.json"
+    },
+    "layout_guide": "../../../../../../_archive/drivecompose/20261026-overview-intermediates/docs/figures/overview/drafts/inference-overview/work/layout-guide.png",
+    "layout_panel_scan": {
+      "y": 726,
+      "segments": [
+        [
+          "green",
+          8,
+          682
+        ],
+        [
+          "blue",
+          692,
+          1629
+        ],
+        [
+          "cream",
+          1642,
+          2071
+        ]
+      ]
+    }
+  },
+  "selected_source": "../../../../../../_archive/drivecompose/20261026-overview-intermediates/docs/figures/overview/drafts/inference-overview/work/repair-attempt.png",
+  "selection_baseline": "../_archive/drivecompose/20261026-overview-intermediates/paper/build/latent-alignment-baseline/before-user-selection/manifest.json",
+  "archive": {
+    "root_from_repository": "../_archive/drivecompose/20261026-overview-intermediates",
+    "manifest_from_repository": "../_archive/drivecompose/20261026-overview-intermediates/archive-manifest.json",
+    "hash_verified": true
+  },
+  "historical_assets_archive": "../_archive/drivecompose/20261026-tracked-intermediates"
+}

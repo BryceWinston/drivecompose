@@ -23,5 +23,12 @@
     "files/paper/build/language-edit-audit.json",
     "files/paper/build/language-edit-counts.json"
   ],
-  "semantics": "source-manifest.json is the unchanged migration snapshot; current README and figure links are updated during cleanup."
+  "semantics": "source-manifest.json is the unchanged migration snapshot; current README and figure links are updated during cleanup.",
+  "overview_copy_relative_to_project": "../_archive/drivecompose/20261026-tracked-intermediates/paper/fig/drivecompose-overview.png",
+  "committed_intermediates_archive": {
+    "date": "2026-10-26",
+    "root_relative_to_project": "../_archive/drivecompose/20261026-tracked-intermediates",
+    "manifest": "archive-manifest.json",
+    "tracked_files_moved": 30
+  }
 }

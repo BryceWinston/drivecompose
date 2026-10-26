@@ -33,7 +33,8 @@
     }
   },
   "source_git_commit": "7c1acf4aa02b432a3173f167e1663a5f274cb844",
-  "raster_overview_role": "historical design draft; current entries use generated overview 20261021",
+  "historical_overview_copy": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261026-tracked-intermediates\\paper\\fig\\drivecompose-overview.png",
+  "raster_overview_role": "historical design draft; current entries use the approved inference overview",
   "experiment_state": "Bilingual ablations use Ours, w/o GCM and w/o CCM; component and input-sensitivity tables contain 29 numeric results and one unreported Obs-Reg entry, with Figure 3 and its qualitative placeholders removed. Tables use single-line headers and T-grouped input comparisons.",
   "invalid_migration_source_evidence": [],
   "changed_project_sources_since_migration": [
@@ -49,8 +50,8 @@
   "zh:missing_citations": [],
   "zh:missing_files": [],
   "displayed_method_math_blocks": {
-    "en": 15,
-    "zh": 15
+    "en": 10,
+    "zh": 10
   },
   "bibliography_entries": 52,
   "bilingual_experiments_intentionally_empty": false,

@@ -1,7 +1,9 @@
 *.aux
 *.bbl
 *.blg
+*.brf
 *.log
 *.out
 *.synctex.gz
 *.xdv
+build/**/compiler-output.txt

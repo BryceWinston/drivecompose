@@ -49,7 +49,7 @@ DGGT 引言由驾驶日志的重建用途进入，随后收紧到逐场景优化
 | N5，Major，Blocking 否 | [贡献第 18–20 行](E:/Users/changan/Desktop/论文/pre-research/drivecompose/paper/sec/1_introduction.tex:18) 并列联合补全、观测约束、固定世界变换 | 方法机制、系统能力和成熟表示处于同一层级，容易迫使作者为每项分别寻找新颖性 | 按整体框架、关键补全设计和实证发现组织；状态驱动复用作为框架输出及应用验证，不单凭标准变换建立新颖性 |
 | n1，Minor | [标题](E:/Users/changan/Desktop/论文/pre-research/drivecompose/paper/main.tex:16) 堆叠 Observation-Anchored、Joint、Composable、Gaussian、Worlds | 标题先要求读者理解术语组合，任务入口较弱 | 改成任务、对象与关键条件明确的标题，机制名称留给摘要和方法 |
 | n2，Minor | [相关工作](E:/Users/changan/Desktop/论文/pre-research/drivecompose/paper/sec/2_related_work.tex:5) 多段后半重复介绍本方法 | 与引言争夺功能，缺少充分解释相关技术关系的空间 | 按既有能力、尚未解决的具体需求、本方法采用或改变的部分来写；补齐实际使用组件的来源 |
-| n3，Minor | [图 1](E:/Users/changan/Desktop/论文/pre-research/drivecompose/paper/fig/drivecompose-overview-vector.tex) 主要是 token、注意力、恢复与检查框 | 当前图能说明控制流，但不能直观说明新视角和新状态下究竟改善了什么 | 将结果预览与架构分开；缺真实结果时保留清楚标注的示意，后续用可追溯渲染替换结果位置 |
+| n3，Minor | [图 1](../../_archive/drivecompose/20261026-tracked-intermediates/paper/fig/drivecompose-overview-vector.tex) 主要是 token、注意力、恢复与检查框 | 当前图能说明控制流，但不能直观说明新视角和新状态下究竟改善了什么 | 将结果预览与架构分开；缺真实结果时保留清楚标注的示意，后续用可追溯渲染替换结果位置 |
 
 N2、N3 中有两类不同的缺口。已存在于文档或代码中的内容需要写清楚，例如轨迹级身份、逐时刻状态、类别支撑和冻结顺序；完整目标数据、实际模板提供器、训练记录及真实后端则需要项目工作。不能靠增加一段文字把后一类缺口变成已完成模块。
 

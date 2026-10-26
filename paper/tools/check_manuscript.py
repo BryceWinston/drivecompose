@@ -164,14 +164,21 @@ def main() -> int:
     details["source_git_commit"] = manifest["source_git_commit"]
 
     overview_source = archive_root / archive_map["overview_original"]
-    checks["overview_copy_exact"] = digest((ROOT / "fig/drivecompose-overview.png").read_bytes()) == digest(overview_source.read_bytes())
-    details["raster_overview_role"] = "historical design draft; current entries use generated overview 20261021"
-    overview = ROOT / "fig/drivecompose-overview-20261021.png"
+    historical_overview = (ROOT.parent / archive_map.get(
+        "overview_copy_relative_to_project", "paper/fig/drivecompose-overview.png"
+    )).resolve()
+    checks["overview_copy_exact"] = (
+        historical_overview.is_file()
+        and digest(historical_overview.read_bytes()) == digest(overview_source.read_bytes())
+    )
+    details["historical_overview_copy"] = str(historical_overview)
+    details["raster_overview_role"] = "historical design draft; current entries use the approved inference overview"
+    overview = ROOT / "fig/drivecompose-inference-overview.png"
     checks["generated_overview_exists"] = overview.is_file()
     for entry in ("main.tex", "main_zh.tex"):
         source = uncomment((ROOT / entry).read_text(encoding="utf-8"))
         checks[entry + ":generated_overview_active"] = (
-            r"\includegraphics[width=\textwidth]{fig/drivecompose-overview-20261021.png}" in source
+            r"\includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}" in source
             and "drivecompose-overview.png" not in source
         )
     for language, name, heading in (("en", "sec/4_experiments.tex", "Experiments"),

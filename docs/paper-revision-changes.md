@@ -2,7 +2,7 @@
 
 更新：2026-10-25。仅修改中英文主稿 §3.2、§3.5，新增双语补充材料 C/D。图示仅提出建议，本轮未改 Figure 1，也未增加正文图。其他主稿章节（含上一轮 §3.6）保持本轮起点原文。
 
-基线：HEAD `ee5b6cb` 上的本轮未提交工作区。真实原文保存在 `paper/build/revision-baseline.json` 的 `composition_frontend_before`，英文 PDF 哈希、逐页文本和位置测量保存在 `composition_frontend_pdf_before`。Git 未暂存差异还包含此前 §3.6 的改动；本轮范围以此记录及[本轮彩色左右对照](../paper/build/method-revision-diff.html)为准。
+基线：HEAD `ee5b6cb` 上的本轮未提交工作区。真实原文保存在 `paper/build/revision-baseline.json` 的 `composition_frontend_before`，英文 PDF 哈希、逐页文本和位置测量保存在 `composition_frontend_pdf_before`。Git 未暂存差异还包含此前 §3.6 的改动；本轮范围以此记录及[本轮彩色左右对照](../../_archive/drivecompose/20261026-tracked-intermediates/paper/build/method-revision-diff.html)为准。
 
 ## 1. 代表性前后对照与理由
 
@@ -892,7 +892,7 @@ Reusing a driving scene under new camera and actor states exposes surfaces that 
 - 篇幅取舍：图按英文双栏通栏宽度约占 0.29 页，尚未计图注与配套文字；相比当前约 0.46 页的 3.6，不保证显著省页。纯文字略写或并入已有总览图可能更省。尚未进行主稿插图与编译测量。
 - 双语渲染和原生对象边界检查通过，每页 20 个原生对象、0 个图片对象。
 
-[可编辑 PPT](../paper/fig/training-inference/training-inference.pptx) · [英文预览](../paper/fig/training-inference/training-inference-en.png) · [中文预览](../paper/fig/training-inference/training-inference-zh.png) · [拟替换短文、原因及篇幅评估](../paper/fig/training-inference/README.md)。短文只是草案，未写入正文。
+[可编辑 PPT](../../_archive/drivecompose/20261026-tracked-intermediates/paper/fig/training-inference/training-inference.pptx) · [英文预览](../../_archive/drivecompose/20261026-tracked-intermediates/paper/fig/training-inference/training-inference-en.png) · [中文预览](../../_archive/drivecompose/20261026-tracked-intermediates/paper/fig/training-inference/training-inference-zh.png) · [拟替换短文、原因及篇幅评估](../../_archive/drivecompose/20261026-tracked-intermediates/paper/fig/training-inference/README.md)。短文只是草案，未写入正文。
 
 ## 2026-10-25：训练与推理图的 imagegen 视觉草案
 
@@ -903,7 +903,7 @@ Reusing a driving scene under new camera and actor states exposes surfaces that 
 - 检查并修正：完整监督目标与预测输出分开；适配仅回传更新 GCM；渲染步骤明确标注；街景均为生成式示意，不是实验结果。
 - 这是位图视觉草案，不是更新后的原生 PPT；未据此宣称主稿节省页数。
 
-[图稿](../paper/fig/training-inference/training-inference-illustrated.png) · [完整生成与修正提示词](../paper/fig/training-inference/imagegen-prompt.txt)。
+[图稿](../../_archive/drivecompose/20261026-tracked-intermediates/paper/fig/training-inference/training-inference-illustrated.png) · [完整生成与修正提示词](../../_archive/drivecompose/20261026-tracked-intermediates/paper/fig/training-inference/imagegen-prompt.txt)。
 
 
 ## 2026-10-25：3.6 紧凑训练表试排（已应用）
@@ -1803,3 +1803,200 @@ Section~\ref{sec:related} reviews related work, Section~\ref{sec:method} present
 最终构建与交付检查：英文主稿 11 页，中文主稿 9 页，英文补充材料 4 页，中文补充材料 3 页，四份 PDF 均由本轮实际写出。主稿最终日志无未定义引用、缺字或 overfull 警告；补充材料仅保留既有 lineno hook 警告。双语标题、引言三项贡献、引用目标和渲染页面均已核对。
 
 篇幅状态：按用户要求恢复解释完整的引言并采用三项贡献后，英文正文与结论结束于第 9 页，参考文献也从第 9 页开始；尚不满足正文 8 页目标。本轮不再整体压缩已认可的文字，也未改动字体、边距、行距、图表或其他章节。此状态已在推送前向用户说明。
+
+
+## 2026-10-26：总览图仅保留主推理流程（候选，未插入论文）
+
+范围：只生成新的候选图，不改中英文 LaTeX、实验数值或正式 PDF。当前 HEAD 为 `d741912c7a666308c5363cfb79a6c51b11b76e2b`；实际图像基线是未提交的 `docs/figures/overview/drafts/20261023-reference-style/candidate-v5.png`，SHA256 为 `55b02eb44ad8c2404e691e3348f2da84b013108fb037693db81025af2e7a1188`，没有把 HEAD 当作旧图原文。
+
+| 位置 | 旧候选实际内容 | 本轮候选 | 原因 |
+| --- | --- | --- | --- |
+| 右侧与下方 | `Observation check`、`Fixed world W`、`State-driven reuse`、`Compose + render` | 从图中移除；结束于 `Background + sky / Vehicle / Human` | 用户要求仅展示主题推理，减少拥挤 |
+| 图例与采样区 | `Observed / Unknown / Generated / Free`、`Noise on unknown`、`Constrained flow sampling` 等备注 | 不再单独展示 | 减少次要说明，使联合 DiT 成为视觉中心；方法正文不变 |
+| ViT 到 DiT 之间 | 背景、车辆和人体的空间示意 | `Visual features` 与 `Structured latents` 均使用抽象 token | 避免把中间表示误认为图片 |
+| 中央联合模块 | 局部注意力与记忆混在完整系统流程中 | 独立突出 `Joint completion DiT`，三路局部潜码与一个 `CCM / Shared memory` 交互 | 对齐当前方法节的联合补全核心设计 |
+
+交付：[候选图](../../_archive/drivecompose/20261026-overview-intermediates/docs/figures/overview/drafts/inference-overview/candidate.png)、[完整指令与核对记录](figures/overview/drafts/inference-overview/README.md)。输入和输出场景保留机制示意身份。自审确认 ViT 至 DiT 区域没有实图，E 收缩、D 展开；主链路及类型对应可辨。待用户确认图像，未将其标为论文定稿，未触发主稿编译。
+
+### 同日续修：修复六项图示问题
+
+用户明确要求“全部修复”。本轮实际基线是上轮生成后未提交的 [candidate.png 修改前图像](../../_archive/drivecompose/20261026-overview-intermediates/docs/figures/overview/drafts/inference-overview/baseline/candidate.png)，SHA256 为 `35085490d036fbbf87fcf13caa55d458eeb5bf78380bf5c44fc815193934cb89`；HEAD 仍为 `d741912c7a666308c5363cfb79a6c51b11b76e2b`。使用该真实基线作以下对照，不将更早版本或用户其他修改算作本轮成果。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+| --- | --- | --- | --- |
+| DiT → Completed latents | 三条线从 CCM 边框直接延伸到外部潜码 | 取消 CCM 到模型外框的线段，三条输出箭头从 DiT 外框独立端口引出 | 对应更新后的组件表示由整个补全模块输出，避免把共享记忆本身画成解码输入 |
+| Local attention ↔ CCM | 每行有两条双向线 | 每行保留一条双向线，共三条 | 删除重复，明确每个局部分组与同一记忆交互 |
+| Local attention 边界 | 内部虚线框及左上弯折细线 | 全部清除，保留标题、三行 token、外层实线框 | 消除无算法含义的生图残留和多余分组边界 |
+| 分区与输入 | 左侧约占四成，三张输入图，中央范围较小 | 两张输入图；三个主色区域实际约 33%／46%／21%，结构潜码放入中央入口区 | 联合 DiT 区域成为主视觉中心，保留可读间距；实际比例未机械写成指令目标 30%／48%／22% |
+| Background + sky 输出 | 完整道路示意中有交通参与者 | 静态道路、建筑、植被与天空，无可见车辆或人体；车辆与人体仍保留在独立输出行 | 保持静态背景与动态资产的分解含义 |
+| 中央第一行英文标签 | `Background`（背景） | `Background region`（背景局部区域） | 对应背景按空间邻域分组；`Vehicle i`、`Human j` 保持实例分组含义 |
+
+保留：ViT 至 DiT 之间全部为抽象 token；E 左宽右窄、D 左窄右宽；不恢复 check、reuse、仿真或 known/unknown 等备注。标题、摘要、正文、公式、实验及正式 PDF 本轮均未改动。
+
+验证：对 2079 × 756 的实际输出逐项自审，六项修复均可见；三区背景色区间读取自 y=726 的图像扫描线。主稿引用仍为原 `drivecompose-overview-20261021.png`，本候选未插入论文、未触发编译。场景插画继续作为机制示意，不作为实验结果。最终仍待用户确认视觉方案。
+
+交付：[六项修复后的候选图](../../_archive/drivecompose/20261026-overview-intermediates/docs/figures/overview/drafts/inference-overview/candidate.png) · [完整生成指令](figures/overview/drafts/inference-overview/production-prompt.txt) · [逐项核验记录](figures/overview/drafts/inference-overview/design-spec.json)。
+
+## 2026-10-26：将确认的总览图替换到中英文论文
+
+本轮基线提交：`d741912c7a666308c5363cfb79a6c51b11b76e2b`。真实工作区起点已保存在 `paper/build/overview-replacement-baseline/`，包含两份入口、方法开头、旧图注、旧图与 PDF；不把先前已完成的候选生成或用户其他修改计入本轮。
+
+范围：替换两版 Figure 1 图片引用及图注，修正双语方法开头的一句图示范围说明，同步活动图文档及检查脚本路径。标题、摘要、引言、贡献、实验数值、其余方法内容、公式和补充材料保持不变。
+
+### 图片与排版
+
+- `fig/drivecompose-overview-20261021.png` → `fig/drivecompose-inference-overview.png`。新图与确认候选逐字节一致，两版 PDF 内嵌图片像素也与该图一致。
+- 保留原跨栏 `figure*`、`width=\textwidth`、编号和 `fig:teaser` 标签；按原比例放置，不修改模板边距、字号或行距。
+- 图的展示范围由构建、检查和复用收窄为结构化编码、联合 DiT/CCM 与高斯解码，因此图注不再指称已经从图中删除的检查与复用部分。这些方法内容仍在正文中。
+
+### 双语图注前后对照
+
+英文 Figure 1：
+
+修改前：
+
+```latex
+\caption{\textbf{DriveCompose overview.} (a) Calibrated images provide geometry, identity, and motion evidence, which is aggregated on background and canonical asset supports and encoded into structured latents. (b) A scene-conditioned flow transformer completes unknown codes while retaining observed content and suppressing free space. (c) Typed decoders produce Gaussian components. A check in the original views precedes scene reuse; camera and actor states then control composition and rendering. Scene depictions are schematic, not experimental outputs.}
+```
+
+修改后：
+
+```latex
+\caption{\textbf{DriveCompose overview.} (a) A shared ViT extracts visual evidence, which is aggregated on background and canonical asset supports and encoded into structured latents. (b) Joint completion combines local attention with cross-component memory (CCM) to exchange context across components. (c) Type-specific decoders produce the Gaussian background, canonical vehicle and human assets, and a sky map. Scene depictions are schematic, not experimental outputs.}
+```
+
+中文 Figure 1：
+
+修改前：
+
+```latex
+\caption{\textbf{DriveCompose 总览。}（a）从有标定图像恢复几何、身份与运动证据，在背景和规范资产支撑上聚合并编码为结构化潜码。（b）场景条件流 Transformer 补全未知潜码，同时保留已见内容并抑制自由空间。（c）类型解码器输出高斯组件，在原始视角下检查后复用场景；相机与资产状态控制后续装配和渲染。图中场景为机制示意，不是实验输出。}
+```
+
+修改后：
+
+```latex
+\caption{\textbf{DriveCompose 总览。}（a）共享 ViT 提取视觉证据，在背景与规范资产支撑上聚合并编码为结构化潜码。（b）联合补全结合局部注意力与跨组件记忆（CCM），在组件间交换上下文。（c）类型专属解码器输出高斯背景、规范车辆与人体资产，以及天空贴图。图中场景为机制示意，不是实验输出。}
+```
+
+原因：按实际图件解释三个面板，明确 ViT、CCM 与类型解码的对应关系，保留机制示意身份；没有把插画写成实验输出。
+
+### 方法开头的必要依赖修改
+
+| 位置 | 修改前 | 修改后 | 原因 |
+| --- | --- | --- | --- |
+| 英文 §3 开头 | DriveCompose reconstructs a driving scene in the units that will later be controlled. Figure~\ref{fig:teaser} shows the complete construction and reuse path. | DriveCompose reconstructs a driving scene in the units that will later be controlled. Figure~\ref{fig:teaser} shows the main reconstruction pipeline. | 新图只展示主要重建流程，修正已失效的完整复用链路指称 |
+| 中文 §3 开头 | DriveCompose 按照后续控制的单位重建驾驶场景。图~\ref{fig:teaser} 展示完整的构建与复用链路。 | DriveCompose 按照后续控制的单位重建驾驶场景。图~\ref{fig:teaser} 展示主要重建流程。 | 新图只展示主要重建流程，修正已失效的完整复用链路指称 |
+
+### 验证与交付
+
+- 现有 Tectonic 构建入口完成双语编译。旧英文 PDF 曾被 WPS 占用，先编译到临时目录；用户关闭 WPS 后替换正式文件并核对 SHA256。没有终止 WPS 进程或丢弃用户批注。
+- 两版编译退出码均为 0；英文总计 11 页、中文总计 9 页。Figure 1 均在第 2 页；英文正文与结论仍在第 8 页结束，References 从第 9 页开始。
+- 52 项稿件检查通过；日志无未定义引用、缺字或 overfull；两版图件页和英文正文末页已目视检查，无重叠或裁切。46 个受保护源码文件哈希保持不变。
+- [英文正式稿](../paper/build/en/main.pdf) · [中文正式稿](../paper/build/zh/main_zh.pdf) · [本轮核验记录](../paper/build/overview-replacement-check.json)。
+
+## 2026-10-26：按用户指定文件替换总览图
+
+用户终止继续校正图形，明确指定 `docs/figures/overview/drafts/inference-overview/work/repair-attempt.png`。本轮只复制该文件并重编译，不对其内容或布局再作修改。HEAD 为 `d741912c7a666308c5363cfb79a6c51b11b76e2b`；真实未提交工作区基线及两版 PDF 保存在 `paper/build/latent-alignment-baseline/before-user-selection/`。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+| --- | --- | --- | --- |
+| 两版 Figure 1 活动图 | 对齐候选，SHA256 `50b7c0b615c45f446c03441ab3a09397f7710847096b53c25a1a85a5e327bacf` | 用户指定图，SHA256 `79eb11de6e2257b089647fe5d314e93414b85381eb276fe3656937ad06c1701c` | 按用户最终选择替换 |
+| `candidate.png` 和生成指令 | 后续局部对齐候选及指令 | 指定图原文件及其 `repair-attempt-prompt.txt` | 当前候选、溯源与论文图像一致 |
+| 中英文图注、方法开头和其他源码 | 替换前现有内容 | 本次图片替换保持不变 | 该步仅更换已有图片，不改学术文本 |
+
+验证：两版编译退出码 0；内嵌图片逐像素等于指定文件，38 个受保护源码文件哈希不变，52 项稿件检查通过。Figure 1 均在第 2 页；英文共 11 页，正文止于第 8 页、参考文献从第 9 页开始；中文共 9 页。已查看两版图件页和英文正文末页，无新增重叠或裁切。
+
+[英文正式稿](../paper/build/en/main.pdf) · [中文正式稿](../paper/build/zh/main_zh.pdf) · [核验记录](../paper/build/overview-replacement-check.json)。
+
+## 2026-10-26：本轮新增图注的语言清理
+
+按用户“修改过的文本内容需要去 AI 味”要求，使用 humanizer 检查此次总览图替换改动过的双语图注及方法开头。范围限于已有修改，未扩展到整篇论文。HEAD 仍为 `d741912c7a666308c5363cfb79a6c51b11b76e2b`；真实基线、两版 PDF 和局部差异保存于 `paper/build/overview-replacement/humanizer-baseline/`。
+
+具体问题与处理：
+
+| 位置 | 原文 | 修改后 | 原因 |
+| --- | --- | --- | --- |
+| 英文图注（b） | Joint completion combines local attention with cross-component memory (CCM) to exchange context across components. | Joint completion applies local attention within groups and shares context through cross-component memory (CCM). | 将泛化的“结合模块”改为具体分工，删除 cross-component / across components 的重复；分组自注意力和共享记忆已有 §3.4 及源码依据 |
+| 中文图注（b） | 联合补全结合局部注意力与跨组件记忆（CCM），在组件间交换上下文。 | 联合补全在各组内执行局部注意力，并通过跨组件记忆（CCM）共享上下文。 | 同步英文，直接说明两个模块的作用 |
+| 中文图注（a） | 共享 ViT 提取视觉证据，在背景与规范资产支撑上聚合并编码为结构化潜码。 | 共享 ViT 提取的视觉证据在背景与规范资产支撑上聚合，再编码为结构化潜码。 | 明确聚合和编码的对象是视觉证据，避免后半句仍以 ViT 为主语；英文对应句已明确，保持原样 |
+
+保留：中英文方法开头、英文（a）、双语（c）及“机制示意、不是实验输出”的身份说明。未改变标题、摘要、贡献、公式、数值、引用、实验及用户指定图片；不因普通被动句、三类真实组件或必要限定而机械改写。
+
+### 双语图注完整前后对照
+
+English 修改前：
+
+```latex
+\caption{\textbf{DriveCompose overview.} (a) A shared ViT extracts visual evidence, which is aggregated on background and canonical asset supports and encoded into structured latents. (b) Joint completion combines local attention with cross-component memory (CCM) to exchange context across components. (c) Type-specific decoders produce the Gaussian background, canonical vehicle and human assets, and a sky map. Scene depictions are schematic, not experimental outputs.}
+```
+
+修改后：
+
+```latex
+\caption{\textbf{DriveCompose overview.} (a) A shared ViT extracts visual evidence, which is aggregated on background and canonical asset supports and encoded into structured latents. (b) Joint completion applies local attention within groups and shares context through cross-component memory (CCM). (c) Type-specific decoders produce the Gaussian background, canonical vehicle and human assets, and a sky map. Scene depictions are schematic, not experimental outputs.}
+```
+
+中文 修改前：
+
+```latex
+\caption{\textbf{DriveCompose 总览。}（a）共享 ViT 提取视觉证据，在背景与规范资产支撑上聚合并编码为结构化潜码。（b）联合补全结合局部注意力与跨组件记忆（CCM），在组件间交换上下文。（c）类型专属解码器输出高斯背景、规范车辆与人体资产，以及天空贴图。图中场景为机制示意，不是实验输出。}
+```
+
+修改后：
+
+```latex
+\caption{\textbf{DriveCompose 总览。}（a）共享 ViT 提取的视觉证据在背景与规范资产支撑上聚合，再编码为结构化潜码。（b）联合补全在各组内执行局部注意力，并通过跨组件记忆（CCM）共享上下文。（c）类型专属解码器输出高斯背景、规范车辆与人体资产，以及天空贴图。图中场景为机制示意，不是实验输出。}
+```
+
+对应技术依据：`paper/sec/3_method.tex` 的 Local self-attention / CCM 段，`src/drivecompose/networks/completion.py` 的局部分组注意力与 memory read/write。此轮仅使图注直接表达现有机制，没有增加实验或能力主张。
+
+### 同轮按用户截图删除无关尾句
+
+用户随后明确要求去掉图注中与流程内容无关的说明。此次删除覆盖前述“保留身份说明”的决定；真实删除前基线与局部差异位于 `paper/build/overview-replacement/humanizer-baseline/before-disclaimer-removal/`，HEAD 不变。
+
+| 位置 | 原文 | 修改后 | 原因 |
+| --- | --- | --- | --- |
+| 中文图注尾句 | 图中场景为机制示意，不是实验输出。 | 删除 | 用户明确要求图注只解释图中流程，移除附加说明 |
+| 英文图注尾句 | Scene depictions are schematic, not experimental outputs. | 删除 | 与中文同步 |
+
+此次删除保留刚完成的（a）主语澄清及（b）模块分工表述；三个面板的流程解释、图片、编号和正文其他内容不变。同步 `docs/figures/overview/caption.md`。
+
+最终验证：本轮两版主稿重新编译成功；52 项稿件检查通过，日志无未定义引用、缺字或 overfull。36 个未授权改动的源码文件及指定图片共 37 项哈希不变，两份入口除图注外内容与语言清理前基线一致。图件均在第 2 页；英文共 11 页、正文在第 8 页结束、参考文献从第 9 页开始，中文共 9 页。已查看最终两版图件页和英文正文末页，无新增重叠或裁切。指定图片在两版 PDF 中逐像素一致。
+
+[英文正式稿](../paper/build/en/main.pdf) · [中文正式稿](../paper/build/zh/main_zh.pdf) · [最终核验记录](../paper/build/overview-replacement-check.json)。
+
+## 2026-10-26：移出中间产物，保留待确认修改
+
+按用户要求，将本轮候选图、布局参考、重复图片、基线备份、临时 PDF、页面预览及编译辅助文件移至项目外。仅移动本轮未跟踪或已忽略的辅助文件，未移动已跟踪论文源码或正式 PDF。前文记录中的旧临时路径均按原目录层级保存在归档根目录下。
+
+归档：[20261026-overview-intermediates](../../_archive/drivecompose/20261026-overview-intermediates)；[完整路径与哈希清单](../../_archive/drivecompose/20261026-overview-intermediates/archive-manifest.json)。
+
+| 位置 | 清理前 | 清理后 | 原因 |
+| --- | --- | --- | --- |
+| 图件工作目录 | 候选副本、布局参考、逐轮指令与修改前图像 | 中间文件移入项目外；项目内保留正式图、最终指令及设计记录 | 清除重复和过程文件，保留必要溯源 |
+| 构建工作目录 | 多轮基线、临时 PDF、渲染预览与辅助文件 | 移入项目外，保留正式双语 PDF、编译结果及最终核验记录 | 减少待提交文件，正式交付不变 |
+| 文档链接和核验路径 | 指向项目内临时目录 | 更新为归档位置 | 保持可追溯和可恢复 |
+
+本次只整理文件和更新记录；没有重新生成图片、修改论文正文或重新编译。暂不暂存、提交或推送，待用户确认清理后的统计。
+
+## 2026-10-26：继续移出已提交的中间产物
+
+按用户要求检查全部已跟踪文件，确认 30 个历史过程文件已不被当前论文编译依赖，移入[项目外归档](../../_archive/drivecompose/20261026-tracked-intermediates)。此轮开始时 HEAD 为 `d741912c7a666308c5363cfb79a6c51b11b76e2b`，部分编译日志已有未提交更新，因此归档保存本轮真实工作区字节；[清单](../../_archive/drivecompose/20261026-tracked-intermediates/archive-manifest.json)记录逐文件哈希，说明和校验脚本的修改前版本保存在归档 `records-before-cleanup/`。
+
+| 类别 | 数量 | 处理与原因 |
+| --- | ---: | --- |
+| 编译日志、历史检查、表格预览、修订差异页和基线 | 8 | 可重建或阶段性过程材料，移出构建目录 |
+| 旧总览图的设计、指令、绘图脚本和风格候选 | 12 | 当前已有明确采用版本，历史制作文件归档 |
+| 旧总览图 PNG、TikZ 源码及输入插画素材 | 4 | 当前主稿不再引用；旧图哈希校验改为读取归档副本 |
+| 未采用的训练/推理图 PPTX、PNG、指令和说明 | 6 | 目录明确为未应用草稿，移出活动图目录 |
+
+当前总览图、实验图、四份正式 PDF、正文与补充材料源码、书目、算法实现、文档仍使用的流程图及原始来源材料保留。更新归档链接和旧图校验路径；`.gitignore` 补充 `.brf` 与编译文本日志规则，避免再次误加入 Git。没有改论文表述或重新编译，删除状态仅表示文件移出仓库工作区，原字节可从项目外归档恢复；不暂存、不提交、不推送，待用户确认。
+
+验证：30 个归档文件逐一核对 SHA256，大小合计 11.91 MiB；四份正式 PDF、活动图片及其余受保护内容哈希不变，当前 LaTeX 无归档图件依赖，52 项稿件检查全部通过。清理后共 21 个已跟踪文件修改、30 个移出导致的删除状态和 5 个新增文件，合计 56 个待确认项；暂存区为空。
+
+## 2026-10-26：提交前整合远端更新
+
+用户授权提交并推送。远端新增 `1e2dd79`（标题与双语引言更新），本地确认修改先保存为 `f0a79bb`，随后重放到远端版本之上。保留远端标题、双语引言及补充材料，保留本次选定总览图、图注、方法开头和归档清理。两侧改动记录完整保留；更新过的历史日志移至项目外，未恢复到仓库。整合前两侧文件与重新编译产物保存在 `../_archive/drivecompose/20261026-push-integration/`。
+
+中英文主稿重新编译成功，52 项检查通过；PDF 中总览图像素与用户指定图一致。英文共 11 页，正文与结论止于第 9 页，References 从第 9 页开始，超过 8 页正文目标；远端整合前版本也止于第 9 页。本轮未压缩或重写远端引言。已检查英文首页、两版图件页及英文第 8、9 页，无重叠或裁切。四份正式 PDF 保留，临时编译文件继续存放在项目外。
