@@ -491,7 +491,7 @@ Package rerunfilecheck Warning: File `main.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
  )
-Output written on main.xdv (9 pages, 363436 bytes).
+Output written on main.xdv (9 pages, 363844 bytes).
 Transcript written on main.log.
 note: Running BibTeX on main.aux ...
 note: Rerunning TeX because bibtex was run ...
@@ -871,7 +871,7 @@ Package rerunfilecheck Warning: File `main.brf' has changed.
 (rerunfilecheck)                Rerun to get bibliographical references right.
 
  )
-Output written on main.xdv (11 pages, 547044 bytes).
+Output written on main.xdv (11 pages, 547452 bytes).
 Transcript written on main.log.
 note: Rerunning TeX because "main.aux" changed ...
 (main.tex
@@ -938,7 +938,7 @@ Package rerunfilecheck Warning: File `main.brf' has changed.
 (rerunfilecheck)                Rerun to get bibliographical references right.
 
  )
-Output written on main.xdv (11 pages, 560296 bytes).
+Output written on main.xdv (11 pages, 560704 bytes).
 Transcript written on main.log.
 note: Rerunning TeX because "main.aux" changed ...
 (main.tex
@@ -1000,7 +1000,7 @@ Package lineno Warning: Label(s) may have changed. Rerun to get cross-reference
 s right. on input line 434.
 
 ) [11] (main.aux) )
-Output written on main.xdv (11 pages, 572532 bytes).
+Output written on main.xdv (11 pages, 572940 bytes).
 Transcript written on main.log.
 note: Rerunning TeX because "main.aux" changed ...
 (main.tex
@@ -1057,17 +1057,17 @@ ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
 warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
  [6] [7]) (sec/5_discussion) (sec/6_conclusion) (main.bbl
  (main.brf) [8] [9] [10]) [11] (main.aux) )
-Output written on main.xdv (11 pages, 572524 bytes).
+Output written on main.xdv (11 pages, 572932 bytes).
 Transcript written on main.log.
 note: Running xdvipdfmx ...
 [1][2][3][4][5][6][7][8
 warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
 warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
-][9][10][11]6875686 bytes written
-note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\en\main.blg` (196 B)
-note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\en\main.log` (34.26171875 KiB)
-note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\en\main.aux` (39.4931640625 KiB)
-note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\en\main.pdf` (6.557165145874023 MiB)
-note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\en\main.brf` (3.5703125 KiB)
-note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\en\main.bbl` (21.5517578125 KiB)
+][9][10][11]6875650 bytes written
 note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\en\main.out` (2.9482421875 KiB)
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\en\main.pdf` (6.557130813598633 MiB)
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\en\main.blg` (196 B)
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\en\main.aux` (39.4931640625 KiB)
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\en\main.bbl` (21.5517578125 KiB)
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\en\main.log` (34.26171875 KiB)
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\en\main.brf` (3.5703125 KiB)
