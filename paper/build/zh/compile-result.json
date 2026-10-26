@@ -1,11 +1,28 @@
 {
   "language": "zh",
-  "engine": "latexmk / XeLaTeX + xdvipdfmx",
+  "command": [
+    "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1016.6573.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
+    "-X",
+    "compile",
+    "--outdir",
+    "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\abstract-candidate\\zh",
+    "--outfmt",
+    "pdf",
+    "--print",
+    "--keep-logs",
+    "--keep-intermediates",
+    "--untrusted",
+    "main_zh.tex"
+  ],
   "exit_code": 0,
-  "finished_at": "2026-10-25T14:23:52.617701+00:00",
-  "pdf": "build/zh/main_zh.pdf",
+  "started_at": "2026-10-26T03:42:02.804884+00:00",
+  "finished_at": "2026-10-26T03:42:31.427986+00:00",
+  "elapsed_seconds": 28.625,
+  "fontconfig_file": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\tools\\fontconfig.conf",
+  "source_sha256": "6b515cb137908a5423ee8ec52d045e166015b60b839e1e5698ab08b2c3648c7d",
+  "pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
   "pdf_exists": true,
   "pdf_written_this_run": true,
-  "pages": 9,
-  "pdf_sha256": "78d06b4c8ae2490f1f71936a7d7599a13486c4947e7f2882fd52dc84dce6f43f"
+  "pdf_sha256": "c67959e315254f3ade16a7638c95d86fc53ccb40a9ac9c9da8b9a6f77e470bb5",
+  "compiler_pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\abstract-candidate\\zh\\main_zh.pdf"
 }
