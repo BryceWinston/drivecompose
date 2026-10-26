@@ -5,7 +5,7 @@
 ## 当前约定
 
 - 目标：CVPR 2027 main track；英文正文不超过 8 页，包含标题、摘要、图表、局限性和结论。参考文献及当届要求的 LLM Usage Statement 按官方规则另计。
-- 固定标题：**DriveCompose: Generative Reconstruction of Compositional Driving Scenes via Joint Completion**。除非用户提出修改，不再讨论题名。
+- 固定标题：**DriveCompose: Compositional Generative Reconstruction of Driving Scenes via Joint Completion**。除非用户提出修改，不再讨论题名。
 - 当前阶段：引言与贡献已局部微调；2026-10-25 将跨数据集实验迁入双语补充材料，同步收窄摘要与实验概述。8 页压缩已执行 §3.6、§3.2 和 §3.5，细节分别保存在双语补充材料 B、D、C。观测检查段落完整保留，英文正文仍结束于第 9 页，约 8.41 页当量；其余压缩候选及方法图示建议须按用户下一步范围推进。
 - 优化目标：问题清楚、机制可理解、主张有证据、表达简洁自然。去除模板化表达不等于改变事实，也不承诺通过 AI 检测。
 - 默认修改方式：严格尊重当前版本，以有明确问题依据的局部微调为主；已有准确、清楚、简洁的内容原样保留。

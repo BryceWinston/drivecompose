@@ -1,154 +1,77 @@
-perl: warning: Setting locale failed.
-perl: warning: Please check that your locale settings:
-	LC_ALL = "C.UTF-8",
-	LC_CTYPE = "C",
-	LC_NUMERIC = "C",
-	LC_COLLATE = "C",
-	LC_TIME = (unset),
-	LC_MONETARY = (unset),
-	LANG = "C.UTF-8"
-    are supported and installed on your system.
-perl: warning: Falling back to the system default locale ("Chinese (Simplified)_China.936").
-Initial Win CP for (console input, console output, system): (CP936, CP65001, CP936)
-I changed them all to CP936
-Rc files read:
-  NONE
-Latexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.
-Latexmk: applying rule 'bibtex C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main'...
-Rule 'bibtex C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main':  Reasons for rerun
-Changed files or newly in use/created:
-  ./references.bib
-Category 'changed_user':
-  ./references.bib
-
-------------
-Run number 1 of rule 'bibtex C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main'
-------------
-Latexmk: Change directory to 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/'.
-To assist finding of files in document directory, I set
-  BIBINPUTS='C:/Users/brayden/Desktop/drivecompose/paper/supplementary;C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en;'
-  BSTINPUTS='C:/Users/brayden/Desktop/drivecompose/paper/supplementary;'.
-------------
-Running 'bibtex  "main.aux"'
-------------
-This is BibTeX, Version 0.99e (TeX Live 2026)
-The top-level auxiliary file: main.aux
-The style file: ieeenat_fullname.bst
-Database file #1: references.bib
-Latexmk: Change directory back to 'C:/Users/brayden/Desktop/drivecompose/paper/supplementary'
-Latexmk: applying rule 'xelatex'...
-Rule 'xelatex':  Reasons for rerun
-Changed files or newly in use/created:
-  main.tex
-  training.tex
-Category 'changed_user':
-  main.tex
-  training.tex
-
-------------
-Run number 1 of rule 'xelatex'
-------------
-------------
-Running 'xelatex -no-pdf -interaction=nonstopmode -halt-on-error -recorder -output-directory="C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en"  "main.tex"'
-------------
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex)
- restricted \write18 enabled.
-entering extended mode
-(./main.tex
-LaTeX2e <2025-11-01>
-L3 programming layer <2026-01-19>
-(c:/texlive/2026/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
-(c:/texlive/2026/texmf-dist/tex/latex/base/size10.clo)) (./cvpr.sty
-(c:/texlive/2026/texmf-dist/tex/latex/psnfss/times.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/tools/xspace.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/xcolor/xcolor.sty
-(c:/texlive/2026/texmf-dist/tex/latex/graphics-cfg/color.cfg)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics-def/xetex.def)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/mathcolor.ltx))
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/dvipsnam.def)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/keyval.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/graphics.sty
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsmath.sty
+note: "version 2" Tectonic command-line interface activated
+note: Running TeX ...
+(main.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-02-24> (article.cls
+Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+(size10.clo)) (cvpr.sty (times.sty) (xspace.sty) (xcolor.sty (color.cfg)
+(xetex.def) (dvipsnam.def)) (graphicx.sty (keyval.sty) (graphics.sty (trig.sty)
+ (graphics.cfg))) (amsmath.sty
 For additional information on amsmath, use the `?' option.
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amstext.sty
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/natbib/natbib.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/silence/silence.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/caption/caption.sty
-(c:/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/caption/subcaption.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/url/url.sty)
+(amstext.sty (amsgen.sty)) (amsbsy.sty) (amsopn.sty)) (amssymb.sty
+(amsfonts.sty)) (booktabs.sty) (natbib.sty) (silence.sty) (etoolbox.sty)
+(caption.sty (caption3.sty)) (subcaption.sty) (url.sty)
 CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
-(c:/texlive/2026/texmf-dist/tex/latex/lineno/lineno.sty
-(c:/texlive/2026/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-(c:/texlive/2026/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)))
-(c:/texlive/2026/texmf-dist/tex/latex/enumitem/enumitem.sty)) (./fontsetup.tex
-(c:/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec.sty
-(c:/texlive/2026/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-(c:/texlive/2026/texmf-dist/tex/latex/l3kernel/expl3.sty
-(c:/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-xetex.def)))
-(c:/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
-(c:/texlive/2026/texmf-dist/tex/latex/base/fontenc.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec.cfg))))
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/hyperref.sty
-(c:/texlive/2026/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
-(c:/texlive/2026/texmf-dist/tex/generic/pdfescape/pdfescape.sty
-(c:/texlive/2026/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
-(c:/texlive/2026/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
-(c:/texlive/2026/texmf-dist/tex/latex/hycolor/hycolor.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/nameref.sty
-(c:/texlive/2026/texmf-dist/tex/latex/refcount/refcount.sty)
-(c:/texlive/2026/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
-(c:/texlive/2026/texmf-dist/tex/generic/stringenc/stringenc.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/pd1enc.def)
-(c:/texlive/2026/texmf-dist/tex/generic/intcalc/intcalc.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/puenc.def)
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/backref.sty
-(c:/texlive/2026/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
-(c:/texlive/2026/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
-(c:/texlive/2026/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))))
-(c:/texlive/2026/texmf-dist/tex/generic/bitset/bitset.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/hxetex.def)
-(c:/texlive/2026/texmf-dist/tex/latex/cleveref/cleveref.sty)
-==> First Aid for cleveref.sty applied!
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.aux)
-ABD: EveryShipout initializing macros
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.out)
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.out)
-(./lineno-fix.tex) (./cross_dataset.tex
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd)
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd)) (./training.tex
-[1]) (./composition.tex
+(lineno.stywarning: lineno.sty:296: Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+) (enumitem.sty)) (fontsetup (iftex.sty) (fontspec.sty (xparse.sty
+(expl3.sty (l3backend-xetex.def))) (fontspec-xetex.sty (fontenc.sty)
+(fontspec.cfg)))) (hyperref.sty (ltxcmds.sty) (pdftexcmds.sty (infwarerr.sty))
+(kvsetkeys.sty) (kvdefinekeys.sty) (pdfescape.sty) (hycolor.sty)
+(letltxmacro.sty) (auxhook.sty) (kvoptions.sty) (pd1enc.def) (intcalc.sty)
+(etexcmds.sty) (puenc.def) (backref.sty (rerunfilecheck.sty (atveryend-ltx.sty)
+ (uniquecounter.sty (bigintcalc.sty)))) (bitset.sty) (atbegshi-ltx.sty))
+(hxetex.def (stringenc.sty)) (cleveref.sty)
+No file main.aux.
+(ts1cmr.fd) ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
+(gettitlestring.sty))
 
-Package lineno Warning: Line number reference failed, re-run to get it right.
+Package hyperref Warning: Rerun to get /PageLabels entry.
 
-) (./frontend.tex
+(lineno-fix
+
+LaTeX hooks Warning: Cannot remove chunk 'lineno' from hook
+(hooks)              'build/column/before' because the hook does not exist.
+
+) (cross_dataset
+
+Package lineno Warning: Linenumber reference failed, 
+(lineno)                rerun to get it right.
+
+
+LaTeX Warning: Reference `tab:generalization' on page 1 undefined on input line
+ 6.
+
+(umsa.fd) (umsb.fd)
+
+Package natbib Warning: Citation `yang2025storm' on page 1 undefined on input l
+ine 21.
+
+
+Package natbib Warning: Citation `chen2025dggt' on page 1 undefined on input li
+ne 22.
+
+
+Package natbib Warning: Citation `yu2026streetforward' on page 1 undefined on i
+nput line 23.
+
+) (training [1]) (composition) (frontend
 
 Package natbib Warning: Citation `dosovitskiy2021vit' on page 2 undefined on in
-put line 6.
+put line 10.
 
 
 Package natbib Warning: Citation `vaswani2017attention' on page 2 undefined on 
-input line 6.
+input line 10.
 
-[2]) (C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.bbl
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.brf))
+[2]) (codec)
+No file main.bbl.
 
 Package natbib Warning: There were undefined citations.
 
-[3] (C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.aux)
+[3] (main.aux)
+
+LaTeX Warning: There were undefined references.
+
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
@@ -158,448 +81,162 @@ Package rerunfilecheck Warning: File `main.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
  )
-Output written on C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/mai
-n.xdv (3 pages, 149196 bytes).
-Transcript written on C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en
-/main.log.
-Latexmk: Getting log file 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.log'
-Latexmk: Examining 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.fls'
-Latexmk: Examining 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.log'
-Latexmk: Found input bbl file 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.bbl'
-Latexmk: References changed.
-Latexmk: References changed.
-Latexmk: Log file says output to 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.xdv'
-Latexmk: Using bibtex to make bibliography file(s).
-  ===Source file 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.bbl' for 'xelatex'
-Latexmk: Found bibliography file(s):
-  ./references.bib
-Latexmk: applying rule 'bibtex C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main'...
-Rule 'bibtex C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main':  Reasons for rerun
-Changed files or newly in use/created:
-  C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.aux
-
-------------
-Run number 2 of rule 'bibtex C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main'
-------------
-Latexmk: Change directory to 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/'.
-To assist finding of files in document directory, I set
-  BIBINPUTS='C:/Users/brayden/Desktop/drivecompose/paper/supplementary;C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en;'
-  BSTINPUTS='C:/Users/brayden/Desktop/drivecompose/paper/supplementary;'.
-------------
-Running 'bibtex  "main.aux"'
-------------
-This is BibTeX, Version 0.99e (TeX Live 2026)
-The top-level auxiliary file: main.aux
-The style file: ieeenat_fullname.bst
-Database file #1: references.bib
-Latexmk: Change directory back to 'C:/Users/brayden/Desktop/drivecompose/paper/supplementary'
-Latexmk: applying rule 'xelatex'...
-Rule 'xelatex':  Reasons for rerun
-Changed files or newly in use/created:
-  C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.aux
-  C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.bbl
-  C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.out
-
-------------
-Run number 2 of rule 'xelatex'
-------------
-------------
-Running 'xelatex -no-pdf -interaction=nonstopmode -halt-on-error -recorder -output-directory="C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en"  "main.tex"'
-------------
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex)
- restricted \write18 enabled.
-entering extended mode
-(./main.tex
-LaTeX2e <2025-11-01>
-L3 programming layer <2026-01-19>
-(c:/texlive/2026/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
-(c:/texlive/2026/texmf-dist/tex/latex/base/size10.clo)) (./cvpr.sty
-(c:/texlive/2026/texmf-dist/tex/latex/psnfss/times.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/tools/xspace.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/xcolor/xcolor.sty
-(c:/texlive/2026/texmf-dist/tex/latex/graphics-cfg/color.cfg)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics-def/xetex.def)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/mathcolor.ltx))
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/dvipsnam.def)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/keyval.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/graphics.sty
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsmath.sty
+(see the transcript file for additional information)
+Output written on main.xdv (3 pages, 153196 bytes).
+Transcript written on main.log.
+note: Running BibTeX on main.aux ...
+note: Rerunning TeX because bibtex was run ...
+(main.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-02-24> (article.cls
+Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+(size10.clo)) (cvpr.sty (times.sty) (xspace.sty) (xcolor.sty (color.cfg)
+(xetex.def) (dvipsnam.def)) (graphicx.sty (keyval.sty) (graphics.sty (trig.sty)
+ (graphics.cfg))) (amsmath.sty
 For additional information on amsmath, use the `?' option.
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amstext.sty
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/natbib/natbib.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/silence/silence.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/caption/caption.sty
-(c:/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/caption/subcaption.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/url/url.sty)
+(amstext.sty (amsgen.sty)) (amsbsy.sty) (amsopn.sty)) (amssymb.sty
+(amsfonts.sty)) (booktabs.sty) (natbib.sty) (silence.sty) (etoolbox.sty)
+(caption.sty (caption3.sty)) (subcaption.sty) (url.sty)
 CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
-(c:/texlive/2026/texmf-dist/tex/latex/lineno/lineno.sty
-(c:/texlive/2026/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-(c:/texlive/2026/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)))
-(c:/texlive/2026/texmf-dist/tex/latex/enumitem/enumitem.sty)) (./fontsetup.tex
-(c:/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec.sty
-(c:/texlive/2026/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-(c:/texlive/2026/texmf-dist/tex/latex/l3kernel/expl3.sty
-(c:/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-xetex.def)))
-(c:/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
-(c:/texlive/2026/texmf-dist/tex/latex/base/fontenc.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec.cfg))))
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/hyperref.sty
-(c:/texlive/2026/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
-(c:/texlive/2026/texmf-dist/tex/generic/pdfescape/pdfescape.sty
-(c:/texlive/2026/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
-(c:/texlive/2026/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
-(c:/texlive/2026/texmf-dist/tex/latex/hycolor/hycolor.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/nameref.sty
-(c:/texlive/2026/texmf-dist/tex/latex/refcount/refcount.sty)
-(c:/texlive/2026/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
-(c:/texlive/2026/texmf-dist/tex/generic/stringenc/stringenc.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/pd1enc.def)
-(c:/texlive/2026/texmf-dist/tex/generic/intcalc/intcalc.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/puenc.def)
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/backref.sty
-(c:/texlive/2026/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
-(c:/texlive/2026/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
-(c:/texlive/2026/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))))
-(c:/texlive/2026/texmf-dist/tex/generic/bitset/bitset.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/hxetex.def)
-(c:/texlive/2026/texmf-dist/tex/latex/cleveref/cleveref.sty)
-==> First Aid for cleveref.sty applied!
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.aux)
-ABD: EveryShipout initializing macros
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.out)
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.out)
-(./lineno-fix.tex) (./cross_dataset.tex
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd)
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd)) (./training.tex
-[1]) (./composition.tex) (./frontend.tex
+(lineno.stywarning: lineno.sty:296: Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+) (enumitem.sty)) (fontsetup (iftex.sty) (fontspec.sty (xparse.sty
+(expl3.sty (l3backend-xetex.def))) (fontspec-xetex.sty (fontenc.sty)
+(fontspec.cfg)))) (hyperref.sty (ltxcmds.sty) (pdftexcmds.sty (infwarerr.sty))
+(kvsetkeys.sty) (kvdefinekeys.sty) (pdfescape.sty) (hycolor.sty)
+(letltxmacro.sty) (auxhook.sty) (kvoptions.sty) (pd1enc.def) (intcalc.sty)
+(etexcmds.sty) (puenc.def) (backref.sty (rerunfilecheck.sty (atveryend-ltx.sty)
+ (uniquecounter.sty (bigintcalc.sty)))) (bitset.sty) (atbegshi-ltx.sty))
+(hxetex.def (stringenc.sty)) (cleveref.sty) (main.aux) (ts1cmr.fd)
+ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
+(gettitlestring.sty)) (main.out) (main.out) (lineno-fix
+
+LaTeX hooks Warning: Cannot remove chunk 'lineno' from hook
+(hooks)              'build/column/before' because the hook does not exist.
+
+) (cross_dataset (umsa.fd) (umsb.fd)
+
+Package natbib Warning: Citation `yang2025storm' on page 1 undefined on input l
+ine 21.
+
+
+Package natbib Warning: Citation `chen2025dggt' on page 1 undefined on input li
+ne 22.
+
+
+Package natbib Warning: Citation `yu2026streetforward' on page 1 undefined on i
+nput line 23.
+
+) (training [1]) (composition) (frontend
 
 Package natbib Warning: Citation `dosovitskiy2021vit' on page 2 undefined on in
-put line 6.
+put line 10.
 
 
 Package natbib Warning: Citation `vaswani2017attention' on page 2 undefined on 
-input line 6.
+input line 10.
 
-[2]) (C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.bbl
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.brf)
+[2]) (codec) (main.bbl
+No file main.brf.
 
-Package lineno Warning: Line number reference failed, re-run to get it right.
+Package lineno Warning: Linenumber reference failed, 
+(lineno)                rerun to get it right.
 
-)
+[3])
 
 Package natbib Warning: There were undefined citations.
 
-[3] (C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.aux
+[4] (main.aux
 
 Package natbib Warning: Citation(s) may have changed.
 (natbib)                Rerun to get citations correct.
 
-) )
-Output written on C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/mai
-n.xdv (3 pages, 156592 bytes).
-Transcript written on C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en
-/main.log.
-Latexmk: Getting log file 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.log'
-Latexmk: Examining 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.fls'
-Latexmk: Examining 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.log'
-Latexmk: Found input bbl file 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.bbl'
-Latexmk: References changed.
-Latexmk: Log file says output to 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.xdv'
-Latexmk: Using bibtex to make bibliography file(s).
-  ===Source file 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.bbl' for 'xelatex'
-Latexmk: Found bibliography file(s):
-  ./references.bib
-Latexmk: applying rule 'bibtex C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main'...
-Rule 'bibtex C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main':  Reasons for rerun
-Changed files or newly in use/created:
-  C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.aux
-
-------------
-Run number 3 of rule 'bibtex C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main'
-------------
-Latexmk: Change directory to 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/'.
-To assist finding of files in document directory, I set
-  BIBINPUTS='C:/Users/brayden/Desktop/drivecompose/paper/supplementary;C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en;'
-  BSTINPUTS='C:/Users/brayden/Desktop/drivecompose/paper/supplementary;'.
-------------
-Running 'bibtex  "main.aux"'
-------------
-This is BibTeX, Version 0.99e (TeX Live 2026)
-The top-level auxiliary file: main.aux
-The style file: ieeenat_fullname.bst
-Database file #1: references.bib
-Latexmk: Change directory back to 'C:/Users/brayden/Desktop/drivecompose/paper/supplementary'
-Latexmk: applying rule 'xelatex'...
-Rule 'xelatex':  Reasons for rerun
-Changed files or newly in use/created:
-  C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.aux
-
-------------
-Run number 3 of rule 'xelatex'
-------------
-------------
-Running 'xelatex -no-pdf -interaction=nonstopmode -halt-on-error -recorder -output-directory="C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en"  "main.tex"'
-------------
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex)
- restricted \write18 enabled.
-entering extended mode
-(./main.tex
-LaTeX2e <2025-11-01>
-L3 programming layer <2026-01-19>
-(c:/texlive/2026/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
-(c:/texlive/2026/texmf-dist/tex/latex/base/size10.clo)) (./cvpr.sty
-(c:/texlive/2026/texmf-dist/tex/latex/psnfss/times.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/tools/xspace.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/xcolor/xcolor.sty
-(c:/texlive/2026/texmf-dist/tex/latex/graphics-cfg/color.cfg)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics-def/xetex.def)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/mathcolor.ltx))
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/dvipsnam.def)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/keyval.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/graphics.sty
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amstext.sty
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/natbib/natbib.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/silence/silence.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/caption/caption.sty
-(c:/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/caption/subcaption.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/url/url.sty)
-CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
-(c:/texlive/2026/texmf-dist/tex/latex/lineno/lineno.sty
-(c:/texlive/2026/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-(c:/texlive/2026/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)))
-(c:/texlive/2026/texmf-dist/tex/latex/enumitem/enumitem.sty)) (./fontsetup.tex
-(c:/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec.sty
-(c:/texlive/2026/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-(c:/texlive/2026/texmf-dist/tex/latex/l3kernel/expl3.sty
-(c:/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-xetex.def)))
-(c:/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
-(c:/texlive/2026/texmf-dist/tex/latex/base/fontenc.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec.cfg))))
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/hyperref.sty
-(c:/texlive/2026/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
-(c:/texlive/2026/texmf-dist/tex/generic/pdfescape/pdfescape.sty
-(c:/texlive/2026/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
-(c:/texlive/2026/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
-(c:/texlive/2026/texmf-dist/tex/latex/hycolor/hycolor.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/nameref.sty
-(c:/texlive/2026/texmf-dist/tex/latex/refcount/refcount.sty)
-(c:/texlive/2026/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
-(c:/texlive/2026/texmf-dist/tex/generic/stringenc/stringenc.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/pd1enc.def)
-(c:/texlive/2026/texmf-dist/tex/generic/intcalc/intcalc.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/puenc.def)
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/backref.sty
-(c:/texlive/2026/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
-(c:/texlive/2026/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
-(c:/texlive/2026/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))))
-(c:/texlive/2026/texmf-dist/tex/generic/bitset/bitset.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/hxetex.def)
-(c:/texlive/2026/texmf-dist/tex/latex/cleveref/cleveref.sty)
-==> First Aid for cleveref.sty applied!
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.aux)
-ABD: EveryShipout initializing macros
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.out)
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.out)
-(./lineno-fix.tex) (./cross_dataset.tex
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd)
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd)) (./training.tex
-[1]) (./composition.tex) (./frontend.tex [2])
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.bbl
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.brf)) [3]
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.aux)
+)
 
 Package rerunfilecheck Warning: File `main.brf' has changed.
 (rerunfilecheck)                Rerun to get bibliographical references right.
 
  )
-Output written on C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/mai
-n.xdv (3 pages, 156900 bytes).
-Transcript written on C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en
-/main.log.
-Latexmk: Getting log file 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.log'
-Latexmk: Examining 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.fls'
-Latexmk: Examining 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.log'
-Latexmk: Found input bbl file 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.bbl'
-Latexmk: References changed.
-Latexmk: Log file says output to 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.xdv'
-Latexmk: Using bibtex to make bibliography file(s).
-  ===Source file 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.bbl' for 'xelatex'
-Latexmk: Found bibliography file(s):
-  ./references.bib
-Latexmk: applying rule 'bibtex C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main'...
-Rule 'bibtex C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main':  Reasons for rerun
-Changed files or newly in use/created:
-  C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.aux
-
-------------
-Run number 4 of rule 'bibtex C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main'
-------------
-Latexmk: Change directory to 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/'.
-To assist finding of files in document directory, I set
-  BIBINPUTS='C:/Users/brayden/Desktop/drivecompose/paper/supplementary;C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en;'
-  BSTINPUTS='C:/Users/brayden/Desktop/drivecompose/paper/supplementary;'.
-------------
-Running 'bibtex  "main.aux"'
-------------
-This is BibTeX, Version 0.99e (TeX Live 2026)
-The top-level auxiliary file: main.aux
-The style file: ieeenat_fullname.bst
-Database file #1: references.bib
-Latexmk: Change directory back to 'C:/Users/brayden/Desktop/drivecompose/paper/supplementary'
-Latexmk: applying rule 'xelatex'...
-Rule 'xelatex':  Reasons for rerun
-Changed files or newly in use/created:
-  C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.aux
-  C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.brf
-
-------------
-Run number 4 of rule 'xelatex'
-------------
-------------
-Running 'xelatex -no-pdf -interaction=nonstopmode -halt-on-error -recorder -output-directory="C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en"  "main.tex"'
-------------
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026) (preloaded format=xelatex)
- restricted \write18 enabled.
-entering extended mode
-(./main.tex
-LaTeX2e <2025-11-01>
-L3 programming layer <2026-01-19>
-(c:/texlive/2026/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
-(c:/texlive/2026/texmf-dist/tex/latex/base/size10.clo)) (./cvpr.sty
-(c:/texlive/2026/texmf-dist/tex/latex/psnfss/times.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/tools/xspace.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/xcolor/xcolor.sty
-(c:/texlive/2026/texmf-dist/tex/latex/graphics-cfg/color.cfg)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics-def/xetex.def)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/mathcolor.ltx))
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/dvipsnam.def)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/keyval.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/graphics.sty
-(c:/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsmath.sty
+(see the transcript file for additional information)
+Output written on main.xdv (4 pages, 173300 bytes).
+Transcript written on main.log.
+note: Rerunning TeX because "main.aux" changed ...
+(main.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-02-24> (article.cls
+Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+(size10.clo)) (cvpr.sty (times.sty) (xspace.sty) (xcolor.sty (color.cfg)
+(xetex.def) (dvipsnam.def)) (graphicx.sty (keyval.sty) (graphics.sty (trig.sty)
+ (graphics.cfg))) (amsmath.sty
 For additional information on amsmath, use the `?' option.
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amstext.sty
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/natbib/natbib.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/silence/silence.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/caption/caption.sty
-(c:/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/caption/subcaption.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/url/url.sty)
+(amstext.sty (amsgen.sty)) (amsbsy.sty) (amsopn.sty)) (amssymb.sty
+(amsfonts.sty)) (booktabs.sty) (natbib.sty) (silence.sty) (etoolbox.sty)
+(caption.sty (caption3.sty)) (subcaption.sty) (url.sty)
 CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
-(c:/texlive/2026/texmf-dist/tex/latex/lineno/lineno.sty
-(c:/texlive/2026/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-(c:/texlive/2026/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)))
-(c:/texlive/2026/texmf-dist/tex/latex/enumitem/enumitem.sty)) (./fontsetup.tex
-(c:/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec.sty
-(c:/texlive/2026/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-(c:/texlive/2026/texmf-dist/tex/latex/l3kernel/expl3.sty
-(c:/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-xetex.def)))
-(c:/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
-(c:/texlive/2026/texmf-dist/tex/latex/base/fontenc.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/fontspec/fontspec.cfg))))
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/hyperref.sty
-(c:/texlive/2026/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
-(c:/texlive/2026/texmf-dist/tex/generic/pdfescape/pdfescape.sty
-(c:/texlive/2026/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
-(c:/texlive/2026/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
-(c:/texlive/2026/texmf-dist/tex/latex/hycolor/hycolor.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/nameref.sty
-(c:/texlive/2026/texmf-dist/tex/latex/refcount/refcount.sty)
-(c:/texlive/2026/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
-(c:/texlive/2026/texmf-dist/tex/generic/stringenc/stringenc.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/pd1enc.def)
-(c:/texlive/2026/texmf-dist/tex/generic/intcalc/intcalc.sty)
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/puenc.def)
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/backref.sty
-(c:/texlive/2026/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
-(c:/texlive/2026/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
-(c:/texlive/2026/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))))
-(c:/texlive/2026/texmf-dist/tex/generic/bitset/bitset.sty))
-(c:/texlive/2026/texmf-dist/tex/latex/hyperref/hxetex.def)
-(c:/texlive/2026/texmf-dist/tex/latex/cleveref/cleveref.sty)
-==> First Aid for cleveref.sty applied!
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.aux)
-ABD: EveryShipout initializing macros
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.out)
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.out)
-(./lineno-fix.tex) (./cross_dataset.tex
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd)
-(c:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd)) (./training.tex
-[1]) (./composition.tex) (./frontend.tex [2])
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.bbl
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.brf)) [3]
-(C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.aux) )
-Output written on C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/mai
-n.xdv (3 pages, 157224 bytes).
-Transcript written on C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en
-/main.log.
-Latexmk: Getting log file 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.log'
-Latexmk: Examining 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.fls'
-Latexmk: Examining 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.log'
-Latexmk: Found input bbl file 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.bbl'
-Latexmk: Log file says output to 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.xdv'
-Latexmk: Using bibtex to make bibliography file(s).
-  ===Source file 'C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.bbl' for 'xelatex'
-Latexmk: Found bibliography file(s):
-  ./references.bib
-Latexmk: applying rule 'xdvipdfmx'...
-Rule 'xdvipdfmx':  Reasons for rerun
-Changed files or newly in use/created:
-  C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.xdv
-Category 'changed_source_rules':
-  xelatex
+(lineno.stywarning: lineno.sty:296: Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+) (enumitem.sty)) (fontsetup (iftex.sty) (fontspec.sty (xparse.sty
+(expl3.sty (l3backend-xetex.def))) (fontspec-xetex.sty (fontenc.sty)
+(fontspec.cfg)))) (hyperref.sty (ltxcmds.sty) (pdftexcmds.sty (infwarerr.sty))
+(kvsetkeys.sty) (kvdefinekeys.sty) (pdfescape.sty) (hycolor.sty)
+(letltxmacro.sty) (auxhook.sty) (kvoptions.sty) (pd1enc.def) (intcalc.sty)
+(etexcmds.sty) (puenc.def) (backref.sty (rerunfilecheck.sty (atveryend-ltx.sty)
+ (uniquecounter.sty (bigintcalc.sty)))) (bitset.sty) (atbegshi-ltx.sty))
+(hxetex.def (stringenc.sty)) (cleveref.sty) (main.aux) (ts1cmr.fd)
+ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
+(gettitlestring.sty)) (main.out) (main.out) (lineno-fix
 
-------------
-Run number 1 of rule 'xdvipdfmx'
-------------
-------------
-Running 'xdvipdfmx -E -o "C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.pdf"  "C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.xdv"'
-------------
-C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.xdv -> C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.pdf
-[1][2][3]
-69997 bytes written
-Latexmk: All targets (C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.xdv C:/Users/brayden/Desktop/drivecompose/paper/build/supp-en/main.pdf) are up-to-date
+LaTeX hooks Warning: Cannot remove chunk 'lineno' from hook
+(hooks)              'build/column/before' because the hook does not exist.
 
-Reverting Windows console CPs to (in,out) = (936,65001)
+) (cross_dataset (umsa.fd) (umsb.fd)) (training [1]) (composition) (frontend
+[2]) (codec) (main.bbl (main.brf) [3]) [4] (main.aux)
+
+Package rerunfilecheck Warning: File `main.brf' has changed.
+(rerunfilecheck)                Rerun to get bibliographical references right.
+
+ )
+(see the transcript file for additional information)
+Output written on main.xdv (4 pages, 174044 bytes).
+Transcript written on main.log.
+note: Rerunning TeX because "main.aux" changed ...
+(main.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-02-24> (article.cls
+Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+(size10.clo)) (cvpr.sty (times.sty) (xspace.sty) (xcolor.sty (color.cfg)
+(xetex.def) (dvipsnam.def)) (graphicx.sty (keyval.sty) (graphics.sty (trig.sty)
+ (graphics.cfg))) (amsmath.sty
+For additional information on amsmath, use the `?' option.
+(amstext.sty (amsgen.sty)) (amsbsy.sty) (amsopn.sty)) (amssymb.sty
+(amsfonts.sty)) (booktabs.sty) (natbib.sty) (silence.sty) (etoolbox.sty)
+(caption.sty (caption3.sty)) (subcaption.sty) (url.sty)
+CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
+(lineno.stywarning: lineno.sty:296: Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+) (enumitem.sty)) (fontsetup (iftex.sty) (fontspec.sty (xparse.sty
+(expl3.sty (l3backend-xetex.def))) (fontspec-xetex.sty (fontenc.sty)
+(fontspec.cfg)))) (hyperref.sty (ltxcmds.sty) (pdftexcmds.sty (infwarerr.sty))
+(kvsetkeys.sty) (kvdefinekeys.sty) (pdfescape.sty) (hycolor.sty)
+(letltxmacro.sty) (auxhook.sty) (kvoptions.sty) (pd1enc.def) (intcalc.sty)
+(etexcmds.sty) (puenc.def) (backref.sty (rerunfilecheck.sty (atveryend-ltx.sty)
+ (uniquecounter.sty (bigintcalc.sty)))) (bitset.sty) (atbegshi-ltx.sty))
+(hxetex.def (stringenc.sty)) (cleveref.sty) (main.aux) (ts1cmr.fd)
+ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
+(gettitlestring.sty)) (main.out) (main.out) (lineno-fix
+
+LaTeX hooks Warning: Cannot remove chunk 'lineno' from hook
+(hooks)              'build/column/before' because the hook does not exist.
+
+) (cross_dataset (umsa.fd) (umsb.fd)) (training [1]) (composition) (frontend
+[2]) (codec) (main.bbl (main.brf) [3]) [4] (main.aux) )
+(see the transcript file for additional information)
+Output written on main.xdv (4 pages, 174848 bytes).
+Transcript written on main.log.
+warning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.
+note: Running xdvipdfmx ...
+[1][2][3][4]75545 bytes written
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\supp-en\main.pdf` (73.7744140625 KiB)
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\supp-en\main.brf` (267 B)
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\supp-en\main.aux` (10.087890625 KiB)
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\supp-en\main.bbl` (2.5263671875 KiB)
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\supp-en\main.blg` (202 B)
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\supp-en\main.log` (26.8466796875 KiB)
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\supp-en\main.out` (986 B)

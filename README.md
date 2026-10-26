@@ -1,8 +1,8 @@
 # DriveCompose
 
-**DriveCompose: Generative Reconstruction of Compositional Driving Scenes via Joint Completion**
+**DriveCompose: Compositional Generative Reconstruction of Driving Scenes via Joint Completion**
 
-**DriveCompose：通过联合补全实现可组合驾驶场景的生成式重建**
+**DriveCompose：通过联合补全实现驾驶场景的可组合生成式重建**
 
 DriveCompose 从多相机驾驶日志恢复背景、刚体车辆和可驱动人体，通过离线补全构建供多条仿真轨迹复用的固定高斯世界。
 

@@ -1,6 +1,6 @@
 # DriveCompose 的论文立意与叙事改进建议
 
-题名更新（2026-10-22）：当前采用 **DriveCompose: Generative Reconstruction of Compositional Driving Scenes via Joint Completion**，中文为 **DriveCompose：通过联合补全实现可组合驾驶场景的生成式重建**。下文保留 2026-10-21 审查时的候选标题及比较理由。
+题名更新（2026-10-26）：当前采用 **DriveCompose: Compositional Generative Reconstruction of Driving Scenes via Joint Completion**，中文为 **DriveCompose：通过联合补全实现驾驶场景的可组合生成式重建**。下文保留 2026-10-21 审查时的候选标题及比较理由。
 
 审查日期：2026 年 10 月 21 日。对象为当前中英文稿、项目方法与训练文档、主张证据表，以及 DGGT 原文。目标沿用项目的 CVPR 定位。本报告提出修改方案，没有改写论文、修改实验数值或运行训练。
 

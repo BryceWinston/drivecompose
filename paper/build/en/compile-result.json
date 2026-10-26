@@ -15,13 +15,13 @@
     "main.tex"
   ],
   "exit_code": 0,
-  "started_at": "2026-10-26T07:06:48.031438+00:00",
-  "finished_at": "2026-10-26T07:07:14.733671+00:00",
-  "elapsed_seconds": 26.703,
+  "started_at": "2026-10-26T12:31:39.925505+00:00",
+  "finished_at": "2026-10-26T12:32:06.007659+00:00",
+  "elapsed_seconds": 26.079,
   "fontconfig_file": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\tools\\fontconfig.conf",
-  "source_sha256": "6dd903083aa6ca127550fc81790fcbffd75e84a2ddff597da784380f7269e0f7",
+  "source_sha256": "cd664d2d9f07442cc522f263a2f5c7f899bac99644fb1e43b182dbfe965b4a63",
   "pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\en\\main.pdf",
   "pdf_exists": true,
   "pdf_written_this_run": true,
-  "pdf_sha256": "6f3901cebbaf1898c79270aa0e901b90aed10fcbdd71ad7f13aa95781b723c26"
+  "pdf_sha256": "fc9410a6fdabe352deb427bcf4d0b345bd6f350390d9e98ea6a638994a0d3ae5"
 }

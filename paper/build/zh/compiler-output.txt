@@ -59,6 +59,14 @@ Package lineno Warning: Label(s) may have changed. Rerun to get cross-reference
 s right. on input line 1.
 
 
+Package natbib Warning: Citation `yang2023unisim' on page 1 undefined on input 
+line 4.
+
+
+Package natbib Warning: Citation `zhou2024hugsim' on page 1 undefined on input 
+line 4.
+
+
 Package natbib Warning: Citation `sun2020waymo' on page 1 undefined on input li
 ne 4.
 
@@ -83,18 +91,6 @@ Package natbib Warning: Citation `chi2026pointforward' on page 1 undefined on i
 nput line 6.
 
 
-Package natbib Warning: Citation `yan2024street' on page 1 undefined on input l
-ine 8.
-
-
-Package natbib Warning: Citation `chen2025omnire' on page 1 undefined on input 
-line 8.
-
-
-Package natbib Warning: Citation `zhou2024hugsim' on page 1 undefined on input 
-line 8.
-
-
 Package natbib Warning: Citation `yang2025genassets' on page 1 undefined on inp
 ut line 8.
 
@@ -111,121 +107,11 @@ Package natbib Warning: Citation `zhu2025worldsplat' on page 1 undefined on inp
 ut line 8.
 
 
-LaTeX Warning: Reference `sec:representation' on page 1 undefined on input line
- 10.
-
-
-Package natbib Warning: Citation `lipman2022flowmatching' on page 1 undefined o
-n input line 12.
-
-
-LaTeX Warning: Reference `fig:teaser' on page 1 undefined on input line 12.
-
-
-LaTeX Warning: Reference `sec:composition' on page 1 undefined on input line 14
-.
-
-
-LaTeX Warning: Reference `sec:related' on page 1 undefined on input line 22.
-
-
-LaTeX Warning: Reference `sec:method' on page 1 undefined on input line 22.
-
-
-LaTeX Warning: Reference `sec:experiments' on page 1 undefined on input line 22
-.
-
-
-LaTeX Warning: Reference `sec:discussion' on page 1 undefined on input line 22.
-
-
-
-LaTeX Warning: Reference `sec:conclusion' on page 1 undefined on input line 22.
-
-
-) (zh/2_related_work_zh
-
-Package natbib Warning: Citation `mildenhall2020nerf' on page 1 undefined on in
-put line 5.
-
-
-Package natbib Warning: Citation `kerbl2023gaussians' on page 1 undefined on in
-put line 5.
-
-
-Package natbib Warning: Citation `tonderski2024neurad' on page 1 undefined on i
-nput line 5.
-
-
-Package natbib Warning: Citation `hess2025splatad' on page 1 undefined on input
- line 5.
-
-
-Package natbib Warning: Citation `hong2024lrm' on page 1 undefined on input lin
-e 5.
-
-
-Package natbib Warning: Citation `charatan2024pixelsplat' on page 1 undefined o
-n input line 5.
-
-
-Package natbib Warning: Citation `chen2024mvsplat' on page 1 undefined on input
- line 5.
-
-
-Package natbib Warning: Citation `wang2024dust3r' on page 1 undefined on input 
-line 5.
-
-
-Package natbib Warning: Citation `wang2025vggt' on page 1 undefined on input li
-ne 5.
-
-
-Package natbib Warning: Citation `yang2025storm' on page 1 undefined on input l
-ine 5.
-
-
-Package natbib Warning: Citation `chen2025dggt' on page 1 undefined on input li
-ne 5.
-
-
-Package natbib Warning: Citation `tian2025drivingforward' on page 1 undefined o
-n input line 5.
-
-
-Package natbib Warning: Citation `yu2026streetforward' on page 1 undefined on i
-nput line 5.
-
-
-Package natbib Warning: Citation `chi2026pointforward' on page 1 undefined on i
-nput line 5.
-
-
-Package natbib Warning: Citation `huang2026instantnurec' on page 1 undefined on
- input line 5.
-
-
-Package natbib Warning: Citation `ren2026tokengs' on page 1 undefined on input 
-line 5.
-
-
-Package natbib Warning: Citation `ost2021neuralgraphs' on page 1 undefined on i
-nput line 8.
-
-
 Package natbib Warning: Citation `yan2024street' on page 1 undefined on input l
 ine 8.
 
 
-Package natbib Warning: Citation `zhou2024drivinggaussian' on page 1 undefined 
-on input line 8.
-
-
 Package natbib Warning: Citation `chen2025omnire' on page 1 undefined on input 
-line 8.
-
-
-Package natbib Warning: Citation `yang2023unisim' on page 1 undefined on input 
 line 8.
 
 
@@ -233,38 +119,179 @@ Package natbib Warning: Citation `zhou2024hugsim' on page 1 undefined on input
 line 8.
 
 
-Package natbib Warning: Citation `loper2015smpl' on page 1 undefined on input l
+Package natbib Warning: Citation `yan2024street' on page 1 undefined on input l
+ine 10.
+
+
+Package natbib Warning: Citation `chen2025omnire' on page 1 undefined on input 
+line 10.
+
+
+LaTeX Warning: Reference `sec:representation' on page 1 undefined on input line
+ 10.
+
+
+LaTeX Warning: Reference `fig:teaser' on page 1 undefined on input line 12.
+
+
+Package natbib Warning: Citation `lipman2022flowmatching' on page 1 undefined o
+n input line 12.
+
+
+Package natbib Warning: Citation `kerbl2023gaussians' on page 1 undefined on in
+put line 12.
+
+
+LaTeX Warning: Reference `sec:composition' on page 1 undefined on input line 14
+.
+
+
+LaTeX Warning: Reference `sec:experiments' on page 1 undefined on input line 16
+.
+
+
+LaTeX Warning: Reference `sec:ablations' on page 1 undefined on input line 16.
+
+[1]
+
+LaTeX Warning: Reference `sec:related' on page 2 undefined on input line 25.
+
+
+LaTeX Warning: Reference `sec:method' on page 2 undefined on input line 25.
+
+
+LaTeX Warning: Reference `sec:experiments' on page 2 undefined on input line 25
+.
+
+
+LaTeX Warning: Reference `sec:discussion' on page 2 undefined on input line 25.
+
+
+
+LaTeX Warning: Reference `sec:conclusion' on page 2 undefined on input line 25.
+
+
+) (zh/2_related_work_zh
+
+Package natbib Warning: Citation `mildenhall2020nerf' on page 2 undefined on in
+put line 5.
+
+
+Package natbib Warning: Citation `kerbl2023gaussians' on page 2 undefined on in
+put line 5.
+
+
+Package natbib Warning: Citation `tonderski2024neurad' on page 2 undefined on i
+nput line 5.
+
+
+Package natbib Warning: Citation `hess2025splatad' on page 2 undefined on input
+ line 5.
+
+
+Package natbib Warning: Citation `hong2024lrm' on page 2 undefined on input lin
+e 5.
+
+
+Package natbib Warning: Citation `charatan2024pixelsplat' on page 2 undefined o
+n input line 5.
+
+
+Package natbib Warning: Citation `chen2024mvsplat' on page 2 undefined on input
+ line 5.
+
+
+Package natbib Warning: Citation `wang2024dust3r' on page 2 undefined on input 
+line 5.
+
+
+Package natbib Warning: Citation `wang2025vggt' on page 2 undefined on input li
+ne 5.
+
+
+Package natbib Warning: Citation `yang2025storm' on page 2 undefined on input l
+ine 5.
+
+
+Package natbib Warning: Citation `chen2025dggt' on page 2 undefined on input li
+ne 5.
+
+
+Package natbib Warning: Citation `tian2025drivingforward' on page 2 undefined o
+n input line 5.
+
+
+Package natbib Warning: Citation `yu2026streetforward' on page 2 undefined on i
+nput line 5.
+
+
+Package natbib Warning: Citation `chi2026pointforward' on page 2 undefined on i
+nput line 5.
+
+
+Package natbib Warning: Citation `huang2026instantnurec' on page 2 undefined on
+ input line 5.
+
+
+Package natbib Warning: Citation `ren2026tokengs' on page 2 undefined on input 
+line 5.
+
+
+Package natbib Warning: Citation `ost2021neuralgraphs' on page 2 undefined on i
+nput line 8.
+
+
+Package natbib Warning: Citation `yan2024street' on page 2 undefined on input l
 ine 8.
 
 
-Package natbib Warning: Citation `pavlakos2019smplx' on page 1 undefined on inp
+Package natbib Warning: Citation `zhou2024drivinggaussian' on page 2 undefined 
+on input line 8.
+
+
+Package natbib Warning: Citation `chen2025omnire' on page 2 undefined on input 
+line 8.
+
+
+Package natbib Warning: Citation `yang2023unisim' on page 2 undefined on input 
+line 8.
+
+
+Package natbib Warning: Citation `zhou2024hugsim' on page 2 undefined on input 
+line 8.
+
+
+Package natbib Warning: Citation `loper2015smpl' on page 2 undefined on input l
+ine 8.
+
+
+Package natbib Warning: Citation `pavlakos2019smplx' on page 2 undefined on inp
 ut line 8.
 
 
-Package natbib Warning: Citation `hu2024gauhuman' on page 1 undefined on input 
+Package natbib Warning: Citation `hu2024gauhuman' on page 2 undefined on input 
 line 8.
 
 
-Package natbib Warning: Citation `kocabas2024hugs' on page 1 undefined on input
+Package natbib Warning: Citation `kocabas2024hugs' on page 2 undefined on input
  line 8.
 
 
-Package natbib Warning: Citation `qian2024avatar' on page 1 undefined on input 
+Package natbib Warning: Citation `qian2024avatar' on page 2 undefined on input 
 line 8.
 
 
-Package natbib Warning: Citation `qiu2025lhm' on page 1 undefined on input line
+Package natbib Warning: Citation `qiu2025lhm' on page 2 undefined on input line
  8.
 
 
-Package natbib Warning: Citation `zhuang2025idol' on page 1 undefined on input 
+Package natbib Warning: Citation `zhuang2025idol' on page 2 undefined on input 
 line 8.
 
 
-Package natbib Warning: Citation `lu2025urbancad' on page 1 undefined on input 
+Package natbib Warning: Citation `lu2025urbancad' on page 2 undefined on input 
 line 8.
 
-[1]
 
 Package natbib Warning: Citation `liu2023zero123' on page 2 undefined on input 
 line 11.
@@ -337,18 +364,18 @@ LaTeX Warning: Reference `fig:teaser' on page 2 undefined on input line 3.
 Package natbib Warning: Citation `kerbl2023gaussians' on page 2 undefined on in
 put line 18.
 
+[2]
 
-LaTeX Warning: Reference `eq:world' on page 2 undefined on input line 29.
+LaTeX Warning: Reference `eq:world' on page 3 undefined on input line 29.
 
 
-Package natbib Warning: Citation `dosovitskiy2021vit' on page 2 undefined on in
+Package natbib Warning: Citation `dosovitskiy2021vit' on page 3 undefined on in
 put line 36.
 
 
-Package natbib Warning: Citation `vaswani2017attention' on page 2 undefined on 
+Package natbib Warning: Citation `vaswani2017attention' on page 3 undefined on 
 input line 36.
 
-[2]
 
 Package natbib Warning: Citation `peebles2023dit' on page 3 undefined on input 
 line 85.
@@ -357,13 +384,13 @@ line 85.
 Package natbib Warning: Citation `lipman2022flowmatching' on page 3 undefined o
 n input line 85.
 
-
-LaTeX Warning: Reference `eq:flow-path' on page 3 undefined on input line 117.
-
-
-LaTeX Warning: Reference `sec:training' on page 3 undefined on input line 117.
-
 [3]
+
+LaTeX Warning: Reference `eq:flow-path' on page 4 undefined on input line 117.
+
+
+LaTeX Warning: Reference `sec:training' on page 4 undefined on input line 117.
+
 
 LaTeX Warning: Reference `tab:training' on page 4 undefined on input line 158.
 
@@ -401,10 +428,10 @@ ne 29.
 
 warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
 warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
-
-LaTeX Warning: Reference `eq:regression' on page 4 undefined on input line 57.
-
 [4]
+
+LaTeX Warning: Reference `eq:regression' on page 5 undefined on input line 57.
+
 
 LaTeX Warning: Reference `tab:ablation-components' on page 5 undefined on input
  line 65.
@@ -422,12 +449,12 @@ LaTeX Warning: Reference `tab:ablation-components' on page 6 undefined on input
 LaTeX Warning: Reference `tab:ablation-components' on page 6 undefined on input
  line 104.
 
-) (zh/5_discussion_zh) (zh/6_conclusion_zh)
+) (zh/5_discussion_zh) [6] (zh/6_conclusion_zh)
 No file main_zh.bbl.
 
 Package natbib Warning: There were undefined citations.
 
-[6] (main_zh.aux)
+[7] (main_zh.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -440,7 +467,7 @@ Package rerunfilecheck Warning: File `main_zh.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
  )
-Output written on main_zh.xdv (6 pages, 189464 bytes).
+Output written on main_zh.xdv (7 pages, 199960 bytes).
 Transcript written on main_zh.log.
 note: Running BibTeX on main_zh.aux ...
 note: Rerunning TeX because bibtex was run ...
@@ -495,6 +522,14 @@ CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
 (gettitlestring.sty)) (main_zh.out) (main_zh.out) (umsa.fd) (umsb.fd)
 (zh/0_abstract_zh) (zh/1_introduction_zh
 
+Package natbib Warning: Citation `yang2023unisim' on page 1 undefined on input 
+line 4.
+
+
+Package natbib Warning: Citation `zhou2024hugsim' on page 1 undefined on input 
+line 4.
+
+
 Package natbib Warning: Citation `sun2020waymo' on page 1 undefined on input li
 ne 4.
 
@@ -519,18 +554,6 @@ Package natbib Warning: Citation `chi2026pointforward' on page 1 undefined on i
 nput line 6.
 
 
-Package natbib Warning: Citation `yan2024street' on page 1 undefined on input l
-ine 8.
-
-
-Package natbib Warning: Citation `chen2025omnire' on page 1 undefined on input 
-line 8.
-
-
-Package natbib Warning: Citation `zhou2024hugsim' on page 1 undefined on input 
-line 8.
-
-
 Package natbib Warning: Citation `yang2025genassets' on page 1 undefined on inp
 ut line 8.
 
@@ -547,92 +570,11 @@ Package natbib Warning: Citation `zhu2025worldsplat' on page 1 undefined on inp
 ut line 8.
 
 
-Package natbib Warning: Citation `lipman2022flowmatching' on page 1 undefined o
-n input line 12.
-
-) (zh/2_related_work_zh
-
-Package natbib Warning: Citation `mildenhall2020nerf' on page 1 undefined on in
-put line 5.
-
-
-Package natbib Warning: Citation `kerbl2023gaussians' on page 1 undefined on in
-put line 5.
-
-
-Package natbib Warning: Citation `tonderski2024neurad' on page 1 undefined on i
-nput line 5.
-
-
-Package natbib Warning: Citation `hess2025splatad' on page 1 undefined on input
- line 5.
-
-
-Package natbib Warning: Citation `hong2024lrm' on page 1 undefined on input lin
-e 5.
-
-
-Package natbib Warning: Citation `charatan2024pixelsplat' on page 1 undefined o
-n input line 5.
-
-
-Package natbib Warning: Citation `chen2024mvsplat' on page 1 undefined on input
- line 5.
-
-
-Package natbib Warning: Citation `wang2024dust3r' on page 1 undefined on input 
-line 5.
-
-
-Package natbib Warning: Citation `wang2025vggt' on page 1 undefined on input li
-ne 5.
-
-
-Package natbib Warning: Citation `yang2025storm' on page 1 undefined on input l
-ine 5.
-
-
-Package natbib Warning: Citation `chen2025dggt' on page 1 undefined on input li
-ne 5.
-
-
-Package natbib Warning: Citation `tian2025drivingforward' on page 1 undefined o
-n input line 5.
-
-
-Package natbib Warning: Citation `yu2026streetforward' on page 1 undefined on i
-nput line 5.
-
-
-Package natbib Warning: Citation `chi2026pointforward' on page 1 undefined on i
-nput line 5.
-
-
-Package natbib Warning: Citation `huang2026instantnurec' on page 1 undefined on
- input line 5.
-
-
-Package natbib Warning: Citation `ren2026tokengs' on page 1 undefined on input 
-line 5.
-
-
-Package natbib Warning: Citation `ost2021neuralgraphs' on page 1 undefined on i
-nput line 8.
-
-
 Package natbib Warning: Citation `yan2024street' on page 1 undefined on input l
 ine 8.
 
 
-Package natbib Warning: Citation `zhou2024drivinggaussian' on page 1 undefined 
-on input line 8.
-
-
 Package natbib Warning: Citation `chen2025omnire' on page 1 undefined on input 
-line 8.
-
-
-Package natbib Warning: Citation `yang2023unisim' on page 1 undefined on input 
 line 8.
 
 
@@ -640,38 +582,142 @@ Package natbib Warning: Citation `zhou2024hugsim' on page 1 undefined on input
 line 8.
 
 
-Package natbib Warning: Citation `loper2015smpl' on page 1 undefined on input l
+Package natbib Warning: Citation `yan2024street' on page 1 undefined on input l
+ine 10.
+
+
+Package natbib Warning: Citation `chen2025omnire' on page 1 undefined on input 
+line 10.
+
+
+Package natbib Warning: Citation `lipman2022flowmatching' on page 1 undefined o
+n input line 12.
+
+
+Package natbib Warning: Citation `kerbl2023gaussians' on page 1 undefined on in
+put line 12.
+
+[1]) (zh/2_related_work_zh
+
+Package natbib Warning: Citation `mildenhall2020nerf' on page 2 undefined on in
+put line 5.
+
+
+Package natbib Warning: Citation `kerbl2023gaussians' on page 2 undefined on in
+put line 5.
+
+
+Package natbib Warning: Citation `tonderski2024neurad' on page 2 undefined on i
+nput line 5.
+
+
+Package natbib Warning: Citation `hess2025splatad' on page 2 undefined on input
+ line 5.
+
+
+Package natbib Warning: Citation `hong2024lrm' on page 2 undefined on input lin
+e 5.
+
+
+Package natbib Warning: Citation `charatan2024pixelsplat' on page 2 undefined o
+n input line 5.
+
+
+Package natbib Warning: Citation `chen2024mvsplat' on page 2 undefined on input
+ line 5.
+
+
+Package natbib Warning: Citation `wang2024dust3r' on page 2 undefined on input 
+line 5.
+
+
+Package natbib Warning: Citation `wang2025vggt' on page 2 undefined on input li
+ne 5.
+
+
+Package natbib Warning: Citation `yang2025storm' on page 2 undefined on input l
+ine 5.
+
+
+Package natbib Warning: Citation `chen2025dggt' on page 2 undefined on input li
+ne 5.
+
+
+Package natbib Warning: Citation `tian2025drivingforward' on page 2 undefined o
+n input line 5.
+
+
+Package natbib Warning: Citation `yu2026streetforward' on page 2 undefined on i
+nput line 5.
+
+
+Package natbib Warning: Citation `chi2026pointforward' on page 2 undefined on i
+nput line 5.
+
+
+Package natbib Warning: Citation `huang2026instantnurec' on page 2 undefined on
+ input line 5.
+
+
+Package natbib Warning: Citation `ren2026tokengs' on page 2 undefined on input 
+line 5.
+
+
+Package natbib Warning: Citation `ost2021neuralgraphs' on page 2 undefined on i
+nput line 8.
+
+
+Package natbib Warning: Citation `yan2024street' on page 2 undefined on input l
 ine 8.
 
 
-Package natbib Warning: Citation `pavlakos2019smplx' on page 1 undefined on inp
+Package natbib Warning: Citation `zhou2024drivinggaussian' on page 2 undefined 
+on input line 8.
+
+
+Package natbib Warning: Citation `chen2025omnire' on page 2 undefined on input 
+line 8.
+
+
+Package natbib Warning: Citation `yang2023unisim' on page 2 undefined on input 
+line 8.
+
+
+Package natbib Warning: Citation `zhou2024hugsim' on page 2 undefined on input 
+line 8.
+
+
+Package natbib Warning: Citation `loper2015smpl' on page 2 undefined on input l
+ine 8.
+
+
+Package natbib Warning: Citation `pavlakos2019smplx' on page 2 undefined on inp
 ut line 8.
 
 
-Package natbib Warning: Citation `hu2024gauhuman' on page 1 undefined on input 
+Package natbib Warning: Citation `hu2024gauhuman' on page 2 undefined on input 
 line 8.
 
 
-Package natbib Warning: Citation `kocabas2024hugs' on page 1 undefined on input
+Package natbib Warning: Citation `kocabas2024hugs' on page 2 undefined on input
  line 8.
 
 
-Package natbib Warning: Citation `qian2024avatar' on page 1 undefined on input 
+Package natbib Warning: Citation `qian2024avatar' on page 2 undefined on input 
 line 8.
 
 
-Package natbib Warning: Citation `qiu2025lhm' on page 1 undefined on input line
+Package natbib Warning: Citation `qiu2025lhm' on page 2 undefined on input line
  8.
 
 
-Package natbib Warning: Citation `zhuang2025idol' on page 1 undefined on input 
+Package natbib Warning: Citation `zhuang2025idol' on page 2 undefined on input 
 line 8.
 
 
-Package natbib Warning: Citation `lu2025urbancad' on page 1 undefined on input 
+Package natbib Warning: Citation `lu2025urbancad' on page 2 undefined on input 
 line 8.
 
-[1]
 
 Package natbib Warning: Citation `liu2023zero123' on page 2 undefined on input 
 line 11.
@@ -741,15 +787,15 @@ ine 14.
 Package natbib Warning: Citation `kerbl2023gaussians' on page 2 undefined on in
 put line 18.
 
+[2]
 
-Package natbib Warning: Citation `dosovitskiy2021vit' on page 2 undefined on in
+Package natbib Warning: Citation `dosovitskiy2021vit' on page 3 undefined on in
 put line 36.
 
 
-Package natbib Warning: Citation `vaswani2017attention' on page 2 undefined on 
+Package natbib Warning: Citation `vaswani2017attention' on page 3 undefined on 
 input line 36.
 
-[2]
 
 Package natbib Warning: Citation `peebles2023dit' on page 3 undefined on input 
 line 85.
@@ -760,14 +806,14 @@ n input line 85.
 
 [3]) (zh/4_experiments_zhwarning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
 warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
- [4] [5]) (zh/5_discussion_zh) (zh/6_conclusion_zh)
-(main_zh.bbl
+ [4] [5]) (zh/5_discussion_zh) [6] (zh/6_conclusion_zh
+) (main_zh.bbl
 No file main_zh.brf.
 
 Package lineno Warning: Label(s) may have changed. Rerun to get cross-reference
 s right. on input line 15.
 
-[6] [7] [8])
+[7] [8])
 
 Package natbib Warning: There were undefined citations.
 
@@ -778,11 +824,14 @@ Package natbib Warning: Citation(s) may have changed.
 
 )
 
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
 Package rerunfilecheck Warning: File `main_zh.brf' has changed.
 (rerunfilecheck)                Rerun to get bibliographical references right.
 
  )
-Output written on main_zh.xdv (9 pages, 372796 bytes).
+Output written on main_zh.xdv (9 pages, 382408 bytes).
 Transcript written on main_zh.log.
 note: Rerunning TeX because "main_zh.aux" changed ...
 (main_zh.tex
@@ -834,22 +883,25 @@ CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
 (hxetex.def (stringenc.sty)) (multirow.sty) (cleveref.sty) (main_zh.aux)
 (ts1cmr.fd) ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
 (gettitlestring.sty)) (main_zh.out) (main_zh.out) (umsa.fd) (umsb.fd)
-(zh/0_abstract_zh) (zh/1_introduction_zh) (zh/2_related_work_zh [1])
+(zh/0_abstract_zh) (zh/1_introduction_zh [1]) (zh/2_related_work_zh)
 (zh/3_method_zh [2] [3]) (zh/4_experiments_zhwarning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
 warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
  [4] [5]) (zh/5_discussion_zh)
-(zh/6_conclusion_zh) (main_zh.bbl (main_zh.brf) [6] [7] [8]
+[6] (zh/6_conclusion_zh) (main_zh.bbl (main_zh.brf) [7] [8]
 
 Package lineno Warning: Label(s) may have changed. Rerun to get cross-reference
 s right. on input line 434.
 
 ) [9] (main_zh.aux)
 
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
 Package rerunfilecheck Warning: File `main_zh.brf' has changed.
 (rerunfilecheck)                Rerun to get bibliographical references right.
 
  )
-Output written on main_zh.xdv (9 pages, 384588 bytes).
+Output written on main_zh.xdv (9 pages, 395188 bytes).
 Transcript written on main_zh.log.
 note: Rerunning TeX because "main_zh.aux" changed ...
 (main_zh.tex
@@ -901,17 +953,17 @@ CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
 (hxetex.def (stringenc.sty)) (multirow.sty) (cleveref.sty) (main_zh.aux)
 (ts1cmr.fd) ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
 (gettitlestring.sty)) (main_zh.out) (main_zh.out) (umsa.fd) (umsb.fd)
-(zh/0_abstract_zh) (zh/1_introduction_zh) (zh/2_related_work_zh [1])
+(zh/0_abstract_zh) (zh/1_introduction_zh [1]) (zh/2_related_work_zh)
 (zh/3_method_zh [2] [3]) (zh/4_experiments_zhwarning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
 warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
  [4] [5]) (zh/5_discussion_zh)
-(zh/6_conclusion_zh) (main_zh.bbl (main_zh.brf) [6] [7] [8]
+[6] (zh/6_conclusion_zh) (main_zh.bbl (main_zh.brf) [7] [8]
 
 Package lineno Warning: Label(s) may have changed. Rerun to get cross-reference
 s right. on input line 434.
 
 ) [9] (main_zh.aux) )
-Output written on main_zh.xdv (9 pages, 394816 bytes).
+Output written on main_zh.xdv (9 pages, 406516 bytes).
 Transcript written on main_zh.log.
 note: Rerunning TeX because "main_zh.aux" changed ...
 (main_zh.tex
@@ -963,23 +1015,23 @@ CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
 (hxetex.def (stringenc.sty)) (multirow.sty) (cleveref.sty) (main_zh.aux)
 (ts1cmr.fd) ABD: EveryShipout initializing macros (nameref.sty (refcount.sty)
 (gettitlestring.sty)) (main_zh.out) (main_zh.out) (umsa.fd) (umsb.fd)
-(zh/0_abstract_zh) (zh/1_introduction_zh) (zh/2_related_work_zh [1])
+(zh/0_abstract_zh) (zh/1_introduction_zh [1]) (zh/2_related_work_zh)
 (zh/3_method_zh [2] [3]) (zh/4_experiments_zhwarning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
 warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
  [4] [5]) (zh/5_discussion_zh)
-(zh/6_conclusion_zh) (main_zh.bbl (main_zh.brf) [6] [7] [8]) [9] (main_zh.aux) 
+[6] (zh/6_conclusion_zh) (main_zh.bbl (main_zh.brf) [7] [8]) [9] (main_zh.aux) 
 )
-Output written on main_zh.xdv (9 pages, 394804 bytes).
+Output written on main_zh.xdv (9 pages, 406516 bytes).
 Transcript written on main_zh.log.
 note: Running xdvipdfmx ...
 [1][2][3][4][5][6
 warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
 warning: Trying to include PDF file with version (1.7), which is newer than current output PDF setting (1.5).
-][7][8][9]7210835 bytes written
+][7][8][9]7212031 bytes written
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\zh\main_zh.aux` (34.13671875 KiB)
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\zh\main_zh.brf` (3.3251953125 KiB)
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\zh\main_zh.pdf` (6.877928733825684 MiB)
 note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\zh\main_zh.blg` (199 B)
-note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\zh\main_zh.out` (1.4873046875 KiB)
-note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\zh\main_zh.brf` (3.09765625 KiB)
-note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\zh\main_zh.log` (38.1875 KiB)
-note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\zh\main_zh.pdf` (6.876788139343262 MiB)
-note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\zh\main_zh.aux` (33.4638671875 KiB)
 note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\zh\main_zh.bbl` (21.5517578125 KiB)
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\zh\main_zh.out` (1.4873046875 KiB)
+note: Writing `C:\Users\changan\Desktop\CVPR27\drivecompose\paper\build\zh\main_zh.log` (38.185546875 KiB)

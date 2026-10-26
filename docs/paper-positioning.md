@@ -6,9 +6,9 @@
 
 **从不完整驾驶日志中，观测锚定地联合补全背景和规范资产，得到能够供多条状态轨迹复用的可组合三维高斯世界。**
 
-当前标题（2026-10-22）：**DriveCompose: Generative Reconstruction of Compositional Driving Scenes via Joint Completion**。
+当前标题（2026-10-26）：**DriveCompose: Compositional Generative Reconstruction of Driving Scenes via Joint Completion**。
 
-中文标题：**DriveCompose：通过联合补全实现可组合驾驶场景的生成式重建**。
+中文标题：**DriveCompose：通过联合补全实现驾驶场景的可组合生成式重建**。
 
 最值得投入实验的是：背景与资产的联合条件能否改善未见区域的恢复，同时将已见区域的渲染退化控制在预先规定的范围内。固定世界和仿真闭环承载这个结果的用途；它们自身已有充分先例。
 

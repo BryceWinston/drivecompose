@@ -1,11 +1,25 @@
 {
-  "language": "supp-zh",
-  "engine": "latexmk / XeLaTeX + xdvipdfmx",
+  "language": "zh",
+  "command": [
+    "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1016.6573.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
+    "-X",
+    "compile",
+    "--outdir",
+    "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\supp-zh",
+    "--outfmt",
+    "pdf",
+    "--print",
+    "--keep-logs",
+    "--keep-intermediates",
+    "--untrusted",
+    "main_zh.tex"
+  ],
   "exit_code": 0,
-  "finished_at": "2026-10-25T13:56:46.882852+00:00",
-  "pdf": "build/supp-zh/main_zh.pdf",
+  "started_at": "2026-10-26T12:32:14.471561+00:00",
+  "finished_at": "2026-10-26T12:32:22.510203+00:00",
+  "elapsed_seconds": 8.032,
+  "pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\supp-zh\\main_zh.pdf",
   "pdf_exists": true,
   "pdf_written_this_run": true,
-  "pages": 3,
-  "pdf_sha256": "de1e6e1d609b2f0709a0a4dc6870f11d119437e7ff9a6af43e7bb3ef709d3775"
+  "pdf_sha256": "adea4fd31c02c440c4c275a7f1824b1b60c41e254f4e6ece7108ec6d3926fa26"
 }

@@ -1522,3 +1522,284 @@ Driving simulation and scene editing require reconstructed scenes that remain us
 ```
 
 验证：双语主稿编译成功，英文摘要 188 词；英文总计 11 页，正文和结论在第 8 页结束，参考文献从第 9 页开始；中文总计 9 页。最终 TeX 日志无未定义引用、缺字或 overfull 警告；两版摘要首页及英文第 8 页渲染检查通过。
+
+## 2026-10-26：引言论证与核心贡献整理
+
+基线提交：`d741912c7a666308c5363cfb79a6c51b11b76e2b`。两版引言修改前均与 HEAD 一致，以下原文取自本轮真实基线。按用户逐段确认内容整合六段引言，补充已有实验概述，并重新聚焦两项贡献。仅修改双语引言与本记录；摘要、方法、实验、图件和补充材料源文件保持原样。
+
+- **第一段**：原始配置、仍然可用、身份归属等抽象表达影响阅读。 → 按用户确认版本，以具体控制需求开篇，说明观测范围与未见表面，并将身份归属落到表面随对象运动。
+- **第二、三段**：观测恢复局限句拗口，重建、控制与生成的能力边界混在一起。 → 分开说明多帧恢复的能力、完全未观测表面的直接约束缺失，以及可控场景对联合补全的要求。不将所有前馈方法概括为不具备生成先验，也不宣称所有生成方法缺乏可控性。
+- **第四段**：控制坐标系、组织单位等概括未解释为什么有效。 → 先交代背景、车身与人体的具体表示，再解释补全表面为何能随对象运动，承接前文的控制需求。保留对既有可组合表示的归因。
+- **第五段**：原段按前端、潜码、条件流与解码器列模块，核心机制不突出。 → 将组件内部局部建模与跨组件记忆的信息汇集和回传作为中心；首次说明潜码编码几何与外观。前端和解码仅承担输入输出说明。
+- **第六段**：自由空间、装配、固定资产的表述影响理解。 → 保留新增表面可能遮挡已观测区域这一检查理由，明确记录视角和对象状态下的渲染比较。采样约束细节仍在方法中，没有删除技术条件或改写实验。
+- **新增实验概述**：引言缺少方法有效性与核心机制的实证收束。 → 引用当前动态重建、视图外推和消融节，说明相对已评估基线的结果以及稀疏观测下更大的绝对误差收益。不添加数值、显著性或新状态质量结论。
+- **贡献列表**：原条目将框架、流模型、约束与检查堆在一起。 → 第一项明确生成内容直接进入带身份和运动绑定的组件表示并可复用；第二项明确局部注意力与跨组件记忆组成的联合补全机制。观测检查作为框架机制保留在正文，不单列为独立创新。
+
+删减说明：删除重复的框架导航和抽象表述；前端输出、自由空间与潜码约束等已有细节仍保留在方法，并未新迁入补充材料。标题和最新摘要保持原样；不改字号、边距、行距或浮动设置。自身方法与结果段以内部节号支持主张，不为满足引用数量将本文设计错误归因于外部论文。
+
+### paper/sec/1_introduction.tex：全文前后对照
+
+修改前：
+
+```latex
+\section{Introduction}
+\label{sec:introduction}
+
+Driving datasets record scenes along captured trajectories~\cite{sun2020waymo,caesar2020nuscenes}. Driving simulation and scene editing require a reconstruction that remains usable when the recorded configuration changes. Moving a camera, turning a vehicle, or changing a pedestrian's pose exposes previously unobserved surfaces. These operations require geometry and appearance beyond the recorded images, together with a representation that keeps the content attached to the same scene and actor identities.
+
+Recent feed-forward methods recover driving scenes and motion directly from temporal observations~\cite{yang2025storm,chen2025dggt,yu2026streetforward,chi2026pointforward}. Recovering observed content alone does not supply the unseen surfaces exposed by later actor motion.
+
+Compositional representations separate background and actors and provide canonical models for independent motion and control~\cite{yan2024street,chen2025omnire,zhou2024hugsim}. Generative models address missing content through asset priors, Gaussian completion, or generated views~\cite{yang2025genassets,liao2025complete,streetcrafter,zhu2025worldsplat}. Combining them requires a generator that assigns content to the background and to individual assets. A generated surface must have an owner, a coordinate frame, and a motion rule before it can become part of an editable scene.
+
+We formulate driving-scene reconstruction as conditional generation of a compositional scene. Our representation follows the units that will be manipulated: a world-space background, rigid vehicles in local coordinates, and humans on canonical surfaces with skeleton bindings. Completing surfaces in their component's control frame lets the same generated content retain its identity under later state changes (Sec.~\ref{sec:representation}). Image evidence is first aggregated on these supports. A generative model then completes their missing latent content under the observed scene conditions.
+
+DriveCompose implements this formulation with a visual recovery front end, structured latent codes, and a conditional flow model~\cite{lipman2022flowmatching} (Fig.~\ref{fig:teaser}). The front end estimates geometry, trajectory-level identities, and time-varying states. Within the completion model, local attention follows each component's support, while shared memory exchanges context between background and assets. Type-specific decoders convert the completed codes into Gaussian components.
+
+Generation must also respect the images from which the scene was recovered. We retain reliable observed codes and suppress known free space throughout sampling. Newly generated content can nevertheless occlude an observed surface, so we check the assembled candidate in the original views as well. After construction, the background and canonical assets remain fixed. Camera placement, vehicle transforms, and human joint poses determine their subsequent rendering (Sec.~\ref{sec:composition}).
+
+\Needspace{6\baselineskip}
+Our contributions are:
+\begin{itemize}
+\item We introduce DriveCompose, a generative reconstruction framework that jointly completes background and canonical actor assets from driving observations. The resulting compositional Gaussian scene can be rendered under new camera and actor states using the same completed content.
+\item We develop a structured conditional flow model that shares scene context across background and assets through cross-component memory. Observed-code and free-space constraints guide latent completion, while input-view checks validate the assembled scene against the recorded observations.
+\end{itemize}
+
+Section~\ref{sec:related} reviews related work, Section~\ref{sec:method} presents the method, and Section~\ref{sec:experiments} reports experiments. Sections~\ref{sec:discussion} and~\ref{sec:conclusion} discuss limitations and conclude.
+```
+
+修改后：
+
+```latex
+\section{Introduction}
+\label{sec:introduction}
+
+Driving simulation and scene editing require 3D scenes that support changes in camera viewpoint, vehicle motion, and human pose~\cite{yang2023unisim,zhou2024hugsim}. However, driving images reveal only the surfaces visible from the recorded viewpoints and actor configurations~\cite{sun2020waymo,caesar2020nuscenes}. Moving a camera, turning a vehicle, or changing a pedestrian's pose exposes previously unobserved regions. Reconstructing scenes for these operations therefore requires completing the missing geometry and appearance while ensuring that completed vehicle and human surfaces move with their respective actors.
+
+Recent feed-forward methods predict driving-scene geometry and Gaussians from multiple images, using motion and visibility modeling to align dynamic observations~\cite{yang2025storm,chen2025dggt,yu2026streetforward,chi2026pointforward}. Surfaces unseen throughout the sequence lack direct image constraints and require inference from learned priors.
+
+Generative methods infer unseen content through asset priors, Gaussian completion, or generated views~\cite{yang2025genassets,liao2025complete,streetcrafter,zhu2025worldsplat}. Compositional representations support independent vehicle motion and human pose control~\cite{yan2024street,chen2025omnire,zhou2024hugsim}. Editable scenes require completion to preserve these motion relationships while drawing on the surrounding scene.
+
+We introduce DriveCompose for joint reconstruction and completion of controllable driving scenes. The background uses world coordinates, vehicles their own coordinate frames, and humans a reference pose with skeletal bindings~\cite{yan2024street,chen2025omnire}. Completing these representations lets generated surfaces follow actor motion and pose changes (Sec.~\ref{sec:representation}).
+
+As shown in Fig.~\ref{fig:teaser}, recovered geometry and motion align image features with component representations. Local attention models each component's structure, while cross-component memory gathers and redistributes scene context. The model generates missing geometry and appearance codes through flow matching~\cite{lipman2022flowmatching}, and component-specific decoders produce a Gaussian scene~\cite{kerbl2023gaussians}.
+
+Completion retains reliably observed surfaces and generates missing geometry and appearance. New surfaces may occlude visible regions, so we compare renderings with input images at the recorded camera and actor states. Accepted scenes reuse this content under new states (Sec.~\ref{sec:composition}).
+
+Waymo experiments show improved dynamic reconstruction and off-trajectory view synthesis over the evaluated baselines (Sec.~\ref{sec:experiments}). Ablations show lower unseen-surface error with cross-component memory, with larger absolute gains under sparser observations (Sec.~\ref{sec:ablations}).
+
+\Needspace{6\baselineskip}
+Our contributions are:
+\begin{itemize}
+\item We introduce DriveCompose, a generative reconstruction framework that jointly completes background and canonical actor representations from driving images. Generated surfaces retain their component ownership and motion bindings, enabling reuse of the completed Gaussian scene under new camera and actor states.
+\item We develop a structured flow-matching model that combines local component attention with cross-component memory, allowing each component to use scene context to complete missing content while retaining its spatial organization.
+\end{itemize}
+
+Section~\ref{sec:related} reviews related work, Section~\ref{sec:method} presents the method, and Section~\ref{sec:experiments} reports experiments. Sections~\ref{sec:discussion} and~\ref{sec:conclusion} discuss limitations and conclude.
+```
+
+### paper/zh/1_introduction_zh.tex：全文前后对照
+
+修改前：
+
+```latex
+\section{引言}
+\label{sec:introduction}
+
+驾驶数据集沿采集轨迹记录场景~\cite{sun2020waymo,caesar2020nuscenes}。驾驶仿真和场景编辑要求重建结果在原始配置改变后仍然可用。移动相机、转动车辆或改变行人姿态，都会暴露此前未观测的表面。这些操作既需要原始图像之外的几何与外观，也需要一种表示，使内容始终归属于同一个场景和资产身份。
+
+近期前馈方法直接从时序观测恢复驾驶场景与运动~\cite{yang2025storm,chen2025dggt,yu2026streetforward,chi2026pointforward}。仅恢复已观测内容，无法为后续资产运动暴露的未见表面提供内容。
+
+可组合表示将背景与参与者分离，并通过规范模型支持独立运动和控制~\cite{yan2024street,chen2025omnire,zhou2024hugsim}。生成模型则通过资产先验、高斯补全或生成视图处理缺失内容~\cite{yang2025genassets,liao2025complete,streetcrafter,zhu2025worldsplat}。结合这些能力，需要生成器明确区分属于背景和各个资产的内容。生成的表面必须具有明确的归属、坐标系和运动规则，才能成为可编辑场景的一部分。
+
+我们将驾驶场景重建建模为可组合场景的条件生成。表示的组织单位对应后续操作的对象：世界空间中的背景、局部坐标中的刚体车辆，以及带骨架绑定的规范人体表面。在组件的控制坐标系中补全表面，使同一份生成内容在后续状态变化时仍保持身份归属（第~\ref{sec:representation} 节）。图像证据先在这些支撑上聚合，生成模型再根据已观测场景条件补全缺失潜码。
+
+DriveCompose 通过视觉恢复前端、结构化潜码和条件流模型~\cite{lipman2022flowmatching} 实现这一形式（图~\ref{fig:teaser}）。前端估计几何、轨迹级身份和随时间变化的状态。在补全模型中，局部注意力沿各组件的支撑组织，共享记忆在背景与资产之间交换上下文。类型专属解码器将完成的潜码转化为高斯组件。
+
+生成还需要遵循场景恢复所依据的图像。我们在采样过程中保留可靠的已见潜码，并抑制已知自由空间。新增内容仍可能遮挡已观测表面，因此还需在原始视角下检查装配后的候选场景。构建完成后，背景与规范资产保持固定，后续渲染由相机位置、车辆变换和人体关节姿态决定（第~\ref{sec:composition} 节）。
+
+本文的贡献包括：
+\begin{itemize}
+\item 提出生成式重建框架 DriveCompose，从驾驶观测中联合补全背景与规范参与者资产。所得可组合高斯场景可在新的相机和参与者状态下渲染，复用同一份补全内容。
+\item 设计结构化条件流模型，通过跨组件记忆在背景与资产之间共享场景上下文。已见潜码与自由空间约束引导潜空间补全，输入视角检查则验证装配后的场景与已记录观测的一致性。
+\end{itemize}
+
+第~\ref{sec:related} 节回顾相关工作，第~\ref{sec:method} 节介绍方法，第~\ref{sec:experiments} 节报告实验，第~\ref{sec:discussion} 和第~\ref{sec:conclusion} 节分别讨论局限性并总结全文。
+```
+
+修改后：
+
+```latex
+\section{引言}
+\label{sec:introduction}
+
+驾驶仿真与场景编辑需要能够支持相机移动、车辆运动和人体姿态变化的三维场景~\cite{yang2023unisim,zhou2024hugsim}。然而，驾驶日志中的图像只提供采集视角和当时参与者状态下的可见表面~\cite{sun2020waymo,caesar2020nuscenes}。移动相机、转动车辆或改变行人姿态，都会暴露此前未观测的区域。因此，场景重建需要补全这些区域的几何与外观，并使补全后的车辆和人体表面能够随所属对象运动。
+
+近期前馈方法从多帧图像中预测驾驶场景的几何与高斯，并利用运动和可见性建模对齐动态观测~\cite{yang2025storm,chen2025dggt,yu2026streetforward,chi2026pointforward}。整个序列都未观测的表面缺少直接图像约束，需要利用学习到的先验推断。
+
+生成式重建通过资产先验、高斯补全或生成视图推断未观测内容~\cite{yang2025genassets,liao2025complete,streetcrafter,zhu2025worldsplat}。可组合表示支持车辆独立运动和人体姿态控制~\cite{yan2024street,chen2025omnire,zhou2024hugsim}。可编辑场景要求补全保留这些运动关系，同时利用周围场景的信息。
+
+我们提出 DriveCompose，联合重建并补全可控驾驶场景。我们在世界坐标系中表示背景，在车辆自身的坐标系中表示车身，并在参考姿态下表示人体、保留其骨架绑定~\cite{yan2024street,chen2025omnire}。补全直接在这些表示中进行，使生成的车辆和人体表面能够随所属对象运动或改变姿态（第~\ref{sec:representation} 节）。
+
+图~\ref{fig:teaser} 展示整体流程。恢复的几何与运动用于将图像特征对齐到组件表示中。局部注意力建模组件结构，跨组件记忆汇集并回传场景上下文。流匹配生成缺失的几何与外观潜码~\cite{lipman2022flowmatching}，类型专属解码器将其转化为高斯~\cite{kerbl2023gaussians}。
+
+补全保留可靠观测确定的表面，生成缺失的几何与外观。新增表面可能遮挡原本可见的区域，因此我们在记录的相机和参与者状态下，将渲染视图与输入图像比较检查。通过检查的场景可在新的状态下复用这些内容（第~\ref{sec:composition} 节）。
+
+在 Waymo 上，DriveCompose 在动态场景重建和轨迹外视图合成中优于所评估的基线（第~\ref{sec:experiments} 节）。组件消融表明，跨组件记忆能够降低未观测表面的补全误差，且在输入观测较少时带来更大的绝对误差降低（第~\ref{sec:ablations} 节）。
+
+本文的贡献包括：
+\begin{itemize}
+\item 提出生成式重建框架 DriveCompose，从驾驶图像中联合补全背景与规范参与者表示。生成表面保留组件归属与运动绑定，使补全后的高斯场景能够在新的相机和参与者状态下复用。
+\item 设计结合组件内部局部注意力与跨组件记忆的结构化流匹配模型，使各组件在保留自身空间结构的同时，利用场景上下文补全缺失内容。
+\end{itemize}
+
+第~\ref{sec:related} 节回顾相关工作，第~\ref{sec:method} 节介绍方法，第~\ref{sec:experiments} 节报告实验，第~\ref{sec:discussion} 节和第~\ref{sec:conclusion} 节分别讨论局限性并总结全文。
+```
+
+篇幅处理：首轮整合后结论延至英文第 9 页；随后只在引言中删除第三、四、五段重复的联合补全与上下文用途说明，压缩检查流程及贡献的重复措辞，保留坐标表示、局部/跨组件机制、检查理由和实验概述。没有改动其他章节或排版参数。
+
+最终核验：两版均实际编译成功，英文总计 11 页，正文与结论结束于第 8 页，参考文献从第 9 页开始；中文总计 9 页。两版最终 TeX 日志无未定义引用、缺字或 overfull 警告。各有 16 个有效文献键与 9 个有效内部引用目标；已检查英文引言两页、中文引言首页及英文第 8 页渲染。Git 差异确认除双语引言外，其余 LaTeX、书目和样式源文件均未修改。双语措辞清理按 anti-defensive-writing 与 humanizer 的已读取规则执行，没有新增或独立核验实验结果，也没有进行外部文献检索。
+
+## 2026-10-26：确认引言、三项贡献与新标题并推送
+
+基线 HEAD：`d741912c7a666308c5363cfb79a6c51b11b76e2b`。本轮开始时双语引言已有上轮未提交的压缩修改，以下“修改前”保存本轮真实工作区内容及哈希，而非将 HEAD 冒充本轮起点。按用户后续要求恢复已逐段认可的完整解释，只合入已确认的局部去重，不再为页数整体压缩。
+
+本轮确认：第三段保留设计需求、删除重复提出方案的末句；第四段末句删除“交换信息”的同义复述；第五段解码句用“各组件”承接；第六段末句明确复用同一份内容。贡献改为生成式重建框架、条件流匹配的跨组件潜空间补全、实验评估三项，第一项以闭环仿真为应用目标，未添加闭环策略实测或效率结论。第二段将“只能增加可见覆盖”写为对观测覆盖的正面说明，避免将生成能力的边界归给所有前馈方法。
+
+### paper/sec/1_introduction.tex
+
+工作区原文 SHA-256：`015543f2be39c71964ada43420ad7392b7e477782dadafd1cc8b20193f4e5b3c`。
+
+修改前：
+
+```latex
+\section{Introduction}
+\label{sec:introduction}
+
+Driving simulation and scene editing require 3D scenes that support changes in camera viewpoint, vehicle motion, and human pose~\cite{yang2023unisim,zhou2024hugsim}. However, driving images reveal only the surfaces visible from the recorded viewpoints and actor configurations~\cite{sun2020waymo,caesar2020nuscenes}. Moving a camera, turning a vehicle, or changing a pedestrian's pose exposes previously unobserved regions. Reconstructing scenes for these operations therefore requires completing the missing geometry and appearance while ensuring that completed vehicle and human surfaces move with their respective actors.
+
+Recent feed-forward methods predict driving-scene geometry and Gaussians from multiple images, using motion and visibility modeling to align dynamic observations~\cite{yang2025storm,chen2025dggt,yu2026streetforward,chi2026pointforward}. Surfaces unseen throughout the sequence lack direct image constraints and require inference from learned priors.
+
+Generative methods infer unseen content through asset priors, Gaussian completion, or generated views~\cite{yang2025genassets,liao2025complete,streetcrafter,zhu2025worldsplat}. Compositional representations support independent vehicle motion and human pose control~\cite{yan2024street,chen2025omnire,zhou2024hugsim}. Editable scenes require completion to preserve these motion relationships while drawing on the surrounding scene.
+
+We introduce DriveCompose for joint reconstruction and completion of controllable driving scenes. The background uses world coordinates, vehicles their own coordinate frames, and humans a reference pose with skeletal bindings~\cite{yan2024street,chen2025omnire}. Completing these representations lets generated surfaces follow actor motion and pose changes (Sec.~\ref{sec:representation}).
+
+As shown in Fig.~\ref{fig:teaser}, recovered geometry and motion align image features with component representations. Local attention models each component's structure, while cross-component memory gathers and redistributes scene context. The model generates missing geometry and appearance codes through flow matching~\cite{lipman2022flowmatching}, and component-specific decoders produce a Gaussian scene~\cite{kerbl2023gaussians}.
+
+Completion retains reliably observed surfaces and generates missing geometry and appearance. New surfaces may occlude visible regions, so we compare renderings with input images at the recorded camera and actor states. Accepted scenes reuse this content under new states (Sec.~\ref{sec:composition}).
+
+Waymo experiments show improved dynamic reconstruction and off-trajectory view synthesis over the evaluated baselines (Sec.~\ref{sec:experiments}). Ablations show lower unseen-surface error with cross-component memory, with larger absolute gains under sparser observations (Sec.~\ref{sec:ablations}).
+
+\Needspace{6\baselineskip}
+Our contributions are:
+\begin{itemize}
+\item We introduce DriveCompose, a generative reconstruction framework that jointly completes background and canonical actor representations from driving images. Generated surfaces retain their component ownership and motion bindings, enabling reuse of the completed Gaussian scene under new camera and actor states.
+\item We develop a structured flow-matching model that combines local component attention with cross-component memory, allowing each component to use scene context to complete missing content while retaining its spatial organization.
+\end{itemize}
+
+Section~\ref{sec:related} reviews related work, Section~\ref{sec:method} presents the method, and Section~\ref{sec:experiments} reports experiments. Sections~\ref{sec:discussion} and~\ref{sec:conclusion} discuss limitations and conclude.
+```
+
+修改后：
+
+```latex
+\section{Introduction}
+\label{sec:introduction}
+
+Driving simulation and scene editing require 3D scenes that support changes in camera viewpoint, vehicle motion, and human pose~\cite{yang2023unisim,zhou2024hugsim}. However, driving images reveal only the surfaces visible from the recorded viewpoints and actor configurations~\cite{sun2020waymo,caesar2020nuscenes}. Moving a camera, turning a vehicle, or changing a pedestrian's pose exposes previously unobserved regions. Reconstructing scenes for these operations therefore requires completing the missing geometry and appearance while ensuring that completed vehicle and human surfaces move with their respective actors.
+
+Recent feed-forward methods fuse multiple images to directly predict driving-scene geometry and Gaussian representations~\cite{yang2025storm,chen2025dggt,yu2026streetforward,chi2026pointforward}. Motion estimation and visibility modeling further help align dynamic objects and integrate observations over time. Multi-frame aggregation increases coverage of surfaces visible in the input sequence. When a new viewpoint or actor motion reveals surfaces unseen throughout the sequence, reconstruction must infer their geometry and appearance from generative priors.
+
+Generative reconstruction uses asset priors, Gaussian completion, or generated views to infer unobserved content~\cite{yang2025genassets,liao2025complete,streetcrafter,zhu2025worldsplat}. Meanwhile, compositional reconstruction represents the background and moving actors separately to support vehicle motion and human pose control~\cite{yan2024street,chen2025omnire,zhou2024hugsim}. Applying generative completion to such scenes requires generated surfaces to move with their actors, while allowing each actor's completion to use information from the surrounding scene.
+
+To this end, we introduce DriveCompose, which reconstructs driving image sequences into a generatively completed 3D scene with independently controllable actors. We represent the background in world coordinates, vehicle surfaces in each vehicle's own coordinate frame, and human surfaces in a reference pose with skeletal bindings~\cite{yan2024street,chen2025omnire}. Completion operates directly on these representations, allowing generated vehicle and human surfaces to follow their actors' motion and pose changes (Sec.~\ref{sec:representation}). The model jointly completes missing background and actor content using shared scene context.
+
+As illustrated in Fig.~\ref{fig:teaser}, DriveCompose first recovers scene geometry and actor motion from the image sequence and aligns multi-frame image features with the background, vehicle, and human representations. The completion model captures local structure within each component, while cross-component memory gathers information from the background and actors and distributes the shared context back to each component. Missing regions of a vehicle or human can therefore be completed using information from the surrounding scene. The model learns to generate missing latent codes through flow matching~\cite{lipman2022flowmatching}, and component-specific decoders convert the completed representations into a Gaussian scene~\cite{kerbl2023gaussians}.
+
+During completion, we retain surfaces established by reliable observations and generate the missing geometry and appearance. Newly generated surfaces may occlude previously visible regions, so we render the completed scene at the recorded camera viewpoints and actor states and compare it with the input images to check for inconsistencies introduced by completion. Scenes that pass this check can reuse the same completed content for rendering under different camera viewpoints and actor states (Sec.~\ref{sec:composition}).
+
+On Waymo, DriveCompose improves dynamic scene reconstruction and off-trajectory view synthesis over the evaluated baselines (Sec.~\ref{sec:experiments}). Component ablations further show that cross-component information sharing reduces unseen-surface completion error, with larger absolute error reductions under sparser observations (Sec.~\ref{sec:ablations}).
+
+\Needspace{6\baselineskip}
+Our contributions are:
+\begin{itemize}
+\item We introduce DriveCompose, a generative reconstruction framework for closed-loop driving simulation. It recovers and completes backgrounds, vehicles, and humans from image sequences to construct compositional Gaussian scene assets. The resulting scene reuses the same completed assets for composition and rendering as camera poses, vehicle poses, and human poses change.
+\item We develop a cross-component latent completion model based on conditional flow matching. Local attention models spatial relationships within each component, while cross-component memory aggregates background and actor features to provide scene context for generating each component's missing content.
+\item We evaluate the framework and its key mechanisms through dynamic reconstruction, off-trajectory view synthesis, and component ablations. Experiments show that DriveCompose outperforms the evaluated baselines on reconstruction and view synthesis; cross-component information sharing reduces unseen-surface completion error, with larger absolute reductions under sparse observations.
+\end{itemize}
+
+Section~\ref{sec:related} reviews related work, Section~\ref{sec:method} presents the method, and Section~\ref{sec:experiments} reports experiments. Sections~\ref{sec:discussion} and~\ref{sec:conclusion} discuss limitations and conclude.
+```
+
+### paper/zh/1_introduction_zh.tex
+
+工作区原文 SHA-256：`2d02dde40ee4d2fa4cb41ed4eb5c8b5d2d9406378ff0ebac851d117183c24189`。
+
+修改前：
+
+```latex
+\section{引言}
+\label{sec:introduction}
+
+驾驶仿真与场景编辑需要能够支持相机移动、车辆运动和人体姿态变化的三维场景~\cite{yang2023unisim,zhou2024hugsim}。然而，驾驶日志中的图像只提供采集视角和当时参与者状态下的可见表面~\cite{sun2020waymo,caesar2020nuscenes}。移动相机、转动车辆或改变行人姿态，都会暴露此前未观测的区域。因此，场景重建需要补全这些区域的几何与外观，并使补全后的车辆和人体表面能够随所属对象运动。
+
+近期前馈方法从多帧图像中预测驾驶场景的几何与高斯，并利用运动和可见性建模对齐动态观测~\cite{yang2025storm,chen2025dggt,yu2026streetforward,chi2026pointforward}。整个序列都未观测的表面缺少直接图像约束，需要利用学习到的先验推断。
+
+生成式重建通过资产先验、高斯补全或生成视图推断未观测内容~\cite{yang2025genassets,liao2025complete,streetcrafter,zhu2025worldsplat}。可组合表示支持车辆独立运动和人体姿态控制~\cite{yan2024street,chen2025omnire,zhou2024hugsim}。可编辑场景要求补全保留这些运动关系，同时利用周围场景的信息。
+
+我们提出 DriveCompose，联合重建并补全可控驾驶场景。我们在世界坐标系中表示背景，在车辆自身的坐标系中表示车身，并在参考姿态下表示人体、保留其骨架绑定~\cite{yan2024street,chen2025omnire}。补全直接在这些表示中进行，使生成的车辆和人体表面能够随所属对象运动或改变姿态（第~\ref{sec:representation} 节）。
+
+图~\ref{fig:teaser} 展示整体流程。恢复的几何与运动用于将图像特征对齐到组件表示中。局部注意力建模组件结构，跨组件记忆汇集并回传场景上下文。流匹配生成缺失的几何与外观潜码~\cite{lipman2022flowmatching}，类型专属解码器将其转化为高斯~\cite{kerbl2023gaussians}。
+
+补全保留可靠观测确定的表面，生成缺失的几何与外观。新增表面可能遮挡原本可见的区域，因此我们在记录的相机和参与者状态下，将渲染视图与输入图像比较检查。通过检查的场景可在新的状态下复用这些内容（第~\ref{sec:composition} 节）。
+
+在 Waymo 上，DriveCompose 在动态场景重建和轨迹外视图合成中优于所评估的基线（第~\ref{sec:experiments} 节）。组件消融表明，跨组件记忆能够降低未观测表面的补全误差，且在输入观测较少时带来更大的绝对误差降低（第~\ref{sec:ablations} 节）。
+
+本文的贡献包括：
+\begin{itemize}
+\item 提出生成式重建框架 DriveCompose，从驾驶图像中联合补全背景与规范参与者表示。生成表面保留组件归属与运动绑定，使补全后的高斯场景能够在新的相机和参与者状态下复用。
+\item 设计结合组件内部局部注意力与跨组件记忆的结构化流匹配模型，使各组件在保留自身空间结构的同时，利用场景上下文补全缺失内容。
+\end{itemize}
+
+第~\ref{sec:related} 节回顾相关工作，第~\ref{sec:method} 节介绍方法，第~\ref{sec:experiments} 节报告实验，第~\ref{sec:discussion} 节和第~\ref{sec:conclusion} 节分别讨论局限性并总结全文。
+```
+
+修改后：
+
+```latex
+\section{引言}
+\label{sec:introduction}
+
+驾驶仿真与场景编辑需要能够支持相机移动、车辆运动和人体姿态变化的三维场景~\cite{yang2023unisim,zhou2024hugsim}。然而，驾驶日志中的图像只提供采集视角和当时参与者状态下的可见表面~\cite{sun2020waymo,caesar2020nuscenes}。移动相机、转动车辆或改变行人姿态，都会暴露此前未观测的区域。因此，场景重建需要补全这些区域的几何与外观，并使补全后的车辆和人体表面能够随所属对象运动。
+
+近期前馈方法通过融合多帧图像，直接预测驾驶场景的三维几何与高斯表示~\cite{yang2025storm,chen2025dggt,yu2026streetforward,chi2026pointforward}。运动估计与可见性建模进一步帮助这些方法对齐动态对象，并整合不同时刻的观测。多帧融合增加了对输入序列中可见表面的覆盖。当新视角或对象运动暴露出整个序列都未曾拍摄的表面时，重建需要借助生成先验推断其几何与外观。
+
+生成式重建通过资产先验、高斯补全或生成视图推断未观测内容~\cite{yang2025genassets,liao2025complete,streetcrafter,zhu2025worldsplat}。与此同时，可组合重建将背景与运动对象分开表示，支持车辆移动和人体姿态控制~\cite{yan2024street,chen2025omnire,zhou2024hugsim}。将生成补全用于这类场景，需要使补出的表面随所属对象运动，同时让每个对象能够利用周围场景的信息完成补全。
+
+为此，我们提出 DriveCompose，从驾驶图像序列中构建可独立控制、并经过生成补全的三维场景。我们在世界坐标系中表示背景，在车辆自身的坐标系中表示车身，并在参考姿态下表示人体、保留其骨架绑定~\cite{yan2024street,chen2025omnire}。补全直接在这些表示中进行，使生成的车辆和人体表面能够随所属对象运动或改变姿态（第~\ref{sec:representation} 节）。在此基础上，模型通过共享场景上下文，联合补全背景与各对象的缺失内容。
+
+如图~\ref{fig:teaser} 所示，DriveCompose 首先从图像序列中恢复场景几何与参与者运动，将多帧图像特征对齐到背景、车辆和人体各自的表示中。补全模型在每个组件内部建模局部结构，并通过跨组件记忆汇集背景与各对象的信息，再将共享上下文传回各组件。这样，车辆或人体的缺失部分可以结合周围场景的信息进行补全。模型通过流匹配学习生成缺失潜码~\cite{lipman2022flowmatching}，再由各组件的解码器将补全后的表示转化为高斯场景~\cite{kerbl2023gaussians}。
+
+补全时，我们保留由可靠观测确定的表面，并生成缺失部分的几何与外观。新增表面可能遮挡原本可见的区域，因此我们在记录的相机视角和参与者状态下渲染补全后的场景，与输入图像比较，检查补全是否引入观测不一致。通过检查的场景可复用同一份补全内容，在不同相机视角和参与者状态下渲染（第~\ref{sec:composition} 节）。
+
+在 Waymo 上，DriveCompose 在动态场景重建和轨迹外视图合成中优于所评估的基线（第~\ref{sec:experiments} 节）。组件消融进一步表明，跨组件信息共享能够降低未观测表面的补全误差，且在输入观测较少时带来更大的绝对误差降幅（第~\ref{sec:ablations} 节）。
+
+本文的贡献包括：
+\begin{itemize}
+\item 提出面向闭环驾驶仿真的生成式重建框架 DriveCompose。从图像序列中恢复并补全背景、车辆与人体，构建可组合的高斯场景资产。所得场景可在相机位姿、车辆位姿和人体姿态变化时，复用同一组补全资产进行组合与渲染。
+\item 设计基于条件流匹配的跨组件潜空间补全模型。通过局部注意力建模各组件内部的空间关系，通过跨组件记忆汇集背景与参与者的特征，为各组件的缺失内容生成提供场景上下文。
+\item 通过动态重建、轨迹外视图合成与组件消融评估框架及其关键机制。实验表明，DriveCompose 在动态场景重建和轨迹外视图合成中优于所评估的基线；跨组件信息共享降低了未观测表面的补全误差，并在观测稀疏时带来更大的绝对误差降幅。
+\end{itemize}
+
+第~\ref{sec:related} 节回顾相关工作，第~\ref{sec:method} 节介绍方法，第~\ref{sec:experiments} 节报告实验，第~\ref{sec:discussion} 节和第~\ref{sec:conclusion} 节分别讨论局限性并总结全文。
+```
+
+### 标题同步
+
+- 英文：`DriveCompose: Generative Reconstruction of Compositional Driving Scenes via Joint Completion` → `DriveCompose: Compositional Generative Reconstruction of Driving Scenes via Joint Completion`。
+- 中文对应：`DriveCompose：通过联合补全实现可组合驾驶场景的生成式重建` → `DriveCompose：通过联合补全实现驾驶场景的可组合生成式重建`。
+- 同步两版主稿、两版补充材料及当前标题说明；已有历史对照、来源记录中的旧题名保留其历史含义。
+- 摘要、方法、实验与补充材料正文保持原样；当前稿的闭环仿真是应用定位，证据范围仍为已有重建、视图外推与消融结果。
+
+最终构建与交付检查：英文主稿 11 页，中文主稿 9 页，英文补充材料 4 页，中文补充材料 3 页，四份 PDF 均由本轮实际写出。主稿最终日志无未定义引用、缺字或 overfull 警告；补充材料仅保留既有 lineno hook 警告。双语标题、引言三项贡献、引用目标和渲染页面均已核对。
+
+篇幅状态：按用户要求恢复解释完整的引言并采用三项贡献后，英文正文与结论结束于第 9 页，参考文献也从第 9 页开始；尚不满足正文 8 页目标。本轮不再整体压缩已认可的文字，也未改动字体、边距、行距、图表或其他章节。此状态已在推送前向用户说明。
