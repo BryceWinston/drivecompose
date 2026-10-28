@@ -72,12 +72,12 @@ Ours & \textbf{28.564} & \textbf{0.901} & \textbf{25.050} & \textbf{0.862} & \te
 
 We evaluate off-trajectory rendering under lateral shifts of $\pm1$, $\pm2$, and $\pm4$ meters, keeping camera orientation, intrinsics, and timestamps fixed~\cite{zhu2025worldsplat,chi2026pointforward}.
 
-Table~\ref{tab:spatial_current} reports FID and FVD averaged over separately evaluated left and right shifts at each magnitude, using the same real reference population across methods. Figure~\ref{fig:waymo-left-shift} presents qualitative view-extrapolation results on Waymo with the camera shifted $2\,\mathrm{m}$ to the left, illustrating vehicle shape, road layout, and occlusion boundaries across five scenes.
+Table~\ref{tab:spatial_current} reports FID and FVD averaged over separately evaluated left and right shifts at each magnitude, using the same real reference population across methods. Figure~\ref{fig:waymo-left-shift} presents qualitative view-extrapolation results on Waymo with the camera shifted $2\,\mathrm{m}$ to the left, illustrating vehicle shape, road layout, and occlusion boundaries across three scenes.
 
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{fig/assets/Shift.pdf}
-  \caption{\textbf{Qualitative view extrapolation on Waymo with a 2 m leftward camera shift.} Each column shows one scene. Rows, from top to bottom, show the reference image (GT), STORM, DGGT, and DriveCompose (Ours).}
+  \caption{\textbf{Qualitative view extrapolation on Waymo with a 2 m leftward camera shift.} Each row shows one scene. Columns, from left to right, show the reference image (GT), STORM, DGGT, StreetForward, and DriveCompose (Ours).}
   \label{fig:waymo-left-shift}
 \end{figure*}
 

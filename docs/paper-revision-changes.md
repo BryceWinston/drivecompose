@@ -2000,3 +2000,35 @@ English 修改前：
 用户授权提交并推送。远端新增 `1e2dd79`（标题与双语引言更新），本地确认修改先保存为 `f0a79bb`，随后重放到远端版本之上。保留远端标题、双语引言及补充材料，保留本次选定总览图、图注、方法开头和归档清理。两侧改动记录完整保留；更新过的历史日志移至项目外，未恢复到仓库。整合前两侧文件与重新编译产物保存在 `../_archive/drivecompose/20261026-push-integration/`。
 
 中英文主稿重新编译成功，52 项检查通过；PDF 中总览图像素与用户指定图一致。英文共 11 页，正文与结论止于第 9 页，References 从第 9 页开始，超过 8 页正文目标；远端整合前版本也止于第 9 页。本轮未压缩或重写远端引言。已检查英文首页、两版图件页及英文第 8、9 页，无重叠或裁切。四份正式 PDF 保留，临时编译文件继续存放在项目外。
+
+## 2026-10-27：同步实验二新图的双语图注与描述
+
+基线提交：`e05587775d9a3b01e0365dc15b30ea1820daac47`（实验二图更换）。修改前两份实验源文件与 HEAD 一致。本轮仅同步图 3 的场景数量、行列含义与方法列表：新图为三行场景，五列从左至右为 GT、STORM、DGGT、StreetForward、Ours。保留原有向左偏移 2 m 的实验条件，未改实验数值、协议或实验一图注。
+
+### paper/sec/4_experiments.tex
+
+- 位置：正文描述
+- 原文：Figure~\ref{fig:waymo-left-shift} presents qualitative view-extrapolation results on Waymo with the camera shifted $2\,\mathrm{m}$ to the left, illustrating vehicle shape, road layout, and occlusion boundaries across five scenes.
+- 修改后：Figure~\ref{fig:waymo-left-shift} presents qualitative view-extrapolation results on Waymo with the camera shifted $2\,\mathrm{m}$ to the left, illustrating vehicle shape, road layout, and occlusion boundaries across three scenes.
+- 原因：正文中的场景数量由五组同步为三组。
+
+- 位置：图注
+- 原文：Each column shows one scene. Rows, from top to bottom, show the reference image (GT), STORM, DGGT, and DriveCompose (Ours).
+- 修改后：Each row shows one scene. Columns, from left to right, show the reference image (GT), STORM, DGGT, StreetForward, and DriveCompose (Ours).
+- 原因：将每列场景改为每行场景，方法顺序改为从左至右并补入 StreetForward。
+
+### paper/zh/4_experiments_zh.tex
+
+- 位置：正文描述
+- 原文：图~\ref{fig:waymo-left-shift} 展示 Waymo 数据集上相机向左偏移 $2\,\mathrm{m}$ 的定性视图外推结果，通过五组场景比较车辆外形、道路布局与遮挡边界。
+- 修改后：图~\ref{fig:waymo-left-shift} 展示 Waymo 数据集上相机向左偏移 $2\,\mathrm{m}$ 的定性视图外推结果，通过三组场景比较车辆外形、道路布局与遮挡边界。
+- 原因：正文中的场景数量由五组同步为三组。
+
+- 位置：图注
+- 原文：每列展示一个场景，从上至下依次为参考图像（GT）、STORM、DGGT 和 DriveCompose（Ours）。
+- 修改后：每行展示一个场景，各列从左至右依次为参考图像（GT）、STORM、DGGT、StreetForward 和 DriveCompose（Ours）。
+- 原因：将每列场景改为每行场景，方法顺序改为从左至右并补入 StreetForward。
+
+图件 `paper/fig/assets/Shift.pdf` 保持原字节，SHA-256：`6d29c5b316b5e9fb2977549105eb716bb71b46ef10cff29f1a25b9f0cc5b3eb4`。
+
+验证：中英文主稿均重新编译成功，图 3 分别位于英文第 8 页、中文第 6 页。实际 PDF 已包含每行场景、从左至右五列方法的新图注，并补入 StreetForward。最终 TeX 日志无未定义引用、缺字或 overfull 警告；两版图件页渲染无重叠或裁切。英文仍为 11 页、正文结论在第 9 页，中文仍为 9 页。图件原始字节不变，实验一描述及所有数值保持不变。按用户授权提交并推送双语说明与正式构建产物。
