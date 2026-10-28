@@ -26,6 +26,19 @@
 \def\confYear{2027}
 \title{DriveCompose：通过联合补全实现驾驶场景的可组合生成式重建}
 \author{Anonymous CVPR Submission}
+% 将概念 teaser 固定在标题下、双栏摘要之前。
+\makeatletter
+\g@addto@macro\@maketitle{%
+  \noindent\begin{minipage}{\textwidth}
+    \captionsetup{type=figure}
+    \centering
+    \includegraphics[width=\linewidth]{fig/drivecompose-teaser.png}
+    \caption{\textbf{DriveCompose 概念示意。}从驾驶图像中联合补全背景、车辆与人体的内容，构建可组合高斯场景。同一组资产可在相机视角、车辆位姿和人体姿态变化时复用。金色标注表示补全区域。}
+    \label{fig:teaser}
+  \end{minipage}\par
+  \vspace{\baselineskip}
+}
+\makeatother
 \begin{document}
 \maketitle
 \input{zh/0_abstract_zh}
@@ -33,7 +46,7 @@
   \centering
   \includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}
   \caption{\textbf{DriveCompose 总览。}（a）共享 ViT 提取的视觉证据在背景与规范资产支撑上聚合，再编码为结构化潜码。（b）联合补全在各组内执行局部注意力，并通过跨组件记忆（CCM）共享上下文。（c）类型专属解码器输出高斯背景、规范车辆与人体资产，以及天空贴图。}
-  \label{fig:teaser}
+  \label{fig:overview}
 \end{figure*}
 \def\CVPRMAIN{}
 \input{zh/1_introduction_zh}

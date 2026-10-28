@@ -1,0 +1,173 @@
+{
+  "en": {
+    "pages": 12,
+    "sections": [
+      {
+        "section": "conclusion",
+        "page": 9
+      },
+      {
+        "section": "references",
+        "page": 9
+      }
+    ],
+    "figures": [
+      {
+        "page": 1,
+        "figure_numbers": [
+          "1"
+        ]
+      },
+      {
+        "page": 2,
+        "figure_numbers": [
+          "2"
+        ]
+      },
+      {
+        "page": 7,
+        "figure_numbers": [
+          "3"
+        ]
+      },
+      {
+        "page": 8,
+        "figure_numbers": [
+          "4"
+        ]
+      }
+    ],
+    "page1_images": [
+      {
+        "x0": 58.5,
+        "top": 233.7,
+        "width": 495.0,
+        "height": 165.0
+      }
+    ],
+    "warnings": [],
+    "undefined_refs": false,
+    "compile": {
+      "language": "en",
+      "command": [
+        "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1016.6573.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
+        "-X",
+        "compile",
+        "--outdir",
+        "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\en",
+        "--outfmt",
+        "pdf",
+        "--print",
+        "--keep-logs",
+        "--keep-intermediates",
+        "--untrusted",
+        "main.tex"
+      ],
+      "exit_code": 0,
+      "started_at": "2026-10-28T08:32:36.484740+00:00",
+      "finished_at": "2026-10-28T08:33:06.756006+00:00",
+      "elapsed_seconds": 30.282,
+      "fontconfig_file": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\tools\\fontconfig.conf",
+      "source_sha256": "86687d52c6d8d716ba6a4fe0ff8a3db9fc9deb243f2adfa51c5256577f506d89",
+      "pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\en\\main.pdf",
+      "pdf_exists": true,
+      "pdf_written_this_run": true,
+      "pdf_sha256": "702871aeab5b4e08789acf4bc632145df737c59162298240da56459bdbfe76e1"
+    },
+    "page1_unchanged_after_anchor_fix": true
+  },
+  "zh": {
+    "pages": 9,
+    "sections": [
+      {
+        "section": "conclusion",
+        "page": 6
+      }
+    ],
+    "figures": [
+      {
+        "page": 1,
+        "figure_numbers": [
+          "1"
+        ]
+      },
+      {
+        "page": 2,
+        "figure_numbers": [
+          "2"
+        ]
+      },
+      {
+        "page": 6,
+        "figure_numbers": [
+          "3"
+        ]
+      },
+      {
+        "page": 7,
+        "figure_numbers": [
+          "4"
+        ]
+      }
+    ],
+    "page1_images": [
+      {
+        "x0": 58.5,
+        "top": 215.8,
+        "width": 495.0,
+        "height": 165.0
+      }
+    ],
+    "warnings": [],
+    "undefined_refs": false,
+    "compile": {
+      "language": "zh",
+      "command": [
+        "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1016.6573.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
+        "-X",
+        "compile",
+        "--outdir",
+        "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\zh",
+        "--outfmt",
+        "pdf",
+        "--print",
+        "--keep-logs",
+        "--keep-intermediates",
+        "--untrusted",
+        "main_zh.tex"
+      ],
+      "exit_code": 0,
+      "started_at": "2026-10-28T08:33:06.816731+00:00",
+      "finished_at": "2026-10-28T08:33:39.123165+00:00",
+      "elapsed_seconds": 32.297,
+      "fontconfig_file": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\tools\\fontconfig.conf",
+      "source_sha256": "8ef3159f95f13b54bf84c521a9a9d7e3b80c6d443c7f497c594f223829a7a477",
+      "pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+      "pdf_exists": true,
+      "pdf_written_this_run": true,
+      "pdf_sha256": "b61a9bbed71d81b11809a105edde54961789571ec55ae81f6641fcdbe5f401fb"
+    },
+    "page1_unchanged_after_anchor_fix": true
+  },
+  "unchanged_protected_files": [
+    "paper/sec/0_abstract.tex",
+    "paper/sec/2_related_work.tex",
+    "paper/sec/4_experiments.tex",
+    "paper/sec/5_discussion.tex",
+    "paper/sec/6_conclusion.tex",
+    "paper/zh/0_abstract_zh.tex",
+    "paper/zh/2_related_work_zh.tex",
+    "paper/zh/4_experiments_zh.tex",
+    "paper/zh/5_discussion_zh.tex",
+    "paper/zh/6_conclusion_zh.tex",
+    "paper/main.bib",
+    "paper/cvpr.sty",
+    "paper/preamble.tex",
+    "paper/fontsetup.tex",
+    "paper/fig/drivecompose-inference-overview.png",
+    "paper/fig/assets/Shift.pdf"
+  ],
+  "source_edits": "Four body reference replacements only; two title-block insertions and overview-label renames.",
+  "visual_review": "English and Chinese first pages, English overview and conclusion pages inspected. No overlap or cropping; final first-page rasters match those inspected before the hyperlink-anchor correction.",
+  "image_bytes_identical": true
+}

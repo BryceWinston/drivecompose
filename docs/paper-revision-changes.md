@@ -2032,3 +2032,60 @@ English 修改前：
 图件 `paper/fig/assets/Shift.pdf` 保持原字节，SHA-256：`6d29c5b316b5e9fb2977549105eb716bb71b46ef10cff29f1a25b9f0cc5b3eb4`。
 
 验证：中英文主稿均重新编译成功，图 3 分别位于英文第 8 页、中文第 6 页。实际 PDF 已包含每行场景、从左至右五列方法的新图注，并补入 StreetForward。最终 TeX 日志无未定义引用、缺字或 overfull 警告；两版图件页渲染无重叠或裁切。英文仍为 11 页、正文结论在第 9 页，中文仍为 9 页。图件原始字节不变，实验一描述及所有数值保持不变。按用户授权提交并推送双语说明与正式构建产物。
+
+## 2026-10-28：首页加入用户指定 teaser
+
+基线提交：`e98697e09af130895fe14f70fbc840571da28a0d`。论文源码开始时与 HEAD 一致；上一轮未提交的 `docs/figures/teaser/` 是既有设计产物，本轮直接复用其 Waymo 风格图，不重新生成。修改前真实文本保存在 `paper/build/teaser-insertion/baseline.json`。
+
+具体问题：当前首页没有任务/能力 teaser，原 Figure 1 实际是网络流程图。按用户要求，将选定图片放在标题下、摘要前；用户不强制跨栏，试排后因图内三段横向内容较多，采用正文宽度以保留可读性。原流程图完整保留为 Figure 2，实验图依次顺延为 Figure 3、4。
+
+### 排版与图片
+
+- 之前：`\maketitle` 后直接加载摘要，方法总览以 `figure*` 浮动放置。
+- 之后：在标题块后追加独立图框及图注，随后仍按原方式加载双栏摘要；teaser 为 Figure 1，固定出现在首页。
+- 沿用样式的标题、匿名作者区、正文列宽、字体、边距和行距；未修改 `cvpr.sty`。图框采用完整正文宽度，未用负间距。
+- `paper/fig/drivecompose-teaser.png` 与用户刚确认的设计图片逐字节相同；原流程图和实验图不变。保留图内概念示意说明，图注也明确为概念图。
+
+### 新增双语图注
+
+- 英文位置：`paper/main.tex` 的标题区。
+- 原文：无 teaser 图注。
+- 修改后：`\caption{\textbf{DriveCompose concept.} DriveCompose jointly completes background, vehicle, and human content from driving images to form a compositional Gaussian scene. The same assets are reused under changes in camera viewpoint, vehicle pose, and human articulation. Gold marks completed regions.}`
+- 原因：分别说明联合补全、同一资产的状态复用及金色标注的含义，与概念图对应。
+
+- 中文位置：`paper/main_zh.tex` 的标题区。
+- 原文：无 teaser 图注。
+- 修改后：`\caption{\textbf{DriveCompose 概念示意。}从驾驶图像中联合补全背景、车辆与人体的内容，构建可组合高斯场景。同一组资产可在相机视角、车辆位姿和人体姿态变化时复用。金色标注表示补全区域。}`
+- 原因：分别说明联合补全、同一资产的状态复用及金色标注的含义，与概念图对应。
+
+### 正文引用的最小调整
+
+- 位置：`paper/sec/1_introduction.tex`
+- 原文：`As illustrated in Fig.~\ref{fig:teaser}`
+- 修改后：`As illustrated in Fig.~\ref{fig:overview}`
+- 原因：该句解释网络流程，继续指向原流程图（现 Figure 2），避免误指新增的任务概览图。正文其他字句不变。
+
+- 位置：`paper/zh/1_introduction_zh.tex`
+- 原文：`如图~\ref{fig:teaser} 所示`
+- 修改后：`如图~\ref{fig:overview} 所示`
+- 原因：该句解释网络流程，继续指向原流程图（现 Figure 2），避免误指新增的任务概览图。正文其他字句不变。
+
+- 位置：`paper/sec/3_method.tex`
+- 原文：`DriveCompose reconstructs a driving scene in the units that will later be controlled. Figure~\ref{fig:teaser} shows the main reconstruction pipeline.`
+- 修改后：`DriveCompose reconstructs a driving scene in the units that will later be controlled. Figure~\ref{fig:overview} shows the main reconstruction pipeline.`
+- 原因：该句解释网络流程，继续指向原流程图（现 Figure 2），避免误指新增的任务概览图。正文其他字句不变。
+
+- 位置：`paper/zh/3_method_zh.tex`
+- 原文：`DriveCompose 按照后续控制的单位重建驾驶场景。图~\ref{fig:teaser} 展示主要重建流程。`
+- 修改后：`DriveCompose 按照后续控制的单位重建驾驶场景。图~\ref{fig:overview} 展示主要重建流程。`
+- 原因：该句解释网络流程，继续指向原流程图（现 Figure 2），避免误指新增的任务概览图。正文其他字句不变。
+
+### 明确保留项
+
+标题、双语摘要、引言与贡献的所有论述、方法机制与公式、实验条件与数值、书目、补充材料均保留。本轮四个章节文件仅替换图引用标签；其他修改仅限双语入口、新图文件和设计/对照记录。
+
+### 验证
+
+两版最后一次编译均成功且实际写入新 PDF；日志无编译错误、未定义引用、缺字、overfull 或图注警告。Figure 1 均在首页标题下、摘要前；图框宽 495 pt、高 165 pt。原方法总览为第 2 页 Figure 2，双语流程引用同步。英文共 12 页（之前 11 页），正文结论与参考文献均在第 9 页；正文仍超过 8 页目标，本轮未压缩。中文共 9 页。已查看两版首页、英文流程图及正文末页，无重叠或裁切；最后修正图注锚点后，两版首页渲染与已检查版本逐字节一致。16 项受保护源码/图件哈希未变，四个正文文件只改引用标签。核验记录：`paper/build/teaser-insertion/check.json`。
+
+[英文正式稿](../paper/build/en/main.pdf) · [中文正式稿](../paper/build/zh/main_zh.pdf)。排版与核验完成后，用户授权提交并推送本轮图件、双语源码、正式 PDF 和对应记录。

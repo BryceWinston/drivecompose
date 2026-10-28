@@ -20,6 +20,19 @@
 \def\confYear{2027}
 \title{DriveCompose: Compositional Generative Reconstruction of Driving Scenes via Joint Completion}
 \author{Anonymous CVPR Submission}
+% Keep the concept teaser in the title block, before the two-column abstract.
+\makeatletter
+\g@addto@macro\@maketitle{%
+  \noindent\begin{minipage}{\textwidth}
+    \captionsetup{type=figure}
+    \centering
+    \includegraphics[width=\linewidth]{fig/drivecompose-teaser.png}
+    \caption{\textbf{DriveCompose concept.} DriveCompose jointly completes background, vehicle, and human content from driving images to form a compositional Gaussian scene. The same assets are reused under changes in camera viewpoint, vehicle pose, and human articulation. Gold marks completed regions.}
+    \label{fig:teaser}
+  \end{minipage}\par
+  \vspace{\baselineskip}
+}
+\makeatother
 \begin{document}
 \maketitle
 \input{sec/0_abstract}
@@ -27,7 +40,7 @@
   \centering
   \includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}
   \caption{\textbf{DriveCompose overview.} (a) A shared ViT extracts visual evidence, which is aggregated on background and canonical asset supports and encoded into structured latents. (b) Joint completion applies local attention within groups and shares context through cross-component memory (CCM). (c) Type-specific decoders produce the Gaussian background, canonical vehicle and human assets, and a sky map.}
-  \label{fig:teaser}
+  \label{fig:overview}
 \end{figure*}
 \def\CVPRMAIN{}
 \input{sec/1_introduction}

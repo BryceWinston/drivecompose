@@ -1,0 +1,47 @@
+Use case: scientific-educational, reference-grounded teaser revision.
+EDIT the existing DriveCompose teaser, retaining its excellent academic three-column composition and scientific story, but replace ALL example imagery with a consistent scene grounded in the two supplied street references. This remains a concept mockup, NOT actual reconstruction or experimental output.
+
+INPUT ROLES, in supplied path order:
+1) Existing DriveCompose teaser: EDIT TARGET and exact LAYOUT / typography / annotation reference. Preserve its white canvas, approximate 3:1 aspect ratio, headings, dominant oblique 3D scene, bottom completion inset, and right three-tile capability gallery.
+2) User's street closeup: PRIMARY SCENE and SUBJECT reference. This establishes the postal delivery van and nearby pedestrians, asphalt intersection, waterfront infrastructure, bare street trees and palms, traffic lights, and muted camera appearance.
+3) User's wide multi-camera panorama: WIDER ENVIRONMENT and additional perspective reference. It establishes the large urban intersection, right-side construction building and red crane, orange construction barriers, parked cars, low dark waterfront building, distant steel structure/bridge, and broad crosswalks. This is stitched camera imagery: black regions and seams are missing coverage/borders, NOT scene geometry; repeated objects at seams are NOT multiple physical copies. Do not reproduce watermark text.
+
+MAIN CHANGE:
+Create the perception and texture of an ordinary Waymo-style urban driving dataset sequence using these actual references: car-mounted camera height and perspective, wide field of view, low-contrast somewhat grey daylight, light overexposed sky, slightly soft sensor-image texture, actual worn asphalt and crosswalk paint, utilitarian street objects. Stay faithful to the user's U.S. urban intersection rather than the previous picturesque British-looking street. No glossy CGI, cinematic light, warm color grading or toy diorama. The original silver-blue sedan and burgundy-clad pedestrian must be entirely replaced everywhere by the same boxy WHITE POSTAL DELIVERY VAN with blue postal side graphic and thin red/blue stripe, and the same dark NAVY-JACKET pedestrian wearing dark trousers and a dark backpack from the supplied street image. These subjects must stay visually consistent from inputs through completion and reused states. The second nearby adult and red-jacket distant pedestrian may remain as minor context when visible; do not duplicate the featured person through panorama overlaps.
+
+PRESERVE THE EXACT MAIN LABELS:
+"(a) Driving observations"
+"(b) Joint completion"
+"(c) Reuse the same assets"
+"DriveCompose"
+"Partial surface coverage"
+"Background"
+"Vehicle"
+"Human"
+"Shared scene context"
+"Observed surfaces"
+"Completed surfaces"
+"Observed"
+"Completed"
+"New camera view"
+"Vehicle rotation"
+"Human articulation"
+"Complete once; compose across states."
+Bottom disclosure exactly: "Concept illustration — not experimental results"
+
+LEFT:
+Three compact landscape input camera views grounded in the supplied scene: a close view containing the white postal van and crossing pedestrian; a slightly wider frontal intersection view including construction and crane; an adjacent side-camera viewpoint still showing the same van and person. They must look like driving-log camera frames of the same place, not arbitrary photorealistic street art. Do not include black panorama padding or replicate stitching discontinuities.
+
+CENTER:
+The main hero is a visually convincing oblique bird's-eye Gaussian-splat-like reconstruction of this SAME intersection: wide worn grey road, crossing marks, traffic lights, palms and bare trees, low dark waterfront building, partly constructed block and red crane at the right, orange barriers. Make the van and selected navy-clad pedestrian sufficiently large and visible in the foreground, correct human-to-van scale. Keep rough sparse splat edges fading to white, no dense square grid or voxel blocks. As in the existing teaser, thin teal/blue/violet outlines identify background/van/person, with labels and shared-scene-context connecting arrows. The connecting arrows are clean, minimal and point clearly to those three parts.
+Gold hatching marks ONLY small completed surface areas: a piece of road formerly occluded by the van, the far-side/rear quarter of the van body, and a small far-side upper arm/back region of the pedestrian. Gold is an explanatory overlay, not a new painted color or damage.
+The bottom paired inset must now show the SAME POSTAL VAN at one identical rear three-quarter angle on both sides. In "Observed surfaces" a substantial far-side rear body-wall patch is missing and represented by grey dashed outline and sparse absent splats; in "Completed surfaces" that exact patch is filled in with plausible white bodywork and appropriate continuation of stripe, with gold hatching over that SAME newly added patch. Keep observed portions identical; this is a schematic of partial-to-complete surfaces, not a generic image-quality comparison.
+
+RIGHT:
+Three landscape rendering examples of the SAME intersection and featured subjects, with consistent appearance and background.
+Top "New camera view": a laterally displaced camera looking at the same van and navy-jacket person, otherwise same actor state.
+Middle "Vehicle rotation": same camera arrangement as top, but the SAME postal van turns visibly about its vertical axis (around 30 degrees), revealing its previously unseen opposite side or rear quarter. Do not morph it into a standard cargo van or sedan. The gold patch moves with the van body. Human stays unchanged.
+Bottom "Human articulation": same camera, background and van placement as top; the SAME navy-clad person at the same root position now stands with one arm raised to shoulder height and the other relaxed. Small violet skeleton correctly follows arms and legs. Gold patch stays attached to body. Keep arm changes clearly visible. Human and vehicle remain plausibly scaled.
+
+CONSTRAINTS:
+All imagery is newly rendered/illustrated for this scene adaptation. The source photos are visual reference, not evidence that the described output was actually computed. Preserve the concept disclosure. Keep scene and actor identity consistent. No timing or performance numbers, no GT labels, no policy feedback loop, no unsupported future prediction or weather change. Do not insert new algorithm blocks or extra text. Do not let the panorama become a banner dominating the layout. Use high-resolution readable text, thin annotation lines, white background, minimal clutter.
