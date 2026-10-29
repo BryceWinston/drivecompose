@@ -2089,3 +2089,316 @@ English 修改前：
 两版最后一次编译均成功且实际写入新 PDF；日志无编译错误、未定义引用、缺字、overfull 或图注警告。Figure 1 均在首页标题下、摘要前；图框宽 495 pt、高 165 pt。原方法总览为第 2 页 Figure 2，双语流程引用同步。英文共 12 页（之前 11 页），正文结论与参考文献均在第 9 页；正文仍超过 8 页目标，本轮未压缩。中文共 9 页。已查看两版首页、英文流程图及正文末页，无重叠或裁切；最后修正图注锚点后，两版首页渲染与已检查版本逐字节一致。16 项受保护源码/图件哈希未变，四个正文文件只改引用标签。核验记录：`paper/build/teaser-insertion/check.json`。
 
 [英文正式稿](../paper/build/en/main.pdf) · [中文正式稿](../paper/build/zh/main_zh.pdf)。排版与核验完成后，用户授权提交并推送本轮图件、双语源码、正式 PDF 和对应记录。
+
+## 2026-10-28：摘要开头收紧并突出联合补全与资产复用
+
+基线提交：`2f86dc78ec1da7210983446ab853b9947a0ce95a`。两份摘要源码在本轮开始时均与 HEAD 一致；本地既有的三个 pointforward PDF 删除状态不属于本轮改动。真实源码、正式 PDF 哈希与受保护文件清单保存在 `paper/build/abstract-revision/baseline.json`。
+
+范围：仅修改中英文摘要及本轮改动/编译记录，沿用现有段落结构。按用户给出的开头风格，将背景需求与局部观测痛点收进第一句，第二句即引入方法；并落实上一轮确认的联合补全、观测检查、消融数字和复用结尾调整。
+
+英文词数：188 → 177（减少 11 词）。中文正文字符数（含英文、数字、空格和标点，不含 LaTeX 环境）：404 → 395。未调整字体、行距、边距或图件尺寸。
+
+### 局部前后对照
+
+#### 开头：背景、痛点与方法引入
+
+English 修改前：
+
+```text
+Driving simulation and scene editing require reconstructed scenes that remain usable when cameras and actors move beyond their recorded configurations. Camera or actor motion exposes previously unseen surfaces, requiring their geometry and appearance to be completed and assigned to the corresponding background, vehicle, or human. We present DriveCompose, a framework for generative reconstruction of compositional driving scenes from image sequences.
+```
+
+English 修改后：
+
+```text
+Reconstructing complete and controllable 3D scenes from partial observations is essential for autonomous driving simulation and scene editing. We present DriveCompose, a framework for generative reconstruction of compositional driving scenes from image sequences.
+```
+
+中文 修改前：
+
+```text
+驾驶仿真与场景编辑需要重建场景在相机和参与者偏离记录状态后仍可使用。相机移动或参与者运动会暴露此前未被拍摄的表面，因此需要补全这些表面的几何与外观，并使补全内容保持归属于相应的背景、车辆或人体。我们提出 DriveCompose，从图像序列中生成式地重建可组合驾驶场景。
+```
+
+中文 修改后：
+
+```text
+从局部观测中重建完整、可控的三维场景，是自动驾驶仿真与场景编辑的重要基础。我们提出 DriveCompose，从图像序列中生成式地重建可组合驾驶场景。
+```
+
+原因：将前三句收为两句：从局部观测重建完整、可控场景的需求直接引出 DriveCompose。删除开头重复展开的动作与未见表面说明；相机、车辆与人体的具体示例仍在引言首段，归属和运动关系仍由摘要的表示句说明。
+
+#### 联合补全句
+
+English 修改前：
+
+```text
+A conditional generative model trained with flow matching uses cross-component memory to share scene context and jointly complete the missing codes in these representations.
+```
+
+English 修改后：
+
+```text
+A conditional flow-matching model jointly completes missing background and actor content in these representations, using cross-component memory to share scene context.
+```
+
+中文 修改前：
+
+```text
+通过流匹配训练的条件生成模型利用跨组件记忆共享场景上下文，联合补全这些表示中的缺失潜码。
+```
+
+中文 修改后：
+
+```text
+基于条件流匹配的生成模型在这些表示中联合补全背景与参与者的缺失内容，并通过跨组件记忆共享场景上下文。
+```
+
+原因：用背景与参与者的缺失内容替代摘要中未展开的潜码细节；保留条件流匹配、跨组件记忆、场景上下文与在上述表示中补全的关系。
+
+#### 观测检查句
+
+English 修改前：
+
+```text
+We also render the composed scene from the original camera viewpoints to check its consistency with the input images.
+```
+
+English 修改后：
+
+```text
+We render the completed scene at the recorded camera viewpoints and actor states to check its consistency with the input images.
+```
+
+中文 修改前：
+
+```text
+我们还从原始相机视角渲染组合后的场景，检查补全结果是否与输入图像一致。
+```
+
+中文 修改后：
+
+```text
+我们还在记录的相机视角和参与者状态下渲染补全后的场景，检查其与输入图像的一致性。
+```
+
+原因：补齐记录时的参与者状态，使检查条件与方法 3.5 一致；保持与输入图像比较的含义。
+
+#### 组件消融结果句
+
+English 修改前：
+
+```text
+Ablations show that sharing context across components improves completion of unseen surfaces.
+```
+
+English 修改后：
+
+```text
+Compared with the variant without cross-component memory, our model reduces mean absolute RGB error on unseen surfaces by 20.5% in component ablations.
+```
+
+中文 修改前：
+
+```text
+消融实验表明，组件间共享上下文能够改善未见表面的补全。
+```
+
+中文 修改后：
+
+```text
+组件消融实验表明，相比不使用跨组件记忆的变体，我们的方法将未观测表面的 RGB 平均绝对误差降低了 20.5%。
+```
+
+原因：将定性收益换成直接支撑跨组件记忆的量化结论。20.5% 为 T=8 组件消融中 New-MAE 从 0.078 降至 0.062 的相对降幅；对照为 w/o CCM，不能写成所有设置或所有基线的统一收益。
+
+#### 结尾：资产复用
+
+English 修改前：
+
+```text
+The completed components form a Gaussian scene that supports rendering under different camera and actor states.
+```
+
+English 修改后：
+
+```text
+The resulting Gaussian scene supports composition and rendering with the same completed assets under changes in camera viewpoint, vehicle pose, and human articulation.
+```
+
+中文 修改前：
+
+```text
+补全后的组件构成高斯场景，支持在不同相机和参与者状态下渲染。
+```
+
+中文 修改后：
+
+```text
+补全后的高斯场景可复用同一组资产，在不同相机视角、车辆位姿和人体姿态下组合与渲染。
+```
+
+原因：以同一组补全资产的组合与渲染收尾，明确相机视角、车辆位姿和人体姿态三类状态变化；比泛指不同状态渲染更准确地交代可组合重建的用途。
+
+### 中英文摘要全文对照
+
+English 修改前：
+
+```text
+Driving simulation and scene editing require reconstructed scenes that remain usable when cameras and actors move beyond their recorded configurations. Camera or actor motion exposes previously unseen surfaces, requiring their geometry and appearance to be completed and assigned to the corresponding background, vehicle, or human. We present DriveCompose, a framework for generative reconstruction of compositional driving scenes from image sequences. We represent the background in world coordinates and vehicles and humans in their respective canonical frames, allowing completed surfaces to follow vehicle motion and human articulation. A conditional generative model trained with flow matching uses cross-component memory to share scene context and jointly complete the missing codes in these representations. Completion is constrained by the input observations to preserve the geometry and appearance of observed surfaces. We also render the composed scene from the original camera viewpoints to check its consistency with the input images. On Waymo, DriveCompose improves dynamic scene reconstruction and off-trajectory view synthesis over the evaluated baselines. Ablations show that sharing context across components improves completion of unseen surfaces. The completed components form a Gaussian scene that supports rendering under different camera and actor states.
+```
+
+English 修改后：
+
+```text
+Reconstructing complete and controllable 3D scenes from partial observations is essential for autonomous driving simulation and scene editing. We present DriveCompose, a framework for generative reconstruction of compositional driving scenes from image sequences. We represent the background in world coordinates and vehicles and humans in their respective canonical frames, allowing completed surfaces to follow vehicle motion and human articulation. A conditional flow-matching model jointly completes missing background and actor content in these representations, using cross-component memory to share scene context. Completion is constrained by the input observations to preserve the geometry and appearance of observed surfaces. We render the completed scene at the recorded camera viewpoints and actor states to check its consistency with the input images. On Waymo, DriveCompose improves dynamic scene reconstruction and off-trajectory view synthesis over the evaluated baselines. Compared with the variant without cross-component memory, our model reduces mean absolute RGB error on unseen surfaces by 20.5% in component ablations. The resulting Gaussian scene supports composition and rendering with the same completed assets under changes in camera viewpoint, vehicle pose, and human articulation.
+```
+
+中文 修改前：
+
+```text
+驾驶仿真与场景编辑需要重建场景在相机和参与者偏离记录状态后仍可使用。相机移动或参与者运动会暴露此前未被拍摄的表面，因此需要补全这些表面的几何与外观，并使补全内容保持归属于相应的背景、车辆或人体。我们提出 DriveCompose，从图像序列中生成式地重建可组合驾驶场景。我们在世界坐标系中表示背景，在车辆和人体各自的规范坐标系中表示其内容，使补全表面能够随所属车辆运动或人体姿态变化。通过流匹配训练的条件生成模型利用跨组件记忆共享场景上下文，联合补全这些表示中的缺失潜码。补全过程受输入观测约束，以保持已观测表面的几何与外观。我们还从原始相机视角渲染组合后的场景，检查补全结果是否与输入图像一致。在 Waymo 上，DriveCompose 的动态场景重建和轨迹外视图合成效果优于所评估的基线。消融实验表明，组件间共享上下文能够改善未见表面的补全。补全后的组件构成高斯场景，支持在不同相机和参与者状态下渲染。
+```
+
+中文 修改后：
+
+```text
+从局部观测中重建完整、可控的三维场景，是自动驾驶仿真与场景编辑的重要基础。我们提出 DriveCompose，从图像序列中生成式地重建可组合驾驶场景。我们在世界坐标系中表示背景，在车辆和人体各自的规范坐标系中表示其内容，使补全表面能够随所属车辆运动或人体姿态变化。基于条件流匹配的生成模型在这些表示中联合补全背景与参与者的缺失内容，并通过跨组件记忆共享场景上下文。补全过程受输入观测约束，以保持已观测表面的几何与外观。我们还在记录的相机视角和参与者状态下渲染补全后的场景，检查其与输入图像的一致性。在 Waymo 上，DriveCompose 的动态场景重建和轨迹外视图合成效果优于所评估的基线。组件消融实验表明，相比不使用跨组件记忆的变体，我们的方法将未观测表面的 RGB 平均绝对误差降低了 20.5%。补全后的高斯场景可复用同一组资产，在不同相机视角、车辆位姿和人体姿态下组合与渲染。
+```
+
+### 主张依据与保留项
+
+- 第一背景句概括引言首段的应用需求与局部可见性问题；条件流匹配和联合补全对应方法 3.1/3.4，运动与姿态关系对应 3.1/3.5。
+- 观测检查使用原始相机及参与者状态，对应方法 3.5；结尾描述同一资产的状态复用机制。
+- 消融数字来自 `paper/sec/4_experiments.tex` 的组件表及 `paper/provenance/ablation-results-20261023.json`：T=8，三路相机、24 张输入图像，New-MAE 0.078 → 0.062，相对降幅四舍五入为 20.5%。未增加统计显著性或闭环效果结论。
+- 标题、规范表示句、观测保持句、Waymo 重建与视图合成结论保留；引言、贡献、方法、实验设置与数值、正文图件和补充材料不改。
+
+### 编译与篇幅核验
+
+两版主稿均成功编译并实际写入新 PDF，日志无编译错误、未定义引用、缺字或 overfull 警告。英文仍为 12 页，正文结论及参考文献起始均在第 9 页；中文仍为 9 页，结论在第 6 页、参考文献从第 7 页开始。英文摘要 188 → 177 词，中文 404 → 395 字符；本轮未增加页数，原有英文正文越过第 8 页的状态不变。已目视检查两版首页及正文结论页，无重叠、裁切或缺字，新增 20.5% 正常显示。132 项受保护文件的哈希或既有缺失状态与本轮基线一致，用户已有的三个 PDF 删除状态保留。详细核验见 `paper/build/abstract-revision/check.json`。本轮未提交或推送。
+
+
+## 2026-10-28：仅微调双语摘要首句（nature-polishing 检查后）
+
+范围：仅英文与中文摘要第一句。基线提交为 `2f86dc78ec1da7210983446ab853b9947a0ce95a`，本轮真实基线为该提交之上的未提交工作区，已保存在 `paper/build/abstract-revision/first-sentence-baseline.json`；先前摘要改动不计入本轮。
+
+具体问题：原首句说明完整、可控场景的重要性，但没有直接说明状态变化为何同时要求未见表面补全与参与者运动一致性。将泛化的重要性陈述替换为具体任务需求，不调整摘要顺序。
+
+### 英文摘要首句
+
+原文：
+
+> Reconstructing complete and controllable 3D scenes from partial observations is essential for autonomous driving simulation and scene editing.
+
+修改后：
+
+> Driving simulation and scene editing require completing unseen surfaces exposed by camera or actor motion, while ensuring that completed actor surfaces follow vehicle motion and human articulation.
+
+### 中文摘要首句
+
+原文：
+
+> 从局部观测中重建完整、可控的三维场景，是自动驾驶仿真与场景编辑的重要基础。
+
+修改后：
+
+> 驾驶仿真与场景编辑需要补全相机或参与者运动时暴露的未观测表面，并使补全的参与者表面随车辆运动或人体姿态变化。
+
+原因：首句直接说明相机或参与者运动会暴露未观测表面，并要求补全的参与者表面随车辆运动或人体姿态变化；第三句继续解释规范表示如何满足这一需求。依据为当前引言第一段及方法 3.1/3.5，未增加新的实测能力主张。
+
+保留项：两个摘要从第二句至结尾逐字保持；标题、引言、方法、实验设置与数值、20.5% 消融结论、图表及补充材料均不修改。英文摘要由 177 词变为 186 词，仍为 9 句。无排版参数改动。
+
+编译与版面核验：双语候选稿均成功编译，日志无未定义引用、缺字或 overfull 警告；两版首页与结论页目视检查无重叠、裁切或缺字。英文总页数保持 12 页、正文及结论仍结束于第 9 页；中文保持 9 页、结论在第 6 页。原有英文正文超出 8 页的状态不变。英文正式 PDF 已替换并校验哈希。中文正式 PDF 已替换并校验哈希。 两个摘要除首句外逐字不变，受保护文件与本轮基线一致。检查记录见 `paper/build/abstract-revision/first-sentence-check.json`。本轮未提交或推送。
+
+
+## 2026-10-28：撤回摘要首句试改，恢复上一版
+
+用户认为原首句更清晰，本轮仅撤回上一轮首句替换，中英文摘要恢复至 `first-sentence-baseline.json` 中保存的实际工作区基线；不使用更早 HEAD 覆盖先前摘要修改。基线提交仍为 `2f86dc78ec1da7210983446ab853b9947a0ce95a`；撤回前的实际文本另存于 `paper/build/abstract-revision/first-sentence-revert-baseline.json`。
+
+英文，撤回前：
+
+> Driving simulation and scene editing require completing unseen surfaces exposed by camera or actor motion, while ensuring that completed actor surfaces follow vehicle motion and human articulation.
+
+恢复后：
+
+> Reconstructing complete and controllable 3D scenes from partial observations is essential for autonomous driving simulation and scene editing.
+
+中文，撤回前：
+
+> 驾驶仿真与场景编辑需要补全相机或参与者运动时暴露的未观测表面，并使补全的参与者表面随车辆运动或人体姿态变化。
+
+恢复后：
+
+> 从局部观测中重建完整、可控的三维场景，是自动驾驶仿真与场景编辑的重要基础。
+
+原因：原句先概括局部观测到完整、可控三维场景的任务，阅读负担更低；试改首句提前堆叠运动细节，并与第三句的车辆运动和人体姿态说明重复，未获得明确改善，因此撤回。其余摘要内容逐字不变，英文恢复为 177 词。
+
+撤回编译核验：双语重新编译成功，日志无未定义引用、缺字或 overfull 警告；两版首页已目视检查。英文 12 页、中文 9 页，与撤回前相同；英文正文原有第 9 页结束状态不变。两版正式 PDF 均已更新并核验哈希。 双语摘要与上一轮试改前的实际工作区基线逐字一致，其他受保护文件未变；本轮未提交或推送。
+
+## 2026-10-29：合并摘要观测一致性表述并准备发布
+
+基线 HEAD：`2f86dc78ec1da7210983446ab853b9947a0ce95a`；实际起点是此前已确认但尚未提交的 177 词摘要工作区，不能以 HEAD 中的旧摘要冒充本轮修改前文本。真实双语原文、PDF 哈希与受保护文件状态保存于 `paper/build/abstract-revision/consistency-baseline.json`。
+
+用户确认将观测保持与渲染检查合并为一句，按此前展示的完整中英文摘要落地，编译检查后提交并推送。具体问题是分开叙述容易被读成重复的一致性要求，而中途提出遮挡又增加歧义；本轮以共同目的串联补全时保留表面、补全后在记录状态下渲染并比较两个步骤。
+
+本轮英文摘要 177 → 173 词，9 → 8 句；中文正文字符数（含空格、英文、数字及标点，不含 LaTeX 环境）395 → 394。
+
+### 局部前后对照
+
+English 修改前：
+
+```text
+Completion is constrained by the input observations to preserve the geometry and appearance of observed surfaces. We render the completed scene at the recorded camera viewpoints and actor states to check its consistency with the input images.
+```
+
+English 修改后：
+
+```text
+To maintain consistency with input observations, we preserve observed surface geometry and appearance during completion, then render the completed scene at recorded camera viewpoints and actor states for comparison with the input images.
+```
+
+中文 修改前：
+
+```text
+补全过程受输入观测约束，以保持已观测表面的几何与外观。我们还在记录的相机视角和参与者状态下渲染补全后的场景，检查其与输入图像的一致性。
+```
+
+中文 修改后：
+
+```text
+为保持与输入观测的一致性，我们在补全时保留已观测表面的几何与外观，并在记录的相机视角和参与者状态下渲染补全后的场景，与输入图像比较。
+```
+
+原因：将共同目的放在句首，明确先在补全中保留已有几何与外观，再在记录的相机视角与参与者状态下渲染核对输入图像；两个步骤的对象与次序清楚。表述对应方法 3.4 的观测约束及 3.5 的原始状态渲染检查，未新增方法、指标或实验结论。
+
+### 完整摘要前后对照
+
+English 修改前：
+
+```text
+Reconstructing complete and controllable 3D scenes from partial observations is essential for autonomous driving simulation and scene editing. We present DriveCompose, a framework for generative reconstruction of compositional driving scenes from image sequences. We represent the background in world coordinates and vehicles and humans in their respective canonical frames, allowing completed surfaces to follow vehicle motion and human articulation. A conditional flow-matching model jointly completes missing background and actor content in these representations, using cross-component memory to share scene context. Completion is constrained by the input observations to preserve the geometry and appearance of observed surfaces. We render the completed scene at the recorded camera viewpoints and actor states to check its consistency with the input images. On Waymo, DriveCompose improves dynamic scene reconstruction and off-trajectory view synthesis over the evaluated baselines. Compared with the variant without cross-component memory, our model reduces mean absolute RGB error on unseen surfaces by 20.5% in component ablations. The resulting Gaussian scene supports composition and rendering with the same completed assets under changes in camera viewpoint, vehicle pose, and human articulation.
+```
+
+English 修改后：
+
+```text
+Reconstructing complete and controllable 3D scenes from partial observations is essential for autonomous driving simulation and scene editing. We present DriveCompose, a framework for generative reconstruction of compositional driving scenes from image sequences. We represent the background in world coordinates and vehicles and humans in their respective canonical frames, allowing completed surfaces to follow vehicle motion and human articulation. A conditional flow-matching model jointly completes missing background and actor content in these representations, using cross-component memory to share scene context. To maintain consistency with input observations, we preserve observed surface geometry and appearance during completion, then render the completed scene at recorded camera viewpoints and actor states for comparison with the input images. On Waymo, DriveCompose improves dynamic scene reconstruction and off-trajectory view synthesis over the evaluated baselines. Compared with the variant without cross-component memory, our model reduces mean absolute RGB error on unseen surfaces by 20.5% in component ablations. The resulting Gaussian scene supports composition and rendering with the same completed assets under changes in camera viewpoint, vehicle pose, and human articulation.
+```
+
+中文 修改前：
+
+```text
+从局部观测中重建完整、可控的三维场景，是自动驾驶仿真与场景编辑的重要基础。我们提出 DriveCompose，从图像序列中生成式地重建可组合驾驶场景。我们在世界坐标系中表示背景，在车辆和人体各自的规范坐标系中表示其内容，使补全表面能够随所属车辆运动或人体姿态变化。基于条件流匹配的生成模型在这些表示中联合补全背景与参与者的缺失内容，并通过跨组件记忆共享场景上下文。补全过程受输入观测约束，以保持已观测表面的几何与外观。我们还在记录的相机视角和参与者状态下渲染补全后的场景，检查其与输入图像的一致性。在 Waymo 上，DriveCompose 的动态场景重建和轨迹外视图合成效果优于所评估的基线。组件消融实验表明，相比不使用跨组件记忆的变体，我们的方法将未观测表面的 RGB 平均绝对误差降低了 20.5%。补全后的高斯场景可复用同一组资产，在不同相机视角、车辆位姿和人体姿态下组合与渲染。
+```
+
+中文 修改后：
+
+```text
+从局部观测中重建完整、可控的三维场景，是自动驾驶仿真与场景编辑的重要基础。我们提出 DriveCompose，从图像序列中生成式地重建可组合驾驶场景。我们在世界坐标系中表示背景，在车辆和人体各自的规范坐标系中表示其内容，使补全表面能够随所属车辆运动或人体姿态变化。基于条件流匹配的生成模型在这些表示中联合补全背景与参与者的缺失内容，并通过跨组件记忆共享场景上下文。为保持与输入观测的一致性，我们在补全时保留已观测表面的几何与外观，并在记录的相机视角和参与者状态下渲染补全后的场景，与输入图像比较。在 Waymo 上，DriveCompose 的动态场景重建和轨迹外视图合成效果优于所评估的基线。组件消融实验表明，相比不使用跨组件记忆的变体，我们的方法将未观测表面的 RGB 平均绝对误差降低了 20.5%。补全后的高斯场景可复用同一组资产，在不同相机视角、车辆位姿和人体姿态下组合与渲染。
+```
+
+### 范围与核验
+
+本轮源码只替换两版摘要的上述观测一致性表述，其他句子与本轮实际基线逐字一致。发布包含此前已确认的摘要优化、双语正式 PDF 和可追溯记录；本地既有的三个 pointforward PDF 删除状态不纳入本次提交。
+
+两版主稿均重新编译成功并实际写入正式 PDF。日志无编译错误、未定义引用、缺字或 overfull 警告。两版首页及结论页已目视检查，无重叠或裁切，确认新版观测一致性表述及 20.5% 正常显示。英文仍为 12 页，正文结论与参考文献均在第 9 页；中文仍为 9 页，结论在第 6 页、参考文献从第 7 页开始。英文摘要缩为 173 词，未增加页数；原有英文正文超过 8 页的状态不变。132 项受保护文件及既有缺失状态未变，已有改动记录前缀完整保留。详细核验保存于 `paper/build/abstract-revision/consistency-check.json`。按本轮用户授权提交并推送。

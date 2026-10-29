@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-29",
+  "baseline_commit": "2f86dc78ec1da7210983446ab853b9947a0ce95a",
+  "baseline_type": "Uncommitted working tree after the accepted opening revision and its restoration; source differs from HEAD.",
+  "languages": {
+    "en": {
+      "pages": 12,
+      "sections": [
+        {
+          "section": "conclusion",
+          "page": 9
+        },
+        {
+          "section": "references",
+          "page": 9
+        }
+      ],
+      "compile": {
+        "language": "en",
+        "command": [
+          "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1016.6573.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
+          "-X",
+          "compile",
+          "--outdir",
+          "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\en",
+          "--outfmt",
+          "pdf",
+          "--print",
+          "--keep-logs",
+          "--keep-intermediates",
+          "--untrusted",
+          "main.tex"
+        ],
+        "exit_code": 0,
+        "started_at": "2026-10-29T05:53:52.740534+00:00",
+        "finished_at": "2026-10-29T05:54:31.996668+00:00",
+        "elapsed_seconds": 39.25,
+        "fontconfig_file": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\tools\\fontconfig.conf",
+        "source_sha256": "86687d52c6d8d716ba6a4fe0ff8a3db9fc9deb243f2adfa51c5256577f506d89",
+        "pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\en\\main.pdf",
+        "pdf_exists": true,
+        "pdf_written_this_run": true,
+        "pdf_sha256": "fd57c41a22426546de92768a02427d02cfdf872ff8472dab2cd5556c0226d3cd"
+      },
+      "warnings": [],
+      "accepted_sentence_on_page_1": true,
+      "abstract_source_sha256": "f243ec5ff444ccd829de94798358799826c2631ca62afbc931ea9386b81cb3f4"
+    },
+    "zh": {
+      "pages": 9,
+      "sections": [
+        {
+          "section": "conclusion",
+          "page": 6
+        },
+        {
+          "section": "references",
+          "page": 7
+        }
+      ],
+      "compile": {
+        "language": "zh",
+        "command": [
+          "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1016.6573.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
+          "-X",
+          "compile",
+          "--outdir",
+          "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\zh",
+          "--outfmt",
+          "pdf",
+          "--print",
+          "--keep-logs",
+          "--keep-intermediates",
+          "--untrusted",
+          "main_zh.tex"
+        ],
+        "exit_code": 0,
+        "started_at": "2026-10-29T05:54:32.056553+00:00",
+        "finished_at": "2026-10-29T05:55:04.196770+00:00",
+        "elapsed_seconds": 32.141,
+        "fontconfig_file": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\tools\\fontconfig.conf",
+        "source_sha256": "8ef3159f95f13b54bf84c521a9a9d7e3b80c6d443c7f497c594f223829a7a477",
+        "pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+        "pdf_exists": true,
+        "pdf_written_this_run": true,
+        "pdf_sha256": "7aff82bf339011394e6bc2c2028fb6923c383abba5b69ed8c2c3bc611f046e58"
+      },
+      "warnings": [],
+      "accepted_sentence_on_page_1": true,
+      "abstract_source_sha256": "6aa262b202182935d0a5ae43c9387eeff6fefd11c4f8419cee6157378eda4a8b"
+    }
+  },
+  "protected_files_unchanged": true,
+  "protected_file_count": 132,
+  "existing_change_log_prefix_unchanged": true,
+  "word_count": {
+    "en_before": 177,
+    "en_after": 173
+  },
+  "only_accepted_local_replacement": true,
+  "visual_review": {
+    "pages": [
+      "English first page",
+      "Chinese first page",
+      "English conclusion page 9",
+      "Chinese conclusion page 6"
+    ],
+    "result": "No overlap, clipping or missing glyphs. Accepted consistency sentence and 20.5% result visible. Main-body ending positions unchanged."
+  }
+}

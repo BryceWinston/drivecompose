@@ -1,0 +1,70 @@
+{
+  "en": {
+    "pages": 12,
+    "warnings": [],
+    "compile": {
+      "language": "en",
+      "command": [
+        "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1016.6573.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
+        "-X",
+        "compile",
+        "--outdir",
+        "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\abstract-revision\\candidate\\en",
+        "--outfmt",
+        "pdf",
+        "--print",
+        "--keep-logs",
+        "--keep-intermediates",
+        "--untrusted",
+        "main.tex"
+      ],
+      "exit_code": 0,
+      "started_at": "2026-10-29T02:23:04.579833+00:00",
+      "finished_at": "2026-10-29T02:23:35.187088+00:00",
+      "elapsed_seconds": 30.609,
+      "fontconfig_file": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\tools\\fontconfig.conf",
+      "source_sha256": "86687d52c6d8d716ba6a4fe0ff8a3db9fc9deb243f2adfa51c5256577f506d89",
+      "pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\abstract-revision\\candidate\\en\\main.pdf",
+      "pdf_exists": true,
+      "pdf_written_this_run": true,
+      "pdf_sha256": "59e10dee362624f17c55b8f4d2feee6ae173c9e04f73351d0053bf72b5d89f38"
+    },
+    "formal_replaced": true,
+    "deliverable": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\en\\main.pdf"
+  },
+  "zh": {
+    "pages": 9,
+    "warnings": [],
+    "compile": {
+      "language": "zh",
+      "command": [
+        "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1016.6573.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
+        "-X",
+        "compile",
+        "--outdir",
+        "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\abstract-revision\\candidate\\zh",
+        "--outfmt",
+        "pdf",
+        "--print",
+        "--keep-logs",
+        "--keep-intermediates",
+        "--untrusted",
+        "main_zh.tex"
+      ],
+      "exit_code": 0,
+      "started_at": "2026-10-29T02:23:35.245684+00:00",
+      "finished_at": "2026-10-29T02:24:07.159049+00:00",
+      "elapsed_seconds": 31.922,
+      "fontconfig_file": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\tools\\fontconfig.conf",
+      "source_sha256": "8ef3159f95f13b54bf84c521a9a9d7e3b80c6d443c7f497c594f223829a7a477",
+      "pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\abstract-revision\\candidate\\zh\\main_zh.pdf",
+      "pdf_exists": true,
+      "pdf_written_this_run": true,
+      "pdf_sha256": "c181ab778759ba678af0542b2c99ee80cc5e614cfee2755324939c817c7af2bd"
+    },
+    "formal_replaced": true,
+    "deliverable": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\zh\\main_zh.pdf"
+  },
+  "source_check": "Exactly one first-sentence replacement in each language; all other abstract text and protected tracked files unchanged.",
+  "visual_check": "Inspected both first pages and conclusion pages; no overlap, clipping or missing glyphs."
+}

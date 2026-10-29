@@ -1,0 +1,135 @@
+{
+  "baseline_commit": "2f86dc78ec1da7210983446ab853b9947a0ce95a",
+  "languages": {
+    "en": {
+      "pages_before": 12,
+      "pages_after": 12,
+      "sections_before": [
+        {
+          "section": "conclusion",
+          "page": 9
+        },
+        {
+          "section": "references",
+          "page": 9
+        }
+      ],
+      "sections_after": [
+        {
+          "section": "conclusion",
+          "page": 9
+        },
+        {
+          "section": "references",
+          "page": 9
+        }
+      ],
+      "warnings": [],
+      "compile": {
+        "language": "en",
+        "command": [
+          "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1016.6573.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
+          "-X",
+          "compile",
+          "--outdir",
+          "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\en",
+          "--outfmt",
+          "pdf",
+          "--print",
+          "--keep-logs",
+          "--keep-intermediates",
+          "--untrusted",
+          "main.tex"
+        ],
+        "exit_code": 0,
+        "started_at": "2026-10-29T02:06:29.071656+00:00",
+        "finished_at": "2026-10-29T02:06:59.062983+00:00",
+        "elapsed_seconds": 29.984,
+        "fontconfig_file": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\tools\\fontconfig.conf",
+        "source_sha256": "86687d52c6d8d716ba6a4fe0ff8a3db9fc9deb243f2adfa51c5256577f506d89",
+        "pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\en\\main.pdf",
+        "pdf_exists": true,
+        "pdf_written_this_run": true,
+        "pdf_sha256": "6b14e301acc8df5928acfc3c7f23f152f6681160ece80735392175254021fad1"
+      },
+      "new_abstract_on_page_1": true,
+      "first_page_text": "CVPR CVPR\n#***** #*****\nCVPR2027Submission#*****. CONFIDENTIALREVIEWCOPY.DONOTDISTRIBUTE.\nDriveCompose: Compositional Generative Reconstruction of Driving Scenes via\nJoint Completion\nAnonymousCVPRsubmission\nPaperID*****\nFigure1.DriveComposeconcept.DriveComposejointlycompletesbackground,vehicle,andhumancontentfromdrivingimagestoform\nacompositionalGaussianscene. Thesameassetsarereusedunderchangesincameraviewpoint,vehiclepose,andhumanarticulation.\nGoldmarkscompletedregions.\nAbstract luteRGBerroronunseensurfacesby20.5%incomponent 020\nablations. The resulting Gaussian scene supports compo- 021\nsitionandrenderingwiththesamecompletedassetsunder 022\n001 Reconstructing complete and controllable 3D scenes from changesincameraviewpoint,vehiclepose,andhumanar- 023\n002 partial observations is essential for autonomous driving ticulation. 024\n003 simulation and scene editing. We present DriveCompose,\n004 aframeworkforgenerativereconstructionofcompositional\n005 driving scenes from image sequences. We represent the 1.Introduction\n025\n006 backgroundinworldcoordinatesandvehiclesandhumans\n007 in their respective canonical frames, allowing completed Drivingsimulationandsceneeditingrequire3Dscenesthat 026\n008 surfacestofollowvehiclemotionandhumanarticulation. A support changes in camera viewpoint, vehicle motion, and 027\n009 conditionalflow-matchingmodeljointlycompletesmissing humanpose[46,49]. However,drivingimagesrevealonly 028\n010 backgroundandactorcontentintheserepresentations,us- thesurfacesvisiblefromtherecordedviewpointsandactor 029\n011 ingcross-componentmemorytosharescenecontext. Com- configurations[1,31]. Movingacamera,turningavehicle, 030\n012 pletionisconstrainedbytheinputobservationstopreserve or changing a pedestrian’s pose exposes previously unob- 031\n013 the geometry and appearance of observed surfaces. We servedregions. Reconstructingscenesfortheseoperations 032\n014 render the completed scene at the recorded camera view- thereforerequirescompletingthemissinggeometryandap- 033\n015 pointsandactorstatestocheckitsconsistencywiththein- pearancewhileensuringthatcompletedvehicleandhuman 034\n016 put images. On Waymo, DriveCompose improves dynamic surfacesmovewiththeirrespectiveactors. 035\n017 scenereconstructionandoff-trajectoryviewsynthesisover Recentfeed-forwardmethodsfusemultipleimagestodi- 036\n018 theevaluatedbaselines. Comparedwiththevariantwithout rectly predict driving-scene geometry and Gaussian repre- 037\n019 cross-component memory, our model reduces mean abso- sentations [3, 6, 45, 48]. Motion estimation and visibility 038\n1",
+      "abstract_source_sha256": "ca9dec0e129f4a9a7571df72cfef382c1f193b6389782c9a97006ba3bc1a99c1"
+    },
+    "zh": {
+      "pages_before": 9,
+      "pages_after": 9,
+      "sections_before": [
+        {
+          "section": "conclusion",
+          "page": 6
+        },
+        {
+          "section": "references",
+          "page": 7
+        }
+      ],
+      "sections_after": [
+        {
+          "section": "conclusion",
+          "page": 6
+        },
+        {
+          "section": "references",
+          "page": 7
+        }
+      ],
+      "warnings": [],
+      "compile": {
+        "language": "zh",
+        "command": [
+          "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1016.6573.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
+          "-X",
+          "compile",
+          "--outdir",
+          "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\zh",
+          "--outfmt",
+          "pdf",
+          "--print",
+          "--keep-logs",
+          "--keep-intermediates",
+          "--untrusted",
+          "main_zh.tex"
+        ],
+        "exit_code": 0,
+        "started_at": "2026-10-29T02:06:59.121012+00:00",
+        "finished_at": "2026-10-29T02:07:31.396272+00:00",
+        "elapsed_seconds": 32.281,
+        "fontconfig_file": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\tools\\fontconfig.conf",
+        "source_sha256": "8ef3159f95f13b54bf84c521a9a9d7e3b80c6d443c7f497c594f223829a7a477",
+        "pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+        "pdf_exists": true,
+        "pdf_written_this_run": true,
+        "pdf_sha256": "539d1dc301fe4ef60ae6e7bbb2754f2234d05cf6823c6611e420345269f30ceb"
+      },
+      "new_abstract_on_page_1": true,
+      "first_page_text": "CVPR CVPR\n#***** #*****\nCVPR2027Submission#*****. CONFIDENTIALREVIEWCOPY.DONOTDISTRIBUTE.\nDriveCompose：通过联合补全实现驾驶场景的可组合生成式重建\nAnonymousCVPRsubmission\nPaperID*****\nFigure1.DriveCompose概念示意。从驾驶图像中联合补全背景、车辆与人体的内容，构建可组合高斯场景。同一组资产可在相\n机视角、车辆位姿和人体姿态变化时复用。金色标注表示补全区域。\nAbstract 志中的图像只提供采集视角和当时参与者状态下的可 020\n见表面[1,31]。移动相机、转动车辆或改变行人姿态， 021\n001 从局部观测中重建完整、可控的三维场景，是自动驾驶 都会暴露此前未观测的区域。因此，场景重建需要补全 022\n002 仿真与场景编辑的重要基础。我们提出DriveCompose， 这些区域的几何与外观，并使补全后的车辆和人体表 023\n003 从图像序列中生成式地重建可组合驾驶场景。我们在 面能够随所属对象运动。 024\n004 世界坐标系中表示背景，在车辆和人体各自的规范坐 近期前馈方法通过融合多帧图像，直接预测驾驶场 025\n005 标系中表示其内容，使补全表面能够随所属车辆运动 景的三维几何与高斯表示[3,6,45,48]。运动估计与可 026\n006 或人体姿态变化。基于条件流匹配的生成模型在这些 见性建模进一步帮助这些方法对齐动态对象，并整合 027\n007 表示中联合补全背景与参与者的缺失内容，并通过跨 不同时刻的观测。多帧融合增加了对输入序列中可见 028\n008 组件记忆共享场景上下文。补全过程受输入观测约束， 表面的覆盖。当新视角或对象运动暴露出整个序列都 029\n009 以保持已观测表面的几何与外观。我们还在记录的相 未曾拍摄的表面时，重建需要借助生成先验推断其几 030\n010 机视角和参与者状态下渲染补全后的场景，检查其与 何与外观。 031\n011 输入图像的一致性。在Waymo上，DriveCompose的动 生成式重建通过资产先验、高斯补全或生成视图推 032\n012 态场景重建和轨迹外视图合成效果优于所评估的基线。 断未观测内容[17,44,47,51]。与此同时，可组合重建 033\n013 组件消融实验表明，相比不使用跨组件记忆的变体，我 将背景与运动对象分开表示，支持车辆移动和人体姿 034\n014 们的方法将未观测表面的 RGB 平均绝对误差降低了 态控制[5,43,49]。将生成补全用于这类场景，需要使 035\n015 20.5%。补全后的高斯场景可复用同一组资产，在不同 补出的表面随所属对象运动，同时让每个对象能够利 036\n016 相机视角、车辆位姿和人体姿态下组合与渲染。 用周围场景的信息完成补全。 037\n为此，我们提出DriveCompose，从驾驶图像序列中 038\n构建可独立控制、并经过生成补全的三维场景。我们在 039\n1.引言 世界坐标系中表示背景，在车辆自身的坐标系中表示车 040\n017\n身，并在参考姿态下表示人体、保留其骨架绑定[5,43]。 041\n018 驾驶仿真与场景编辑需要能够支持相机移动、车辆运 补全直接在这些表示中进行，使生成的车辆和人体表 042\n019 动和人体姿态变化的三维场景[46,49]。然而，驾驶日 面能够随所属对象运动或改变姿态（第3.1节）。在此 043\n1",
+      "abstract_source_sha256": "07cded170d0716b315a2df872840bda8f939195db0b03248c2c7a7dccc60005c"
+    }
+  },
+  "protected_files_unchanged": true,
+  "protected_file_count": 132,
+  "visual_review": {
+    "pages": [
+      "en page 1",
+      "zh page 1",
+      "en conclusion page 9",
+      "zh conclusion page 6"
+    ],
+    "result": "No overlap, clipping or missing glyphs. Both abstracts and the quantitative result are visible on page 1. Main-text ending pages remain unchanged."
+  },
+  "english_word_count": {
+    "before": 188,
+    "after": 177
+  },
+  "chinese_character_count_including_spaces": {
+    "before": 404,
+    "after": 395
+  },
+  "main_body_end_page_unchanged": true
+}
