@@ -3,7 +3,7 @@ flowchart LR
     direction TB
     LOG["多相机驾驶日志<br/>RGB、标定、时间与位姿"]
     ENC["共享恢复与轨迹关联"]
-    QUERY["异构规范查询<br/>背景：世界坐标；车辆：局部坐标<br/>人体：规范空间；天空：方向域"]
+    QUERY["异构规范查询<br/>背景：世界坐标；刚体：局部坐标<br/>人体：规范空间；天空：方向域"]
     LOG --> ENC --> QUERY
   end
 
@@ -18,7 +18,7 @@ flowchart LR
 
   subgraph C["c · 解码为固定三维内容"]
     direction TB
-    HEAD["三路解码<br/>背景与天空 / 刚体车辆 / 骨架人体"]
+    HEAD["三路解码<br/>背景与天空 / 刚体资产 / 骨架人体"]
     CHECK["原视角观测验证<br/>候选世界与仅观测基线对比"]
     WORLD[("固定可组合高斯世界 W<br/>已见表面 + 补全表面<br/>固定规范资产与骨架绑定")]
     HEAD --> CHECK -->|通过检查| WORLD
@@ -27,7 +27,7 @@ flowchart LR
   subgraph D["d · 同一世界上的状态干预"]
     direction TB
     STATE["当前状态 s_k<br/>相机 / 车辆位姿、人体骨架"]
-    RENDER["状态装配与高斯渲染<br/>车辆刚体变换；人体蒙皮"]
+    RENDER["状态装配与高斯渲染<br/>刚体整体变换；人体蒙皮"]
     OBS["当前多相机观测<br/>多条轨迹共享同一份 W"]
     DYN["外部策略与动力学<br/>动作推进下一状态"]
     STATE --> RENDER --> OBS --> DYN --> STATE

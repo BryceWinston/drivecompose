@@ -42,7 +42,7 @@ DriveCompose achieves the best scores across all six metrics in Table~\ref{tab:r
 \end{figure*}
 
 \paragraph{Qualitative comparison.}
-Figure~\ref{fig:dynamic-reconstruction} shows that DriveCompose retains the pedestrian silhouette in the first row and the rear profile of the central vehicle in the second row, while preserving the surrounding street layout. The baseline renderings exhibit displaced or repeated actor contours in the upper rows and blurred or distorted road structure in the lower rows. DriveCompose more closely follows these reference structures in the displayed examples, with residual artifacts around the pedestrians in the third row and the parked pickup in the last row.
+Figure~\ref{fig:dynamic-reconstruction} shows that DriveCompose retains the pedestrian silhouette in the first row and the rear profile of the central vehicle in the second row, while preserving the surrounding street layout. The baseline renderings exhibit displaced or repeated actor contours in the upper rows and blurred or distorted road structure in the lower rows. DriveCompose recovers these reference structures more closely. Residual artifacts occur around the pedestrians in the third row and the parked pickup in the last row.
 % Table 1 results supplied by the author on 2026-10-22.
 \begin{table}[!htbp]
 \centering
@@ -134,83 +134,78 @@ Ours
 \label{sec:ablation-studies}
 
 \paragraph{Protocol.}
-Paired evaluation of hidden surfaces is defined on independent complete-reference scenes; Waymo logs provide recorded-view evaluation.
-Each 29-timestamp window uses three synchronized cameras: front, front-left, and front-right.
+We evaluate both ablations on held-out Waymo images using a shared 29-timestamp window.
+Each window uses three synchronized cameras: front, front-left, and front-right.
 The nested input sets are $\mathcal T_2=\{0,28\}$, $\mathcal T_4=\{0,8,20,28\}$, and $\mathcal T_8=\{0,4,\ldots,28\}$, with shared target timestamps $\{2,6,\ldots,26\}$.
 Target images are excluded from evidence and query construction; target camera and actor states are supplied equally to every variant.
 The recovery module and codec are frozen, with matched query layouts, data exposure, and optimization budgets at each input setting.
 Training samples $T\in\{2,4,8\}$ uniformly; completion uses 24 Euler steps.
 The two learned variants use training seeds $\{0,1,2\}$ and world seeds $\{7,17,27\}$; the variant w/o GCM is deterministic.
-Hyperparameters and acceptance thresholds are selected on an internal development split before evaluation on scene- and identity-disjoint data.
+Hyperparameters are selected on an internal development split before evaluation on scene- and identity-disjoint data.
 
 \paragraph{Metrics.}
-New-MAE measures linear-RGB error on independently identified surfaces unseen in every input; NVS-MAE covers all held-out target pixels.
-Both MAE metrics and Obs-Reg use linear RGB on a $[0,1]$ scale.
-Across input settings, New-MAE uses the common region unseen even under $\mathcal T_8$.
-Obs-Reg averages the positive input-view regression in Eq.~\ref{eq:regression}.
-Cov.\ is the non-sky target fraction with support coverage $>0.5$, opacity $>0.1$, and finite positive depth.
-Uncovered pixels receive the same zero-RGB fill for error measurement.
-Pass is the fraction of all requested worlds accepted by the fixed checker, including construction failures in its denominator.
-Image metrics include every renderable candidate, including rejected worlds; non-renderable counts are recorded separately.
-Metrics are averaged within each scene and then across scenes and training seeds.
+We report PSNR, SSIM, and LPIPS over the full held-out target images, with PSNR and SSIM additionally evaluated on dynamic regions for component ablations.
+All variants use the same image preprocessing, evaluation resolution, and annotation-based dynamic-region masks as the main reconstruction experiment.
+Metrics are computed on all renderable scenes before any output filtering; non-renderable scenes are counted separately.
+Scores are averaged over frames within each window, then over windows within each sequence, and finally across sequences and training seeds with equal weight.
 
 \paragraph{Completion and scene context.}
 Table~\ref{tab:ablation-components} compares the full model with two controls.
 The variant w/o GCM bypasses the generative completion module and disables the opacity of every non-observed, non-sky query.
 The variant w/o CCM replaces the cross-component memory module with isolated per-component memories at every layer, while sharing parameters and retaining the same global log context.
 The learned control is retrained through Stages 3--4; memory-related compute differences are recorded.
-
-Removing completion raises New-MAE from 0.062 to 0.186 and reduces coverage from 96.3\% to 74.6\%.
-The variant w/o GCM has a 95.0\% pass rate, but leaves substantially more target pixels uncovered.
-CCM reduces New-MAE from 0.078 (w/o CCM) to 0.062 (Ours), a 20.5\% relative reduction, while increasing coverage by 1.8 percentage points and the pass rate by 6.0 points.
+Ours achieves the best scores on all five metrics.
+Compared with w/o GCM, it raises full-image and dynamic-region PSNR by 1.776 and 2.186 dB, respectively.
+Relative to w/o CCM, the corresponding gains are 0.627 and 0.934 dB, while full-image LPIPS decreases from 0.147 to 0.129.
 
 \begin{table}[t]
   \centering
-  \caption{\textbf{Component ablations.} All variants use $T=8$ (24 images), shared recovery and codec, and common evaluation masks. Quality is measured before acceptance filtering; Pass includes all requested worlds. A dash denotes an unreported metric; bold marks the best reported value in each column.}
+  \caption{\textbf{Component ablations.} All variants use $T=8$ (24 images), shared recovery and codec, and the same target views and dynamic-region masks. Full-image quality is evaluated with PSNR, SSIM, and LPIPS; dynamic-region quality with PSNR and SSIM.}
   \label{tab:ablation-components}
   \small
   \setlength{\tabcolsep}{3pt}
   \renewcommand{\arraystretch}{1.12}
-  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc@{}}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc@{}}
     \toprule
-    Variant & New-MAE $\downarrow$ & Obs-Reg $\downarrow$ & Cov. (\%) $\uparrow$ & Pass (\%) $\uparrow$ \\
+    \multirow{2}{*}{Variant} & \multicolumn{3}{c}{Full image} & \multicolumn{2}{c}{Dynamic regions} \\
+    \cmidrule(lr){2-4}\cmidrule(lr){5-6}
+      & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ \\
     \midrule
-    w/o GCM      & 0.186 & -- & 74.6 & \textbf{95.0} \\
-    w/o CCM & 0.078 & 0.005 & 94.5 & 87.0 \\
+    w/o GCM & 27.137 & 0.867 & 0.183 & 23.431 & 0.811 \\
+    w/o CCM & 28.286 & 0.893 & 0.147 & 24.683 & 0.849 \\
     \midrule
-    Ours          & \textbf{0.062} & \textbf{0.003} & \textbf{96.3} & 93.0 \\
+    Ours & \textbf{28.913} & \textbf{0.911} & \textbf{0.129} & \textbf{25.617} & \textbf{0.873} \\
     \bottomrule
   \end{tabular*}
 \end{table}
 
 \paragraph{Input sparsity.}
 Table~\ref{tab:ablation-inputs} reuses checkpoints of the full model and the variant w/o CCM at $T=2,4,8$, with 6/12/24 input images.
-The time span, target views, and common unseen-region mask remain fixed; evidence and queries are rebuilt from each input subset.
+The time span and target views remain fixed; evidence and queries are rebuilt from each input subset.
 No model is retrained for this comparison.
-For the full model, increasing $T$ from 2 to 8 reduces NVS-MAE from 0.043 to 0.026 and New-MAE from 0.092 to 0.062, while increasing coverage from 91.7\% to 96.3\%.
-The full model outperforms the variant w/o CCM on all three metrics at every input count.
-The absolute New-MAE reduction from CCM is 0.027, 0.020, and 0.016 at $T=2,4,8$, respectively, while the corresponding coverage gains are 3.2, 2.3, and 1.8 percentage points.
-The larger absolute gains at lower input counts indicate that cross-component context is especially useful when observations are sparse.
+Both variants improve across all three metrics as $T$ increases.
+Ours outperforms w/o CCM at every input setting, with PSNR gains of 1.104, 0.738, and 0.627 dB at $T=2,4,8$, respectively.
+The LPIPS reduction also increases as inputs become sparser, from 0.018 at $T=8$ to 0.041 at $T=2$.
 
 \begin{table}[t]
   \centering
-  \caption{\textbf{Input-timestamp sensitivity.} At each $T$, we compare w/o CCM with the full model using fixed checkpoints and target views. New-MAE uses the common unseen region. Results at $T=8$ match Table~\ref{tab:ablation-components}; bold marks the better value within each group.}
+  \caption{\textbf{Input-timestamp sensitivity.} At each $T$, we compare w/o CCM with the full model using fixed checkpoints, time span, and target views. All metrics are evaluated on full images. The $T=8$ setting is shared with Table~\ref{tab:ablation-components}.}
   \label{tab:ablation-inputs}
   \small
   \setlength{\tabcolsep}{3pt}
   \renewcommand{\arraystretch}{1.12}
   \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}clccc@{}}
     \toprule
-    $T$ & Variant & NVS-MAE $\downarrow$ & New-MAE $\downarrow$ & Cov. (\%) $\uparrow$ \\
+    $T$ & Variant & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ \\
     \midrule
-    \multirow{2}{*}{2} & w/o CCM & 0.052 & 0.119 & 88.5 \\
-      & Ours & \textbf{0.043} & \textbf{0.092} & \textbf{91.7} \\
+    \multirow{2}{*}{2} & w/o CCM & 25.237 & 0.817 & 0.254 \\
+      & Ours & \textbf{26.341} & \textbf{0.851} & \textbf{0.213} \\
     \midrule
-    \multirow{2}{*}{4} & w/o CCM & 0.038 & 0.094 & 92.3 \\
-      & Ours & \textbf{0.032} & \textbf{0.074} & \textbf{94.6} \\
+    \multirow{2}{*}{4} & w/o CCM & 27.126 & 0.869 & 0.187 \\
+      & Ours & \textbf{27.864} & \textbf{0.891} & \textbf{0.159} \\
     \midrule
-    \multirow{2}{*}{8} & w/o CCM & 0.030 & 0.078 & 94.5 \\
-      & Ours & \textbf{0.026} & \textbf{0.062} & \textbf{96.3} \\
+    \multirow{2}{*}{8} & w/o CCM & 28.286 & 0.893 & 0.147 \\
+      & Ours & \textbf{28.913} & \textbf{0.911} & \textbf{0.129} \\
     \bottomrule
   \end{tabular*}
 \end{table}

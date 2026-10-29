@@ -11,7 +11,23 @@
   "overview_original": "files/docs/figures/overview-cvpr-20261020/revision-v2-reference/drivecompose-overview-v2.png",
   "historical_source_copies": {
     "README.md": "before-edit/README.md",
-    "docs/paper-positioning.md": "before-edit/docs/paper-positioning.md"
+    "docs/paper-positioning.md": "before-edit/docs/paper-positioning.md",
+    "docs/paper-literature-audit.md": "../20261029-rigid-terminology/migration-source/docs/paper-literature-audit.md",
+    "docs/algorithm.md": "../20261029-rigid-terminology/migration-source/docs/algorithm.md",
+    "docs/architecture.md": "../20261029-rigid-terminology/migration-source/docs/architecture.md",
+    "docs/representations.md": "../20261029-rigid-terminology/migration-source/docs/representations.md",
+    "docs/training.md": "../20261029-rigid-terminology/migration-source/docs/training.md",
+    "docs/decisions.md": "../20261029-rigid-terminology/migration-source/docs/decisions.md",
+    "src/drivecompose/contracts.py": "../20261029-rigid-terminology/migration-source/src/drivecompose/contracts.py",
+    "src/drivecompose/decomposition.py": "../20261029-rigid-terminology/migration-source/src/drivecompose/decomposition.py",
+    "src/drivecompose/networks/decoders.py": "../20261029-rigid-terminology/migration-source/src/drivecompose/networks/decoders.py",
+    "configs/concept.json": "../20261029-rigid-api/migration-source/configs/concept.json",
+    "src/drivecompose/pipeline.py": "../20261029-rigid-api/migration-source/src/drivecompose/pipeline.py",
+    "src/drivecompose/rendering.py": "../20261029-rigid-api/migration-source/src/drivecompose/rendering.py",
+    "src/drivecompose/simulation.py": "../20261029-rigid-api/migration-source/src/drivecompose/simulation.py",
+    "src/drivecompose/validation.py": "../20261029-rigid-api/migration-source/src/drivecompose/validation.py",
+    "src/drivecompose/world.py": "../20261029-rigid-api/migration-source/src/drivecompose/world.py",
+    "src/drivecompose/networks/encoder.py": "../20261029-rigid-api/migration-source/src/drivecompose/networks/encoder.py"
   },
   "internal_relocations": {
     "paper/archive/source-manifest.json": "paper/provenance/source-manifest.json"
@@ -30,5 +46,11 @@
     "root_relative_to_project": "../_archive/drivecompose/20261026-tracked-intermediates",
     "manifest": "archive-manifest.json",
     "tracked_files_moved": 30
+  },
+  "pre_push_cleanup": {
+    "date": "2026-10-29",
+    "root_relative_to_project": "../_archive/drivecompose/20261029-pre-push-cleanup",
+    "record": "paper/provenance/pre-push-cleanup-20261029.json",
+    "historical_path_resolution": "Resolve original paths under the archive files/ directory using the record; historical records are unchanged."
   }
 }

@@ -1,0 +1,59 @@
+{
+  "en": {
+    "pages": 11,
+    "figure_pages": [
+      2
+    ],
+    "references_heading_pages": [
+      9
+    ],
+    "conclusion_heading_pages": [
+      8
+    ],
+    "pdf_sha256": "8aa9756b4a8f2b4c9d95a9bd3bf4d2c5e32c25d2611163e63883ae82a16819ac"
+  },
+  "zh": {
+    "pages": 10,
+    "figure_pages": [
+      2
+    ],
+    "references_heading_pages": [
+      7
+    ],
+    "conclusion_heading_pages": [],
+    "pdf_sha256": "c10db32df61837ea2db89c239f7a2cab803719ecca3397206fc2e75cfe76bb81"
+  },
+  "decoder_rename": {
+    "normalized_ast_unchanged": true,
+    "checkpoint_namespace": "vehicle retained",
+    "new_class": "RigidGaussianDecoder"
+  },
+  "tests": {
+    "existing_unittest_suite": "13 passed",
+    "runtime": "Codex bundled Python; no new test cases"
+  },
+  "scope": "Figure, decoder terminology, native figure source and assets. Other concurrent manuscript changes are retained and not attributed to this revision.",
+  "figure_source": {
+    "svg": "paper/fig/drivecompose-inference-overview.svg",
+    "pdf": "paper/fig/drivecompose-inference-overview.pdf",
+    "png": "paper/fig/drivecompose-inference-overview.png"
+  },
+  "date": "2026-10-28",
+  "figure_sha256": {
+    "pdf": "96c3860d1bfce25ee81150913d08a6a7f0b65f7c11e0e0c9e308bb33dd761852",
+    "svg": "b881c1a8fdf42b5e45fee70f90705c31a975ac535f7c4d3991923d536c52dfc6",
+    "png": "d7366895c5e06c99c9d594bf134d59fba89abae9122847c732186f56b255592c"
+  },
+  "review": {
+    "mode": "informed_review + scoped regression",
+    "CCM_dataflow": "pass",
+    "independent_complete_vehicle": "pass",
+    "human_binding": "pass",
+    "input_label_crossing": "fixed and passed",
+    "final_pdf_pages": "visually inspected in both languages",
+    "warning": "Included figure PDF is version 1.7; Tectonic output setting reports 1.5. Nonfatal version warning; no final undefined citations/references or missing characters."
+  },
+  "archive": "../_archive/drivecompose/20261028-overview-expansion",
+  "status": "superseded_by_full_imagegen",
+  "current_record": "overview-imagegen-20261028.json"
+}

@@ -10,7 +10,7 @@ def main():
     parser.add_argument("world", help="已有的 .npz 世界文件")
     args = parser.parse_args()
     world = load_world(args.world)
-    print(json.dumps({"background_gaussians": len(world.background.means), "vehicles": list(world.vehicles),
+    print(json.dumps({"background_gaussians": len(world.background.means), "rigids": list(world.rigids),
                       "humans": list(world.humans), "metadata": dict(world.metadata)}, ensure_ascii=False, indent=2))
 
 

@@ -11,6 +11,9 @@ import numpy as np
 from .geometry import check_se3
 
 
+QUERY_SCHEMA = "drivecompose-rigid-v2"
+
+
 def readonly(value, dtype=np.float32) -> np.ndarray:
     out = np.array(value, dtype=dtype, copy=True)
     if not np.isfinite(out).all():
@@ -21,7 +24,7 @@ def readonly(value, dtype=np.float32) -> np.ndarray:
 
 class TokenKind(IntEnum):
     BACKGROUND = 0
-    VEHICLE = 1
+    RIGID = 1                         # 刚体资产类型
     HUMAN = 2
     SKY = 3
 
@@ -84,7 +87,8 @@ class GaussianSet:
 
 
 @dataclass(frozen=True)
-class RigidVehicleAsset:
+class RigidAsset:
+    """固定规范刚体资产；状态仅控制整体 SE(3) 位姿。"""
     actor_id: str
     gaussians: GaussianSet
     dimensions: np.ndarray                 # [3], length,width,height in actor axes
@@ -92,7 +96,7 @@ class RigidVehicleAsset:
     def __post_init__(self):
         d = readonly(self.dimensions)
         if d.shape != (3,) or np.any(d <= 0):
-            raise ValueError("车辆尺寸应为三个正数")
+            raise ValueError("刚体尺寸应为三个正数")
         object.__setattr__(self, "dimensions", d)
 
 
@@ -128,7 +132,7 @@ class HumanState:
 @dataclass(frozen=True)
 class SimulationState:
     world_from_ego: np.ndarray
-    vehicle_poses: Mapping[str, np.ndarray]
+    rigid_poses: Mapping[str, np.ndarray]
     human_poses: Mapping[str, HumanState]
     elapsed_seconds: float = 0.0            # sim bookkeeping; never controls asset lifetime
 
@@ -137,7 +141,7 @@ class SimulationState:
 class WorldVault:
     background: GaussianSet
     sky: np.ndarray                        # [6,S,S,3], linear RGB
-    vehicles: Mapping[str, RigidVehicleAsset]
+    rigids: Mapping[str, RigidAsset]
     humans: Mapping[str, HumanAvatarAsset]
     bounds: np.ndarray                     # [2,3], supported world volume
     build_seed: int
@@ -152,15 +156,15 @@ class WorldVault:
             raise ValueError("天空辐射值须非负")
         if bounds.shape != (2, 3) or np.any(bounds[0] >= bounds[1]):
             raise ValueError("世界支撑范围无效")
-        ids = list(self.vehicles) + list(self.humans)
+        ids = list(self.rigids) + list(self.humans)
         if len(set(ids)) != len(ids):
-            raise ValueError("车辆与人体 ID 必须互异")
-        for key, asset in list(self.vehicles.items()) + list(self.humans.items()):
+            raise ValueError("刚体与人体 ID 必须互异")
+        for key, asset in list(self.rigids.items()) + list(self.humans.items()):
             if key != asset.actor_id:
                 raise ValueError("资产键与身份不一致")
         object.__setattr__(self, "sky", sky)
         object.__setattr__(self, "bounds", bounds)
-        object.__setattr__(self, "vehicles", MappingProxyType(dict(self.vehicles)))
+        object.__setattr__(self, "rigids", MappingProxyType(dict(self.rigids)))
         object.__setattr__(self, "humans", MappingProxyType(dict(self.humans)))
         object.__setattr__(self, "metadata", MappingProxyType(dict(self.metadata)))
         valid = np.zeros(sky.shape[:-1], dtype=bool) if self.sky_valid is None else self.sky_valid

@@ -25,12 +25,18 @@
 \input{sec/0_abstract}
 \begin{figure*}[t]
   \centering
-  \includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}
-  \caption{\textbf{DriveCompose overview.} (a) A shared ViT extracts visual evidence, which is aggregated on background and canonical asset supports and encoded into structured latents. (b) Joint completion applies local attention within groups and shares context through cross-component memory (CCM). (c) Type-specific decoders produce the Gaussian background, canonical vehicle and human assets, and a sky map.}
+  \includegraphics[width=\textwidth]{fig/drivecompose-concept-comparison.png}
+  \caption{\textbf{From observed surfaces to compositional scene assets.} (a) Observation-only reconstruction leaves unseen surfaces incomplete when the viewpoint or actor state changes. (b) DriveCompose jointly completes the background and canonical rigid and human assets, then composes them under the requested state. Scene images are schematic illustrations.}
   \label{fig:teaser}
 \end{figure*}
 \def\CVPRMAIN{}
 \input{sec/1_introduction}
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}
+  \caption{\textbf{DriveCompose overview.} Visual encoding and motion-aware canonical aggregation recover component features, which type-specific encoders map to structured latents. Conditional-flow completion infers unknown content using cross-component context. Gaussian decoders produce background, rigid and human components for state-driven composition and rendering. Scene and asset images are schematic illustrations.}
+  \label{fig:overview}
+\end{figure*}
 \input{sec/2_related_work}
 \input{sec/3_method}
 % Ablation results supplied by the author on 2026-10-23.

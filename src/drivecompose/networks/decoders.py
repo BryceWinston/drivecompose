@@ -1,11 +1,11 @@
-"""分类型潜码编码与三路解码；没有车辆关节或车辆变形分支。"""
+"""分类型潜码编码与背景、刚体、人体三路解码。"""
 from __future__ import annotations
 
 import numpy as np
 import torch
 from torch import nn
 
-from ..contracts import GaussianSet, HumanAvatarAsset, RigidVehicleAsset, TokenKind, WorldVault
+from ..contracts import GaussianSet, HumanAvatarAsset, RigidAsset, TokenKind, WorldVault
 from .common import mlp, quaternion_matrix
 
 
@@ -36,8 +36,8 @@ class BackgroundDecoder(nn.Module):
         self.sky = mlp(latent_dim, 3)
 
 
-class RigidVehicleDecoder(GaussianDecoder):
-    """只解码固定局部资产；旋转和平移来自仿真状态。"""
+class RigidGaussianDecoder(GaussianDecoder):
+    """刚体高斯解码器：输出固定规范资产；整体 SE(3) 位姿由场景状态提供。"""
 
 
 class HumanAvatarDecoder(GaussianDecoder):
@@ -51,7 +51,7 @@ class TypedLatentCodec(nn.Module):
         self.encoders = nn.ModuleList([nn.Sequential(mlp(feature_dim+6, latent_dim),
                                                      nn.LayerNorm(latent_dim)) for _ in range(4)])
         self.background = BackgroundDecoder(latent_dim, children)
-        self.vehicle = RigidVehicleDecoder(latent_dim, children)
+        self.rigid = RigidGaussianDecoder(latent_dim, children)
         self.human = HumanAvatarDecoder(latent_dim, children)
 
     def encode(self, features, layout):
@@ -73,7 +73,7 @@ class TypedLatentCodec(nn.Module):
                 value = {"sky": self.background.sky(code[section]).sigmoid()}
             else:
                 decoder = {TokenKind.BACKGROUND: self.background.gaussians,
-                           TokenKind.VEHICLE: self.vehicle, TokenKind.HUMAN: self.human}[block.kind]
+                           TokenKind.RIGID: self.rigid, TokenKind.HUMAN: self.human}[block.kind]
                 value = decoder(code[section], layout["positions"][section], layout["scales"][section], free[section])
             decoded.append(value)
             cursor += count
@@ -81,7 +81,7 @@ class TypedLatentCodec(nn.Module):
 
     @torch.no_grad()
     def export_world(self, decoded, bundle, bounds, seed):
-        background, sky, sky_valid, vehicles, humans = None, None, None, {}, {}
+        background, sky, sky_valid, rigids, humans = None, None, None, {}, {}
         cursor = 0
         for block, tensors in zip(bundle.blocks, decoded):
             section = slice(cursor, cursor+len(block.positions))
@@ -95,13 +95,13 @@ class TypedLatentCodec(nn.Module):
             gaussians = GaussianSet(**arrays)
             if block.kind == TokenKind.BACKGROUND:
                 background = gaussians
-            elif block.kind == TokenKind.VEHICLE:
-                vehicles[block.actor_id] = RigidVehicleAsset(block.actor_id, gaussians, block.track.dimensions)
+            elif block.kind == TokenKind.RIGID:
+                rigids[block.actor_id] = RigidAsset(block.actor_id, gaussians, block.track.dimensions)
             else:
                 weights = np.repeat(block.track.skin_weights, self.human.children, axis=0)
                 humans[block.actor_id] = HumanAvatarAsset(block.actor_id, gaussians, weights,
                                                          block.track.rest_global, block.track.parents)
         if background is None or sky is None:
             raise ValueError("缺少背景或天空查询")
-        return WorldVault(background, sky, vehicles, humans, bounds, seed,
-                          {"status": "candidate", "lighting": "fixed", "vehicle_motion": "rigid"}, sky_valid)
+        return WorldVault(background, sky, rigids, humans, bounds, seed,
+                          {"status": "candidate", "lighting": "fixed", "rigid_motion": "rigid"}, sky_valid)

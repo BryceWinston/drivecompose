@@ -3,9 +3,9 @@ flowchart LR
     direction TB
     LOG["多相机驾驶日志<br/>图像、时间戳、标定、可选自车位姿"]
     ENC["Driving Log Encoder<br/>共享特征、几何、实例身份与逐帧状态"]
-    DEC["Scene–Asset Decomposer<br/>背景 / 车辆 / 人体 / 天空查询<br/>规范化、跨视图聚合、可见性标记"]
+    DEC["Scene–Asset Decomposer<br/>背景 / 刚体 / 人体 / 天空查询<br/>规范化、跨视图聚合、可见性标记"]
     DIT["分类型潜码编码 + Joint Completion DiT<br/>锁定已观测潜码，补全未知区域，清零自由空间"]
-    HEADS["三路解码<br/>背景与天空 / 刚体车辆 / 绑定人体"]
+    HEADS["三路解码<br/>背景与天空 / 刚体资产 / 绑定人体"]
     CHECK["ObservedViewValidator<br/>原视角重渲染，检查观测一致性<br/>仅通过检查的结果进入固定世界"]
     WORLD[("WorldVault：固定可组合高斯世界<br/>背景、天空、规范资产、支撑范围与种子")]
     LOG --> ENC --> DEC --> DIT --> HEADS --> CHECK

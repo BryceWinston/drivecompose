@@ -56,3 +56,7 @@
 ## 已提交过程文件归档（2026-10-26）
 
 旧总览图及制作文件、未采用训练/推理图草稿、历史预览和基线、四份编译文本日志已移至[项目外归档](../../../_archive/drivecompose/20261026-tracked-intermediates)；[逐文件清单与哈希](../../../_archive/drivecompose/20261026-tracked-intermediates/archive-manifest.json)记录 30 个文件的原路径。旧总览图副本改由 `archive-map.json` 的 `overview_copy_relative_to_project` 定位，继续与原始归档核对哈希。正式主稿、补充材料 PDF、当前图像、算法源码和原始实验来源保留。
+
+## 推送前临时文件归档（2026-10-29）
+
+临时脚本、基线快照、审查下载与页图、候选图片和编译缓存已移至[项目外归档](../../../_archive/drivecompose/20261029-pre-push-cleanup/)。[迁移记录](pre-push-cleanup-20261029.json)保存原路径、归档路径和 SHA256；历史来源 JSON 保留原文，其中旧路径按该记录解析。正式 PDF、活动图件、源码和证据记录保留。

@@ -14,7 +14,7 @@
 
 ## 2. 研究问题
 
-输入是一段有标定的多相机日志，仅覆盖场景与交通参与者的部分表面。输出包含背景、天空、规范车辆和可驱动人体的固定世界。研究目标包括：
+输入是一段有标定的多相机日志，仅覆盖场景与交通参与者的部分表面。输出包含背景、天空、规范刚体和可驱动人体的固定世界。研究目标包括：
 
 1. **未见区域补全。** 当新相机位置、车辆转向或人体姿态暴露未观测表面时，提供完整且合理的几何与外观。
 2. **观测保持。** 生成的内容应兼容原始观测，既保护已见表面的参数，也限制新增表面对原视角造成的错误遮挡。
@@ -34,7 +34,7 @@ s_{k+1}=F_{\mathrm{dyn}}(s_k,\pi(o_k),\Delta t).
 
 | 优先级 | 模块 | 论文中承担的作用 | 当前源码 |
 | --- | --- | --- | --- |
-| 核心 | **Observation-Anchored Joint Completion** | 在背景、车辆、人体和天空的共同潜空间中建模条件关系；已见潜码锁定，自由空间清零，未知查询通过条件流补全 | `networks/completion.py` 的 `JointCompletionDiT` |
+| 核心 | **Observation-Anchored Joint Completion** | 在背景、刚体、人体和天空的共同潜空间中建模条件关系；已见潜码锁定，自由空间清零，未知查询通过条件流补全 | `networks/completion.py` 的 `JointCompletionDiT` |
 | 核心支撑 | **Canonical Query Decomposition** | 将跨时间运动转换为稳定规范表示；提供观测锚点与未知区域支撑，并将规范坐标和参考世界坐标一起作为补全条件 | `decomposition.py` 的 `make_blocks`、`SceneAssetDecomposer` |
 | 核心支撑 | **Observation-Preserving Decoding and Checking** | 固定 codec 下保护已见高斯；通过候选 / 仅观测世界重渲染，检查新增几何的遮挡影响 | `networks/decoders.py`、`pipeline.py`、`validation.py` |
 | 表示与应用 | Typed Gaussian Assets / State Composition | 输出固定背景、刚体车辆和绑定人体；当前状态控制组装，验证补全是否支持新的视角与动作 | `contracts.py`、`rendering.py` |
@@ -46,7 +46,7 @@ s_{k+1}=F_{\mathrm{dyn}}(s_k,\pi(o_k),\Delta t).
 
 ### C001：异构规范表示中的场景—资产联合补全
 
-背景、车辆、人体分别保留合适的坐标空间与解码约束，通过共同宽度潜码及全局记忆交换场景条件。规范坐标稳定资产身份，参考世界坐标提供与道路、其他资产的空间关系。预期贡献是联合条件带来的补全收益。
+背景、刚体资产、人体分别保留合适的坐标空间与解码约束，通过共同宽度潜码及全局记忆交换场景条件。规范坐标稳定资产身份，参考世界坐标提供与道路、其他资产的空间关系。预期贡献是联合条件带来的补全收益。
 
 **需要的证据：** 在同一恢复前端、同一 codec、同一查询支撑与训练预算下，完整方法优于禁止跨组 token 交换的独立补全；收益出现在未见表面与场景一致性上。
 
@@ -75,7 +75,7 @@ s_{k+1}=F_{\mathrm{dyn}}(s_k,\pi(o_k),\Delta t).
 | [StreetCrafter，CVPR 2025](https://zju3dv.github.io/street_crafter/)；[HorizonForge，CVPR 2026](https://horizonforge.github.io/) | 三维条件与视频生成结合，支持新视角或场景编辑 | 直接在三维规范查询潜空间内完成内容补全，评测原始高斯渲染、几何与观测保持 |
 | [WorldSplat，ICLR 2026](https://arxiv.org/abs/2509.23402) | 多模态潜空间、前馈 4D 高斯与后续视频增强 | 从部分真实日志恢复并补全固定规范资产；多步离线构建后直接状态装配；具体比较需统一输入与监督 |
 | [LatentWorld，CVPR 2026](https://jindapark.github.io/projects/latentworld/) | 实体中心潜码、背景 / 前景控制、语义高斯和运动生成 | 面向 RGB 观测的表面与外观补全、可靠观测保护和人体骨架资产；其语义占据结果不直接放入 RGB 指标排名 |
-| [GenAssets，CVPR 2025](https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_GenAssets_Generating_in-the-wild_3D_Assets_in_Latent_Space_CVPR_2025_paper.pdf)；[CompleteSplat](https://nianticspatial.github.io/completesplat/)；[JRM，2026](https://arxiv.org/abs/2603.25985) | 分别涉及驾驶资产潜空间生成、高斯场景补全、多观测联合流匹配重建 | 核对异构背景 / 车辆 / 人体之间的联合条件是否提供额外价值，不能把“使用潜空间生成补全”作为独占创新 |
+| [GenAssets，CVPR 2025](https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_GenAssets_Generating_in-the-wild_3D_Assets_in_Latent_Space_CVPR_2025_paper.pdf)；[CompleteSplat](https://nianticspatial.github.io/completesplat/)；[JRM，2026](https://arxiv.org/abs/2603.25985) | 分别涉及驾驶资产潜空间生成、高斯场景补全、多观测联合流匹配重建 | 核对异构背景 / 刚体 / 人体之间的联合条件是否提供额外价值，不能把“使用潜空间生成补全”作为独占创新 |
 
 这是基于所列原始来源的定位判断，并不构成绝对新颖性结论。不同工作的任务、输入监督和输出表示需要分别对齐。
 
@@ -83,7 +83,7 @@ s_{k+1}=F_{\mathrm{dyn}}(s_k,\pi(o_k),\Delta t).
 
 ### 5.1 轨迹关联与异构规范支撑
 
-共享编码器预测特征、深度、置信度、实例标签、相机与资产状态。背景以深度抬升的可靠锚点和有限网格支撑，车辆以轨迹规范化锚点和局部包围体网格支撑，人体使用身份模板规范表面，天空使用单位方向。
+共享编码器预测特征、深度、置信度、实例标签、相机与资产状态。背景以深度抬升的可靠锚点和有限网格支撑，刚体以逆 SE(3) 变换对齐的锚点和局部包围体网格支撑，人体使用身份模板规范表面，天空使用单位方向。
 
 将同一查询在各输入时刻放到世界中，再投影到相机读取特征。深度残差、置信度与实例 / 语义筛选形成加权聚合。可靠自由空间由射线证据投票得到。
 
@@ -126,9 +126,9 @@ z_{\tau+\Delta\tau}=\Pi_{m,f}\left[z_\tau+\Delta\tau\,u\odot v_\theta(z_\tau,\ta
 
 | 区域 | 建议面积 | 应画出的可见变化 |
 | --- | --- | --- |
-| a：部分观测与规范查询 | 20% | 少量多相机帧及对应背景网格、车辆局部查询、人体规范查询；明确坐标关系并区分已见 / 未知 / 自由空间 |
+| a：部分观测与规范查询 | 20% | 少量多相机帧及对应背景网格、刚体局部查询、人体规范查询；明确坐标关系并区分已见 / 未知 / 自由空间 |
 | b：联合补全，主焦点 | 40% | 三类查询并行进入同一局部—全局交互结构；已见 token 保持，未知 token 被补全；画出规范坐标和参考世界坐标两类条件 |
-| c：解码与固定世界 | 15% | 三路解码形成背景、车辆和人体，经过观测检查后汇成一份固定世界；资产保留原已见表面与新增补全面 |
+| c：解码与固定世界 | 15% | 三路解码形成背景、刚体和人体，经过观测检查后汇成一份固定世界；资产保留原已见表面与新增补全面 |
 | d：多状态干预 | 25% | 从同一资产库分支到新相机、车辆转向与人体姿态；状态由小型外部策略 / 动力学环路推进 |
 
 ### 视觉规格与语义约束

@@ -1,5 +1,5 @@
 {
-  "status": "adopted_in_bilingual_manuscripts",
+  "status": "imagegen_png_adopted_20261028",
   "scope": "approved main-inference overview adopted as Figure 1",
   "baseline": {
     "git_head": "d741912c7a666308c5363cfb79a6c51b11b76e2b",
@@ -7,24 +7,36 @@
     "sha256": "55b02eb44ad8c2404e691e3348f2da84b013108fb037693db81025af2e7a1188"
   },
   "changes": [
-    "Remove check, reuse, simulation, solver details and evidence-state legend",
-    "No scene/object imagery between ViT and output decoders",
-    "Enlarge joint DiT and show local groups exchanging with one CCM",
-    "End at typed Gaussian components"
+    "Full Image Gen raster replaces SVG route",
+    "Two reference-conditioned observation fields emphasize partial visibility",
+    "Three encoding roles remain explicit",
+    "Local component scope feeds updated bank before conditional flow",
+    "Static background, complete postal van and canonical human are composed under state",
+    "Output scene communicates closed-loop use"
   ],
   "nodes": [
-    "Driving images",
-    "ViT",
+    "Driving observations",
+    "Visual encoding / ViT",
     "Visual features",
+    "Geometry + motion",
     "Canonical aggregation",
+    "Query features",
     "Typed latent encoders",
     "Structured latents",
-    "Joint completion DiT",
-    "Local attention",
+    "GCM",
+    "Local attention groups",
     "CCM",
+    "Updated components",
+    "Flow update",
     "Completed latents",
-    "Typed Gaussian decoders",
-    "Gaussian components"
+    "Background decoder",
+    "Rigid Gaussian decoder",
+    "Human Gaussian decoder",
+    "Gaussian components",
+    "State",
+    "Compose & render",
+    "Composed scene",
+    "Closed-loop use"
   ],
   "permitted_abstractions": {
     "joint_completion": "Entire conditional-flow inference grouped; local attention and CCM expanded, numerical integration omitted",
@@ -46,28 +58,26 @@
     "editability": false,
     "manuscript_modified": true,
     "manuscript_asset": "paper/fig/drivecompose-inference-overview.png",
-    "selected_existing_file": true
+    "source_copy_byte_identical": true
   },
   "image_pixels": [
-    2079,
-    756
+    2163,
+    727
   ],
-  "prompt_non_whitespace_chars": 26503,
+  "prompt_non_whitespace_chars": 24739,
   "template_non_whitespace_chars": 15356,
   "review": {
-    "mode": "user_selected_existing_image",
-    "user_confirmation": "User explicitly selected work/repair-attempt.png on 2026-10-26; use this exact file without further drawing edits.",
-    "manuscript_insertion": true,
-    "empirical_results": false,
-    "pdf_validation": "paper/build/overview-replacement-check.json",
-    "image_identity": "Archived selected source and manuscript asset are byte-identical; embedded PDF pixels were verified before archival. The duplicate candidate was archived."
+    "mode": "informed_review + scoped regression",
+    "scope": "full raster overview with same-scene input/output and conditional-completion flow",
+    "outcome": "pass for reviewed semantics, asset completeness, source-role clarity and visible routes",
+    "provenance": "../../imagegen-provenance.json"
   },
   "repair_baseline": {
     "git_head": "d741912c7a666308c5363cfb79a6c51b11b76e2b",
     "image": "../../../../../../_archive/drivecompose/20261026-overview-intermediates/docs/figures/overview/drafts/inference-overview/baseline/candidate.png",
     "sha256": "35085490d036fbbf87fcf13caa55d458eeb5bf78380bf5c44fc815193934cb89"
   },
-  "current_sha256": "79eb11de6e2257b089647fe5d314e93414b85381eb276fe3656937ad06c1701c",
+  "current_sha256": "8c284e39591662b8eea127082ea3976c575a5ad9b7cb50f732f4815d9a3596d2",
   "historical_review": {
     "image_sha256": "cd605b62dce191e14fddf4231c071b44d0fb20b39b23668505c604d0e8546175",
     "review": {
@@ -150,5 +160,27 @@
     "manifest_from_repository": "../_archive/drivecompose/20261026-overview-intermediates/archive-manifest.json",
     "hash_verified": true
   },
-  "historical_assets_archive": "../_archive/drivecompose/20261026-tracked-intermediates"
+  "historical_assets_archive": "../_archive/drivecompose/20261026-tracked-intermediates",
+  "current_revision": {
+    "backend": "built-in Image Gen",
+    "mode": "full raster overview",
+    "source": "docs/figures/overview/imagegen-provenance.json",
+    "paper_output": "paper/fig/drivecompose-inference-overview.png",
+    "user_instruction": "Use image generation, not SVG; recheck input and output expression.",
+    "figure_claim": "Partial driving observations become jointly completed Gaussian components and a composed scene for state-driven reuse.",
+    "review": "informed_review and scoped regression passed",
+    "native_reconstruction": false
+  },
+  "previous_native_revision": {
+    "builder": "../../build_figure.py",
+    "authority": "user-authorized expanded roles, rigid decoder renaming, DGGT-style layout, reference panorama, and closed-loop use",
+    "asset_provenance": "../../asset-provenance.json",
+    "figure_claim": "Recover and aggregate observed evidence, jointly complete component latents, decode bound Gaussian assets, then reuse them under scene state.",
+    "permitted_omissions": [
+      "training stages",
+      "acceptance check",
+      "solver step details"
+    ],
+    "paper_output": "paper/fig/drivecompose-inference-overview.pdf"
+  }
 }

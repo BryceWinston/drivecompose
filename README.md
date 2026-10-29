@@ -4,20 +4,22 @@
 
 **DriveCompose：通过联合补全实现驾驶场景的可组合生成式重建**
 
-DriveCompose 从多相机驾驶日志恢复背景、刚体车辆和可驱动人体，通过离线补全构建供多条仿真轨迹复用的固定高斯世界。
+DriveCompose 从多相机驾驶日志恢复背景、刚体资产和可驱动人体，通过离线补全构建供多条仿真轨迹复用的固定高斯世界。
 
 项目包含算法设计、数据契约、数值实现和神经网络模块。
 
 ## 主流程
 
 1. **Driving Log Encoder** 共享编码多相机与多时刻图像，恢复几何、实例身份、相机位姿和资产状态。
-2. **Scene–Asset Decomposer** 将背景放在世界坐标，将车辆和人体放入各自的规范空间。
+2. **Scene–Asset Decomposer** 将背景放在世界坐标，将刚体和人体放入各自的规范空间。
 3. **Joint Completion DiT** 根据观测、场景结构和可见性，联合补全背景空洞和资产未见表面。
-4. **Background Decoder / Rigid Vehicle Decoder / Human Avatar Decoder** 输出背景与天空、刚体车辆、骨架绑定人体。
+4. **Background Decoder / Rigid Gaussian Decoder / Human Avatar Decoder** 输出背景与天空、刚体资产、骨架绑定人体。
 5. **Composable Gaussian World** 以 `WorldVault` 数据契约保存构建后的固定内容。
 6. **State-driven Renderer** 根据当前仿真状态组装与渲染；**Simulation Bridge** 连接策略动作和下一步状态。
 
-车辆的局部几何、尺寸和外观固定，运行时只接受整体 SE(3) 变换，车轮随车体整体运动。人体的规范形状和绑定固定，当前骨架姿态控制世界空间中的人体表面。
+当前刚体分支以车辆为实例，局部几何、尺寸和外观固定，运行时只接受整体 SE(3) 变换，车轮随车体整体运动。人体的规范形状和绑定固定，当前骨架姿态控制世界空间中的人体表面。
+
+代码统一使用 `RigidAsset`、`TokenKind.RIGID`、`WorldVault.rigids`、`SimulationState.rigid_poses` 和 `TypedLatentCodec.rigid`。查询规范为 `drivecompose-rigid-v2`，世界文件格式为 v2，解码器权重使用 `rigid.*`。仅使用新接口、重新构建的世界文件和新 checkpoint；旧接口与旧权重命名不再兼容。
 
 ## 阅读顺序
 

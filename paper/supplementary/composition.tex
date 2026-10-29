@@ -1,9 +1,9 @@
-\section{Scene composition and checking details}
+\section{Scene composition details}
 \label{sec:supp-composition}
 
 \paragraph{State-driven rendering.}
 
-At online step $k$, state $s_k$ specifies the ego pose, active assets, vehicle transforms, and human root and joint poses. A vehicle's Gaussian center and covariance transform as
+At online step $k$, state $s_k$ specifies the ego pose, active assets, rigid transforms, and human root and joint poses. A rigid asset's Gaussian center and covariance transform as
 
 \begin{equation}
 \boldsymbol\mu^w=\mathbf R\boldsymbol\mu^a+\mathbf t,
@@ -12,7 +12,7 @@ At online step $k$, state $s_k$ specifies the ego pose, active assets, vehicle t
 \label{eq:rigid}
 \end{equation}
 
-For humans, the weighted skinning transform is $\mathbf A_i=\sum_j w_{ij}\mathbf P_j\mathbf B_j^{-1}$, where $\mathbf B_j$ and $\mathbf P_j$ are rest and current global joints in the root frame. The transformed center is $\bar{\boldsymbol\mu}_i^w=\mathbf T^w_h\mathbf A_i\bar{\boldsymbol\mu}_i^h$. The combined local linear map $\mathbf J_i$ gives covariance $\mathbf J_i\boldsymbol\Sigma_i\mathbf J_i^\top$. Its inverse $\mathbf J_i^{-1}$ maps viewing directions into the canonical frame; the direction is normalized before appearance evaluation. Nearly singular skinning transforms are rejected. The root pose controls overall placement, while the root joint retains its rest transform.
+For humans, the weighted skinning transform is $\mathbf A_i=\sum_j w_{ij}\mathbf P_j\mathbf B_j^{-1}$, where $\mathbf B_j$ and $\mathbf P_j$ are rest and current global joints in the root frame. The transformed center is $\bar{\boldsymbol\mu}_i^w=\mathbf T^w_h\mathbf A_i\bar{\boldsymbol\mu}_i^h$. The combined local linear map $\mathbf J_i$ gives covariance $\mathbf J_i\boldsymbol\Sigma_i\mathbf J_i^\top$. Its inverse $\mathbf J_i^{-1}$ maps viewing directions into the canonical frame; the direction is normalized before appearance evaluation. The inverse is evaluated for nonsingular skinning transforms. The root pose controls overall placement, while the root joint retains its rest transform.
 
 The renderer composites the background, active assets, and valid sky. External policy and dynamics can advance the state:
 
@@ -22,16 +22,4 @@ s_{k+1}&=F_{\rm dyn}(s_k,\pi(o_k),\Delta t).
 \label{eq:simulation}
 \end{align}
 
-Resetting or branching a trajectory changes state while preserving $\mathcal W$ and its seed. Finite support and supported sky directions determine coverage. Road meshes and collision proxies share the visual assets' coordinates and are maintained by the physical backend.
-
-\paragraph{Checking a constructed scene.}
-
-Fixed observed codes preserve decoded parameters, but a newly generated surface can still occlude them. Before accepting a scene, we render the completed candidate and an observed-only reference at the original cameras and actor states. The reference disables all non-observed queries. Let $e_{\rm cand}(p)$ and $e_{\rm obs}(p)$ be their mean absolute RGB errors at pixel $p$. We measure local degradation with
-
-\begin{equation}
-\Delta e(p)=\max\{e_{\rm cand}(p)-e_{\rm obs}(p),0\}.
-\label{eq:regression}
-\end{equation}
-
-Averaging this quantity over reliable non-ego pixels prevents improvements in one region from cancelling degradation elsewhere. Acceptance also bounds absolute RGB and valid-depth errors, minimum coverage, and foreground intrusion, using aggregate and worst-view checks. An intrusion is a newly rendered surface in front of the predicted reference depth that is absent from the observed-only render; its rate is normalized over reliable non-sky geometry pixels. Predicted depth provides an observation-consistency reference. Independent geometry evaluation requires a separate reference. A rejected candidate is not exported for reuse.
-
+Camera and actor state changes reuse the same background and canonical assets. Road meshes and collision proxies use the same coordinates as the visual components, allowing their motion to be driven by a physical simulator.

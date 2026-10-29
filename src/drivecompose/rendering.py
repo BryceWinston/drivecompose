@@ -48,17 +48,17 @@ class AssembledScene:
 class StateComposer:
     def assemble(self, world: WorldVault, state: SimulationState) -> AssembledScene:
         check_se3(state.world_from_ego)
-        unknown = (set(state.vehicle_poses) - set(world.vehicles)) | (set(state.human_poses) - set(world.humans))
+        unknown = (set(state.rigid_poses) - set(world.rigids)) | (set(state.human_poses) - set(world.humans))
         if unknown:
             raise KeyError(f"状态引用未构建的资产：{sorted(unknown)}")
         sets = [world.background]
         ranges = {}
         offset = len(world.background.means)
         # 状态中的资产即为本步活动资产；不根据原始日志时间窗自动消失。
-        for actor_id in sorted(state.vehicle_poses):
-            pose = state.vehicle_poses[actor_id]
+        for actor_id in sorted(state.rigid_poses):
+            pose = state.rigid_poses[actor_id]
             check_se3(pose)
-            g = transform_gaussians(world.vehicles[actor_id].gaussians, pose)
+            g = transform_gaussians(world.rigids[actor_id].gaussians, pose)
             sets.append(g)
             ranges[actor_id] = (offset, offset + len(g.means))
             offset += len(g.means)

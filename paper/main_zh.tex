@@ -27,16 +27,23 @@
 \title{DriveCompose：通过联合补全实现驾驶场景的可组合生成式重建}
 \author{Anonymous CVPR Submission}
 \begin{document}
+\setcounter{dbltopnumber}{1} % Keep the two large introductory figures on separate pages.
 \maketitle
 \input{zh/0_abstract_zh}
 \begin{figure*}[t]
   \centering
-  \includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}
-  \caption{\textbf{DriveCompose 总览。}（a）共享 ViT 提取的视觉证据在背景与规范资产支撑上聚合，再编码为结构化潜码。（b）联合补全在各组内执行局部注意力，并通过跨组件记忆（CCM）共享上下文。（c）类型专属解码器输出高斯背景、规范车辆与人体资产，以及天空贴图。}
+  \includegraphics[width=\textwidth]{fig/drivecompose-concept-comparison.png}
+  \caption{\textbf{从观测表面到可组合场景资产。}（a）仅依赖观测的重建在视角或参与者状态变化时暴露未补全表面。（b）DriveCompose 联合补全背景与规范刚体、人体资产，再按指定状态组合场景。场景画面均为机制示意。}
   \label{fig:teaser}
 \end{figure*}
 \def\CVPRMAIN{}
 \input{zh/1_introduction_zh}
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}
+  \caption{\textbf{DriveCompose 总览。}视觉编码与运动感知的规范聚合恢复组件特征，类型专属编码器将其映射为结构化潜码。条件流补全通过跨组件上下文推断未知内容，高斯解码器生成背景、刚体与人体组件，用于状态驱动的场景组合和渲染。场景与资产画面均为机制示意。}
+  \label{fig:overview}
+\end{figure*}
 \input{zh/2_related_work_zh}
 \input{zh/3_method_zh}
 % 已写入用户于 2026-10-23 提供的消融结果。

@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-29",
+  "approval": "User requested inserting the three generated previews and checking the whole paper layout",
+  "mode": "raster mechanism figures",
+  "figures": [
+    {
+      "number": 1,
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\fig\\drivecompose-concept-comparison.png",
+      "preview": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\docs\\figures\\overview\\drafts\\three-figure-preview\\figure-1-preview.png",
+      "label": "fig:teaser",
+      "sha256": "c33943552e761c5b572d65681104d7edf889d038fd988b494f7ea2f306adfa24",
+      "en_pages": [
+        2
+      ],
+      "zh_pages": [
+        2
+      ]
+    },
+    {
+      "number": 2,
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\fig\\drivecompose-inference-overview.png",
+      "preview": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\docs\\figures\\overview\\drafts\\three-figure-preview\\figure-2-preview.png",
+      "label": "fig:overview",
+      "sha256": "63c62037e5699b421e3fe864b1dbe6e83fc1b4e5680fd56902b8ca754fc97579",
+      "en_pages": [
+        3
+      ],
+      "zh_pages": [
+        3
+      ]
+    },
+    {
+      "number": 3,
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\fig\\drivecompose-joint-completion.png",
+      "preview": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\docs\\figures\\overview\\drafts\\three-figure-preview\\figure-3-preview.png",
+      "label": "fig:joint-completion",
+      "sha256": "081c355a9d61d1dd9b0b24dad180b8308c76f91629ecb1c4b7987dc649f5610b",
+      "en_pages": [
+        5
+      ],
+      "zh_pages": [
+        5
+      ]
+    }
+  ],
+  "integration_status": "Inserted in both main manuscripts and compiled; page-limit issue reported."
+}

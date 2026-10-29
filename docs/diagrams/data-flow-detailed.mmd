@@ -2,7 +2,7 @@ flowchart TB
   subgraph INPUT["A · 输入与离线构建条件"]
     LOG["DrivingLog.validate<br/>images: T×V×3×H×W；timestamps: T<br/>K、rig_from_camera、可选 world_from_rig"]
     VERS["已加载 Encoder / Codec / Completion<br/>CheckpointRecord.validate<br/>核对特征基、潜码与查询布局版本"]
-    CONFIG["构建参数<br/>bounds、背景 / 车辆网格、天空分辨率<br/>steps、seed"]
+    CONFIG["构建参数<br/>bounds、背景 / 刚体网格、天空分辨率<br/>steps、seed"]
     TEMPLATE["HumanTemplateProvider【外接】<br/>根据体型码返回规范支撑、权重与 bind pose"]
   end
 
@@ -28,7 +28,7 @@ flowchart TB
 
   subgraph DECOMPOSITION["C · Scene–Asset Decomposer：规范支撑与观测聚合"]
     BGQ["背景查询<br/>可靠深度抬升锚点 + 有限空间网格<br/>世界坐标"]
-    VEHQ["车辆查询<br/>逆轨迹变换后的锚点 + 包围体网格<br/>固定车辆局部坐标"]
+    VEHQ["刚体查询<br/>逆轨迹变换后的锚点 + 包围体网格<br/>固定刚体局部坐标"]
     HUMQ["人体查询<br/>同一身份模板的完整规范支撑<br/>固定骨架权重与邻域尺度"]
     SKYQ["天空查询<br/>立方体贴图六面单位方向"]
     PLACE["make_blocks → QueryBlock<br/>规范位置、尺度、类型、参考世界位置、分组<br/>跨时刻放置并投影到输入相机取特征"]
@@ -64,7 +64,7 @@ flowchart TB
 
   subgraph DECODE["E · 三路解码与观测保护"]
     BGD["BackgroundDecoder<br/>世界坐标背景高斯 + 天空颜色<br/>sky_valid 取已观测天空方向"]
-    VEHD["RigidVehicleDecoder<br/>每查询生成 K 个固定局部高斯<br/>保留 actor_id 与固定尺寸"]
+    VEHD["RigidGaussianDecoder<br/>每查询生成 K 个固定局部高斯<br/>保留 actor_id 与固定尺寸"]
     HUMD["HumanAvatarDecoder<br/>每查询生成 K 个规范人体高斯<br/>子高斯继承模板绑定权重"]
     CAND["export_world → 候选 WorldVault<br/>高斯：中心、协方差、不透明度、方向外观<br/>free 查询的高斯不透明度显式置零"]
     BASE["同一 Codec 解码 z_obs → 观测基线<br/>非 known 查询的高斯不透明度关闭"]
@@ -88,7 +88,7 @@ flowchart TB
   EVID -.->|预测深度、相机与资产状态| REF
 
   subgraph FIXED["F · 固定内容与持久化"]
-    WORLD[("通过检查的 WorldVault + ValidationReport<br/>背景、天空 / sky_valid、规范车辆与人体<br/>bounds、build_seed、表示版本；数组只读")]
+    WORLD[("通过检查的 WorldVault + ValidationReport<br/>背景、天空 / sky_valid、规范刚体与人体<br/>bounds、build_seed、表示版本；数组只读")]
     NPZ[("可选 NPZ 世界文件<br/>save_world / load_world<br/>数组 + JSON 元数据；allow_pickle=False")]
     VALID -->|通过；写入检查状态与表示版本| WORLD
     WORLD -.->|可选保存；读取后恢复同一契约| NPZ
@@ -100,7 +100,7 @@ flowchart TB
     STATE["SimulationState s_k<br/>自车世界位姿、活动车辆位姿<br/>人体根位姿 / 骨架姿态、仿真计时"]
     COMPOSE["StateComposer.assemble<br/>按当前状态选择活动资产"]
     BGFIX["背景直接复用<br/>天空与有效域保持固定"]
-    RIGID["车辆整体 SE(3) 变换<br/>中心、协方差、局部方向映射同步更新"]
+    RIGID["刚体整体 SE(3) 变换<br/>中心、协方差、局部方向映射同步更新"]
     SKIN["人体按当前骨架蒙皮，再应用根位姿<br/>中心、协方差、局部方向映射同步更新"]
     SCENE["AssembledScene<br/>拼接世界高斯、actor_ranges<br/>附带 sky、sky_valid、bounds"]
     CAM["RenderCamera + 当前自车位姿<br/>T_world_camera = T_world_ego × T_ego_camera<br/>内参 K 与图像分辨率"]

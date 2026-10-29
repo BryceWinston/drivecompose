@@ -1,0 +1,145 @@
+{
+  "date": "2026-10-29",
+  "source": "Author supplied both standard-metric ablation tables in the current conversation on 2026-10-29 and requested insertion into the paper.",
+  "active_state": "All 33 result cells per language are filled from author-provided aggregates. Bilingual analysis uses only table values and arithmetic differences.",
+  "supersedes": [
+    "ablation-results-20261023.json"
+  ],
+  "result_state": "reported",
+  "empty_image_slots": 0,
+  "ablation_figure_removed": true,
+  "conditions": {
+    "component_input_timestamps": 8,
+    "input_timestamps": [
+      2,
+      4,
+      8
+    ],
+    "cameras": 3,
+    "window_timestamps": 29,
+    "completion_steps": 24,
+    "training_seeds": [
+      0,
+      1,
+      2
+    ],
+    "world_seeds": [
+      7,
+      17,
+      27
+    ]
+  },
+  "tables": {
+    "tab:ablation-components": {
+      "columns": [
+        "variant",
+        "PSNR",
+        "SSIM",
+        "LPIPS",
+        "dynamic PSNR",
+        "dynamic SSIM"
+      ],
+      "rows": [
+        [
+          "w/o GCM",
+          "27.137",
+          "0.867",
+          "0.183",
+          "23.431",
+          "0.811"
+        ],
+        [
+          "w/o CCM",
+          "28.286",
+          "0.893",
+          "0.147",
+          "24.683",
+          "0.849"
+        ],
+        [
+          "Ours",
+          "28.913",
+          "0.911",
+          "0.129",
+          "25.617",
+          "0.873"
+        ]
+      ]
+    },
+    "tab:ablation-inputs": {
+      "columns": [
+        "variant",
+        "T",
+        "PSNR",
+        "SSIM",
+        "LPIPS"
+      ],
+      "rows": [
+        [
+          "w/o CCM",
+          "2",
+          "25.237",
+          "0.817",
+          "0.254"
+        ],
+        [
+          "Ours",
+          "2",
+          "26.341",
+          "0.851",
+          "0.213"
+        ],
+        [
+          "w/o CCM",
+          "4",
+          "27.126",
+          "0.869",
+          "0.187"
+        ],
+        [
+          "Ours",
+          "4",
+          "27.864",
+          "0.891",
+          "0.159"
+        ],
+        [
+          "w/o CCM",
+          "8",
+          "28.286",
+          "0.893",
+          "0.147"
+        ],
+        [
+          "Ours",
+          "8",
+          "28.913",
+          "0.911",
+          "0.129"
+        ]
+      ]
+    }
+  },
+  "results_blank": false,
+  "evidence_note": "Author-provided aggregate results; raw logs, checkpoints, per-scene outputs and seed-level variation were not independently verified. No training or evaluation was run in this revision. The existing manuscript protocol is retained; previous custom metrics remain historical and are not converted.",
+  "baseline_archive": "paper/build/ablation-results-revision/baseline",
+  "metric_family": "standard_image_metrics",
+  "baseline_commit": "e98697e09af130895fe14f70fbc840571da28a0d",
+  "baseline_kind": "uncommitted_working_tree",
+  "derived_differences": {
+    "ours_minus_wo_gcm_full_psnr": "1.776",
+    "ours_minus_wo_gcm_dynamic_psnr": "2.186",
+    "ours_minus_wo_ccm_full_psnr": "0.627",
+    "ours_minus_wo_ccm_dynamic_psnr": "0.934",
+    "ours_minus_wo_ccm_full_psnr_by_T": {
+      "2": "1.104",
+      "4": "0.738",
+      "8": "0.627"
+    },
+    "wo_ccm_minus_ours_full_lpips_by_T": {
+      "2": "0.041",
+      "4": "0.028",
+      "8": "0.018"
+    }
+  }
+}

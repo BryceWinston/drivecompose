@@ -1,6 +1,5 @@
 \section{实验}
 \label{sec:experiments}
-% 消融数值由用户于 2026-10-23 提供。
 
 我们从三个方面评价方法：
 \textit{（i）}Waymo Open Dataset 上的动态场景重建质量（第~\ref{sec:temporal_evaluation} 节）；
@@ -8,10 +7,28 @@
 \textit{（iii）}主要设计的消融分析（第~\ref{sec:ablations} 节）。
 跨数据集泛化结果见补充材料。
 
+\subsection{实验设置}
+\label{sec:experimental_setup}
+
+\paragraph{数据集与协议。}
+我们使用 Waymo Open Dataset 的 798 条训练序列和 202 条验证序列。遵循 STORM，将每条验证序列划分为不重叠的 2 秒片段，每段包含以 10\,Hz 采样的 20 帧~\cite{yang2025storm}。FRONT、FRONT\_LEFT 和 FRONT\_RIGHT 相机在从零计数的帧索引 $\{0,5,10,15\}$ 提供观测，其余 16 帧用于评价，其中 12 帧对应时间插值，4 帧位于最后一次观测之后。评价时将预测与参考图像缩放至 $240\times160$ 像素~\cite{huang2026instantnurec}。
+
+\paragraph{基线。}
+我们比较 STORM、DGGT 和 StreetForward~\cite{yang2025storm,chen2025dggt,yu2026streetforward}。各方法使用相同输入时刻和目标视图，并采用各自的预处理。相机参数、额外几何输入与渲染适配器随实现设置记录。空间外推遵循 PointForward，比较扩散细化前的高斯渲染~\cite{chi2026pointforward}。
+
+\paragraph{指标。}
+我们在完整图像与共享标注区域上报告 PSNR 和 SSIM。深度评价在有效 LiDAR 投影点上计算逐帧尺度对齐后的 AbsRel 和 $\delta_1$~\cite{huang2026instantnurec}。分数先在片段内按帧平均，再在序列内按片段平均，最后对各序列等权汇总。新轨迹渲染使用固定真实图像与视频参考集合计算 FID 和 FVD。
+
+\paragraph{实现细节。}
+DriveCompose 从运动对齐的观测中重建各类型参与者资产，并与静态背景组合。重建耗时包括预处理、资产生成和场景组合；渲染耗时单独测量，资产复用通过重复场景查询评价。
+
 \subsection{动态场景重建}
 \label{sec:temporal_evaluation}
 
-图~\ref{fig:dynamic-reconstruction} 展示第一个主实验的五组场景重建对比，比较参与者轮廓、车辆边界和街道结构。
+我们在记录相机轨迹上的未观测时刻评价重建。表~\ref{tab:regions_current} 报告完整图像、动态区域及深度质量，图~\ref{fig:dynamic-reconstruction} 比较五个样例的渲染外观。
+
+\paragraph{定量比较。}
+DriveCompose 在表~\ref{tab:regions_current} 的六项指标上均取得最优结果。完整图像和动态区域 PSNR 分别比各自最强基线高 1.154 和 2.340 dB，对应 SSIM 达到 0.901 和 0.862；深度 AbsRel 降至 0.095，$\delta_1$ 达到 0.877。
 
 \begin{figure*}[t]
   \centering
@@ -21,12 +38,37 @@
 \end{figure*}
 
 \paragraph{定性比较。}
-图~\ref{fig:dynamic-reconstruction} 中，DriveCompose 保留了第一行的行人轮廓和第二行中央车辆的尾部外形，同时恢复周围街道布局。基线渲染在上方样例中出现参与者轮廓偏移或重复，在下方样例中出现道路结构模糊或畸变。DriveCompose 在这些展示样例中更接近参考结构，第三行行人周围及最后一行停放的皮卡附近仍有残余伪影。
+图~\ref{fig:dynamic-reconstruction} 中，DriveCompose 保留了第一行的行人轮廓和第二行中央车辆的尾部外形，同时恢复周围街道布局。基线渲染在上方样例中出现参与者轮廓偏移或重复，在下方样例中出现道路结构模糊或畸变。DriveCompose 更准确地恢复了这些参考结构。残余伪影集中在第三行行人周围及最后一行停放的皮卡附近。
+
+\begin{table}[!htbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{1.3pt}
+\renewcommand{\arraystretch}{1.08}
+\setlength{\belowcaptionskip}{5pt}
+\caption{Waymo 动态场景重建。图像质量在完整图像和标注区域上统计，深度在有效 LiDAR 投影点上评价。}
+\label{tab:regions_current}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+& \multicolumn{2}{c}{完整图像} & \multicolumn{2}{c}{\shortstack{动态区域}} & \multicolumn{2}{c}{深度} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+方法 & PSNR $\uparrow$ & SSIM $\uparrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ & AbsRel $\downarrow$ & $\delta_1$ $\uparrow$ \\
+\midrule
+STORM & 26.380 & 0.826 & 22.100 & 0.624 & 0.178 & 0.741 \\
+DGGT & 27.410 & 0.794 & 22.710 & 0.651 & 0.249 & 0.668 \\
+StreetForward & 27.010 & 0.818 & 20.919 & 0.592 & 0.197 & 0.759 \\
+\midrule
+Ours & \textbf{28.564} & \textbf{0.901} & \textbf{25.050} & \textbf{0.862} & \textbf{0.095} & \textbf{0.877} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{轨迹外视图合成}
 \label{sec:spatial_evaluation}
 
-图~\ref{fig:waymo-left-shift} 展示 Waymo 数据集上相机向左偏移 $2\,\mathrm{m}$ 的定性视图外推结果，通过三组场景比较车辆外形、道路布局与遮挡边界。
+我们在相机横向偏移 $\pm1$、$\pm2$ 和 $\pm4$ 米时评价轨迹外渲染，并保持相机朝向、内参和时间戳固定~\cite{zhu2025worldsplat,chi2026pointforward}。
+
+表~\ref{tab:spatial_current} 报告各偏移幅度下分别评价左移和右移后平均的 FID 与 FVD，各方法使用相同的真实参考集合。图~\ref{fig:waymo-left-shift} 展示 Waymo 数据集上相机向左偏移 $2\,\mathrm{m}$ 的三组场景，比较车辆外形、道路布局与遮挡边界。
 
 \begin{figure*}[t]
   \centering
@@ -35,89 +77,127 @@
   \label{fig:waymo-left-shift}
 \end{figure*}
 
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.08}
+\caption{横向相机偏移下的新视角合成。FID 与 FVD 为各偏移幅度下左移和右移结果的平均，数值越低越好。}
+\label{tab:spatial_current}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}l|rr|rr|rr@{}}
+\toprule
+方法
+& \multicolumn{2}{c|}{偏移 $\pm 1$ m}
+& \multicolumn{2}{c|}{偏移 $\pm 2$ m}
+& \multicolumn{2}{c}{偏移 $\pm 4$ m} \\
+\cmidrule(lr){2-3}
+\cmidrule(lr){4-5}
+\cmidrule(lr){6-7}
+& FID $\downarrow$ & FVD $\downarrow$
+& FID $\downarrow$ & FVD $\downarrow$
+& FID $\downarrow$ & FVD $\downarrow$ \\
+\midrule
+STORM
+& 61.97 & 722.27
+& 83.72 & 1029.36
+& 132.57 & 1704.16 \\
+DGGT
+& 73.99 & 984.00
+& 93.36 & 1197.03
+& 128.01 & 1661.70 \\
+StreetForward
+& 84.30 & 878.95
+& 103.31 & 1095.02
+& 123.58 & 1578.63 \\
+\midrule
+Ours
+& \textbf{28.52} & \textbf{544.27}
+& \textbf{37.43} & \textbf{673.17}
+& \textbf{58.19} & \textbf{817.13} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
 \subsection{消融分析}
 \label{sec:ablation-protocol}
 \label{sec:ablations}
 \label{sec:ablation-studies}
 
 \paragraph{实验协议。}
-隐藏表面的配对评价定义在具有独立完整参考的场景上；Waymo 日志用于记录视角评价。
-每个窗口含 29 个时间戳，使用前向、左前和右前三路同步相机。
+两组消融均在 Waymo 的留出目标图像上评价，共用含 29 个时间戳的窗口。
+每个窗口使用前向、左前和右前三路同步相机。
 嵌套输入为 $\mathcal T_2=\{0,28\}$、$\mathcal T_4=\{0,8,20,28\}$ 和 $\mathcal T_8=\{0,4,\ldots,28\}$，共同目标时刻为 $\{2,6,\ldots,26\}$。
 目标图像不参与证据与查询构造；所有变体获得相同的目标相机与资产状态。
 恢复模块和编解码器冻结，在每档输入下对齐查询布局、数据曝光和优化预算。
 训练时等概率采样 $T\in\{2,4,8\}$，补全采用 24 步 Euler 积分。
 两个可训练版本使用训练种子 $\{0,1,2\}$ 和世界种子 $\{7,17,27\}$；w/o GCM 为确定性版本。
-超参数和接受阈值在内部开发集选定，再评价与训练场景及身份隔离的数据。
+超参数在内部开发集选定，再评价与训练场景及身份隔离的数据。
 
 \paragraph{指标。}
-New-MAE 在独立判定为所有输入均不可见的表面上计算线性 RGB 误差；NVS-MAE 覆盖全部留出目标像素。
-两项 MAE 指标和 Obs-Reg 均采用 $[0,1]$ 线性 RGB 尺度。
-跨输入档位比较时，New-MAE 使用相对 $\mathcal T_8$ 仍不可见的共同区域。
-Obs-Reg 对原始输入视角中式~\ref{eq:regression} 的正退化取平均。
-Cov.\ 为目标非天空区域中支撑覆盖度 $>0.5$、不透明度 $>0.1$ 且深度有限为正的像素比例。
-未覆盖像素统一填零 RGB 后计入误差。
-Pass 为固定检查器接受的世界占全部申请世界的比例，构建失败保留在分母中。
-图像指标纳入全部可渲染候选，包括被拒绝的世界；不可渲染数量单独记录。
-先在场景内平均，再对场景及训练种子汇总。
+我们在完整留出目标图像上报告 PSNR、SSIM 和 LPIPS，并在组件消融中额外报告动态区域的 PSNR 和 SSIM。
+所有变体采用与主重建实验相同的图像预处理、评价分辨率和基于标注的动态区域掩码。
+指标在任何输出筛选前的全部可渲染场景上计算，不可渲染场景单独计数。
+分数先在窗口内按帧平均，再在序列内按窗口平均，最后对各序列及训练种子等权汇总。
 
 \paragraph{补全与场景上下文。}
 表~\ref{tab:ablation-components} 将完整版本 Ours 与两个对照比较。
 w/o GCM 跳过生成式补全模块，并关闭所有非已见、非天空查询的不透明度。
 w/o CCM 在每一层将跨组件记忆模块替换为各组件独立的记忆，同时共享参数并保留相同的全局日志条件。
-可训练对照均重新执行阶段三、四，记忆机制引起的计算差异单独记录。
-
-关闭生成补全后，New-MAE 从 0.062 升至 0.186，覆盖率从 96.3\% 降至 74.6\%。
-w/o GCM 的通过率达到 95.0\%，但留下了更多未覆盖的目标像素。
-CCM 将 New-MAE 从 w/o CCM 的 0.078 降至 Ours 的 0.062，相对降低 20.5\%，同时使覆盖率和通过率分别提高 1.8 和 6.0 个百分点。
+可训练对照重新执行阶段三、四，记忆机制引起的计算差异单独记录。
+Ours 在全部五项指标上取得最优结果。
+相比 w/o GCM，全图和动态区域 PSNR 分别提高 1.776 和 2.186 dB。
+相比 w/o CCM，对应增益分别为 0.627 和 0.934 dB，全图 LPIPS 从 0.147 降至 0.129。
 
 \begin{table}[t]
   \centering
-  \caption{\textbf{组件消融。}所有版本采用 $T=8$（24 张图像）、相同的恢复模块与编解码器及统一评价掩码。质量在接受筛选前计算，Pass 包含全部申请世界。横线表示该指标未报告；粗体表示各列已报告的最优值。}
+  \caption{\textbf{组件消融。}所有版本采用 $T=8$（24 张图像）、相同的恢复模块与编解码器，以及统一的目标视图和动态区域掩码。全图采用 PSNR、SSIM 和 LPIPS，动态区域采用 PSNR 和 SSIM。}
   \label{tab:ablation-components}
   \small
   \setlength{\tabcolsep}{3pt}
   \renewcommand{\arraystretch}{1.12}
-  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc@{}}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc@{}}
     \toprule
-    变体 & New-MAE $\downarrow$ & Obs-Reg $\downarrow$ & Cov. (\%) $\uparrow$ & Pass (\%) $\uparrow$ \\
+    \multirow{2}{*}{变体} & \multicolumn{3}{c}{全图} & \multicolumn{2}{c}{动态区域} \\
+    \cmidrule(lr){2-4}\cmidrule(lr){5-6}
+      & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ \\
     \midrule
-    w/o GCM      & 0.186 & -- & 74.6 & \textbf{95.0} \\
-    w/o CCM & 0.078 & 0.005 & 94.5 & 87.0 \\
+    w/o GCM & 27.137 & 0.867 & 0.183 & 23.431 & 0.811 \\
+    w/o CCM & 28.286 & 0.893 & 0.147 & 24.683 & 0.849 \\
     \midrule
-    Ours          & \textbf{0.062} & \textbf{0.003} & \textbf{96.3} & 93.0 \\
+    Ours & \textbf{28.913} & \textbf{0.911} & \textbf{0.129} & \textbf{25.617} & \textbf{0.873} \\
     \bottomrule
   \end{tabular*}
 \end{table}
 
 \paragraph{输入稀疏度。}
 表~\ref{tab:ablation-inputs} 复用 Ours 和 w/o CCM 的权重，在 $T=2,4,8$ 下分别输入 6/12/24 张图像。
-时间跨度、目标视图和共同未见区域掩码固定，证据与查询由各档输入重新构建。
+时间跨度和目标视图固定，证据与查询由各档输入重新构建。
 这项比较不重新训练模型。
-对 Ours，将 $T$ 从 2 增至 8 后，NVS-MAE 从 0.043 降至 0.026，New-MAE 从 0.092 降至 0.062，覆盖率从 91.7\% 提高至 96.3\%。
-在每档输入下，Ours 的三项指标均优于 w/o CCM。
-在 $T=2,4,8$ 时，CCM 带来的 New-MAE 绝对降幅分别为 0.027、0.020 和 0.016，覆盖率增益分别为 3.2、2.3 和 1.8 个百分点。
-输入较少时更大的绝对收益表明，跨组件上下文在观测稀疏时更有帮助。
+随着 $T$ 增大，两个版本的三项指标均得到改善。
+Ours 在每档输入设置下均优于 w/o CCM，在 $T=2,4,8$ 时的 PSNR 增益分别为 1.104、0.738 和 0.627 dB。
+LPIPS 降幅也随输入变稀疏而增大，从 $T=8$ 时的 0.018 增至 $T=2$ 时的 0.041。
 
 \begin{table}[t]
   \centering
-  \caption{\textbf{输入时刻数量敏感性。}每档 $T$ 比较 w/o CCM 与完整模型，权重和目标视图固定。New-MAE 使用共同未见区域。$T=8$ 的结果与表~\ref{tab:ablation-components} 一致；粗体表示每组内的较优值。}
+  \caption{\textbf{输入时刻数量敏感性。}每档 $T$ 比较 w/o CCM 与完整模型，权重、时间跨度和目标视图固定。所有指标均在完整图像上计算。$T=8$ 的设置与表~\ref{tab:ablation-components} 相同。}
   \label{tab:ablation-inputs}
   \small
   \setlength{\tabcolsep}{3pt}
   \renewcommand{\arraystretch}{1.12}
   \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}clccc@{}}
     \toprule
-    $T$ & 变体 & NVS-MAE $\downarrow$ & New-MAE $\downarrow$ & Cov. (\%) $\uparrow$ \\
+    $T$ & 变体 & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ \\
     \midrule
-    \multirow{2}{*}{2} & w/o CCM & 0.052 & 0.119 & 88.5 \\
-      & Ours & \textbf{0.043} & \textbf{0.092} & \textbf{91.7} \\
+    \multirow{2}{*}{2} & w/o CCM & 25.237 & 0.817 & 0.254 \\
+      & Ours & \textbf{26.341} & \textbf{0.851} & \textbf{0.213} \\
     \midrule
-    \multirow{2}{*}{4} & w/o CCM & 0.038 & 0.094 & 92.3 \\
-      & Ours & \textbf{0.032} & \textbf{0.074} & \textbf{94.6} \\
+    \multirow{2}{*}{4} & w/o CCM & 27.126 & 0.869 & 0.187 \\
+      & Ours & \textbf{27.864} & \textbf{0.891} & \textbf{0.159} \\
     \midrule
-    \multirow{2}{*}{8} & w/o CCM & 0.030 & 0.078 & 94.5 \\
-      & Ours & \textbf{0.026} & \textbf{0.062} & \textbf{96.3} \\
+    \multirow{2}{*}{8} & w/o CCM & 28.286 & 0.893 & 0.147 \\
+      & Ours & \textbf{28.913} & \textbf{0.911} & \textbf{0.129} \\
     \bottomrule
   \end{tabular*}
 \end{table}

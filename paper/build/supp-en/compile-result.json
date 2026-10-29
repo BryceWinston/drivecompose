@@ -1,11 +1,11 @@
 {
-  "language": "en",
+  "language": "supp-en",
   "command": [
-    "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1016.6573.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
+    "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1023.6123.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
     "-X",
     "compile",
     "--outdir",
-    "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\supp-en",
+    "E:\\Users\\changan\\Desktop\\\u8bba\u6587\\pre-research\\drivecompose\\paper\\build\\supp-en",
     "--outfmt",
     "pdf",
     "--print",
@@ -15,11 +15,10 @@
     "main.tex"
   ],
   "exit_code": 0,
-  "started_at": "2026-10-26T12:32:07.171133+00:00",
-  "finished_at": "2026-10-26T12:32:13.746972+00:00",
-  "elapsed_seconds": 6.578,
-  "pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\supp-en\\main.pdf",
-  "pdf_exists": true,
+  "started_at": "2026-10-29T01:31:14.355011+00:00",
+  "finished_at": "2026-10-29T01:31:19.828464+00:00",
+  "elapsed_seconds": 5.473,
+  "pdf": "E:\\Users\\changan\\Desktop\\\u8bba\u6587\\pre-research\\drivecompose\\paper\\build\\supp-en\\main.pdf",
   "pdf_written_this_run": true,
-  "pdf_sha256": "b1816e95ba768b049a93e46e76130de1818e1da8568fa3b47089b38327076d8b"
+  "pdf_sha256": "20ec2035d903752b0a55cc9c24b1d5a963c22eeb9f385a039b81579d91240823"
 }

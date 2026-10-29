@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-28",
+  "input": {
+    "source": "E:/Users/changan/Downloads/edge/drivestudio--1024360143612057520_3580_000_3600_000--gt__panorama__F020.png",
+    "project_copy": "paper/fig/overview-assets/panorama-reference.png",
+    "dimensions": [
+      4800,
+      640
+    ],
+    "viewports": [
+      [
+        960,
+        0,
+        960,
+        640
+      ],
+      [
+        1920,
+        0,
+        960,
+        640
+      ],
+      [
+        2880,
+        0,
+        960,
+        640
+      ]
+    ],
+    "role": "user-supplied observations, original pixels"
+  },
+  "illustrations": {
+    "background_and_human": {
+      "file": "paper/fig/overview-assets/component-illustrations.png",
+      "backend": "built-in Image Gen",
+      "prompt": "docs/figures/overview/component-assets-prompt.txt",
+      "background_viewport": [
+        0,
+        0,
+        920,
+        724
+      ],
+      "human_viewport": [
+        1820,
+        95,
+        330,
+        590
+      ]
+    },
+    "rigid": {
+      "file": "paper/fig/overview-assets/rigid-asset.png",
+      "backend": "built-in Image Gen",
+      "prompt": "docs/figures/overview/rigid-asset-prompt.txt",
+      "viewport": [
+        0,
+        0,
+        1536,
+        1024
+      ],
+      "full_vehicle": true,
+      "alpha": "RGBA preserved"
+    }
+  },
+  "empirical_outputs": false,
+  "native": {
+    "builder": "docs/figures/overview/build_figure.py",
+    "renderer": "CairoSVG; duplicate PDF streams optimized by PyMuPDF",
+    "canvas": [
+      3200,
+      1066
+    ],
+    "text_objects": 51,
+    "paths": 100,
+    "rendered_image_fields": 6,
+    "source_rasters": 3
+  },
+  "review": {
+    "mode": "informed_review",
+    "core_dataflow": "pass",
+    "scoped_regression": "pass",
+    "target_rendering": "pass",
+    "raw_text_and_routes_editable": true,
+    "images": "irreducible raster illustration fields; generated output fields are not predictions"
+  },
+  "hashes": {
+    "paper/fig/drivecompose-inference-overview.svg": "b881c1a8fdf42b5e45fee70f90705c31a975ac535f7c4d3991923d536c52dfc6",
+    "paper/fig/drivecompose-inference-overview.pdf": "96c3860d1bfce25ee81150913d08a6a7f0b65f7c11e0e0c9e308bb33dd761852",
+    "paper/fig/drivecompose-inference-overview.png": "d7366895c5e06c99c9d594bf134d59fba89abae9122847c732186f56b255592c"
+  },
+  "status": "historical_rejected_native_version",
+  "current_record": "imagegen-provenance.json"
+}

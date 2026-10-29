@@ -1,5 +1,5 @@
 # 总览图图注
 
-English: **DriveCompose overview.** (a) A shared ViT extracts visual evidence, which is aggregated on background and canonical asset supports and encoded into structured latents. (b) Joint completion applies local attention within groups and shares context through cross-component memory (CCM). (c) Type-specific decoders produce the Gaussian background, canonical vehicle and human assets, and a sky map.
+English: \textbf{DriveCompose overview.} (a) Visual encoding, motion-aware canonical aggregation, and type-specific latent encoding convert image logs into structured latents. (b) Group-local attention and CCM read/write update component tokens for conditional-flow completion. (c) Query-wise Gaussian decoding produces background and sky, canonical rigid assets, and canonical human assets. Rigid assets retain their rigid binding; humans inherit skinning weights and a rest skeleton. State-driven composition and rendering reuse these assets for closed-loop simulation.
 
-中文：**DriveCompose 总览。**（a）共享 ViT 提取的视觉证据在背景与规范资产支撑上聚合，再编码为结构化潜码。（b）联合补全在各组内执行局部注意力，并通过跨组件记忆（CCM）共享上下文。（c）类型专属解码器输出高斯背景、规范车辆与人体资产，以及天空贴图。
+中文: \textbf{DriveCompose 总览。}（a）视觉编码、运动感知的规范聚合与类型专属潜码编码将图像日志转换为结构化潜码。（b）组内局部注意力与 CCM 读写更新组件 token，用于条件流补全。（c）逐查询高斯解码生成背景与天空、规范刚体资产和规范人体资产。刚体资产保留刚体绑定，人体资产继承蒙皮权重与静止骨架。刚体变换与骨架运动将解码资产放置到背景中，完成场景组合。 状态驱动的装配与渲染复用这些资产，为闭环仿真提供观测。

@@ -1,11 +1,12 @@
 {
+  "query_schema": "drivecompose-rigid-v2",
   "scene": {
     "bounds_m": [[-20, -30, -3], [80, 30, 15]],
     "background_grid": [20, 12, 6],
-    "vehicle_grid": [8, 4, 4],
+    "rigid_grid": [8, 4, 4],
     "sky_face_resolution": 4,
     "lighting": "fixed",
-    "vehicle_motion": "rigid"
+    "rigid_motion": "rigid"
   },
   "encoder": {"width": 128, "patch_size": 16, "actor_slots": 24, "joints": 17, "heads": 4},
   "codec": {"feature_dim": 129, "latent_dim": 128, "children": 4},

@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-28",
+  "backend": "built-in Image Gen",
+  "mode": "complete raster figure generation and reference-image editing; no SVG redraw",
+  "source_output": "C:\\Users\\changan\\.codex\\generated_images\\01a18170-593b-7953-aa82-4ad001a19546\\exec-e3846c49-edcd-4e41-b8e5-6d3675c54a00.png",
+  "active_png": "paper/fig/drivecompose-inference-overview.png",
+  "image_sha256": "8c284e39591662b8eea127082ea3976c575a5ad9b7cb50f732f4815d9a3596d2",
+  "source_copy_byte_identical": true,
+  "size": [
+    2163,
+    727
+  ],
+  "prompt": "docs/figures/overview/drafts/inference-overview/production-prompt.txt",
+  "prompt_non_whitespace_chars": 24739,
+  "template_non_whitespace_chars": 15356,
+  "input_output_semantics": {
+    "input": "Reference-conditioned depictions of the supplied intersection and partial visibility. No claim that generated input pixels are byte-identical to the source photographs.",
+    "background": "Same static intersection without traffic actors",
+    "rigid": "Complete canonical postal van, Gaussian representation illustration",
+    "human": "Canonical human with inherited skeletal binding, Gaussian representation illustration",
+    "composed_scene": "Same scene populated through Compose & render; closed-loop use interface, not measured simulation performance"
+  },
+  "empirical_outputs": false,
+  "review": {
+    "mode": "independent informed_review and scoped regression",
+    "geometry_direction": "pass",
+    "raw_latent_bypass_removed": "pass",
+    "three_component_group_output": "pass",
+    "same_scene_input_output": "pass",
+    "complete_rigid_asset": "pass",
+    "background_separation": "pass",
+    "state_input_to_composition": "pass"
+  },
+  "previous_native_version": "../_archive/drivecompose/20261028-imagegen-return/before"
+}

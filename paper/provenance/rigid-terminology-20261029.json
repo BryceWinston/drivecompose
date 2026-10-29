@@ -1,0 +1,97 @@
+{
+  "restored_migration_sources": [
+    "docs/paper-literature-audit.md",
+    "docs/algorithm.md",
+    "docs/architecture.md",
+    "docs/representations.md",
+    "docs/training.md",
+    "docs/decisions.md",
+    "src/drivecompose/contracts.py",
+    "src/drivecompose/decomposition.py",
+    "src/drivecompose/networks/decoders.py"
+  ],
+  "code_logic_unchanged": {
+    "src/drivecompose/contracts.py": true,
+    "src/drivecompose/decomposition.py": true,
+    "src/drivecompose/networks/decoders.py": true
+  },
+  "pdfs": {
+    "en": {
+      "pages": 11,
+      "sha256": "af4fb8b2e3ed178194d035411758ff1a8c73f71defbe62d3be54f99d730ad1c1",
+      "references_pages": [
+        9
+      ],
+      "rigid_formula_pages": [
+        4
+      ],
+      "no_old_vehicle_formula": true
+    },
+    "zh": {
+      "pages": 10,
+      "sha256": "398650bb50fb08e503f463181b779cdc673994a5da2a2af73e9e725f118fe6c2",
+      "references_pages": [
+        7
+      ],
+      "rigid_formula_pages": [
+        3
+      ],
+      "no_old_vehicle_formula": true
+    },
+    "supp-en": {
+      "pages": 3,
+      "sha256": "20ec2035d903752b0a55cc9c24b1d5a963c22eeb9f385a039b81579d91240823",
+      "references_pages": [
+        3
+      ],
+      "rigid_formula_pages": [
+        3
+      ],
+      "no_old_vehicle_formula": true
+    },
+    "supp-zh": {
+      "pages": 3,
+      "sha256": "c4e6f5f6f7b531ea39be03dc121a8049e8f019cda3db922d4a96eb1209f86a51",
+      "references_pages": [
+        3
+      ],
+      "rigid_formula_pages": [
+        2
+      ],
+      "no_old_vehicle_formula": true
+    }
+  },
+  "date": "2026-10-29",
+  "scope": "Rigid decoding and canonical aggregation terminology",
+  "unit_tests": {
+    "passed": 13,
+    "failed": 0
+  },
+  "rigid_aggregation_check": "passed: two frames with shared rigid poses; no skinning call",
+  "manuscript_checks": {
+    "passed": 52,
+    "failed": 0
+  },
+  "network_forward_check": "not run: PyTorch is not installed in the available local Python environments",
+  "inspection": "All vehicle decoding routes use RigidGaussianDecoder; canonical aggregation uses shared SE(3) poses; skinning is human-only.",
+  "compatibility": "Existing vehicle identifiers, data semantics, serialization fields, config keys, checkpoint namespaces, and numerical computation retained.",
+  "outputs": "Both main PDFs and both supplementary PDFs rebuilt; English main text ends on page 8, References start on page 9.",
+  "diagrams": {
+    "data-flow-simple": {
+      "mmd": "41cb604f67d412634d008c0d20a752e87bb14166fdf22ed45e89ea9e0f2acc5c",
+      "svg": "ec96df5189a4b37d018915aea0acf398ca61b7ac144f795221032562b760fb97",
+      "png": "9a288e874040b9908f6f35e3f786f7ec43ddae8b0172298f85ee272c02fe325a"
+    },
+    "data-flow-detailed": {
+      "mmd": "26deb58eb02e2744cb7f6ff5194396e6da4a39d8294455104c6df62806a63efd",
+      "svg": "affac64d4d470fbf5d6b0ac16394b79fa51e1c6617ae5d2088dbd572d65f40c0",
+      "png": "afabe1a8fd1fb8b0485908289fc7f4d770c76b5fac40ebaec657c53f589a548f"
+    },
+    "paper-overview": {
+      "mmd": "12c867180a76b908c50ff7c2494102dd14aa7f93ea3feb0487719b83878d277a",
+      "svg": "12e7b0370a2915bcebd78053d22a9293f64fe4a47333d07fcb5dc4d0dab953b5",
+      "png": "16c9bf6f1c1254301ca0c8c23943a3bc3530c79782eadfec716b2da3c54eec55"
+    }
+  },
+  "final_latex_logs": "No undefined references/citations, missing characters or overfull boxes."
+}

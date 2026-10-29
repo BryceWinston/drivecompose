@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-28",
+  "checks": {
+    "52_unique_bibliography_entries": true,
+    "bilingual_citation_sets_equal": true,
+    "main_citation_keys_resolve": true,
+    "supplement_citations_resolve": true,
+    "en_labels_unique": true,
+    "en_references_resolve": true,
+    "zh_labels_unique": true,
+    "zh_references_resolve": true,
+    "main_display_equations_preserved": true,
+    "bilingual_main_display_equations_equal": true,
+    "bilingual_supp_training_math_equal": true,
+    "bilingual_supp_composition_math_equal": true,
+    "bilingual_supp_frontend_math_equal": true,
+    "bilingual_supp_codec_math_equal": true,
+    "bilingual_supp_cross_dataset_math_equal": true,
+    "all_english_result_cells_unchanged": true,
+    "bilingual_result_cells_equal": true,
+    "cross_dataset_result_cells_unchanged": true,
+    "removed_requested_defensive_phrases": true,
+    "fixed_titles_preserved": true,
+    "en_clean_final_log": true,
+    "en_no_unresolved_pdf_marks": true,
+    "en_successful_fresh_build": true,
+    "english_main_text_within_8_pages": true,
+    "zh_clean_final_log": true,
+    "zh_no_unresolved_pdf_marks": true,
+    "zh_successful_fresh_build": true,
+    "supp-en_clean_final_log": true,
+    "supp-en_no_unresolved_pdf_marks": true,
+    "supp-en_successful_fresh_build": true,
+    "supp-zh_clean_final_log": true,
+    "supp-zh_no_unresolved_pdf_marks": true,
+    "supp-zh_successful_fresh_build": true
+  },
+  "passed": 33,
+  "total": 33,
+  "pdfs": {
+    "en": {
+      "file": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "pages": 11,
+      "sha256": "b554bc4a7dbdc90991c411e121e84cf5b5babfacc12a5c19c98e038c737cdd82",
+      "final_log_errors": [],
+      "conclusion_page": 8,
+      "references_page": 9,
+      "body_text_before_references_on_reference_page": []
+    },
+    "zh": {
+      "file": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+      "pages": 10,
+      "sha256": "f9ced03bd68d9974e6eb589f53c4593ae72359609182f93b9df39d15c37333a2",
+      "final_log_errors": []
+    },
+    "supp-en": {
+      "file": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\supp-en\\main.pdf",
+      "pages": 3,
+      "sha256": "852e0fbe6c250ed8c9515dc0b10fa42a24d6506c8ead69aea3442467f2938dc7",
+      "final_log_errors": []
+    },
+    "supp-zh": {
+      "file": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\supp-zh\\main_zh.pdf",
+      "pages": 3,
+      "sha256": "cf0b57b11eea63d7397d46bfdeb9c631e7047e737fe26b46eb6dc131611c58f1",
+      "final_log_errors": []
+    }
+  },
+  "changed_manuscript_files": [
+    "paper/main.tex",
+    "paper/main_zh.tex",
+    "paper/sec/0_abstract.tex",
+    "paper/sec/1_introduction.tex",
+    "paper/sec/2_related_work.tex",
+    "paper/sec/3_method.tex",
+    "paper/sec/4_experiments.tex",
+    "paper/sec/5_discussion.tex",
+    "paper/sec/6_conclusion.tex",
+    "paper/supplementary/composition.tex",
+    "paper/supplementary/composition_zh.tex",
+    "paper/supplementary/training.tex",
+    "paper/supplementary/training_zh.tex",
+    "paper/zh/0_abstract_zh.tex",
+    "paper/zh/1_introduction_zh.tex",
+    "paper/zh/2_related_work_zh.tex",
+    "paper/zh/3_method_zh.tex",
+    "paper/zh/4_experiments_zh.tex",
+    "paper/zh/5_discussion_zh.tex",
+    "paper/zh/6_conclusion_zh.tex",
+    "paper/main.bib"
+  ],
+  "baseline": "baseline.zip; initial working tree, not HEAD",
+  "visual_review": {
+    "status": "passed",
+    "reviewed": "All 11 English main pages, 10 Chinese main pages, and all pages of both 3-page supplements; English page 8 also inspected at 1.5x resolution.",
+    "findings": "No text/figure overlap or clipping. Full English conclusion ends on page 8; reference page has no preceding body text."
+  }
+}

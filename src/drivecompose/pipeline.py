@@ -6,7 +6,7 @@ from dataclasses import dataclass
 import numpy as np
 import torch
 
-from .contracts import DrivingLog, WorldVault
+from .contracts import QUERY_SCHEMA, DrivingLog, WorldVault
 from .decomposition import SceneAssetDecomposer, make_blocks
 from .networks.completion import JointCompletionDiT
 from .networks.decoders import TypedLatentCodec
@@ -27,6 +27,8 @@ class CheckpointRecord:
     def validate(self):
         if not all(vars(self).values()):
             raise ValueError("必须记录实际加载的整组表示版本")
+        if self.query_schema != QUERY_SCHEMA or self.completion_query_schema != QUERY_SCHEMA:
+            raise ValueError(f"仅支持查询规范 {QUERY_SCHEMA}，请使用该规范下的新 checkpoint")
         if self.encoder_revision != self.codec_encoder_revision or self.encoder_revision != self.completion_encoder_revision:
             raise ValueError("编码器特征基与 codec / 补全网络不匹配")
         if self.codec_revision != self.completion_codec_revision or self.query_schema != self.completion_query_schema:
@@ -50,12 +52,12 @@ class OfflineWorldBuilder:
 
     @torch.no_grad()
     def build(self, log: DrivingLog, bounds: np.ndarray, seed=0, steps=24,
-              background_shape=(20, 12, 6), vehicle_shape=(8, 4, 4), sky_resolution=4) -> BuildResult:
+              background_shape=(20, 12, 6), rigid_shape=(8, 4, 4), sky_resolution=4) -> BuildResult:
         self.codec.eval(); self.completion.eval()
         if next(self.codec.parameters()).device != next(self.completion.parameters()).device:
             raise ValueError("codec 与补全网络须位于同一设备")
         evidence = self.encoder.encode(log, self.templates)
-        blocks = make_blocks(evidence, bounds, background_shape, vehicle_shape, sky_resolution)
+        blocks = make_blocks(evidence, bounds, background_shape, rigid_shape, sky_resolution)
         bundle = self.decomposer.decompose(evidence, blocks)
         device = next(self.codec.parameters()).device
         tensor = lambda a, dtype=torch.float32: torch.as_tensor(np.array(a), dtype=dtype, device=device)
@@ -76,6 +78,6 @@ class OfflineWorldBuilder:
                          "encoder_revision": self.checkpoints.encoder_revision,
                          "codec_revision": self.checkpoints.codec_revision,
                          "query_schema": self.checkpoints.query_schema})
-        checked = WorldVault(candidate.background, candidate.sky, candidate.vehicles, candidate.humans,
+        checked = WorldVault(candidate.background, candidate.sky, candidate.rigids, candidate.humans,
                              candidate.bounds, seed, metadata, candidate.sky_valid)
         return BuildResult(checked, report)

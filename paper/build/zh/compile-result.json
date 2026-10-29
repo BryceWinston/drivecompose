@@ -1,11 +1,11 @@
 {
   "language": "zh",
   "command": [
-    "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1016.6573.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
+    "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1023.6123.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
     "-X",
     "compile",
     "--outdir",
-    "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\zh",
+    "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh",
     "--outfmt",
     "pdf",
     "--print",
@@ -15,13 +15,13 @@
     "main_zh.tex"
   ],
   "exit_code": 0,
-  "started_at": "2026-10-28T02:17:30.900471+00:00",
-  "finished_at": "2026-10-28T02:18:01.594323+00:00",
-  "elapsed_seconds": 30.688,
-  "fontconfig_file": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\tools\\fontconfig.conf",
-  "source_sha256": "22521d86f2f2a1a699f5bf8e6bf35235ae8a0c2127e9e7de09e198af58161be2",
-  "pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+  "started_at": "2026-10-29T07:45:08.932790+00:00",
+  "finished_at": "2026-10-29T07:45:45.644040+00:00",
+  "elapsed_seconds": 36.711,
+  "fontconfig_file": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\tools\\fontconfig.conf",
+  "source_sha256": "1f17ba94d88c7bf97893aec27c76a7c68f55d54b39b0b6a160030681203a6dd5",
+  "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
   "pdf_exists": true,
   "pdf_written_this_run": true,
-  "pdf_sha256": "d6ce82d28d14d3ee34aef1afd47941d60df3a8f7e4e2f27f264e3ca86a98b7b6"
+  "pdf_sha256": "159ef6b77b48cc5fe6574efa626f8dd3f33dc2af0f7eea7a9806d32f47adccc4"
 }

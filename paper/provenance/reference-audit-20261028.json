@@ -1,0 +1,804 @@
+{
+  "date": "2026-10-28",
+  "workflow": "citation-verification",
+  "scope": "52 active references in main.bib and 5 shared supplemental references",
+  "summary": {
+    "total": 52,
+    "existence_verified": 52,
+    "initial_metadata_matches": 49,
+    "corrected_or_completed": 3,
+    "not_found": 0,
+    "unresolved": 0
+  },
+  "records": [
+    {
+      "key": "caesar2020nuscenes",
+      "title": "nuScenes: A Multimodal Dataset for Autonomous Driving",
+      "authors": "Caesar, Holger and Bankiti, Varun and Lang, Alex H. and Vora, Sourabh and Liong, Venice Erin and Xu, Qiang and Krishnan, Anush and Pan, Yu and Baldan, Giancarlo and Beijbom, Oscar",
+      "year": "2020",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content_CVPR_2020/html/Caesar_nuScenes_A_Multimodal_Dataset_for_Autonomous_Driving_CVPR_2020_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "c195ccb75ce5ada73719dbb0aa620bee2db38f21e19a76b7310dfeb0b02cbd1f"
+    },
+    {
+      "key": "charatan2024pixelsplat",
+      "title": "pixelSplat: 3D Gaussian Splats from Image Pairs for Scalable Generalizable 3D Reconstruction",
+      "authors": "Charatan, David and Li, Sizhe Lester and Tagliasacchi, Andrea and Sitzmann, Vincent",
+      "year": "2024",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2024/html/Charatan_pixelSplat_3D_Gaussian_Splats_from_Image_Pairs_for_Scalable_Generalizable_CVPR_2024_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "2d9af6ca3797488500ad019a77f555d25f296f827da19e4e90da11367726033b"
+    },
+    {
+      "key": "chen2025dggt",
+      "title": "DGGT: Feedforward 4D Reconstruction of Dynamic Driving Scenes using Unposed Images",
+      "authors": "Chen, Xiaoxue and Xiong, Ziyi and Chen, Yuantao and Li, Gen and Wang, Nan and Luo, Hongcheng and Chen, Long and Sun, Haiyang and Wang, Bing and Chen, Guang and Li, Hongyang and Zhang, Ya-Qin and Ye, Hangjun and Zhao, Hao",
+      "year": "2026",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2026/html/Chen_DGGT_Feedforward_4D_Reconstruction_of_Dynamic_Driving_Scenes_using_Unposed_CVPR_2026_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "9389b854c64443503d92bd470d3a7f3963ac570e51d92ffa6d1f1c481b7a0d26"
+    },
+    {
+      "key": "chen2024mvsplat",
+      "title": "MVSplat: Efficient 3D Gaussian Splatting from Sparse Multi-View Images",
+      "authors": "Yuedong Chen and Haofei Xu and Chuanxia Zheng and Bohan Zhuang and Marc Pollefeys and Andreas Geiger and Tat-Jen Cham and Jianfei Cai",
+      "year": "2024",
+      "publication": "European Conference on Computer Vision (ECCV)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/3187_ECCV_2024_paper.php"
+      ],
+      "note": "ECVA 正式页面，题名、8 位作者与 ECCV 2024。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": null
+    },
+    {
+      "key": "chen2025omnire",
+      "title": "OmniRe: Omni Urban Scene Reconstruction",
+      "authors": "Chen, Ziyu and Yang, Jiawei and Huang, Jiahui and de Lutio, Riccardo and Martinez Esturo, Janick and Ivanovic, Boris and Litany, Or and Gojcic, Zan and Fidler, Sanja and Pavone, Marco and Song, Li and Wang, Yue",
+      "year": "2025",
+      "publication": "International Conference on Learning Representations",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://proceedings.iclr.cc/paper_files/paper/2025/hash/d4938496368e1c5806138bea8837595c-Abstract-Conference.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "756e3b880df05de0696972d9b37c9ce4256b51977208261bcb4227831f3f15bc"
+    },
+    {
+      "key": "dosovitskiy2021vit",
+      "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+      "authors": "Alexey Dosovitskiy and Lucas Beyer and Alexander Kolesnikov and Dirk Weissenborn and Xiaohua Zhai and Thomas Unterthiner and Mostafa Dehghani and Matthias Minderer and Georg Heigold and Sylvain Gelly and Jakob Uszkoreit and Neil Houlsby",
+      "year": "2021",
+      "publication": "International Conference on Learning Representations (ICLR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://arxiv.org/abs/2010.11929",
+        "https://research.google/pubs/an-image-is-worth-16x16-words-transformers-for-image-recognition-at-scale/"
+      ],
+      "note": "arXiv 作者顺序与 Google Research 的 ICLR 2021 发表信息；OpenReview 返回浏览器验证页。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "e4ee13ce355805b533c3f9d4dbfe3fb1f434d16765f95fa34ff803807b30dffb"
+    },
+    {
+      "key": "gao2024cat3d",
+      "title": "CAT3D: Create Anything in 3D with Multi-View Diffusion Models",
+      "authors": "Gao, Ruiqi and Hołyński, Aleksander and Henzler, Philipp and Brussee, Arthur and Martin-Brualla, Ricardo and Srinivasan, Pratul and Barron, Jonathan T. and Poole, Ben",
+      "year": "2024",
+      "publication": "Advances in Neural Information Processing Systems (NeurIPS)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://proceedings.neurips.cc/paper_files/paper/2024/hash/89e4433fec4b99f1d859db57af1e0a0f-Abstract-Conference.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "2b895fe328df66c7f283466c5abefe42b5a29c09c156289dfd827495a891859f"
+    },
+    {
+      "key": "gao2024magicdrive",
+      "title": "MagicDrive: Street View Generation with Diverse 3D Geometry Control",
+      "authors": "Gao, Ruiyuan and Chen, Kai and Xie, Enze and HONG, Lanqing and Li, Zhenguo and Yeung, Dit-Yan and Xu, Qiang",
+      "year": "2024",
+      "publication": "International Conference on Learning Representations",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://proceedings.iclr.cc/paper_files/paper/2024/hash/635351dc3d18116d1a44ca31592e2f9a-Abstract-Conference.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "03a938c9c3b169654e38bbf96e03f517345512fd3595582554e3961018ca4b87"
+    },
+    {
+      "key": "gao2024vista",
+      "title": "Vista: A Generalizable Driving World Model with High Fidelity and Versatile Controllability",
+      "authors": "Gao, Shenyuan and Yang, Jiazhi and Chen, Li and Chitta, Kashyap and Qiu, Yihang and Geiger, Andreas and Zhang, Jun and Li, Hongyang",
+      "year": "2024",
+      "publication": "Advances in Neural Information Processing Systems",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://proceedings.neurips.cc/paper_files/paper/2024/hash/a6a066fb44f2fe0d36cf740c873b8890-Abstract-Conference.html"
+      ],
+      "note": "NeurIPS 正式页面，题名、作者、2024 和 DOI。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": null
+    },
+    {
+      "key": "hess2025splatad",
+      "title": "SplatAD: Real-Time Lidar and Camera Rendering with 3D Gaussian Splatting for Autonomous Driving",
+      "authors": "Hess, Georg and Lindstr\\\"om, Carl and Fatemi, Maryam and Petersson, Christoffer and Svensson, Lennart",
+      "year": "2025",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2025/html/Hess_SplatAD_Real-Time_Lidar_and_Camera_Rendering_with_3D_Gaussian_Splatting_CVPR_2025_paper.html",
+        "https://research.zenseact.com/publications/splatad/"
+      ],
+      "note": "CVF 搜索返回的正式 BibTeX 与作者机构页一致：CVPR 2025，11982–11992。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": null
+    },
+    {
+      "key": "hong2024lrm",
+      "title": "LRM: Large Reconstruction Model for Single Image to 3D",
+      "authors": "Hong, Yicong and Zhang, Kai and Gu, Jiuxiang and Bi, Sai and Zhou, Yang and Liu, Difan and Liu, Feng and Sunkavalli, Kalyan and Bui, Trung and Tan, Hao",
+      "year": "2024",
+      "publication": "International Conference on Learning Representations",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://proceedings.iclr.cc/paper_files/paper/2024/hash/dcad3425f5c8c36b5b3885c091bf1257-Abstract-Conference.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "730c4678621ab16a950d9612c46b4ee3484434a9c8d8708a5ef9fe90dcab770b"
+    },
+    {
+      "key": "hu2024gauhuman",
+      "title": "GauHuman: Articulated Gaussian Splatting from Monocular Human Videos",
+      "authors": "Hu, Shoukang and Hu, Tao and Liu, Ziwei",
+      "year": "2024",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2024/html/Hu_GauHuman_Articulated_Gaussian_Splatting_from_Monocular_Human_Videos_CVPR_2024_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "ce2f62d032cb13222b824110d3209600786d956b9d07c1b3e67c81f12f04a685"
+    },
+    {
+      "key": "kerbl2023gaussians",
+      "title": "3D Gaussian Splatting for Real-Time Radiance Field Rendering",
+      "authors": "Kerbl, Bernhard and Kopanas, Georgios and Leimk{\\\"u}hler, Thomas and Drettakis, George",
+      "year": "2023",
+      "publication": "ACM Transactions on Graphics",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/"
+      ],
+      "note": "作者项目页及 BibTeX：ACM TOG 42(4), 2023；作者姓名中的 TeX 重音为等价写法。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": null
+    },
+    {
+      "key": "kocabas2024hugs",
+      "title": "HUGS: Human Gaussian Splats",
+      "authors": "Kocabas, Muhammed and Chang, Jen-Hao Rick and Gabriel, James and Tuzel, Oncel and Ranjan, Anurag",
+      "year": "2024",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2024/html/Kocabas_HUGS_Human_Gaussian_Splats_CVPR_2024_paper.html",
+        "https://arxiv.org/abs/2311.17910"
+      ],
+      "note": "CVF 正式 BibTeX：CVPR 2024，505–515；预印本初始年份 2023 不替代所引会议版本。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": null
+    },
+    {
+      "key": "lipman2022flowmatching",
+      "title": "Flow Matching for Generative Modeling",
+      "authors": "Yaron Lipman and Ricky T. Q. Chen and Heli Ben-Hamu and Maximilian Nickel and Matt Le",
+      "year": "2023",
+      "publication": "International Conference on Learning Representations",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://arxiv.org/abs/2210.02747",
+        "https://iclr.cc/Downloads/2023",
+        "https://openreview.net/pdf?id=PqvMRDCJT9t"
+      ],
+      "note": "arXiv 核对题名与 5 位作者，ICLR 2023 官方下载目录与会议 PDF 搜索结果核对年份；保留历史引用键。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "418edda599375a7a7276033de5b3249b9c251f45aa643941e64f00c0bbfab331"
+    },
+    {
+      "key": "liu2023zero123",
+      "title": "Zero-1-to-3: Zero-shot One Image to 3D Object",
+      "authors": "Liu, Ruoshi and Wu, Rundi and Van Hoorick, Basile and Tokmakov, Pavel and Zakharov, Sergey and Vondrick, Carl",
+      "year": "2023",
+      "publication": "Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/ICCV2023/html/Liu_Zero-1-to-3_Zero-shot_One_Image_to_3D_Object_ICCV_2023_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "456066c4ace44035a3c26fe5f154acf5dd5764dc40767699c109f81f795c3437"
+    },
+    {
+      "key": "loper2015smpl",
+      "title": "SMPL: A Skinned Multi-Person Linear Model",
+      "authors": "Loper, Matthew and Mahmood, Naureen and Romero, Javier and Pons-Moll, Gerard and Black, Michael J.",
+      "year": "2015",
+      "publication": "ACM Trans. Graphics (Proc. SIGGRAPH Asia)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://smpl.is.tue.mpg.de/"
+      ],
+      "note": "作者项目页 Referencing the Model 的完整 BibTeX 与条目一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": null
+    },
+    {
+      "key": "lu2025urbancad",
+      "title": "UrbanCAD: Towards Highly Controllable and Photorealistic 3D Vehicles for Urban Scene Simulation",
+      "authors": "Lu, Yichong and Cai, Yichi and Zhang, Shangzhan and Zhou, Hongyu and Hu, Haoji and Yu, Huimin and Geiger, Andreas and Liao, Yiyi",
+      "year": "2025",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2025/html/Lu_UrbanCAD_Towards_Highly_Controllable_and_Photorealistic_3D_Vehicles_for_Urban_CVPR_2025_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "65294270860d969f4489e42c00076a8b9cfbe67d5e4fac428310b492f40e18ae"
+    },
+    {
+      "key": "mildenhall2020nerf",
+      "title": "NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis",
+      "authors": "Ben Mildenhall and Pratul P. Srinivasan and Matthew Tancik and Jonathan T. Barron and Ravi Ramamoorthi and Ren Ng",
+      "year": "2020",
+      "publication": "European Conference on Computer Vision (ECCV)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://www.ecva.net/papers/eccv_2020/papers_ECCV/html/1473_ECCV_2020_paper.php"
+      ],
+      "note": "ECVA 正式页面，题名、6 位作者与 ECCV 2020。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": null
+    },
+    {
+      "key": "ost2021neuralgraphs",
+      "title": "Neural Scene Graphs for Dynamic Scenes",
+      "authors": "Ost, Julian and Mannan, Fahim and Thuerey, Nils and Knodt, Julian and Heide, Felix",
+      "year": "2021",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2021/html/Ost_Neural_Scene_Graphs_for_Dynamic_Scenes_CVPR_2021_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "c9a57f0a4331d68f6390560e165bf3298a34b744d328030f3a1e015814aba0c9"
+    },
+    {
+      "key": "pavlakos2019smplx",
+      "title": "Expressive Body Capture: 3D Hands, Face, and Body From a Single Image",
+      "authors": "Pavlakos, Georgios and Choutas, Vasileios and Ghorbani, Nima and Bolkart, Timo and Osman, Ahmed A. A. and Tzionas, Dimitrios and Black, Michael J.",
+      "year": "2019",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content_CVPR_2019/html/Pavlakos_Expressive_Body_Capture_3D_Hands_Face_and_Body_From_a_CVPR_2019_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "6fad1c425de883d553a75b49d8c86c6c869881b139ab5a95de09c4d213111458"
+    },
+    {
+      "key": "peebles2023dit",
+      "title": "Scalable Diffusion Models with Transformers",
+      "authors": "Peebles, William and Xie, Saining",
+      "year": "2023",
+      "publication": "Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/ICCV2023/html/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "8837ede92562b1fb34dcc8bec29ba03e0c184bea2daca8f4f52dcb4d89275992"
+    },
+    {
+      "key": "qian2024avatar",
+      "title": "3DGS-Avatar: Animatable Avatars via Deformable 3D Gaussian Splatting",
+      "authors": "Zhiyin Qian and Shaofei Wang and Marko Mihajlovic and Andreas Geiger and Siyu Tang",
+      "year": "2024",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2024/html/Qian_3DGS-Avatar_Animatable_Avatars_via_Deformable_3D_Gaussian_Splatting_CVPR_2024_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "620c180eb1d4030150c74e59ec83f5d2fd31b121e64f571307269bff2f6e6ea0"
+    },
+    {
+      "key": "qiu2025lhm",
+      "title": "LHM: Large Animatable Human Reconstruction Model for Single Image to 3D in Seconds",
+      "authors": "Qiu, Lingteng and Gu, Xiaodong and Li, Peihao and Zuo, Qi and Shen, Weichao and Zhang, Junfei and Qiu, Kejie and Yuan, Weihao and Chen, Guanying and Dong, Zilong and Bo, Liefeng",
+      "year": "2025",
+      "publication": "Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/ICCV2025/html/Qiu_LHM_Large_Animatable_Human_Reconstruction_Model_for_Single_Image_to_ICCV_2025_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "093fd3a163cc5a68c8bf1be11ccbecfd9cfe47bd5312f70015c9c11be40413b7"
+    },
+    {
+      "key": "ren2026tokengs",
+      "title": "TokenGS: Decoupling 3D Gaussian Prediction from Pixels with Learnable Tokens",
+      "authors": "Ren, Jiawei and Tyszkiewicz, Michal Jan and Huang, Jiahui and Gojcic, Zan",
+      "year": "2026",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2026/html/Ren_TokenGS_Decoupling_3D_Gaussian_Prediction_from_Pixels_with_Learnable_Tokens_CVPR_2026_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "0b169a304679512b4f816cf37631a1d0ed0227725787f2be63897aac37e6bea7"
+    },
+    {
+      "key": "shi2024mvdream",
+      "title": "MVDream: Multi-view Diffusion for 3D Generation",
+      "authors": "Shi, Yichun and Wang, Peng and Ye, Jianglong and Mai, Long and Li, Kejie and Yang, Xiao",
+      "year": "2024",
+      "publication": "International Conference on Learning Representations",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://proceedings.iclr.cc/paper_files/paper/2024/hash/adbe936993aa7cf41e45054d8b72f183-Abstract-Conference.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "f986b1dea687af7cb55eb5799ee991af46b72f246f1cd349232d54470c9f75c6"
+    },
+    {
+      "key": "sun2020waymo",
+      "title": "Scalability in Perception for Autonomous Driving: Waymo Open Dataset",
+      "authors": "Sun, Pei and Kretzschmar, Henrik and Dotiwalla, Xerxes and Chouard, Aurelien and Patnaik, Vijaysai and Tsui, Paul and Guo, James and Zhou, Yin and Chai, Yuning and Caine, Benjamin and Vasudevan, Vijay and Han, Wei and Ngiam, Jiquan and Zhao, Hang and Timofeev, Aleksei and Ettinger, Scott and Krivokon, Maxim and Gao, Amy and Joshi, Aditya and Zhao, Sheng and Cheng, Shuyang and Zhang, Yu and Shlens, Jonathon and Chen, Zhifeng and Anguelov, Dragomir",
+      "year": "2020",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "corrected",
+      "sources": [
+        "https://waymo.com/research/scalability-in-perception-for-autonomous-driving-waymo-open-dataset/",
+        "https://arxiv.org/abs/1912.04838"
+      ],
+      "note": "作者机构页与 arXiv v7 均列出 25 位作者；补齐原条目漏列的 Sheng Zhao、Shuyang Cheng。会议年份维持 CVPR 2020。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": null
+    },
+    {
+      "key": "tian2025drivingforward",
+      "title": "DrivingForward: Feed-forward 3D Gaussian Splatting for Driving Scene Reconstruction from Flexible Surround-view Input",
+      "authors": "Qijian Tian and Xin Tan and Yuan Xie and Lizhuang Ma",
+      "year": "2025",
+      "publication": "Proceedings of the AAAI Conference on Artificial Intelligence",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://ojs.aaai.org/index.php/AAAI/article/view/32793"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "94c1291bd96436cc39683d5209581d1e5c8ea3810ad2b8aaf25888cfa5c3e6c4"
+    },
+    {
+      "key": "tonderski2024neurad",
+      "title": "NeuRAD: Neural Rendering for Autonomous Driving",
+      "authors": "Tonderski, Adam and Lindstr\\\"om, Carl and Hess, Georg and Ljungbergh, William and Svensson, Lennart and Petersson, Christoffer",
+      "year": "2024",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2024/html/Tonderski_NeuRAD_Neural_Rendering_for_Autonomous_Driving_CVPR_2024_paper.html"
+      ],
+      "note": "题名、作者顺序和年份一致；重音、Ł/TeX 命令与姓名缩写标点为等价形式。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "42ceade996d7e7c8909596e80a38a9943bf7fd5174ac6a1778ddcbae13ad6317"
+    },
+    {
+      "key": "vaswani2017attention",
+      "title": "Attention is All you Need",
+      "authors": "Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, \\L ukasz and Polosukhin, Illia",
+      "year": "2017",
+      "publication": "Advances in Neural Information Processing Systems",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://proceedings.neurips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html"
+      ],
+      "note": "题名、作者顺序和年份一致；重音、Ł/TeX 命令与姓名缩写标点为等价形式。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "d1e6d785978f5e38fe3405d808ccf957294f72a681b38b07e54738afe120e5eb"
+    },
+    {
+      "key": "wang2025vggt",
+      "title": "VGGT: Visual Geometry Grounded Transformer",
+      "authors": "Wang, Jianyuan and Chen, Minghao and Karaev, Nikita and Vedaldi, Andrea and Rupprecht, Christian and Novotny, David",
+      "year": "2025",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2025/html/Wang_VGGT_Visual_Geometry_Grounded_Transformer_CVPR_2025_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "38aa57c28d7e1a2f9a4e9a561ea84a962774d4dde7fe4004c7f4e5ae925dbf40"
+    },
+    {
+      "key": "wang2024dust3r",
+      "title": "DUSt3R: Geometric 3D Vision Made Easy",
+      "authors": "Wang, Shuzhe and Leroy, Vincent and Cabon, Yohann and Chidlovskii, Boris and Revaud, Jerome",
+      "year": "2024",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2024/html/Wang_DUSt3R_Geometric_3D_Vision_Made_Easy_CVPR_2024_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "197eeed3e8f710298818a0c1fcd9d7d96495cd62b2e03abf8aa6c4e2c2465322"
+    },
+    {
+      "key": "wang2024drivedreamer",
+      "title": "DriveDreamer: Towards Real-world-driven World Models for Autonomous Driving",
+      "authors": "Xiaofeng Wang and Zheng Zhu and Guan Huang and Xinze Chen and Jiagang Zhu and Jiwen Lu",
+      "year": "2024",
+      "publication": "European Conference on Computer Vision (ECCV)",
+      "existence": "verified",
+      "metadata_status": "corrected",
+      "sources": [
+        "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/6416_ECCV_2024_paper.php",
+        "https://arxiv.org/abs/2309.09777"
+      ],
+      "note": "ECVA 确认 ECCV 2024；以原作者 arXiv 记录修正 Chen Xinze → Xinze Chen，避免 BibTeX 将 Xinze 识别为姓。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "8b1c4ea30a37ea35fd9a0f3bde717382d75d203f24b37d55ccb8aa8b473d0cb4"
+    },
+    {
+      "key": "wu2025difix3d",
+      "title": "DIFIX3D+: Improving 3D Reconstructions with Single-Step Diffusion Models",
+      "authors": "Wu, Jay Zhangjie and Zhang, Yuxuan and Turki, Haithem and Ren, Xuanchi and Gao, Jun and Shou, Mike Zheng and Fidler, Sanja and Gojcic, Zan and Ling, Huan",
+      "year": "2025",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2025/html/Wu_DIFIX3D_Improving_3D_Reconstructions_with_Single-Step_Diffusion_Models_CVPR_2025_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "f540111e6812fc90641070ddaa91d55193c082654a8c06fe9c45495ef82af7cc"
+    },
+    {
+      "key": "xiang2025trellis",
+      "title": "Structured 3D Latents for Scalable and Versatile 3D Generation",
+      "authors": "Xiang, Jianfeng and Lv, Zelong and Xu, Sicheng and Deng, Yu and Wang, Ruicheng and Zhang, Bowen and Chen, Dong and Tong, Xin and Yang, Jiaolong",
+      "year": "2025",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2025/html/Xiang_Structured_3D_Latents_for_Scalable_and_Versatile_3D_Generation_CVPR_2025_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "3c5983042fa18fad87d3aa3c793f71254b0d9535401de6e5f9a67de4882e40f7"
+    },
+    {
+      "key": "xiang2026trellis2",
+      "title": "Native and Compact Structured Latents for 3D Generation",
+      "authors": "Xiang, Jianfeng and Chen, Xiaoxue and Xu, Sicheng and Wang, Ruicheng and Lv, Zelong and Deng, Yu and Zhu, Hongyuan and Dong, Yue and Zhao, Hao and Yuan, Nicholas Jing and Yang, Jiaolong",
+      "year": "2026",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2026/html/Xiang_Native_and_Compact_Structured_Latents_for_3D_Generation_CVPR_2026_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "67dc7ce21ff3f047f30a01667248d602c155c189cf840645eb0711e7db4bab06"
+    },
+    {
+      "key": "yan2024street",
+      "title": "Street Gaussians: Modeling Dynamic Urban Scenes with Gaussian Splatting",
+      "authors": "Yunzhi Yan and Haotong Lin and Chenxu Zhou and Weijie Wang and Haiyang Sun and Kun Zhan and Xianpeng Lang and Xiaowei Zhou and Sida Peng",
+      "year": "2024",
+      "publication": "European Conference on Computer Vision (ECCV)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/9243_ECCV_2024_paper.php"
+      ],
+      "note": "ECVA 正式页面和作者列表一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "d2db6b244eea1a1835b6f23c0ea2f2f52a33f65e16cf21c3895f3f9923359a20"
+    },
+    {
+      "key": "streetcrafter",
+      "title": "StreetCrafter: Street View Synthesis with Controllable Video Diffusion Models",
+      "authors": "Yan, Yunzhi and Xu, Zhen and Lin, Haotong and Jin, Haian and Guo, Haoyu and Wang, Yida and Zhan, Kun and Lang, Xianpeng and Bao, Hujun and Zhou, Xiaowei and Peng, Sida",
+      "year": "2025",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2025/html/Yan_StreetCrafter_Street_View_Synthesis_with_Controllable_Video_Diffusion_Models_CVPR_2025_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "374ff710413065bf91c48c8b0360d94d854116a75a32e931ef8ea07ef1609955"
+    },
+    {
+      "key": "yang2025storm",
+      "title": "STORM: Spatio-TempOral Reconstruction Model For Large-Scale Outdoor Scenes",
+      "authors": "Yang, Jiawei and Huang, Jiahui and Ivanovic, Boris and Chen, Yuxiao and Wang, Yan and Li, Boyi and You, Yurong and Sharma, Apoorva and Igl, Maximilian and Karkus, Peter and Xu, Danfei and Wang, Yue and Pavone, Marco",
+      "year": "2025",
+      "publication": "International Conference on Learning Representations",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://proceedings.iclr.cc/paper_files/paper/2025/hash/7dee643a6c5abcdafee51496420c84dc-Abstract-Conference.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "1bade18fe2eddd5539c24d1cc6b6dc8dc7dd2e4b2f392647ed446fa04bc5339b"
+    },
+    {
+      "key": "yang2023unisim",
+      "title": "UniSim: A Neural Closed-Loop Sensor Simulator",
+      "authors": "Yang, Ze and Chen, Yun and Wang, Jingkang and Manivasagam, Sivabalan and Ma, Wei-Chiu and Yang, Anqi Joyce and Urtasun, Raquel",
+      "year": "2023",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2023/html/Yang_UniSim_A_Neural_Closed-Loop_Sensor_Simulator_CVPR_2023_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "e332302e772c9af813f3b8d99363e4e04ebe339cde61e53e3159c66edbdc991e"
+    },
+    {
+      "key": "yang2025genassets",
+      "title": "GenAssets: Generating in-the-wild 3D Assets in Latent Space",
+      "authors": "Yang, Ze and Wang, Jingkang and Zhang, Haowei and Manivasagam, Sivabalan and Chen, Yun and Urtasun, Raquel",
+      "year": "2025",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2025/html/Yang_GenAssets_Generating_in-the-wild_3D_Assets_in_Latent_Space_CVPR_2025_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "95bb10b8d6beea94468edde12261eeee4dd3ea0eabf9955c5a34f932a5aa5ed8"
+    },
+    {
+      "key": "zhou2024drivinggaussian",
+      "title": "DrivingGaussian: Composite Gaussian Splatting for Surrounding Dynamic Autonomous Driving Scenes",
+      "authors": "Zhou, Xiaoyu and Lin, Zhiwei and Shan, Xiaojun and Wang, Yongtao and Sun, Deqing and Yang, Ming-Hsuan",
+      "year": "2024",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2024/html/Zhou_DrivingGaussian_Composite_Gaussian_Splatting_for_Surrounding_Dynamic_Autonomous_Driving_Scenes_CVPR_2024_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "fc9c482054a0e07385c160aef8ab7e363f06ddd593c023d165fe556e2deebced"
+    },
+    {
+      "key": "zhuang2025idol",
+      "title": "IDOL: Instant Photorealistic 3D Human Creation from a Single Image",
+      "authors": "Zhuang, Yiyu and Lv, Jiaxi and Wen, Hao and Shuai, Qing and Zeng, Ailing and Zhu, Hao and Chen, Shifeng and Yang, Yujiu and Cao, Xun and Liu, Wei",
+      "year": "2025",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2025/html/Zhuang_IDOL_Instant_Photorealistic_3D_Human_Creation_from_a_Single_Image_CVPR_2025_paper.html"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "1c73e4c9dd6287e393a1b9345e140679a78ae61022ce07c0dd7042aa7b40f04f"
+    },
+    {
+      "key": "zhou2024hugsim",
+      "title": "HUGSIM: A Real-Time, Photo-Realistic and Closed-Loop Simulator for Autonomous Driving",
+      "authors": "Zhou, Hongyu and Lin, Longzhong and Wang, Jiabao and Lu, Yichong and Bai, Dongfeng and Liu, Bingbing and Wang, Yue and Geiger, Andreas and Liao, Yiyi",
+      "year": "2024",
+      "publication": "arXiv preprint arXiv:2412.01718",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://arxiv.org/abs/2412.01718"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "b80f0520ff2d45cdc2f717654a6f8f9eb9765a6689d4e65aa3d7fc1517eff88b"
+    },
+    {
+      "key": "yu2026streetforward",
+      "title": "StreetForward: Perceiving Dynamic Street with Feedforward Causal Attention",
+      "authors": "Yu, Zhongrui and Wang, Zhao and Xie, Yijia and Wang, Yida and Zhang, Xueyang and Zhan, Yifei and Zhan, Kun",
+      "year": "2026",
+      "publication": "arXiv preprint arXiv:2603.19552",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://arxiv.org/abs/2603.19552"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "9a2881baf790f0e476538104b504b07256af47447b64d987eacc22d737e1e49c"
+    },
+    {
+      "key": "chi2026pointforward",
+      "title": "PointForward: Feedforward Driving Reconstruction through Point-Aligned Representations",
+      "authors": "Chi, Cheng and Wang, Xianqi and Luo, Hongcheng and Tu, Mingfei and Xu, Gangwei and Zhang, Zehan and Wang, Bing and Chen, Guang and Ye, Hangjun and Peng, Sida and Yang, Xin and Sun, Haiyang",
+      "year": "2026",
+      "publication": "arXiv preprint arXiv:2605.11594",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://arxiv.org/abs/2605.11594"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "31c53c29e069ba38cfc4c83ed4ce58bd6a59c32955d3b428bf46d38b2afb10cc"
+    },
+    {
+      "key": "huang2026instantnurec",
+      "title": "Instant NuRec: Feed-Forward 3D Gaussian Reconstruction for Driving Scene Simulation",
+      "authors": "Huang, Jiahui and Ren, Jiawei and Tyszkiewicz, Michal and Haefner, Bjoern and Shelley, Michael and Kang, Xin and Kim, Seung Wook and Xu, Ning and Wu, Qi and Martinez Esturo, Janick and Huang, Shengyu and Schneider, Nick and Leal-Taix{\\'e}, Laura and Gojcic, Zan and Fidler, Sanja",
+      "year": "2026",
+      "publication": "arXiv preprint arXiv:2607.14203",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://arxiv.org/abs/2607.14203"
+      ],
+      "note": "arXiv 题名和 15 位具体作者一致。源页面将 NVIDIA 与冒号分成额外作者字段；保留书目已有的具体作者列表及复姓 Martinez Esturo，不复制页面的字段拆分错误。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "6b2f18d25912bd55be9b21da6fbf4f66be72c078fbec976706d0948a6108c660"
+    },
+    {
+      "key": "wang2026horizonforge",
+      "title": "HorizonForge: Driving Scene Editing with Any Trajectories and Any Vehicles",
+      "authors": "Wang, Yifan and Pittaluga, Francesco and Tasneem, Zaid and You, Chenyu and Chandraker, Manmohan and Jiang, Ziyu",
+      "year": "2026",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://arxiv.org/abs/2602.21333"
+      ],
+      "note": "arXiv 原文核对题名、作者和年份；会议状态沿用作者记录。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "3e812086c1c3f3c3ac278907a4c93af63f0935c4befd2b3dcc3d59283e07fc70"
+    },
+    {
+      "key": "zhu2025worldsplat",
+      "title": "WorldSplat: Gaussian-Centric Feed-Forward 4D Scene Generation for Autonomous Driving",
+      "authors": "Zhu, Ziyue and Wu, Zhanqian and Zhu, Zhenxin and Zhou, Lijun and Sun, Haiyang and Wan, Bing and Ma, Kun and Chen, Guang and Ye, Hangjun and Xie, Jin and Yang, Jian",
+      "year": "2025",
+      "publication": "arXiv preprint arXiv:2509.23402",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://arxiv.org/abs/2509.23402"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "21330efb5bc07a47226a222652d49950665cc995db1ccebdc5670d01946f6041"
+    },
+    {
+      "key": "liao2025complete",
+      "title": "Complete Gaussian Splats from a Single Image with Denoising Diffusion Models",
+      "authors": "Liao, Ziwei and Sayed, Mohamed and Waslander, Steven L. and Vicente, Sara and Turmukhambetov, Daniyar and Firman, Michael",
+      "year": "2025",
+      "publication": "arXiv preprint arXiv:2508.21542",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://arxiv.org/abs/2508.21542"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "8a1d6156935a5166d7496e34e95f7685d9848c0e0d63d7449bb3e9d6420f97db"
+    },
+    {
+      "key": "wu2026jrm",
+      "title": "JRM: Joint Reconstruction Model for Multiple Objects without Alignment",
+      "authors": "Wu, Qirui and Siddiqui, Yawar and Frost, Duncan and Aroudj, Samir and Avetisyan, Armen and Newcombe, Richard and Chang, Angel X. and Engel, Jakob and Howard-Jenkins, Henry",
+      "year": "2026",
+      "publication": "arXiv preprint arXiv:2603.25985",
+      "existence": "verified",
+      "metadata_status": "verified",
+      "sources": [
+        "https://arxiv.org/abs/2603.25985"
+      ],
+      "note": "题名、作者和年份与原始页面元数据一致。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "d6059e2242223afa5ec7266deebfc043e9a4eab18e382f575678b5617a2a074b"
+    },
+    {
+      "key": "park2026latentworld",
+      "title": "Grounded Latents for Entity-Centric 4D Scene Generation",
+      "authors": "Park, Jinhyung and Sanghvi, Navyata and Weng, Erica and Hunt, Shawn and Tanaka, Shinya and Fujiyoshi, Hironobu and Kitani, Kris",
+      "year": "2026",
+      "publication": "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+      "existence": "verified",
+      "metadata_status": "corrected",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2026/html/Park_Grounded_Latents_for_Entity-Centric_4D_Scene_Generation_CVPR_2026_paper.html",
+        "https://jindapark.github.io/projects/latentworld/"
+      ],
+      "note": "CVF 正式记录与作者页一致；补齐 21420–21430 页，书目 URL 改用正式论文页。",
+      "retrieved_on": "2026-10-28",
+      "local_source_sha256": "2b8707fcee4b2f998253c7e6888f129e818fb3ded3909c5112a4632c467629cb"
+    }
+  ],
+  "retrieval_notes": "本地请求使用用户提供的代理。12 个页面缺少结构化题名或因 TLS/OpenReview 验证未直接获得；经网页工具、作者机构页、arXiv 和官方会议索引逐条复核。页面返回 HTTP 200 未被单独视为核验成功。"
+}

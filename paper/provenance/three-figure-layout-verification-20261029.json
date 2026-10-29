@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-29",
+  "baseline_commit": "e98697e09af130895fe14f70fbc840571da28a0d",
+  "baseline_is_uncommitted_workspace": true,
+  "baseline_path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\three-figure-layout\\baseline",
+  "checks_passed": 63,
+  "figure_count": 5,
+  "table_count": 5,
+  "main_figure_pages": [
+    2,
+    3,
+    5
+  ],
+  "english_body_last_page": 9,
+  "english_cvpr_eight_page_limit_pass": false,
+  "chinese_body_last_page": 8,
+  "english_total_pages": 12,
+  "chinese_total_pages": 10,
+  "supplement_pages": {
+    "en": 3,
+    "zh": 3
+  },
+  "visual_review": "Reviewed all rendered pages of both main manuscripts and both existing supplements, with full-page checks of the three inserted figures. English final rasterization matches the inspected first pass exactly; changed Chinese pages were reviewed again.",
+  "renderer": "Poppler pdftoppm, 120 dpi, max edge 1600 px",
+  "pdfs": {
+    "en": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "sha256": "f080f81d45fca74dc7484b27dd32c9aa0c0e2bcd917453bc4c6197d01e8ecd75",
+      "pages": 12
+    },
+    "zh": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+      "sha256": "159ef6b77b48cc5fe6574efa626f8dd3f33dc2af0f7eea7a9806d32f47adccc4",
+      "pages": 10
+    },
+    "supp-en": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\supp-en\\main.pdf",
+      "sha256": "20ec2035d903752b0a55cc9c24b1d5a963c22eeb9f385a039b81579d91240823",
+      "pages": 3
+    },
+    "supp-zh": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\supp-zh\\main_zh.pdf",
+      "sha256": "c4e6f5f6f7b531ea39be03dc121a8049e8f019cda3db922d4a96eb1209f86a51",
+      "pages": 3
+    }
+  },
+  "unchanged_files": {
+    "sec/4_experiments.tex": true,
+    "zh/4_experiments_zh.tex": true,
+    "main.bib": true,
+    "preamble.tex": true,
+    "fontsetup.tex": true
+  },
+  "layout": {
+    "en": {
+      "out_of_page_count": 0,
+      "text_image_overlap_count": 0,
+      "final_log_issues": []
+    },
+    "zh": {
+      "out_of_page_count": 0,
+      "text_image_overlap_count": 0,
+      "final_log_issues": []
+    },
+    "supp-en": {
+      "out_of_page_count": 0,
+      "text_image_overlap_count": 0,
+      "final_log_issues": []
+    },
+    "supp-zh": {
+      "out_of_page_count": 0,
+      "text_image_overlap_count": 0,
+      "final_log_issues": []
+    }
+  },
+  "official_rule_source": "https://cvpr.thecvf.com/Conferences/2027/AuthorGuidelines"
+}

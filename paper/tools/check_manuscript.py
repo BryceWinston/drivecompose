@@ -72,7 +72,7 @@ def blank_ablation_tables(source: str) -> tuple[bool, bool]:
 
 
 def reported_ablation_tables(source: str, record: dict) -> dict[str, bool]:
-    """Compare each retained result, variant name and input count at recorded precision."""
+    """Compare result cells (including blanks), variant names and input counts."""
     tables = re.findall(r"\\begin\{table\}(.*?)\\end\{table\}", source, re.S)
     checks = {"ablation_table_count": len(tables) == len(record["tables"])}
     parsed = {}
@@ -97,15 +97,20 @@ def reported_ablation_tables(source: str, record: dict) -> dict[str, bool]:
                         cells = [cells[1], input_t, *cells[2:]]
                     rows.append(cells)
         parsed[label] = rows
-        checks[label + ":reported_values_exact"] = rows == expected["rows"]
+        checks[label + ":expected_cells_exact"] = rows == expected["rows"]
+    component_columns = record["tables"]["tab:ablation-components"]["columns"]
+    input_columns = record["tables"]["tab:ablation-inputs"]["columns"]
+    shared_metrics = [column for column in input_columns[2:] if column in component_columns]
     components = {row[0]: row for row in parsed.get("tab:ablation-components", [])
-                  if len(row) == 5}
+                  if len(row) == len(component_columns)}
     t8 = [row for row in parsed.get("tab:ablation-inputs", [])
           if len(row) == 5 and row[1] == "8"]
     checks["ablation_t8_consistent"] = (
         len(t8) == 2 and {row[0] for row in t8} == {"Ours", "w/o CCM"}
-        and all(row[0] in components and row[3:5] ==
-                [components[row[0]][1], components[row[0]][3]] for row in t8)
+        and bool(shared_metrics)
+        and all(row[0] in components and all(
+            row[input_columns.index(metric)] == components[row[0]][component_columns.index(metric)]
+            for metric in shared_metrics) for row in t8)
     )
     return checks
 
@@ -142,6 +147,9 @@ def main() -> int:
     framework_record = (json.loads(framework_path.read_text(encoding="utf-8"))
                         if framework_path.is_file() else None)
     results_path = provenance / "ablation-results-20261023.json"
+    standard_metrics_path = provenance / "ablation-standard-metrics-20261029.json"
+    if standard_metrics_path.is_file():
+        results_path = standard_metrics_path
     results_record = (json.loads(results_path.read_text(encoding="utf-8"))
                       if results_path.is_file() else None)
     frozen = [
@@ -172,7 +180,7 @@ def main() -> int:
         and digest(historical_overview.read_bytes()) == digest(overview_source.read_bytes())
     )
     details["historical_overview_copy"] = str(historical_overview)
-    details["raster_overview_role"] = "historical design draft; current entries use the approved inference overview"
+    details["raster_overview_role"] = "historical design draft; current entries use author-selected mechanism illustrations"
     overview = ROOT / "fig/drivecompose-inference-overview.png"
     checks["generated_overview_exists"] = overview.is_file()
     for entry in ("main.tex", "main_zh.tex"):
@@ -181,6 +189,21 @@ def main() -> int:
             r"\includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}" in source
             and "drivecompose-overview.png" not in source
         )
+    figure_record_path = provenance / "three-figure-integration-20261029.json"
+    if figure_record_path.exists():
+        figure_record = json.loads(figure_record_path.read_text(encoding="utf-8"))
+        for language, entry, folder in (("en", "main.tex", "sec"), ("zh", "main_zh.tex", "zh")):
+            text = document(entry, folder)
+            for figure in figure_record["figures"]:
+                path = Path(figure["path"])
+                name = "fig/" + path.name
+                checks[f"{language}:figure{figure['number']}_active"] = (
+                    text.count("{" + name + "}") == 1
+                    and text.count("\\label{" + figure["label"] + "}") == 1
+                )
+                checks[f"figure{figure['number']}_approved_pixels_exact"] = (
+                    path.is_file() and digest(path.read_bytes()) == figure["sha256"]
+                )
     for language, name, heading in (("en", "sec/4_experiments.tex", "Experiments"),
                                      ("zh", "zh/4_experiments_zh.tex", "实验")):
         source = uncomment((ROOT / name).read_text(encoding="utf-8")).strip()
@@ -198,9 +221,15 @@ def main() -> int:
             if results_record:
                 checks.update({language + ":" + key: value for key, value in
                                reported_ablation_tables(scoped_source, results_record).items()})
-                checks[language + ":ablation_error_scale_explicit"] = (
-                    r"$[0,1]$" in scoped_source and "RGB" in scoped_source
-                )
+                if results_path == standard_metrics_path:
+                    checks[language + ":standard_ablation_metrics"] = all(
+                        metric in scoped_source for metric in ("PSNR", "SSIM", "LPIPS"))
+                    checks[language + ":custom_ablation_metrics_removed"] = not re.search(
+                        r"New-MAE|NVS-MAE|Obs-Reg|Cov\.|\bPass\b|eq:regression", scoped_source)
+                else:
+                    checks[language + ":ablation_error_scale_explicit"] = (
+                        r"$[0,1]$" in scoped_source and "RGB" in scoped_source
+                    )
                 checks[language + ":ablation_names_without_ids"] = not re.search(
                     r"\bA\d+\b", scoped_source
                 )
@@ -293,8 +322,9 @@ def main() -> int:
             experiment_math.append(sorted(re.sub(r"\s+", "", part) for part in
                                           re.findall(r"(?<!\\)\$(.*?)(?<!\\)\$", source, re.S)))
         checks["bilingual_ablation_inline_math_identical"] = experiment_math[0] == experiment_math[1]
-        details["ablation_results_and_images_blank"] = not bool(results_record)
-        details["ablation_results_filled"] = bool(results_record)
+        results_blank = not results_record or results_record.get("result_state") == "blank"
+        details["ablation_results_and_images_blank"] = results_blank
+        details["ablation_results_filled"] = not results_blank
         details["ablation_images_blank"] = bool(
             results_record["empty_image_slots"] if results_record else 16
         )

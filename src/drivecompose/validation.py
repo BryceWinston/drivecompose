@@ -47,11 +47,11 @@ class ObservedViewValidator:
         composer = StateComposer()
         _, _, h, w, _ = evidence.features.shape
         for t in range(len(log.timestamps)):
-            vehicles = {a.actor_id: a.world_from_actor[t] for a in evidence.tracks if a.kind == TokenKind.VEHICLE}
+            rigids = {a.actor_id: a.world_from_actor[t] for a in evidence.tracks if a.kind == TokenKind.RIGID}
             humans = {a.actor_id: HumanState(a.world_from_actor[t], a.posed_global[t])
                       for a in evidence.tracks if a.kind == TokenKind.HUMAN}
             ego = evidence.world_from_camera[t, 0] @ inverse_se3(log.rig_from_camera[0])
-            state = SimulationState(ego, vehicles, humans)
+            state = SimulationState(ego, rigids, humans)
             scenes = [composer.assemble(world, state) for world in (observed_only, candidate)]
             for v in range(log.images.shape[1]):
                 # 用特征网格中心对齐渲染监督，避免把插值后的预测当作新增真值。

@@ -1,5 +1,7 @@
 # 主推理流程总览图（已采用）
 
+> 2026-10-28 最新更新：用户要求整图生图后，当前正式图已切回 Image Gen PNG。本目录 production-prompt.txt 是最新实际提交的完整修正指令，见[当前总览说明](../../README.md)。以下旧确认记录属于历史版本。
+
 当前采用用户明确指定的 [repair-attempt.png（归档原图）](../../../../../../_archive/drivecompose/20261026-overview-intermediates/docs/figures/overview/drafts/inference-overview/work/repair-attempt.png)，已按字节原样复制到论文活动图；候选副本已移出项目归档。后续对齐候选不再采用。当前 SHA256：`79eb11de6e2257b089647fe5d314e93414b85381eb276fe3656937ad06c1701c`。以下六项修复及分区比例是此前候选的历史记录，不能作为当前指定图片的几何验收结论。
 
 [论文活动图](../../../../../paper/fig/drivecompose-inference-overview.png) · [完整生成指令](production-prompt.txt) · [设计及核对记录](design-spec.json)

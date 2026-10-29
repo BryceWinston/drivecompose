@@ -99,7 +99,7 @@ class ValidationAndSimulationTests(unittest.TestCase):
                 assert len(observations)==1
                 return DrivingAction(0,1)
         physics = PhysicsDescription(np.array([[0,0,0],[1,0,0],[0,1,0]]),np.array([[0,1,2]]),
-                                     {"vehicle_0":world.vehicles["vehicle_0"].dimensions},{"human_0":np.array([0.1,0.1])})
+                                     {"rigid_0":world.rigids["rigid_0"].dimensions},{"human_0":np.array([0.1,0.1])})
         engine=Engine()
         bridge=SimulationBridge(world,physics,engine,StateDrivenRenderer(ConstantRasterizer()),
                                 (RenderCamera(np.eye(3),np.eye(4),(2,2)),))

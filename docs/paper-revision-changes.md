@@ -1,3 +1,26 @@
+## 2026-10-29：三图入稿与整篇排版检查
+
+用户授权将三张 Image Gen 预览图放入论文。以本轮开始时的未提交工作区为基线，完成中英文图件、图注及引用的必要修改，并重新编译正式 PDF。基线提交为 `e98697e09af130895fe14f70fbc840571da28a0d`，真实修改前文件保存在 `../_archive/drivecompose/20261029-pre-push-cleanup/files/paper/build/three-figure-layout/baseline/`，不将此前工作区改动计入本轮。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+| --- | --- | --- | --- |
+| 主文件图1 | 一张完整流程图，图注按 (a)(b)(c) 三阶段解释 | 图1替换为上下对照图；英文题注 “From observed surfaces to compositional scene assets.”，中文“从观测表面到可组合场景资产” | 匹配用户选定的新图1及概念对照内容 |
+| 引言流程引用 | `Figure~\ref{fig:teaser} follows the reconstruction pipeline.`／“图~\ref{fig:teaser} 展示完整重建流程。” | `Figure~\ref{fig:overview} follows the reconstruction pipeline.`／“图~\ref{fig:overview} 展示完整重建流程。” | 完整框架现为图2；引言首段另引用图1说明未见区域 |
+| 方法 §3.5 | GCM 起始句只解释结构，无机制图 | 起始句加入图3引用，并在对应位置声明联合补全图 | 连接 CCM 与约束采样正文和图3 |
+| 实验图号 | 动态重建图2、视图外推图3 | 自动顺延为图4、图5 | 三张方法图占用前三号；实验图文件、图注、数值及分析原文不变 |
+| 中文图件浮动 | 首轮图1与图2同时挤在第2页 | 每页最多一张页顶跨栏图，图1/2分置第2/3页 | 保持图文阅读节奏；未缩正文或修改模板几何 |
+
+两版图1、图2宽 174.63 mm；图3宽 150.18 mm、高 134.22 mm，以跨栏方式居中，保留细节可读尺度。三张图均为用户选定 PNG 的原字节副本，无代码重绘。场景与资产插图的机制示意身份写入图注。
+
+**最终排版结果：** 英文总计 12 页，正文与图表止于第 9 页，参考文献从第 9 页下部开始；中文总计 10 页，正文止于第 8 页，参考文献从第 8 页开始。两版前三图都在第 2、3、5 页。两份既有补充材料各 3 页，已检查，未改写。
+
+**检查：** 正式 PDF 编译成功；最终日志没有 Overfull/Underfull、缺字、未定义引用或警告。逐页渲染检查未发现裁切、图文重叠、缺图或意外空白页。程序检查页外文字与文字覆盖图片均为 0；63 项现有稿件检查通过，52 条书目、9 个双语方法公式块保持一致。实验源文件、书目、共享 preamble 和字体设置与本轮基线逐字节一致。
+
+**未解决的篇幅问题：** 英文技术正文占 9 页，尚未符合 [CVPR 2027 的 8 页正文限制](https://cvpr.thecvf.com/Conferences/2027/AuthorGuidelines)。新增图件后的实质篇幅需要在后续内容压缩中处理；本轮未通过删减方法、实验、缩字号、改页边距或负间距规避限制。不将当前稿宣称为可直接提交版。
+
+完整本轮差异见 [source-changes.diff](../../_archive/drivecompose/20261029-pre-push-cleanup/files/paper/build/three-figure-layout/source-changes.diff)，检查数据见 [核验记录](../paper/provenance/three-figure-layout-verification-20261029.json)，所有页图见 `../_archive/drivecompose/20261029-pre-push-cleanup/files/paper/build/three-figure-layout/final/review/`。
+
+
 # 当前改动：压缩 §3.2 与 §3.5
 
 更新：2026-10-25。仅修改中英文主稿 §3.2、§3.5，新增双语补充材料 C/D。图示仅提出建议，本轮未改 Figure 1，也未增加正文图。其他主稿章节（含上一轮 §3.6）保持本轮起点原文。
@@ -2032,3 +2055,1861 @@ English 修改前：
 图件 `paper/fig/assets/Shift.pdf` 保持原字节，SHA-256：`6d29c5b316b5e9fb2977549105eb716bb71b46ef10cff29f1a25b9f0cc5b3eb4`。
 
 验证：中英文主稿均重新编译成功，图 3 分别位于英文第 8 页、中文第 6 页。实际 PDF 已包含每行场景、从左至右五列方法的新图注，并补入 StreetForward。最终 TeX 日志无未定义引用、缺字或 overfull 警告；两版图件页渲染无重叠或裁切。英文仍为 11 页、正文结论在第 9 页，中文仍为 9 页。图件原始字节不变，实验一描述及所有数值保持不变。按用户授权提交并推送双语说明与正式构建产物。
+
+## 2026-10-28：主流程叙述、全文语言清理与全量引文核验
+
+本轮基线是开始工作时的实际工作区，HEAD 为 `e98697e09af130895fe14f70fbc840571da28a0d`。工作区已有未提交修改；以下原文均从 [本轮基线快照](../../_archive/drivecompose/20261029-pre-push-cleanup/files/paper/build/revision-20261028/baseline.zip) 读取，不把 HEAD 或用户既有修改冒充本轮原文。
+
+主流程：多视角图像序列 → 视觉编码 → 规范空间特征聚合 → 潜表示编码 → 联合潜空间补全 → 分类型高斯解码 → 场景组合。标题不变，原有实验数值不变。
+
+完整逐行差异见 [本轮独立 diff](../../_archive/drivecompose/20261029-pre-push-cleanup/files/paper/build/revision-20261028/manuscript-changes.diff)。该差异与基线快照比较，区别于包含既有用户修改的 Git HEAD 差异。
+
+参考文献 52 条均找到原始来源，修正 DriveDreamer 作者姓名顺序、补齐 Waymo 两位作者、补齐 LatentWorld 正式页码及链接。详见 [全量引用核验](../paper/REFERENCES.md)。
+
+### 改动范围和理由
+
+| 位置 | 原问题及处理 |
+| --- | --- |
+| 摘要 | 删除原视角检查句，明确视觉特征聚合、潜表示及分类型解码之间的关系。保留已有结果结论。 |
+| 引言 | 用视觉编码—规范聚合—潜编码—联合补全—高斯解码—场景组合解释完整技术链，替换接受检查段。删除末尾机械式章节导航。 |
+| 相关工作 | 比较焦点落在完成位置、组件坐标系和运动绑定；删去“重要比较对象”和检查装配结果的叙述。 |
+| 方法 | 拆开视觉编码与规范聚合、潜编码与高斯解码，按数据流排列。移除检查器模块，补足编码输入、跨组件信息交换和刚体/骨架组合原理。可见性判定的完整条件保留在附录 D，正文保留加权聚合公式和三类掩码。 |
+| 实验 | 将 Obs-Reg 定义移到实验指标处，保留 Pass 定义、分母、筛选口径、全部比较值和实际残余伪影描述。中文补齐英文已有的实验设置、定量比较与两张主结果表，数值逐格一致。 |
+| 讨论 | 按表示的适用条件组织讨论，去除围绕检查器的辩解；保留固定照明、恢复误差、人体模板及物理仿真的实际边界。 |
+| 结论 | 围绕完整方法链及已有 Waymo/消融证据收束，删去重复的模块属性描述。 |
+| 总览图注 | 删除 schematic illustrations / 机制示意 尾注，补上场景组合的具体动作。图仍为方法总览，没有改写为实验结果。图片文件未在本轮改动。 |
+| 补充材料训练 | 删除目标拒绝、导出和版本登记等工程叙述，用共享布局、完整目标与渲染监督解释训练机制；损失公式保持不变。 |
+| 补充材料组合 | 移除重复的完整检查流程，保留刚体/蒙皮、协方差、观察方向与状态推进公式。Obs-Reg 的唯一活动定义位于主稿实验。 |
+| 补充材料聚合 | 承接正文简化的完整投影、深度残差和有效观测条件，使聚合权重仍可追溯。 |
+
+### 中英文原文与修改后逐项对照
+
+以下按实际差异给出上下文；大段移动也会显示为删除和插入。正文删除的检查流程没有迁入其他论文章节；可复核旧文保存在基线快照，原实现代码未改。聚合判定条件则实际保留在附录 D。
+
+#### 摘要
+
+删除原视角检查句，明确视觉特征聚合、潜表示及分类型解码之间的关系。保留已有结果结论。
+
+**英文：** [paper/sec/0_abstract.tex](../paper/sec/0_abstract.tex)
+
+原文：
+
+```latex
+\begin{abstract}
+Driving simulation and scene editing require reconstructed scenes that remain usable when cameras and actors move beyond their recorded configurations. Camera or actor motion exposes previously unseen surfaces, requiring their geometry and appearance to be completed and assigned to the corresponding background, vehicle, or human. We present DriveCompose, a framework for generative reconstruction of compositional driving scenes from image sequences. We represent the background in world coordinates and vehicles and humans in their respective canonical frames, allowing completed surfaces to follow vehicle motion and human articulation. A conditional generative model trained with flow matching uses cross-component memory to share scene context and jointly complete the missing codes in these representations. Completion is constrained by the input observations to preserve the geometry and appearance of observed surfaces. We also render the composed scene from the original camera viewpoints to check its consistency with the input images. On Waymo, DriveCompose improves dynamic scene reconstruction and off-trajectory view synthesis over the evaluated baselines. Ablations show that sharing context across components improves completion of unseen surfaces. The completed components form a Gaussian scene that supports rendering under different camera and actor states.
+\end{abstract}
+
+```
+
+修改后：
+
+```latex
+\begin{abstract}
+Driving simulation and scene editing require reconstructed scenes that remain usable when cameras and actors move beyond their recorded configurations. Camera or actor motion exposes previously unseen surfaces, requiring their geometry and appearance to be completed and assigned to the corresponding background, vehicle, or human. We present DriveCompose, a framework for generative reconstruction of compositional driving scenes from image sequences. Visual features are aggregated in world coordinates for the background and canonical frames for vehicles and humans, then encoded into component-specific latent representations. A conditional generative model trained with flow matching uses cross-component memory to share scene context and jointly complete the missing codes in these representations. Completion is constrained by the input observations to preserve the geometry and appearance of observed surfaces. On Waymo, DriveCompose improves dynamic scene reconstruction and off-trajectory view synthesis over the evaluated baselines. Ablations show that sharing context across components improves completion of unseen surfaces. Type-specific decoders convert the completed latents into Gaussian components whose rigid and skeletal bindings support composition under different camera and actor states.
+\end{abstract}
+
+```
+
+**中文：** [paper/zh/0_abstract_zh.tex](../paper/zh/0_abstract_zh.tex)
+
+原文：
+
+```latex
+\begin{abstract}
+驾驶仿真与场景编辑需要重建场景在相机和参与者偏离记录状态后仍可使用。相机移动或参与者运动会暴露此前未被拍摄的表面，因此需要补全这些表面的几何与外观，并使补全内容保持归属于相应的背景、车辆或人体。我们提出 DriveCompose，从图像序列中生成式地重建可组合驾驶场景。我们在世界坐标系中表示背景，在车辆和人体各自的规范坐标系中表示其内容，使补全表面能够随所属车辆运动或人体姿态变化。通过流匹配训练的条件生成模型利用跨组件记忆共享场景上下文，联合补全这些表示中的缺失潜码。补全过程受输入观测约束，以保持已观测表面的几何与外观。我们还从原始相机视角渲染组合后的场景，检查补全结果是否与输入图像一致。在 Waymo 上，DriveCompose 的动态场景重建和轨迹外视图合成效果优于所评估的基线。消融实验表明，组件间共享上下文能够改善未见表面的补全。补全后的组件构成高斯场景，支持在不同相机和参与者状态下渲染。
+\end{abstract}
+
+```
+
+修改后：
+
+```latex
+\begin{abstract}
+驾驶仿真与场景编辑需要重建场景在相机和参与者偏离记录状态后仍可使用。相机移动或参与者运动会暴露此前未被拍摄的表面，因此需要补全这些表面的几何与外观，并使补全内容保持归属于相应的背景、车辆或人体。我们提出 DriveCompose，从图像序列中生成式地重建可组合驾驶场景。视觉特征在背景的世界坐标系与车辆、人体各自的规范坐标系中聚合，再编码为对应组件的潜表示。通过流匹配训练的条件生成模型利用跨组件记忆共享场景上下文，联合补全这些表示中的缺失潜码。补全过程受输入观测约束，以保持已观测表面的几何与外观。在 Waymo 上，DriveCompose 的动态场景重建和轨迹外视图合成效果优于所评估的基线。消融实验表明，组件间共享上下文能够改善未见表面的补全。分类型解码器将补全潜码转换为高斯组件，其刚体与骨架绑定支持在不同相机和参与者状态下组合场景。
+\end{abstract}
+
+```
+
+#### 引言
+
+用视觉编码—规范聚合—潜编码—联合补全—高斯解码—场景组合解释完整技术链，替换接受检查段。删除末尾机械式章节导航。
+
+**英文：** [paper/sec/1_introduction.tex](../paper/sec/1_introduction.tex)
+
+原文：
+
+```latex
+As illustrated in Fig.~\ref{fig:teaser}, DriveCompose first recovers scene geometry and actor motion from the image sequence and aligns multi-frame image features with the background, vehicle, and human representations. The completion model captures local structure within each component, while cross-component memory gathers information from the background and actors and distributes the shared context back to each component. Missing regions of a vehicle or human can therefore be completed using information from the surrounding scene. The model learns to generate missing latent codes through flow matching~\cite{lipman2022flowmatching}, and component-specific decoders convert the completed representations into a Gaussian scene~\cite{kerbl2023gaussians}.
+
+During completion, we retain surfaces established by reliable observations and generate the missing geometry and appearance. Newly generated surfaces may occlude previously visible regions, so we render the completed scene at the recorded camera viewpoints and actor states and compare it with the input images to check for inconsistencies introduced by completion. Scenes that pass this check can reuse the same completed content for rendering under different camera viewpoints and actor states (Sec.~\ref{sec:composition}).
+```
+
+修改后：
+
+```latex
+Figure~\ref{fig:teaser} follows the reconstruction pipeline. A visual encoder extracts image features and estimates scene geometry and actor motion. Motion-aware aggregation aligns features across views and time in the background and canonical asset frames, and type-specific encoders map them into a shared latent dimension. Local attention captures structure within each component. Cross-component memory gathers background and actor features and returns the shared scene context to each component, allowing missing surfaces to be inferred from both local observations and their surroundings. The model learns this joint completion through flow matching~\cite{lipman2022flowmatching} while retaining observed latent codes.
+
+Type-specific Gaussian decoders turn the completed codes into a background, canonical vehicles, and articulated humans~\cite{kerbl2023gaussians}. Vehicle geometry follows rigid poses, and human geometry follows skeletal motion through its skinning weights. Scene composition places these components in world coordinates for the requested camera and actor states, reusing the same completed content across state changes (Sec.~\ref{sec:composition}).
+```
+
+原文：
+
+```latex
+\Needspace{6\baselineskip}
+Our contributions are:
+\begin{itemize}
+\item We introduce DriveCompose, a generative reconstruction framework for closed-loop driving simulation. It recovers and completes backgrounds, vehicles, and humans from image sequences to construct compositional Gaussian scene assets. The resulting scene reuses the same completed assets for composition and rendering as camera poses, vehicle poses, and human poses change.
+\item We develop a cross-component latent completion model based on conditional flow matching. Local attention models spatial relationships within each component, while cross-component memory aggregates background and actor features to provide scene context for generating each component's missing content.
+\item We evaluate the framework and its key mechanisms through dynamic reconstruction, off-trajectory view synthesis, and component ablations. Experiments show that DriveCompose outperforms the evaluated baselines on reconstruction and view synthesis; cross-component information sharing reduces unseen-surface completion error, with larger absolute reductions under sparse observations.
+\end{itemize}
+
+Section~\ref{sec:related} reviews related work, Section~\ref{sec:method} presents the method, and Section~\ref{sec:experiments} reports experiments. Sections~\ref{sec:discussion} and~\ref{sec:conclusion} discuss limitations and conclude.
+
+```
+
+修改后：
+
+```latex
+\Needspace{6\baselineskip}
+Our contributions are:
+\begin{itemize}
+\item We introduce DriveCompose, a generative reconstruction framework for closed-loop driving simulation. It recovers and completes backgrounds, vehicles, and humans from image sequences to construct compositional Gaussian scene assets. The resulting scene reuses the same completed assets for composition and rendering as camera poses, vehicle poses, and human poses change.
+\item We develop a cross-component latent completion model based on conditional flow matching. Local attention models spatial relationships within each component, while cross-component memory aggregates background and actor features to provide scene context for generating each component's missing content.
+\item We evaluate the framework and its key mechanisms through dynamic reconstruction, off-trajectory view synthesis, and component ablations. Experiments show that DriveCompose outperforms the evaluated baselines on reconstruction and view synthesis; cross-component information sharing reduces unseen-surface completion error, with larger absolute reductions under sparse observations.
+\end{itemize}
+
+```
+
+**中文：** [paper/zh/1_introduction_zh.tex](../paper/zh/1_introduction_zh.tex)
+
+原文：
+
+```latex
+如图~\ref{fig:teaser} 所示，DriveCompose 首先从图像序列中恢复场景几何与参与者运动，将多帧图像特征对齐到背景、车辆和人体各自的表示中。补全模型在每个组件内部建模局部结构，并通过跨组件记忆汇集背景与各对象的信息，再将共享上下文传回各组件。这样，车辆或人体的缺失部分可以结合周围场景的信息进行补全。模型通过流匹配学习生成缺失潜码~\cite{lipman2022flowmatching}，再由各组件的解码器将补全后的表示转化为高斯场景~\cite{kerbl2023gaussians}。
+
+补全时，我们保留由可靠观测确定的表面，并生成缺失部分的几何与外观。新增表面可能遮挡原本可见的区域，因此我们在记录的相机视角和参与者状态下渲染补全后的场景，与输入图像比较，检查补全是否引入观测不一致。通过检查的场景可复用同一份补全内容，在不同相机视角和参与者状态下渲染（第~\ref{sec:composition} 节）。
+```
+
+修改后：
+
+```latex
+图~\ref{fig:teaser} 展示完整重建流程。视觉编码器提取图像特征，并估计场景几何与参与者运动。运动感知聚合将跨视角、跨时刻特征对齐到背景和规范资产坐标系，类型专属编码器再将其映射为维度统一的潜码。局部注意力建模各组件内部的结构，跨组件记忆汇集背景与参与者特征，并将共享场景上下文传回各组件，使缺失表面能够同时依据局部观测与周围场景推断。模型通过流匹配学习联合补全~\cite{lipman2022flowmatching}，并在补全过程中保留已见潜码。
+
+分类型高斯解码器将补全潜码转换为背景、规范车辆和关节化人体~\cite{kerbl2023gaussians}。车辆几何随刚体位姿移动，人体几何通过蒙皮权重随骨架运动。场景组合按照指定的相机与参与者状态，将这些组件放置到世界坐标系，在状态变化时复用同一份补全内容（第~\ref{sec:composition} 节）。
+```
+
+原文：
+
+```latex
+本文的贡献包括：
+\begin{itemize}
+\item 提出面向闭环驾驶仿真的生成式重建框架 DriveCompose。从图像序列中恢复并补全背景、车辆与人体，构建可组合的高斯场景资产。所得场景可在相机位姿、车辆位姿和人体姿态变化时，复用同一组补全资产进行组合与渲染。
+\item 设计基于条件流匹配的跨组件潜空间补全模型。通过局部注意力建模各组件内部的空间关系，通过跨组件记忆汇集背景与参与者的特征，为各组件的缺失内容生成提供场景上下文。
+\item 通过动态重建、轨迹外视图合成与组件消融评估框架及其关键机制。实验表明，DriveCompose 在动态场景重建和轨迹外视图合成中优于所评估的基线；跨组件信息共享降低了未观测表面的补全误差，并在观测稀疏时带来更大的绝对误差降幅。
+\end{itemize}
+
+第~\ref{sec:related} 节回顾相关工作，第~\ref{sec:method} 节介绍方法，第~\ref{sec:experiments} 节报告实验，第~\ref{sec:discussion} 节和第~\ref{sec:conclusion} 节分别讨论局限性并总结全文。
+
+```
+
+修改后：
+
+```latex
+本文的贡献包括：
+\begin{itemize}
+\item 提出面向闭环驾驶仿真的生成式重建框架 DriveCompose。从图像序列中恢复并补全背景、车辆与人体，构建可组合的高斯场景资产。所得场景可在相机位姿、车辆位姿和人体姿态变化时，复用同一组补全资产进行组合与渲染。
+\item 设计基于条件流匹配的跨组件潜空间补全模型。通过局部注意力建模各组件内部的空间关系，通过跨组件记忆汇集背景与参与者的特征，为各组件的缺失内容生成提供场景上下文。
+\item 通过动态重建、轨迹外视图合成与组件消融评估框架及其关键机制。实验表明，DriveCompose 在动态场景重建和轨迹外视图合成中优于所评估的基线；跨组件信息共享降低了未观测表面的补全误差，并在观测稀疏时带来更大的绝对误差降幅。
+\end{itemize}
+
+```
+
+#### 相关工作
+
+比较焦点落在完成位置、组件坐标系和运动绑定；删去“重要比较对象”和检查装配结果的叙述。
+
+**英文：** [paper/sec/2_related_work.tex](../paper/sec/2_related_work.tex)
+
+原文：
+
+```latex
+\paragraph{Generative reconstruction and completion.}
+Image-conditioned 3D generation uses generated views~\cite{liu2023zero123,shi2024mvdream,gao2024cat3d} or structured latents encoding geometry and appearance~\cite{xiang2025trellis,xiang2026trellis2}. GenAssets learns driving-asset priors, CompleteSplat completes hidden Gaussian content, and JRM aggregates unaligned object observations through latent flow matching~\cite{yang2025genassets,liao2025complete,wu2026jrm}. LatentWorld organizes semantic occupancy generation around entity and background latents~\cite{park2026latentworld}, making structured scene generation an important point of comparison. DriveCompose targets RGB-renderable reconstruction conditioned on driving logs: a shared completion model exchanges context across world-space background and canonical vehicle and human codes. Observed codes and known free space constrain sampling, and original-view rendering checks the assembled result before reuse.
+```
+
+修改后：
+
+```latex
+\paragraph{Generative reconstruction and completion.}
+Image-conditioned 3D generation uses generated views~\cite{liu2023zero123,shi2024mvdream,gao2024cat3d} or structured latents encoding geometry and appearance~\cite{xiang2025trellis,xiang2026trellis2}. GenAssets learns driving-asset priors, CompleteSplat completes hidden Gaussian content, and JRM aggregates unaligned object observations through latent flow matching~\cite{yang2025genassets,liao2025complete,wu2026jrm}. LatentWorld organizes semantic occupancy generation around entity and background latents~\cite{park2026latentworld}. DriveCompose targets RGB-renderable reconstruction conditioned on driving logs: a shared completion model exchanges context across world-space background and canonical vehicle and human codes. Observed codes and known free space condition the completion, and type-specific decoders preserve each component's spatial frame and motion binding.
+```
+
+**中文：** [paper/zh/2_related_work_zh.tex](../paper/zh/2_related_work_zh.tex)
+
+原文：
+
+```latex
+\paragraph{生成式重建与补全。}
+图像条件三维生成可通过生成视图~\cite{liu2023zero123,shi2024mvdream,gao2024cat3d}或编码几何与外观的结构化潜变量实现~\cite{xiang2025trellis,xiang2026trellis2}。GenAssets 学习驾驶资产先验，CompleteSplat 补全隐藏的高斯内容，JRM 通过潜空间流匹配聚合未对齐的对象观测~\cite{yang2025genassets,liao2025complete,wu2026jrm}。LatentWorld 围绕实体和背景潜变量组织语义占据生成~\cite{park2026latentworld}，是结构化场景生成的重要比较对象。DriveCompose 面向以驾驶日志为条件、可供 RGB 渲染的重建：共享补全模型在世界空间背景与规范车辆、人体潜码之间交换上下文。已见潜码和已知自由空间约束采样，原始视角渲染在复用前检查装配结果。
+```
+
+修改后：
+
+```latex
+\paragraph{生成式重建与补全。}
+图像条件三维生成可通过生成视图~\cite{liu2023zero123,shi2024mvdream,gao2024cat3d}或编码几何与外观的结构化潜变量实现~\cite{xiang2025trellis,xiang2026trellis2}。GenAssets 学习驾驶资产先验，CompleteSplat 补全隐藏的高斯内容，JRM 通过潜空间流匹配聚合未对齐的对象观测~\cite{yang2025genassets,liao2025complete,wu2026jrm}。LatentWorld 围绕实体和背景潜变量组织语义占据生成~\cite{park2026latentworld}。DriveCompose 面向以驾驶日志为条件、可供 RGB 渲染的重建：共享补全模型在世界空间背景与规范车辆、人体潜码之间交换上下文。已见潜码和已知自由空间为补全提供条件，分类型解码器保留各组件的空间坐标系与运动绑定。
+```
+
+#### 方法
+
+拆开视觉编码与规范聚合、潜编码与高斯解码，按数据流排列。移除检查器模块，补足编码输入、跨组件信息交换和刚体/骨架组合原理。可见性判定的完整条件保留在附录 D，正文保留加权聚合公式和三类掩码。
+
+**英文：** [paper/sec/3_method.tex](../paper/sec/3_method.tex)
+
+原文：
+
+```latex
+DriveCompose reconstructs a driving scene in the units that will later be controlled. Figure~\ref{fig:teaser} shows the main reconstruction pipeline.
+```
+
+修改后：
+
+```latex
+DriveCompose converts multi-view image sequences into a compositional Gaussian scene through visual encoding, canonical feature aggregation, latent encoding, joint latent completion, type-specific Gaussian decoding, and scene composition (Fig.~\ref{fig:teaser}). Canonical aggregation aligns observations of each component across time; joint completion uses the surrounding scene to infer its missing geometry and appearance.
+```
+
+原文：
+
+```latex
+The decoder also carries forward the fixed support, identity, binding, and sky-validity metadata in Eq.~\ref{eq:world}. The layout is established from the input log; generation fills its unknown content. Simulation time changes the state of the decoded scene, while flow time indexes the construction of its latent codes.
+
+\subsection{Visual recovery and canonical aggregation}
+\label{sec:queries}
+
+\paragraph{Shared visual encoding.}
+
+The Driving Log Encoder uses transformer features~\cite{dosovitskiy2021vit,vaswani2017attention} to predict camera-axis depth, normals, confidence, semantics, and instance assignments from the calibrated image log. Trajectory-level identity slots separate persistent identity, dimensions, and human shape from frame-dependent root poses and joint rotations. Architectural details and state parameterization are given in Appendix D of the supplementary material.
+
+\paragraph{Query supports.}
+```
+
+修改后：
+
+```latex
+The query layout assigns each latent code to a spatial location and scene component. Completion fills the unknown codes within this layout, and decoding preserves their component identities and motion bindings.
+
+\subsection{Visual encoding}
+\label{sec:visual-encoding}
+
+The Driving Log Encoder extracts patch features from each image and exchanges pooled context across cameras and timestamps~\cite{dosovitskiy2021vit,vaswani2017attention}. Geometry heads predict camera-axis depth, normals, confidence, semantics, and instance assignments. These predictions connect the image features to 3D surfaces and their owning components. Trajectory-level identity slots separate persistent identity, dimensions, and human shape from frame-dependent root poses and joint rotations. Architectural details and state parameterization are given in Appendix D of the supplementary material.
+
+\subsection{Canonical feature aggregation}
+\label{sec:queries}
+
+\paragraph{Spatial supports.}
+```
+
+原文：
+
+```latex
+Here $\bar{\mathbf q}_i$ is homogeneous, $\operatorname{xyz}$ extracts Euclidean coordinates, and $\mathbf A_i(t)$ is the weighted skinning transform. Projection into a camera gives depth $z_{i,t,v}$ and sampled feature, depth, and confidence $(\boldsymbol\phi_{i,t,v},d_{i,t,v},c_{i,t,v})$. With tolerance $\eta=\eta_{\rm abs}+\eta_{\rm rel}d$, define $r=(d-z)/\eta$. A surface observation must lie inside the image, have valid depth and sufficient confidence, match the query's instance, and satisfy $|r|\leq1$. Background queries additionally require static-background semantics. Let $a_{i,t,v}$ denote this validity test. We aggregate
+```
+
+修改后：
+
+```latex
+Here $\bar{\mathbf q}_i$ is homogeneous, $\operatorname{xyz}$ extracts Euclidean coordinates, and $\mathbf A_i(t)$ is the weighted skinning transform. Projection gives query depth $z_{i,t,v}$ and samples image features $\boldsymbol\phi_{i,t,v}$, depth $d_{i,t,v}$, and confidence $c_{i,t,v}$. We weight observations by confidence and normalized depth residual $r=(d-z)/(\eta_{\rm abs}+\eta_{\rm rel}d)$. The indicator $a_{i,t,v}$ selects visible, depth-consistent observations of the same instance (Appendix D):
+```
+
+原文：
+
+```latex
+The query confidence is the maximum over accepted observations. A reliable ray votes for free space only when the entire support cell is in front of the measured surface; the criterion is detailed in Appendix D of the supplementary material.
+
+Positive accumulated observation weight marks a query as observed. Otherwise, sufficient free-space votes mark it free, and the remainder is unknown. The masks $m_i$, $f_i$, and $u_i$ are mutually exclusive and satisfy $m_i+f_i+u_i=1$. Sky projection uses camera rotation alone, reliable sky semantics, and zero depth residual; sky queries receive no free-space votes.
+
+\subsection{Structured latent representation and decoding}
+\label{sec:codec}
+
+Type-specific encoders map $[\mathbf h_i;\mathbf q_i;\boldsymbol\delta_i]$ to codes $\mathbf z_i\in\mathbb R^D$. Each query keeps its type, ownership, and coordinate frame even though all codes have the same dimension. Visibility masks and confidence are supplied separately to the completion model. Partial and complete observations therefore use the same intrinsic encoding map. Before conditioning, unobserved codes are set to zero; the observed subset is denoted $\mathbf z^{\rm obs}$.
+
+Background, rigid, and human Gaussian decoders independently map each query to $K$ child Gaussians confined to its support cell. Human children inherit the query's skinning weights; vehicle children share their asset's rigid transform. Opacity is multiplied by $1-f_i$, so free queries cannot produce visible Gaussians. A separate sky head predicts cubemap colors within the observation-supported domain $V_{\rm sky}$. Gaussian and appearance parameterizations are detailed in Appendix E of the supplementary material.
+
+Decoding is per query: once the codec is frozen, an unchanged observed code produces unchanged Gaussian parameters. The completion network can exchange context across queries without changing this decoding property.
+
+\subsection{Conditional generative reconstruction}
+\label{sec:completion}
+```
+
+修改后：
+
+```latex
+The masks $m_i$, $f_i$, and $u_i$ distinguish observed surfaces, known free space, and unknown content, with $m_i+f_i+u_i=1$. Confidence is the maximum over valid observations; free space is inferred from reliable depth rays. Sky features are aggregated by viewing direction using camera rotation and sky semantics. Appendix D gives the visibility and free-space criteria.
+
+\subsection{Latent representation encoding}
+\label{sec:codec}
+
+Type-specific encoders compress the aggregated feature and its spatial support, $[\mathbf h_i;\mathbf q_i;\boldsymbol\delta_i]$, into a latent code $\mathbf z_i\in\mathbb R^D$. The shared latent dimension lets the completion model exchange information across background, vehicle, and human representations. Each query keeps its type, ownership, and coordinate frame even though all codes have the same dimension. Visibility masks and confidence are supplied separately to the completion model. Partial and complete observations therefore use the same intrinsic encoding map. Before conditioning, unobserved codes are set to zero; the observed subset is denoted $\mathbf z^{\rm obs}$.
+
+\subsection{Joint latent-space completion}
+\label{sec:completion}
+```
+
+原文：
+
+```latex
+All unknown queries interpolated in Eq.~\ref{eq:flow-path} require valid target codes, even if $s_i$ excludes some of them from the loss. This requirement determines how complete targets are constructed in Sec.~\ref{sec:training}.
+```
+
+修改后：
+
+```latex
+Complete scene or asset examples supply $\mathbf z_1$ at the unknown queries, while $s_i$ selects their contribution to the training loss (Sec.~\ref{sec:training}).
+```
+
+原文：
+
+```latex
+\subsection{Scene composition and observation consistency}
+\label{sec:composition}
+```
+
+修改后：
+
+```latex
+\subsection{Type-specific Gaussian decoding}
+\label{sec:decoding}
+
+Background, rigid, and human Gaussian decoders independently map each query to $K$ child Gaussians confined to its support cell. Human children inherit the query's skinning weights; vehicle children share their asset's rigid transform. Opacity is multiplied by $1-f_i$, so free queries cannot produce visible Gaussians. A separate sky head predicts cubemap colors within the observation-supported domain $V_{\rm sky}$. Gaussian and appearance parameterizations are detailed in Appendix E of the supplementary material.
+
+Each query is decoded independently. Freezing the codec and retaining observed codes therefore preserves the Gaussian parameters of observed surfaces.
+
+\subsection{Scene composition}
+\label{sec:composition}
+```
+
+原文：
+
+```latex
+At online step $k$, state $s_k$ specifies the ego pose, active assets, vehicle transforms, and human root and joint poses. Vehicles are placed by rigid transforms and humans by skinning; standard transformations and backend details are given in Appendix C of the supplementary material. The renderer composites the background, active assets, and valid sky:
+```
+
+修改后：
+
+```latex
+At time step $k$, state $s_k$ specifies the ego pose, active assets, vehicle transforms, and human root and joint poses. Vehicle poses transform canonical Gaussian centers and covariances rigidly. Human joint poses deform them through the stored skinning weights, so completed surfaces move with the corresponding body parts. Appendix C gives the transformations. The renderer composites the background, active assets, and valid sky:
+```
+
+原文：
+
+```latex
+Resetting or branching a trajectory changes state while preserving $\mathcal W$ and its seed. Finite support and supported sky directions determine coverage.
+
+\paragraph{Checking a constructed scene.}
+
+Fixed observed codes preserve decoded parameters, but a newly generated surface can still occlude them. Before accepting a scene, we render the completed candidate and an observed-only reference at the original cameras and actor states. The reference disables all non-observed queries. Let $e_{\rm cand}(p)$ and $e_{\rm obs}(p)$ be their mean absolute RGB errors at pixel $p$. We measure local degradation with
+
+\begin{equation}
+\Delta e(p)=\max\{e_{\rm cand}(p)-e_{\rm obs}(p),0\}.
+\label{eq:regression}
+\end{equation}
+
+Averaging this quantity over reliable non-ego pixels prevents improvements in one region from cancelling degradation elsewhere. Acceptance also bounds absolute RGB and valid-depth errors, minimum coverage, and foreground intrusion, using aggregate and worst-view checks. An intrusion is a newly rendered surface in front of the predicted reference depth that is absent from the observed-only render; its rate is normalized over reliable non-sky geometry pixels. Predicted depth provides an observation-consistency reference. Independent geometry evaluation requires a separate reference. A rejected candidate is not exported for reuse.
+```
+
+修改后：
+
+```latex
+Changing the camera selects a new view of the composed scene; changing an actor state moves its completed canonical asset. The background and canonical content remain fixed across these operations, allowing the same reconstruction to be reused along different trajectories.
+```
+
+原文：
+
+```latex
+Learning is divided into four stages so that the completion target has a stable meaning (Table~\ref{tab:training}).
+```
+
+修改后：
+
+```latex
+We train visual recovery, the latent codec, and the completion model in sequence, then adapt completion through rendered observations (Table~\ref{tab:training}). Freezing the codec during completion training keeps its target latent space fixed.
+```
+
+原文：
+
+```latex
+For codec fitting, partial input and more complete observations share the same query positions, types, order, and ownership. With recovery and the entire codec frozen, complete scene or asset examples provide a valid target for every unknown query to train the GCM with Eq.~\ref{eq:flow-loss}. Real-log adaptation differentiates through flow integration, decoding, and rendering to update only the GCM. Complete-target samples can be interleaved to retain the prior, with each loss applied only to samples carrying its required targets. Observed anchors are enforced by frozen decoding and hard code restoration. Detailed supervision, losses, and conditioning perturbations are provided in Appendix B of the supplementary material.
+
+At inference, a log is encoded once; its support and evidence remain fixed during completion, and the decoded scene is checked before reuse under requested states (Section~\ref{sec:composition}).
+
+```
+
+修改后：
+
+```latex
+For codec fitting, partial input and more complete observations share the same query positions, types, order, and ownership. With recovery and the entire codec frozen, complete scene or asset examples provide a valid target for every unknown query to train the GCM with Eq.~\ref{eq:flow-loss}. Real-log adaptation differentiates through flow integration, decoding, and rendering to update only the GCM. Complete-target samples can be interleaved to retain the prior, with each loss applied only to samples carrying its required targets. Observed anchors are enforced by frozen decoding and hard code restoration. Detailed supervision, losses, and conditioning perturbations are provided in Appendix B of the supplementary material.
+
+```
+
+**中文：** [paper/zh/3_method_zh.tex](../paper/zh/3_method_zh.tex)
+
+原文：
+
+```latex
+DriveCompose 按照后续控制的单位重建驾驶场景。图~\ref{fig:teaser} 展示主要重建流程。
+```
+
+修改后：
+
+```latex
+DriveCompose 从多视角图像序列出发，依次经过视觉编码、规范空间特征聚合、潜表示编码、联合潜空间补全、分类型高斯解码与场景组合，得到可组合高斯场景（图~\ref{fig:teaser}）。规范聚合将各组件在不同时刻的观测对齐，联合补全则利用周围场景推断其缺失的几何与外观。
+```
+
+原文：
+
+```latex
+解码器同时保留式~\ref{eq:world} 中固定的支撑、身份、绑定和天空有效域元数据。布局由输入日志建立，生成过程填充其中的未知内容。仿真时间改变解码场景的状态，流时间则描述潜码的构建过程。
+
+\subsection{视觉恢复与规范聚合}
+\label{sec:queries}
+
+\paragraph{共享视觉编码。}
+
+Driving Log Encoder 使用 Transformer 特征~\cite{dosovitskiy2021vit,vaswani2017attention}，从有标定的图像日志预测相机光轴深度、法线、置信度、语义和实例归属。轨迹级身份槽将持久身份、尺寸和人体体型与逐帧变化的根位姿、关节旋转分开表示。网络结构与状态参数化细节见补充材料附录 D。
+
+\paragraph{查询支撑。}
+```
+
+修改后：
+
+```latex
+查询布局为每个潜码指定空间位置和所属组件。补全在这一布局中生成未知潜码，解码后仍保留其组件身份与运动绑定。
+
+\subsection{视觉编码}
+\label{sec:visual-encoding}
+
+Driving Log Encoder 从各图像提取 patch 特征，并在相机与时间戳之间交换池化上下文~\cite{dosovitskiy2021vit,vaswani2017attention}。几何预测头输出相机光轴深度、法线、置信度、语义和实例归属，将图像特征关联到三维表面及其所属组件。轨迹级身份槽将持久身份、尺寸和人体体型与逐帧变化的根位姿、关节旋转分开表示。网络结构与状态参数化细节见补充材料附录 D。
+
+\subsection{规范空间特征聚合}
+\label{sec:queries}
+
+\paragraph{空间支撑。}
+```
+
+原文：
+
+```latex
+其中，$\bar{\mathbf q}_i$ 为齐次坐标，$\operatorname{xyz}$ 提取欧氏坐标，$\mathbf A_i(t)$ 为加权蒙皮变换。投影到相机后，得到深度 $z_{i,t,v}$ 以及采样特征、深度和置信度 $(\boldsymbol\phi_{i,t,v},d_{i,t,v},c_{i,t,v})$。给定容差 $\eta=\eta_{\rm abs}+\eta_{\rm rel}d$，定义 $r=(d-z)/\eta$。表面观测需位于图像内、深度有效、置信度足够，与查询的实例身份一致，并满足 $|r|\leq1$。背景查询还要求静态背景语义。令 $a_{i,t,v}$ 表示这一有效性判断，则聚合为
+```
+
+修改后：
+
+```latex
+其中，$\bar{\mathbf q}_i$ 为齐次坐标，$\operatorname{xyz}$ 提取欧氏坐标，$\mathbf A_i(t)$ 为加权蒙皮变换。投影得到查询深度 $z_{i,t,v}$，并采样图像特征 $\boldsymbol\phi_{i,t,v}$、深度 $d_{i,t,v}$ 和置信度 $c_{i,t,v}$，按置信度及归一化深度残差 $r=(d-z)/(\eta_{\rm abs}+\eta_{\rm rel}d)$ 为观测赋权。指示量 $a_{i,t,v}$ 选择同一实例中可见且深度一致的观测（附录 D）：
+```
+
+原文：
+
+```latex
+查询置信度取被接受观测中的最大值。仅当整个支撑单元都位于观测表面之前时，可靠射线才提供自由空间票；具体判定式见补充材料附录 D。
+
+有效观测权重之和大于零时，查询被标为已见。否则，足够的自由空间票将其标为自由空间，其余查询为未知。掩码 $m_i$、$f_i$ 和 $u_i$ 互斥，满足 $m_i+f_i+u_i=1$。天空投影仅使用相机旋转，采用可靠天空语义和零深度残差，不接收自由空间票。
+
+\subsection{结构化潜表示与解码}
+\label{sec:codec}
+
+类型专属编码器将 $[\mathbf h_i;\mathbf q_i;\boldsymbol\delta_i]$ 映射为潜码 $\mathbf z_i\in\mathbb R^D$。各潜码维度相同，但查询仍保留类型、归属和坐标系。可见性掩码与置信度单独提供给补全模型，使部分观测与完整观测使用同一潜码编码映射。作为条件输入之前，未观测潜码置零；已见子集记为 $\mathbf z^{\rm obs}$。
+
+背景、刚体和人体高斯解码器分别将每个查询独立映射为限制在其支撑单元内的 $K$ 个子高斯。人体子高斯继承查询的蒙皮权重；车辆子高斯共用所属资产的刚体变换。不透明度乘以 $1-f_i$，使自由空间查询不能产生可见高斯。独立天空头在观测支持的方向域 $V_{\rm sky}$ 内预测立方体贴图颜色。高斯与外观参数化详见补充材料附录 E。
+
+解码逐查询执行：编解码器冻结后，不变的已见潜码产生不变的高斯参数。补全网络可以在查询之间交换上下文，同时保留这一解码性质。
+
+\subsection{条件生成式重建}
+\label{sec:completion}
+```
+
+修改后：
+
+```latex
+掩码 $m_i$、$f_i$ 和 $u_i$ 区分已见表面、已知自由空间和未知内容，满足 $m_i+f_i+u_i=1$。置信度取有效观测的最大值，自由空间由可靠深度射线确定。天空特征依据相机旋转和天空语义，按观察方向聚合。可见性与自由空间判定式见附录 D。
+
+\subsection{潜表示编码}
+\label{sec:codec}
+
+类型专属编码器将聚合特征及其空间支撑 $[\mathbf h_i;\mathbf q_i;\boldsymbol\delta_i]$ 压缩为潜码 $\mathbf z_i\in\mathbb R^D$。统一的潜码维度使补全模型能够在背景、车辆和人体表示之间交换信息。各潜码维度相同，但查询仍保留类型、归属和坐标系。可见性掩码与置信度单独提供给补全模型，使部分观测与完整观测使用同一潜码编码映射。作为条件输入之前，未观测潜码置零；已见子集记为 $\mathbf z^{\rm obs}$。
+
+\subsection{联合潜空间补全}
+\label{sec:completion}
+```
+
+原文：
+
+```latex
+式~\ref{eq:flow-path} 中所有参与插值的未知查询都需要有效目标潜码，即使 $s_i$ 将其中一部分排除在损失之外。该要求决定了第~\ref{sec:training} 节中完整目标的构造方式。
+```
+
+修改后：
+
+```latex
+完整场景或资产样本为未知查询提供目标潜码 $\mathbf z_1$，$s_i$ 则选择其对训练损失的贡献（第~\ref{sec:training} 节）。
+```
+
+原文：
+
+```latex
+\subsection{场景装配与观测一致性}
+\label{sec:composition}
+```
+
+修改后：
+
+```latex
+\subsection{分类型高斯解码}
+\label{sec:decoding}
+
+背景、刚体和人体高斯解码器分别将每个查询独立映射为限制在其支撑单元内的 $K$ 个子高斯。人体子高斯继承查询的蒙皮权重；车辆子高斯共用所属资产的刚体变换。不透明度乘以 $1-f_i$，使自由空间查询不能产生可见高斯。独立天空头在观测支持的方向域 $V_{\rm sky}$ 内预测立方体贴图颜色。高斯与外观参数化详见补充材料附录 E。
+
+各查询独立解码。冻结编解码器并保留已见潜码，使已观测表面的高斯参数保持不变。
+
+\subsection{场景组合}
+\label{sec:composition}
+```
+
+原文：
+
+```latex
+在线步 $k$ 的状态 $s_k$ 指定自车位姿、活动资产、车辆变换，以及人体根位姿与关节姿态。车辆通过刚体变换放置，人体通过蒙皮变换放置；标准变换和后端细节见补充材料附录 C。渲染器合成背景、活动资产和有效天空：
+```
+
+修改后：
+
+```latex
+时刻 $k$ 的状态 $s_k$ 指定自车位姿、活动资产、车辆变换，以及人体根位姿与关节姿态。车辆位姿对规范高斯的中心和协方差施加刚体变换，人体关节姿态通过存储的蒙皮权重使高斯变形，补全表面因此随相应身体部位运动。具体变换见补充材料附录 C。渲染器合成背景、活动资产和有效天空：
+```
+
+原文：
+
+```latex
+重置或分支轨迹改变状态，同时保留 $\mathcal W$ 及其种子。有限空间支撑和有效天空方向决定覆盖范围。
+
+\paragraph{构建场景的检查。}
+
+固定已见潜码能够保持解码参数，但新增表面仍可能遮挡这些内容。接受场景之前，我们在原始相机和资产状态下渲染补全候选及仅由已见查询构成的观测参考；参考渲染关闭全部非已见查询。令 $e_{\rm cand}(p)$ 和 $e_{\rm obs}(p)$ 为像素 $p$ 处两者的平均绝对 RGB 误差，局部退化定义为
+
+\begin{equation}
+\Delta e(p)=\max\{e_{\rm cand}(p)-e_{\rm obs}(p),0\}.
+\label{eq:regression}
+\end{equation}
+
+在可靠的非自车像素上平均这一量，避免某一区域的改善抵消其他区域的退化。接受条件还限制绝对 RGB 误差、有效深度误差和前景侵入率，并要求最低覆盖率；这些条件同时检查聚合结果和最差视图。前景侵入指新增渲染表面位于预测参考深度之前，且未出现在观测参考渲染中；其比例按可靠的非天空几何像素归一化。预测深度提供观测一致性参照，独立几何评测需要另一份参考。被拒绝的候选不导出复用。
+```
+
+修改后：
+
+```latex
+改变相机得到组合场景的新视角，改变参与者状态则移动其已补全的规范资产。背景与规范内容在这些操作中保持固定，使同一重建结果可以沿不同轨迹复用。
+```
+
+原文：
+
+```latex
+学习分为四个阶段，使补全目标保持稳定的含义（表~\ref{tab:training}）。
+```
+
+修改后：
+
+```latex
+我们依次训练视觉恢复模块、潜表示编解码器和补全模型，再通过渲染观测适配补全模型（表~\ref{tab:training}）。补全训练期间冻结编解码器，使目标潜空间保持固定。
+```
+
+原文：
+
+```latex
+编解码器拟合时，部分输入与更完整观测共享相同的查询位置、类型、顺序和归属。随后冻结恢复模块与整个编解码器，使用为每个未知查询提供有效目标的完整场景或资产样本，以式~\ref{eq:flow-loss} 训练 GCM。真实日志适配通过流积分、解码和渲染反向传播，仅更新 GCM。完整目标样本可交替使用以保留先验，各损失项仅作用于具备所需目标的样本。已见锚点由冻结解码和潜码硬恢复维持。详细监督、损失和条件扰动见补充材料附录 B。
+
+推理时，日志只编码一次，补全过程中支撑与证据保持固定；解码后的场景通过检查后，按指定状态复用（第~\ref{sec:composition} 节）。
+
+```
+
+修改后：
+
+```latex
+编解码器拟合时，部分输入与更完整观测共享相同的查询位置、类型、顺序和归属。随后冻结恢复模块与整个编解码器，使用为每个未知查询提供有效目标的完整场景或资产样本，以式~\ref{eq:flow-loss} 训练 GCM。真实日志适配通过流积分、解码和渲染反向传播，仅更新 GCM。完整目标样本可交替使用以保留先验，各损失项仅作用于具备所需目标的样本。已见锚点由冻结解码和潜码硬恢复维持。详细监督、损失和条件扰动见补充材料附录 B。
+
+```
+
+#### 实验
+
+将 Obs-Reg 定义移到实验指标处，保留 Pass 定义、分母、筛选口径、全部比较值和实际残余伪影描述。中文补齐英文已有的实验设置、定量比较与两张主结果表，数值逐格一致。
+
+**英文：** [paper/sec/4_experiments.tex](../paper/sec/4_experiments.tex)
+
+原文：
+
+```latex
+\paragraph{Qualitative comparison.}
+Figure~\ref{fig:dynamic-reconstruction} shows that DriveCompose retains the pedestrian silhouette in the first row and the rear profile of the central vehicle in the second row, while preserving the surrounding street layout. The baseline renderings exhibit displaced or repeated actor contours in the upper rows and blurred or distorted road structure in the lower rows. DriveCompose more closely follows these reference structures in the displayed examples, with residual artifacts around the pedestrians in the third row and the parked pickup in the last row.
+% Table 1 results supplied by the author on 2026-10-22.
+\begin{table}[!htbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{1.3pt}
+\renewcommand{\arraystretch}{1.08}
+\setlength{\belowcaptionskip}{5pt}
+\caption{Dynamic scene reconstruction on Waymo. Image quality is reported over the full image and annotated regions; depth is evaluated at valid LiDAR samples.}
+\label{tab:regions_current}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+& \multicolumn{2}{c}{Full image} & \multicolumn{2}{c}{\shortstack{Dynamic Region}} & \multicolumn{2}{c}{Depth} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Method & PSNR $\uparrow$ & SSIM $\uparrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ & AbsRel $\downarrow$ & $\delta_1$ $\uparrow$ \\
+\midrule
+STORM & 26.380 & 0.826 & 22.100 & 0.624 & 0.178 & 0.741 \\
+DGGT & 27.410 & 0.794 & 22.710 & 0.651 & 0.249 & 0.668 \\
+StreetForward & 27.010 & 0.818 & 20.919 & 0.592 & 0.197 & 0.759 \\
+\midrule
+Ours & \textbf{28.564} & \textbf{0.901} & \textbf{25.050} & \textbf{0.862} & \textbf{0.095} & \textbf{0.877} \\
+\bottomrule
+\end{tabular}
+\end{table}
+```
+
+修改后：
+
+```latex
+\paragraph{Qualitative comparison.}
+Figure~\ref{fig:dynamic-reconstruction} shows that DriveCompose retains the pedestrian silhouette in the first row and the rear profile of the central vehicle in the second row, while preserving the surrounding street layout. The baseline renderings exhibit displaced or repeated actor contours in the upper rows and blurred or distorted road structure in the lower rows. DriveCompose recovers these reference structures more closely. Residual artifacts occur around the pedestrians in the third row and the parked pickup in the last row.
+% Table 1 results supplied by the author on 2026-10-22.
+\begin{table}[!htbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{1.3pt}
+\renewcommand{\arraystretch}{1.08}
+\setlength{\belowcaptionskip}{5pt}
+\caption{Dynamic scene reconstruction on Waymo. Image quality is reported over the full image and annotated regions; depth is evaluated at valid LiDAR samples.}
+\label{tab:regions_current}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+& \multicolumn{2}{c}{Full image} & \multicolumn{2}{c}{\shortstack{Dynamic Region}} & \multicolumn{2}{c}{Depth} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Method & PSNR $\uparrow$ & SSIM $\uparrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ & AbsRel $\downarrow$ & $\delta_1$ $\uparrow$ \\
+\midrule
+STORM & 26.380 & 0.826 & 22.100 & 0.624 & 0.178 & 0.741 \\
+DGGT & 27.410 & 0.794 & 22.710 & 0.651 & 0.249 & 0.668 \\
+StreetForward & 27.010 & 0.818 & 20.919 & 0.592 & 0.197 & 0.759 \\
+\midrule
+Ours & \textbf{28.564} & \textbf{0.901} & \textbf{25.050} & \textbf{0.862} & \textbf{0.095} & \textbf{0.877} \\
+\bottomrule
+\end{tabular}
+\end{table}
+```
+
+原文：
+
+```latex
+\paragraph{Metrics.}
+New-MAE measures linear-RGB error on independently identified surfaces unseen in every input; NVS-MAE covers all held-out target pixels.
+Both MAE metrics and Obs-Reg use linear RGB on a $[0,1]$ scale.
+Across input settings, New-MAE uses the common region unseen even under $\mathcal T_8$.
+Obs-Reg averages the positive input-view regression in Eq.~\ref{eq:regression}.
+Cov.\ is the non-sky target fraction with support coverage $>0.5$, opacity $>0.1$, and finite positive depth.
+Uncovered pixels receive the same zero-RGB fill for error measurement.
+Pass is the fraction of all requested worlds accepted by the fixed checker, including construction failures in its denominator.
+Image metrics include every renderable candidate, including rejected worlds; non-renderable counts are recorded separately.
+Metrics are averaged within each scene and then across scenes and training seeds.
+```
+
+修改后：
+
+```latex
+\paragraph{Metrics.}
+New-MAE measures linear-RGB error on independently identified surfaces unseen in every input; NVS-MAE covers all held-out target pixels.
+Both MAE metrics and Obs-Reg use linear RGB on a $[0,1]$ scale.
+Across input settings, New-MAE uses the common region unseen even under $\mathcal T_8$.
+Obs-Reg measures the increase in input-view RGB error after completion. For completed and observed-query renders with per-pixel errors $e_{\rm cand}(p)$ and $e_{\rm obs}(p)$, it averages
+\begin{equation}
+\Delta e(p)=\max\{e_{\rm cand}(p)-e_{\rm obs}(p),0\}
+\label{eq:regression}
+\end{equation}
+over reliable non-ego pixels.
+Cov.\ is the non-sky target fraction with support coverage $>0.5$, opacity $>0.1$, and finite positive depth.
+Uncovered pixels receive the same zero-RGB fill for error measurement.
+Pass is the fraction of requested scenes meeting fixed bounds on RGB and depth error, coverage, and foreground intrusion, evaluated both across views and in the worst view. Foreground intrusion measures added surfaces in front of reference depth over reliable non-sky pixels. Construction failures remain in the denominator.
+Image metrics cover all renderable scenes before threshold filtering; non-renderable counts are recorded separately.
+Metrics are averaged within each scene and then across scenes and training seeds.
+```
+
+原文：
+
+```latex
+\paragraph{Input sparsity.}
+Table~\ref{tab:ablation-inputs} reuses checkpoints of the full model and the variant w/o CCM at $T=2,4,8$, with 6/12/24 input images.
+The time span, target views, and common unseen-region mask remain fixed; evidence and queries are rebuilt from each input subset.
+No model is retrained for this comparison.
+For the full model, increasing $T$ from 2 to 8 reduces NVS-MAE from 0.043 to 0.026 and New-MAE from 0.092 to 0.062, while increasing coverage from 91.7\% to 96.3\%.
+The full model outperforms the variant w/o CCM on all three metrics at every input count.
+The absolute New-MAE reduction from CCM is 0.027, 0.020, and 0.016 at $T=2,4,8$, respectively, while the corresponding coverage gains are 3.2, 2.3, and 1.8 percentage points.
+The larger absolute gains at lower input counts indicate that cross-component context is especially useful when observations are sparse.
+```
+
+修改后：
+
+```latex
+\paragraph{Input sparsity.}
+Table~\ref{tab:ablation-inputs} reuses checkpoints of the full model and the variant w/o CCM at $T=2,4,8$, with 6/12/24 input images.
+The time span, target views, and common unseen-region mask remain fixed; evidence and queries are rebuilt from each input subset.
+No model is retrained for this comparison.
+For the full model, increasing $T$ from 2 to 8 reduces NVS-MAE from 0.043 to 0.026 and New-MAE from 0.092 to 0.062, while increasing coverage from 91.7\% to 96.3\%.
+The full model outperforms the variant w/o CCM on all three metrics at every input count.
+The absolute New-MAE reduction from CCM is 0.027, 0.020, and 0.016 at $T=2,4,8$, respectively, while the corresponding coverage gains are 3.2, 2.3, and 1.8 percentage points.
+Cross-component context therefore contributes more when each component has fewer observations.
+```
+
+**中文：** [paper/zh/4_experiments_zh.tex](../paper/zh/4_experiments_zh.tex)
+
+原文：
+
+```latex
+（此处原无内容）
+```
+
+修改后：
+
+```latex
+\subsection{实验设置}
+\label{sec:experimental_setup}
+
+\paragraph{数据集与协议。}
+我们使用 Waymo Open Dataset 的 798 条训练序列和 202 条验证序列。遵循 STORM，将每条验证序列划分为不重叠的 2 秒片段，每段包含以 10\,Hz 采样的 20 帧~\cite{yang2025storm}。FRONT、FRONT\_LEFT 和 FRONT\_RIGHT 相机在从零计数的帧索引 $\{0,5,10,15\}$ 提供观测，其余 16 帧用于评价，其中 12 帧对应时间插值，4 帧位于最后一次观测之后。评价时将预测与参考图像缩放至 $240\times160$ 像素~\cite{huang2026instantnurec}。
+
+\paragraph{基线。}
+我们比较 STORM、DGGT 和 StreetForward~\cite{yang2025storm,chen2025dggt,yu2026streetforward}。各方法使用相同输入时刻和目标视图，并采用各自的预处理。相机参数、额外几何输入与渲染适配器随实现设置记录。空间外推遵循 PointForward，比较扩散细化前的高斯渲染~\cite{chi2026pointforward}。
+
+\paragraph{指标。}
+我们在完整图像与共享标注区域上报告 PSNR 和 SSIM。深度评价在有效 LiDAR 投影点上计算逐帧尺度对齐后的 AbsRel 和 $\delta_1$~\cite{huang2026instantnurec}。分数先在片段内按帧平均，再在序列内按片段平均，最后对各序列等权汇总。新轨迹渲染使用固定真实图像与视频参考集合计算 FID 和 FVD。
+
+\paragraph{实现细节。}
+DriveCompose 从运动对齐的观测中重建各类型参与者资产，并与静态背景组合。重建耗时包括预处理、资产生成和场景组合；渲染耗时单独测量，资产复用通过重复场景查询评价。
+```
+
+原文：
+
+```latex
+图~\ref{fig:dynamic-reconstruction} 展示第一个主实验的五组场景重建对比，比较参与者轮廓、车辆边界和街道结构。
+```
+
+修改后：
+
+```latex
+我们在记录相机轨迹上的未观测时刻评价重建。表~\ref{tab:regions_current} 报告完整图像、动态区域及深度质量，图~\ref{fig:dynamic-reconstruction} 比较五个样例的渲染外观。
+
+\paragraph{定量比较。}
+DriveCompose 在表~\ref{tab:regions_current} 的六项指标上均取得最优结果。完整图像和动态区域 PSNR 分别比各自最强基线高 1.154 和 2.340 dB，对应 SSIM 达到 0.901 和 0.862；深度 AbsRel 降至 0.095，$\delta_1$ 达到 0.877。
+```
+
+原文：
+
+```latex
+\paragraph{定性比较。}
+图~\ref{fig:dynamic-reconstruction} 中，DriveCompose 保留了第一行的行人轮廓和第二行中央车辆的尾部外形，同时恢复周围街道布局。基线渲染在上方样例中出现参与者轮廓偏移或重复，在下方样例中出现道路结构模糊或畸变。DriveCompose 在这些展示样例中更接近参考结构，第三行行人周围及最后一行停放的皮卡附近仍有残余伪影。
+```
+
+修改后：
+
+```latex
+\paragraph{定性比较。}
+图~\ref{fig:dynamic-reconstruction} 中，DriveCompose 保留了第一行的行人轮廓和第二行中央车辆的尾部外形，同时恢复周围街道布局。基线渲染在上方样例中出现参与者轮廓偏移或重复，在下方样例中出现道路结构模糊或畸变。DriveCompose 更准确地恢复了这些参考结构。残余伪影集中在第三行行人周围及最后一行停放的皮卡附近。
+
+\begin{table}[!htbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{1.3pt}
+\renewcommand{\arraystretch}{1.08}
+\setlength{\belowcaptionskip}{5pt}
+\caption{Waymo 动态场景重建。图像质量在完整图像和标注区域上统计，深度在有效 LiDAR 投影点上评价。}
+\label{tab:regions_current}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+& \multicolumn{2}{c}{完整图像} & \multicolumn{2}{c}{\shortstack{动态区域}} & \multicolumn{2}{c}{深度} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+方法 & PSNR $\uparrow$ & SSIM $\uparrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ & AbsRel $\downarrow$ & $\delta_1$ $\uparrow$ \\
+\midrule
+STORM & 26.380 & 0.826 & 22.100 & 0.624 & 0.178 & 0.741 \\
+DGGT & 27.410 & 0.794 & 22.710 & 0.651 & 0.249 & 0.668 \\
+StreetForward & 27.010 & 0.818 & 20.919 & 0.592 & 0.197 & 0.759 \\
+\midrule
+Ours & \textbf{28.564} & \textbf{0.901} & \textbf{25.050} & \textbf{0.862} & \textbf{0.095} & \textbf{0.877} \\
+\bottomrule
+\end{tabular}
+\end{table}
+```
+
+原文：
+
+```latex
+图~\ref{fig:waymo-left-shift} 展示 Waymo 数据集上相机向左偏移 $2\,\mathrm{m}$ 的定性视图外推结果，通过三组场景比较车辆外形、道路布局与遮挡边界。
+```
+
+修改后：
+
+```latex
+我们在相机横向偏移 $\pm1$、$\pm2$ 和 $\pm4$ 米时评价轨迹外渲染，并保持相机朝向、内参和时间戳固定~\cite{zhu2025worldsplat,chi2026pointforward}。
+
+表~\ref{tab:spatial_current} 报告各偏移幅度下分别评价左移和右移后平均的 FID 与 FVD，各方法使用相同的真实参考集合。图~\ref{fig:waymo-left-shift} 展示 Waymo 数据集上相机向左偏移 $2\,\mathrm{m}$ 的三组场景，比较车辆外形、道路布局与遮挡边界。
+```
+
+原文：
+
+```latex
+（此处原无内容）
+```
+
+修改后：
+
+```latex
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.08}
+\caption{横向相机偏移下的新视角合成。FID 与 FVD 为各偏移幅度下左移和右移结果的平均，数值越低越好。}
+\label{tab:spatial_current}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}l|rr|rr|rr@{}}
+\toprule
+方法
+& \multicolumn{2}{c|}{偏移 $\pm 1$ m}
+& \multicolumn{2}{c|}{偏移 $\pm 2$ m}
+& \multicolumn{2}{c}{偏移 $\pm 4$ m} \\
+\cmidrule(lr){2-3}
+\cmidrule(lr){4-5}
+\cmidrule(lr){6-7}
+& FID $\downarrow$ & FVD $\downarrow$
+& FID $\downarrow$ & FVD $\downarrow$
+& FID $\downarrow$ & FVD $\downarrow$ \\
+\midrule
+STORM
+& 61.97 & 722.27
+& 83.72 & 1029.36
+& 132.57 & 1704.16 \\
+DGGT
+& 73.99 & 984.00
+& 93.36 & 1197.03
+& 128.01 & 1661.70 \\
+StreetForward
+& 84.30 & 878.95
+& 103.31 & 1095.02
+& 123.58 & 1578.63 \\
+\midrule
+Ours
+& \textbf{28.52} & \textbf{544.27}
+& \textbf{37.43} & \textbf{673.17}
+& \textbf{58.19} & \textbf{817.13} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+```
+
+原文：
+
+```latex
+\paragraph{指标。}
+New-MAE 在独立判定为所有输入均不可见的表面上计算线性 RGB 误差；NVS-MAE 覆盖全部留出目标像素。
+两项 MAE 指标和 Obs-Reg 均采用 $[0,1]$ 线性 RGB 尺度。
+跨输入档位比较时，New-MAE 使用相对 $\mathcal T_8$ 仍不可见的共同区域。
+Obs-Reg 对原始输入视角中式~\ref{eq:regression} 的正退化取平均。
+Cov.\ 为目标非天空区域中支撑覆盖度 $>0.5$、不透明度 $>0.1$ 且深度有限为正的像素比例。
+未覆盖像素统一填零 RGB 后计入误差。
+Pass 为固定检查器接受的世界占全部申请世界的比例，构建失败保留在分母中。
+图像指标纳入全部可渲染候选，包括被拒绝的世界；不可渲染数量单独记录。
+先在场景内平均，再对场景及训练种子汇总。
+```
+
+修改后：
+
+```latex
+\paragraph{指标。}
+New-MAE 在独立判定为所有输入均不可见的表面上计算线性 RGB 误差；NVS-MAE 覆盖全部留出目标像素。
+两项 MAE 指标和 Obs-Reg 均采用 $[0,1]$ 线性 RGB 尺度。
+跨输入档位比较时，New-MAE 使用相对 $\mathcal T_8$ 仍不可见的共同区域。
+Obs-Reg 衡量补全后输入视角 RGB 误差的增量。令补全场景与已见查询渲染的逐像素误差分别为 $e_{\rm cand}(p)$ 和 $e_{\rm obs}(p)$，在可靠的非自车像素上平均
+\begin{equation}
+\Delta e(p)=\max\{e_{\rm cand}(p)-e_{\rm obs}(p),0\}.
+\label{eq:regression}
+\end{equation}
+Cov.\ 为目标非天空区域中支撑覆盖度 $>0.5$、不透明度 $>0.1$ 且深度有限为正的像素比例。
+未覆盖像素统一填零 RGB 后计入误差。
+Pass 为满足固定 RGB 与深度误差、覆盖率和前景侵入阈值的场景比例，同时按跨视图汇总与最差视图评价。前景侵入衡量可靠非天空像素中新增加在参考深度之前的表面。构建失败保留在分母中。
+图像指标统计阈值筛选前的全部可渲染场景，不可渲染数量单独记录。
+先在场景内平均，再对场景及训练种子汇总。
+```
+
+原文：
+
+```latex
+\paragraph{输入稀疏度。}
+表~\ref{tab:ablation-inputs} 复用 Ours 和 w/o CCM 的权重，在 $T=2,4,8$ 下分别输入 6/12/24 张图像。
+时间跨度、目标视图和共同未见区域掩码固定，证据与查询由各档输入重新构建。
+这项比较不重新训练模型。
+对 Ours，将 $T$ 从 2 增至 8 后，NVS-MAE 从 0.043 降至 0.026，New-MAE 从 0.092 降至 0.062，覆盖率从 91.7\% 提高至 96.3\%。
+在每档输入下，Ours 的三项指标均优于 w/o CCM。
+在 $T=2,4,8$ 时，CCM 带来的 New-MAE 绝对降幅分别为 0.027、0.020 和 0.016，覆盖率增益分别为 3.2、2.3 和 1.8 个百分点。
+输入较少时更大的绝对收益表明，跨组件上下文在观测稀疏时更有帮助。
+```
+
+修改后：
+
+```latex
+\paragraph{输入稀疏度。}
+表~\ref{tab:ablation-inputs} 复用 Ours 和 w/o CCM 的权重，在 $T=2,4,8$ 下分别输入 6/12/24 张图像。
+时间跨度、目标视图和共同未见区域掩码固定，证据与查询由各档输入重新构建。
+这项比较不重新训练模型。
+对 Ours，将 $T$ 从 2 增至 8 后，NVS-MAE 从 0.043 降至 0.026，New-MAE 从 0.092 降至 0.062，覆盖率从 91.7\% 提高至 96.3\%。
+在每档输入下，Ours 的三项指标均优于 w/o CCM。
+在 $T=2,4,8$ 时，CCM 带来的 New-MAE 绝对降幅分别为 0.027、0.020 和 0.016，覆盖率增益分别为 3.2、2.3 和 1.8 个百分点。
+各组件观测较少时，跨组件上下文的贡献更大。
+```
+
+#### 讨论
+
+按表示的适用条件组织讨论，去除围绕检查器的辩解；保留固定照明、恢复误差、人体模板及物理仿真的实际边界。
+
+**英文：** [paper/sec/5_discussion.tex](../paper/sec/5_discussion.tex)
+
+原文：
+
+```latex
+\section{Limitations}
+\label{sec:discussion}
+
+DriveCompose represents a finite region under fixed illumination. Errors in recovered depth, identity, or canonical pose can enter the observed anchors and constrain later completion incorrectly. Vehicles are rigid, and humans retain fixed clothing volume and skeleton binding; poses outside the template's support can expose missing geometry. Reference-world coordinates provide context at construction, while contact and collision validity after an edit depend on the physical backend. The observation check assesses agreement with recorded evidence. Geometry outside that evidence and appearance under changed illumination require separate supervision or modeling.
+
+```
+
+修改后：
+
+```latex
+\section{Discussion}
+\label{sec:discussion}
+
+DriveCompose separates canonical scene content from camera and actor states. Its representation covers a finite region under fixed illumination, with rigid vehicles and humans bound to a fixed skeleton and clothing volume. Depth, identity, and canonical-pose estimates determine the observed anchors used by completion, so recovery errors propagate into the reconstructed geometry. Human articulation follows the template's geometric support, and contact and collision behavior are handled by the physical simulator. Relighting and changes in clothing geometry require corresponding appearance and deformation models.
+
+```
+
+**中文：** [paper/zh/5_discussion_zh.tex](../paper/zh/5_discussion_zh.tex)
+
+原文：
+
+```latex
+\section{局限}
+\label{sec:discussion}
+
+DriveCompose 表示固定照明下的有限区域。恢复深度、身份或规范姿态中的错误可能进入已见锚点，并对后续补全施加错误约束。车辆采用刚体模型，人体保留固定衣物体积和骨架绑定；超出模板支撑范围的姿态可能暴露缺失几何。参考世界坐标提供构建时的上下文，编辑后的接触与碰撞有效性则依赖物理后端。观测检查衡量与已记录证据的一致性，证据之外的几何和照明变化下的外观需要额外监督或建模。
+
+```
+
+修改后：
+
+```latex
+\section{讨论}
+\label{sec:discussion}
+
+DriveCompose 将规范场景内容与相机、参与者状态分开表示。当前表示覆盖固定照明下的有限区域，车辆采用刚体模型，人体绑定固定骨架和衣物体积。深度、身份与规范姿态估计决定补全使用的已见锚点，因此恢复误差会传递到重建几何。人体关节运动遵循模板的几何支撑，接触与碰撞行为由物理仿真器处理。重光照与衣物几何变化需要相应的外观和形变模型。
+
+```
+
+#### 结论
+
+围绕完整方法链及已有 Waymo/消融证据收束，删去重复的模块属性描述。
+
+**英文：** [paper/sec/6_conclusion.tex](../paper/sec/6_conclusion.tex)
+
+原文：
+
+```latex
+We presented DriveCompose, a generative reconstruction framework for compositional driving scenes. Its structured latent representation gathers image evidence into background and canonical assets, giving missing content a defined location, identity, and motion model before generation. Conditional completion uses scene context while retaining observed evidence, and typed decoding produces the components of a reusable Gaussian scene. Separating content construction from state-driven composition allows subsequent camera and actor changes to reuse the same completion.
+
+```
+
+修改后：
+
+```latex
+We presented DriveCompose, which reconstructs compositional driving scenes through canonical feature aggregation, latent encoding, and joint completion. Local attention and cross-component memory combine component structure with scene context. Type-specific Gaussian decoders retain identity and motion bindings, allowing completed assets to be composed under changing camera and actor states. On Waymo, DriveCompose improves dynamic reconstruction and off-trajectory view synthesis. Ablations show that cross-component context improves unseen-surface completion.
+
+```
+
+**中文：** [paper/zh/6_conclusion_zh.tex](../paper/zh/6_conclusion_zh.tex)
+
+原文：
+
+```latex
+本文提出 DriveCompose，用于可组合驾驶场景的生成式重建。结构化潜表示将图像证据汇入背景与规范资产，使缺失内容在生成之前就具有明确的位置、身份和运动模型。条件补全利用场景上下文并保留已观测证据，类型解码输出可复用高斯场景的组成部分。内容构建与状态驱动装配相分离，使后续相机和资产状态变化能够使用同一次补全结果。
+
+```
+
+修改后：
+
+```latex
+本文提出 DriveCompose，通过规范特征聚合、潜表示编码与联合补全重建可组合驾驶场景。局部注意力和跨组件记忆结合组件结构与场景上下文，分类型高斯解码保留身份与运动绑定，使补全资产能够在不同相机和参与者状态下组合。在 Waymo 上，DriveCompose 改善了动态重建与轨迹外视图合成。消融实验表明，跨组件上下文改善了未见表面补全。
+
+```
+
+#### 总览图注
+
+删除 schematic illustrations / 机制示意 尾注，补上场景组合的具体动作。图仍为方法总览，没有改写为实验结果。图片文件未在本轮改动。
+
+**英文：** [paper/main.tex](../paper/main.tex)
+
+原文：
+
+```latex
+% !TEX program = xelatex
+% DriveCompose manuscript for CVPR 2027; inherited CVPR style files.
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage[review]{cvpr}
+\input{preamble}
+\input{fontsetup}
+\usepackage{tikz}
+\usepackage{needspace}
+\usetikzlibrary{arrows.meta,patterns}
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+\usepackage{url}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\def\paperID{*****}
+\def\confName{CVPR}
+\def\confYear{2027}
+\title{DriveCompose: Compositional Generative Reconstruction of Driving Scenes via Joint Completion}
+\author{Anonymous CVPR Submission}
+\begin{document}
+\maketitle
+\input{sec/0_abstract}
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}
+  \caption{\textbf{DriveCompose overview.} (a) Visual encoding, motion-aware canonical aggregation, and type-specific latent encoding convert image logs into structured latents. (b) Group-local attention and CCM read/write update component tokens for conditional-flow completion. (c) Query-wise Gaussian decoding produces background and sky, canonical rigid assets, and canonical human assets. Rigid assets retain their rigid binding; humans inherit skinning weights and a rest skeleton. Scene and asset images are schematic illustrations.}
+  \label{fig:teaser}
+\end{figure*}
+\def\CVPRMAIN{}
+\input{sec/1_introduction}
+\input{sec/2_related_work}
+\input{sec/3_method}
+% Ablation results supplied by the author on 2026-10-23.
+\input{sec/4_experiments}
+\input{sec/5_discussion}
+\input{sec/6_conclusion}
+\FloatBarrier
+{\small
+\bibliographystyle{ieeenat_fullname}
+\bibliography{main}
+}
+\end{document}
+
+```
+
+修改后：
+
+```latex
+% !TEX program = xelatex
+% DriveCompose manuscript for CVPR 2027; inherited CVPR style files.
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage[review]{cvpr}
+\input{preamble}
+\input{fontsetup}
+\usepackage{tikz}
+\usepackage{needspace}
+\usetikzlibrary{arrows.meta,patterns}
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+\usepackage{url}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\def\paperID{*****}
+\def\confName{CVPR}
+\def\confYear{2027}
+\title{DriveCompose: Compositional Generative Reconstruction of Driving Scenes via Joint Completion}
+\author{Anonymous CVPR Submission}
+\begin{document}
+\maketitle
+\input{sec/0_abstract}
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}
+  \caption{\textbf{DriveCompose overview.} (a) Visual encoding, motion-aware canonical aggregation, and type-specific latent encoding convert image logs into structured latents. (b) Group-local attention and CCM read/write update component tokens for conditional-flow completion. (c) Query-wise Gaussian decoding produces background and sky, canonical rigid assets, and canonical human assets. Rigid assets retain their rigid binding; humans inherit skinning weights and a rest skeleton. Rigid transforms and skeletal motion place the decoded assets in the background to form the composed scene.}
+  \label{fig:teaser}
+\end{figure*}
+\def\CVPRMAIN{}
+\input{sec/1_introduction}
+\input{sec/2_related_work}
+\input{sec/3_method}
+% Ablation results supplied by the author on 2026-10-23.
+\input{sec/4_experiments}
+\input{sec/5_discussion}
+\input{sec/6_conclusion}
+\FloatBarrier
+{\small
+\bibliographystyle{ieeenat_fullname}
+\bibliography{main}
+}
+\end{document}
+
+```
+
+**中文：** [paper/main_zh.tex](../paper/main_zh.tex)
+
+原文：
+
+```latex
+% !TEX program = xelatex
+% DriveCompose 中文对照稿；会议年份统一为 CVPR 2027。
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage[review]{cvpr}
+\input{preamble}
+\input{fontsetup}
+\usepackage{tikz}
+\usepackage{needspace}
+\usetikzlibrary{arrows.meta,patterns}
+\usepackage{iftex}
+\ifXeTeX
+  \usepackage{fontspec}
+  \usepackage{xeCJK}
+  \setCJKmainfont{FandolSong-Regular.otf}[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]
+  \setCJKsansfont{FandolHei-Regular.otf}[BoldFont=FandolHei-Bold.otf]
+  \setCJKmonofont{FandolFang-Regular.otf}
+\else
+  \PackageError{DriveCompose}{The Chinese counterpart requires XeLaTeX}{Compile main_zh.tex with XeLaTeX or Tectonic.}
+\fi
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+\usepackage{url}
+\usepackage{multirow}
+\def\paperID{*****}
+\def\confName{CVPR}
+\def\confYear{2027}
+\title{DriveCompose：通过联合补全实现驾驶场景的可组合生成式重建}
+\author{Anonymous CVPR Submission}
+\begin{document}
+\maketitle
+\input{zh/0_abstract_zh}
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}
+  \caption{\textbf{DriveCompose 总览。}（a）视觉编码、运动感知的规范聚合与类型专属潜码编码将图像日志转换为结构化潜码。（b）组内局部注意力与 CCM 读写更新组件 token，用于条件流补全。（c）逐查询高斯解码生成背景与天空、规范刚体资产和规范人体资产。刚体资产保留刚体绑定，人体资产继承蒙皮权重与静止骨架。场景及资产图像均为机制示意。}
+  \label{fig:teaser}
+\end{figure*}
+\def\CVPRMAIN{}
+\input{zh/1_introduction_zh}
+\input{zh/2_related_work_zh}
+\input{zh/3_method_zh}
+% 已写入用户于 2026-10-23 提供的消融结果。
+\input{zh/4_experiments_zh}
+\Needspace{13\baselineskip}
+\input{zh/5_discussion_zh}
+\Needspace{14\baselineskip}
+\input{zh/6_conclusion_zh}
+\FloatBarrier
+{\small
+\bibliographystyle{ieeenat_fullname}
+\bibliography{main}
+}
+\end{document}
+
+```
+
+修改后：
+
+```latex
+% !TEX program = xelatex
+% DriveCompose 中文对照稿；会议年份统一为 CVPR 2027。
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage[review]{cvpr}
+\input{preamble}
+\input{fontsetup}
+\usepackage{tikz}
+\usepackage{needspace}
+\usetikzlibrary{arrows.meta,patterns}
+\usepackage{iftex}
+\ifXeTeX
+  \usepackage{fontspec}
+  \usepackage{xeCJK}
+  \setCJKmainfont{FandolSong-Regular.otf}[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]
+  \setCJKsansfont{FandolHei-Regular.otf}[BoldFont=FandolHei-Bold.otf]
+  \setCJKmonofont{FandolFang-Regular.otf}
+\else
+  \PackageError{DriveCompose}{The Chinese counterpart requires XeLaTeX}{Compile main_zh.tex with XeLaTeX or Tectonic.}
+\fi
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+\usepackage{url}
+\usepackage{multirow}
+\def\paperID{*****}
+\def\confName{CVPR}
+\def\confYear{2027}
+\title{DriveCompose：通过联合补全实现驾驶场景的可组合生成式重建}
+\author{Anonymous CVPR Submission}
+\begin{document}
+\maketitle
+\input{zh/0_abstract_zh}
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}
+  \caption{\textbf{DriveCompose 总览。}（a）视觉编码、运动感知的规范聚合与类型专属潜码编码将图像日志转换为结构化潜码。（b）组内局部注意力与 CCM 读写更新组件 token，用于条件流补全。（c）逐查询高斯解码生成背景与天空、规范刚体资产和规范人体资产。刚体资产保留刚体绑定，人体资产继承蒙皮权重与静止骨架。刚体变换与骨架运动将解码资产放置到背景中，完成场景组合。}
+  \label{fig:teaser}
+\end{figure*}
+\def\CVPRMAIN{}
+\input{zh/1_introduction_zh}
+\input{zh/2_related_work_zh}
+\input{zh/3_method_zh}
+% 已写入用户于 2026-10-23 提供的消融结果。
+\input{zh/4_experiments_zh}
+\Needspace{13\baselineskip}
+\input{zh/5_discussion_zh}
+\Needspace{14\baselineskip}
+\input{zh/6_conclusion_zh}
+\FloatBarrier
+{\small
+\bibliographystyle{ieeenat_fullname}
+\bibliography{main}
+}
+\end{document}
+
+```
+
+#### 补充材料训练
+
+删除目标拒绝、导出和版本登记等工程叙述，用共享布局、完整目标与渲染监督解释训练机制；损失公式保持不变。
+
+**英文：** [paper/supplementary/training.tex](../paper/supplementary/training.tex)
+
+原文：
+
+```latex
+We freeze recovery and train the type-specific encoders and decoders. For each sample, partial input establishes the query layout once. More complete observations are then aggregated on exactly the same positions, types, order, and ownership. This correspondence is required for latent completion: separately rebuilding a complete-scene layout would change the variables being predicted. RGB, depth, and silhouette supervision train the decoded scene, with empty-space opacity and Gaussian-scale regularization. Gaussian-set targets can also be matched as sets; direct coordinate supervision is used only when child correspondences are available.
+```
+
+修改后：
+
+```latex
+We freeze recovery and train the type-specific encoders and decoders. For each sample, partial input establishes the query layout once. More complete observations are then aggregated on exactly the same positions, types, order, and ownership. This shared layout aligns partial evidence and complete targets query by query. RGB, depth, and silhouette supervision train the decoded scene, with empty-space opacity and Gaussian-scale regularization. Gaussian-set targets can also be matched as sets; direct coordinate supervision is used only when child correspondences are available.
+```
+
+原文：
+
+```latex
+The notation $\langle\ell\rangle_{\Omega}$ denotes a mean over valid elements of mask $\Omega$. The depth target $d$ and its validity mask are supplied by the available supervision; they do not make the observation check an independent accuracy measurement.
+```
+
+修改后：
+
+```latex
+The notation $\langle\ell\rangle_{\Omega}$ denotes a mean over valid elements of mask $\Omega$. The depth target $d$ and its validity mask are supplied by the available supervision.
+```
+
+原文：
+
+```latex
+We freeze recovery and the entire codec, encode complete targets as $\mathbf z_1$, and optimize the completion transformer with Eq.~(9) of the main paper. Complete scene or asset examples must provide a valid target for every unknown query in Eq.~(8) of the main paper; partial real logs alone do not meet this condition. Complete scenes provide cross-component context, while complete assets supply within-object content. A validity test rejects targets with unsupported unknown queries.
+```
+
+修改后：
+
+```latex
+We freeze recovery and the entire codec, encode complete targets as $\mathbf z_1$, and optimize the completion transformer with Eq.~(9) of the main paper. Complete scene or asset examples provide target codes for the unknown queries in Eq.~(8) of the main paper. Complete scenes provide cross-component context, while complete assets supply within-object geometry and appearance.
+```
+
+原文：
+
+```latex
+A log is encoded once, its support and evidence are fixed, and the completion model integrates the unknown codes. We then decode and check the scene before exporting its fixed content. Runtime rendering uses only this content and the requested states. Recovery, codec, completion, and query-definition versions are recorded together, since changing any of the first two changes the latent distribution on which completion was learned.
+
+```
+
+修改后：
+
+```latex
+A log is encoded once, its support and evidence are fixed, and the completion model integrates the unknown codes. Type-specific decoders produce the background and canonical assets. Rendering composes these fixed components under the requested camera and actor states.
+
+```
+
+**中文：** [paper/supplementary/training_zh.tex](../paper/supplementary/training_zh.tex)
+
+原文：
+
+```latex
+冻结恢复模块，训练类型专属编码器和解码器。每个样本先由部分输入建立一次查询布局，再将更完整的观测聚合到完全相同的位置、类型、顺序和归属上。这种对应关系是潜码补全的前提；若为完整场景另建布局，就会改变待预测变量。RGB、深度和轮廓监督训练解码场景，并结合空域不透明度与高斯尺度正则。高斯集合目标也可以采用集合匹配；仅在子高斯对应已知时使用直接坐标监督。
+```
+
+修改后：
+
+```latex
+冻结恢复模块，训练类型专属编码器和解码器。每个样本先由部分输入建立一次查询布局，再将更完整的观测聚合到完全相同的位置、类型、顺序和归属上。共享布局使部分观测与完整目标逐查询对应。RGB、深度和轮廓监督训练解码场景，并结合空域不透明度与高斯尺度正则。高斯集合目标也可以采用集合匹配；仅在子高斯对应已知时使用直接坐标监督。
+```
+
+原文：
+
+```latex
+符号 $\langle\ell\rangle_{\Omega}$ 表示在掩码 $\Omega$ 的有效元素上取平均。深度目标 $d$ 及其有效掩码由可用监督提供；它们不使观测检查成为独立的精度测量。
+```
+
+修改后：
+
+```latex
+符号 $\langle\ell\rangle_{\Omega}$ 表示在掩码 $\Omega$ 的有效元素上取平均。深度目标 $d$ 及其有效掩码由可用监督提供。
+```
+
+原文：
+
+```latex
+冻结恢复模块和整个编解码器，将完整目标编码为 $\mathbf z_1$，并以主稿式~(9) 优化补全 Transformer。完整场景或资产样本必须为主稿式~(8) 中的每个未知查询提供有效目标，单独的部分真实日志不满足这一条件。完整场景提供跨组件上下文，完整资产提供对象内部内容；任一未知查询缺少有效目标潜码时，有效性检查会拒绝该样本。
+```
+
+修改后：
+
+```latex
+冻结恢复模块和整个编解码器，将完整目标编码为 $\mathbf z_1$，并以主稿式~(9) 优化补全 Transformer。完整场景或资产样本为主稿式~(8) 中的未知查询提供目标潜码。完整场景提供跨组件上下文，完整资产提供对象内部的几何与外观。
+```
+
+原文：
+
+```latex
+日志只编码一次，随后固定支撑与证据，由补全模型积分未知潜码。解码并检查场景后，导出固定内容；运行时渲染仅使用这些内容和指定状态。恢复模块、编解码器、补全网络与查询定义的版本一并记录，因为前两者的变化会改变补全网络学习的潜分布。
+
+```
+
+修改后：
+
+```latex
+日志只编码一次，随后固定支撑与证据，由补全模型积分未知潜码。分类型解码器生成背景与规范资产，渲染时按指定相机与参与者状态组合这些固定组件。
+
+```
+
+#### 补充材料组合
+
+移除重复的完整检查流程，保留刚体/蒙皮、协方差、观察方向与状态推进公式。Obs-Reg 的唯一活动定义位于主稿实验。
+
+**英文：** [paper/supplementary/composition.tex](../paper/supplementary/composition.tex)
+
+原文：
+
+```latex
+\section{Scene composition and checking details}
+\label{sec:supp-composition}
+```
+
+修改后：
+
+```latex
+\section{Scene composition details}
+\label{sec:supp-composition}
+```
+
+原文：
+
+```latex
+For humans, the weighted skinning transform is $\mathbf A_i=\sum_j w_{ij}\mathbf P_j\mathbf B_j^{-1}$, where $\mathbf B_j$ and $\mathbf P_j$ are rest and current global joints in the root frame. The transformed center is $\bar{\boldsymbol\mu}_i^w=\mathbf T^w_h\mathbf A_i\bar{\boldsymbol\mu}_i^h$. The combined local linear map $\mathbf J_i$ gives covariance $\mathbf J_i\boldsymbol\Sigma_i\mathbf J_i^\top$. Its inverse $\mathbf J_i^{-1}$ maps viewing directions into the canonical frame; the direction is normalized before appearance evaluation. Nearly singular skinning transforms are rejected. The root pose controls overall placement, while the root joint retains its rest transform.
+```
+
+修改后：
+
+```latex
+For humans, the weighted skinning transform is $\mathbf A_i=\sum_j w_{ij}\mathbf P_j\mathbf B_j^{-1}$, where $\mathbf B_j$ and $\mathbf P_j$ are rest and current global joints in the root frame. The transformed center is $\bar{\boldsymbol\mu}_i^w=\mathbf T^w_h\mathbf A_i\bar{\boldsymbol\mu}_i^h$. The combined local linear map $\mathbf J_i$ gives covariance $\mathbf J_i\boldsymbol\Sigma_i\mathbf J_i^\top$. Its inverse $\mathbf J_i^{-1}$ maps viewing directions into the canonical frame; the direction is normalized before appearance evaluation. The inverse is evaluated for nonsingular skinning transforms. The root pose controls overall placement, while the root joint retains its rest transform.
+```
+
+原文：
+
+```latex
+Resetting or branching a trajectory changes state while preserving $\mathcal W$ and its seed. Finite support and supported sky directions determine coverage. Road meshes and collision proxies share the visual assets' coordinates and are maintained by the physical backend.
+
+\paragraph{Checking a constructed scene.}
+
+Fixed observed codes preserve decoded parameters, but a newly generated surface can still occlude them. Before accepting a scene, we render the completed candidate and an observed-only reference at the original cameras and actor states. The reference disables all non-observed queries. Let $e_{\rm cand}(p)$ and $e_{\rm obs}(p)$ be their mean absolute RGB errors at pixel $p$. We measure local degradation with
+
+\begin{equation}
+\Delta e(p)=\max\{e_{\rm cand}(p)-e_{\rm obs}(p),0\}.
+\label{eq:regression}
+\end{equation}
+
+Averaging this quantity over reliable non-ego pixels prevents improvements in one region from cancelling degradation elsewhere. Acceptance also bounds absolute RGB and valid-depth errors, minimum coverage, and foreground intrusion, using aggregate and worst-view checks. An intrusion is a newly rendered surface in front of the predicted reference depth that is absent from the observed-only render; its rate is normalized over reliable non-sky geometry pixels. Predicted depth provides an observation-consistency reference. Independent geometry evaluation requires a separate reference. A rejected candidate is not exported for reuse.
+
+
+```
+
+修改后：
+
+```latex
+Camera and actor state changes reuse the same background and canonical assets. Road meshes and collision proxies use the same coordinates as the visual components, allowing their motion to be driven by a physical simulator.
+
+```
+
+**中文：** [paper/supplementary/composition_zh.tex](../paper/supplementary/composition_zh.tex)
+
+原文：
+
+```latex
+\section{场景装配与检查细节}
+\label{sec:supp-composition}
+```
+
+修改后：
+
+```latex
+\section{场景组合细节}
+\label{sec:supp-composition}
+```
+
+原文：
+
+```latex
+人体使用加权蒙皮变换 $\mathbf A_i=\sum_j w_{ij}\mathbf P_j\mathbf B_j^{-1}$，其中 $\mathbf B_j$ 和 $\mathbf P_j$ 是根坐标系中的静止与当前全局关节矩阵。变换后的中心为 $\bar{\boldsymbol\mu}_i^w=\mathbf T^w_h\mathbf A_i\bar{\boldsymbol\mu}_i^h$。组合局部线性映射 $\mathbf J_i$ 将协方差变换为 $\mathbf J_i\boldsymbol\Sigma_i\mathbf J_i^\top$，其逆 $\mathbf J_i^{-1}$ 将观察方向映回规范坐标，并在外观求值前归一化。接近奇异的蒙皮变换被拒绝。根位姿控制整体放置，根关节保持静止变换。
+```
+
+修改后：
+
+```latex
+人体使用加权蒙皮变换 $\mathbf A_i=\sum_j w_{ij}\mathbf P_j\mathbf B_j^{-1}$，其中 $\mathbf B_j$ 和 $\mathbf P_j$ 是根坐标系中的静止与当前全局关节矩阵。变换后的中心为 $\bar{\boldsymbol\mu}_i^w=\mathbf T^w_h\mathbf A_i\bar{\boldsymbol\mu}_i^h$。组合局部线性映射 $\mathbf J_i$ 将协方差变换为 $\mathbf J_i\boldsymbol\Sigma_i\mathbf J_i^\top$，其逆 $\mathbf J_i^{-1}$ 将观察方向映回规范坐标，并在外观求值前归一化。上述逆映射使用非奇异蒙皮变换。根位姿控制整体放置，根关节保持静止变换。
+```
+
+原文：
+
+```latex
+重置或分支轨迹改变状态，同时保留 $\mathcal W$ 及其种子。有限空间支撑和有效天空方向决定覆盖范围。道路网格与碰撞代理采用和视觉资产一致的坐标，由物理后端维护。
+
+\paragraph{构建场景的检查。}
+
+固定已见潜码能够保持解码参数，但新增表面仍可能遮挡这些内容。接受场景之前，我们在原始相机和资产状态下渲染补全候选及仅由已见查询构成的观测参考；参考渲染关闭全部非已见查询。令 $e_{\rm cand}(p)$ 和 $e_{\rm obs}(p)$ 为像素 $p$ 处两者的平均绝对 RGB 误差，局部退化定义为
+
+\begin{equation}
+\Delta e(p)=\max\{e_{\rm cand}(p)-e_{\rm obs}(p),0\}.
+\label{eq:regression}
+\end{equation}
+
+在可靠的非自车像素上平均这一量，避免某一区域的改善抵消其他区域的退化。接受条件还限制绝对 RGB 误差、有效深度误差和前景侵入率，并要求最低覆盖率；这些条件同时检查聚合结果和最差视图。前景侵入指新增渲染表面位于预测参考深度之前，且未出现在观测参考渲染中；其比例按可靠的非天空几何像素归一化。预测深度提供观测一致性参照，独立几何评测需要另一份参考。被拒绝的候选不导出复用。
+
+
+```
+
+修改后：
+
+```latex
+相机与参与者状态变化时复用同一背景和规范资产。道路网格、碰撞代理与视觉组件采用相同坐标，可由物理仿真器驱动其运动。
+
+```
+
+#### 补充材料聚合
+
+承接正文简化的完整投影、深度残差和有效观测条件，使聚合权重仍可追溯。
+
+### 验证与交付
+
+- 英文主稿：正文、图表、讨论及完整结论在第 8 页内，参考文献从第 9 页开始，总计 11 页。
+- 中文主稿：10 页；中英文补充材料各 3 页。
+- 四份 PDF 均重新编译；最终日志无未定义引用、缺字或 overfull 溢出。
+- 双语引用集合、显示公式与结果表数值一致；英文原表全部结果数值未改。
+- 页面对照检查覆盖正文、总览图、方法公式、结果图表、参考文献与补充材料。
+- [最终核验记录](../paper/provenance/revision-verification-20261028.json)、[英文主稿](../paper/build/en/main.pdf)、[中文主稿](../paper/build/zh/main_zh.pdf)。
+
+
+## 2026-10-28：总览图展开、参考场景替换与刚体解码命名
+
+本轮范围：Figure 1、对应图注、解码模块术语、项目图示文档及源码类名。最初基线为 HEAD `e98697e09af130895fe14f70fbc840571da28a0d`，修改前图件和相关文件保存在项目外 `_archive/drivecompose/20261028-overview-expansion/baseline/`。工作期间出现的并行稿件修订原样保留，不计入本轮；最终图件接入前的主文件原文记录在该归档的 work/integration-baseline.json。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+| --- | --- | --- | --- |
+| Figure 1 编码区 | ViT、Canonical aggregation 和 E_b/E_v/E_h 的简略模块 | 展示多视角原图、时空特征、对齐/筛选/融合、类型潜码编码 E_b/E_r/E_h | 区分三种操作各自的作用 |
+| Figure 1 联合补全 | Local attention 框同时包住 CCM，输出端口内部来源不清 | 组内注意力；组件 token 与旧记忆进入 Read，更新记忆与组件 token 进入 Write，残差合成 U，再经过 Flow update | 明确局部与跨组件交互，输出由更新组件表示产生 |
+| Figure 1 输出 | 泛化街景、车辆和人体示意；背景残留交通参与者 | 使用用户给定全景的三个相邻视图，输出对应的空背景、完整邮政车及人体规范资产；补充刚体/蒙皮绑定、状态装配与闭环用途 | 建立场景一致的输入—表示—复用叙事 |
+| 论文主稿与补充材料 | Background, vehicle, and human decoders；背景、车辆和人体解码器 | Background, rigid, and human Gaussian decoders；背景、刚体和人体高斯解码器 | 以运动模型命名解码器，当前车辆仍为刚体实例 |
+| 项目实现与文档 | RigidVehicleDecoder / Rigid Vehicle Decoder | RigidGaussianDecoder / Rigid Gaussian Decoder | 统一刚体高斯解码命名；保留 vehicle 权重键与车辆数据类型 |
+| 论文图件格式 | 一张整图 PNG | SVG 原生文字/模块/连线 + 光栅素材，论文插入矢量 PDF，PNG 用于预览 | 固定精确连线与文字，支持后续局部编辑 |
+
+输入保留用户提供全景的原像素；背景、完整车辆与人体资产是 Image Gen 生成的表示示意，未作为真实模型预测或实验结果。DGGT 参考只用于横向分区、分支组织与图形语言。最终科学结构通过 [build_figure.py](../../_archive/drivecompose/20261028-imagegen-return/retired-native/build_figure.py) 重建；未复制其 pose-free 或渲染细化机制。
+
+验证：13 项既有单元测试通过；归一化 AST 对比确认解码器仅重命名和文档更新，计算行为及 checkpoint 键不变。双语主稿编译成功，图均在第 2 页；英文正文止于第 8 页，References 从第 9 页开始。独立知情审查及局部回归确认核心路径、完整车辆和人体绑定；原文字交叉已修复。[核验记录](../paper/provenance/overview-expansion-20261028.json)。
+
+
+## 2026-10-28：按用户要求改为整图 Image Gen，并重查输入输出
+
+- **原问题**：上一版使用 SVG 重建，违背用户明确选择的生图路线；输入缺少共同场景线索，输出像独立素材，组合场景表达不足。
+- **本轮修改**：通过内置 Image Gen 重绘整张图，突出同一街口的部分可见观测；空背景、完整邮政车与规范人体均回到同一场景语境；三类资产及场景状态汇入 Compose & render，输出组合街景并标注闭环用途。
+- **技术回归**：修正几何/运动来源箭头；删除原始潜码绕过交互的旁路；用三类局部组件共同范围框明确更新输出。独立审查确认输入输出叙事及最后局部修改通过。
+- **文件对照**：`main.tex` / `main_zh.tex` 中 `drivecompose-inference-overview.pdf` 改为同名 `.png`；PNG 与 Image Gen 返回文件逐字节一致。旧 SVG、图件 PDF 和构建脚本已归档，正式论文不再引用它们。未修改本轮范围外的并行正文、引用或实验。
+- **来源边界**：整图依据用户提供场景生成；输入像素不再宣称与原图逐像素一致，输出为机制示意而非实测模型结果。当前记录见 [Image Gen 来源与审核](figures/overview/imagegen-provenance.json)。
+
+本轮 PNG 接入后，双语主稿重新编译成功，图均在第 2 页；英文仍为 8 页正文、References 从第 9 页开始。最终日志无未定义引用/文献、缺字或 Overfull 报告。已查看两版实际 Figure 1 所在页面，见 [本轮核验](../paper/provenance/overview-imagegen-20261028.json)。
+
+
+## 2026-10-29：刚体分支术语与实现核验
+
+基线提交：`e98697e09af130895fe14f70fbc840571da28a0d`；本轮从已有未提交工作区接续，真实基线与逐行差异位于 [归档](../../_archive/drivecompose/20261029-rigid-terminology/changes.diff)。
+
+核验结论：车辆解码已经调用 `RigidGaussianDecoder`；聚合使用共享整体位姿，装配前验证 SE(3)，规范高斯与尺寸固定。人体分支单独使用骨架蒙皮。此次修正遗漏的术语，不更改网络计算、实验数值、引用、数据类别、序列化字段或 checkpoint 键。当前总览 PNG 已使用 Rigid 标签，保留原图。
+
+| 位置 | 原文 | 修改后 | 原因 |
+| --- | --- | --- | --- |
+| 主文及补充的查询放置公式 | `k_i=\mathrm{vehicle}` | `k_i=\mathrm{rigid}` | 按运动模型命名分支，与解码器一致。 |
+| 规范空间聚合 | vehicle anchors are motion-normalized／车辆锚点经运动规范化后 | rigid anchors are aligned by inverse SE(3) transforms／刚体锚点经逆 SE(3) 变换对齐后 | 明确刚体规范对齐机制。 |
+| 解码 | vehicle children／车辆子高斯 | rigid children／刚体子高斯 | 与 RigidGaussianDecoder 和整体位姿绑定一致。 |
+| 潜表示 | background, vehicle, and human representations／背景、车辆和人体表示 | background, rigid, and human representations／背景、刚体和人体表示 | 聚合、编码、补全与解码统一术语。 |
+
+修改范围：摘要、引言中本方法的表示说明、相关工作末段的本方法说明、方法正文、补充前端/解码/训练/组合，及对应技术文档、Mermaid 图和代码注释。实验中的真实车辆实例、外部工作的车辆能力、数据标签与历史溯源记录保持其原义。主文首次定义说明车辆是当前刚体资产实例，不将术语统一解读为新增类别的实测验证。
+
+本轮验证：13 项现有单元测试、双帧刚体聚合检查和 52 项稿件检查均通过。AST 对照确认三份 Python 源文件仅改注释/文档字符串。未执行 PyTorch 网络前向（当前环境无 PyTorch）。四份正式 PDF 均重新编译并检查受影响页面；英文正文止于第 8 页，References 从第 9 页开始。三张技术 Mermaid 图的 SVG/PNG 已重新生成，活动总览 PNG 保持不变。
+
+迁移校验原先把未单独归档的源码直接当作历史快照，既有修改和本轮修改都会使该项失败。已从清单记录的原始提交恢复 9 份文件到归档，逐一匹配原 SHA256，并仅更新历史副本索引；当前源码及原始清单不回退、不修改。核验记录见 [刚体术语核验](../paper/provenance/rigid-terminology-20261029.json)。
+
+
+## 2026-10-29：消融改为通用指标，新结果留空
+
+用户明确要求保留组件消融和输入数量两张表，中英文同步删除旧自定义指标，新指标结果留空。基线提交为 `e98697e09af130895fe14f70fbc840571da28a0d`，本轮从已有未提交工作区接续；真实基线与逐行差异在 [本轮归档](../../_archive/drivecompose/20261029-standard-ablation/changes.diff)，不把此前修改算入本轮。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+| --- | --- | --- | --- |
+| 组件表（双语 Table 4） | New-MAE / Obs-Reg / Cov. / Pass，三行既有汇总 | Full image：PSNR / SSIM / LPIPS；Dynamic regions：PSNR / SSIM，保留 w/o GCM、w/o CCM、Ours，15 格留空 | 通用指标评价最终重建与动态目标，旧汇总不能换算 |
+| 输入数量表（双语 Table 5） | NVS-MAE / New-MAE / Cov.，六行既有汇总 | PSNR / SSIM / LPIPS，T=2/4/8、每档两版本，18 格留空 | 同一 checkpoint 和目标集合下评价输入敏感性 |
+| 指标定义 | 自定义误差增量公式、隐藏面掩码、覆盖及多阈值接受标准 | 留出全图三项指标、动态区域 PSNR/SSIM；共同预处理、分辨率与标注掩码 | 删除不再使用的定义及相关公式 |
+| 组件/输入分析 | “CCM reduces New-MAE from 0.078 … to 0.062 …”；“CCM 将 New-MAE 从 … 0.078 降至 … 0.062 …” | “These comparisons assess the contributions …”；“这两项对照分别评价……贡献。” | 只说明对照目的，不沿用旧数值证明新指标收益 |
+| 摘要 | “Ablations show that sharing context across components improves completion of unseen surfaces.”；“消融实验表明，组件间共享上下文能够改善未见表面的补全。” | 删除该句，保留其他方法与主实验表述 | 当前消融结果留空，该胜出结论暂缺新指标依据 |
+| 引言与结论 | “with larger absolute error reductions under sparser observations”；“在输入观测较少时带来更大的绝对误差降幅”等 | 删除依赖旧指标的结果句/分句 | 同步全篇证据状态，保留机制介绍及其他主结果 |
+
+消融使用 Waymo 留出配对图像，保留两表共用的 29 时间戳、三路相机、嵌套输入和 24 步补全设计；未改主实验的 20 帧协议。移除原隐藏面完整参考线的指标依赖。组件对照与输入敏感性的训练/测试区别保持明确。状态驱动复用段落及其余实验内容逐字核对未变。
+
+历史原始数值仍保存在 `paper/provenance/ablation-results-20261023.json` 及修改前备份，未覆盖或转换。新的指标合同为 [ablation-standard-metrics-20261029.json](../paper/provenance/ablation-standard-metrics-20261029.json)。实验方案、证据表及稿件检查脚本同步当前状态。
+
+验证：54 项稿件检查通过；两版各 33 个新结果格为空，双语公式一致；其他主实验及方法/讨论未改。中英文主稿均重新编译成功，最终日志无未定义引用、缺字或 Overfull；组件表和输入表的实际页面已检查。英文 11 页，技术正文止于第 8 页；中文 9 页。参考文献分别从英文第 8 页、中文第 7 页开始。中文原 PDF 的占用通过归档旧文件并安装已验证候选解决。未执行训练或评测。详见 [核验记录](../paper/provenance/ablation-standard-metrics-verification-20261029.json)。
+
+
+## 2026-10-29：刚体代码接口统一（替代本日上一轮兼容约定）
+
+用户明确要求代码也统一为 rigid，删除旧接口和 checkpoint 兼容。本轮仅改代码、配置、测试、示例和接口文档，未改 LaTeX。基于已有未提交工作区继续修改；本轮 [真实差异](../../_archive/drivecompose/20261029-rigid-api/changes.diff) 与基线保存在项目外归档。
+
+| 原接口 | 新接口 |
+| --- | --- |
+| `RigidVehicleAsset` / `TokenKind.VEHICLE` | `RigidAsset` / `TokenKind.RIGID` |
+| `vehicles` / `vehicle_poses` / `vehicle_dimensions` | `rigids` / `rigid_poses` / `rigid_dimensions` |
+| `codec.vehicle` / `vehicle.*` 权重 | `codec.rigid` / `rigid.*` 权重 |
+| `vehicle_shape` / `vehicle_grid` / `vehicle_motion` | `rigid_shape` / `rigid_grid` / `rigid_motion` |
+
+世界文件改为 schema 2、资产 kind=rigid；CheckpointRecord 仅接受 drivecompose-rigid-v2 查询规范。没有旧名称别名、旧键转换或自动迁移。仓库（含隐藏和忽略文件，不含 Git 对象库）未发现 .pt/.pth/.ckpt/.safetensors checkpoint 文件，因此未执行权重文件删除。历史证据和项目外源码备份不参与运行。
+
+17 项测试全部通过，无跳过，涵盖真实 CPU PyTorch 前向/反向、新权重保存加载、旧权重拒绝、旧世界格式拒绝及刚体装配链路。src、configs 和 examples 内 vehicle 文本为零；纯数值示例输出 rigid 字段。核验与隔离测试环境位于 [本轮归档](../../_archive/drivecompose/20261029-rigid-api/verification.json)。
+
+## 2026-10-29：回填两组通用指标消融结果
+
+基线提交：`e98697e09af130895fe14f70fbc840571da28a0d`。本轮继承已有未提交工作区，真实修改前源稿、PDF 及哈希保存在 [本轮基线](../../_archive/drivecompose/20261029-pre-push-cleanup/files/paper/build/ablation-results-revision/baseline-manifest.json)，不将 HEAD 到工作区的全部差异算作本轮。论文范围仅为中英文 §4.4 的两张消融表及两处结果分析；[逐行差异](../../_archive/drivecompose/20261029-pre-push-cleanup/files/paper/build/ablation-results-revision/changes.diff)。
+
+| 位置（中英文对应） | 原文/原值 | 修改后 | 原因 |
+| --- | --- | --- | --- |
+| 组件表 Ours | 五个空格 | 28.913 / 0.911 / 0.129 / 25.617 / 0.873 | 写入作者汇总值，指标依次为全图 PSNR/SSIM/LPIPS、动态区域 PSNR/SSIM |
+| 组件表 w/o GCM | 五个空格 | 27.137 / 0.867 / 0.183 / 23.431 / 0.811 | 保留原值及三位小数 |
+| 输入表 T=2 Ours | 三个空格 | 26.341 / 0.851 / 0.213 | 写入全图 PSNR/SSIM/LPIPS；其余各行见下方完整对照 |
+| 最优值样式 | 无数值、无标粗 | 组件表按列、输入表按各 T 分组标粗 Ours | PSNR/SSIM 越高越好，LPIPS 越低越好；没有跨 T 混比 |
+
+### 结果分析的真实前后对照
+
+**EN：组件分析**
+
+**原文：**
+
+```latex
+These comparisons assess the contributions of generative completion and cross-component context to full-image and dynamic-region reconstruction.
+```
+
+**修改后：**
+
+```latex
+Ours achieves the best scores on all five metrics.
+Compared with w/o GCM, it raises full-image and dynamic-region PSNR by 1.776 and 2.186 dB, respectively.
+Relative to w/o CCM, the corresponding gains are 0.627 and 0.934 dB, while full-image LPIPS decreases from 0.147 to 0.129.
+```
+
+原因：原句只介绍对照目的，现用收到的五项指标及 PSNR/LPIPS 差值报告结果。
+
+**EN：输入数量分析**
+
+**原文：**
+
+```latex
+Full-image PSNR, SSIM, and LPIPS measure sensitivity to input sparsity under the same target-view evaluation protocol.
+```
+
+**修改后：**
+
+```latex
+Both variants improve across all three metrics as $T$ increases.
+Ours outperforms w/o CCM at every input setting, with PSNR gains of 1.104, 0.738, and 0.627 dB at $T=2,4,8$, respectively.
+The LPIPS reduction also increases as inputs become sparser, from 0.018 at $T=8$ to 0.041 at $T=2$.
+```
+
+原因：原句只介绍评价用途，现说明各档输入的趋势及相同 T 内的比较；差值由本次汇总值直接相减。
+
+**ZH：组件分析**
+
+**原文：**
+
+```latex
+这两项对照分别评价生成式补全和跨组件上下文对全图及动态区域重建的贡献。
+```
+
+**修改后：**
+
+```latex
+Ours 在全部五项指标上取得最优结果。
+相比 w/o GCM，全图和动态区域 PSNR 分别提高 1.776 和 2.186 dB。
+相比 w/o CCM，对应增益分别为 0.627 和 0.934 dB，全图 LPIPS 从 0.147 降至 0.129。
+```
+
+原因：原句只介绍对照目的，现用收到的五项指标及 PSNR/LPIPS 差值报告结果。
+
+**ZH：输入数量分析**
+
+**原文：**
+
+```latex
+全图 PSNR、SSIM 和 LPIPS 用于在相同目标视图评价协议下衡量输入稀疏度的影响。
+```
+
+**修改后：**
+
+```latex
+随着 $T$ 增大，两个版本的三项指标均得到改善。
+Ours 在每档输入设置下均优于 w/o CCM，在 $T=2,4,8$ 时的 PSNR 增益分别为 1.104、0.738 和 0.627 dB。
+LPIPS 降幅也随输入变稀疏而增大，从 $T=8$ 时的 0.018 增至 $T=2$ 时的 0.041。
+```
+
+原因：原句只介绍评价用途，现说明各档输入的趋势及相同 T 内的比较；差值由本次汇总值直接相减。
+
+### 两张表完整前后对照（双语）
+
+**EN `tab:ablation-components`**
+
+**原文**
+
+```latex
+\begin{table}[t]
+  \centering
+  \caption{\textbf{Component ablations.} All variants use $T=8$ (24 images), shared recovery and codec, and the same target views and dynamic-region masks. Full-image quality is evaluated with PSNR, SSIM, and LPIPS; dynamic-region quality with PSNR and SSIM.}
+  \label{tab:ablation-components}
+  \small
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc@{}}
+    \toprule
+    \multirow{2}{*}{Variant} & \multicolumn{3}{c}{Full image} & \multicolumn{2}{c}{Dynamic regions} \\
+    \cmidrule(lr){2-4}\cmidrule(lr){5-6}
+      & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ \\
+    \midrule
+    w/o GCM & & & & & \\
+    w/o CCM & & & & & \\
+    \midrule
+    Ours & & & & & \\
+    \bottomrule
+  \end{tabular*}
+\end{table}
+```
+
+**修改后**
+
+```latex
+\begin{table}[t]
+  \centering
+  \caption{\textbf{Component ablations.} All variants use $T=8$ (24 images), shared recovery and codec, and the same target views and dynamic-region masks. Full-image quality is evaluated with PSNR, SSIM, and LPIPS; dynamic-region quality with PSNR and SSIM.}
+  \label{tab:ablation-components}
+  \small
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc@{}}
+    \toprule
+    \multirow{2}{*}{Variant} & \multicolumn{3}{c}{Full image} & \multicolumn{2}{c}{Dynamic regions} \\
+    \cmidrule(lr){2-4}\cmidrule(lr){5-6}
+      & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ \\
+    \midrule
+    w/o GCM & 27.137 & 0.867 & 0.183 & 23.431 & 0.811 \\
+    w/o CCM & 28.286 & 0.893 & 0.147 & 24.683 & 0.849 \\
+    \midrule
+    Ours & \textbf{28.913} & \textbf{0.911} & \textbf{0.129} & \textbf{25.617} & \textbf{0.873} \\
+    \bottomrule
+  \end{tabular*}
+\end{table}
+```
+
+**EN `tab:ablation-inputs`**
+
+**原文**
+
+```latex
+\begin{table}[t]
+  \centering
+  \caption{\textbf{Input-timestamp sensitivity.} At each $T$, we compare w/o CCM with the full model using fixed checkpoints, time span, and target views. All metrics are evaluated on full images. The $T=8$ setting is shared with Table~\ref{tab:ablation-components}.}
+  \label{tab:ablation-inputs}
+  \small
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}clccc@{}}
+    \toprule
+    $T$ & Variant & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ \\
+    \midrule
+    \multirow{2}{*}{2} & w/o CCM & & & \\
+      & Ours & & & \\
+    \midrule
+    \multirow{2}{*}{4} & w/o CCM & & & \\
+      & Ours & & & \\
+    \midrule
+    \multirow{2}{*}{8} & w/o CCM & & & \\
+      & Ours & & & \\
+    \bottomrule
+  \end{tabular*}
+\end{table}
+```
+
+**修改后**
+
+```latex
+\begin{table}[t]
+  \centering
+  \caption{\textbf{Input-timestamp sensitivity.} At each $T$, we compare w/o CCM with the full model using fixed checkpoints, time span, and target views. All metrics are evaluated on full images. The $T=8$ setting is shared with Table~\ref{tab:ablation-components}.}
+  \label{tab:ablation-inputs}
+  \small
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}clccc@{}}
+    \toprule
+    $T$ & Variant & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ \\
+    \midrule
+    \multirow{2}{*}{2} & w/o CCM & 25.237 & 0.817 & 0.254 \\
+      & Ours & \textbf{26.341} & \textbf{0.851} & \textbf{0.213} \\
+    \midrule
+    \multirow{2}{*}{4} & w/o CCM & 27.126 & 0.869 & 0.187 \\
+      & Ours & \textbf{27.864} & \textbf{0.891} & \textbf{0.159} \\
+    \midrule
+    \multirow{2}{*}{8} & w/o CCM & 28.286 & 0.893 & 0.147 \\
+      & Ours & \textbf{28.913} & \textbf{0.911} & \textbf{0.129} \\
+    \bottomrule
+  \end{tabular*}
+\end{table}
+```
+
+**ZH `tab:ablation-components`**
+
+**原文**
+
+```latex
+\begin{table}[t]
+  \centering
+  \caption{\textbf{组件消融。}所有版本采用 $T=8$（24 张图像）、相同的恢复模块与编解码器，以及统一的目标视图和动态区域掩码。全图采用 PSNR、SSIM 和 LPIPS，动态区域采用 PSNR 和 SSIM。}
+  \label{tab:ablation-components}
+  \small
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc@{}}
+    \toprule
+    \multirow{2}{*}{变体} & \multicolumn{3}{c}{全图} & \multicolumn{2}{c}{动态区域} \\
+    \cmidrule(lr){2-4}\cmidrule(lr){5-6}
+      & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ \\
+    \midrule
+    w/o GCM & & & & & \\
+    w/o CCM & & & & & \\
+    \midrule
+    Ours & & & & & \\
+    \bottomrule
+  \end{tabular*}
+\end{table}
+```
+
+**修改后**
+
+```latex
+\begin{table}[t]
+  \centering
+  \caption{\textbf{组件消融。}所有版本采用 $T=8$（24 张图像）、相同的恢复模块与编解码器，以及统一的目标视图和动态区域掩码。全图采用 PSNR、SSIM 和 LPIPS，动态区域采用 PSNR 和 SSIM。}
+  \label{tab:ablation-components}
+  \small
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc@{}}
+    \toprule
+    \multirow{2}{*}{变体} & \multicolumn{3}{c}{全图} & \multicolumn{2}{c}{动态区域} \\
+    \cmidrule(lr){2-4}\cmidrule(lr){5-6}
+      & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ \\
+    \midrule
+    w/o GCM & 27.137 & 0.867 & 0.183 & 23.431 & 0.811 \\
+    w/o CCM & 28.286 & 0.893 & 0.147 & 24.683 & 0.849 \\
+    \midrule
+    Ours & \textbf{28.913} & \textbf{0.911} & \textbf{0.129} & \textbf{25.617} & \textbf{0.873} \\
+    \bottomrule
+  \end{tabular*}
+\end{table}
+```
+
+**ZH `tab:ablation-inputs`**
+
+**原文**
+
+```latex
+\begin{table}[t]
+  \centering
+  \caption{\textbf{输入时刻数量敏感性。}每档 $T$ 比较 w/o CCM 与完整模型，权重、时间跨度和目标视图固定。所有指标均在完整图像上计算。$T=8$ 的设置与表~\ref{tab:ablation-components} 相同。}
+  \label{tab:ablation-inputs}
+  \small
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}clccc@{}}
+    \toprule
+    $T$ & 变体 & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ \\
+    \midrule
+    \multirow{2}{*}{2} & w/o CCM & & & \\
+      & Ours & & & \\
+    \midrule
+    \multirow{2}{*}{4} & w/o CCM & & & \\
+      & Ours & & & \\
+    \midrule
+    \multirow{2}{*}{8} & w/o CCM & & & \\
+      & Ours & & & \\
+    \bottomrule
+  \end{tabular*}
+\end{table}
+```
+
+**修改后**
+
+```latex
+\begin{table}[t]
+  \centering
+  \caption{\textbf{输入时刻数量敏感性。}每档 $T$ 比较 w/o CCM 与完整模型，权重、时间跨度和目标视图固定。所有指标均在完整图像上计算。$T=8$ 的设置与表~\ref{tab:ablation-components} 相同。}
+  \label{tab:ablation-inputs}
+  \small
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}clccc@{}}
+    \toprule
+    $T$ & 变体 & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ \\
+    \midrule
+    \multirow{2}{*}{2} & w/o CCM & 25.237 & 0.817 & 0.254 \\
+      & Ours & \textbf{26.341} & \textbf{0.851} & \textbf{0.213} \\
+    \midrule
+    \multirow{2}{*}{4} & w/o CCM & 27.126 & 0.869 & 0.187 \\
+      & Ours & \textbf{27.864} & \textbf{0.891} & \textbf{0.159} \\
+    \midrule
+    \multirow{2}{*}{8} & w/o CCM & 28.286 & 0.893 & 0.147 \\
+      & Ours & \textbf{28.913} & \textbf{0.911} & \textbf{0.129} \\
+    \bottomrule
+  \end{tabular*}
+\end{table}
+```
+
+### 保留项、来源与检查范围
+
+- 摘要、引言与贡献、方法、其他主实验、状态复用、讨论、结论、引用和补充材料保持本轮起点原文。两张表的既有协议与图注保持原样。
+- 33 个结果值均直接来自用户本次表格，不换算旧自定义指标，不补造方差、显著性或运行记录。PSNR/LPIPS 差值是本轮新增算术计算。
+- 仅结果标粗涉及排版，未改字体、行距、表格间距或页边距。
+- 同步当前来源合同、证据状态和维护说明。稿件检查脚本按当前指标合同选择标准指标检查，避免填入数值后误走旧 MAE 的 RGB 尺度检查。
+- 本轮未执行训练/评测，未提交或推送。
+
+核验：54 项现有稿件检查通过；每种语言 33 个数值逐格匹配来源合同，T=8 跨表一致，14 个最优值按正确比较范围标粗。两个主稿均成功重新编译，最终日志无未定义引用、缺字或 Overfull。实际查看英文第 6–8 页、中文第 6–7 页，表格无重叠或裁切。英文 11 页，正文与结论止于第 8 页，References 从第 8 页开始；中文 9 页，正文止于第 7 页，References 从第 7 页开始。两张消融表分别位于英文第 7/8 页、中文第 6/7 页。所有其他 LaTeX 源文件及实验章节范围外的内容与本轮基线一致。[完整核验记录](../paper/provenance/ablation-standard-metrics-verification-20261029.json)。

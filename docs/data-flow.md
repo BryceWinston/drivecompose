@@ -14,9 +14,9 @@ flowchart LR
     direction TB
     LOG["多相机驾驶日志<br/>图像、时间戳、标定、可选自车位姿"]
     ENC["Driving Log Encoder<br/>共享特征、几何、实例身份与逐帧状态"]
-    DEC["Scene–Asset Decomposer<br/>背景 / 车辆 / 人体 / 天空查询<br/>规范化、跨视图聚合、可见性标记"]
+    DEC["Scene–Asset Decomposer<br/>背景 / 刚体 / 人体 / 天空查询<br/>规范化、跨视图聚合、可见性标记"]
     DIT["分类型潜码编码 + Joint Completion DiT<br/>锁定已观测潜码，补全未知区域，清零自由空间"]
-    HEADS["三路解码<br/>背景与天空 / 刚体车辆 / 绑定人体"]
+    HEADS["三路解码<br/>背景与天空 / 刚体资产 / 绑定人体"]
     CHECK["ObservedViewValidator<br/>原视角重渲染，检查观测一致性<br/>仅通过检查的结果进入固定世界"]
     WORLD[("WorldVault：固定可组合高斯世界<br/>背景、天空、规范资产、支撑范围与种子")]
     LOG --> ENC --> DEC --> DIT --> HEADS --> CHECK
@@ -62,7 +62,7 @@ flowchart TB
   subgraph INPUT["A · 输入与离线构建条件"]
     LOG["DrivingLog.validate<br/>images: T×V×3×H×W；timestamps: T<br/>K、rig_from_camera、可选 world_from_rig"]
     VERS["已加载 Encoder / Codec / Completion<br/>CheckpointRecord.validate<br/>核对特征基、潜码与查询布局版本"]
-    CONFIG["构建参数<br/>bounds、背景 / 车辆网格、天空分辨率<br/>steps、seed"]
+    CONFIG["构建参数<br/>bounds、背景 / 刚体网格、天空分辨率<br/>steps、seed"]
     TEMPLATE["HumanTemplateProvider【外接】<br/>根据体型码返回规范支撑、权重与 bind pose"]
   end
 
@@ -88,7 +88,7 @@ flowchart TB
 
   subgraph DECOMPOSITION["C · Scene–Asset Decomposer：规范支撑与观测聚合"]
     BGQ["背景查询<br/>可靠深度抬升锚点 + 有限空间网格<br/>世界坐标"]
-    VEHQ["车辆查询<br/>逆轨迹变换后的锚点 + 包围体网格<br/>固定车辆局部坐标"]
+    VEHQ["刚体查询<br/>逆轨迹变换后的锚点 + 包围体网格<br/>固定刚体局部坐标"]
     HUMQ["人体查询<br/>同一身份模板的完整规范支撑<br/>固定骨架权重与邻域尺度"]
     SKYQ["天空查询<br/>立方体贴图六面单位方向"]
     PLACE["make_blocks → QueryBlock<br/>规范位置、尺度、类型、参考世界位置、分组<br/>跨时刻放置并投影到输入相机取特征"]
@@ -124,7 +124,7 @@ flowchart TB
 
   subgraph DECODE["E · 三路解码与观测保护"]
     BGD["BackgroundDecoder<br/>世界坐标背景高斯 + 天空颜色<br/>sky_valid 取已观测天空方向"]
-    VEHD["RigidVehicleDecoder<br/>每查询生成 K 个固定局部高斯<br/>保留 actor_id 与固定尺寸"]
+    VEHD["RigidGaussianDecoder<br/>每查询生成 K 个固定局部高斯<br/>保留 actor_id 与固定尺寸"]
     HUMD["HumanAvatarDecoder<br/>每查询生成 K 个规范人体高斯<br/>子高斯继承模板绑定权重"]
     CAND["export_world → 候选 WorldVault<br/>高斯：中心、协方差、不透明度、方向外观<br/>free 查询的高斯不透明度显式置零"]
     BASE["同一 Codec 解码 z_obs → 观测基线<br/>非 known 查询的高斯不透明度关闭"]
@@ -148,7 +148,7 @@ flowchart TB
   EVID -.->|预测深度、相机与资产状态| REF
 
   subgraph FIXED["F · 固定内容与持久化"]
-    WORLD[("通过检查的 WorldVault + ValidationReport<br/>背景、天空 / sky_valid、规范车辆与人体<br/>bounds、build_seed、表示版本；数组只读")]
+    WORLD[("通过检查的 WorldVault + ValidationReport<br/>背景、天空 / sky_valid、规范刚体与人体<br/>bounds、build_seed、表示版本；数组只读")]
     NPZ[("可选 NPZ 世界文件<br/>save_world / load_world<br/>数组 + JSON 元数据；allow_pickle=False")]
     VALID -->|通过；写入检查状态与表示版本| WORLD
     WORLD -.->|可选保存；读取后恢复同一契约| NPZ
@@ -160,7 +160,7 @@ flowchart TB
     STATE["SimulationState s_k<br/>自车世界位姿、活动车辆位姿<br/>人体根位姿 / 骨架姿态、仿真计时"]
     COMPOSE["StateComposer.assemble<br/>按当前状态选择活动资产"]
     BGFIX["背景直接复用<br/>天空与有效域保持固定"]
-    RIGID["车辆整体 SE(3) 变换<br/>中心、协方差、局部方向映射同步更新"]
+    RIGID["刚体整体 SE(3) 变换<br/>中心、协方差、局部方向映射同步更新"]
     SKIN["人体按当前骨架蒙皮，再应用根位姿<br/>中心、协方差、局部方向映射同步更新"]
     SCENE["AssembledScene<br/>拼接世界高斯、actor_ranges<br/>附带 sky、sky_valid、bounds"]
     CAM["RenderCamera + 当前自车位姿<br/>T_world_camera = T_world_ego × T_ego_camera<br/>内参 K 与图像分辨率"]
@@ -207,10 +207,10 @@ flowchart TB
 | --- | --- |
 | `DrivingLog` | 多相机同步图像 `[T,V,3,H,W]`，时间戳 `[T]`，内参 `[V,3,3]`，安装外参 `[V,4,4]`，可选自车世界位姿 `[T,4,4]`。输入准备为线性 RGB 和针孔模型；畸变、滚动快门与曝光处理属于入口前的数据适配。 |
 | `SceneEvidence` | 图像特征 `[T,V,h,w,F]`，光轴深度、置信度、实例与语义标签，相机世界位姿及轨迹级资产状态。法线由编码器头预测，但当前 `encode` 未将其导出到 `SceneEvidence`。 |
-| `QueryBlock / QueryBundle` | 背景在世界坐标，车辆在固定局部坐标，人体在规范空间，天空在单位方向域。融合特征 `[N,F+1]` 的最后一维是归一化有符号深度残差；另存查询布局、观测标记、置信度和场景摘要。 |
+| `QueryBlock / QueryBundle` | 背景在世界坐标，刚体在固定局部坐标，人体在规范空间，天空在单位方向域。融合特征 `[N,F+1]` 的最后一维是归一化有符号深度残差；另存查询布局、观测标记、置信度和场景摘要。 |
 | `z_obs / z_complete` | 潜码为 `[N,D]`。`known` 为可靠已见表面，`free` 为可靠自由空间，`unknown = ~(known | free)`。已见潜码每步锁定，自由空间每步清零；仅未知潜码随流积分更新。 |
 | `GaussianSet` | 中心 `[M,3]`、正定协方差 `[M,3,3]`、不透明度 `[M]`、局部方向外观 `[M,3,4]`，以及观察方向到局部坐标的映射。单个非天空查询产生 K 个高斯。 |
-| `WorldVault` | 固定背景、天空与 `sky_valid`、规范车辆和人体、支撑范围、构建种子与元数据。数组复制后设为只读。 |
+| `WorldVault` | 固定背景、天空与 `sky_valid`、规范刚体和人体、支撑范围、构建种子与元数据。数组复制后设为只读。 |
 | `SimulationState` | 本步自车位姿、活动车辆映射、人体根位姿与当前骨架，以及仿真计时；资产是否活动由状态映射显式确定。 |
 | `CameraObservation / Transition` | 每相机输出 `rgb / depth / alpha / coverage`。`coverage` 表示支撑有效域。一步仿真返回 `before / observations / action / after`。 |
 

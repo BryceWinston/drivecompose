@@ -21,15 +21,15 @@ class PhysicsDescription:
     """碰撞代理与视觉资产共用 actor 原点、尺寸、骨架和每步位姿。"""
     road_vertices: np.ndarray
     road_triangles: np.ndarray
-    vehicle_dimensions: dict[str, np.ndarray]
+    rigid_dimensions: dict[str, np.ndarray]
     human_bone_radii: dict[str, np.ndarray]
 
     def validate(self, world: WorldVault):
-        if set(self.vehicle_dimensions) != set(world.vehicles) or set(self.human_bone_radii) != set(world.humans):
+        if set(self.rigid_dimensions) != set(world.rigids) or set(self.human_bone_radii) != set(world.humans):
             raise ValueError("物理资产与视觉资产 ID 不一致")
-        for key, asset in world.vehicles.items():
-            if not np.allclose(self.vehicle_dimensions[key], asset.dimensions):
-                raise ValueError("车辆碰撞尺寸与视觉资产尺寸不一致")
+        for key, asset in world.rigids.items():
+            if not np.allclose(self.rigid_dimensions[key], asset.dimensions):
+                raise ValueError("刚体碰撞尺寸与视觉资产尺寸不一致")
         for key, asset in world.humans.items():
             radii = self.human_bone_radii[key]
             if np.shape(radii) != (len(asset.parents),) or np.any(np.asarray(radii) <= 0):

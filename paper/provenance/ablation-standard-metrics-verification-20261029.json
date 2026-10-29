@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-29",
+  "revision": "author-supplied standard ablation result insertion",
+  "baseline_commit": "e98697e09af130895fe14f70fbc840571da28a0d",
+  "baseline_manifest": "paper/build/ablation-results-revision/baseline-manifest.json",
+  "checks": {
+    "paper/fontsetup.tex_unchanged": true,
+    "paper/main.tex_unchanged": true,
+    "paper/main_zh.tex_unchanged": true,
+    "paper/preamble.tex_unchanged": true,
+    "paper/sec/0_abstract.tex_unchanged": true,
+    "paper/sec/1_introduction.tex_unchanged": true,
+    "paper/sec/2_related_work.tex_unchanged": true,
+    "paper/sec/3_method.tex_unchanged": true,
+    "paper/sec/5_discussion.tex_unchanged": true,
+    "paper/sec/6_conclusion.tex_unchanged": true,
+    "paper/supplementary/codec.tex_unchanged": true,
+    "paper/supplementary/codec_zh.tex_unchanged": true,
+    "paper/supplementary/composition.tex_unchanged": true,
+    "paper/supplementary/composition_zh.tex_unchanged": true,
+    "paper/supplementary/cross_dataset.tex_unchanged": true,
+    "paper/supplementary/cross_dataset_zh.tex_unchanged": true,
+    "paper/supplementary/fontsetup.tex_unchanged": true,
+    "paper/supplementary/frontend.tex_unchanged": true,
+    "paper/supplementary/frontend_zh.tex_unchanged": true,
+    "paper/supplementary/lineno-fix.tex_unchanged": true,
+    "paper/supplementary/main.tex_unchanged": true,
+    "paper/supplementary/main_zh.tex_unchanged": true,
+    "paper/supplementary/training.tex_unchanged": true,
+    "paper/supplementary/training_zh.tex_unchanged": true,
+    "paper/zh/0_abstract_zh.tex_unchanged": true,
+    "paper/zh/1_introduction_zh.tex_unchanged": true,
+    "paper/zh/2_related_work_zh.tex_unchanged": true,
+    "paper/zh/3_method_zh.tex_unchanged": true,
+    "paper/zh/5_discussion_zh.tex_unchanged": true,
+    "paper/zh/6_conclusion_zh.tex_unchanged": true,
+    "en_other_experiments_unchanged": true,
+    "en_best_values_bold": true,
+    "en_clean_final_log": true,
+    "en_successfully_built": true,
+    "zh_other_experiments_unchanged": true,
+    "zh_best_values_bold": true,
+    "zh_clean_final_log": true,
+    "zh_successfully_built": true,
+    "manuscript_check": true
+  },
+  "passed": true,
+  "result_cells_filled_per_language": 33,
+  "best_value_bold_cells_per_language": 14,
+  "compiled_pdfs": {
+    "en": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "sha256": "175d2f3fc75fdcd2fb96870c387fea0be77866d4db4a357879df2faadd01e0f1",
+      "pages": 11,
+      "references_start_page": 8,
+      "body_end_page": 8,
+      "ablation_table_pages": [
+        7,
+        8
+      ]
+    },
+    "zh": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+      "sha256": "2e62ccff65ee1fbcdf0429896bb4bf810fcaf22bf156e294e3b6c2ef4a6d36e8",
+      "pages": 9,
+      "references_start_page": 7,
+      "body_end_page": 7,
+      "ablation_table_pages": [
+        6,
+        7
+      ]
+    }
+  },
+  "visual_review": {
+    "en": [
+      6,
+      7,
+      8
+    ],
+    "zh": [
+      6,
+      7
+    ],
+    "findings": "All result cells, bold emphasis and table boundaries are readable; no overlap or clipping on reviewed pages. English body ends on page 8."
+  },
+  "experiments_executed": false,
+  "raw_run_materials_independently_verified": false,
+  "manuscript_check_count": 54
+}

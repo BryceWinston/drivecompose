@@ -1,4 +1,4 @@
-"""Scene–Asset Decomposer：规范查询先放到各时刻，再按可见性读取图像特征。"""
+"""Scene–Asset Decomposer：刚体查询按整体 SE(3) 放置，人体查询按蒙皮放置，再聚合图像特征。"""
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -29,7 +29,7 @@ class SceneEvidence:
     depth: np.ndarray                    # [T,V,h,w], camera z in meters
     confidence: np.ndarray               # [T,V,h,w], trained geometric confidence
     instance: np.ndarray                 # [T,V,h,w], 0=background
-    semantics: np.ndarray                # 0 road,1 static,2 vehicle,3 human,4 sky,5 ego
+    semantics: np.ndarray                # 0 road,1 static,2 rigid,3 human,4 sky,5 ego
     intrinsics: np.ndarray               # [V,3,3], original image coordinates
     world_from_camera: np.ndarray        # [T,V,4,4]
     image_size: tuple[int, int]
@@ -107,7 +107,7 @@ def observed_support(e: SceneEvidence, lower: np.ndarray, upper: np.ndarray,
 
 
 def make_blocks(evidence: SceneEvidence, bounds: np.ndarray,
-                background_shape=(20, 12, 6), vehicle_shape=(8, 4, 4), sky_resolution=4) -> tuple[QueryBlock, ...]:
+                background_shape=(20, 12, 6), rigid_shape=(8, 4, 4), sky_resolution=4) -> tuple[QueryBlock, ...]:
     points, scales = grid_support(bounds[0], bounds[1], background_shape)
     anchors = observed_support(evidence, bounds[0], bounds[1])
     points = np.concatenate([anchors, points])
@@ -116,8 +116,9 @@ def make_blocks(evidence: SceneEvidence, bounds: np.ndarray,
     _, groups = np.unique(cells, axis=0, return_inverse=True)
     blocks = [QueryBlock(TokenKind.BACKGROUND, None, points, scales, points.copy(), groups)]
     for track in evidence.tracks:
-        if track.kind == TokenKind.VEHICLE:
-            p, s = grid_support(-track.dimensions / 2, track.dimensions / 2, vehicle_shape)
+        if track.kind == TokenKind.RIGID:
+            # 刚体规范支撑：固定尺寸，观测锚点经逆整体位姿对齐。
+            p, s = grid_support(-track.dimensions / 2, track.dimensions / 2, rigid_shape)
             anchors = observed_support(evidence, -track.dimensions/2, track.dimensions/2, track, max_points=512)
             p = np.concatenate([anchors, p])
             s = np.concatenate([np.full_like(anchors, 0.20), s])
@@ -130,7 +131,7 @@ def make_blocks(evidence: SceneEvidence, bounds: np.ndarray,
             transforms = skin_transforms(track.skin_weights, track.rest_global, track.posed_global[0])
             reference = transform_points(p, track.world_from_actor[0] @ transforms)
         else:
-            raise ValueError("资产只支持刚体车辆和骨架人体")
+            raise ValueError("资产只支持刚体和骨架人体")
         blocks.append(QueryBlock(track.kind, track.actor_id, p, s, reference, np.zeros(len(p), dtype=int), track))
     directions = cube_directions(sky_resolution).reshape(-1, 3)
     blocks.append(QueryBlock(TokenKind.SKY, None, directions, np.ones_like(directions), directions.copy(),
@@ -164,7 +165,8 @@ class SceneAssetDecomposer:
         free_count = np.zeros(n, dtype=int)
         max_confidence = np.zeros(n)
         for t in range(t_count):
-            if block.kind == TokenKind.VEHICLE:
+            if block.kind == TokenKind.RIGID:
+                # 同一刚体的全部查询共享整体位姿，无局部形变或蒙皮。
                 points = transform_points(block.positions, block.track.world_from_actor[t])
             elif block.kind == TokenKind.HUMAN:
                 transforms = skin_transforms(block.track.skin_weights, block.track.rest_global, block.track.posed_global[t])

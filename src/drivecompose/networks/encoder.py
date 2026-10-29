@@ -44,7 +44,7 @@ class DrivingLogEncoder(nn.Module):
         self.state_attention = nn.MultiheadAttention(width, heads, dropout=0, batch_first=True)
         self.geometry = nn.Linear(width, 11)  # depth1, normal3, confidence1, semantic6
         self.rig_pose = mlp(width, 6)
-        self.actor_kind = mlp(width, 3)       # inactive, vehicle, human
+        self.actor_kind = mlp(width, 3)       # inactive, rigid, human
         self.actor_dimensions = mlp(width, 3)
         self.actor_shape = mlp(width, 10)
         self.actor_pose = mlp(width, 6)
@@ -116,7 +116,7 @@ class DrivingLogEncoder(nn.Module):
                 labels[labels == slot + 1] = 0
                 continue
             if kind == 1:
-                track = ActorTrack(f"vehicle_{slot:03d}", TokenKind.VEHICLE, slot+1,
+                track = ActorTrack(f"rigid_{slot:03d}", TokenKind.RIGID, slot+1,
                                    raw["actor_poses"][:, slot], raw["actor_dimensions"][slot])
             else:
                 if templates is None:
