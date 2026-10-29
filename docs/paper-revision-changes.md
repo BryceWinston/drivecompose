@@ -2402,3 +2402,281 @@ Reconstructing complete and controllable 3D scenes from partial observations is 
 本轮源码只替换两版摘要的上述观测一致性表述，其他句子与本轮实际基线逐字一致。发布包含此前已确认的摘要优化、双语正式 PDF 和可追溯记录；本地既有的三个 pointforward PDF 删除状态不纳入本次提交。
 
 两版主稿均重新编译成功并实际写入正式 PDF。日志无编译错误、未定义引用、缺字或 overfull 警告。两版首页及结论页已目视检查，无重叠或裁切，确认新版观测一致性表述及 20.5% 正常显示。英文仍为 12 页，正文结论与参考文献均在第 9 页；中文仍为 9 页，结论在第 6 页、参考文献从第 7 页开始。英文摘要缩为 173 词，未增加页数；原有英文正文超过 8 页的状态不变。132 项受保护文件及既有缺失状态未变，已有改动记录前缀完整保留。详细核验保存于 `paper/build/abstract-revision/consistency-check.json`。按本轮用户授权提交并推送。
+
+
+## 2026-10-29：从领域读者视角局部微调引言
+
+基线提交：`0381af6362fc941420fa23d467dc99d68dc7d0c8`。本轮两版引言与 HEAD 一致，已有工作区的 pointforward 图件删除与摘要预览文件不属于本轮修改。范围仅为两版引言的四处问题、对应记录与重新编译的主稿输出；标题、摘要、其他章节、书目、数值与图表位置保持原样。未提交或推送。
+
+沿用已有应用需求、观测缺失、生成与控制、表示与联合补全、观测检查、实验及贡献的叙事顺序。未发现需要整段重写或重新分类文献的依据。采用 nature-polishing 的 algorithmic / intro / en / generic 路由，并进行非防御性写作和 humanizer 局部复读。
+
+英文按同一计数规则由 633 词变为 624 词（去除章节标题和 LaTeX 引用命令，保留正文及贡献、组织说明）。
+
+### 第二段末句：先明确推断需求，再引出生成式方法
+
+英文原文：
+
+```latex
+When a new viewpoint or actor motion reveals surfaces unseen throughout the sequence, reconstruction must infer their geometry and appearance from generative priors.
+```
+
+英文修改后：
+
+```latex
+When a new viewpoint or actor motion reveals surfaces unseen throughout the sequence, reconstruction must infer their geometry and appearance.
+```
+
+中文原文：
+
+```latex
+当新视角或对象运动暴露出整个序列都未曾拍摄的表面时，重建需要借助生成先验推断其几何与外观。
+```
+
+中文修改后：
+
+```latex
+当新视角或对象运动暴露出整个序列都未曾拍摄的表面时，重建需要推断其几何与外观。
+```
+
+原因：原句把未观测表面需要推断，进一步限定为必须来自生成先验。删除这一限定，下一段仍完整介绍生成式路线及引用；不新增对已有方法的能力判断。
+
+### 第三段末尾：说明跨组件信息为何参与补全
+
+英文原文：
+
+```latex
+Applying generative completion to such scenes requires generated surfaces to move with their actors, while allowing each actor's completion to use information from the surrounding scene.
+```
+
+英文修改后：
+
+```latex
+Applying generative completion to such scenes requires generated surfaces to move with their actors. When an actor is only partially observed, information from the background and other actors can provide additional context for inferring its missing content.
+```
+
+中文原文：
+
+```latex
+将生成补全用于这类场景，需要使补出的表面随所属对象运动，同时让每个对象能够利用周围场景的信息完成补全。
+```
+
+中文修改后：
+
+```latex
+将生成补全用于这类场景，需要使补出的表面随所属对象运动。当对象仅被部分观测时，背景与其他对象的信息可为推断其缺失内容提供补充上下文。
+```
+
+原因：保留补出表面随对象运动的控制要求，将信息共享的条件具体写为对象仅被部分观测，并明确上下文来自背景与其他对象。设计依据是方法 3.2 的观测聚合与 3.4 的跨组件特征交换；实验 4.4 的 CCM 消融和输入稀疏性结果支持其补全价值。没有声称所有前人方法均不使用上下文，也没有将场景上下文写成保证恢复真实隐藏表面的充分条件。
+
+### 第四段首句：中文明确独立控制的对象
+
+英文对应句已明确控制对象，原样保留。
+
+中文原文：
+
+```latex
+为此，我们提出 DriveCompose，从驾驶图像序列中构建可独立控制、并经过生成补全的三维场景。
+```
+
+中文修改后：
+
+```latex
+为此，我们提出 DriveCompose，从驾驶图像序列中构建经过生成补全、并支持参与者独立控制的三维场景。
+```
+
+原因：原句“可独立控制”修饰整个场景，独立于什么不清楚。改为参与者独立控制，与英文 independently controllable actors 对齐；英文此句不改。
+
+### 第三项贡献：删除重复实验结果
+
+英文原文：
+
+```latex
+\item We evaluate the framework and its key mechanisms through dynamic reconstruction, off-trajectory view synthesis, and component ablations. Experiments show that DriveCompose outperforms the evaluated baselines on reconstruction and view synthesis; cross-component information sharing reduces unseen-surface completion error, with larger absolute reductions under sparse observations.
+```
+
+英文修改后：
+
+```latex
+\item We evaluate the framework through dynamic reconstruction and off-trajectory view synthesis, and use component ablations to quantify the reduction in unseen-surface completion error from cross-component information sharing.
+```
+
+中文原文：
+
+```latex
+\item 通过动态重建、轨迹外视图合成与组件消融评估框架及其关键机制。实验表明，DriveCompose 在动态场景重建和轨迹外视图合成中优于所评估的基线；跨组件信息共享降低了未观测表面的补全误差，并在观测稀疏时带来更大的绝对误差降幅。
+```
+
+中文修改后：
+
+```latex
+\item 通过动态重建与轨迹外视图合成评估框架，并通过组件消融量化跨组件信息共享带来的未观测表面补全误差降幅。
+```
+
+原因：保留动态重建和视图外推的评估范围，并明确消融量化跨组件信息共享带来的补全误差降幅；删除紧邻第七段已完整说明的基线比较与稀疏条件复述。结果、比较范围和观测稀疏条件均仍在引言第七段及实验正文，不是迁入补充材料，也没有删除不利结果。
+
+### 保留项与证据边界
+
+第一段的问题条件与操作后果、第四段的坐标表示与运动绑定、第五段的局部结构和跨组件信息交换、第六段的观测检查、第七段的实验结论、前两项贡献及论文组织均保留。第一项贡献的闭环驾驶仿真沿用应用定位，现有实验结论仍限定在重建、视图外推和组件消融。未将方法接口当作闭环性能实测。
+
+本轮未新增文献或实验主张；依据当前方法、实验表格及作者确认的 `paper/provenance/ablation-results-20261023.json`，未独立核验原始训练日志。
+
+### 编译与核验
+
+双语主稿重新编译成功，正式 PDF 均由本轮实际写入。日志无编译错误、未定义引用、缺字或 overfull 警告；英文第 1–3 页、中文第 1–2 页和两版结论页已目视核对，无新增重叠或裁切。PDF 中已核对第三段新增解释和第三项贡献的新表述。
+
+英文仍为 12 页，正文结论和参考文献均在第 9 页；中文仍为 9 页，结论在第 6 页。原有英文正文超过 8 页、图 2 占据第 2 页顶部并使贡献列表跨页的排版状态不变，本轮未调整图表声明位置或版式参数。
+
+引言引用键及顺序完全保留，正文按同一规则由 633 词变为 624 词。逐文件哈希核对确认：本轮范围以外的已跟踪文件及既有缺失状态未变，标题、摘要、方法、实验和书目保持原样。源稿差异已打开供审阅。未执行 Git 提交或推送。
+
+
+## 2026-10-29：引言与摘要表述对齐并发布
+
+基线 HEAD：`0381af6362fc941420fa23d467dc99d68dc7d0c8`；实际起点是上一轮尚未提交的 624 词引言工作区。以下原文直接取自修改前工作区，不能用 HEAD 中更早的引言替代。发布包括上一轮局部微调和本轮摘要对齐。
+
+本轮范围：中英文引言的框架定位、条件流匹配、观测一致性以及 New-MAE 指标表述。标题、双语摘要、方法、实验数值、图表、limitations 和 conclusion 保持原样。当前打开的中文引言文件原位更新，使用内置编译器检查，保持当前编辑器。
+
+### 框架定位
+
+英文原文：
+
+```latex
+To this end, we introduce DriveCompose, which reconstructs driving image sequences into a generatively completed 3D scene with independently controllable actors.
+```
+
+英文修改后：
+
+```latex
+To this end, we introduce DriveCompose, a framework that generatively reconstructs compositional driving scenes from image sequences while supporting independent actor control.
+```
+
+中文原文：
+
+```latex
+为此，我们提出 DriveCompose，从驾驶图像序列中构建经过生成补全、并支持参与者独立控制的三维场景。
+```
+
+中文修改后：
+
+```latex
+为此，我们提出 DriveCompose，从驾驶图像序列中生成式地重建可组合场景，并支持参与者的独立控制。
+```
+
+原因：将 generatively completed 3D scene 改为直接描述可组合驾驶场景的生成式重建，与摘要的框架定位一致；保留参与者独立控制。
+
+### 条件流匹配
+
+英文原文：
+
+```latex
+The model learns to generate missing latent codes through flow matching~\cite{lipman2022flowmatching}, and component-specific decoders convert the completed representations into a Gaussian scene~\cite{kerbl2023gaussians}.
+```
+
+英文修改后：
+
+```latex
+The model learns to generate missing latent codes through conditional flow matching~\cite{lipman2022flowmatching}, and component-specific decoders convert the completed representations into a Gaussian scene~\cite{kerbl2023gaussians}.
+```
+
+中文原文：
+
+```latex
+模型通过流匹配学习生成缺失潜码~\cite{lipman2022flowmatching}，再由各组件的解码器将补全后的表示转化为高斯场景~\cite{kerbl2023gaussians}。
+```
+
+中文修改后：
+
+```latex
+模型通过条件流匹配学习生成缺失潜码~\cite{lipman2022flowmatching}，再由各组件的解码器将补全后的表示转化为高斯场景~\cite{kerbl2023gaussians}。
+```
+
+原因：flow matching 统一为 conditional flow matching，与摘要、方法和第二项贡献一致，引用键不变。
+
+### 观测一致性
+
+英文原文：
+
+```latex
+During completion, we retain surfaces established by reliable observations and generate the missing geometry and appearance. Newly generated surfaces may occlude previously visible regions, so we render the completed scene at the recorded camera viewpoints and actor states and compare it with the input images to check for inconsistencies introduced by completion.
+```
+
+英文修改后：
+
+```latex
+To maintain consistency with input observations, we preserve the geometry and appearance of reliably observed surfaces during completion. We then render the completed scene at the recorded camera viewpoints and actor states and compare it with the input images to check for inconsistencies introduced by completion.
+```
+
+中文原文：
+
+```latex
+补全时，我们保留由可靠观测确定的表面，并生成缺失部分的几何与外观。新增表面可能遮挡原本可见的区域，因此我们在记录的相机视角和参与者状态下渲染补全后的场景，与输入图像比较，检查补全是否引入观测不一致。
+```
+
+中文修改后：
+
+```latex
+为保持与输入观测的一致性，我们在补全时保留由可靠观测确定的表面几何与外观。随后，我们在记录的相机视角和参与者状态下渲染补全后的场景，与输入图像比较，检查补全是否引入观测不一致。
+```
+
+原因：沿用摘要的共同目的与先后步骤：补全时保留可靠观测确定的几何与外观，随后在记录的相机视角和参与者状态下渲染比较。删除引言中易使读者误解为任意遮挡都属于错误的遮挡引子；该技术原因仍完整保留在方法 3.5，没有迁移或删除方法内容。可靠观测条件和通过检查后复用均保留。
+
+### 结果概述的误差定义
+
+英文原文：
+
+```latex
+Component ablations further show that cross-component information sharing reduces unseen-surface completion error, with larger absolute error reductions under sparser observations (Sec.~\ref{sec:ablations}).
+```
+
+英文修改后：
+
+```latex
+Component ablations further show that cross-component information sharing reduces mean absolute RGB error on unseen surfaces, with larger absolute error reductions under sparser observations (Sec.~\ref{sec:ablations}).
+```
+
+中文原文：
+
+```latex
+组件消融进一步表明，跨组件信息共享能够降低未观测表面的补全误差，且在输入观测较少时带来更大的绝对误差降幅（第~\ref{sec:ablations} 节）。
+```
+
+中文修改后：
+
+```latex
+组件消融进一步表明，跨组件信息共享能够降低未观测表面的 RGB 平均绝对误差，且在输入观测较少时带来更大的绝对误差降幅（第~\ref{sec:ablations} 节）。
+```
+
+原因：将泛称的补全误差限定为摘要及 New-MAE 指标实际衡量的未观测表面 RGB 平均绝对误差，避免被理解为几何误差；稀疏观测下绝对降幅较大这一条件保留，未新增数值。
+
+### 第三项贡献的指标对应
+
+英文原文：
+
+```latex
+\item We evaluate the framework through dynamic reconstruction and off-trajectory view synthesis, and use component ablations to quantify the reduction in unseen-surface completion error from cross-component information sharing.
+```
+
+英文修改后：
+
+```latex
+\item We evaluate the framework through dynamic reconstruction and off-trajectory view synthesis, and use component ablations to quantify the reduction in mean absolute RGB error on unseen surfaces from cross-component information sharing.
+```
+
+中文原文：
+
+```latex
+\item 通过动态重建与轨迹外视图合成评估框架，并通过组件消融量化跨组件信息共享带来的未观测表面补全误差降幅。
+```
+
+中文修改后：
+
+```latex
+\item 通过动态重建与轨迹外视图合成评估框架，并通过组件消融量化跨组件信息共享带来的未观测表面 RGB 平均绝对误差降幅。
+```
+
+原因：依照同一 New-MAE 定义同步贡献，保留消融量化跨组件信息共享作用的结论。
+
+### 检查与发布范围
+
+当前打开的 `paper/zh/1_introduction_zh.tex` 已原位保存，并由内置 `compile_latex_document` 以 `paper/main_zh.tex` 为入口成功编译。中英文引言的引用键与原有顺序一致，摘要、方法、实验、limitations 和 conclusion 的文件哈希与本轮实际基线一致。
+
+依照当前编辑器要求，本轮没有另行生成或导出独立 PDF，也未切换编辑器标签。发布仅包含两版引言源码及本对照记录；上一轮工作区中的独立 PDF 和编译记录修改、既有 pointforward 图件删除、临时预览文件均不纳入本次提交。limitations 和 conclusion 本轮仅审读，意见在会话中交付。
