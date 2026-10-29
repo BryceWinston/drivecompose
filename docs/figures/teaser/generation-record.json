@@ -1,0 +1,15 @@
+{
+  "file": "drivecompose-teaser-concept.png",
+  "width": 2172,
+  "height": 724,
+  "mode": "RGB",
+  "sha256": "925fa399f3014496db19792750005e1df4f6fab91bc3c9ad35b6c5d3aa63bbf1",
+  "generator": "built-in image-gen",
+  "type": "concept illustration; not experimental results",
+  "date": "2026-10-28",
+  "paper_source_baseline": "e98697e",
+  "manuscript_modified": false,
+  "initial_prompt": "production-prompt.txt",
+  "refinement_prompt": "refinement-prompt.txt",
+  "review": "Labels and three-panel layout checked visually. Right-hand rotation and articulation are distinguishable after one focused revision."
+}

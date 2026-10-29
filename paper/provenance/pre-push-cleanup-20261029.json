@@ -2272,5 +2272,469 @@
   "verification": {
     "all_destination_sha256_match": true,
     "all_original_paths_absent": true
-  }
+  },
+  "additional_batches": [
+    {
+      "source": "origin/main @ 4403f99",
+      "manifest": "remote-intermediates-manifest.json",
+      "manifest_sha256": "425c1d0f7bb909500ac5d58e3e49b073df5cc9b8716d2afd805d27f09e2e5521",
+      "files": [
+        {
+          "original": "paper/build/abstract-revision/baseline.json",
+          "archived": "files/paper/build/abstract-revision/baseline.json",
+          "bytes": 23706,
+          "sha256": "aaa1e248c0a7e8856a0c6fe49e49d48b8d84f30b103730776166a05ab750b379",
+          "tracked": true
+        },
+        {
+          "original": "paper/build/abstract-revision/check.json",
+          "archived": "files/paper/build/abstract-revision/check.json",
+          "bytes": 10438,
+          "sha256": "7d26730f5c5fc206f00ee984a0243424f0f33cb2628ae1f189cb47b343206386",
+          "tracked": true
+        },
+        {
+          "original": "paper/build/abstract-revision/consistency-baseline.json",
+          "archived": "files/paper/build/abstract-revision/consistency-baseline.json",
+          "bytes": 17971,
+          "sha256": "99b0b316d55a22ebcbc978130526897e5139e7c8630e559c254a740d55b61db9",
+          "tracked": true
+        },
+        {
+          "original": "paper/build/abstract-revision/consistency-check.json",
+          "archived": "files/paper/build/abstract-revision/consistency-check.json",
+          "bytes": 3976,
+          "sha256": "03f1be3e003d213b3a495b538240b25e3034db1bd886176acfab1beca694ee3d",
+          "tracked": true
+        },
+        {
+          "original": "paper/build/abstract-revision/first-sentence-baseline.json",
+          "archived": "files/paper/build/abstract-revision/first-sentence-baseline.json",
+          "bytes": 18386,
+          "sha256": "be5de05e8668eab6dea5b0d69068492ec196386cf35261c512c74f804586257f",
+          "tracked": true
+        },
+        {
+          "original": "paper/build/abstract-revision/first-sentence-check.json",
+          "archived": "files/paper/build/abstract-revision/first-sentence-check.json",
+          "bytes": 3012,
+          "sha256": "d1c5f80914cc3d3977ef3d2922be7d8f0e0a88f222b43adc1ca5c97dbaea99c8",
+          "tracked": true
+        },
+        {
+          "original": "paper/build/abstract-revision/first-sentence-revert-baseline.json",
+          "archived": "files/paper/build/abstract-revision/first-sentence-revert-baseline.json",
+          "bytes": 2841,
+          "sha256": "67987937e468d1980192ed869afb3cdb131c093367cd51736e7334a60c601149",
+          "tracked": true
+        },
+        {
+          "original": "paper/build/abstract-revision/first-sentence-revert-check.json",
+          "archived": "files/paper/build/abstract-revision/first-sentence-revert-check.json",
+          "bytes": 174,
+          "sha256": "eaf2623de3f24e5c05f0051600f9236894d6c545a08fadbb6ac1f6f9b2d81626",
+          "tracked": true
+        },
+        {
+          "original": "paper/build/teaser-insertion/baseline.json",
+          "archived": "files/paper/build/teaser-insertion/baseline.json",
+          "bytes": 66151,
+          "sha256": "0fde85319b3b0fc367bd36c07c3a58a3dbbd4d786cfb5464be5d94b73e4daa5a",
+          "tracked": true
+        },
+        {
+          "original": "paper/build/teaser-insertion/check.json",
+          "archived": "files/paper/build/teaser-insertion/check.json",
+          "bytes": 4841,
+          "sha256": "236a65200274b99d84573a891f8847ccb25bd839703c68a4be0487905a0f5ace",
+          "tracked": true
+        },
+        {
+          "original": "docs/figures/teaser/drivecompose-teaser-concept.png",
+          "archived": "files/docs/figures/teaser/drivecompose-teaser-concept.png",
+          "bytes": 2707552,
+          "sha256": "925fa399f3014496db19792750005e1df4f6fab91bc3c9ad35b6c5d3aa63bbf1",
+          "tracked": true
+        },
+        {
+          "original": "docs/figures/teaser/drivecompose-teaser-waymo-concept.png",
+          "archived": "files/docs/figures/teaser/drivecompose-teaser-waymo-concept.png",
+          "bytes": 2552402,
+          "sha256": "e13f8a739533b61f221340d4906d449f948cf94b8491328345963b44c2295186",
+          "tracked": true
+        }
+      ]
+    },
+    {
+      "source": "compiler intermediates generated while integrating origin/main",
+      "manifest": "generated-intermediates-manifest.json",
+      "manifest_sha256": "d54baa6d9b1674697832a2d090b9fd24c668d0af88571123ff1c4eea217ac0c8",
+      "files": [
+        {
+          "original": "paper/build/en/compiler-output.txt",
+          "archived": "generated-after-merge/paper/build/en/compiler-output.txt",
+          "bytes": 37715,
+          "sha256": "909e5b1b322ed2c8fea2e5ff3f03804da0be95ace83c179e73d0b9fd71a66c69"
+        },
+        {
+          "original": "paper/build/en/main.aux",
+          "archived": "generated-after-merge/paper/build/en/main.aux",
+          "bytes": 43481,
+          "sha256": "b89e2b8619bd7464bdc90a34bcaf7494f4197ad54c155436a4904d8c9f7d044d"
+        },
+        {
+          "original": "paper/build/en/main.bbl",
+          "archived": "generated-after-merge/paper/build/en/main.bbl",
+          "bytes": 22130,
+          "sha256": "86d2f7799915ab7503c584669fab5297ebeb6794e6116d3800c5029091836984"
+        },
+        {
+          "original": "paper/build/en/main.blg",
+          "archived": "generated-after-merge/paper/build/en/main.blg",
+          "bytes": 196,
+          "sha256": "5c4be67aa5e75cb2b17ba550f078321eb06cfa4eebbf6e0a33ba106c2309f455"
+        },
+        {
+          "original": "paper/build/en/main.brf",
+          "archived": "generated-after-merge/paper/build/en/main.brf",
+          "bytes": 3899,
+          "sha256": "ec5b17223e2fcd4bd36efc949f28d268d7784379690b3a7ea14ec28916d8ec69"
+        },
+        {
+          "original": "paper/build/en/main.log",
+          "archived": "generated-after-merge/paper/build/en/main.log",
+          "bytes": 35401,
+          "sha256": "2943157cee0b53216b00e166dfa8d53d1b4d8b40bd7ef6827d24c9789176beaf"
+        },
+        {
+          "original": "paper/build/en/main.out",
+          "archived": "generated-after-merge/paper/build/en/main.out",
+          "bytes": 3033,
+          "sha256": "7fdd0de4995fc00ec3a5522c478447a9df38787742b87dd0923af2c802f9cf79"
+        },
+        {
+          "original": "paper/build/zh/compiler-output.txt",
+          "archived": "generated-after-merge/paper/build/zh/compiler-output.txt",
+          "bytes": 38075,
+          "sha256": "e951c458dcad1160e29d2ee7244c0fa628b82c71d90fd0dcc8ff8f758cced89b"
+        },
+        {
+          "original": "paper/build/zh/main_zh.aux",
+          "archived": "generated-after-merge/paper/build/zh/main_zh.aux",
+          "bytes": 40219,
+          "sha256": "6d334fc0c366227cd183f11a7f48e0a01823d93cdceadde6db8dbc48028a58e8"
+        },
+        {
+          "original": "paper/build/zh/main_zh.bbl",
+          "archived": "generated-after-merge/paper/build/zh/main_zh.bbl",
+          "bytes": 22130,
+          "sha256": "86d2f7799915ab7503c584669fab5297ebeb6794e6116d3800c5029091836984"
+        },
+        {
+          "original": "paper/build/zh/main_zh.blg",
+          "archived": "generated-after-merge/paper/build/zh/main_zh.blg",
+          "bytes": 199,
+          "sha256": "799904f331cbb6ea9ebb4bbb6a69e6a1264b98446fb678994d0309b19742ce32"
+        },
+        {
+          "original": "paper/build/zh/main_zh.brf",
+          "archived": "generated-after-merge/paper/build/zh/main_zh.brf",
+          "bytes": 3899,
+          "sha256": "cb70fb6203c1ad7e28e533ff40113fbb772eb298a43fcbd715366053ef6791f6"
+        },
+        {
+          "original": "paper/build/zh/main_zh.log",
+          "archived": "generated-after-merge/paper/build/zh/main_zh.log",
+          "bytes": 39428,
+          "sha256": "616e0188bb270c49799074c9c007141cb8d94bf41b9b0da37473d4f2912656be"
+        },
+        {
+          "original": "paper/build/zh/main_zh.out",
+          "archived": "generated-after-merge/paper/build/zh/main_zh.out",
+          "bytes": 1729,
+          "sha256": "e0fca273ace51132332e3b3f20f1be0349429135b2aa5e7f11cbc44c07c81bac"
+        }
+      ]
+    }
+  ],
+  "total_original_files_moved": 331,
+  "total_original_bytes_moved": 234550328,
+  "code_tests": {
+    "passed": 14,
+    "skipped": 3,
+    "skip_reason": "PyTorch optional dependency is not installed",
+    "failed": 0
+  },
+  "manuscript_checks": {
+    "passed": 63,
+    "failed": 0
+  },
+  "merge": {
+    "local_commit": "fae4966e37c7452befe655497b8b723420fa95a6",
+    "remote_commit": "4403f9967d28ec1ead9b4afdc693cf72c217aa1c",
+    "resolution": [
+      "Retain current local rigid terminology, standard-metric ablation results, method text, and three approved figures.",
+      "Keep the remote title teaser with unique fig:title-teaser label, plus non-conflicting introduction wording.",
+      "Keep the current local abstract where the remote abstract conflicts with the later method narrative and obsolete RGB MAE results.",
+      "Combine both revision histories and rebuild both main PDFs from the merged sources."
+    ],
+    "pdfs": [
+      {
+        "language": "en",
+        "pages": 12,
+        "labels": {
+          "fig:title-teaser": {
+            "number": "1",
+            "page": 1
+          },
+          "sec:introduction": {
+            "number": "1",
+            "page": 1
+          },
+          "fig:teaser": {
+            "number": "2",
+            "page": 2
+          },
+          "sec:related": {
+            "number": "2",
+            "page": 3
+          },
+          "sec:method": {
+            "number": "3",
+            "page": 3
+          },
+          "sec:representation": {
+            "number": "3.1",
+            "page": 3
+          },
+          "fig:overview": {
+            "number": "3",
+            "page": 4
+          },
+          "sec:visual-encoding": {
+            "number": "3.2",
+            "page": 4
+          },
+          "sec:queries": {
+            "number": "3.3",
+            "page": 4
+          },
+          "sec:codec": {
+            "number": "3.4",
+            "page": 5
+          },
+          "sec:completion": {
+            "number": "3.5",
+            "page": 5
+          },
+          "sec:decoding": {
+            "number": "3.6",
+            "page": 5
+          },
+          "sec:composition": {
+            "number": "3.7",
+            "page": 5
+          },
+          "fig:joint-completion": {
+            "number": "4",
+            "page": 6
+          },
+          "sec:training": {
+            "number": "3.8",
+            "page": 6
+          },
+          "sec:experiments": {
+            "number": "4",
+            "page": 7
+          },
+          "sec:experimental_setup": {
+            "number": "4.1",
+            "page": 7
+          },
+          "sec:temporal_evaluation": {
+            "number": "4.2",
+            "page": 7
+          },
+          "sec:spatial_evaluation": {
+            "number": "4.3",
+            "page": 7
+          },
+          "fig:dynamic-reconstruction": {
+            "number": "5",
+            "page": 8
+          },
+          "sec:ablation-protocol": {
+            "number": "4.4",
+            "page": 8
+          },
+          "sec:ablations": {
+            "number": "4.4",
+            "page": 8
+          },
+          "sec:ablation-studies": {
+            "number": "4.4",
+            "page": 8
+          },
+          "fig:waymo-left-shift": {
+            "number": "6",
+            "page": 9
+          },
+          "sec:ablation-reuse": {
+            "number": "4.5",
+            "page": 9
+          },
+          "sec:discussion": {
+            "number": "5",
+            "page": 10
+          },
+          "sec:conclusion": {
+            "number": "6",
+            "page": 10
+          }
+        },
+        "log_issues": [],
+        "contact_sheets": [
+          "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261029-pre-push-cleanup\\merge-qa\\en\\contact-1.png",
+          "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261029-pre-push-cleanup\\merge-qa\\en\\contact-2.png",
+          "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261029-pre-push-cleanup\\merge-qa\\en\\contact-3.png"
+        ],
+        "first_page": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261029-pre-push-cleanup\\merge-qa\\en\\first-page.png",
+        "references_pages": [],
+        "references_start_page": 10,
+        "visual_review": "Full-page contact sheets and high-resolution first pages inspected; no overlapping or clipped content.",
+        "pdf_sha256": "622050631f5ed35d693e6b4fa92544bbbc0b5301fb9de1ae1ba9a85b5320d1d9",
+        "compile_exit_code": 0
+      },
+      {
+        "language": "zh",
+        "pages": 11,
+        "labels": {
+          "fig:title-teaser": {
+            "number": "1",
+            "page": 1
+          },
+          "sec:introduction": {
+            "number": "1",
+            "page": 1
+          },
+          "fig:teaser": {
+            "number": "2",
+            "page": 2
+          },
+          "sec:related": {
+            "number": "2",
+            "page": 2
+          },
+          "fig:overview": {
+            "number": "3",
+            "page": 3
+          },
+          "sec:method": {
+            "number": "3",
+            "page": 3
+          },
+          "sec:representation": {
+            "number": "3.1",
+            "page": 3
+          },
+          "sec:visual-encoding": {
+            "number": "3.2",
+            "page": 3
+          },
+          "sec:queries": {
+            "number": "3.3",
+            "page": 4
+          },
+          "sec:codec": {
+            "number": "3.4",
+            "page": 4
+          },
+          "sec:completion": {
+            "number": "3.5",
+            "page": 4
+          },
+          "sec:decoding": {
+            "number": "3.6",
+            "page": 4
+          },
+          "fig:joint-completion": {
+            "number": "4",
+            "page": 5
+          },
+          "sec:composition": {
+            "number": "3.7",
+            "page": 5
+          },
+          "sec:training": {
+            "number": "3.8",
+            "page": 5
+          },
+          "sec:experiments": {
+            "number": "4",
+            "page": 6
+          },
+          "sec:experimental_setup": {
+            "number": "4.1",
+            "page": 6
+          },
+          "sec:temporal_evaluation": {
+            "number": "4.2",
+            "page": 6
+          },
+          "sec:spatial_evaluation": {
+            "number": "4.3",
+            "page": 6
+          },
+          "sec:ablation-protocol": {
+            "number": "4.4",
+            "page": 6
+          },
+          "sec:ablations": {
+            "number": "4.4",
+            "page": 6
+          },
+          "sec:ablation-studies": {
+            "number": "4.4",
+            "page": 6
+          },
+          "fig:dynamic-reconstruction": {
+            "number": "5",
+            "page": 7
+          },
+          "fig:waymo-left-shift": {
+            "number": "6",
+            "page": 8
+          },
+          "sec:ablation-reuse": {
+            "number": "4.5",
+            "page": 8
+          },
+          "sec:discussion": {
+            "number": "5",
+            "page": 8
+          },
+          "sec:conclusion": {
+            "number": "6",
+            "page": 8
+          }
+        },
+        "log_issues": [],
+        "contact_sheets": [
+          "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261029-pre-push-cleanup\\merge-qa\\zh\\contact-1.png",
+          "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261029-pre-push-cleanup\\merge-qa\\zh\\contact-2.png",
+          "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261029-pre-push-cleanup\\merge-qa\\zh\\contact-3.png"
+        ],
+        "first_page": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261029-pre-push-cleanup\\merge-qa\\zh\\first-page.png",
+        "references_pages": [],
+        "references_start_page": 8,
+        "visual_review": "Full-page contact sheets and high-resolution first pages inspected; no overlapping or clipped content.",
+        "pdf_sha256": "30fe9ccb63bf03c9977fb40a00050143ae234f821f4b1211b89e58c775b4f8ed",
+        "compile_exit_code": 0
+      }
+    ],
+    "submission_status": "English main text ends on page 10; this cleanup and merge does not resolve the pre-existing page-limit issue."
+  },
+  "total_files_moved_including_new_compiler_intermediates": 345,
+  "total_bytes_moved_including_new_compiler_intermediates": 234841862,
+  "final_archive_verification": "All archived hashes match; all original intermediate paths are absent."
 }

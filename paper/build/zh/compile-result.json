@@ -15,13 +15,13 @@
     "main_zh.tex"
   ],
   "exit_code": 0,
-  "started_at": "2026-10-29T07:45:08.932790+00:00",
-  "finished_at": "2026-10-29T07:45:45.644040+00:00",
-  "elapsed_seconds": 36.711,
+  "started_at": "2026-10-29T09:17:38.862101+00:00",
+  "finished_at": "2026-10-29T09:18:18.762422+00:00",
+  "elapsed_seconds": 39.9,
   "fontconfig_file": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\tools\\fontconfig.conf",
-  "source_sha256": "1f17ba94d88c7bf97893aec27c76a7c68f55d54b39b0b6a160030681203a6dd5",
+  "source_sha256": "35c7939482c6e53fec558d3ac124a5f176321e5bc035b644bc090010af18365e",
   "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
   "pdf_exists": true,
   "pdf_written_this_run": true,
-  "pdf_sha256": "159ef6b77b48cc5fe6574efa626f8dd3f33dc2af0f7eea7a9806d32f47adccc4"
+  "pdf_sha256": "30fe9ccb63bf03c9977fb40a00050143ae234f821f4b1211b89e58c775b4f8ed"
 }

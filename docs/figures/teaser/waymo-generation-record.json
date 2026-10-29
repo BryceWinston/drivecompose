@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-28",
+  "file": "drivecompose-teaser-waymo-concept.png",
+  "size": [
+    2172,
+    724
+  ],
+  "sha256": "e13f8a739533b61f221340d4906d449f948cf94b8491328345963b44c2295186",
+  "generator": "built-in image-gen",
+  "mode": "reference-guided edit",
+  "prompt": "waymo-production-prompt.txt",
+  "references": "waymo-reference-manifest.json",
+  "type": "concept illustration, not experimental results",
+  "review": "Visually inspected scene reference adherence, three-panel arrangement, labels, postal van, pedestrian and distinct state examples. Actual completion masks and identity consistency require model renderings for a final experimental figure.",
+  "manuscript_modified": false
+}

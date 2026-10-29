@@ -1,15 +1,14 @@
 # DriveCompose 当前论文方法图
 
-## 当前版本：2026-10-29，三图入稿
+## 当前版本：2026-10-29，合并首页 teaser
 
-已按用户要求将三张内置 Image Gen 预览图插入中英文主稿：
+首页 teaser 保留为图 1；三张已确认方法图分别为：
 
-1. [概念对照](../../../paper/fig/drivecompose-concept-comparison.png)：图1，第2页。
-2. [整体框架](../../../paper/fig/drivecompose-inference-overview.png)：图2，第3页。
-3. [联合补全机制](../../../paper/fig/drivecompose-joint-completion.png)：图3，第5页。
+1. [概念对照](../../../paper/fig/drivecompose-concept-comparison.png)：图 2，两版第 2 页。
+2. [整体框架](../../../paper/fig/drivecompose-inference-overview.png)：图 3，英文第 4 页、中文第 3 页。
+3. [联合补全机制](../../../paper/fig/drivecompose-joint-completion.png)：图 4，英文第 6 页、中文第 5 页。
 
-活动 PNG 与选定预览逐字节一致。完整提示词和生成记录见 [三图预览记录](../../../../_archive/drivecompose/20261029-pre-push-cleanup/files/docs/figures/overview/drafts/three-figure-preview/README.md)；当前图注位于主文件及方法节。插图为机制示意，不是实测结果。图件尺寸、页码和本轮检查见 [入稿核验](../../../paper/provenance/three-figure-layout-verification-20261029.json)。英文正文现为9页，仍需后续内容压缩以达到8页限制。
-
+活动 PNG 与选定预览逐字节一致。完整提示词和生成记录见[项目外三图预览记录](../../../../_archive/drivecompose/20261029-pre-push-cleanup/files/docs/figures/overview/drafts/three-figure-preview/README.md)。当前图注位于主文件及方法节；插图为机制示意。合并后页码及核验见[归档与合并记录](../../../paper/provenance/pre-push-cleanup-20261029.json)。英文正文现止于第 10 页；原[三图入稿核验](../../../paper/provenance/three-figure-layout-verification-20261029.json)保留为合并前记录。
 
 ## 历史版本：2026-10-28，整图 Image Gen
 

@@ -20,6 +20,19 @@
 \def\confYear{2027}
 \title{DriveCompose: Compositional Generative Reconstruction of Driving Scenes via Joint Completion}
 \author{Anonymous CVPR Submission}
+% Keep the concept teaser in the title block, before the two-column abstract.
+\makeatletter
+\g@addto@macro\@maketitle{%
+  \noindent\begin{minipage}{\textwidth}
+    \captionsetup{type=figure}
+    \centering
+    \includegraphics[width=\linewidth]{fig/drivecompose-teaser.png}
+    \caption{\textbf{DriveCompose concept.} DriveCompose jointly completes background, vehicle, and human content from driving images to form a compositional Gaussian scene. The same assets are reused under changes in camera viewpoint, vehicle pose, and human articulation. Gold marks completed regions.}
+    \label{fig:title-teaser}
+  \end{minipage}\par
+  \vspace{\baselineskip}
+}
+\makeatother
 \begin{document}
 \maketitle
 \input{sec/0_abstract}

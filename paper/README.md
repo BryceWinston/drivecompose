@@ -30,6 +30,7 @@ latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=../build/supp-
 - `main.tex`：英文入口；`sec/`：英文各章节。
 - `main_zh.tex`：中文入口；`zh/`：中文各章节，采用与英文相同的方法符号与结构。
 - `main.bib`：两版共用的 84 条当前引用。用户 DOCX 的 75 条全部纳入，9 条与原书目重复、新增 66 条；文档之外的 9 条项目近邻工作保留。逐条引用位置见 [引用接入记录](provenance/reference-integration-20261021.md)。
+- `fig/drivecompose-teaser.png`：用户指定的路口场景概念 teaser，置于两版标题下、摘要前，编号 Figure 1；展示联合补全与资产复用。合并后概念对照、方法总览与联合补全机制分别为 Figure 2、3、4。图内保留概念示意说明，[设计与生成记录](../docs/figures/teaser/README.md)可追溯。
 - `fig/drivecompose-inference-overview.png`：两版共用的 Image Gen 总览图，展示结构化编码、联合 DiT 与高斯解码；ViT 到 DiT 之间使用抽象潜码，场景全部为机制示意。旧 TikZ、历史 PNG 和未采用草稿已移至[项目外归档](../../_archive/drivecompose/20261026-tracked-intermediates)。
 - [总览图说明](../docs/figures/overview/README.md)：当前光栅总览图的设计、图注与审核记录；前版制作过程在项目外归档。
 - [结构参考与改写依据](provenance/structure-study-20261020.md)：四篇录用论文的章节观察和本轮采用的安排。

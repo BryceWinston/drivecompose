@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-28",
+  "requested_style": "Waymo-style driving imagery",
+  "source_dataset_independently_verified": false,
+  "references": [
+    {
+      "file": "drivecompose-teaser-concept.png",
+      "role": "layout edit target",
+      "size": [
+        2172,
+        724
+      ],
+      "sha256": "925fa399f3014496db19792750005e1df4f6fab91bc3c9ad35b6c5d3aa63bbf1"
+    },
+    {
+      "file": "references/user-intersection-closeup.png",
+      "role": "user supplied scene and actor reference",
+      "size": [
+        950,
+        634
+      ],
+      "sha256": "27bd13bec4b644393302bd712542e5b0407013282990155cbcd6566111f56d8f"
+    },
+    {
+      "file": "references/user-intersection-panorama.webp",
+      "role": "user supplied wider scene reference",
+      "size": [
+        4800,
+        640
+      ],
+      "sha256": "8f4ab34e8506e46670739a7910a8ea62c8ff5172749023ca48811d69790fff23"
+    }
+  ]
+}
