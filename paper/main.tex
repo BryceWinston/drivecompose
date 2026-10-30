@@ -30,12 +30,19 @@
     \caption{\textbf{DriveCompose concept.} DriveCompose jointly completes background, vehicle, and human content from driving images to form a compositional Gaussian scene. The same assets are reused under changes in camera viewpoint, vehicle pose, and human articulation. Gold marks completed regions.}
     \label{fig:title-teaser}
   \end{minipage}\par
-  \vspace{\baselineskip}
+  \vspace{8pt}
 }
 \makeatother
+% Keep the abstract heading close to its text without changing body spacing.
+\patchcmd{\abstract}{\vspace*{12pt}}{\vspace*{6pt}}{}{%
+  \PackageError{DriveCompose}{Unable to adjust abstract heading spacing}%
+    {The abstract heading definition has changed.}%
+}
 \begin{document}
 \maketitle
 \input{sec/0_abstract}
+% Put spare space below the abstract and start the introduction in the right column.
+\par\vfill\newpage
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{fig/drivecompose-concept-comparison.png}

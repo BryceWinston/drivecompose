@@ -1,3 +1,85 @@
+## 2026-10-29：补回图注与 Abstract 之间的空白
+
+本轮从 `a12af3c150f4f44a8a2a86beed54d315a4bce886` 上已完成标题下间距修正的未提交工作区开始。真实原文和测量保存在 `paper/build/abstract-revision/teaser-caption-spacing-baseline.json`。仅改英文入口一行，不计入此前的摘要选取或排版修改。
+
+| 位置 | 原文／修改前 | 修改后 | 原因及改善 |
+| --- | --- | --- | --- |
+| teaser 图注后、两栏标题前 | `\end{minipage}\par` 后无额外空白；图注至 Abstract 实测约 1.80 pt | 加入 `\vspace{8pt}`；实测约 9.77 pt | 按用户反馈补回图注与标题之间的分隔，避免紧贴；不恢复此前 Abstract 标题下方的大空白。 |
+
+Abstract 标题与首行的实测间距保持约 7.56 pt。英文摘要仍完整位于左栏，引言从右栏开始。中英文摘要源文件和中文 PDF 哈希与本轮基线一致，中文未重新编译。字体、字号、正文行距、页边距和图片大小未变。
+
+**验证：** `tools/build.py --language en` 编译成功，退出码 0，正式英文 PDF 本轮实际更新，SHA256 为 `e5e5f86cc81c0d55db254007882b116e99304c099a63c1a7ae2afcf1e3c55f78`。已渲染检查第 1、2 页，未见新增重叠或裁切；最终日志未报告警告、未定义引用、缺字或溢出。PDF 仍为 12 页，正文与参考文献分界在第 10 页。本轮核验见 `paper/build/abstract-revision/teaser-caption-spacing-check.json`。
+
+## 2026-10-29：修正 Abstract 标题下方空白
+
+本轮基于 `a12af3c150f4f44a8a2a86beed54d315a4bce886` 上已完成摘要选取及孤词修复的未提交工作区，只调整英文入口的首页排版。真实原文与摘要源文件、PDF 哈希保存在 `paper/build/abstract-revision/abstract-heading-baseline.json`，不将此前摘要文字修改计入本轮。
+
+| 位置 | 原文／原布局 | 修改后 | 原因及改善 |
+| --- | --- | --- | --- |
+| 英文 Abstract 标题后 | 继承 `cvpr.sty` 中的 `\vspace*{12pt}`，标题与首行实际空白约 21.99 pt | 在英文 `main.tex` 中局部替换为 `\vspace*{6pt}`，实际空白约 7.56 pt | 收紧截图指出的标题下方大空白，保留清楚的标题与正文分隔；共享 CVPR 样式、字号、正文行距和页边距不变。 |
+| 英文摘要结束后 | 直接进入后续浮动图及引言，让页面分配剩余高度 | `\par\vfill\newpage`，把本栏剩余弹性空白放在摘要末尾，并切换到右栏开始引言 | 明确保持首页左栏摘要、右栏引言的布局，避免剩余高度集中出现在标题与正文之间；双栏模式下这里切换一栏，没有新增物理页面。 |
+
+本轮没有学术内容修改。中英文摘要源文件与本轮真实基线的 SHA256 相同，中文 PDF 哈希也相同；中文未重新编译。
+
+**验证：** 通过现有 `tools/build.py --language en` 成功更新正式英文 `paper/build/en/main.pdf`，退出码 0，`pdf_written_this_run=true`。最终 PDF SHA256 为 `353aeccdf4f0a703630b97d7e6739f2677ff51c55e417f3df767e26ca2fca964`。已重新渲染并查看第 1、2 页，摘要完整位于左栏，标题下方间距正常，引言从右栏顶部开始，图件没有新增重叠或裁切。最终日志未报告警告、未定义引用、缺字或溢出。总页数仍为 12，正文与参考文献分界仍在第 10 页。测量及哈希核验保存在 `paper/build/abstract-revision/abstract-heading-check.json`。
+
+## 2026-10-29：修复首页摘要末行跨栏
+
+本轮从 `a12af3c150f4f44a8a2a86beed54d315a4bce886` 上已完成逐句选取的未提交工作区开始。真实修改前主文件、英文摘要及 PDF 哈希保存在 `paper/build/abstract-revision/layout-baseline.json`，中文摘要的单词同步前原文也保存在同一基线；不把先前摘要选取算作本轮修改。
+
+| 位置 | 原文 | 修改后 | 原因及改善 |
+| --- | --- | --- | --- |
+| 英文入口 teaser 图注后 | `\end{minipage}\par` 后另有 `\vspace{\baselineskip}` | 仅保留 `\end{minipage}\par` | 删除自定义的额外一行空白，保持模板字号、页边距和行距；配合下面的去重后，摘要完整留在左栏。 |
+| 英文摘要末句 | allowing the same completed assets to be composed and rendered | allowing the same assets to be composed and rendered | 用户授权调整一个词，删除重复的 completed；同句前文 completed latents 已说明资产来自补全潜码。摘要由 142 词变为 141 词，没有改变机制或能力主张。 |
+| 对应中文末句 | 使同一组补全资产能够在不同相机与参与者状态下组合和渲染场景。 | 使同一组资产能够在不同相机与参与者状态下组合和渲染场景。 | 与英文同步去掉重复限定，保留同一组资产复用、组合和渲染的含义；中文未重新编译。 |
+
+仅删除额外空白不足以消除跨栏。曾检查的局部分行与纵向对齐设置没有保留；最终没有新增 looseness、tolerance、raggedbottom 或 flushbottom 设置，没有缩小图件或改写其余稳定句子。
+
+**验证：** 现有 `tools/build.py --language en` 成功更新正式英文 `paper/build/en/main.pdf`，退出码 0 且 `pdf_written_this_run=true`，SHA256 为 `6e2422ba3611eb1ef4f035a478528a038f7354cc045acf012e56cfff00dc9d93`。最终日志未报告警告、未定义引用、缺字或溢出。已渲染并检查首页和第二页，首页摘要末句完整位于左栏，引言标题位于右栏顶部；原先右栏顶部孤立的 states. 已消除。PDF 仍为 12 页，正文与参考文献分界仍在第 10 页。内置编译预览仍受 20 MiB 限制，不影响本地正式构建结果；未重新编译中文。
+
+## 2026-10-29：逐句确认摘要选取
+
+本轮基线为拉取后的 `a12af3c150f4f44a8a2a86beed54d315a4bce886`。动笔前两份摘要没有未提交修改；真实原文另存于 `paper/build/abstract-revision/agreed-selection-baseline.json`。仅修改英文摘要与对应中文摘要，并更新本记录；不改引言、贡献、方法或实验。
+
+### 局部修改与理由
+
+| 位置 | 原文 | 修改后 | 原因 |
+| --- | --- | --- | --- |
+| 英文摘要开头 | Driving simulation and scene editing require reconstructed scenes that remain usable when cameras and actors move beyond their recorded configurations. Camera or actor motion exposes previously unseen surfaces, requiring their geometry and appearance to be completed and assigned to the corresponding background, rigid asset, or human. | Reconstructing complete and controllable 3D scenes from partial observations is essential for autonomous driving simulation and scene editing. | 用户选用拉取前的简洁背景句，随后直接引入框架；删除的状态变化动机在当前引言第一段已有解释，本轮未执行内容迁移。 |
+| 中文摘要开头 | 驾驶仿真与场景编辑需要重建场景在相机和参与者偏离记录状态后仍可使用。相机移动或参与者运动会暴露此前未被拍摄的表面，因此需要补全这些表面的几何与外观，并使补全内容保持归属于相应的背景、刚体或人体。 | 从局部观测中重建完整、可控的三维场景，是自动驾驶仿真与场景编辑的重要基础。 | 同步英文背景句，保留局部观测、完整性、可控性与应用目的。 |
+| 英文摘要结尾 | Type-specific decoders convert the completed latents into Gaussian components whose rigid and skeletal bindings support composition under different camera and actor states. | Type-specific decoders convert the completed latents into Gaussian components with rigid and skeletal bindings, allowing the same completed assets to be composed and rendered under different camera and actor states. | 保留解码与绑定机制，并明确同一组补全资产跨状态复用、组合与渲染；未新增实验效果。 |
+| 中文摘要结尾 | 分类型解码器将补全潜码转换为高斯组件，其刚体与骨架绑定支持在不同相机和参与者状态下组合场景。 | 分类型解码器将补全潜码转换为具有刚体和骨架绑定的高斯组件，使同一组补全资产能够在不同相机与参与者状态下组合和渲染场景。 | 同步英文的机制与复用能力。 |
+
+**明确保留项：** 框架介绍；世界/规范坐标系中的视觉特征聚合与组件特定潜表示；当前条件生成模型与 flow matching / cross-component memory 句；当前短观测约束句；当前 Waymo 结果句。不恢复历史 20.5% RGB MAE 消融数字，不改当前指标合同。
+
+术语沿用：rigid assets（刚体资产）、canonical frames（规范坐标系）、component-specific latent representations（组件特定的潜表示）、cross-component memory（跨组件记忆）、rigid and skeletal bindings（刚体与骨架绑定）。用户逐句确认的措辞优先，不因技能的通用句长建议另行拆句。
+
+### 英文全文前后对照
+
+原文：
+
+> Driving simulation and scene editing require reconstructed scenes that remain usable when cameras and actors move beyond their recorded configurations. Camera or actor motion exposes previously unseen surfaces, requiring their geometry and appearance to be completed and assigned to the corresponding background, rigid asset, or human. We present DriveCompose, a framework for generative reconstruction of compositional driving scenes from image sequences. Visual features are aggregated in world coordinates for the background and canonical frames for rigid assets and humans, then encoded into component-specific latent representations. A conditional generative model trained with flow matching uses cross-component memory to share scene context and jointly complete the missing codes in these representations. Completion is constrained by the input observations to preserve the geometry and appearance of observed surfaces. On Waymo, DriveCompose improves dynamic scene reconstruction and off-trajectory view synthesis over the evaluated baselines. Type-specific decoders convert the completed latents into Gaussian components whose rigid and skeletal bindings support composition under different camera and actor states.
+
+修改后：
+
+> Reconstructing complete and controllable 3D scenes from partial observations is essential for autonomous driving simulation and scene editing. We present DriveCompose, a framework for generative reconstruction of compositional driving scenes from image sequences. Visual features are aggregated in world coordinates for the background and canonical frames for rigid assets and humans, then encoded into component-specific latent representations. A conditional generative model trained with flow matching uses cross-component memory to share scene context and jointly complete the missing codes in these representations. Completion is constrained by the input observations to preserve the geometry and appearance of observed surfaces. On Waymo, DriveCompose improves dynamic scene reconstruction and off-trajectory view synthesis over the evaluated baselines. Type-specific decoders convert the completed latents into Gaussian components with rigid and skeletal bindings, allowing the same completed assets to be composed and rendered under different camera and actor states.
+
+### 中文全文前后对照
+
+原文：
+
+> 驾驶仿真与场景编辑需要重建场景在相机和参与者偏离记录状态后仍可使用。相机移动或参与者运动会暴露此前未被拍摄的表面，因此需要补全这些表面的几何与外观，并使补全内容保持归属于相应的背景、刚体或人体。我们提出 DriveCompose，从图像序列中生成式地重建可组合驾驶场景。视觉特征在背景的世界坐标系与刚体、人体各自的规范坐标系中聚合，再编码为对应组件的潜表示。通过流匹配训练的条件生成模型利用跨组件记忆共享场景上下文，联合补全这些表示中的缺失潜码。补全过程受输入观测约束，以保持已观测表面的几何与外观。在 Waymo 上，DriveCompose 的动态场景重建和轨迹外视图合成效果优于所评估的基线。分类型解码器将补全潜码转换为高斯组件，其刚体与骨架绑定支持在不同相机和参与者状态下组合场景。
+
+修改后：
+
+> 从局部观测中重建完整、可控的三维场景，是自动驾驶仿真与场景编辑的重要基础。我们提出 DriveCompose，从图像序列中生成式地重建可组合驾驶场景。视觉特征在背景的世界坐标系与刚体、人体各自的规范坐标系中聚合，再编码为对应组件的潜表示。通过流匹配训练的条件生成模型利用跨组件记忆共享场景上下文，联合补全这些表示中的缺失潜码。补全过程受输入观测约束，以保持已观测表面的几何与外观。在 Waymo 上，DriveCompose 的动态场景重建和轨迹外视图合成效果优于所评估的基线。分类型解码器将补全潜码转换为具有刚体和骨架绑定的高斯组件，使同一组补全资产能够在不同相机与参与者状态下组合和渲染场景。
+
+### 检查
+
+英文按空白分词由 162 词变为 142 词，低于仓库 150–250 词的目标范围。本轮按用户逐项选定内容落地，不为达到目标机械补句。数字、引用、公式及实验条件未变。已调用内置 compile_latex_document：首次自动选择 main_zh.tex，随后显式指定 main.tex；两次均返回 compile-failed / The LaTeX preview exceeds the 20 MiB limit。无法据此确认本轮编译成功，也未完成新预览的页面与正文终止页核验。本轮保留当前编辑器，没有切换标签或另行导出 PDF。git diff --check 通过；已按真实基线核对双语仅开头与结尾有改动。
+
+后续英文构建：用户要求仅编译英文，已通过现有 tools/build.py --language en 成功更新 paper/build/en/main.pdf；编译退出码 0，pdf_written_this_run=true，SHA256 为 b66a1af95f6d7f9930e5eb4c8adbe11b4a126d6b683ce1cd77e767c2d33869f5。最终 main.log 未发现编译警告、未定义引用、缺字或 Overfull/Underfull。PDF 共 12 页，结论与参考文献分界在第 10 页。已检查首页和第二页：摘要末词 states. 单独延续至右栏顶部；本轮按编译范围保留已确认措辞和现有排版，未修改源文。中文未重新编译。
+
 ## 2026-10-29：归档临时文件并整合远端更新
 
 本轮用于清理、提交和推送。清理后的本地基线为 `fae4966`，远端为 `4403f99`；两边完整历史均保留。
