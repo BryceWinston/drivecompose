@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-30",
+  "operation": "Replace active paper overview PNG with the user-selected PowerPoint PDF export",
+  "baseline_commit": "79bdd94948d4dbea340f4c4098b33aaec201c435",
+  "source_pdf": "paper/fig/overview-editable/output/DriveCompose.pdf",
+  "source_sha256": "034178db3de2dd608f0397b909783f47250eea832a0de15eed3955b1cde44aec",
+  "source_page_count": 1,
+  "source_page_size_pt": [
+    1800,
+    1050
+  ],
+  "active_png": "paper/fig/drivecompose-inference-overview.png",
+  "png_sha256": "afabc000279b8d239487401a9506c0fffa5d10f3ea44990f7de20261e4aa8a14",
+  "png_pixels": [
+    6000,
+    3500
+  ],
+  "previous_png": {
+    "sha256": "63c62037e5699b421e3fe864b1dbe6e83fc1b4e5680fd56902b8ca754fc97579",
+    "bytes": 2124733,
+    "pixels": [
+      1764,
+      892
+    ]
+  },
+  "render_command": "pdftoppm -f 1 -singlefile -png -scale-to-x 6000 -scale-to-y -1 paper/fig/overview-editable/output/DriveCompose.pdf <private-build>/overview",
+  "appearance": "Preserve the complete provided PDF page and its aspect ratio; no generative edits or redesign in this replacement",
+  "figure_role": "Method overview. Real input photographs and illustrative/generated component assets are combined; this is not a quantitative experimental result.",
+  "source_unchanged": true,
+  "initial_pdf_render_visually_reviewed": true,
+  "manuscripts": "Both languages reference the same active PNG path. Final compilation verification will be added after integrating remote manuscript changes."
+}
