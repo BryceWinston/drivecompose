@@ -1,3 +1,15 @@
+## 2026-10-30：删除停用的 pointforward 图件目录
+
+按用户明确要求删除本地及 Git 上的 `paper/fig/pointforward/`。本轮基线为 `156726d45cb5ee3317c96c1d8e99a4d0ac074c7f`；开始时目录为空，Shift.pdf、Waymo.pdf、nuScenes.pdf 已在本地删除但尚未提交。本轮实际移除空目录，并将三项删除登记、提交和推送。README、检查器与本轮前实际工作区日志保存于 `paper/fig/overview-editable/.build/remove-pointforward/before/`。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+| --- | --- | --- | --- |
+| `fig/pointforward/` | Git 跟踪三份旧 PDF，本地仅剩空目录 | 移除本地目录及三项 Git 跟踪 | 用户明确要求删除停用副本；历史版本仍由 Git 保留。 |
+| `paper/README.md` | 宣称三份旧副本原样保留 | 指向当前 `fig/assets/Shift.pdf`，记录旧副本已删除 | 与现有双语图引用一致。 |
+| `check_manuscript.py` | 冻结文件列表仍强制读取三份旧 PDF | 仅移除这三项过时的在库要求 | 避免检查器要求恢复已停用的副本；其他检查和历史来源清单不改。 |
+
+已核对双语主稿及补充材料无旧目录引用；当前图件 `fig/assets/Shift.pdf` 和两份正式主稿 PDF 哈希保持。检查器语法解析通过；未重编译未改动的稿件，也未将缺少本机历史归档的通用检查器报告为通过。此前未提交的 230 行图件编辑记录和其他本地素材不计入本轮提交。
+
 ## 2026-10-30：用用户提供的 PDF 替换论文总览图并整合远端修订
 
 本轮实际起点为 `79bdd94948d4dbea340f4c4098b33aaec201c435` 上的未提交工作区；真实图件、双语 PDF、说明和记录保存于 `paper/fig/overview-editable/.build/pdf-replacement/before/`，基线哈希见同目录 `baseline.json`。仅将用户明确指定的 `output/DriveCompose.pdf` 转为论文活动 PNG，并执行提交、推送和重新拉取。源 PDF SHA256 为 `034178db3de2dd608f0397b909783f47250eea832a0de15eed3955b1cde44aec`。

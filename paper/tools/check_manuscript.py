@@ -165,8 +165,7 @@ def main() -> int:
     results_record = (json.loads(results_path.read_text(encoding="utf-8"))
                       if results_path.is_file() else None)
     frozen = [
-        "fig/pointforward/Waymo.pdf", "fig/pointforward/nuScenes.pdf",
-        "fig/pointforward/Shift.pdf", "cvpr.sty", "lineno.sty",
+        "cvpr.sty", "lineno.sty",
         "ieeenat_fullname.bst", "preamble.tex",
     ]
     with zipfile.ZipFile(archive_path) as archive:

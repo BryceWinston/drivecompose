@@ -34,7 +34,7 @@ latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=../build/supp-
 - `fig/drivecompose-inference-overview.png`：两版共用的总览图，2026-10-30 按用户提供的 PowerPoint PDF 完整页导出替换为 6000×3500 PNG；展示规范聚合、结构潜码、联合补全及高斯组件的组合与渲染。含真实输入照片和机制示意素材，来源与渲染记录见 [本轮记录](provenance/overview-pdf-replacement-20261030.json)。旧 TikZ、历史 PNG 和未采用草稿已移至[项目外归档](../../_archive/drivecompose/20261026-tracked-intermediates)。
 - [总览图说明](../docs/figures/overview/README.md)：当前光栅总览图的设计、图注与审核记录；前版制作过程在项目外归档。
 - [结构参考与改写依据](provenance/structure-study-20261020.md)：四篇录用论文的章节观察和本轮采用的安排。
-- `fig/pointforward/`：原实验章节依赖的三张来源图，原样保留。
+- `fig/assets/Shift.pdf`：当前双语空间外推对比图；已停用的 `fig/pointforward/` 三份旧副本于 2026-10-30 按用户要求删除，历史来源记录保留。
 - `sec/4_experiments.tex` / `zh/4_experiments_zh.tex`：同步消融协议、结果表与分析；原消融定性图已删除。
 - `provenance/source-manifest.json`：原始来源哈希及实验冻结清单，内容保持迁移时的版本。
 - [归档索引](provenance/README.md)：MOSAIC 原包、迁移报告、终校备份与历史编译检查记录。
