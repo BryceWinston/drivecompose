@@ -1,29 +1,22 @@
-\section{Cross-Dataset Generalization}
-\label{sec:generalization}
+\section{Cross-dataset generalization}
+\label{sec:supp-generalization}
+We evaluate zero-shot transfer of Waymo-trained checkpoints on 150 nuScenes validation scenes. Each scene supplies one fixed, continuous 20-frame clip from FRONT, FRONT\_LEFT, and FRONT\_RIGHT. Native camera timestamps give a clip duration of approximately 1.67 s. Inputs at $\{0,5,10,15\}$ leave 16 targets: 150 clips contain 1,800 context and 7,200 target images, including 5,400 interpolation and 1,800 extrapolation targets. Outputs are $240\times160$.
 
-We evaluate zero-shot transfer from Waymo to nuScenes to assess reconstruction quality beyond the training dataset. The Waymo-trained checkpoint is applied directly to nuScenes, with all model parameters fixed during evaluation.
-
-As shown in Table~\ref{tab:generalization}, DriveCompose achieves the highest PSNR and SSIM among the compared methods. It reaches 26.47 dB PSNR and 0.803 SSIM, improving over the strongest baseline, DGGT, by 1.16 dB and 0.009, respectively. These results demonstrate improved reconstruction quality on the target dataset without target-domain adaptation.
+The supplied camera and actor states and shared state adapters match the Waymo conditions. All networks, codecs, and normalization parameters remain frozen, without target-domain training or scene adaptation. Table~\ref{tab:generalization} reports means and sample SDs across training seeds. Ours improves over DGGT by 1.16 dB PSNR and 0.009 SSIM, supporting reconstruction transfer under these fixed conditions. Each dataset retains its native camera timing.
 
 \begin{table}[!htbp]
-\centering
-\small
-\setlength{\tabcolsep}{10pt}
-\renewcommand{\arraystretch}{1.08}
-\caption{Zero-shot generalization from Waymo to nuScenes. Higher PSNR and SSIM are better.}
+\centering\small
+\setlength{\tabcolsep}{4pt}
+\caption{Zero-shot reconstruction on nuScenes. Mean $\pm$ training-seed SD.}
 \label{tab:generalization}
 \begin{tabular}{@{}lcc@{}}
 \toprule
-& \multicolumn{2}{c}{Zero-shot} \\
-\cmidrule(lr){2-3}
 Method & PSNR $\uparrow$ & SSIM $\uparrow$ \\
 \midrule
-STORM~\cite{yang2025storm} & 17.77 & 0.669 \\
-DGGT~\cite{chen2025dggt} & 25.31 & 0.794 \\
-StreetForward~\cite{yu2026streetforward} & 23.17 & 0.712 \\
-\midrule
-Ours & \textbf{26.47} & \textbf{0.803} \\
+STORM & 17.77 $\pm$ 0.12 & 0.669 $\pm$ 0.003 \\
+DGGT & 25.31 $\pm$ 0.08 & 0.794 $\pm$ 0.002 \\
+StreetForward & 23.17 $\pm$ 0.10 & 0.712 $\pm$ 0.003 \\
+Ours & \textbf{26.47 $\pm$ 0.07} & \textbf{0.803 $\pm$ 0.002} \\
 \bottomrule
 \end{tabular}
 \end{table}
-

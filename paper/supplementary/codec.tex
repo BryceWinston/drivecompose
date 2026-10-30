@@ -3,7 +3,7 @@
 
 A Gaussian stores its center $\boldsymbol\mu$, covariance $\boldsymbol\Sigma$, opacity $\alpha$, and directional appearance.
 
-Background, rigid, and human Gaussian decoders independently map each query to $K$ child Gaussians. For child $k$ of query $i$, the center is confined to its support cell:
+Background, rigid, and human Gaussian decoders independently map each query to $K=4$ child Gaussians. Each child has 23 output parameters: three center offsets, three scales, four rotation parameters, one opacity, and twelve appearance coefficients. For child $k$ of query $i$, the center is confined to its support cell:
 
 \begin{equation}
 \boldsymbol\mu_{i,k}=\mathbf q_i+

@@ -1,3 +1,252 @@
+## 2026-10-30：提交前清理与归档
+
+按用户要求，将页面预览、修订基线与脚本、LaTeX 辅助文件及 Python 缓存共 225 个文件（179.40 MiB）移至[项目外归档](../../_archive/drivecompose/20261030-pre-push-cleanup/)。移动前后逐文件 SHA-256 一致。正式源稿、四份 PDF、编译结果、来源核验及可编辑图源保留在项目内，四份 PDF 哈希与最终验收记录相同。`paper/.gitignore` 增加审图和修订临时目录规则，`paper/build/CURRENT-OUTPUTS.md` 更新到当前页数；下方历史修订差异链接同步到归档位置。详见[清理记录](../paper/provenance/pre-push-cleanup-20261030.json)。
+
+---
+
+## 2026-10-30：删除符号备注与外部对照行，图五标注改为 GT
+
+本轮按作者最新三项要求做局部修改，采用 nature-polishing 并沿用 CVPR 规范。实际起点为未提交工作区，HEAD 为 `a12af3c150f4f44a8a2a86beed54d315a4bce886`；[本轮基线快照](../../_archive/drivecompose/20261030-display-cleanup/baseline/)保留修改前源文件和 PDF。[本轮完整差异](../../_archive/drivecompose/20261030-display-cleanup/source-changes.diff)只比较该快照与本轮最终文件。
+
+### 位置、实际前后变化与理由
+
+| 位置 | 修改前 | 修改后 | 原因 |
+|---|---|---|---|
+| 主稿表 1、表 2，图 4、图 5 及补充各基线表 | `STORM† / DGGT† / StreetForward†`，并附适配符号备注 | `STORM / DGGT / StreetForward`，删除相应备注 | 按要求简化方法名及图表阅读信息 |
+| 实验比较协议及补充 F | `A shared state adapter ($^\dagger$)`；`Methods marked $^\dagger$ use a common deterministic adapter.` | `A shared state adapter`；`The baselines use a common deterministic state adapter.` | 去掉符号指代，直接描述适配过程 |
+| 表 4 车辆组 | `GenAssets-RGB-MV & 23.37 & 0.194 & 94.7\%` | 删除该行；车辆与人体均展示 w/o GCM、w/o CCM、Ours | 按要求调整比较范围，其余数值保持原值 |
+| 摘要、引言、实验 4.5、补充 I | 多视图 GenAssets 比较，以及 0.81 dB／1.4 个百分点的衍生结论 | 删除该项比较，保留匹配消融与固定资产复用的论述 | 表格与跨节主张一致 |
+| 图 5 图内第一列 | `Recorded-view reference` | `GT` | 按要求统一标签；使用与其他列相同的嵌入字体、字号和基线 |
+| 补充 H–I 的四张小表 | 可见率表跨栏，读取诊断与编辑统计延后浮动 | 可见率表单栏，四张表随对应段落放置 | 避免删文后表格积压成单独页面；字体、边距和行距不变 |
+
+**图 5 图注（中英对应）。**
+
+- 英文原文：`\caption{\textbf{Off-trajectory rendering with a 2 m leftward shift.} The first column is the recorded-view reference, followed by STORM$^\dagger$, DGGT$^\dagger$, StreetForward$^\dagger$, and Ours. The reference records the original trajectory.}`
+- 英文修改后：`\caption{\textbf{Off-trajectory rendering with a 2 m leftward shift.} Columns show GT, STORM, DGGT, StreetForward, and Ours. GT is the original-trajectory image.}`
+- 中文原文：`\caption{\textbf{相机左移 2 m 的离轨渲染。}首列为原轨迹记录参考图，随后为 STORM$^\dagger$、DGGT$^\dagger$、StreetForward$^\dagger$ 与 Ours。首列记录原始轨迹。}`
+- 中文修改后：`\caption{\textbf{相机左移 2 m 的离轨渲染。}各列依次为 GT、STORM、DGGT、StreetForward 与 Ours。GT 为原轨迹记录图像。}`
+
+图注用一句话说明 GT 对应原轨迹记录图像，保持原有相机设置。图内仅替换矢量标签，全部结果图像流与基线一致。
+
+**引言结果句（中英对应）。**
+
+- 英文原文：Under shared camera and actor states on Waymo, DriveCompose improves reconstruction and off-trajectory rendering. Paired synthetic tests show better newly visible surfaces than independent completion and a multiview GenAssets variant; real edits reuse the same completed assets across actor states (Sec.~\ref{sec:experiments}).
+- 英文修改后：Under shared camera and actor states on Waymo, DriveCompose improves reconstruction and off-trajectory rendering. Paired synthetic tests show better newly visible surfaces than independent completion; real edits reuse the same completed assets across actor states (Sec.~\ref{sec:experiments}).
+- 中文原文：在 Waymo 的统一相机与参与者状态条件下，DriveCompose 改善了重建与轨迹外渲染。配对合成测试中，新增可见表面优于独立补全和多视图 GenAssets 变体；真实编辑在不同参与者状态下复用同一份完成资产（第~\ref{sec:experiments} 节）。
+- 中文修改后：在 Waymo 的统一相机与参与者状态条件下，DriveCompose 改善了重建与轨迹外渲染。配对合成测试中，新增可见表面优于独立补全；真实编辑在不同参与者状态下复用同一份完成资产（第~\ref{sec:experiments} 节）。
+
+**摘要全文对照。** 仅删除外部车辆比较句，其余表述沿用上一轮。
+
+英文原文：
+
+> Driving simulation and scene editing require reconstructed scenes that support camera and actor motion beyond recorded configurations. Such changes expose unseen surfaces whose geometry and appearance must be completed in the corresponding background, vehicle, or human representation. We present DriveCompose, a framework for compositional generative reconstruction from driving image sequences. Visual features are aggregated in world coordinates for the background and canonical frames for actors, then encoded into component-specific latents. A conditional flow model uses cross-component memory to exchange scene context and jointly complete missing codes. Type-specific Gaussian decoders retain rigid and skeletal bindings, allowing the same completed assets to follow new camera and actor states. Hard latent restoration preserves observed Gaussian parameters, and free-ray constraints control the rendering effects of added content. Under shared states on Waymo, DriveCompose improves reconstruction and off-trajectory rendering over state-adapted baselines; cross-component memory adds 0.627 dB full-image PSNR. On newly visible vehicle surfaces, it exceeds a multiview GenAssets variant by 0.81 dB. Real-scene edits achieve 92.78\% success across nine training/generation-seed combinations, demonstrating reuse of fixed completed assets.
+
+英文修改后：
+
+> Driving simulation and scene editing require reconstructed scenes that support camera and actor motion beyond recorded configurations. Such changes expose unseen surfaces whose geometry and appearance must be completed in the corresponding background, vehicle, or human representation. We present DriveCompose, a framework for compositional generative reconstruction from driving image sequences. Visual features are aggregated in world coordinates for the background and canonical frames for actors, then encoded into component-specific latents. A conditional flow model uses cross-component memory to exchange scene context and jointly complete missing codes. Type-specific Gaussian decoders retain rigid and skeletal bindings, allowing the same completed assets to follow new camera and actor states. Hard latent restoration preserves observed Gaussian parameters, and free-ray constraints control the rendering effects of added content. Under shared states on Waymo, DriveCompose improves reconstruction and off-trajectory rendering over state-adapted baselines; cross-component memory adds 0.627 dB full-image PSNR. Real-scene edits achieve 92.78\% success across nine training/generation-seed combinations, demonstrating reuse of fixed completed assets.
+
+中文原文：
+
+> 驾驶仿真与场景编辑需要重建场景支持相机和参与者偏离记录状态后的运动。这些变化会暴露未见表面，其几何与外观需要在对应的背景、车辆或人体表示中完成补全。我们提出 DriveCompose，从驾驶图像序列中生成式地重建可组合场景。视觉特征在背景的世界坐标系和参与者各自的规范坐标系中聚合，再编码为对应组件的潜表示。条件流模型通过跨组件记忆交换场景上下文，联合补全缺失潜码。分类型高斯解码器保留刚体与骨架绑定，使同一份完成资产随新的相机和参与者状态组合。潜码硬恢复保持已见高斯参数，自由射线约束控制新增内容对渲染的影响。在 Waymo 的统一状态条件下，DriveCompose 的重建与轨迹外渲染优于状态适配后的基线，跨组件记忆使全图 PSNR 提高 0.627 dB。在车辆新增可见表面上，它比多视图 GenAssets 变体提高 0.81 dB。真实场景编辑在九组训练／生成种子下取得 92.78\% 成功率，固定完成资产可跨状态复用。
+
+中文修改后：
+
+> 驾驶仿真与场景编辑需要重建场景支持相机和参与者偏离记录状态后的运动。这些变化会暴露未见表面，其几何与外观需要在对应的背景、车辆或人体表示中完成补全。我们提出 DriveCompose，从驾驶图像序列中生成式地重建可组合场景。视觉特征在背景的世界坐标系和参与者各自的规范坐标系中聚合，再编码为对应组件的潜表示。条件流模型通过跨组件记忆交换场景上下文，联合补全缺失潜码。分类型高斯解码器保留刚体与骨架绑定，使同一份完成资产随新的相机和参与者状态组合。潜码硬恢复保持已见高斯参数，自由射线约束控制新增内容对渲染的影响。在 Waymo 的统一状态条件下，DriveCompose 的重建与轨迹外渲染优于状态适配后的基线，跨组件记忆使全图 PSNR 提高 0.627 dB。真实场景编辑在九组训练／生成种子下取得 92.78\% 成功率，固定完成资产可跨状态复用。
+
+### 验收
+
+- 项目检查 72 项通过；本轮定向检查 38 项通过，包含正文／PDF 残留、表格数字、图像流、稳定方法文本、引用、编译时间及页数。
+- 英文摘要 163 词；英文技术正文第 8 页结束，中文正文第 7 页结束。主稿总页数分别为 11／10，含声明与参考文献；独立补充分别为 11／9 页。
+- 四份最终编译日志无溢出、缺字或未定义引用。已渲染检查主稿及补充图表，重点复核图 5、删行后的表 4 和补充末尾表格。
+- 方法、公式、主书目和保留表格结果保持不变。原始作者结果保留在既有记录中，本轮修改只改变论文展示范围及相关语言。
+- [本轮来源记录](../paper/provenance/display-cleanup-20261030.json)；[定向验收](../paper/provenance/display-cleanup-20261030-verification.json)。
+
+---
+
+## 2026-10-30：作者补充结果入稿、自然表达终校与 CVPR 2027 样式
+
+本轮依据本聊天中作者对 R1-M1 至 R1-m2 的完整补充，修改英文主稿、中文对照及独立双语补充材料。主流程为 ml-paper-writing，规范层为 cvpr-paper-standard；英文执行 humanizer，中文执行 lieflat-less-ai-tone 的定点终校。科学内容与语言终校分别记录。
+
+本轮从已有未提交工作区开始，HEAD 为 `a12af3c150f4f44a8a2a86beed54d315a4bce886`，实际原文基线以[本轮快照](../../_archive/drivecompose/20261030-author-results-revision/baseline/)为准。[完整逐行差异](../../_archive/drivecompose/20261030-author-results-revision/source-changes.diff)仅比较本轮起点与最终文件，之前各轮的改动保留。新增方法、资源和结果登记于[作者输入记录](../paper/provenance/author-results-followup-20261030.json)。
+
+### 修改位置与证据安排
+
+| 位置 | 原问题 | 本轮修改与作用 |
+|---|---|---|
+| 摘要、引言、结论 | 新增外部对照及真实编辑统计尚未进入主线 | 用已给出的 0.81 dB 外部车辆比较及九组种子 92.78% 编辑结果表达完成资产的质量与复用 |
+| 方法 3.3、3.7；补充 B | 完整网格到目标潜码的路径与训练配置省略 | 明确固定查询布局、确定性表面采样、完整视图特征、129/135/128 维接口、无表面目标、网络规模及四阶段损失和预算 |
+| 方法 3.2；补充 D | 中心射线与整个支撑单元的范围容易混淆 | 主实验准确描述中心射线标签；独立报告完整足迹规则及 1,374→19 的误标审计，性能表与掩码审计保持对应 |
+| 实验 4.1；补充 F | 原文只说合成数据向基线开放 | 写明实际随机初始化重训、逐方法数据和原生目标、Ours 的额外监督、训练成本、身份归属与规范化适配及适配损失 |
+| 实验 4.3；补充 H | 几何表面及重投影有效域定义简略 | 完整写入渲染—TSDF—网格—BVH 流程，保留米制距离；新增共有支持集 MAE 0.022/0.028/0.019 与 58.7% 分母 |
+| 实验 4.5、表 4；补充 I | 外部车辆资产对照缺行，单组编辑统计未展示种子和类型差异 | 增加本地 GenAssets-RGB-MV 行，明确为本文适配版本；保留原单组结果，再报告车辆/人体和全部九组统计及场景聚类区间 |
+| 表 1；补充 F | 深度表头未标对齐方式 | 表头标为逐帧尺度对齐深度，并给出尺度计算和未对齐指标 |
+| 讨论与全篇终校 | 重复提醒、预设反驳与技术内容交织 | 直接陈述方法和结果，保留实际失败条件、比较条件及统计含义；删除重复的预先辩解 |
+
+### 代表性原文与修改后
+
+**目标构造，方法 3.7。**
+
+- 英文原文：`query complete meshes for surface and empty-space targets, and encode them as $\mathbf z_1$ with the fixed codec.`
+- 英文修改后：`Complete meshes supply surface samples within each cell. Multiview rendering and the frozen visual encoder produce $\mathbf h_i^{\rm full}$, which the shared type-specific encoder maps to $\mathbf z_{1,i}=E_{k_i}([\mathbf h_i^{\rm full};\mathbf q_i;\boldsymbol\delta_i])$.`
+- 中文原文：`查询完整网格的表面与空域，再经固定 codec 得到 $\mathbf z_1$。`
+- 中文修改后：`完整网格提供各单元内的表面样本，多视图渲染与冻结视觉编码器得到 $\mathbf h_i^{\rm full}$，再由共享的类型专属编码器映射为 $\mathbf z_{1,i}=E_{k_i}([\mathbf h_i^{\rm full};\mathbf q_i;\boldsymbol\delta_i])$。`
+- 原因：补齐从几何监督到共享视觉特征和潜码的实际计算路径。采样细节与全部配置进入附录 B。
+
+**比较数据，实验 4.1。**
+
+- 英文原文：`Synthetic data are available to retrained baselines, and weights remain fixed at test time.`
+- 英文修改后：`are retrained from random initialization on the same real logs, synthetic scenes, and complete assets. Each uses its native supervision; Ours also uses cell-empty and template-binding targets.`（主语为 STORM、DGGT 与 StreetForward。）
+- 中文原文：`重训练基线可使用合成数据，测试时权重固定。`
+- 中文修改后：`均随机初始化，在相同真实日志、合成场景和完整资产上重训。各方法使用自身监督目标，Ours 另用单元空域及模板绑定监督。`（主语同上。）
+- 原因：把数据开放意向替换为作者给出的实际训练过程，保留影响比较解释的监督条件。
+
+**重投影结果，实验 4.3。**
+
+- 英文原文：`Error must be read together with coverage (Appendix H).`
+- 英文修改后：`On real scenes, Ours reduces common-support RGB reprojection MAE from 0.028 to 0.019 versus w/o CCM and raises coverage from 86.9\% to 92.4\%.`
+- 中文原文：`需结合覆盖率解读误差（附录 H）。`
+- 中文修改后：`真实场景中，Ours 相对 w/o CCM 将共有支持集 RGB 重投影 MAE 从 0.028 降至 0.019，覆盖率从 86.9\% 增至 92.4\%。`
+- 原因：直接给出共有区域的精度与覆盖结果，完整定义和原有自身有效域结果保留在附录 H。
+
+**真实编辑，实验 4.5。**
+
+- 英文原文：`Across 40 real actor edits with training seed 0 and generation seed 7, failures decrease from 16 (w/o GCM) to 7 (w/o CCM) and 3 (Ours), giving 92.5\% success.`
+- 英文修改后：`Across nine training/generation-seed combinations, real edits succeed for 177/180 vehicles and 157/180 humans, yielding 92.78\% overall success.`
+- 中文原文：`固定训练种子 0、生成种子 7，在 40 次真实参与者编辑中，失败数由 w/o GCM 的 16 次、w/o CCM 的 7 次降至 Ours 的 3 次，成功率为 92.5\%。`
+- 中文修改后：`九组训练／生成种子下，真实车辆编辑成功 177／180 次，人体为 157／180 次，总成功率 92.78\%；场景聚类 bootstrap 的 95\% 区间为 85.28--99.17\%。`
+- 原因：正文采用作者给出的完整九组统计，原有单组 40 次编辑及各方法结果保留于附录 I，连同盲评规则、类型分组和失败情形一起呈现。
+
+### 表达与格式
+
+终校直接说明输入、运算、约束和已有结果，保留固定照明、给定状态、实际监督和困难编辑条件。英文删去重复的 staged run-up 与 not-X 对照，中文按对应规则作最小修改；[逐处终校记录](../../_archive/drivecompose/20261030-author-results-revision/language-pass.json)保留原因。中文摘要末尾压缩短句，避免孤立短行；补充放大图标题与图保持在同一浮动块。
+
+主稿及补充材料采用从[CVPR 2027 官方作者指南](https://cvpr.thecvf.com/Conferences/2027/AuthorGuidelines)下载的 author-kit-CVPR2027-v1-latex 样式，两个 cvpr.sty 与官方下载文件逐字节一致。新样式取消标题区与页眉的 Paper ID；正文页边距、字号和全局行距保持官方设置。图像、固定标题、图 1 前置、方法总览及单栏细节的已有安排沿用本轮基线。
+
+### 最终验收
+
+四份最终 PDF 均重新编译。英文主稿 11 页，其中技术正文及五图四表止于第 8 页，声明及参考文献自第 9 页开始；中文主稿 10 页，正文止于第 7 页。英文／中文补充材料为 12／10 页。项目 72 项检查及本轮 106 项核验通过，最终日志无溢出、缺字或未定义引用。逐页渲染覆盖四份 PDF，目视检查了整体布局，并复查新增公式、表格与末页。
+
+完整结果见[本轮核验](../paper/provenance/author-results-followup-20261030-verification.json)。本轮中间脚本、渲染图与实际起点快照均在项目外 `_archive/drivecompose/20261030-author-results-revision/`，正式 PDF 沿用原路径。
+
+---
+
+## 2026-10-30：图 1 前置至摘要之前（当前首页布局）
+
+按用户要求，仅调整中英文首页布局。图 1 从摘要之后的跨栏浮动图，改为标题区内的固定图，显示顺序为标题、作者占位、图 1、摘要。保留原图、尺寸、图注、编号与科学正文；去掉图注后手动增加的空白，避免英文摘要末行续到第二页。
+
+| 文件 | 原位置 | 新位置 | 原因 |
+|---|---|---|---|
+| main.tex | Abstract 之后的 figure*，显示于后续页面 | 标题下、Abstract 之前的 minipage | 英文图 1 前置且不再受浮动影响 |
+| main_zh.tex | 摘要之后的 figure* | 标题下、摘要之前的 minipage | 中文对照同步 |
+
+调整前快照保存在 pre-research/_archive/drivecompose/20261030-pre-push-cleanup/paper/build/revision-20261030/teaser-before-abstract-baseline/，逐行对照见[本次布局差异](../../_archive/drivecompose/20261030-pre-push-cleanup/paper/build/revision-20261030/teaser-before-abstract.diff)。两版已编译并目视检查：首页图 1 均位于摘要之前，摘要完整留在首页，英文正文仍止于第 8 页；日志无溢出、缺字或未定义引用。本次没有修改图像或实验值；验收见[布局记录](../paper/provenance/teaser-before-abstract-20261030.json)。
+
+---
+
+## 2026-10-30 后续图件调整（当前布局）
+
+用户要求将原总览图加回方法处，并缩小细节图。本次只改双语图件位置、大小、图注和必要引用，保留实验数值与科学正文。
+
+| 位置 | 调整前 | 调整后 | 原因 |
+|---|---|---|---|
+| 方法总览 / DriveCompose overview | 位于补充 L，正文 overview 标签指向概念图 | 原图恢复到方法开头，正文图 2；英文实测第 4 页 | 按用户要求在方法处提供完整流程 |
+| 联合补全细节 / Joint latent completion | 0.86 倍正文宽的跨栏图 | 单栏图 3，宽约 83.3 mm；补充 L 保留 0.86 倍正文宽的放大图 | 缩小细节图，同时保留完整可读版本 |
+| 后续图号 | 动态结果图 3、离轨结果图 4 | 动态结果图 4、离轨结果图 5 | 自动顺延并同步中英文引用；资产换姿结果图仍未加入 |
+| 声明与检查 | 说明补充总览，检查旧图序 | 声明补充放大图，检查 overview 在方法与 detail 在补充 | 与实际 PDF 一致 |
+
+调整前快照位于 pre-research/_archive/drivecompose/20261030-pre-push-cleanup/paper/build/revision-20261030/layout-followup-baseline/。源 PNG 的字节和实验图像素均未更改；未改正文几何、字号或行距。最终英文主稿正文及五图四表止于第 8 页，总计 11 页；中文主稿 10 页。英文／中文补充为 8／7 页。四份 PDF 编译成功，71 项稿件检查与 53 项本轮核验通过。方法总览、单栏细节及补充放大图已目视检查，详见[验证记录](../paper/provenance/review-revision-20261030-verification.json)。
+
+---
+
+## 2026-10-30：审稿问题修正、作者结果回填与八页正文
+基线提交为 a12af3c150f4f44a8a2a86beed54d315a4bce886。修订开始时除上一轮只读审图缓存外工作区干净。原始源稿、四份 PDF 和离轨图保存在 pre-research/_archive/drivecompose/20261030-pre-push-cleanup/paper/build/revision-20261030/baseline/。本轮未提交、推送或运行训练/评测。
+新增事实与结果来自[作者原始要求](../paper/provenance/review-revision-20261030-author-source.txt)，采用作者汇总证据等级；未将转录和算术核对描述为原始运行核验。[机器可读来源](../paper/provenance/review-revision-20261030.json)保留全部 16 张原始表。
+### 范围与取舍
+| 位置 | 实际改动 | 原因及去向 |
+|---|---|---|
+| 双语摘要、方法与引言 | 明确统一状态、有限支撑完整目标、有效目标规则及参数保持边界；闭环改为应用方向 | 对应 R-M1、R-M2、R-M3、R-M5；标题保留 |
+| 双语实验 | 保留原主表均值，主比较基线标明统一状态适配；加入资产编辑、隐藏区域、CCM 分组、观测保持及效率结论 | 用户新增汇总；未补造近邻排名 |
+| 双语补充 A/B/F–K | 补齐来源、监督、插值／外推、完整 SD、失败分母、上下文诊断、射线阈值及计时明细 | 正文保留核心条件，完整表格可定位 |
+| 原图 1/2 | 用原概念对照图的观测缺失面板与原 teaser 组合为一张 PDF | 复用原图像，无生成新实验图，保留示意身份 |
+| 原图 3/4 | 原展开总览迁入附录 L；CCM 机制图保留为正文图 2 | 去除重复概念说明，保留机制与完整流程 |
+| 动态／离轨结果 | 顺延为图 3/4；离轨首列 GT 改为 Recorded-view reference | PDF 原图像流逐个哈希一致，仅编辑标题文本 |
+| 图 5 | 按用户后续明确指令暂不放入 | 不以示意图替代真实换姿结果，定量表保留 |
+| 引言、相关工作、方法、结论 | 删除重复流程说明和重复自我比较，精简长句 | 技术核心、九个公式块和 52 条书目保留；训练表迁入 B，输入敏感性表迁入 G |
+| LLM Usage Statement | 置于正文之后、参考文献之前 | 披露本会话及项目记录中的 Codex、Image Gen 用途 |
+| 校验入口 | 更新旧图序及消融表位置假设，继续检查原均值及跨表 T=8 一致性 | 新布局下 67 项稿件检查；新增作者表数值、算术、像素与页界审计另存验证 JSON |
+
+### 代表性中英前后对照
+
+**摘要中的观测保持**
+
+区分高斯参数的结构保证与新增遮挡造成的经验渲染变化。
+
+英文原文
+
+> Completion is constrained by the input observations to preserve the geometry and appearance of observed surfaces.
+
+英文修改后
+
+> Hard latent restoration preserves observed Gaussian parameters, while free-ray constraints limit rendering changes caused by added content.
+
+中文原文
+
+> 补全过程受输入观测约束，以保持已观测表面的几何与外观。
+
+中文修改后
+
+> 潜码硬恢复保持已见高斯参数，自由射线约束限制新增内容引起的渲染变化。
+
+**完整目标与损失选择器**
+
+解释为何 s_i=0 不能使流插值中的无效目标变得有效；完整规则仍使用原公式。
+
+英文原文
+
+> Complete scene or asset examples supply $\mathbf z_1$ at the unknown queries, while $s_i$ selects their contribution to the training loss (Sec.~\ref{sec:training}).
+
+英文修改后
+
+> Every unknown query must have a valid target because Eq.~\ref{eq:flow-path} uses $\mathbf z_{1,i}$ even when $s_i=0$. Samples failing this condition are excluded from prior learning; $s_i$ only selects loss terms among valid targets (Sec.~\ref{sec:training}).
+
+中文原文
+
+> 完整场景或资产样本为未知查询提供目标潜码 $\mathbf z_1$，$s_i$ 则选择其对训练损失的贡献（第~\ref{sec:training} 节）。
+
+中文修改后
+
+> 每个未知查询都必须具有有效目标，因为即使 $s_i=0$，式~\ref{eq:flow-path} 仍使用 $\mathbf z_{1,i}$。不满足这一条件的样本不参与先验学习；$s_i$ 仅在有效目标中选择损失项（第~\ref{sec:training} 节）。
+
+**离轨图参考身份**
+
+原轨迹参考与偏移相机不配对，标签和图注同时更正，保留全部实验像素。
+
+英文原文
+
+> Columns, from left to right, show the reference image (GT), STORM, DGGT, StreetForward, and DriveCompose (Ours).
+
+英文修改后
+
+> The first column is the recorded-view reference, followed by STORM$^\dagger$, DGGT$^\dagger$, StreetForward$^\dagger$, and Ours. The reference is captured on the original trajectory, not at the shifted camera.
+
+中文原文
+
+>   \caption{\textbf{动态场景重建的定性对比。}每行展示一个样例，从左至右依次为真实图像、DGGT、STORM、StreetForward 和 DriveCompose（Ours）。样例覆盖行人、交通车辆与城市背景，用于比较参与者轮廓、车辆边界以及道路和建筑结构。}
+
+中文修改后
+
+> 首列为原轨迹记录参考图，随后为 STORM$^\dagger$、DGGT$^\dagger$、StreetForward$^\dagger$ 与 Ours。首列不与平移后的相机配对。
+
+完整逐行对照见 [source-changes.diff](../../_archive/drivecompose/20261030-pre-push-cleanup/paper/build/revision-20261030/source-changes.diff)。
+
+### 验证与边界
+
+正文页数按结论全文末尾 sec:main-text-end 和全部正文图表标签检查，避免仅看标题漏判续页。编译与数值、像素核验详情见[验证记录](../paper/provenance/review-revision-20261030-verification.json)。最终英文主稿 11 页，全部技术正文及四图四表止于第 8 页，LLM Usage Statement 与参考文献从第 9 页开始；中文主稿 10 页，正文止于第 7 页。英文补充 8 页，中文补充 7 页。四份 PDF 编译成功，日志无未定义引用、缺字或溢出。67 项既有稿件检查和 53 项本轮来源/算术/页界/图像核验通过；逐页缩略图及关键页高清检查通过。未改变主文字号、页边距或行距。
+
+作者侧仍待追溯的材料包括原始运行、checkpoint、数据清单和未提供的训练超参数；R-M6 协议定位已由作者补充并写入双语正文和补充 H：可见率分组共享 100 个合成场景，读取范围在 202 个 Waymo 窗口上对同一 Ours checkpoint 施加推理遮罩；记录见[补充来源](../paper/provenance/review-revision-20261030-clarification.txt)。论文文字依据本轮作者汇总，不据缺少原始材料推断实验未实施。
+
+---
+
 ## 2026-10-29：归档临时文件并整合远端更新
 
 本轮用于清理、提交和推送。清理后的本地基线为 `fae4966`，远端为 `4403f99`；两边完整历史均保留。

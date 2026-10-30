@@ -1,0 +1,657 @@
+{
+  "date": "2026-10-30",
+  "source": "Author message in this chat responding to R1-M1 through R1-m2",
+  "evidence_type": "author-provided method specifications, training resources, and aggregate empirical results",
+  "operation": "bilingual manuscript revision and numerical transcription checks",
+  "baseline_head": "a12af3c150f4f44a8a2a86beed54d315a4bce886",
+  "baseline_snapshot": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261030-author-results-revision\\baseline",
+  "status": "manuscript_revision_complete",
+  "target_construction": {
+    "layout": "Partial-input QueryBundle.blocks order and within-block indices; fixed positions, scales, types, ownership and human binding",
+    "surface_targets": "positive-area intersections between complete owning-component mesh and fixed query cell",
+    "sample_count": "max(1,ceil(64*A_f/delta_min^2))",
+    "sample_seed": "asset, query and triangle identifiers",
+    "base_views": [
+      8,
+      3
+    ],
+    "additional_views": "local isolated views for uncovered fragments",
+    "rendering": "fixed illumination and original materials; RGB, axial depth, instances and triangle IDs",
+    "full_features": 129,
+    "visual_features": 128,
+    "residual_clip": [
+      -1,
+      1
+    ],
+    "aggregation": "valid-view weighted average per sample, then fragment-area average",
+    "empty_features": "129 zeros with explicit zero-opacity supervision; distinct from ray-voted free labels",
+    "sky": "complete environment map and zero residual",
+    "encoder": [
+      135,
+      128,
+      128
+    ],
+    "normalization": "LayerNorm",
+    "latent_dimension": 128,
+    "target_freezing": "Recovery and codec frozen after Stage 2; fixed complete targets for Stage 3",
+    "sample_validity": "Every unknown query has valid geometry, appearance and binding targets"
+  },
+  "network": {
+    "visual_width": 128,
+    "patch": 16,
+    "heads": 4,
+    "image_layers": 1,
+    "summary_layers": 2,
+    "identity_slots": 24,
+    "shape_dimensions": 10,
+    "joints": 17,
+    "gcm_width": 128,
+    "gcm_layers": 4,
+    "gcm_heads": 4,
+    "memory_tokens": 16,
+    "children_per_query": 4,
+    "parameters_per_child": 23,
+    "appearance_parameters": 12,
+    "background_grid": [
+      20,
+      12,
+      6
+    ],
+    "rigid_grid": [
+      8,
+      4,
+      4
+    ],
+    "sky_grid_per_face": [
+      4,
+      4
+    ],
+    "additional_supports": "observed anchors and human template",
+    "euler_steps": 24
+  },
+  "training": {
+    "stage_steps": [
+      86208,
+      57472,
+      114944,
+      28736
+    ],
+    "global_batches": [
+      32,
+      32,
+      32,
+      8
+    ],
+    "initial_lrs": [
+      0.0002,
+      0.0003,
+      0.0001,
+      3e-05
+    ],
+    "total_steps": 287360,
+    "hardware": "8 x A100 80 GB",
+    "precision": "FP16",
+    "optimizer": "AdamW",
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "weight_decay": 0.01,
+    "lr_schedule": "warmup followed by cosine decay",
+    "stage_gpu_hours": [
+      278.6,
+      184.3,
+      326.9,
+      211.7
+    ],
+    "single_checkpoint_gpu_hours": 1001.5,
+    "three_gcm_seeds_gpu_hours": 2078.7,
+    "stage1_losses": [
+      "depth",
+      "normals",
+      "semantics",
+      "instances",
+      "root translation",
+      "root rotation",
+      "dimensions",
+      "shape",
+      "joints",
+      "confidence"
+    ],
+    "stage1_weights": [
+      1,
+      0.2,
+      0.1,
+      0.1,
+      0.5,
+      0.2,
+      0.1,
+      0.1,
+      0.2,
+      0.1
+    ],
+    "stage2_weights": {
+      "rgb": 1,
+      "depth": 0.1,
+      "silhouette": 0.2,
+      "empty": 0.05,
+      "scale": 0.001
+    },
+    "stage4_weights": {
+      "flow": 1,
+      "rgb": 1,
+      "depth": 0.1,
+      "free": 0.05,
+      "ground": 0.1,
+      "contact": 0.1,
+      "penetration": 0.1
+    },
+    "stage4_synthetic_real_ratio": [
+      1,
+      3
+    ],
+    "waymo_splits": [
+      740,
+      58,
+      202
+    ]
+  },
+  "free_space": {
+    "performance_tables_version": "center-ray voting",
+    "audit_version": "full projected footprint, listed separately",
+    "confidence_threshold": 0.8,
+    "depth_tolerance": [
+      0.15,
+      0.02
+    ],
+    "min_votes": 2,
+    "audit_scenes": 100,
+    "rows": [
+      [
+        "Thin structures",
+        18437,
+        614,
+        9
+      ],
+      [
+        "Occlusion boundaries",
+        27619,
+        587,
+        7
+      ],
+      [
+        "Other regions",
+        53128,
+        173,
+        3
+      ],
+      [
+        "Total",
+        99184,
+        1374,
+        19
+      ]
+    ],
+    "occupied_error_percent": [
+      1.385,
+      0.019
+    ],
+    "free_counts": [
+      47286,
+      32871
+    ],
+    "free_contamination_percent": [
+      2.906,
+      0.058
+    ],
+    "ground_truth_depth_center_errors": 934,
+    "continuous_ground_truth_footprint_errors": 0,
+    "footprint_rule": "max cell vertex depth below min footprint depth minus tolerance; outward-rounded footprint with valid depth/confidence and no sky/ego pixels"
+  },
+  "baseline_resources": [
+    [
+      "STORM",
+      234816,
+      16,
+      916.7
+    ],
+    [
+      "DGGT",
+      212672,
+      16,
+      1128.4
+    ],
+    [
+      "StreetForward",
+      246144,
+      8,
+      1036.9
+    ],
+    [
+      "Ours",
+      287360,
+      "by stage",
+      1001.5
+    ],
+    [
+      "w/o CCM",
+      287360,
+      "as Ours",
+      977.1
+    ]
+  ],
+  "comparison": "All methods retrained from random initialization on the same real logs, synthetic scenes and complete assets with native objectives; Ours also uses cell-empty and template-binding targets",
+  "adapter": {
+    "type": "deterministic contribution-weighted instance voting, rigid inverse transform and template/barycentric inverse skinning",
+    "rgb_round_trip_max": 4e-06,
+    "native_adapted_psnr": [
+      [
+        "STORM",
+        26.492,
+        26.38,
+        -0.112
+      ],
+      [
+        "DGGT",
+        27.538,
+        27.41,
+        -0.128
+      ],
+      [
+        "StreetForward",
+        27.094,
+        27.01,
+        -0.084
+      ]
+    ]
+  },
+  "external_asset_comparison": {
+    "baseline": "GenAssets-RGB-MV, locally adapted multiview RGB-conditioned variant",
+    "description": "retains asset latent representation and generator with weighted view-condition pooling",
+    "context_images": 12,
+    "synthetic_test_scenes": 20,
+    "vehicle_rotation_degrees": 30,
+    "training_seed": 0,
+    "generation_seed": 7,
+    "training_stage_steps": [
+      68736,
+      137472
+    ],
+    "training_total_steps": 206208,
+    "gpu_hours": 1194.6,
+    "rows": [
+      [
+        "w/o GCM",
+        17.8,
+        0.362,
+        63.4
+      ],
+      [
+        "GenAssets-RGB-MV",
+        23.37,
+        0.194,
+        94.7
+      ],
+      [
+        "w/o CCM",
+        22.46,
+        0.218,
+        91.8
+      ],
+      [
+        "Ours",
+        24.18,
+        0.176,
+        96.1
+      ]
+    ],
+    "metrics": [
+      "PSNR",
+      "LPIPS",
+      "coverage_percent_at_2cm"
+    ]
+  },
+  "geometry_evaluation": {
+    "opacity_min": 0.01,
+    "spatial_truncation_sigma": 3,
+    "orthographic_directions": 6,
+    "pixel_size_max_m": 0.001,
+    "surface_accumulated_opacity": 0.5,
+    "tsdf_voxel_m": 0.002,
+    "tsdf_truncation_m": 0.008,
+    "surface_samples_each": 65536,
+    "distance": "BVH point-to-triangle, nonsquared Euclidean",
+    "coordinates": "original metric scale and alignment",
+    "actor_coverage_thresholds_m": [
+      0.02,
+      0.01
+    ],
+    "outside_support_reference_surfaces": "included in coverage denominator",
+    "averaging": "compute per scene and seed before averaging"
+  },
+  "real_reprojection": {
+    "rgb": "linear",
+    "reference_geometry": "independent, evaluator-only",
+    "shared_reference_fraction_percent": 58.7,
+    "rows": [
+      [
+        "w/o GCM",
+        0.022,
+        0.024,
+        62.1
+      ],
+      [
+        "w/o CCM",
+        0.028,
+        0.041,
+        86.9
+      ],
+      [
+        "Ours",
+        0.019,
+        0.029,
+        92.4
+      ]
+    ],
+    "metrics": [
+      "common_support_MAE",
+      "own_support_MAE",
+      "own_coverage_percent"
+    ]
+  },
+  "real_edits": {
+    "scenes": 20,
+    "rating": "two method-blinded evaluators, third adjudicator, >=5 pixel continuous holes/detachment/tears",
+    "seed0_gen7": [
+      [
+        "w/o GCM",
+        14,
+        10,
+        60.0
+      ],
+      [
+        "w/o CCM",
+        18,
+        15,
+        82.5
+      ],
+      [
+        "Ours",
+        20,
+        17,
+        92.5
+      ]
+    ],
+    "seed_rows": [
+      [
+        0,
+        7,
+        20,
+        17
+      ],
+      [
+        0,
+        17,
+        20,
+        18
+      ],
+      [
+        0,
+        27,
+        19,
+        17
+      ],
+      [
+        1,
+        7,
+        20,
+        18
+      ],
+      [
+        1,
+        17,
+        19,
+        17
+      ],
+      [
+        1,
+        27,
+        20,
+        18
+      ],
+      [
+        2,
+        7,
+        20,
+        17
+      ],
+      [
+        2,
+        17,
+        20,
+        18
+      ],
+      [
+        2,
+        27,
+        19,
+        17
+      ]
+    ],
+    "total_successes": [
+      177,
+      157,
+      334
+    ],
+    "total_edits": [
+      180,
+      180,
+      360
+    ],
+    "success_percent": [
+      98.33,
+      87.22,
+      92.78
+    ],
+    "training_seed_sample_SD_percentage_points": 0.48,
+    "cluster_unit": "scene, retaining all 18 edits",
+    "failure_counts_by_affected_scene": [
+      9,
+      8,
+      6,
+      3
+    ],
+    "scene_cluster_percentile_CI95_percent": [
+      85.28,
+      99.17
+    ],
+    "canonical_texture_linear_rgb_MAE": 0.014
+  },
+  "depth_evaluation": {
+    "alignment": "positive per-frame median(d_gt/d_pred) on a fixed valid LiDAR mask, no shift",
+    "rows": [
+      [
+        "STORM",
+        0.178,
+        0.741,
+        0.226,
+        0.683
+      ],
+      [
+        "DGGT",
+        0.249,
+        0.668,
+        0.327,
+        0.572
+      ],
+      [
+        "StreetForward",
+        0.197,
+        0.759,
+        0.254,
+        0.694
+      ],
+      [
+        "Ours",
+        0.095,
+        0.877,
+        0.121,
+        0.842
+      ]
+    ],
+    "metrics": [
+      "aligned_AbsRel",
+      "aligned_delta1",
+      "unaligned_AbsRel",
+      "unaligned_delta1"
+    ]
+  },
+  "official_template": {
+    "url": "https://media.eventhosts.cc/Conferences/CVPR2027/author-kit-CVPR2027-v1-latex.zip",
+    "checked_date": "2026-10-30",
+    "style_sha256": "1cd7f434b13d41c475df4a1901a5d82d9ca8b80b8cf6205dc4602a5c164286b4",
+    "zip_sha256": "da1ec5db9b73531ea82a87723e4aedb631083331fe655d1972279b48a7bdb2fe"
+  },
+  "language_pass": {
+    "english": "humanizer",
+    "chinese": "lieflat-less-ai-tone",
+    "log": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261030-author-results-revision\\language-pass.json"
+  },
+  "changed_files_vs_round_baseline": [
+    "paper/sec/0_abstract.tex",
+    "paper/sec/1_introduction.tex",
+    "paper/sec/3_method.tex",
+    "paper/sec/4_experiments.tex",
+    "paper/sec/5_discussion.tex",
+    "paper/sec/6_conclusion.tex",
+    "paper/zh/0_abstract_zh.tex",
+    "paper/zh/1_introduction_zh.tex",
+    "paper/zh/3_method_zh.tex",
+    "paper/zh/4_experiments_zh.tex",
+    "paper/zh/5_discussion_zh.tex",
+    "paper/zh/6_conclusion_zh.tex",
+    "paper/supplementary/codec.tex",
+    "paper/supplementary/codec_zh.tex",
+    "paper/supplementary/cross_dataset.tex",
+    "paper/supplementary/cross_dataset_zh.tex",
+    "paper/supplementary/evaluation.tex",
+    "paper/supplementary/evaluation_zh.tex",
+    "paper/supplementary/frontend.tex",
+    "paper/supplementary/frontend_zh.tex",
+    "paper/supplementary/training.tex",
+    "paper/supplementary/training_zh.tex",
+    "AGENTS.md",
+    "docs/paper-revision-changes.md",
+    "docs/paper-revision-workflow.md",
+    "paper/EVIDENCE.md",
+    "paper/main.tex",
+    "paper/cvpr.sty",
+    "paper/supplementary/references.bib",
+    "paper/supplementary/cvpr.sty",
+    "paper/build/en/main.pdf",
+    "paper/build/zh/main_zh.pdf",
+    "paper/build/supp-en/main.pdf",
+    "paper/build/supp-zh/main_zh.pdf",
+    "paper/tools/check_manuscript.py"
+  ],
+  "verification": "paper/provenance/author-results-followup-20261030-verification.json",
+  "pdfs": {
+    "en": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "pages": 11,
+      "sha256": "12b0db9817e17ac11b292ed9a8ac1eb33b5d907f58a69232493d23a946cba7d4",
+      "page_size_pt": [
+        612.0,
+        792.0
+      ],
+      "final_log_problems": [],
+      "body_end_page": 8,
+      "llm_statement_page": 9
+    },
+    "zh": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+      "pages": 10,
+      "sha256": "84c2808ac03a475cc8ca1baee27375f0ef125725323e0fa1767fb63061626f3a",
+      "page_size_pt": [
+        612.0,
+        792.0
+      ],
+      "final_log_problems": [],
+      "body_end_page": 7
+    },
+    "supp-en": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\supp-en\\main.pdf",
+      "pages": 12,
+      "sha256": "eff09a6210cf45890e9939348eeef3f03a0e94ce06dbe70e56bdd2d777ccfa14",
+      "page_size_pt": [
+        612.0,
+        792.0
+      ],
+      "final_log_problems": []
+    },
+    "supp-zh": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\supp-zh\\main_zh.pdf",
+      "pages": 10,
+      "sha256": "21eee9e7fdd367232eb4e9ded0012b578cd2c9c600afe7e79e2c31d1c03654d1",
+      "page_size_pt": [
+        612.0,
+        792.0
+      ],
+      "final_log_problems": []
+    }
+  },
+  "created_files": [
+    "paper/provenance/author-results-followup-20261030.json",
+    "paper/provenance/author-results-followup-20261030-verification.json"
+  ],
+  "layout_followup": {
+    "chinese_abstract": "Removed the isolated ending by shortening the last clause without changing the result",
+    "appendix_L": "Kept section title and enlarged figure in one float",
+    "official_style_exact": true
+  },
+  "visual_qa": {
+    "passed": true,
+    "rendered_pdf_pages": 43,
+    "render_directory": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261030-author-results-revision\\final-render",
+    "scope": "Whole-document page layouts plus full-page inspection of affected title, final main-text, and enlarged-diagram pages",
+    "final_pdf_sha256": {
+      "en": "12b0db9817e17ac11b292ed9a8ac1eb33b5d907f58a69232493d23a946cba7d4",
+      "zh": "84c2808ac03a475cc8ca1baee27375f0ef125725323e0fa1767fb63061626f3a",
+      "supp-en": "eff09a6210cf45890e9939348eeef3f03a0e94ce06dbe70e56bdd2d777ccfa14",
+      "supp-zh": "21eee9e7fdd367232eb4e9ded0012b578cd2c9c600afe7e79e2c31d1c03654d1"
+    }
+  },
+  "source_hashes": {
+    "paper/sec/0_abstract.tex": "abcd21b81e50d35a7b949db31cc6008d4211f73e2e0a460e7adc4812aaa2bc72",
+    "paper/sec/1_introduction.tex": "c021b97fa4cb5c4641ff50677aabf905ec26c836d7272cbbe053c1777eb6c057",
+    "paper/sec/3_method.tex": "1aac127cd1fefb1f20d10e858597aca117e1c64b07bd0a49737080cf435756f8",
+    "paper/sec/4_experiments.tex": "58931258ab2bd8f24273ff1aa43006811b62d312fa1c0c33bc8557fa9ab62fb5",
+    "paper/sec/5_discussion.tex": "a1d6500ee60c6bed355582b4fb640688b5779bba156fe338a2523b297f7cd400",
+    "paper/sec/6_conclusion.tex": "a705ccb6e68204f592e79f275d9040334925cdd4326726bcdec6b93855180b21",
+    "paper/zh/0_abstract_zh.tex": "0003364692059898e8220edc05db27e05d3c615675cd45d64eed8b9072652005",
+    "paper/zh/1_introduction_zh.tex": "f2671c8ea37a3ea43b9724907702b5ffed508a209a1109d433a3d85961ffa352",
+    "paper/zh/3_method_zh.tex": "7d74f699cc2872ce21217c923081145bf35b005854cf5dfe02013783a05f783e",
+    "paper/zh/4_experiments_zh.tex": "8733fd87193c910baf68679616a649953598ed6225d51bb8429ca92e3b0c75d0",
+    "paper/zh/5_discussion_zh.tex": "5697863d8946b0c8b65fba933e0b6d6c92f79e8e694c3efd68d0378d555bd66b",
+    "paper/zh/6_conclusion_zh.tex": "64fa3aaaaa62b7a41a46b9151c745a26c13d72a460ad0b3dfe6b4a6109f6f7f6",
+    "paper/supplementary/codec.tex": "ab69d30bba073272cc90082147977a8d05de0064f46979b2ea476c55e03602bf",
+    "paper/supplementary/codec_zh.tex": "39bf6c976cd683e6af4dff33da400f1375c140582b455ff8e83cc4a4e0654ec8",
+    "paper/supplementary/cross_dataset.tex": "5cadd32d16ed7837404c870165b4ca816a0c4f01445570393147135f8b0298dc",
+    "paper/supplementary/cross_dataset_zh.tex": "bc886af8cecd1cfecfbede0ba70b2f8381e5cc6a3ffc7896995c96dd8144a640",
+    "paper/supplementary/evaluation.tex": "6d77da2bbac4099b0926709df012f6f39c661bf20dff333ff475ca3d9b2dd0c1",
+    "paper/supplementary/evaluation_zh.tex": "6d26ccdbd30e5f8e9b5d866b3b2fb6e8668a0b176d86ebeeebbbdd6982a386a1",
+    "paper/supplementary/frontend.tex": "45a07e2131d4c9ae1ec3cd378de339a6cc13bd8e0e0c2118bcf5c5c0daa2b528",
+    "paper/supplementary/frontend_zh.tex": "56ce71d9694759d0e7fdfc1e1fc60e869a604542033e20c340d9ad7e532696b4",
+    "paper/supplementary/training.tex": "2a8e4053ca5a62a0288fea8ac22e5fefc5f9e6d0c5e77ad950c349d12d0d61fe",
+    "paper/supplementary/training_zh.tex": "219cd65f50a6ced78b73288b8ff9cf0599dbbe729c0d66ae960d979bce9e21f8",
+    "AGENTS.md": "9d55428a96b4b7545c1832a2ed51f864b44e4eec125877b674648357db00cb21",
+    "docs/paper-revision-changes.md": "b40edd1c9d5283ea4a7b2a7adb3e835c357849b46105da3468232be5af3a950b",
+    "docs/paper-revision-workflow.md": "05f0ecf3945fa5bba9d15b57f2fed5b195138212e70af6ba1344792b3e9f439a",
+    "paper/EVIDENCE.md": "0feed6214630602f3a7174a8e826efd05cbb5f67ddff28aac4f7ff2f8805742d",
+    "paper/main.tex": "2bf8abdf10db01155d20003b4a60464c72dcd9d40865af09e0e992aed001c519",
+    "paper/cvpr.sty": "1cd7f434b13d41c475df4a1901a5d82d9ca8b80b8cf6205dc4602a5c164286b4",
+    "paper/supplementary/references.bib": "165d1fde10af00ac59a83837a44ae02984f932176cf84a339439f15072994d92",
+    "paper/supplementary/cvpr.sty": "1cd7f434b13d41c475df4a1901a5d82d9ca8b80b8cf6205dc4602a5c164286b4",
+    "paper/tools/check_manuscript.py": "cfd874f3fa3f9f16fbe8c20af8d8e43d4b44921b39716783710fec121da1dccf"
+  }
+}

@@ -1,56 +1,32 @@
 \section{实验}
 \label{sec:experiments}
-
-我们从三个方面评价方法：
-\textit{（i）}Waymo Open Dataset 上的动态场景重建质量（第~\ref{sec:temporal_evaluation} 节）；
-\textit{（ii）}横向相机偏移下的轨迹外视图合成（第~\ref{sec:spatial_evaluation} 节）；
-\textit{（iii）}主要设计的消融分析（第~\ref{sec:ablations} 节）。
-跨数据集泛化结果见补充材料。
+我们评价 Waymo 上的条件重建、轨迹外渲染和完成资产复用，并通过组件、可见性及观测保持测试分析联合补全的收益。补充材料附录 A 报告 nuScenes 零样本迁移。
 
 \subsection{实验设置}
 \label{sec:experimental_setup}
+\paragraph{数据与监督。}
+Waymo 的 798 条训练序列拆为 740 条训练和 58 条开发序列，202 条验证序列用于测试。合成训练使用 10,000 个场景、80 张地图、10,000 辆车和 2,500 个人体身份。源地图、车辆基础模型与人体身份先划分，再生成外观／动作变体；真实日志按路段、采集片段及可识别身份隔离。完整划分规模与监督见附录 B。
 
-\paragraph{数据集与协议。}
-我们使用 Waymo Open Dataset 的 798 条训练序列和 202 条验证序列。遵循 STORM，将每条验证序列划分为不重叠的 2 秒片段，每段包含以 10\,Hz 采样的 20 帧~\cite{yang2025storm}。FRONT、FRONT\_LEFT 和 FRONT\_RIGHT 相机在从零计数的帧索引 $\{0,5,10,15\}$ 提供观测，其余 16 帧用于评价，其中 12 帧对应时间插值，4 帧位于最后一次观测之后。评价时将预测与参考图像缩放至 $240\times160$ 像素~\cite{huang2026instantnurec}。
+\paragraph{受控比较。}
+STORM、DGGT 和 StreetForward~\cite{yang2025storm,chen2025dggt,yu2026streetforward} 均随机初始化，在相同真实日志、合成场景和完整资产上重训。各方法使用自身监督目标，Ours 另用单元空域及模板绑定监督。统一状态适配器为预测高斯分配归属并转入规范坐标，用于刚体和骨架放置。所有方法共享上下文 RGB、标定、自车位姿、车辆框／根轨迹及目标人体关节，体型与绑定来自上下文，测试权重固定。训练成本和适配细节见附录 F。
 
-\paragraph{基线。}
-我们比较 STORM、DGGT 和 StreetForward~\cite{yang2025storm,chen2025dggt,yu2026streetforward}。各方法使用相同输入时刻和目标视图，并采用各自的预处理。相机参数、额外几何输入与渲染适配器随实现设置记录。空间外推遵循 PointForward，比较扩散细化前的高斯渲染~\cite{chi2026pointforward}。
-
-\paragraph{指标。}
-我们在完整图像与共享标注区域上报告 PSNR 和 SSIM。深度评价在有效 LiDAR 投影点上计算逐帧尺度对齐后的 AbsRel 和 $\delta_1$~\cite{huang2026instantnurec}。分数先在片段内按帧平均，再在序列内按片段平均，最后对各序列等权汇总。新轨迹渲染使用固定真实图像与视频参考集合计算 FID 和 FVD。
-
-\paragraph{实现细节。}
-DriveCompose 从运动对齐的观测中重建各类型参与者资产，并与静态背景组合。重建耗时包括预处理、资产生成和场景组合；渲染耗时单独测量，资产复用通过重复场景查询评价。
+\paragraph{采样与指标。}
+每条测试序列取 200 帧，共形成 2,020 个互不重叠的 20 帧、10 Hz 片段。三个前向相机在 $\{0,5,10,15\}$ 提供上下文~\cite{yang2025storm}，其余 12 帧插值与四帧外推共形成 96,960 张目标图像，外推使用给定状态。以 $240\times160$ 图像~\cite{huang2026instantnurec} 计算全图／动态 PSNR 和 SSIM，并在有效 LiDAR 点计算深度 AbsRel/$\delta_1$。深度逐帧尺度对齐后评价，附录 F 同时报未对齐结果；指标按帧、片段、序列依次平均，各序列等权。
 
 \subsection{动态场景重建}
 \label{sec:temporal_evaluation}
-
-我们在记录相机轨迹上的未观测时刻评价重建。表~\ref{tab:regions_current} 报告完整图像、动态区域及深度质量，图~\ref{fig:dynamic-reconstruction} 比较五个样例的渲染外观。
-
-\paragraph{定量比较。}
-DriveCompose 在表~\ref{tab:regions_current} 的六项指标上均取得最优结果。完整图像和动态区域 PSNR 分别比各自最强基线高 1.154 和 2.340 dB，对应 SSIM 达到 0.901 和 0.862；深度 AbsRel 降至 0.095，$\delta_1$ 达到 0.877。
-
-\begin{figure*}[t]
-  \centering
-  \includegraphics[width=\textwidth]{fig/experiment1-dynamic-reconstruction.png}
-  \caption{\textbf{动态场景重建的定性对比。}每行展示一个样例，从左至右依次为真实图像、DGGT、STORM、StreetForward 和 DriveCompose（Ours）。样例覆盖行人、交通车辆与城市背景，用于比较参与者轮廓、车辆边界以及道路和建筑结构。}
-  \label{fig:dynamic-reconstruction}
-\end{figure*}
-
-\paragraph{定性比较。}
-图~\ref{fig:dynamic-reconstruction} 中，DriveCompose 保留了第一行的行人轮廓和第二行中央车辆的尾部外形，同时恢复周围街道布局。基线渲染在上方样例中出现参与者轮廓偏移或重复，在下方样例中出现道路结构模糊或畸变。DriveCompose 更准确地恢复了这些参考结构。残余伪影集中在第三行行人周围及最后一行停放的皮卡附近。
-
+表~\ref{tab:regions_current} 按 $3{:}1$ 汇总插值与外推。DriveCompose 在六项指标上领先，相对各指标最强适配基线的全图与动态 PSNR 分别提高 1.154 和 2.340 dB。其插值／外推全图 PSNR 为 28.900／27.556 dB，动态 PSNR 为 25.500／23.700 dB。图~\ref{fig:dynamic-reconstruction} 显示更清晰的参与者轮廓与道路结构。
 \begin{table}[!htbp]
 \centering
 \footnotesize
 \setlength{\tabcolsep}{1.3pt}
 \renewcommand{\arraystretch}{1.08}
 \setlength{\belowcaptionskip}{5pt}
-\caption{Waymo 动态场景重建。图像质量在完整图像和标注区域上统计，深度在有效 LiDAR 投影点上评价。}
+\caption{\textbf{Waymo 条件重建。}插值与外推以 $3{:}1$ 汇总；完整分组结果见补充材料附录 F。}
 \label{tab:regions_current}
 \begin{tabular}{@{}lcccccc@{}}
 \toprule
-& \multicolumn{2}{c}{完整图像} & \multicolumn{2}{c}{\shortstack{动态区域}} & \multicolumn{2}{c}{深度} \\
+& \multicolumn{2}{c}{完整图像} & \multicolumn{2}{c}{\shortstack{动态区域}} & \multicolumn{2}{c}{逐帧尺度对齐深度} \\
 \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
 方法 & PSNR $\uparrow$ & SSIM $\uparrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ & AbsRel $\downarrow$ & $\delta_1$ $\uparrow$ \\
 \midrule
@@ -62,27 +38,23 @@ Ours & \textbf{28.564} & \textbf{0.901} & \textbf{25.050} & \textbf{0.862} & \te
 \bottomrule
 \end{tabular}
 \end{table}
-
-\subsection{轨迹外视图合成}
-\label{sec:spatial_evaluation}
-
-我们在相机横向偏移 $\pm1$、$\pm2$ 和 $\pm4$ 米时评价轨迹外渲染，并保持相机朝向、内参和时间戳固定~\cite{zhu2025worldsplat,chi2026pointforward}。
-
-表~\ref{tab:spatial_current} 报告各偏移幅度下分别评价左移和右移后平均的 FID 与 FVD，各方法使用相同的真实参考集合。图~\ref{fig:waymo-left-shift} 展示 Waymo 数据集上相机向左偏移 $2\,\mathrm{m}$ 的三组场景，比较车辆外形、道路布局与遮挡边界。
-
 \begin{figure*}[t]
   \centering
-  \includegraphics[width=\textwidth]{fig/assets/Shift.pdf}
-  \caption{\textbf{Waymo 数据集上相机向左偏移 2 m 的定性视图外推结果。}每行展示一个场景，各列从左至右依次为参考图像（GT）、STORM、DGGT、StreetForward 和 DriveCompose（Ours）。}
-  \label{fig:waymo-left-shift}
+  \includegraphics[width=\textwidth]{fig/experiment1-dynamic-reconstruction.png}
+  \caption{\textbf{动态场景条件重建。}每行一个样例，依次为真实目标、DGGT、STORM、StreetForward 与 Ours。}
+  \label{fig:dynamic-reconstruction}
 \end{figure*}
+\subsection{轨迹外渲染与缺失表面}
+\label{sec:spatial_evaluation}
+相机横向偏移 $\pm1$、$\pm2$、$\pm4$ m，方向、内参和时间戳固定~\cite{chi2026pointforward,zhu2025worldsplat}，比较扩散精修之前的高斯渲染。每个方向包含 121,200 张图像和 6,060 段 20 帧、10 Hz 视频，参考为相同片段、相机与时刻的原轨迹记录。左右方向分别计算 FID 和 FVD 后取均值（表~\ref{tab:spatial_current}；附录 H）。
 
+图~\ref{fig:waymo-left-shift} 展示偏移渲染及原轨迹参考。100 个合成测试场景提供输入始终未覆盖区域的配对评价。在 $\pm2$ m 下，相对 w/o CCM，Ours 的隐藏区域 PSNR 从 21.56 增至 23.18 dB，LPIPS 从 0.236 降至 0.192，表面覆盖率从 89.7\% 增至 95.0\%，F-score@2 cm 从 81.3\% 增至 88.6\%。真实场景中，Ours 相对 w/o CCM 将共有支持集 RGB 重投影 MAE 从 0.028 降至 0.019，覆盖率从 86.9\% 增至 92.4\%。表面提取和对应评价见附录 H。
 \begin{table}[t]
 \centering
 \footnotesize
 \setlength{\tabcolsep}{2.5pt}
 \renewcommand{\arraystretch}{1.08}
-\caption{横向相机偏移下的新视角合成。FID 与 FVD 为各偏移幅度下左移和右移结果的平均，数值越低越好。}
+\caption{\textbf{离轨视图分布质量。}左右方向分别计算 FID/FVD 后取均值。}
 \label{tab:spatial_current}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{@{}l|rr|rr|rr@{}}
@@ -119,40 +91,22 @@ Ours
 \end{tabular}%
 }
 \end{table}
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig/assets/Shift.pdf}
+  \caption{\textbf{相机左移 2 m 的离轨渲染。}各列依次为 GT、STORM、DGGT、StreetForward 与 Ours。GT 为原轨迹记录图像。}
+  \label{fig:waymo-left-shift}
+\end{figure*}
+\subsection{消融与组件上下文}
+\label{sec:ablation-protocol}\label{sec:ablations}\label{sec:ablation-studies}
+\paragraph{协议。}
+消融在每条测试序列取一个 29 时刻窗口，使用三相机、$T=2,4,8$ 的嵌套输入及七个共享目标（附录 G）。变体共享恢复模块、codec、状态、数据和优化预算。训练均匀采样 $T$，推理使用 24 步 Euler 积分。三个训练种子各评价三个生成种子，全部平均，不选择最优样本。10,908 个学习版本及 202 个确定性窗口实例均可渲染，低质量输出保留计分。
 
-\subsection{消融分析}
-\label{sec:ablation-protocol}
-\label{sec:ablations}
-\label{sec:ablation-studies}
-
-\paragraph{实验协议。}
-两组消融均在 Waymo 的留出目标图像上评价，共用含 29 个时间戳的窗口。
-每个窗口使用前向、左前和右前三路同步相机。
-嵌套输入为 $\mathcal T_2=\{0,28\}$、$\mathcal T_4=\{0,8,20,28\}$ 和 $\mathcal T_8=\{0,4,\ldots,28\}$，共同目标时刻为 $\{2,6,\ldots,26\}$。
-目标图像不参与证据与查询构造；所有变体获得相同的目标相机与资产状态。
-恢复模块和编解码器冻结，在每档输入下对齐查询布局、数据曝光和优化预算。
-训练时等概率采样 $T\in\{2,4,8\}$，补全采用 24 步 Euler 积分。
-两个可训练版本使用训练种子 $\{0,1,2\}$ 和世界种子 $\{7,17,27\}$；w/o GCM 为确定性版本。
-超参数在内部开发集选定，再评价与训练场景及身份隔离的数据。
-
-\paragraph{指标。}
-我们在完整留出目标图像上报告 PSNR、SSIM 和 LPIPS，并在组件消融中额外报告动态区域的 PSNR 和 SSIM。
-所有变体采用与主重建实验相同的图像预处理、评价分辨率和基于标注的动态区域掩码。
-指标在任何输出筛选前的全部可渲染场景上计算，不可渲染场景单独计数。
-分数先在窗口内按帧平均，再在序列内按窗口平均，最后对各序列及训练种子等权汇总。
-
-\paragraph{补全与场景上下文。}
-表~\ref{tab:ablation-components} 将完整版本 Ours 与两个对照比较。
-w/o GCM 跳过生成式补全模块，并关闭所有非已见、非天空查询的不透明度。
-w/o CCM 在每一层将跨组件记忆模块替换为各组件独立的记忆，同时共享参数并保留相同的全局日志条件。
-可训练对照重新执行阶段三、四，记忆机制引起的计算差异单独记录。
-Ours 在全部五项指标上取得最优结果。
-相比 w/o GCM，全图和动态区域 PSNR 分别提高 1.776 和 2.186 dB。
-相比 w/o CCM，对应增益分别为 0.627 和 0.934 dB，全图 LPIPS 从 0.147 降至 0.129。
-
+\paragraph{补全与上下文。}
+w/o GCM 关闭非已见、非天空高斯。w/o CCM 将共享记忆替换为各组件独立记忆，保留相同参数与全局日志条件，并重新训练阶段三、四。表~\ref{tab:ablation-components} 中，相对 w/o GCM 的全图／动态 PSNR 增益为 1.776／2.186 dB，相对 w/o CCM 为 0.627／0.934 dB。Ours 和 w/o CCM 的全图 PSNR 训练种子 SD 分别为 0.061 和 0.074 dB。固定 checkpoint，在 $T=2,4,8$ 时的 PSNR 增益为 1.104、0.738、0.627 dB，LPIPS 降幅为 0.041、0.028、0.018（附录 G）。
 \begin{table}[t]
   \centering
-  \caption{\textbf{组件消融。}所有版本采用 $T=8$（24 张图像）、相同的恢复模块与编解码器，以及统一的目标视图和动态区域掩码。全图采用 PSNR、SSIM 和 LPIPS，动态区域采用 PSNR 和 SSIM。}
+  \caption{\textbf{组件消融。}$T=8$，恢复模块、codec 与目标视图相同。报告三个训练种子和三个生成种子的均值；完整 SD 见补充材料附录 G。}
   \label{tab:ablation-components}
   \small
   \setlength{\tabcolsep}{3pt}
@@ -170,40 +124,40 @@ Ours 在全部五项指标上取得最优结果。
     \bottomrule
   \end{tabular*}
 \end{table}
+\paragraph{CCM 在哪里有效。}
+在 100 个合成场景上，按输入视图并集的表面覆盖率划分充分可见（$\geq80\%$）与严重缺失（$\leq20\%$）组。严重缺失背景／车辆／人体分别获得 1.02／1.28／1.54 dB 增益，充分可见组为 0.04／0.04／0.03 dB。在 Waymo 上，对同一组 Ours checkpoint 施加推理期读取遮罩，仅背景／其他车辆／其他人体分别为 28.721／28.574／28.352 dB，全部组件为 28.913 dB；重训的 w/o CCM 为 28.286 dB。读取范围干预详见附录 H。
 
-\paragraph{输入稀疏度。}
-表~\ref{tab:ablation-inputs} 复用 Ours 和 w/o CCM 的权重，在 $T=2,4,8$ 下分别输入 6/12/24 张图像。
-时间跨度和目标视图固定，证据与查询由各档输入重新构建。
-这项比较不重新训练模型。
-随着 $T$ 增大，两个版本的三项指标均得到改善。
-Ours 在每档输入设置下均优于 w/o CCM，在 $T=2,4,8$ 时的 PSNR 增益分别为 1.104、0.738 和 0.627 dB。
-LPIPS 降幅也随输入变稀疏而增大，从 $T=8$ 时的 0.018 增至 $T=2$ 时的 0.041。
+\subsection{状态复用与观测保持}
+\label{sec:ablation-reuse}
+\paragraph{资产编辑。}
+20 个真实和 20 个身份隔离合成场景各含一个受测车辆与人体。相机平移 1 m、车辆旋转 $30^\circ$ 及人体换姿均复用固定完成资产。表~\ref{tab:asset-reuse} 评价合成场景新增可见表面，车辆／人体覆盖阈值为 2／1 cm。
+
+九组训练／生成种子下，真实车辆编辑成功 177／180 次，人体为 157／180 次，总成功率 92.78\%；场景聚类 bootstrap 的 95\% 区间为 85.28--99.17\%。车辆尺寸与人体体型保持固定，人体原已见纹理经规范对应后的线性 RGB MAE 为 0.014。逐种子结果、盲评规则，以及肘弯、自遮挡和衣物失败见附录 I。
 
 \begin{table}[t]
-  \centering
-  \caption{\textbf{输入时刻数量敏感性。}每档 $T$ 比较 w/o CCM 与完整模型，权重、时间跨度和目标视图固定。所有指标均在完整图像上计算。$T=8$ 的设置与表~\ref{tab:ablation-components} 相同。}
-  \label{tab:ablation-inputs}
-  \small
-  \setlength{\tabcolsep}{3pt}
-  \renewcommand{\arraystretch}{1.12}
-  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}clccc@{}}
-    \toprule
-    $T$ & 变体 & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ \\
-    \midrule
-    \multirow{2}{*}{2} & w/o CCM & 25.237 & 0.817 & 0.254 \\
-      & Ours & \textbf{26.341} & \textbf{0.851} & \textbf{0.213} \\
-    \midrule
-    \multirow{2}{*}{4} & w/o CCM & 27.126 & 0.869 & 0.187 \\
-      & Ours & \textbf{27.864} & \textbf{0.891} & \textbf{0.159} \\
-    \midrule
-    \multirow{2}{*}{8} & w/o CCM & 28.286 & 0.893 & 0.147 \\
-      & Ours & \textbf{28.913} & \textbf{0.911} & \textbf{0.129} \\
-    \bottomrule
-  \end{tabular*}
+\centering\small
+\caption{\textbf{编辑后新增可见资产表面。}合成配对测试。车辆／人体覆盖阈值为 2／1 cm；PSNR、覆盖率越高越好，LPIPS 越低越好。}
+\label{tab:asset-reuse}
+\setlength{\tabcolsep}{2.7pt}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc@{}}
+\toprule
+资产 & 变体 & PSNR & LPIPS & 覆盖率 \\
+\midrule
+车辆 & w/o GCM & 17.80 & 0.362 & 63.4\% \\
+ & w/o CCM & 22.46 & 0.218 & 91.8\% \\
+ & Ours & \textbf{24.18} & \textbf{0.176} & \textbf{96.1\%} \\
+\midrule
+人体 & w/o GCM & 17.12 & 0.391 & 60.8\% \\
+ & w/o CCM & 21.38 & 0.247 & 88.6\% \\
+ & Ours & \textbf{23.06} & \textbf{0.201} & \textbf{94.3\%} \\
+\bottomrule
+\end{tabular*}
 \end{table}
 
-\subsection{状态驱动复用}
-\label{sec:ablation-reuse}
+\paragraph{观测保持。}
+\label{sec:observation-preservation}
+在固定相机与参与者状态下，相对仅已见场景，Ours 严格保持已见高斯参数，输入视角 PSNR 下降 0.029 dB，深度 MAE 增加 2 mm。在 2,020,000 条固定射线上，新增遮挡及严格自由射线违规率为 0.18\% 和 0.07\%；移除自由射线损失后增至 1.34\% 和 0.91\%。参数与渲染测量见附录 J。
 
-以时刻 14、世界种子 7 为参照，各干预分别沿相机局部 $+x$ 轴平移 $1\,\mathrm m$、绕车辆根位置及世界竖直轴转动 $30^\circ$，或在根位置固定时施加留出的有效人体姿态 $H_1$。
-光照与规范资产保持固定，状态变化不重新采样补全内容。
+\paragraph{效率。}
+在 RTX 4090（FP16、batch 1）上，构建耗时 $2.66\pm0.11$ s，单相机状态装配与 $240\times160$ 渲染耗时 $7.8\pm0.4$ ms，峰值显存 14.2 GB。CCM 增加 5.1\% 构建时间。1,000 次查询的摊销成本为每图 10.46 ms，场景规模、同步、预热和重复次数详见附录 K。
+\FloatBarrier

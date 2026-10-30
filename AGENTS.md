@@ -6,7 +6,7 @@
 
 - 目标：CVPR 2027 main track；英文正文不超过 8 页，包含标题、摘要、图表、局限性和结论。参考文献及当届要求的 LLM Usage Statement 按官方规则另计。
 - 固定标题：**DriveCompose: Compositional Generative Reconstruction of Driving Scenes via Joint Completion**。除非用户提出修改，不再讨论题名。
-- 当前阶段：2026-10-29：中英文组件与输入数量两张消融表已填入作者提供的 33 个通用指标汇总值，并同步局部结果分析。组件表采用全图 PSNR/SSIM/LPIPS 和动态区域 PSNR/SSIM，输入数量表采用全图 PSNR/SSIM/LPIPS；T=8 跨表数值一致。当前合同为 paper/provenance/ablation-standard-metrics-20261029.json；原始运行材料尚未独立核验，旧自定义指标保留历史溯源。
+- 当前阶段：2026-10-30：作者补充的方法、训练配置、几何评价、共有重投影和九组种子编辑统计已写入双语主稿及补充。按最新展示要求删除基线符号备注、GenAssets-RGB-MV 结果及相关比较，图 5 首列改为 GT。主重建结果采用中心射线掩码，完整足迹规则单列审计。使用官方 CVPR 2027 样式，英文技术正文 8 页。方法和结果来源为 paper/provenance/author-results-followup-20261030.json，当前展示修订见 paper/provenance/display-cleanup-20261030.json；资产换姿结果图沿用暂不放入的决定。
 - 优化目标：问题清楚、机制可理解、主张有证据、表达简洁自然。去除模板化表达不等于改变事实，也不承诺通过 AI 检测。
 - 默认修改方式：严格尊重当前版本，以有明确问题依据的局部微调为主；已有准确、清楚、简洁的内容原样保留。
 - 主线：从有标定的驾驶日志中恢复观测证据，在背景和规范资产的结构化表示中联合补全未知内容，并将构建后的三维内容用于不同状态下的装配与渲染。突出整体框架及关键设计，避免把每个工程模块都包装成贡献。

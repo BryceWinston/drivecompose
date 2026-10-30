@@ -3,7 +3,7 @@
 
 \paragraph{Input conventions and preprocessing.}
 
-The input is a synchronized log of images $\mathbf I_{t,v}$, timestamps, intrinsics $\mathbf K_v$, and camera-to-rig calibration $\mathbf T^r_{c_v}$. Rig poses $\mathbf T^w_r(t)$ are provided or estimated relative to the first frame, giving camera poses $\mathbf T^w_{c_v}(t)=\mathbf T^w_r(t)\mathbf T^r_{c_v}$. Transforms act on column vectors and distances are in meters. Images follow a rectified pinhole model and linear RGB; distortion, rolling shutter, and exposure differences are handled before evidence aggregation.
+The input is a synchronized log of images $\mathbf I_{t,v}$, timestamps, intrinsics $\mathbf K_v$, and camera-to-rig calibration $\mathbf T^r_{c_v}$. Rig poses $\mathbf T^w_r(t)$ are supplied in the controlled evaluations relative to the first frame, giving camera poses $\mathbf T^w_{c_v}(t)=\mathbf T^w_r(t)\mathbf T^r_{c_v}$. Transforms act on column vectors and distances are in meters. Images follow a rectified pinhole model and linear RGB; distortion, rolling shutter, and exposure differences are handled before evidence aggregation.
 
 \paragraph{Shared visual encoding.}
 
@@ -40,12 +40,46 @@ w_{i,t,v}&=a_{i,t,v}c_{i,t,v}\exp(-r_{i,t,v}^2/2),\\
 \label{eq:aggregation}
 \end{align}
 
-The query confidence is the maximum over accepted observations. The test excludes observations whose depth or instance identity disagrees with the query. A reliable ray votes for free space only when the entire support cell is in front of the measured surface:
 
+The query confidence is the maximum over accepted observations. The reconstruction experiments use center-ray voting with $\eta=0.15+0.02d$ meters and confidence at least 0.8. A reliable query-center ray votes for free space when
 \begin{equation}
 z_{i,t,v}+\tfrac12\|\boldsymbol\delta_i\|_2<d_{i,t,v}-\eta.
 \label{eq:free-space}
 \end{equation}
+Positive observation weight labels a query observed. Among the remaining queries, at least two free-space votes establish a free label; all others remain unknown. Sky projection uses camera rotation, reliable sky semantics, and zero depth residual, and receives no free-space votes.
 
-Positive accumulated observation weight marks a query as observed. Otherwise, sufficient free-space votes mark it free, and the remainder is unknown. The masks $m_i$, $f_i$, and $u_i$ are mutually exclusive and satisfy $m_i+f_i+u_i=1$. Sky projection uses camera rotation alone, reliable sky semantics, and zero depth residual; sky queries receive no free-space votes.
+\paragraph{Footprint-based free-space audit.}
+We compare center-ray voting with a footprint rule on the same fixed query layouts in 100 synthetic test scenes. The footprint rule places all eight cell vertices using the query's rigid or skinning transform and computes
+\begin{equation}
+z^{\max}_{i,t,v}=\max_{x\in B_i(t)}z_v(x),\qquad
+\Omega_{i,t,v}=\pi_v(B_i(t)).
+\end{equation}
+The projected footprint is rounded outward to cover every intersected depth pixel. A view votes only when the footprint lies fully inside the image, all depths are valid, every confidence is at least 0.8, and sky and ego-vehicle pixels are absent. It must satisfy
+\begin{equation}
+z^{\max}_{i,t,v}<\min_{p\in\Omega_{i,t,v}}
+\bigl[D_{t,v}(p)-0.15-0.02D_{t,v}(p)\bigr].
+\label{eq:footprint-free}
+\end{equation}
+Other views abstain. The two-vote rule, observed-surface priority, and hard clearing are retained.
 
+\begin{table*}[t]
+\centering\small
+\caption{Free-space mask audit on 100 synthetic scenes. Counts measure cells containing reference surfaces that receive a free label. Categories are mutually exclusive. Center-ray voting is used in the reconstruction tables; footprint results are a separate mask audit.}
+\label{tab:free-space-audit}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Category & Surface-containing cells & Center-ray errors & Footprint errors \\
+\midrule
+Thin structures & 18,437 & 614 & 9 \\
+Occlusion boundaries & 27,619 & 587 & 7 \\
+Other regions & 53,128 & 173 & 3 \\
+\midrule
+Total & 99,184 & 1,374 & 19 \\
+Error / surface-containing cells & & 1.385\% & 0.019\% \\
+Number of free labels & & 47,286 & 32,871 \\
+Surface contamination / free labels & & 2.906\% & 0.058\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The footprint rule reduces occupied-cell errors from 1,374 to 19 (Table~\ref{tab:free-space-audit}). With reference depth, center-ray voting still mislabels 934 occupied cells, localizing an error source to lateral cell coverage. Continuous reference-depth footprint bounds yield zero such errors on this audit set. The remaining 19 errors with discrete estimated depth arise mainly at subpixel structures and depth boundaries.

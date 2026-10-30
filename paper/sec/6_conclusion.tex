@@ -1,4 +1,5 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-We presented DriveCompose, which reconstructs compositional driving scenes through canonical feature aggregation, latent encoding, and joint completion. Local attention and cross-component memory combine component structure with scene context. Type-specific Gaussian decoders retain identity and motion bindings, allowing completed assets to be composed under changing camera and actor states. On Waymo, DriveCompose improves dynamic reconstruction and off-trajectory view synthesis.
+DriveCompose jointly completes world-space background and canonical actor latents, preserving component identity and motion bindings for state-driven reuse. Shared scene context improves missing-surface reconstruction, while fixed Gaussian assets support camera shifts, vehicle rotation, and human pose edits. Waymo reconstruction, paired hidden-surface tests, and real-scene edits demonstrate the quality and reuse of the completed content.
+\label{sec:main-text-end}

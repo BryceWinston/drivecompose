@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-30",
+  "request": "Place Figure 1 before the abstract",
+  "baseline": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\revision-20261030\\teaser-before-abstract-baseline",
+  "modified_sources": [
+    "paper/main.tex",
+    "paper/main_zh.tex"
+  ],
+  "scope": "Move the existing Figure 1 into the title block; preserve caption, scale, source image, scientific text and result values.",
+  "verification": {
+    "en": {
+      "pages": 11,
+      "body_end_page": 8,
+      "figure1_page": 1,
+      "figure_before_abstract": true,
+      "abstract_complete_on_page1": true,
+      "compile_warnings": [],
+      "sha256": "bad53c096e8c8741e7e82ada85a725dfe41a319067e65cc1b1f3125777d3c161"
+    },
+    "zh": {
+      "pages": 10,
+      "body_end_page": 7,
+      "figure1_page": 1,
+      "figure_before_abstract": true,
+      "abstract_complete_on_page1": true,
+      "compile_warnings": [],
+      "sha256": "ceb0cebd1bff8b5eb19c40a1332e541460d712e83384bfc880c759a770494a6e"
+    }
+  },
+  "status": "complete"
+}

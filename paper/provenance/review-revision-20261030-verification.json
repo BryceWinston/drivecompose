@@ -1,0 +1,152 @@
+{
+  "date": "2026-10-30",
+  "passed": true,
+  "checks": {
+    "en:author_table_0:numeric_cells_exact": true,
+    "en:author_table_2:numeric_cells_exact": true,
+    "en:author_table_3:numeric_cells_exact": true,
+    "en:author_table_4:numeric_cells_exact": true,
+    "en:author_table_5:numeric_cells_exact": true,
+    "en:author_table_6:numeric_cells_exact": true,
+    "en:author_table_7:numeric_cells_exact": true,
+    "en:author_table_8:numeric_cells_exact": true,
+    "en:author_table_9:numeric_cells_exact": true,
+    "en:author_table_10:numeric_cells_exact": true,
+    "en:author_table_11:numeric_cells_exact": true,
+    "en:author_table_12:numeric_cells_exact": true,
+    "en:author_table_13:numeric_cells_exact": true,
+    "en:author_table_14:numeric_cells_exact": true,
+    "zh:author_table_0:numeric_cells_exact": true,
+    "zh:author_table_2:numeric_cells_exact": true,
+    "zh:author_table_3:numeric_cells_exact": true,
+    "zh:author_table_4:numeric_cells_exact": true,
+    "zh:author_table_5:numeric_cells_exact": true,
+    "zh:author_table_6:numeric_cells_exact": true,
+    "zh:author_table_7:numeric_cells_exact": true,
+    "zh:author_table_8:numeric_cells_exact": true,
+    "zh:author_table_9:numeric_cells_exact": true,
+    "zh:author_table_10:numeric_cells_exact": true,
+    "zh:author_table_11:numeric_cells_exact": true,
+    "zh:author_table_12:numeric_cells_exact": true,
+    "zh:author_table_13:numeric_cells_exact": true,
+    "zh:author_table_14:numeric_cells_exact": true,
+    "STORM:3_to_1_aggregation": true,
+    "DGGT:3_to_1_aggregation": true,
+    "StreetForward:3_to_1_aggregation": true,
+    "Ours:3_to_1_aggregation": true,
+    "counts:temporal_images": true,
+    "counts:interpolation_images": true,
+    "counts:extrapolation_images": true,
+    "counts:offset_images_and_videos": true,
+    "counts:ablation_predictions": true,
+    "counts:ablation_windows": true,
+    "counts:synthetic_visibility_targets": true,
+    "counts:occlusion_rays": true,
+    "counts:violation_rays": true,
+    "timing:stages_sum": true,
+    "timing:reused_1000": true,
+    "source:author_request_unchanged": true,
+    "figures:shift_image_streams_unchanged": true,
+    "figures:shift_reference_label": true,
+    "en:clean_log": true,
+    "zh:clean_log": true,
+    "supp-en:clean_log": true,
+    "supp-zh:clean_log": true,
+    "en:body_ends_by_page_8": true,
+    "en:all_main_figures_tables_by_page_8": true,
+    "en:llm_before_references": true
+  },
+  "details": {},
+  "pdfs": {
+    "en": {
+      "pages": 11,
+      "locations": {
+        "6. Conclusion": [
+          8
+        ],
+        "6. 结论": [],
+        "LLM Usage Statement": [
+          9
+        ],
+        "References": [
+          9
+        ]
+      },
+      "sha256": "bad53c096e8c8741e7e82ada85a725dfe41a319067e65cc1b1f3125777d3c161",
+      "main_text_end_page": 8,
+      "figure_table_pages": {
+        "fig:teaser": 1,
+        "fig:title-teaser": 1,
+        "fig:overview": 4,
+        "fig:joint-completion": 4,
+        "tab:regions_current": 6,
+        "tab:spatial_current": 6,
+        "fig:dynamic-reconstruction": 7,
+        "tab:ablation-components": 7,
+        "fig:waymo-left-shift": 8,
+        "tab:asset-reuse": 8
+      }
+    },
+    "zh": {
+      "pages": 10,
+      "locations": {
+        "6. Conclusion": [],
+        "6. 结论": [
+          7
+        ],
+        "LLM Usage Statement": [
+          7
+        ],
+        "References": [
+          7
+        ]
+      },
+      "sha256": "ceb0cebd1bff8b5eb19c40a1332e541460d712e83384bfc880c759a770494a6e"
+    },
+    "supp-en": {
+      "pages": 8,
+      "locations": {
+        "6. Conclusion": [],
+        "6. 结论": [],
+        "LLM Usage Statement": [],
+        "References": [
+          8
+        ]
+      },
+      "sha256": "9093ada96a7fe21dee34ef3b20557887a510eb7f40c8f6bbaf9d6dd06d90e843"
+    },
+    "supp-zh": {
+      "pages": 7,
+      "locations": {
+        "6. Conclusion": [],
+        "6. 结论": [],
+        "LLM Usage Statement": [],
+        "References": [
+          7
+        ]
+      },
+      "sha256": "f6ed490205e2d9d14714d54a9cc3523b3cbdbb8c77e9ac3a5d070f8cc0ec1e41"
+    }
+  },
+  "scope": "Manuscript transcription, arithmetic, rendering and file integrity; not raw experiment replication.",
+  "visual_review": {
+    "status": "passed",
+    "scope": "Whole-document page previews plus full-resolution main overview/detail, body boundary, statistical tables and supplemental detail",
+    "layout": "Overview restored to method as Figure 2; main detail is single-column Figure 3; enlarged detail in Appendix L",
+    "main_text_end_page": 8
+  },
+  "existing_manuscript_check": {
+    "passed": true,
+    "checks": 71,
+    "bibliography_entries": 52,
+    "bilingual_math_blocks": 9
+  },
+  "latest_layout_check": {
+    "record": "paper/provenance/teaser-before-abstract-20261030.json",
+    "figure1_before_abstract_in_both_languages": true,
+    "abstracts_complete_on_first_page": true,
+    "main_body_end_page": 8,
+    "compile_warnings": [],
+    "visual_scope": "Updated English/Chinese first pages inspected; scientific text and all result values unchanged."
+  }
+}

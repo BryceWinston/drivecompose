@@ -1,5 +1,5 @@
 % !TEX program = xelatex
-% DriveCompose manuscript for CVPR 2027; inherited CVPR style files.
+% DriveCompose manuscript with the official CVPR 2027 submission style.
 \documentclass[10pt,twocolumn,letterpaper]{article}
 \usepackage[review]{cvpr}
 \input{preamble}
@@ -20,36 +20,26 @@
 \def\confYear{2027}
 \title{DriveCompose: Compositional Generative Reconstruction of Driving Scenes via Joint Completion}
 \author{Anonymous CVPR Submission}
-% Keep the concept teaser in the title block, before the two-column abstract.
+% Figure 1 is fixed below the title and before the two-column abstract.
 \makeatletter
 \g@addto@macro\@maketitle{%
   \noindent\begin{minipage}{\textwidth}
     \captionsetup{type=figure}
-    \centering
-    \includegraphics[width=\linewidth]{fig/drivecompose-teaser.png}
-    \caption{\textbf{DriveCompose concept.} DriveCompose jointly completes background, vehicle, and human content from driving images to form a compositional Gaussian scene. The same assets are reused under changes in camera viewpoint, vehicle pose, and human articulation. Gold marks completed regions.}
-    \label{fig:title-teaser}
+\centering
+  \includegraphics[width=\linewidth]{fig/drivecompose-concept-merged.pdf}
+  \caption{\textbf{From observations to reusable completed assets.} Top: viewpoint and actor changes expose missing surfaces in observation-only reconstruction. Bottom: structured encoding and joint completion produce background, canonical vehicles, and humans for reuse across states. Gold indicates completed regions. All scene and asset images are schematic illustrations.}
+  \label{fig:teaser}
+  \label{fig:title-teaser}
   \end{minipage}\par
-  \vspace{\baselineskip}
 }
 \makeatother
 \begin{document}
 \maketitle
 \input{sec/0_abstract}
-\begin{figure*}[t]
-  \centering
-  \includegraphics[width=\textwidth]{fig/drivecompose-concept-comparison.png}
-  \caption{\textbf{From observed surfaces to compositional scene assets.} (a) Observation-only reconstruction leaves unseen surfaces incomplete when the viewpoint or actor state changes. (b) DriveCompose jointly completes the background and canonical rigid and human assets, then composes them under the requested state. Scene images are schematic illustrations.}
-  \label{fig:teaser}
-\end{figure*}
+
 \def\CVPRMAIN{}
 \input{sec/1_introduction}
-\begin{figure*}[t]
-  \centering
-  \includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}
-  \caption{\textbf{DriveCompose overview.} Visual encoding and motion-aware canonical aggregation recover component features, which type-specific encoders map to structured latents. Conditional-flow completion infers unknown content using cross-component context. Gaussian decoders produce background, rigid and human components for state-driven composition and rendering. Scene and asset images are schematic illustrations.}
-  \label{fig:overview}
-\end{figure*}
+
 \input{sec/2_related_work}
 \input{sec/3_method}
 % Ablation results supplied by the author on 2026-10-23.
@@ -57,6 +47,7 @@
 \input{sec/5_discussion}
 \input{sec/6_conclusion}
 \FloatBarrier
+\input{sec/7_llm_usage}
 {\small
 \bibliographystyle{ieeenat_fullname}
 \bibliography{main}

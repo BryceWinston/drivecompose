@@ -1,11 +1,18 @@
 \section{方法}\label{sec:method}
 
-DriveCompose 从多视角图像序列出发，依次经过视觉编码、规范空间特征聚合、潜表示编码、联合潜空间补全、分类型高斯解码与场景组合，得到可组合高斯场景（图~\ref{fig:overview}）。规范聚合将各组件在不同时刻的观测对齐，联合补全则利用周围场景推断其缺失的几何与外观。
+DriveCompose 将多视角观测对齐到规范支撑，联合补全潜码，并按指定状态组合解码资产（图~\ref{fig:overview}）。
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}
+  \caption{\textbf{DriveCompose 总览。}视觉编码与规范聚合恢复组件特征，类型专属编码器映射结构化潜码，联合补全和高斯解码生成背景、车辆与人体，用于状态驱动组合。场景与资产画面均为机制示意。}
+  \label{fig:overview}
+\end{figure*}
 
 \subsection{问题定义与可组合表示}
 \label{sec:representation}
 
-输入是同步图像日志 $\mathbf I_{t,v}$、时间戳、相机内参及相机到传感器支架的标定。支架位姿由日志提供，或以第一帧为参考估计。坐标约定与图像预处理见补充材料附录 D。
+输入是同步图像日志 $\mathbf I_{t,v}$、时间戳、相机内参及相机到传感器支架的标定。受控评价给定支架位姿、实例身份、车辆框与根轨迹，以及目标人体关节。人体体型与绑定由上下文恢复，重建不使用目标 RGB 或测试 LiDAR。坐标约定与图像预处理见补充材料附录 D。
 
 输出为可组合高斯场景
 
@@ -28,19 +35,18 @@ DriveCompose 从多视角图像序列出发，依次经过视觉编码、规范�
 
 查询布局为每个潜码指定空间位置和所属组件。补全在这一布局中生成未知潜码，解码后仍保留其组件身份与运动绑定。
 
-\subsection{视觉编码}
+\subsection{视觉恢复与规范聚合}
 \label{sec:visual-encoding}
 
 Driving Log Encoder 从各图像提取 patch 特征，并在相机与时间戳之间交换池化上下文~\cite{dosovitskiy2021vit,vaswani2017attention}。几何预测头输出相机光轴深度、法线、置信度、语义和实例归属，将图像特征关联到三维表面及其所属组件。轨迹级身份槽将持久身份、尺寸和人体体型与逐帧变化的根位姿、关节旋转分开表示。网络结构与状态参数化细节见补充材料附录 D。
 
-\subsection{规范空间特征聚合}
 \label{sec:queries}
 
 \paragraph{空间支撑。}
 
 每个查询存储规范位置 $\mathbf q_i$、单元尺度 $\boldsymbol\delta_i$、类型 $k_i$、局部注意力组 $g_i$ 和参考世界坐标 $\mathbf q_i^w$。可靠深度样本提供表面锚点。背景锚点与有限世界网格结合；刚体锚点经逆 SE(3) 变换对齐后，与局部包围体中的网格结合。人体查询位于规范模板表面，天空查询为按立方体贴图面分组的单位方向。这些支撑为已见与缺失内容提供明确位置。
 
-补全过程中布局保持固定。我们将查询放到第一帧的配置中以得到 $\mathbf q_i^w$，其中人体包含蒙皮变换。规范坐标标识组件内部的内容，参考世界坐标则使生成器能够联系该组件与周围场景。
+固定布局以规范坐标标识组件内容，以第一帧世界坐标 $\mathbf q_i^w$（包括人体蒙皮）联系组件与周围场景。
 
 \paragraph{运动感知证据聚合。}
 
@@ -65,22 +71,22 @@ w_{i,t,v}&=a_{i,t,v}c_{i,t,v}\exp(-r_{i,t,v}^2/2),\\
 \label{eq:aggregation}
 \end{align}
 
-掩码 $m_i$、$f_i$ 和 $u_i$ 区分已见表面、已知自由空间和未知内容，满足 $m_i+f_i+u_i=1$。置信度取有效观测的最大值，自由空间由可靠深度射线确定。天空特征依据相机旋转和天空语义，按观察方向聚合。可见性与自由空间判定式见附录 D。
+掩码 $m_i$、$f_i$ 和 $u_i$ 区分已见表面、射线标记的自由空间和未知内容，满足 $m_i+f_i+u_i=1$。置信度取有效观测的最大值，两份可靠深度射线票确定自由空间标签。天空特征依据相机旋转和天空语义，按观察方向聚合。判定式与投影足迹掩码审计见附录 D。
 
 \subsection{潜表示编码}
 \label{sec:codec}
 
-类型专属编码器将聚合特征及其空间支撑 $[\mathbf h_i;\mathbf q_i;\boldsymbol\delta_i]$ 压缩为潜码 $\mathbf z_i\in\mathbb R^D$。统一的潜码维度使补全模型能够在背景、刚体和人体表示之间交换信息。各潜码维度相同，但查询仍保留类型、归属和坐标系。可见性掩码与置信度单独提供给补全模型，使部分观测与完整观测使用同一潜码编码映射。作为条件输入之前，未观测潜码置零；已见子集记为 $\mathbf z^{\rm obs}$。
+类型专属编码器将 129 维聚合特征及空间支撑 $[\mathbf h_i;\mathbf q_i;\boldsymbol\delta_i]$ 输入带 LayerNorm 的 $135\!\rightarrow\!128\!\rightarrow\!128$ MLP，得到 $D=128$ 维潜码，并保留查询类型、归属和坐标系。部分与完整分支共享此映射，掩码和置信度单独作为补全条件。未观测潜码置零，已见码记为 $\mathbf z^{\rm obs}$。
 
 \subsection{联合潜空间补全}
 \label{sec:completion}
 
-\begin{figure*}[t]
+\begin{figure}[t]
   \centering
-  \includegraphics[width=0.86\textwidth]{fig/drivecompose-joint-completion.png}
-  \caption{\textbf{联合潜空间补全。}组内局部注意力更新组件特征；CCM 将其读入共享记忆，再把上下文写回各组件。速度头驱动未知潜码更新，每步更新后通过投影恢复已见潜码并清零自由空间潜码，查询布局始终固定。最终补全潜码从最后一次投影后取得。}
+  \includegraphics[width=\linewidth]{fig/drivecompose-joint-completion.png}
+  \caption{\textbf{联合潜空间补全。}CCM 读入局部特征并回写共享上下文，投影约束流更新只改变未知码。附录 L 提供放大图。}
   \label{fig:joint-completion}
-\end{figure*}
+\end{figure}
 
 \paragraph{生成式补全模块。}
 
@@ -94,7 +100,7 @@ w_{i,t,v}&=a_{i,t,v}c_{i,t,v}\exp(-r_{i,t,v}^2/2),\\
 \label{eq:memory-exchange}
 \end{align}
 
-其中，$\widetilde{\mathbf X}$ 拼接局部更新后的 token，注意力的三个参数依次为查询、键和值。$\mathbf U$ 后接残差前馈更新。流时间调制进入局部归一化，记忆由可学习 token 和日志摘要初始化。这一结构保留各类支撑的局部组织，同时使刚体或人体查询能够使用周围场景的信息。
+其中，$\widetilde{\mathbf X}$ 拼接局部 token，注意力参数依次为查询、键和值。$\mathbf U$ 后接残差前馈更新。流时间调制局部归一化，记忆由可学习 token 与日志摘要初始化。
 
 \paragraph{流训练与约束采样。}
 
@@ -116,7 +122,7 @@ w_{i,t,v}&=a_{i,t,v}c_{i,t,v}\exp(-r_{i,t,v}^2/2),\\
 \label{eq:flow-loss}
 \end{equation}
 
-完整场景或资产样本为未知查询提供目标潜码 $\mathbf z_1$，$s_i$ 则选择其对训练损失的贡献（第~\ref{sec:training} 节）。
+先验学习使用全部未知查询均具有有效目标的样本，$s_i$ 在这些目标中选择损失项（第~\ref{sec:training} 节）。
 
 推理时，以噪声初始化未知潜码，并执行 $S$ 次 Euler 步，步长为 $\Delta\tau=1/S$：
 
@@ -127,14 +133,14 @@ w_{i,t,v}&=a_{i,t,v}c_{i,t,v}\exp(-r_{i,t,v}^2/2),\\
 \label{eq:sampling}
 \end{equation}
 
-投影 $\Pi_{m,f}$ 在每步后恢复已见潜码，并清零自由空间潜码。种子确定一次采样补全。采样完成后再解码；相机或资产状态改变时复用得到的场景。
+每步后 $\Pi_{m,f}$ 恢复已见潜码、清零自由空间潜码。种子确定一次补全，解码一次后跨状态复用。
 
 \subsection{分类型高斯解码}
 \label{sec:decoding}
 
-背景、刚体和人体高斯解码器分别将每个查询独立映射为限制在其支撑单元内的 $K$ 个子高斯。人体子高斯继承查询的蒙皮权重；刚体子高斯共用所属资产的刚体变换。不透明度乘以 $1-f_i$，使自由空间查询不能产生可见高斯。独立天空头在观测支持的方向域 $V_{\rm sky}$ 内预测立方体贴图颜色。高斯与外观参数化详见补充材料附录 E。
+背景、刚体和人体高斯解码器分别将每个查询独立映射为中心位于其支撑单元内的 $K=4$ 个子高斯。人体子高斯继承查询的蒙皮权重；刚体子高斯共用所属资产的刚体变换。不透明度乘以 $1-f_i$，使自由空间查询不能产生可见高斯。独立天空头在观测支持的方向域 $V_{\rm sky}$ 内预测立方体贴图颜色。高斯与外观参数化详见补充材料附录 E。
 
-各查询独立解码。冻结编解码器并保留已见潜码，使已观测表面的高斯参数保持不变。
+各查询独立解码。冻结编解码器并保留已见潜码，使已见高斯参数保持不变。自由射线损失约束新增高斯对可见性与透明度混合的影响，第~\ref{sec:observation-preservation} 节给出实测。
 
 \subsection{场景组合}
 \label{sec:composition}
@@ -148,28 +154,10 @@ o_k=\mathcal R(\operatorname{Compose}(\mathcal W,s_k),\mathcal C_k).
 \label{eq:simulation}
 \end{equation}
 
-改变相机得到组合场景的新视角，改变参与者状态则移动其已补全的规范资产。背景与规范内容在这些操作中保持固定，使同一重建结果可以沿不同轨迹复用。
+背景与规范资产保持固定，新相机及参与者状态复用同一份完成内容。
 
 \subsection{训练流程}
 \label{sec:training}
+训练依次进行视觉恢复、潜表示拟合、补全先验学习和通过渲染适配。部分输入固定 $\mathcal Q$，包括单元尺度、组件归属及人体绑定。完整网格提供各单元内的表面样本，多视图渲染与冻结视觉编码器得到 $\mathbf h_i^{\rm full}$，再由共享的类型专属编码器映射为 $\mathbf z_{1,i}=E_{k_i}([\mathbf h_i^{\rm full};\mathbf q_i;\boldsymbol\delta_i])$。无表面单元采用零特征和不透明度监督。
 
-我们依次训练视觉恢复模块、潜表示编解码器和补全模型，再通过渲染观测适配补全模型（表~\ref{tab:training}）。补全训练期间冻结编解码器，使目标潜空间保持固定。
-
-\begin{table}[t]
-\centering
-\small
-\caption{训练阶段。R：恢复模块；C：编解码器；G：GCM。T：训练；F：冻结；--：未使用。}
-\label{tab:training}
-\begin{tabular}{@{}lccc p{0.43\linewidth}@{}}
-\toprule
-阶段 & R & C & G & 监督 \\
-\midrule
-视觉恢复 & T & -- & -- & 几何、语义、身份、状态 \\
-表示拟合 & F & T & -- & 部分与完整观测 \\
-补全先验 & F & F & T & 完整目标 \\
-渲染适配 & F & F & T & 真实日志渲染与场景约束 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-编解码器拟合时，部分输入与更完整观测共享相同的查询位置、类型、顺序和归属。随后冻结恢复模块与整个编解码器，使用为每个未知查询提供有效目标的完整场景或资产样本，以式~\ref{eq:flow-loss} 训练 GCM。真实日志适配通过流积分、解码和渲染反向传播，仅更新 GCM。完整目标样本可交替使用以保留先验，各损失项仅作用于具备所需目标的样本。已见锚点由冻结解码和潜码硬恢复维持。详细监督、损失和条件扰动见补充材料附录 B。
+潜表示拟合结束后，恢复模块和 codec 保持冻结。阶段三使用每个未知查询均具有完整目标的合成样本；阶段四仅更新 GCM，以 $1{:}3$ 混合完整合成样本和 740 条真实训练日志。四阶段共更新 287,360 步，目标构造、网络规模和训练设置详见附录 B。
