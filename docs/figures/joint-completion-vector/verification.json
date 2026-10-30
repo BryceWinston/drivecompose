@@ -1,0 +1,100 @@
+{
+  "reference_sha256": "081c355a9d61d1dd9b0b24dad180b8308c76f91629ecb1c4b7987dc649f5610b",
+  "review_mode": "self_review; faithful source reconstruction",
+  "pptx": {
+    "file_saved": true,
+    "native_objects": 471,
+    "region_groups": 8,
+    "text_boxes": 45,
+    "connectors": 197,
+    "picture_count": 0,
+    "media_parts": [],
+    "missing_objects": [],
+    "extra_objects": [],
+    "text_mismatches": [],
+    "dangling_connector_ids": [],
+    "exact_file_renderer": "WPS Presentation COM export",
+    "document_open_verified": true,
+    "microsoft_powerpoint_used": false
+  },
+  "drawio": {
+    "file_saved": true,
+    "saved_from_live_graph": true,
+    "page_size": [
+      1328,
+      1186
+    ],
+    "native_primitives": 471,
+    "groups": 8,
+    "missing_objects": [],
+    "svg_image_count": 0,
+    "exact_file_renderer": "draw.io desktop CLI reimport/export",
+    "live_structure": {
+      "backend": "drawio",
+      "page_size": {
+        "width": 1328,
+        "height": 1186,
+        "visible": true
+      },
+      "object_counts": {
+        "total": 479,
+        "vertices": 446,
+        "edges": 33,
+        "pictures": 0,
+        "native_or_composite": 479
+      },
+      "picture_audit": [],
+      "hard_failure_count": 0,
+      "warning_count": 0,
+      "findings_truncated": false,
+      "passed": true,
+      "findings": [],
+      "reviewer_contract": "Every hard finding must be converted by the Corrector into named geometry, routing, text-fit, or decomposition operations, executed by the Drawer, rerendered, and audited again."
+    },
+    "svg_foreign_object_labels": 45
+  },
+  "evidence_verdicts": {
+    "source_correspondence": "pass at full review scale",
+    "native_editability": "pass",
+    "target_rendering": "WPS and draw.io verified; Microsoft PowerPoint not tested",
+    "physical_size_legibility": "178mm enlarged view reviewed; original 86mm single-column publication size not certified",
+    "visual_narrative": "pass for reference reconstruction; no independent blind review"
+  },
+  "final_observed_findings": [],
+  "source_ambiguities": [],
+  "edits_from_reference": [
+    "A 16px non-junction gap in the dashed completion branch at the existing velocity-route crossing.",
+    "Minor local font/box-fit adjustments for native text metrics; original content, panel bounds, palette and reading order retained."
+  ],
+  "final_visual_review": {
+    "mode": "self_review",
+    "fresh_exact_file_previews": [
+      "figure3-powerpoint.png",
+      "figure3-drawio.png"
+    ],
+    "side_by_side": "figure3-comparison.png",
+    "title_hidden_native_review_sources": [
+      "review-title-hidden.pptx",
+      "review-title-hidden.drawio"
+    ],
+    "grayscale_review_images": [
+      "review-ppt-grayscale-thumbnail.png",
+      "review-drawio-grayscale-thumbnail.png"
+    ],
+    "review_assets_directory": "pre-research/_archive/drivecompose/20261030-figure3-vector-work",
+    "reading": "Condition and current latents enter local attention; shared memory reads local context and writes it back; the velocity head drives unknown-only flow; projection restores observed and free-space constraints; repetition yields completed latents.",
+    "observed_hard_findings": 0,
+    "observed_readability_findings_at_enlarged_size": 0,
+    "publication_size_mm": 178,
+    "original_single_column_certification": "not performed",
+    "prior_exposure": "Reviewer already knew the source diagram; no blind-review claim."
+  },
+  "file_sha256": {
+    "figure3-powerpoint.pptx": "150622d77307e8743465667be4c64b3a562804a1741f85f200c3990f0e6b7ac6",
+    "figure3-drawio.drawio": "209d9f31bc22fbfffbb0ed546aefe0f45634536c73faf938bf404aaaa9df0c6e",
+    "figure3-drawio.svg": "f629cadfeea7fe967dc1a63c7a9c2907c874d7ab46a699e5a17f0054e1792915",
+    "figure3-powerpoint.png": "a31a8a6192bbd0ea146385244d10f4f633a428bd7ee2818228c35ff833aa7396",
+    "figure3-drawio.png": "a57396c949d86a7cd87b1bdab6aeda8e7106129aeec619109c035fcb3ca8c833",
+    "figure3-comparison.png": "64e594a1613beb1dd3083dba924e5e8a2c8661f2a0be845f8be4c5c007250de3"
+  }
+}

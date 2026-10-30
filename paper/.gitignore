@@ -7,3 +7,7 @@
 *.synctex.gz
 *.xdv
 build/**/compiler-output.txt
+
+# Local manuscript review and revision intermediates
+/build/review/
+/build/revision-*/

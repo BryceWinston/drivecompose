@@ -1,0 +1,80 @@
+{
+  "figure5_image_streams": 15,
+  "english_abstract_words": 163,
+  "pdfs": [
+    {
+      "language": "en",
+      "path": "paper/build/en/main.pdf",
+      "pages": 11,
+      "main_text_end_page": 8,
+      "sha256": "ef9f18d838eb42ea7832def9c9a9a34578d781fc47b4bda228544e6ceb09f03d",
+      "warnings": []
+    },
+    {
+      "language": "zh",
+      "path": "paper/build/zh/main_zh.pdf",
+      "pages": 10,
+      "main_text_end_page": 7,
+      "sha256": "b53d365f05aec13681fa5292da009c7f4c163c8c0d18e1e493e72bd0d30254c1",
+      "warnings": []
+    },
+    {
+      "language": "supp-en",
+      "path": "paper/build/supp-en/main.pdf",
+      "pages": 11,
+      "main_text_end_page": null,
+      "sha256": "a66fddce88dbe62fad38f04dea24676892c6f31d0c5797ffdbae8f1ce7f5640f",
+      "warnings": []
+    },
+    {
+      "language": "supp-zh",
+      "path": "paper/build/supp-zh/main_zh.pdf",
+      "pages": 9,
+      "main_text_end_page": null,
+      "sha256": "d28cd7120060d0016e0851e3d16f8ea871054038857dbd5d9efe6a15b41ab411",
+      "warnings": []
+    }
+  ],
+  "checks": {
+    "no_dagger_markers_in_manuscripts": true,
+    "no_removed_external_variant_in_manuscripts": true,
+    "no_removed_external_comparison_claims": true,
+    "genassets_literature_citation_retained": true,
+    "table_values_preserved:paper/sec/4_experiments.tex": true,
+    "table_values_preserved:paper/zh/4_experiments_zh.tex": true,
+    "table_values_preserved:paper/supplementary/evaluation.tex": true,
+    "table_values_preserved:paper/supplementary/evaluation_zh.tex": true,
+    "table_values_preserved:paper/supplementary/cross_dataset.tex": true,
+    "table_values_preserved:paper/supplementary/cross_dataset_zh.tex": true,
+    "stable_source_unchanged:paper/sec/3_method.tex": true,
+    "stable_source_unchanged:paper/zh/3_method_zh.tex": true,
+    "stable_source_unchanged:paper/supplementary/training.tex": true,
+    "stable_source_unchanged:paper/supplementary/training_zh.tex": true,
+    "stable_source_unchanged:paper/supplementary/codec.tex": true,
+    "stable_source_unchanged:paper/supplementary/codec_zh.tex": true,
+    "stable_source_unchanged:paper/main.tex": true,
+    "stable_source_unchanged:paper/main_zh.tex": true,
+    "stable_source_unchanged:paper/main.bib": true,
+    "figure5_result_image_streams_identical": true,
+    "figure5_GT_label": true,
+    "figure5_dimensions_preserved": true,
+    "english_abstract_within_budget": true,
+    "en:fresh_successful_build": true,
+    "en:removed_items_absent_from_PDF": true,
+    "en:clean_final_log": true,
+    "english_main_text_at_most_8_pages": true,
+    "en:figure5_caption_matches_GT": true,
+    "zh:fresh_successful_build": true,
+    "zh:removed_items_absent_from_PDF": true,
+    "zh:clean_final_log": true,
+    "zh:figure5_caption_matches_GT": true,
+    "supp-en:fresh_successful_build": true,
+    "supp-en:removed_items_absent_from_PDF": true,
+    "supp-en:clean_final_log": true,
+    "supp-zh:fresh_successful_build": true,
+    "supp-zh:removed_items_absent_from_PDF": true,
+    "supp-zh:clean_final_log": true
+  },
+  "passed": true,
+  "checked_at": "2026-10-30T07:48:50.274142+00:00"
+}

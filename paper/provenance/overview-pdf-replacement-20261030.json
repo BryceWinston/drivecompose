@@ -28,5 +28,69 @@
   "figure_role": "Method overview. Real input photographs and illustrative/generated component assets are combined; this is not a quantitative experimental result.",
   "source_unchanged": true,
   "initial_pdf_render_visually_reviewed": true,
-  "manuscripts": "Both languages reference the same active PNG path. Final compilation verification will be added after integrating remote manuscript changes."
+  "manuscripts": {
+    "en": {
+      "pages": 11,
+      "overview_page": 4,
+      "technical_body_end_page": 8,
+      "sha256": "58ef0786d2e5d4136e8d2a0bf4d815d819c4843a5363df49066b69fd64f734d5",
+      "embedded_image_pixels_match": true,
+      "log_findings": [
+        "LaTeX Warning: Text page 4 contains only floats."
+      ],
+      "reviewed_pages": [
+        1,
+        4,
+        8
+      ],
+      "compile_exit_code": 0,
+      "written_this_run": true
+    },
+    "zh": {
+      "pages": 10,
+      "overview_page": 3,
+      "technical_body_end_page": 7,
+      "sha256": "81b0c00e20764f05cf752f198046b97f9665351c98eda51f75b66dfc5ce2692a",
+      "embedded_image_pixels_match": true,
+      "log_findings": [
+        "LaTeX Warning: Text page 6 contains only floats.",
+        "LaTeX Warning: Text page 6 contains only floats."
+      ],
+      "reviewed_pages": [
+        1,
+        3,
+        7
+      ],
+      "compile_exit_code": 0,
+      "written_this_run": true
+    }
+  },
+  "integration": {
+    "local_abstract_commit": "79bdd94948d4dbea340f4c4098b33aaec201c435",
+    "figure_commit": "309aef775dd57ff60fe17b96943dfbb4c539714f",
+    "remote_commit": "498f5e89f2685c0c84e9088154b8032fe99705f3",
+    "resolution": "Keep local approved abstract opening and decoding sentence, plus the remaining updated remote abstract and evidence. Keep remote manuscript/supplement structure. Preserve 8pt caption spacing and 6pt abstract heading spacing; advance a column only if the abstract still ends in the first column. Rebuild both main PDFs.",
+    "unrelated_work": "Existing 230-line figure-work log additions, three pointforward deletions, and local editable/build assets are excluded from this publication and restored after synchronization."
+  },
+  "visual_review": {
+    "status": "pass",
+    "pages": {
+      "en": [
+        1,
+        4,
+        8
+      ],
+      "zh": [
+        1,
+        3,
+        7
+      ]
+    },
+    "overview_clipping_or_overlap": false,
+    "english_technical_body_limit_met": true
+  },
+  "general_checker": {
+    "status": "not_completed",
+    "reason": "The existing check_manuscript.py exits before checks because the historical external archive CVPR27/_archive/drivecompose/20261020-cleanup is absent on this host. No success claim is made for the general checker."
+  }
 }

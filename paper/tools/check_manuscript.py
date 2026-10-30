@@ -73,11 +73,18 @@ def blank_ablation_tables(source: str) -> tuple[bool, bool]:
 
 def reported_ablation_tables(source: str, record: dict) -> dict[str, bool]:
     """Compare result cells (including blanks), variant names and input counts."""
-    tables = re.findall(r"\\begin\{table\}(.*?)\\end\{table\}", source, re.S)
-    checks = {"ablation_table_count": len(tables) == len(record["tables"])}
+    tables = re.findall(r"\\begin\{table\*?\}(.*?)\\end\{table\*?\}", source, re.S)
+    labels = {
+        label: ("tab:seed-inputs" if label == "tab:ablation-inputs"
+                and r"\label{tab:seed-inputs}" in source else label)
+        for label in record["tables"]
+    }
+    selected = [table for table in tables
+                if any(r"\label{" + label + "}" in table for label in labels.values())]
+    checks = {"ablation_table_count": len(selected) == len(record["tables"])}
     parsed = {}
     for label, expected in record["tables"].items():
-        matches = [table for table in tables if "\\label{" + label + "}" in table]
+        matches = [table for table in selected if "\\label{" + labels[label] + "}" in table]
         rows = []
         if len(matches) == 1:
             body = re.search(r"\\midrule(.*?)\\bottomrule", matches[0], re.S)
@@ -92,6 +99,9 @@ def reported_ablation_tables(source: str, record: dict) -> dict[str, bool]:
                     cells = [re.sub(r"\\multirow\{2\}\{\*\}\{([^{}]+)\}", r"\1", cell)
                              for cell in cells]
                     cells = ["-" if cell == "--" else cell for cell in cells]
+                    if labels[label] == "tab:seed-inputs":
+                        cells = [re.split(r"\s*\$\\pm\$", cell, maxsplit=1)[0].strip()
+                                 for cell in cells]
                     if label == "tab:ablation-inputs" and len(cells) == 5:
                         input_t = cells[0] or input_t
                         cells = [cells[1], input_t, *cells[2:]]
@@ -121,6 +131,8 @@ def main() -> int:
                         help="External cleanup archive; defaults to provenance/archive-map.json.")
     args = parser.parse_args()
     provenance = ROOT / "provenance"
+    revision_path = provenance / "review-revision-20261030.json"
+    revised_layout = revision_path.is_file()
     manifest_path = provenance / "source-manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     archive_map = json.loads((provenance / "archive-map.json").read_text(encoding="utf-8"))
@@ -166,7 +178,13 @@ def main() -> int:
             )
         for name in frozen:
             actual, original = digest((ROOT / name).read_bytes()), digest(archive.read(name))
-            checks["unchanged:" + name] = actual == original
+            style_record = provenance / "author-results-followup-20261030.json"
+            if name == "cvpr.sty" and style_record.is_file():
+                official_style = json.loads(style_record.read_text(encoding="utf-8"))["official_template"]["style_sha256"]
+                checks["official2027:cvpr.sty"] = actual == official_style
+                checks["official2027:supplementary/cvpr.sty"] = digest((ROOT / "supplementary/cvpr.sty").read_bytes()) == official_style
+            else:
+                checks["unchanged:" + name] = actual == original
             frozen_hashes[name] = {"sha256": actual, "original_sha256": original}
     details["frozen_hashes"] = frozen_hashes
     details["source_git_commit"] = manifest["source_git_commit"]
@@ -185,10 +203,29 @@ def main() -> int:
     checks["generated_overview_exists"] = overview.is_file()
     for entry in ("main.tex", "main_zh.tex"):
         source = uncomment((ROOT / entry).read_text(encoding="utf-8"))
-        checks[entry + ":generated_overview_active"] = (
-            r"\includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}" in source
-            and "drivecompose-overview.png" not in source
-        )
+        if revised_layout:
+            supplement = "evaluation_zh.tex" if entry == "main_zh.tex" else "evaluation.tex"
+            supplement_text = uncomment((ROOT / "supplementary" / supplement).read_text(encoding="utf-8"))
+            method = "zh/3_method_zh.tex" if entry == "main_zh.tex" else "sec/3_method.tex"
+            method_text = uncomment((ROOT / method).read_text(encoding="utf-8"))
+            checks[entry + ":overview_active_in_method"] = (
+                "{fig/drivecompose-inference-overview.png}" in method_text
+                and method_text.count(r"\label{fig:overview}") == 1
+                and r"\label{fig:overview}" not in source
+            )
+            checks[entry + ":detail_enlargement_in_supplement"] = (
+                "{../fig/drivecompose-joint-completion.png}" in supplement_text
+                and r"\label{fig:supp-detail}" in supplement_text
+            )
+            checks[entry + ":llm_usage_statement_active"] = (
+                "7_llm_usage" in source
+                and source.index("7_llm_usage") < source.index(r"\bibliography")
+            )
+        else:
+            checks[entry + ":generated_overview_active"] = (
+                r"\includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}" in source
+                and "drivecompose-overview.png" not in source
+            )
     figure_record_path = provenance / "three-figure-integration-20261029.json"
     if figure_record_path.exists():
         figure_record = json.loads(figure_record_path.read_text(encoding="utf-8"))
@@ -197,19 +234,35 @@ def main() -> int:
             for figure in figure_record["figures"]:
                 path = Path(figure["path"])
                 name = "fig/" + path.name
-                checks[f"{language}:figure{figure['number']}_active"] = (
-                    text.count("{" + name + "}") == 1
-                    and text.count("\\label{" + figure["label"] + "}") == 1
-                )
+                if not revised_layout:
+                    checks[f"{language}:figure{figure['number']}_active"] = (
+                        text.count("{" + name + "}") == 1
+                        and text.count("\\label{" + figure["label"] + "}") == 1
+                    )
                 checks[f"figure{figure['number']}_approved_pixels_exact"] = (
                     path.is_file() and digest(path.read_bytes()) == figure["sha256"]
                 )
+            if revised_layout:
+                current_figures = {
+                    "drivecompose-concept-merged.pdf": "fig:teaser",
+                    "drivecompose-inference-overview.png": "fig:overview",
+                    "drivecompose-joint-completion.png": "fig:joint-completion",
+                    "experiment1-dynamic-reconstruction.png": "fig:dynamic-reconstruction",
+                    "assets/Shift.pdf": "fig:waymo-left-shift",
+                }
+                for name, label in current_figures.items():
+                    checks[f"{language}:{label}:active_once"] = (
+                        text.count("{fig/" + name + "}") == 1
+                        and text.count(r"\label{" + label + "}") == 1
+                    )
     for language, name, heading in (("en", "sec/4_experiments.tex", "Experiments"),
                                      ("zh", "zh/4_experiments_zh.tex", "实验")):
         source = uncomment((ROOT / name).read_text(encoding="utf-8")).strip()
         if framework_record:
             required = ["sec:experiments", "sec:ablation-protocol", "sec:ablation-studies",
                         "sec:ablation-reuse", "tab:ablation-components", "tab:ablation-inputs"]
+            if revised_layout:
+                required.remove("tab:ablation-inputs")
             empty_image_slots = results_record["empty_image_slots"] if results_record else 16
             if empty_image_slots:
                 required.append("fig:ablation-reuse")
@@ -218,9 +271,14 @@ def main() -> int:
                 and all(source.count("\\label{" + label + "}") == 1 for label in required)
             )
             scoped_source = ablation_source(source)
+            table_source = scoped_source
+            if revised_layout:
+                supplement = "evaluation_zh.tex" if language == "zh" else "evaluation.tex"
+                table_source += "\n" + uncomment(
+                    (ROOT / "supplementary" / supplement).read_text(encoding="utf-8"))
             if results_record:
                 checks.update({language + ":" + key: value for key, value in
-                               reported_ablation_tables(scoped_source, results_record).items()})
+                               reported_ablation_tables(table_source, results_record).items()})
                 if results_path == standard_metrics_path:
                     checks[language + ":standard_ablation_metrics"] = all(
                         metric in scoped_source for metric in ("PSNR", "SSIM", "LPIPS"))

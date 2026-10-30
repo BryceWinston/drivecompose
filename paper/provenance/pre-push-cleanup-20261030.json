@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-30",
+  "operation": "archive temporary manuscript files before requested commit and push",
+  "archive_root": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261030-pre-push-cleanup",
+  "archive_manifest": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261030-pre-push-cleanup\\archive-manifest.json",
+  "archived_files": 225,
+  "archived_bytes": 188116151.0,
+  "archive_integrity": "All moved files verified by SHA-256",
+  "preserved_formal_PDFs": [
+    {
+      "path": "paper/build/en/main.pdf",
+      "sha256": "ef9f18d838eb42ea7832def9c9a9a34578d781fc47b4bda228544e6ceb09f03d",
+      "preserved": true
+    },
+    {
+      "path": "paper/build/zh/main_zh.pdf",
+      "sha256": "b53d365f05aec13681fa5292da009c7f4c163c8c0d18e1e493e72bd0d30254c1",
+      "preserved": true
+    },
+    {
+      "path": "paper/build/supp-en/main.pdf",
+      "sha256": "a66fddce88dbe62fad38f04dea24676892c6f31d0c5797ffdbae8f1ce7f5640f",
+      "preserved": true
+    },
+    {
+      "path": "paper/build/supp-zh/main_zh.pdf",
+      "sha256": "d28cd7120060d0016e0851e3d16f8ea871054038857dbd5d9efe6a15b41ab411",
+      "preserved": true
+    }
+  ],
+  "preserved_assets": "Editable Figure 3 PPTX/draw.io sources, application exports and verification records remain in docs/figures/joint-completion-vector",
+  "path_mapping": {
+    "paper/build/review": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261030-pre-push-cleanup\\paper\\build\\review",
+    "paper/build/revision-20261030": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261030-pre-push-cleanup\\paper\\build\\revision-20261030",
+    "paper/tools/__pycache__": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261030-pre-push-cleanup\\paper\\tools\\__pycache__"
+  },
+  "ignore_rules_added": [
+    "paper/build/review/",
+    "paper/build/revision-*/"
+  ],
+  "recorded_at": "2026-10-30T08:04:29.552441+00:00"
+}

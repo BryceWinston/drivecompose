@@ -26,46 +26,34 @@
 \def\confYear{2027}
 \title{DriveCompose：通过联合补全实现驾驶场景的可组合生成式重建}
 \author{Anonymous CVPR Submission}
-% 将概念 teaser 固定在标题下、双栏摘要之前。
+% Figure 1 is fixed below the title and before the two-column abstract.
 \makeatletter
 \g@addto@macro\@maketitle{%
   \noindent\begin{minipage}{\textwidth}
     \captionsetup{type=figure}
-    \centering
-    \includegraphics[width=\linewidth]{fig/drivecompose-teaser.png}
-    \caption{\textbf{DriveCompose 概念示意。}从驾驶图像中联合补全背景、车辆与人体的内容，构建可组合高斯场景。同一组资产可在相机视角、车辆位姿和人体姿态变化时复用。金色标注表示补全区域。}
-    \label{fig:title-teaser}
+\centering
+  \includegraphics[width=\linewidth]{fig/drivecompose-concept-merged.pdf}
+  \caption{\textbf{从观测到可复用的完成资产。}上：视角或参与者状态变化会暴露观测重建中的缺失表面。下：DriveCompose 通过结构化编码和联合补全构建背景、规范车辆与人体，并在不同状态下复用。金色表示补全区域；所有场景与资产画面均为机制示意。}
+  \label{fig:teaser}
+  \label{fig:title-teaser}
   \end{minipage}\par
-  \vspace{\baselineskip}
 }
 \makeatother
 \begin{document}
-\setcounter{dbltopnumber}{1} % Keep the two large introductory figures on separate pages.
 \maketitle
 \input{zh/0_abstract_zh}
-\begin{figure*}[t]
-  \centering
-  \includegraphics[width=\textwidth]{fig/drivecompose-concept-comparison.png}
-  \caption{\textbf{从观测表面到可组合场景资产。}（a）仅依赖观测的重建在视角或参与者状态变化时暴露未补全表面。（b）DriveCompose 联合补全背景与规范刚体、人体资产，再按指定状态组合场景。场景画面均为机制示意。}
-  \label{fig:teaser}
-\end{figure*}
+
 \def\CVPRMAIN{}
 \input{zh/1_introduction_zh}
-\begin{figure*}[t]
-  \centering
-  \includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}
-  \caption{\textbf{DriveCompose 总览。}视觉编码与运动感知的规范聚合恢复组件特征，类型专属编码器将其映射为结构化潜码。条件流补全通过跨组件上下文推断未知内容，高斯解码器生成背景、刚体与人体组件，用于状态驱动的场景组合和渲染。场景与资产画面均为机制示意。}
-  \label{fig:overview}
-\end{figure*}
+
 \input{zh/2_related_work_zh}
 \input{zh/3_method_zh}
 % 已写入用户于 2026-10-23 提供的消融结果。
 \input{zh/4_experiments_zh}
-\Needspace{13\baselineskip}
 \input{zh/5_discussion_zh}
-\Needspace{14\baselineskip}
 \input{zh/6_conclusion_zh}
 \FloatBarrier
+\input{zh/7_llm_usage_zh}
 {\small
 \bibliographystyle{ieeenat_fullname}
 \bibliography{main}

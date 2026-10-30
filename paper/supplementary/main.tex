@@ -4,6 +4,7 @@
 \usepackage[review]{cvpr}
 \input{fontsetup}
 \usepackage{booktabs}
+\usepackage{graphicx,placeins,multirow,float}
 \usepackage{amsmath,amssymb}
 \definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
 \usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
@@ -13,16 +14,28 @@
 \title{DriveCompose: Compositional Generative Reconstruction of Driving Scenes via Joint Completion}
 \author{Anonymous CVPR Submission}
 \begin{document}
+% Allow related supplementary result tables to share a page without changing fonts or geometry.
+\setcounter{topnumber}{5}
+\setcounter{dbltopnumber}{5}
+\setcounter{totalnumber}{10}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\dbltopfraction}{0.9}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.75}
+\renewcommand{\dblfloatpagefraction}{0.75}
 \input{lineno-fix}
 \maketitlesupplementary
 \appendix
 \renewcommand{\thetable}{S\arabic{table}}
 \renewcommand{\theequation}{S\arabic{equation}}
+\renewcommand{\thefigure}{S\arabic{figure}}
 \input{cross_dataset}
 \input{training}
 \input{composition}
 \input{frontend}
 \input{codec}
+\input{evaluation}
+\FloatBarrier
 {\small
 \bibliographystyle{ieeenat_fullname}
 \bibliography{references}

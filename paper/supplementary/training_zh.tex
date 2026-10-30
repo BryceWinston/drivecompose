@@ -3,48 +3,142 @@
 
 学习分为四个阶段，使补全目标具有稳定含义。恢复模块确定证据与支撑，编解码器定义潜空间坐标，补全网络学习缺失潜码的分布。最后一个阶段将该分布适配到真实观测，同时保持其预测的表示不变。
 
-\paragraph{阶段一：视觉恢复。}
+\paragraph{数据组成与划分。}
+表~\ref{tab:data-splits} 的数量均为质量检查后的有效数据。Waymo 原训练集划分为 740 条训练与 58 条开发序列，开发集用于选模，202 条验证序列用于测试。合成地图、车辆基础模型及人体身份按源资产隔离；同一模型的不同纹理、同一人体的不同服装及动作留在同一划分。真实日志按路段、连续采集片段和可识别身份去重隔离。完整性指有限查询支撑内的几何、材质与运动绑定目标完整性。
 
-我们利用几何、语义、实例归属和资产标注监督图像编码器、几何头、身份槽及状态头。在整条轨迹上执行一次匹配，将槽分配给目标身份，并在所有时刻复用这一匹配。根平移、旋转和固定尺寸约束刚体资产状态；人体还需要身份一致的体型、模板绑定和关节监督。置信度根据几何可靠性训练或校准，依据包括深度、遮挡和重投影信息。这些目标建立聚合所需的坐标与身份一致性。
+\begin{table*}[!t]
+\centering\small
+\setlength{\tabcolsep}{4pt}
+\caption{数据与监督来源。场景地图和独立资产均按源身份划分。}
+\label{tab:data-splits}
+\begin{tabular}{@{}lrrrp{0.47\textwidth}@{}}
+\toprule
+数据 & 训练 & 开发 & 测试 & 监督 \\
+\midrule
+Waymo 序列 & 740 & 58 & 202 & 图像、标定、自车位姿、LiDAR、车辆框与轨迹 \\
+自建合成场景 & 10,000 & 1,000 & 1,000 & 完整几何、材质、深度、语义、实例及演员状态 \\
+合成场景地图 & 80 & 10 & 10 & 静态背景几何及道路结构 \\
+独立车辆资产 & 10,000 & 1,000 & 1,000 & 完整规范几何、材质、尺寸及刚体坐标系 \\
+独立人体身份 & 2,500 & 250 & 250 & 身份体型、纹理、规范模板、骨架、蒙皮及关节状态 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+
+\paragraph{固定布局上的完整目标。}
+部分输入建立 $\mathcal Q$。两个分支使用相同的查询位置、尺度、类型和顺序，并共享组件归属与人体绑定，沿用 \texttt{QueryBundle.blocks} 的块顺序及块内索引。完整网格沿该固定支撑查询。对非天空查询，将所属组件网格转换到查询坐标系，与支撑单元 $B_i$ 求交；非零面积的相交三角片提供表面目标。资产完整性检查通过且没有相交表面的单元采用无表面目标。
+
+面积为 $A_f$ 的相交三角片 $f$ 采用
+\begin{equation}
+n_f=\max\!\left(1,\left\lceil\frac{64A_f}{\delta_{\min}^{\,2}}\right\rceil\right)
+\label{eq:target-samples}
+\end{equation}
+个确定性面积样本，$\delta_{\min}$ 为单元最短边。资产、查询和三角片编号共同确定采样位置。在固定照明与原始材质下渲染 RGB、光轴深度、实例及三角片编号。基础视图包含八个方位角和三个仰角，局部隔离视图覆盖剩余相交片，为基础视图中被遮挡的表面提供特征。
+
+阶段一训练后冻结的同一视觉编码器将渲染 RGB 映射为 128 维特征。在各表面样本投影处提取特征，附加相对查询中心的归一化深度残差，并截断至 $[-1,1]$。先在每个样本的有效视图间按观测权重平均，再按相交片面积聚合，形成 $\mathbf h_i^{\rm full}\in\mathbb R^{129}$。部分分支沿用查询中心投影和可见性加权聚合。
+
+无表面单元采用 129 维零特征和明确的零不透明度监督。无表面目标描述网格表面的缺失，自由空间标签来自观测射线。天空目标由完整环境贴图提供，深度残差为零。两分支共享视觉特征基、输入格式和类型专属 codec，目标潜码为
+\begin{equation}
+\mathbf z_{1,i}=E_{k_i}([\mathbf h_i^{\rm full};\mathbf q_i;\boldsymbol\delta_i])
+\in\mathbb R^{128}.
+\label{eq:complete-code}
+\end{equation}
+135 维输入依次通过 $135\rightarrow128\rightarrow128$ MLP 与 LayerNorm。编码器偏置允许零特征映射为非零潜码；补全过程的硬投影另行将自由空间潜码清零。
+
+\begin{table*}[t]
+\centering\small
+\caption{网络与空间支撑配置。基础网格另保留观测锚点和规范人体模板查询。}
+\label{tab:network-config}
+\begin{tabular}{@{}lp{0.70\textwidth}@{}}
+\toprule
+模块 & 配置 \\
+\midrule
+视觉恢复 & 宽度 128，patch 尺寸 16，4 头；1 层图像注意力和 2 层跨视图／时刻摘要交互 \\
+身份与人体状态 & 24 个身份槽，10 维体型码，17 关节接口 \\
+查询特征与潜码 & 特征 129 维，潜码 128 维；分类型 $135\rightarrow128\rightarrow128$ 编码器及 LayerNorm \\
+补全网络 & 宽度 128，4 层，4 头，16 个记忆 token \\
+高斯解码 & 每查询 4 个子高斯，每个 23 个输出参数，其中外观参数 12 个 \\
+方向外观 & 每颜色通道包含常数项和三个局部方向系数 \\
+基础支撑 & 背景 $20\times12\times6$，刚体 $8\times4\times4$，天空每面 $4\times4$ \\
+采样 & 24 步显式 Euler，每步恢复已见潜码并清零自由空间潜码 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\paragraph{阶段一：视觉恢复。}
+真实训练日志与合成场景监督图像编码器、几何预测头、身份槽和状态头。真实深度来自训练 LiDAR，车辆状态来自标注；带置信度的真实语义及人体关节辅助标签，与合成体型、骨架、绑定和关节监督共同训练恢复模块。整条轨迹执行一次身份匹配，并在各时刻复用。置信度根据深度、遮挡和重投影可靠性训练或校准，各项权重见表~\ref{tab:recovery-weights}。
+
+\begin{table}[t]
+\centering\small
+\caption{阶段一监督权重。}
+\label{tab:recovery-weights}
+\begin{tabular}{@{}lrlr@{}}
+\toprule
+损失 & 权重 & 损失 & 权重 \\
+\midrule
+深度 & 1.0 & 根旋转 & 0.2 \\
+法线 & 0.2 & 尺寸 & 0.1 \\
+语义 & 0.1 & 人体体型 & 0.1 \\
+实例 & 0.1 & 关节 & 0.2 \\
+根平移 & 0.5 & 置信度 & 0.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \paragraph{阶段二：潜表示拟合。}
-
-冻结恢复模块，训练类型专属编码器和解码器。每个样本先由部分输入建立一次查询布局，再将更完整的观测聚合到完全相同的位置、类型、顺序和归属上。共享布局使部分观测与完整目标逐查询对应。RGB、深度和轮廓监督训练解码场景，并结合空域不透明度与高斯尺度正则。高斯集合目标也可以采用集合匹配；仅在子高斯对应已知时使用直接坐标监督。
-
-对于渲染图像 $\widehat{\mathbf I}$ 和深度 $\widehat d$，表示拟合及后续适配使用的观测项为带掩码的 L1 误差：
-
+冻结恢复模块，以合成场景和完整资产训练 codec，并使用真实 RGB、深度及轮廓观测。目标为
+\begin{align}
+\mathcal L_2={}&\mathcal L_{\rm rgb}+0.1\mathcal L_{\rm depth}
++0.2\mathcal L_{\rm silhouette}\nonumber\\
+&+0.05\mathcal L_{\rm empty}+0.001\mathcal L_{\rm scale}.
+\label{eq:codec-loss}
+\end{align}
+渲染 RGB $\widehat{\mathbf I}$ 和深度 $\widehat d$ 的观测损失为带掩码的 L1 均值：
 \begin{align}
 \mathcal L_{\rm rgb}&=\langle\|\widehat{\mathbf I}-\mathbf I\|_1/3\rangle_{\Omega_I},\\
 \mathcal L_{\rm depth}&=\langle|\widehat d-d|\rangle_{\Omega_d}.
 \label{eq:reconstruction-loss}
 \end{align}
-
-符号 $\langle\ell\rangle_{\Omega}$ 表示在掩码 $\Omega$ 的有效元素上取平均。深度目标 $d$ 及其有效掩码由可用监督提供。
+$\langle\ell\rangle_\Omega$ 表示在有效元素上平均。无表面单元采用不透明度平方损失 $\mathcal L_{\rm empty}$，并结合轮廓监督和高斯尺度正则。阶段二结束后冻结恢复模块与 codec，编码生成先验学习使用的固定完整目标 $\mathbf z_1$。
 
 \paragraph{阶段三：补全先验学习。}
-
-冻结恢复模块和整个编解码器，将完整目标编码为 $\mathbf z_1$，并以主稿式~(9) 优化补全 Transformer。完整场景或资产样本为主稿式~(8) 中的未知查询提供目标潜码。完整场景提供跨组件上下文，完整资产提供对象内部的几何与外观。
-
-条件掩码模拟连续未见表面、背景空洞、长时间遮挡、短轨迹和不均匀相机覆盖。对恢复位姿、实例归属和置信度施加扰动，使生成器接触不完美证据。该阶段中，目标潜码和输入潜码始终使用相同的编解码器与查询定义。
+GCM 学习主稿式~(9) 中的未知查询流匹配目标。接纳的合成样本在每个未知查询上均具有有效几何、外观与绑定目标；未知目标无效的样本退出本阶段，损失选择器 $s_i$ 作用于有效目标内部。完整场景提供跨组件上下文，完整资产提供对象几何与外观。条件掩码模拟连续未见表面、背景空洞、长遮挡和短轨迹，以及不均匀相机覆盖。对位姿、实例和置信度施加扰动，使生成器接触恢复误差。
 
 \paragraph{阶段四：通过渲染适配。}
-
-保持恢复模块与编解码器冻结，通过流积分、解码和渲染反向传播，仅更新补全网络。部分真实日志监督渲染观测，已知自由射线和几何后端样本约束新增内容：
-
+通过流积分、解码和渲染反向传播，仅更新 GCM。完整合成样本与 740 条训练序列的真实日志以 $1{:}3$ 混合，目标为
 \begin{align}
-\mathcal L_{\rm scene}={}&\lambda_e\langle a_r^2\rangle
-+\lambda_g\langle[-d_f]_+^2\rangle\nonumber\\
-&+\lambda_c\langle|d_f|\rangle_{\Omega_c}
-+\lambda_p\langle[d_p]_+^2\rangle,\\
-\mathcal L_{\rm adapt}={}&\lambda_r\mathcal L_{\rm rgb}
-+\lambda_d\mathcal L_{\rm depth}+\mathcal L_{\rm scene}.
+\mathcal L_4={}&\mathcal L_{\rm flow}+\mathcal L_{\rm rgb}
++0.1\mathcal L_{\rm depth}+0.05\mathcal L_{\rm free}\nonumber\\
+&+0.1\mathcal L_{\rm ground}+0.1\mathcal L_{\rm contact}
++0.1\mathcal L_{\rm penetration}.
 \label{eq:adaptation}
 \end{align}
+Flow 项使用完整合成样本，观测和几何项分别使用具有对应监督的样本，各项按自身有效元素平均。令 $a_r$ 为自由射线累计不透明度，$d_f$ 为地面上方取正的脚部有符号距离，$\Omega_c$ 为接地脚部，$d_p$ 为进入其他参与者内部时取正的穿透深度，几何项为
+\begin{align}
+\mathcal L_{\rm free}&=\langle a_r^2\rangle,&
+\mathcal L_{\rm ground}&=\langle[-d_f]_+^2\rangle,\nonumber\\
+\mathcal L_{\rm contact}&=\langle|d_f|\rangle_{\Omega_c},&
+\mathcal L_{\rm penetration}&=\langle[d_p]_+^2\rangle,
+\end{align}
+其中 $[x]_+=\max(x,0)$。冻结解码器和潜码硬恢复共同保持已见锚点。
 
-其中，$a_r$ 为已知自由射线上的累积不透明度，$d_f$ 为脚点有符号距离且地面上方为正，$\Omega_c$ 选择接地脚点，$d_p$ 为穿透深度且另一资产内部为正。采用 $[x]_+=\max(x,0)$；无掩码的平均在提供的样本上计算。系数 $\lambda$ 为有效约束赋权。自由射线不透明度在查询级空域掩码之外，进一步约束新增内容的渲染影响。
+\paragraph{优化与推理。}
+四阶段设置见表~\ref{tab:training-schedule}。训练使用八张 A100 80 GB、FP16 和 AdamW，$\beta=(0.9,0.95)$，weight decay 为 0.01；各阶段预热后采用余弦学习率衰减。58 条开发序列用于选模，202 条验证序列用于测试。四阶段共更新 287,360 步，消耗 1,001.5 GPU 小时，包含方法专用目标预处理。各阶段成本依次为 278.6、184.3、326.9 和 211.7 GPU 小时。三个 GCM 训练种子共享恢复模块与 codec，总成本为 2,078.7 GPU 小时。w/o CCM 复用阶段一、二，以相同预算重训阶段三、四；确定性的 w/o GCM 使用固定恢复模块和 codec。
 
-完整目标样本可与真实日志适配交替使用以保留先验，得到 $\mathcal L_4=\lambda_f\mathcal L_{\rm flow}+\mathcal L_{\rm adapt}$，各项仅作用于具备所需目标的样本。已见锚点由冻结解码和潜码硬恢复维持。
+推理时对日志编码一次，在 24 步 Euler 积分中固定查询布局与已见潜码，再由分类型解码器生成资产，供不同状态反复装配。
 
-\paragraph{推理。}
-
-日志只编码一次，随后固定支撑与证据，由补全模型积分未知潜码。分类型解码器生成背景与规范资产，渲染时按指定相机与参与者状态组合这些固定组件。
+\begin{table*}[t]
+\centering\small
+\caption{四阶段训练设置。R 为恢复模块，C 为 codec，G 为 GCM。$D_R$ 表示真实训练日志，$D_S$ 为合成场景，$D_A$ 为完整资产。batch 为全局大小。}
+\label{tab:training-schedule}
+\begin{tabular}{@{}lllc rrr@{}}
+\toprule
+阶段 & 更新 & 冻结 & 数据 & 更新步数 & Batch & 初始学习率 \\
+\midrule
+视觉恢复 & R & -- & $D_R,D_S$ & 86,208 & 32 & $2\times10^{-4}$ \\
+潜表示拟合 & C & R & $D_S,D_A,D_R$ & 57,472 & 32 & $3\times10^{-4}$ \\
+补全先验 & G & R, C & 完整 $D_S,D_A$ & 114,944 & 32 & $10^{-4}$ \\
+渲染适配 & G & R, C & $D_S:D_R=1:3$ & 28,736 & 8 & $3\times10^{-5}$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

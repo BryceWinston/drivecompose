@@ -1,6 +1,12 @@
 # DriveCompose 当前论文方法图
 
-## 当前版本：2026-10-29，合并首页 teaser
+## 当前版本：2026-10-30，采用用户提供的 PowerPoint PDF 导出
+
+按用户指定的 [PDF](../../../paper/fig/overview-editable/output/DriveCompose.pdf) 更新[论文活动总览图](../../../paper/fig/drivecompose-inference-overview.png)。PDF 为单页 1800×1050 pt，使用 Poppler 按完整页面原比例渲染为 6000×3500 PNG；没有重新生图、裁改内容或改写图中文字。双语论文继续引用同一 PNG 路径。
+
+总览图含真实输入照片及机制示意素材；图中组件与组合结果不作为量化实验输出。PDF、PNG 哈希、渲染命令和合并后编译检查见[本轮来源记录](../../../paper/provenance/overview-pdf-replacement-20261030.json)。之前的 Image Gen 整图记录保留为历史来源。
+
+## 历史版本：2026-10-29，合并首页 teaser
 
 首页 teaser 保留为图 1；三张已确认方法图分别为：
 

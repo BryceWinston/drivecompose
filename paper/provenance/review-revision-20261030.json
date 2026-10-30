@@ -1,0 +1,659 @@
+{
+  "date": "2026-10-30",
+  "baseline_commit": "a12af3c150f4f44a8a2a86beed54d315a4bce886",
+  "source": "paper/provenance/review-revision-20261030-author-source.txt",
+  "source_sha256": "ca2b530bf72a70f6c4f03e2178644f12847647a452c3b19b4afbaa7cd3e2692f",
+  "evidence_level": "author-provided aggregate results and protocol descriptions; raw runs, datasets and checkpoints not independently audited",
+  "scope": "bilingual manuscript and supplementary revision; no training or evaluation performed",
+  "tables": [
+    [
+      [
+        "数据",
+        "训练",
+        "开发",
+        "测试",
+        "提供的监督"
+      ],
+      [
+        "Waymo 序列",
+        "740",
+        "58",
+        "202",
+        "图像、标定、自车位姿、LiDAR、车辆框与轨迹"
+      ],
+      [
+        "自建合成场景",
+        "10,000",
+        "1,000",
+        "1,000",
+        "完整几何、材质、深度、语义、实例及演员状态"
+      ],
+      [
+        "合成场景地图",
+        "80",
+        "10",
+        "10",
+        "静态背景几何及道路结构"
+      ],
+      [
+        "独立车辆资产",
+        "10,000",
+        "1,000",
+        "1,000",
+        "完整规范几何、材质、尺寸及刚体坐标系"
+      ],
+      [
+        "独立人体身份",
+        "2,500",
+        "250",
+        "250",
+        "身份体型、纹理、规范模板、骨架、蒙皮及关节状态"
+      ]
+    ],
+    [
+      [
+        "条件",
+        "DriveCompose",
+        "STORM†",
+        "DGGT†",
+        "StreetForward†"
+      ],
+      [
+        "上下文 RGB",
+        "相同 4 时刻、3 相机",
+        "相同",
+        "相同",
+        "相同"
+      ],
+      [
+        "相机内外参、自车位姿",
+        "统一给定",
+        "统一给定",
+        "统一给定",
+        "统一给定"
+      ],
+      [
+        "测试深度／LiDAR 输入",
+        "无；深度由 RGB 估计",
+        "无",
+        "无",
+        "无"
+      ],
+      [
+        "实例身份、车辆框及根轨迹",
+        "统一给定状态",
+        "同一状态",
+        "同一状态",
+        "同一状态"
+      ],
+      [
+        "人体体型与绑定",
+        "从上下文恢复",
+        "使用相同绑定接口",
+        "使用相同绑定接口",
+        "使用相同绑定接口"
+      ],
+      [
+        "目标人体关节",
+        "独立离线标注／拟合所得的给定状态",
+        "相同",
+        "相同",
+        "相同"
+      ],
+      [
+        "测试场景优化",
+        "无",
+        "无",
+        "无",
+        "无"
+      ]
+    ],
+    [
+      [
+        "方法",
+        "时间组",
+        "全图 PSNR／SSIM",
+        "动态 PSNR／SSIM",
+        "深度 AbsRel／\\(\\delta_1\\)"
+      ],
+      [
+        "STORM†",
+        "插值",
+        "26.800／0.838",
+        "22.600／0.640",
+        "0.170／0.753"
+      ],
+      [
+        "STORM†",
+        "外推",
+        "25.120／0.790",
+        "20.600／0.576",
+        "0.202／0.705"
+      ],
+      [
+        "DGGT†",
+        "插值",
+        "27.800／0.806",
+        "23.200／0.667",
+        "0.237／0.680"
+      ],
+      [
+        "DGGT†",
+        "外推",
+        "26.240／0.758",
+        "21.240／0.603",
+        "0.285／0.632"
+      ],
+      [
+        "StreetForward†",
+        "插值",
+        "27.400／0.830",
+        "21.500／0.608",
+        "0.185／0.771"
+      ],
+      [
+        "StreetForward†",
+        "外推",
+        "25.840／0.782",
+        "19.176／0.544",
+        "0.233／0.723"
+      ],
+      [
+        "Ours",
+        "插值",
+        "**28.900／0.909**",
+        "**25.500／0.870**",
+        "**0.091／0.885**"
+      ],
+      [
+        "Ours",
+        "外推",
+        "**27.556／0.877**",
+        "**23.700／0.838**",
+        "**0.107／0.853**"
+      ]
+    ],
+    [
+      [
+        "方法",
+        "车辆新增区域 PSNR↑",
+        "LPIPS↓",
+        "表面覆盖率↑",
+        "人体新增区域 PSNR↑",
+        "LPIPS↓",
+        "表面覆盖率↑"
+      ],
+      [
+        "w/o GCM",
+        "17.80",
+        "0.362",
+        "63.4%",
+        "17.12",
+        "0.391",
+        "60.8%"
+      ],
+      [
+        "w/o CCM",
+        "22.46",
+        "0.218",
+        "91.8%",
+        "21.38",
+        "0.247",
+        "88.6%"
+      ],
+      [
+        "Ours",
+        "**24.18**",
+        "**0.176**",
+        "**96.1%**",
+        "**23.06**",
+        "**0.201**",
+        "**94.3%**"
+      ]
+    ],
+    [
+      [
+        "方法",
+        "失败数",
+        "成功率"
+      ],
+      [
+        "w/o GCM",
+        "16／40",
+        "60.0%"
+      ],
+      [
+        "w/o CCM",
+        "7／40",
+        "82.5%"
+      ],
+      [
+        "Ours",
+        "**3／40**",
+        "**92.5%**"
+      ]
+    ],
+    [
+      [
+        "方法",
+        "±1 m FID／FVD↓",
+        "±2 m FID／FVD↓",
+        "±4 m FID／FVD↓"
+      ],
+      [
+        "STORM†",
+        "61.97／722.27",
+        "83.72／1029.36",
+        "132.57／1704.16"
+      ],
+      [
+        "DGGT†",
+        "73.99／984.00",
+        "93.36／1197.03",
+        "128.01／1661.70"
+      ],
+      [
+        "StreetForward†",
+        "84.30／878.95",
+        "103.31／1095.02",
+        "123.58／1578.63"
+      ],
+      [
+        "Ours",
+        "**28.52／544.27**",
+        "**37.43／673.17**",
+        "**58.19／817.13**"
+      ]
+    ],
+    [
+      [
+        "方法",
+        "隐藏区域 PSNR↑",
+        "LPIPS↓",
+        "表面覆盖率↑",
+        "几何 F-score@2 cm↑"
+      ],
+      [
+        "w/o GCM",
+        "16.82",
+        "0.401",
+        "61.5%",
+        "51.7%"
+      ],
+      [
+        "w/o CCM",
+        "21.56",
+        "0.236",
+        "89.7%",
+        "81.3%"
+      ],
+      [
+        "Ours",
+        "**23.18**",
+        "**0.192**",
+        "**95.0%**",
+        "**88.6%**"
+      ]
+    ],
+    [
+      [
+        "配置",
+        "已见高斯最大参数差",
+        "输入视角 PSNR↑",
+        "RGB MAE↓",
+        "深度 MAE↓",
+        "新增遮挡比例↓",
+        "严格自由射线违规↓"
+      ],
+      [
+        "补全前",
+        "0",
+        "30.420",
+        "0.0187",
+        "0.120 m",
+        "0",
+        "0"
+      ],
+      [
+        "w/o CCM",
+        "0",
+        "30.368",
+        "0.0190",
+        "0.123 m",
+        "0.24%",
+        "0.09%"
+      ],
+      [
+        "Ours",
+        "**0**",
+        "**30.391**",
+        "**0.0189**",
+        "**0.122 m**",
+        "**0.18%**",
+        "**0.07%**"
+      ],
+      [
+        "Ours 去掉自由射线损失",
+        "0",
+        "29.970",
+        "0.0208",
+        "0.134 m",
+        "1.34%",
+        "0.91%"
+      ]
+    ],
+    [
+      [
+        "组件及可见性",
+        "w/o CCM",
+        "Ours",
+        "增益"
+      ],
+      [
+        "背景，充分可见",
+        "30.20",
+        "30.24",
+        "+0.04 dB"
+      ],
+      [
+        "背景，严重缺失",
+        "22.10",
+        "23.12",
+        "**+1.02 dB**"
+      ],
+      [
+        "车辆，充分可见",
+        "28.30",
+        "28.34",
+        "+0.04 dB"
+      ],
+      [
+        "车辆，严重缺失",
+        "21.10",
+        "22.38",
+        "**+1.28 dB**"
+      ],
+      [
+        "人体，充分可见",
+        "26.90",
+        "26.93",
+        "+0.03 dB"
+      ],
+      [
+        "人体，严重缺失",
+        "19.70",
+        "21.24",
+        "**+1.54 dB**"
+      ]
+    ],
+    [
+      [
+        "CCM 可读取的额外组件",
+        "全图 PSNR↑"
+      ],
+      [
+        "无跨组件交换，即 w/o CCM",
+        "28.286"
+      ],
+      [
+        "背景",
+        "28.721"
+      ],
+      [
+        "其他车辆",
+        "28.574"
+      ],
+      [
+        "其他人体",
+        "28.352"
+      ],
+      [
+        "全部组件",
+        "**28.913**"
+      ]
+    ],
+    [
+      [
+        "版本",
+        "全图 PSNR↑",
+        "SSIM↑",
+        "LPIPS↓",
+        "动态 PSNR↑",
+        "动态 SSIM↑"
+      ],
+      [
+        "w/o GCM",
+        "27.137 ± 0",
+        "0.867 ± 0",
+        "0.183 ± 0",
+        "23.431 ± 0",
+        "0.811 ± 0"
+      ],
+      [
+        "w/o CCM",
+        "28.286 ± 0.074（0.032）",
+        "0.893 ± 0.001（0.0006）",
+        "0.147 ± 0.002（0.0013）",
+        "24.683 ± 0.112（0.048）",
+        "0.849 ± 0.002（0.0010）"
+      ],
+      [
+        "Ours",
+        "**28.913 ± 0.061（0.028）**",
+        "**0.911 ± 0.001（0.0005）**",
+        "**0.129 ± 0.002（0.0011）**",
+        "**25.617 ± 0.095（0.041）**",
+        "**0.873 ± 0.002（0.0008）**"
+      ]
+    ],
+    [
+      [
+        "T",
+        "版本",
+        "PSNR↑",
+        "SSIM↑",
+        "LPIPS↓"
+      ],
+      [
+        "2",
+        "w/o CCM",
+        "25.237 ± 0.103（0.055）",
+        "0.817 ± 0.003（0.0011）",
+        "0.254 ± 0.004（0.0023）"
+      ],
+      [
+        "2",
+        "Ours",
+        "**26.341 ± 0.089（0.047）**",
+        "**0.851 ± 0.002（0.0009）**",
+        "**0.213 ± 0.003（0.0019）**"
+      ],
+      [
+        "4",
+        "w/o CCM",
+        "27.126 ± 0.086（0.041）",
+        "0.869 ± 0.002（0.0008）",
+        "0.187 ± 0.003（0.0018）"
+      ],
+      [
+        "4",
+        "Ours",
+        "**27.864 ± 0.072（0.035）**",
+        "**0.891 ± 0.001（0.0006）**",
+        "**0.159 ± 0.002（0.0014）**"
+      ],
+      [
+        "8",
+        "w/o CCM",
+        "28.286 ± 0.074（0.032）",
+        "0.893 ± 0.001（0.0006）",
+        "0.147 ± 0.002（0.0013）"
+      ],
+      [
+        "8",
+        "Ours",
+        "**28.913 ± 0.061（0.028）**",
+        "**0.911 ± 0.001（0.0005）**",
+        "**0.129 ± 0.002（0.0011）**"
+      ]
+    ],
+    [
+      [
+        "构建阶段",
+        "耗时"
+      ],
+      [
+        "图像预处理",
+        "0.18 s"
+      ],
+      [
+        "视觉恢复",
+        "0.64 s"
+      ],
+      [
+        "查询构造与规范聚合",
+        "0.17 s"
+      ],
+      [
+        "24 步生成补全",
+        "1.38 s"
+      ],
+      [
+        "高斯解码",
+        "0.26 s"
+      ],
+      [
+        "初始场景注册",
+        "0.03 s"
+      ],
+      [
+        "**合计**",
+        "**2.66 s**"
+      ]
+    ],
+    [
+      [
+        "查询次数 N",
+        "总时间",
+        "平均每次查询"
+      ],
+      [
+        "1",
+        "2.6678 s",
+        "2.6678 s"
+      ],
+      [
+        "10",
+        "2.738 s",
+        "273.8 ms"
+      ],
+      [
+        "100",
+        "3.440 s",
+        "34.4 ms"
+      ],
+      [
+        "1,000",
+        "10.460 s",
+        "10.46 ms"
+      ]
+    ],
+    [
+      [
+        "方法",
+        "PSNR↑",
+        "SSIM↑"
+      ],
+      [
+        "STORM†",
+        "17.77 ± 0.12",
+        "0.669 ± 0.003"
+      ],
+      [
+        "DGGT†",
+        "25.31 ± 0.08",
+        "0.794 ± 0.002"
+      ],
+      [
+        "StreetForward†",
+        "23.17 ± 0.10",
+        "0.712 ± 0.003"
+      ],
+      [
+        "Ours",
+        "**26.47 ± 0.07**",
+        "**0.803 ± 0.002**"
+      ]
+    ],
+    [
+      [
+        "图",
+        "内容"
+      ],
+      [
+        "图1",
+        "合并原图1、图2：动机、可组合输出与简洁总流程"
+      ],
+      [
+        "图2",
+        "保留联合补全及 CCM 机制"
+      ],
+      [
+        "图3",
+        "动态场景重建的真实结果"
+      ],
+      [
+        "图4",
+        "离轨渲染结果，明确原轨迹参考图身份"
+      ],
+      [
+        "图5",
+        "同一完成资产的原状态、车辆旋转、人体换姿及两组消融"
+      ]
+    ]
+  ],
+  "pending_assets": [],
+  "baseline": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\revision-20261030\\baseline",
+  "active_state": "Author-reported review responses incorporated into both manuscripts and supplements; empirical Figure 5 explicitly deferred by the user.",
+  "figure5_status": "User explicitly instructed not to include Figure 5 in this turn.",
+  "author_confirmation_pending": [],
+  "not_independently_verified": [
+    "Raw training/evaluation logs, checkpoint provenance and dataset manifests",
+    "Unspecified optimizer/schedule and network-size hyperparameters"
+  ],
+  "changes": [
+    "Body compressed without font/margin changes",
+    "LLM Usage Statement added",
+    "State-adapted baselines disclosed with dagger notation",
+    "Data/supervision and all-valid flow targets specified",
+    "Author results transcribed into bilingual main/supplementary tables",
+    "Existing schematic panels composed in PDF without raster modification",
+    "Recorded-view reference replaces GT in off-trajectory figure"
+  ],
+  "verification": "paper/provenance/review-revision-20261030-verification.json",
+  "source_diff": "paper/build/revision-20261030/source-changes.diff",
+  "clarification_source": "paper/provenance/review-revision-20261030-clarification.txt",
+  "clarification_sha256": "fa287fcc0d9737120bc41a526bcf7804b6f16bc4c84b7cc40e5944c9094feae0",
+  "resolved_protocol": {
+    "visibility": "100 synthetic scenes shared with hidden-region test; +/-2m, input-view union surface-area coverage, 12000 targets per 3x3 seed combination; severe <=20%, hidden exactly 0%.",
+    "read_scope": "202 Waymo windows, T=8, 4242 target images per 3x3 seed combination; masks intervene at inference on the same Ours checkpoints; w/o CCM is the retrained main control."
+  },
+  "status": "revision_complete",
+  "verification_passed": true,
+  "final_pdf_pages": {
+    "en": 11,
+    "zh": 10,
+    "supp-en": 8,
+    "supp-zh": 7
+  },
+  "layout_followup": {
+    "request": "Restore the original overview to Method; shrink the detail figure.",
+    "overview": "Full-width original overview at start of Method, figure 2.",
+    "detail": "Single-column main detail, figure 3; enlarged copy in Appendix L.",
+    "actor_edit_figure": "Still omitted as requested; later figure numbers refer to existing reconstruction and off-trajectory results.",
+    "baseline": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\revision-20261030\\layout-followup-baseline",
+    "verified": true
+  },
+  "teaser_position": "Fixed below title and before abstract in English and Chinese",
+  "teaser_followup": "paper/provenance/teaser-before-abstract-20261030.json"
+}

@@ -3,48 +3,142 @@
 
 Learning is divided into four stages so that the completion target has a stable meaning. Recovery determines the evidence and support, the codec defines its latent coordinates, and the completion network learns a distribution over the missing codes. The last stage adapts this distribution to real observations without changing the representation it predicts.
 
-\paragraph{Stage 1: visual recovery.}
+\paragraph{Data and splits.}
+Counts in Table~\ref{tab:data-splits} include only data passing quality checks. The original Waymo training set is divided into 740 training and 58 development sequences; the 58 development sequences select checkpoints, and the 202 validation sequences are used for testing. Synthetic maps, base vehicle models, and human identities are separated by source asset. Texture variants of a vehicle and clothing/motion variants of a human remain in one split. Real logs are deduplicated and separated by road segment, continuous capture, and identifiable actors. Completeness refers to geometry, materials, and motion bindings within the finite query support.
 
-We supervise the image encoder, geometry heads, identity slots, and state heads using geometry, semantics, instance assignments, and actor annotations. One trajectory-level matching assigns slots to target identities and is reused at every timestamp. Root translation, rotation, and fixed dimensions constrain rigid-asset states; humans additionally require identity-consistent shape, template binding, and joint supervision. Confidence is trained or calibrated against geometric reliability, using depth, occlusion, and reprojection information. These targets establish the coordinate and identity consistency required by aggregation.
+\begin{table*}[!t]
+\centering\small
+\setlength{\tabcolsep}{4pt}
+\caption{Data and supervision. Scene maps and independent assets are split by source identity.}
+\label{tab:data-splits}
+\begin{tabular}{@{}lrrrp{0.47\textwidth}@{}}
+\toprule
+Data & Train & Dev. & Test & Supervision \\
+\midrule
+Waymo sequences & 740 & 58 & 202 & RGB, calibration, ego poses, LiDAR, vehicle boxes and tracks \\
+Synthetic scenes & 10,000 & 1,000 & 1,000 & Geometry, materials, depth, semantics, instances and actor states \\
+Synthetic maps & 80 & 10 & 10 & Static background geometry and road structure \\
+Vehicle assets & 10,000 & 1,000 & 1,000 & Canonical geometry, materials, dimensions and rigid frames \\
+Human identities & 2,500 & 250 & 250 & Shape, texture, template, skeleton, skinning and joint states \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+
+\paragraph{Complete targets on a fixed layout.}
+Partial input establishes $\mathcal Q$. Both branches use the same query positions, scales, types, order, component ownership, and human bindings, following the block order and within-block indices of \texttt{QueryBundle.blocks}. Complete meshes are queried on this fixed support. For each non-sky query, the owning component's mesh is expressed in the query frame and intersected with its cell $B_i$. Positive-area triangle intersections supply surface targets. A cell with no intersecting surface receives a surface-free target after asset completeness checks.
+
+For an intersecting triangle fragment $f$ of area $A_f$, we draw
+\begin{equation}
+n_f=\max\!\left(1,\left\lceil\frac{64A_f}{\delta_{\min}^{\,2}}\right\rceil\right)
+\label{eq:target-samples}
+\end{equation}
+deterministic area samples, where $\delta_{\min}$ is the smallest cell side. Asset, query, and triangle indices determine sample locations. We render RGB, camera-axis depth, instance identity, and triangle identity using original materials and fixed illumination. Eight azimuths and three elevations form the base views. Local isolated views cover remaining fragments, providing features for surfaces occluded in the base views.
+
+The Stage 1 visual encoder, frozen after recovery training, maps rendered RGB to 128-dimensional features. At each surface sample, we extract these features and append its normalized depth residual relative to the query center, clipped to $[-1,1]$. We first average valid views of each sample with observation weights, then aggregate samples by fragment area to obtain $\mathbf h_i^{\rm full}\in\mathbb R^{129}$. The partial branch retains query-center projection and visibility-weighted aggregation.
+
+Surface-free cells use a 129-dimensional zero feature and explicit zero-opacity supervision. Surface-free targets describe the absence of mesh surface; free-space labels are supplied by observed rays. Sky targets come from the complete environment map with zero depth residual. Both branches share the visual feature basis, input format, and type-specific codec. The target code is
+\begin{equation}
+\mathbf z_{1,i}=E_{k_i}([\mathbf h_i^{\rm full};\mathbf q_i;\boldsymbol\delta_i])
+\in\mathbb R^{128}.
+\label{eq:complete-code}
+\end{equation}
+The 135-dimensional input passes through a $135\rightarrow128\rightarrow128$ MLP and LayerNorm. Biases allow a zero feature to encode a nonzero latent. Hard projection separately enforces zero free-space codes during completion.
+
+\begin{table*}[t]
+\centering\small
+\caption{Network and support configuration. Observed anchors and canonical human-template queries augment the base grids.}
+\label{tab:network-config}
+\begin{tabular}{@{}lp{0.70\textwidth}@{}}
+\toprule
+Module & Configuration \\
+\midrule
+Visual recovery & Width 128; patch size 16; 4 heads; 1 image-attention layer and 2 cross-view/time-summary layers \\
+Identity and human state & 24 identity slots; 10-dimensional shape code; 17-joint interface \\
+Query features and latents & Feature dimension 129; latent dimension 128; type-specific $135\rightarrow128\rightarrow128$ encoders with LayerNorm \\
+Completion network & Width 128; 4 layers; 4 heads; 16 memory tokens \\
+Gaussian decoding & 4 children per query; 23 outputs per child, including 12 appearance parameters \\
+Directional appearance & Constant RGB and three local directional coefficients per channel \\
+Base supports & Background $20\times12\times6$; rigid $8\times4\times4$; sky $4\times4$ per cubemap face \\
+Sampling & 24 explicit Euler steps with observed-code restoration and free-space clearing after each step \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\paragraph{Stage 1: visual recovery.}
+Real training logs and synthetic scenes supervise the image encoder, geometry heads, identity slots, and state heads. Real depth comes from training LiDAR, and vehicle states come from annotations. Confidence-weighted real semantic and human-joint auxiliary labels complement synthetic shape, skeleton, binding, and joint supervision. One trajectory-level matching assigns slots to identities and is reused across timestamps. Confidence is trained or calibrated against depth, occlusion, and reprojection reliability. Table~\ref{tab:recovery-weights} lists the loss weights.
+
+\begin{table}[t]
+\centering\small
+\caption{Stage 1 supervision weights.}
+\label{tab:recovery-weights}
+\begin{tabular}{@{}lrlr@{}}
+\toprule
+Loss & Weight & Loss & Weight \\
+\midrule
+Depth & 1.0 & Root rotation & 0.2 \\
+Normals & 0.2 & Dimensions & 0.1 \\
+Semantics & 0.1 & Human shape & 0.1 \\
+Instances & 0.1 & Joints & 0.2 \\
+Root translation & 0.5 & Confidence & 0.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \paragraph{Stage 2: latent representation fitting.}
-
-We freeze recovery and train the type-specific encoders and decoders. For each sample, partial input establishes the query layout once. More complete observations are then aggregated on exactly the same positions, types, order, and ownership. This shared layout aligns partial evidence and complete targets query by query. RGB, depth, and silhouette supervision train the decoded scene, with empty-space opacity and Gaussian-scale regularization. Gaussian-set targets can also be matched as sets; direct coordinate supervision is used only when child correspondences are available.
-
-For rendered image $\widehat{\mathbf I}$ and depth $\widehat d$, the observation terms used in representation fitting and later adaptation are masked L1 errors:
-
+With recovery frozen, we train the codec on synthetic scenes and complete assets, together with real RGB, depth, and silhouette observations. The objective is
+\begin{align}
+\mathcal L_2={}&\mathcal L_{\rm rgb}+0.1\mathcal L_{\rm depth}
++0.2\mathcal L_{\rm silhouette}\nonumber\\
+&+0.05\mathcal L_{\rm empty}+0.001\mathcal L_{\rm scale}.
+\label{eq:codec-loss}
+\end{align}
+For rendered RGB $\widehat{\mathbf I}$ and depth $\widehat d$, the observation losses are masked L1 means,
 \begin{align}
 \mathcal L_{\rm rgb}&=\langle\|\widehat{\mathbf I}-\mathbf I\|_1/3\rangle_{\Omega_I},\\
 \mathcal L_{\rm depth}&=\langle|\widehat d-d|\rangle_{\Omega_d}.
 \label{eq:reconstruction-loss}
 \end{align}
-
-The notation $\langle\ell\rangle_{\Omega}$ denotes a mean over valid elements of mask $\Omega$. The depth target $d$ and its validity mask are supplied by the available supervision.
+Here $\langle\ell\rangle_\Omega$ averages valid elements. Surface-free cells receive squared-opacity loss $\mathcal L_{\rm empty}$, alongside silhouette supervision and Gaussian-scale regularization. At the end of Stage 2, we freeze recovery and the codec and encode fixed complete targets $\mathbf z_1$ for prior learning.
 
 \paragraph{Stage 3: completion-prior learning.}
-
-We freeze recovery and the entire codec, encode complete targets as $\mathbf z_1$, and optimize the completion transformer with Eq.~(9) of the main paper. Complete scene or asset examples provide target codes for the unknown queries in Eq.~(8) of the main paper. Complete scenes provide cross-component context, while complete assets supply within-object geometry and appearance.
-
-Conditioning masks simulate contiguous unseen surfaces, background holes, long occlusions, short tracks, and uneven camera coverage. Perturbations to recovered poses, instance assignments, and confidence expose the generator to imperfect evidence. Target codes and input codes retain the same codec and query definition throughout this stage.
+The GCM learns the unknown-query flow-matching objective in Eq.~(9) of the main paper. Every unknown query in an accepted synthetic sample has valid geometry, appearance, and binding targets. Samples with an invalid unknown target are excluded from this stage; the loss selector $s_i$ operates within valid targets. Complete scenes provide cross-component context, and complete assets supply object geometry and appearance. Conditioning masks simulate contiguous unseen surfaces, background holes, long occlusions, short tracks, and uneven camera coverage. Pose, instance, and confidence perturbations expose the generator to recovery errors.
 
 \paragraph{Stage 4: adaptation through rendering.}
-
-Keeping recovery and the codec frozen, we differentiate through flow integration, decoding, and rendering to update only the completion network. Partial real logs supervise the rendered observations. Known-free rays and geometric backend samples constrain added content:
-
+We differentiate through flow integration, decoding, and rendering to update only the GCM. Complete synthetic samples and real logs from the 740 training sequences are mixed at $1{:}3$. The objective is
 \begin{align}
-\mathcal L_{\rm scene}={}&\lambda_e\langle a_r^2\rangle
-+\lambda_g\langle[-d_f]_+^2\rangle\nonumber\\
-&+\lambda_c\langle|d_f|\rangle_{\Omega_c}
-+\lambda_p\langle[d_p]_+^2\rangle,\\
-\mathcal L_{\rm adapt}={}&\lambda_r\mathcal L_{\rm rgb}
-+\lambda_d\mathcal L_{\rm depth}+\mathcal L_{\rm scene}.
+\mathcal L_4={}&\mathcal L_{\rm flow}+\mathcal L_{\rm rgb}
++0.1\mathcal L_{\rm depth}+0.05\mathcal L_{\rm free}\nonumber\\
+&+0.1\mathcal L_{\rm ground}+0.1\mathcal L_{\rm contact}
++0.1\mathcal L_{\rm penetration}.
 \label{eq:adaptation}
 \end{align}
+The flow term uses complete synthetic samples; each observation or geometry term uses samples carrying its required supervision. Every term is averaged over its own valid elements. With accumulated free-ray opacity $a_r$, foot signed distance $d_f$ positive above ground, contacting feet $\Omega_c$, and penetration depth $d_p$ positive inside another actor, the geometry terms are
+\begin{align}
+\mathcal L_{\rm free}&=\langle a_r^2\rangle,&
+\mathcal L_{\rm ground}&=\langle[-d_f]_+^2\rangle,\nonumber\\
+\mathcal L_{\rm contact}&=\langle|d_f|\rangle_{\Omega_c},&
+\mathcal L_{\rm penetration}&=\langle[d_p]_+^2\rangle,
+\end{align}
+where $[x]_+=\max(x,0)$. Frozen decoding and hard code restoration preserve the observed anchors.
 
-Here $a_r$ is accumulated opacity along a known-free ray, $d_f$ is foot signed distance positive above ground, $\Omega_c$ selects contacting feet, and $d_p$ is penetration depth positive inside another actor. We use $[x]_+=\max(x,0)$; unmasked means run over supplied samples. The coefficients $\lambda$ weight the active constraints. Free-ray opacity constrains the rendered effects of added content beyond the query-level free-space mask.
+\paragraph{Optimization and inference.}
+Table~\ref{tab:training-schedule} gives the four-stage schedule. Training uses eight A100 80 GB GPUs, FP16, and AdamW with $\beta=(0.9,0.95)$ and weight decay 0.01. Each stage uses warmup followed by cosine learning-rate decay. The 58 development sequences select checkpoints; the 202 validation sequences form the test set. The four stages total 287,360 updates and 1,001.5 GPU hours, including method-specific target preprocessing. Stage costs are 278.6, 184.3, 326.9, and 211.7 GPU hours. Three GCM training seeds share recovery and the codec, giving a combined cost of 2,078.7 GPU hours. The w/o CCM control reuses Stages 1--2 and retrains Stages 3--4 with the same budget. The deterministic w/o GCM control uses the fixed recovery module and codec.
 
-Complete-target samples can be interleaved with real-log adaptation to retain the learned prior, yielding $\mathcal L_4=\lambda_f\mathcal L_{\rm flow}+\mathcal L_{\rm adapt}$, with each term applied only to samples carrying its required targets. Observed anchors are enforced by frozen decoding and hard code restoration.
+At inference, the log is encoded once. Its query layout and observed codes remain fixed throughout 24 Euler steps, after which type-specific decoders produce assets for repeated state composition.
 
-\paragraph{Inference.}
-
-A log is encoded once, its support and evidence are fixed, and the completion model integrates the unknown codes. Type-specific decoders produce the background and canonical assets. Rendering composes these fixed components under the requested camera and actor states.
+\begin{table*}[t]
+\centering\small
+\caption{Four-stage training schedule. R: recovery; C: codec; G: GCM. $D_R$: real training logs; $D_S$: synthetic scenes; $D_A$: complete assets. Batch sizes are global.}
+\label{tab:training-schedule}
+\begin{tabular}{@{}lllc rrr@{}}
+\toprule
+Stage & Updated & Frozen & Data & Updates & Batch & Initial LR \\
+\midrule
+Visual recovery & R & -- & $D_R,D_S$ & 86,208 & 32 & $2\times10^{-4}$ \\
+Latent fitting & C & R & $D_S,D_A,D_R$ & 57,472 & 32 & $3\times10^{-4}$ \\
+Completion prior & G & R, C & Complete $D_S,D_A$ & 114,944 & 32 & $10^{-4}$ \\
+Rendering adaptation & G & R, C & $D_S:D_R=1:3$ & 28,736 & 8 & $3\times10^{-5}$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
