@@ -233,5 +233,92 @@
     "original_stashes_preserved": true,
     "unmerged_paths": 0,
     "compiled_auxiliaries_archived": 28
+  },
+  "collaboration_build": {
+    "baseline_head": "42ea76f6ef0b49afe0e57c0b7fa712a58bf0d885",
+    "tested_source_tree": "93c931519f8807ea0793468e2b6a8bf775e88226",
+    "policy": "Track the five final figure PDFs required for compilation; do not upload PPT files, rebuilt manuscript PDFs, images or intermediate assets in this correction",
+    "tracked_figure_pdfs": [
+      "paper/fig/fig01-teaser.pdf",
+      "paper/fig/fig02-overview.pdf",
+      "paper/fig/fig03-joint-completion.pdf",
+      "paper/fig/fig04-dynamic-reconstruction.pdf",
+      "paper/fig/fig05-off-trajectory-rendering.pdf"
+    ],
+    "requires_untracked_files": false,
+    "requires_external_archives_for_compilation": false,
+    "requires_prebuilt_paper_pdfs": false,
+    "method": "only staged Git files; no shipped output PDFs or untracked assets",
+    "engine": "Tectonic (XeTeX)",
+    "tex_bib_styles_and_figure_bytes_unchanged": true,
+    "results": [
+      {
+        "language": "en",
+        "pages": 11,
+        "exit_code": 0,
+        "pdf_created_in_empty_output_directory": true,
+        "pdf_sha256": "17149fcfe1f43ed9b486f7402c84669b5ada450da6e8541fae758043e03060a7",
+        "all_pages_extracted_text_match_local_final": true,
+        "final_log_undefined_references_missing_glyphs_or_overfull_boxes": [],
+        "elapsed_seconds": 14.204
+      },
+      {
+        "language": "zh",
+        "pages": 10,
+        "exit_code": 0,
+        "pdf_created_in_empty_output_directory": true,
+        "pdf_sha256": "3a04ab268374ffebd219eb4559b718fc2ec2b07c62c00e033916c8e1767a9584",
+        "all_pages_extracted_text_match_local_final": true,
+        "final_log_undefined_references_missing_glyphs_or_overfull_boxes": [],
+        "elapsed_seconds": 15.593
+      },
+      {
+        "language": "supp-en",
+        "pages": 12,
+        "exit_code": 0,
+        "pdf_created_in_empty_output_directory": true,
+        "pdf_sha256": "4d3e1b39fa6d2cf16d3c5bc087b6ed9e1d526a54cf93bbb48b8728392928ccf6",
+        "all_pages_extracted_text_match_local_final": true,
+        "final_log_undefined_references_missing_glyphs_or_overfull_boxes": [],
+        "elapsed_seconds": 7.687
+      },
+      {
+        "language": "supp-zh",
+        "pages": 10,
+        "exit_code": 0,
+        "pdf_created_in_empty_output_directory": true,
+        "pdf_sha256": "5c0e1bf691a97b95220d1efd832baa04841dec0f27d46db739f306fec9aff882",
+        "all_pages_extracted_text_match_local_final": true,
+        "final_log_undefined_references_missing_glyphs_or_overfull_boxes": [],
+        "elapsed_seconds": 9.453
+      }
+    ],
+    "visual_comparison": [
+      {
+        "language": "en",
+        "rendered_pages": 11,
+        "all_pages_pixel_identical_to_local_final_at_72dpi": true
+      },
+      {
+        "language": "zh",
+        "rendered_pages": 10,
+        "all_pages_pixel_identical_to_local_final_at_72dpi": true
+      },
+      {
+        "language": "supp-en",
+        "rendered_pages": 12,
+        "all_pages_pixel_identical_to_local_final_at_72dpi": true
+      },
+      {
+        "language": "supp-zh",
+        "rendered_pages": 10,
+        "all_pages_pixel_identical_to_local_final_at_72dpi": true
+      }
+    ],
+    "total_pages_pixel_identical_to_local_final_at_72dpi": 43,
+    "key_pages_visually_reviewed": true,
+    "local_formal_pdfs_and_ppts_preserved": true,
+    "raw_verification_relative_to_project": "../_archive/drivecompose/20261104-self-contained-build/verification.json",
+    "legacy_archive_audit": "not rerun; separate from compilation"
   }
 }

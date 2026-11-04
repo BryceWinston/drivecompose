@@ -1,6 +1,21 @@
-## 2026-11-04 本机同步状态
+## 2026-11-04 源码协作与编译
 
-已拉取同事提交 `edcd19c`，保留补充材料、正式引文、使用说明与新机制矢量图。当前图件统一位于 `fig/`；本机两份最终 PPT 保留，图 2、3 使用同事提供的 PDF 原件并统一改名。四份 PDF 已在本机重编，页数及验收见[当前输出](build/CURRENT-OUTPUTS.md)，来源和可编辑文件见[图件索引](../docs/figures/README.md)。按作者要求，本次仅提交源码、说明和旧文件的清理记录，最终 PPT、图件 PDF 及重编后的论文 PDF 留在本机；新检出编译前需另行补齐 `fig/` 下的五份图件 PDF。
+已同步同事提交 `edcd19c`，保留补充材料、正式引文、使用说明与新机制矢量图。当前编译必需的五份图件 PDF 统一位于 `fig/` 并纳入 Git，拉取后无需另行复制文件。PPT、重编后的论文成品 PDF 和历史素材不随本次提交上传。来源和可编辑文件见[图件索引](../docs/figures/README.md)。
+
+安装含 XeLaTeX、BibTeX、latexmk 的 TeX Live 或 MiKTeX 后，在仓库根目录执行以下命令即可构建中英文主稿及补充材料。样式、书目和图件都在仓库内；字体使用 TeX 发行版提供的 TeX Gyre 和 Fandol 文件。
+
+```powershell
+cd paper
+latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=build/en' main.tex
+latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=build/zh' main_zh.tex
+cd supplementary
+latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=../build/supp-en' main.tex
+latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=../build/supp-zh' main_zh.tex
+```
+
+已有 Tectonic 时，也可使用下文的构建方式。`tools/check_manuscript.py` 是需要历史归档的证据审计，不是编译前置步骤；论文编译不依赖仓库外归档。
+
+本次已从仅含待提交 Git 文件的独立快照，用 Tectonic 在全新输出目录编译四份论文。主稿与补充材料共 43 页，逐页文本和 72 dpi 渲染均与本机最终稿一致；日志无未定义引用、缺字或溢出。验收见[布局与协作构建记录](provenance/figure-layout.json)。
 
 ## 2026-11-04 远端图件修订记录
 
@@ -76,7 +91,6 @@ xelatex -interaction=nonstopmode -halt-on-error main.tex
 New-Item -ItemType Directory -Force build/en, build/zh
 tectonic -X compile --keep-logs --keep-intermediates --outdir build/en main.tex
 tectonic -X compile --keep-logs --keep-intermediates --outdir build/zh main_zh.tex
-python tools/check_manuscript.py
 ```
 
 本机可直接执行 `python tools/build.py`。脚本依次查找环境变量 `CODEX_TECTONIC_PATH`、PATH 和 Windows 上已安装的 Codex 所带 Tectonic，并将中英文 PDF 和日志分别保存在 `build/en/`、`build/zh/`。字体配置由 `tools/fontconfig.conf` 提供；已有 `FONTCONFIG_FILE` 时沿用该设置。`compile-result.json` 记录本次执行时间、退出码、PDF 哈希及是否实际写入新输出，避免将历史 PDF 误认为本次编译结果。

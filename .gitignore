@@ -6,9 +6,8 @@ dist/
 checkpoints/
 outputs/
 
-# Local figure sources and generated caches.
+# Local editable slide sources and generated caches; figure PDFs are tracked.
 paper/fig/*.pptx
-paper/fig/fig*.pdf
 node_modules/
 **/.build/
 *.aux
