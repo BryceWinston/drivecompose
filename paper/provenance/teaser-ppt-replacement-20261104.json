@@ -1,0 +1,122 @@
+{
+  "date": "2026-11-04",
+  "baseline_commit": "a0ccb6b509f7b6454313f4108b956741b5ca4fd3",
+  "source_ppt": "paper\\fig\\teaser-editable\\output\\DriveCompose-teaser-placeholder.pptx",
+  "source_ppt_sha256": "eda0c26a9fa6b493bc441dd16eb6c406b2137c8de5616786d712544f5b734008",
+  "source_ppt_unchanged": true,
+  "publication_figure": "paper/fig/drivecompose-concept-merged.pdf",
+  "publication_figure_sha256": "5f1e29a61e407e9e4c597e579b1eb8b7eeb2f58d21560b430562908b58e59d3e",
+  "figure_page_size_points": [
+    720,
+    378
+  ],
+  "figure_render_size": [
+    5400,
+    2835
+  ],
+  "conversion": "exact full-slide high-resolution rendering packaged in a PDF; no redrawing or content changes",
+  "caption_changes": false,
+  "paper_source_changes_this_replacement": false,
+  "preserved_local_overview_pdf": true,
+  "git_sync": {
+    "previous_head": "09ec7adb91eca760fe8c2682d91b40a479f2bcfe",
+    "current_head": "a0ccb6b509f7b6454313f4108b956741b5ca4fd3",
+    "ahead": 0,
+    "behind": 0,
+    "unmerged_paths": [],
+    "local_work_preserved": true,
+    "merge_resolution": "paper/build/teaser-paper-integration/merge-resolution/resolution-record.json",
+    "new_commits_or_pushes": false
+  },
+  "baseline": "paper/build/teaser-paper-integration/before-integration",
+  "baseline_manifest": "paper/build/teaser-paper-integration/integration-baseline.json",
+  "outputs": [
+    {
+      "language": "en",
+      "pdf": "paper\\build\\en\\main.pdf",
+      "sha256": "2e420fac148ebc53ce9fa800ba7d1f3ee5ae4e1298fe7ada08c1d370ff5a8d60",
+      "total_pages": 11,
+      "full_conclusion_page": 8,
+      "full_conclusion_extractor": "pypdf reading order",
+      "main_text_end_label_page": 8,
+      "teaser_page": 1,
+      "teaser_embedded_pixels_match": true,
+      "caption_and_main_source_unchanged": true,
+      "compile_exit_code": 0,
+      "compile_written_this_run": true,
+      "log_error_findings": [],
+      "compile_started_at": "2026-11-04T05:02:31.145910+00:00",
+      "compile_finished_at": "2026-11-04T05:03:01.680810+00:00"
+    },
+    {
+      "language": "zh",
+      "pdf": "paper\\build\\zh\\main_zh.pdf",
+      "sha256": "8e0971d3fc5265855c768e53dd870bb54ee530cd3495fdad0a0017b59c38a84f",
+      "total_pages": 10,
+      "full_conclusion_page": 7,
+      "full_conclusion_extractor": "pdfplumber CJK decoding with column order",
+      "main_text_end_label_page": 7,
+      "teaser_page": 1,
+      "teaser_embedded_pixels_match": true,
+      "caption_and_main_source_unchanged": true,
+      "compile_exit_code": 0,
+      "compile_written_this_run": true,
+      "log_error_findings": [],
+      "compile_started_at": "2026-11-04T05:03:01.754584+00:00",
+      "compile_finished_at": "2026-11-04T05:03:34.598568+00:00"
+    }
+  ],
+  "visual_review": {
+    "status": "passed",
+    "checked_pages": [
+      {
+        "pdf": "paper/build/en/main.pdf",
+        "pages": [
+          1,
+          8
+        ]
+      },
+      {
+        "pdf": "paper/build/zh/main_zh.pdf",
+        "pages": [
+          1,
+          7
+        ]
+      }
+    ],
+    "findings": "Final rendered first pages contain the exact selected slide without clipping or overlap; full conclusions remain on the expected ending pages.",
+    "renders": [
+      {
+        "file": "paper\\build\\teaser-paper-integration\\en-page-1-final.png",
+        "sha256": "6b2ac33de544b0b877167b4b17f3757488caf5e588d1b31bafc34945555a223f"
+      },
+      {
+        "file": "paper\\build\\teaser-paper-integration\\en-page-8-final.png",
+        "sha256": "de55dc06347823f2e970f68121684d56e2d0175d12240a4268f43dd7e552b016"
+      },
+      {
+        "file": "paper\\build\\teaser-paper-integration\\zh-page-1-final.png",
+        "sha256": "d24100a7892c4d674c708cd931647e1525668f7c86ac90593166964822f25a91"
+      },
+      {
+        "file": "paper\\build\\teaser-paper-integration\\zh-page-7-final.png",
+        "sha256": "9762af328b27ffac7bd649023f451170cd45cfee51b3c9d84e8e80336331960b"
+      }
+    ]
+  },
+  "baseline_figure_sha256": "3031f2f09069d714ed267cb0390d6ea978e23304b7c7a23d5f5e0225773b1a40",
+  "source_ppt_render": {
+    "slides": 1,
+    "native_shapes": 53,
+    "images": 15,
+    "render_scale": 3,
+    "rasterized_full_slide": true,
+    "original_aspect_preserved": true
+  },
+  "unchanged_scope": [
+    "source PPT",
+    "English and Chinese teaser captions",
+    "post-pull manuscript text and layout parameters",
+    "supplementary materials"
+  ]
+}

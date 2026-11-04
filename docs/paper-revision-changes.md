@@ -1,3 +1,23 @@
+## 2026-11-04 将作者指定 PPT 替换为首页 teaser
+
+本轮问题与范围：作者指定 `paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx` 直接替换论文 teaser；原 Figure 1 仍是早期概念图。本轮只接入现有图稿并重编主稿，PPT 内容、两版图注、正文与版式参数保持。
+
+按此前要求先同步远端，HEAD 从 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe` 快进至 `a0ccb6b509f7b6454313f4108b956741b5ca4fd3`。保留本地未提交工作，并在远端移动后的总览图位置继续使用此前的 `DriveCompose.pdf`；这项为已有成果的保留，不计作新图设计。图替换的真实基线是同步并恢复本地修改后的工作区，见[基线清单](../paper/build/teaser-paper-integration/integration-baseline.json)与[原文件快照](../paper/build/teaser-paper-integration/before-integration/)。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+|---|---|---|---|
+| 双语首页 Figure 1 的图件 | 原 `drivecompose-concept-merged.pdf`，SHA-256 `3031f2f09069d714ed267cb0390d6ea978e23304b7c7a23d5f5e0225773b1a40` | 同一路径改为指定 PPT 的完整页面，SHA-256 `5f1e29a61e407e9e4c597e579b1eb8b7eeb2f58d21560b430562908b58e59d3e` | 将作者确认的图稿实际接入论文 |
+| 图幅与图内内容 | 720 × 378 pt；早期概念场景 | 图幅仍为 720 × 378 pt；共享输入、上下方法对比、联合补全及三种状态复用均来自作者现有 PPT | 保留原有排版尺寸，不另行设计 |
+| 英文图注开头 | “From observations to reusable completed assets.” | 原文保留，整条图注逐字不变 | 本轮仅替换图件 |
+| 中文图注开头 | “从观测到可复用的完成资产。” | 原文保留，整条图注逐字不变 | 与英文同一修改范围 |
+| 英文／中文完整正文结束页 | 第 8／7 页 | 第 8／7 页 | 核对总结全文及结束标签，确认换图未造成超页 |
+
+来源 PPT SHA-256 为 `eda0c26a9fa6b493bc441dd16eb6c406b2137c8de5616786d712544f5b734008`；导出前后哈希相同，作者最新保存的排版与文字保留。采用完整单页 5400 × 2835 像素渲染后封装为 PDF，非原生矢量导出；两版最终 PDF 的内嵌图像与该导出逐像素一致。P2–P6 继续作为概念示意，不作为实验结果。
+
+英文与中文主稿均重新编译成功，总页数分别为 11／10 页；完整总结与正文结束标签分别在第 8／7 页。已渲染复核两版首页和正文末页，无新增重叠或裁切；编译日志无未定义引用、缺字或溢出错误。当前 [英文主稿](../paper/build/en/main.pdf)、[中文主稿](../paper/build/zh/main_zh.pdf)及[采用与核验记录](../paper/provenance/teaser-ppt-replacement-20261104.json)可检查。补充材料未修改，未新建提交或推送。
+
+---
+
 ## 2026-11-04 提交前归档临时图稿
 
 按作者“将临时文件移出仓库并提交和推送”的要求，仅整理文件及归档入口。起点为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe` 之后的未提交工作区；已有论文修订属于本次整理前的成果。实际起点的文件哈希和 Git 状态见[工作区基线](../../_archive/drivecompose/20261104-pre-push-cleanup/workspace-before.json)，本轮修改的两份说明文件原文也已单独保存。
@@ -545,6 +565,143 @@ Moving the camera or changing actor poses exposes surfaces that were never obser
 - 四份正式 PDF 均为本轮编译输出；最终日志无溢出、缺字、未定义引用或重复标签。全稿页图与新增／受影响表格已目视检查。基线、构建脚本、预览和差异保存在项目外归档。
 
 ---
+## 2026-11-02：先固定空间设定，再单独生成 P2 素材
+
+用户要求 P2/P3 分开生成，先预设观测方位与物体相对位置，并结合整张 teaser 只生成 P2。本轮从已有未提交工作区开始，基线提交仍为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`。本改动记录的真实基线保存在 `paper/build/teaser-p2-standalone/before/paper-revision-changes.md`，SHA256 为 `1ca5f973a4cdc7cb3265700a62614baabb986425f7ed798af8da48e36602b522`。此前合并 P2/P3 的试稿保留为历史候选，本轮不据其重新安排空间。
+
+具体问题：合并生成的双图没有固定的坐标场景，容易把相机变化画成物体移动；图内标题、箭头和图例也无法直接作为现有 P2 框内的独立素材使用。
+
+| 位置 | 既有试稿 | 本轮修改 | 原因及改善 |
+| --- | --- | --- | --- |
+| 素材单元 / Asset unit | 单张 PNG 包含 P2/P3、标题、相机箭头和图例 | 独立无字 P2 场景，约 2.35:1，匹配既有 P2 框比例 | 图内只保留场景表达，标题和流程元素由整张 teaser 的原生 PPT 对象承担。 |
+| 空间依据 / Spatial specification | 主要由提示词描述相对位置并逐轮修正 | 先保存世界坐标、观察相机、物体锚点和未知面归属；由同一坐标生成几何底图，再交给 imagegen 风格化 | 使后续各槽位可以共享同一场景，而不独立编造物体位置 / Reuse a fixed world instead of restaging each panel. |
+| 观察与采集 / Viewing and acquisition | 输入相机符号和场景观察角度混在插图中 | 采集相机固定在车前 +X、近侧 -Y；P2 使用外部后侧相机 (-8,-14,7)，图内不再重复相机符号 | 解释为何 P2 可从外部看见未被输入观测到的车尾缺口。 |
+| 未知区域 / Unknown surfaces | 车辆后部一个局部 U，空间位置随重绘调整 | 整个车尾面 Uv、被车辆遮挡的车后地面 Ug 固定在坐标中；远侧 +Y 面在 P2 中隐藏 | 未知面在相机变化前已经确定；后续车辆与背景的联合补全可使用相同区域。 |
+| 后续对应 / Future correspondence | 通过图像重绘近似保持两图关系 | P3 只改外部相机；P4 沿用 P2 视角并补面；P5 裁同一资产；P6a 沿用 P3 相机看补全场景 | 固定不同面板之间的共有条件 / Fix the common scene across the teaser. 本轮只生成 P2。 |
+
+空间设定属于受控概念场景，不来自 Waymo 标定。几何底图由原生 SVG 投影构建，进行了 54 条地面采样视线的遮挡检查及车尾/远侧面的朝向检查；它只核验设计条件，不是论文实验，也不证明生成位图满足精确标定投影。对生成结果目检了车辆方向、行人和背景位置、两处未知面以及无字单图格式。
+
+交付：[独立 P2 PNG](figures/teaser/p2-standalone.png)，1921×819；[空间设定](figures/teaser/p2-spatial-plan.md)、[数值场景约定](figures/teaser/p2-scene-contract.json)、[生成提示词](figures/teaser/p2-standalone-prompt.txt)、[来源记录](figures/teaser/p2-standalone-generation-record.json)。使用内置 image_gen，根据几何底图和用户风格参考生成一次。现有 PPT SHA256 仍为 `60ecadfa10823080aa648e29f8609db9df5995534db743f635f7cdf8a51917fe`；主稿、PDF、实验数值未改，没有编译论文。
+
+## 2026-11-02：试生成 P2/P3 的抽象几何概念素材
+
+用户提供学术图示风格参考，明确要求使用 imagegen 先试做 P2/P3，采用抽象信息表达，避免模仿真实纹理。本轮基线提交为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`；从已有未提交工作区开始。改动记录的真实基线已保存于 `paper/build/teaser-p2-p3-concept/before/paper-revision-changes.md`，SHA256 为 `b13b3eba00e0852c9f9a56abb92758fcfd96c12fd379d71ea556a01748ea710a`。仅新增试稿、提示词及生成记录，不替换现有 PPT 或论文图件。
+
+具体问题：P2/P3 当前仍为灰色占位，尚未形成能在缩略尺寸下读懂的“汇总观测后仍有未知表面 → 改变视角暴露同一缺口”的图形。用用户参考图的简化几何体、平面配色和细轮廓来表达这组关系。
+
+| 位置 | 当前占位内容 | 候选素材表达 | 原因及改善 |
+| --- | --- | --- | --- |
+| P2 / Aggregated observations | `All input frames aggregated / Unobserved surfaces remain` / 汇总全部输入帧后仍有未观测表面 | 灰蓝色车辆表面、简化行人和背景，单侧日志相机符号，以及远端未知区域 U 的虚线提示 | 用观察方向和缺失位置表达覆盖不足，避免真实街景纹理分散注意。 |
+| P3 / Unseen surfaces exposed | `New camera view s1 / Unobserved surfaces exposed` / 新相机视角下暴露未观测表面 | 相同概念场景换视角；未知表面 U 以白色、虚线与稀疏斜线突出 | 保持问题路径的含义；两图均未画入完成后的表面。 |
+| 风格 / Visual style | 未填入场景素材 | 少量几何体、灰蓝车辆、淡紫人物、浅青路面、浅灰背景，白色底 | 保留驾驶场景语义，以形状和颜色承担信息。 |
+
+使用内置 image_gen 生成初稿后进行一次对应关系修正：初稿主要改变车辆朝向，背景与行人位置几乎未变；修正稿调整背景、行人和斑马线随视角的投影关系，并把日志相机放在同一观测侧。该图为生成式概念试稿，U 不代表从 Waymo 图像测出的真实可见性掩码，未进行标定三维投影核验。尚未生成 P4/P5/P6。
+
+候选：[P2/P3 PNG](figures/teaser/p2-p3-abstract.png)，2094×751；[初始提示词](figures/teaser/p2-p3-abstract-prompt.txt)、[对应关系修正提示词](figures/teaser/p2-p3-abstract-refinement-prompt.txt)；[生成与来源记录](figures/teaser/p2-p3-abstract-generation-record.json)。用户参考图已按原字节保存于素材参考目录。现有 PPT SHA256 仍为 `60ecadfa10823080aa648e29f8609db9df5995534db743f635f7cdf8a51917fe`；原 PDF、LaTeX、正文、实验数值保持原样，没有编译论文。
+
+## 2026-11-02：将共享输入改为相机 × 时间序列矩阵
+
+用户要求左侧体现多帧、多时刻的输入，并相应调整排版。本轮从上一轮未提交工作区开始，真实基线 PPT、构建源、素材说明和本改动记录已保存于 `paper/build/teaser-temporal-input/before/`，哈希见其上一层 `baseline.json`。基线提交仍为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`；基线 PPT SHA256 为 `910e81c5ffc06160c5e56c74acecf84ddcdb98584d4425cfec356f7b88c2c8ac`。
+
+具体问题：上一版一列三张照片与 I1/I2/I3 编号只表明多个观测，没有表达相机视角和时间的关系。保持共享输入及上下方法对比，把输入内部组织为两维。
+
+| 位置 | 真实基线 | 本轮修改 | 原因及改善 |
+| --- | --- | --- | --- |
+| 输入标题 / Input title | `Multi-view observations` / 多视图观测 | `Multi-view sequence` / 多视图序列 | 让标题直接包含序列含义。 |
+| 输入照片 / Input images | 三张不同相机或时刻的照片纵向排列，标 I1/I2/I3 | 两列相机 Front-left / Front，三行时刻 t₀ / t₁ / t₂；使用同一片段 frame 000 / 010 / 020 对应的六张原始图 | 同行显示相机维度，同列显示时间推进 / Columns denote cameras and rows denote time. 删除独立图片编号。 |
+| 时间线索 / Temporal cues | 没有时间轴；脚注为 `Partial surface coverage` / 部分表面覆盖 | 向下的 `Time` 箭头、时刻标签与两列底部省略号；脚注 `Example frames` / 示例帧 | 表达持续的输入序列，六张仅是展示示例，不限定帧数或相机数。 |
+| 整组连接 / Shared-input connection | 括线覆盖三张纵向照片，进入同一个分叉 | 括线覆盖完整相机-时间矩阵，并调整出线位置 | 两条方法路径仍使用同一输入序列；不重复绘制输入。 |
+| 聚合占位文字 / Aggregation placeholder | `All views aggregated` / 汇总全部视图 | `All input frames aggregated` / 汇总全部输入帧 | 与时间序列输入的表述一致。 |
+| 候选图注 / Candidate caption | `Given the same multi-view inputs` / 给定相同的多视图输入 | `Given the same multi-view image sequence` / 给定相同的多视图图像序列 | 仅同步输入定义，保留方法、补全与复用含义。 |
+
+素材核验：六张图来自 scene 186 的同一 case，使用 `waymo-186/source/f{000,010,020}_{FRONT_LEFT,FRONT}.jpg`。`manifest.json` 对应时戳为 `1553735853362214`、`1553735854362103`、`1553735855362157` μs；t 的下标表示选中的示例时刻，不声称这三个采样是连续帧，也不推定帧率。六张源图均为 1920×1280，使用完整的 3:2 原生图片框展示。PPT 备注和素材说明已同步来源与映射。
+
+下方中央大图、补全小对照、右侧状态展示以及 (a)/(b) 编号保留。原论文 PDF、LaTeX、双语正文、实验数值保持原样；只在候选图注中同步序列定义。交付前完成单页包结构、布局和字体检查，并重新导入渲染检查。
+
+## 2026-11-02：合并 teaser 的重复输入，以共享输入分叉表达对比
+
+用户指出输入相同、只有后续处理不同。本轮基线为上一轮未提交的占位 PPT、构建源、素材说明及本记录，已保存于 `paper/build/teaser-shared-input/before/`，哈希见其上一层 `baseline.json`。基线提交仍为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，基线 PPT SHA256 为 `3f0fdc58beef29e791240acab67491407f8428f5fd5533b9ca0ab4e8bc975cea`。
+
+具体问题：上一轮通过重复同一组三张输入保证共有条件，却留下两组相同内容与 `Same inputs as (a)` 的重复说明。输入是两条方法路径共同的起点，应在图面上直接共享。
+
+| 位置 | 真实基线 | 修改后 | 原因及改善 |
+| --- | --- | --- | --- |
+| 输入图与标题 / Input stack | 上下各一组 `Multi-view observations`，各三张 I1/I2/I3 | 左侧一组 `Multi-view observations`，I1/I2/I3 各出现一次 | 删除重复照片与标题 / Show the common inputs once. |
+| 输入连接 / Input connection | 两组输入分别连接上下路径 | 整组照片以括线汇总，连接一个分叉，再进入 (a)/(b) | 后续处理的分歧直接可见 / Fork the common inputs into the two processing routes. 分叉不代表共享推断出的三维场景或掩码。 |
+| 输入脚注 / Input footer | `Same inputs as (a)` / 与 (a) 相同的输入 | 删除；共享输入下保留 `Partial surface coverage` / 部分表面覆盖 | 共享关系已由图形表达，删除文字复述。 |
+| 分隔线与路径标题 / Divider and route captions | 分隔线横跨整幅图；路径标题横跨输入区域 | 分隔线从共享输入与分叉之后开始，(a)/(b) 标题只对应右侧处理区域 | 避免把共享输入划入某一方法 / Keep the shared input outside the two method panels. |
+
+其余场景、局部补全、状态展示的占位位置与对应要求保留。PPT 备注及素材说明已同步。原 PDF、论文 LaTeX、双语正文、实验数值与候选图注保持原样；没有编译论文。交付文件完成包结构与布局检查，并重新导入渲染检查。
+
+## 2026-11-02：按上下方法对比修正 teaser 编号与共有条件
+
+用户指出前版 `(a)(b)(c)(d)` 编号与上下对比意图冲突，并要求从严格审稿人角度检查排版。本轮基线提交仍为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，实际基线为上一轮未提交的 PPT、构建源、素材说明和本改动记录，已保存于 `paper/build/teaser-layout-review/before/`；各项哈希见该目录上一层 `baseline.json`。基线 PPT SHA256 为 `7b7fcfc73163d3607e60210083e600975ffbbad7c9cb02bae08daf984f112181`。本轮只微调现有占位 PPT 与相关说明，保留上下布局和下方中央大图。
+
+原问题：前版将上方整条路径与下方三个流程阶段放在同一编号层级；上排两张加省略号、下排三张，且显示宽高比不同；上排一个失败状态与下排三项用途之间缺少固定状态的配对。它们妨碍读者把差异归因于是否联合补全。
+
+| 位置 | 真实基线 | 本轮修改 | 原因及改善 |
+| --- | --- | --- | --- |
+| 面板编号 / Panel hierarchy | 上排 `(a) Observation-only: regions unseen in all inputs remain incomplete.`；下排 `(b) Driving observations`、`(c) Joint completion`、`(d) Reuse the same assets` | 上排 `(a) Observation-only reconstruction`；下排 `(b) DriveCompose: joint completion and asset reuse`；内部阶段无字母编号 | 两个字母对应两种方法路径 / Two panel letters denote the two method routes. 删除的上排解释仍在 P2/P3 占位文字及候选图注中。 |
+| 共有输入 / Common input | 上排两张加省略号；下排三张；上下相同源图的框比例不同 | 两排均从同一数组读取 I1/I2/I3，顺序相同、裁切比例均为 2:1 | 显示相同输入条件 / Show identical illustrative input conditions. 上排采用缩略图以保留原行高。 |
+| 下排输入脚注 / Input footer | `Partial coverage across all inputs` / 所有输入的覆盖仍不完整 | `Same inputs as (a)` / 与 (a) 相同的输入 | 用于确认上下对比的共有条件；覆盖条件由 P2/P5 承担。 |
+| 对应场景 / Scene correspondence | P4 为 `One coherent scene illustration` / 一个连贯的场景示意 | P4 为 `Same scene and assets as (a)` / 与 (a) 相同的场景和资产；备注要求 P2/P4 同相机、同裁切、同参考状态 | 防止中央大图成为与上排无关的另一场景。 |
+| 配对状态 / Matched state | P3 为泛指新状态；P6a 为 `Same assets / New camera view` | 两处均标明 `New camera view s1`，固定相同相机、场景与参与者姿态；P6b/P6c 是额外复用示例 | 将一个明确状态用于失败/补全的配对展示 / Match one camera state across routes. 未把全部三张下排画面误标成三组对照。 |
+| 资产复用连接 / Reuse connections | 中央场景到右侧一条箭头，落在中间输出附近 | 同一场景分支至三个状态输出 | 表明三张来自同一批构建内容 / Three outputs reuse the same constructed content. |
+| 小字与候选图注 / Labels and candidate caption | 长的上排总结句、右侧多行标签；图注使用 Top/Bottom 泛指 | 路径名简化；右侧缩短为相机视图、车辆旋转、人体姿态；双语图注明确 (a)/(b)、同输入、配对相机状态与额外复用 | 降低缩印后的文字负担，图注指代与图中两条路径一致。 |
+
+尚需在填素材时落实的图形条件：同一 U 在上排缺失、下排补全；P2/P4 为同一参考状态的观测/补全版本，P3/P6a 为同一新相机下的版本；中央场景显示跨组件的上下文交换与相应补全部位，避免仅凭 `Joint completion` 标签或车辆局部小图宣称联合机制。SIDE_LEFT 已可见后门，不能任意将后门当作全部输入中的未知区域。这些条件已写入 [排版审查与素材要求](../paper/fig/teaser-editable/README.md) 和 PPT 备注，灰框继续保留为占位。
+
+标题、摘要、贡献、实验数值、LaTeX 与原图 PDF 保留原样。本轮单页 PPT 的包结构、尺寸、文字几何与字体检查通过，最终修正稿无几何警告；交付文件经重新导入并渲染目检。实际前后变化以本轮保存的工作区基线为准，不把此前改动计入本轮。
+
+## 2026-11-02：保留原 teaser 布局，制作单页可编辑占位 PPT
+
+用户明确要求沿用 `paper/fig/drivecompose-concept-merged.pdf` 的简洁上下结构，仅微调内部内容。本轮基线提交为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，从已有未提交工作区开始；此前生成图及其他论文修改不计为本轮。改动记录的真实基线保存在 `paper/build/teaser-layout/before/paper-revision-changes.md`，SHA256 为 `378149128f72205329f052f65e319337c5cc6708e0301127d50a4ef169678984`。参考 PDF SHA256 为 `3031f2f09069d714ed267cb0390d6ea978e23304b7c7a23d5f5e0225773b1a40`。
+
+具体问题：原图没有明确“先汇总多个视图，再判断剩余未知表面”的关系；上下输入风格不同；底部小图的 `Observed surfaces` 容易被理解成单张观测中的可见部分。本轮在原布局内修复这些关系，交付可编辑占位，不改正式论文图件。此前尝试的四栏结构已按用户要求舍弃。
+
+| 位置 | 原文 / 原图 | 修改后 | 原因及改善 |
+| --- | --- | --- | --- |
+| 上方输入 / Top input | `Driving images` / 驾驶图像 | `Multi-view observations` / 多视图观测 | 明确输入包含多个视图；上下采用同一组真实输入示例。 |
+| 上方重建场景 / Aggregated scene | `Observed surfaces` / 观测表面 | `Aggregated observed surfaces` / 汇总后的观测表面 | 缺口指汇总所有输入后仍未观测到的表面。 |
+| 上方说明 / Observation-only claim | `Observation-only reconstruction: unseen regions remain incomplete.` / 仅观测重建：未见区域仍不完整 | `Observation-only: regions unseen in all inputs remain incomplete.` / 仅基于观测：所有输入均未见的区域仍不完整 | 补上跨视图联合覆盖的条件，避免单张遮挡等同于全部未知。 |
+| 底部小对照 / Completion inset | `Observed surfaces` → `Completed surfaces` / 观测表面→补全表面 | `After aggregating all inputs` → `After joint completion` / 汇总全部输入后→联合补全后 | 同一资产、同一视角、同一未知区域前后对应；沿用现有小图位置。 |
+| 右侧说明 / State reuse | `Complete once; compose across states.` / 一次补全，跨状态组合 | `Same completed assets across states` / 跨状态复用同一批补全资产 | 直接说明复用对象；三个状态占位要求使用同一次补全结果。 |
+| 面板编号 / Panel labels | 上下重复使用 `(a)` | `(a)`–`(d)` 各使用一次 | 消除图注指代歧义。 |
+
+中文为图中文字的对应释义。原有中央大场景、背景/车辆/人体标注、共享场景上下文与右侧三项状态展示均保留。P2/P3/P4/P5/P6 为有明确内容要求的空占位；真实输入已嵌入。SIDE_LEFT 输入可见车辆后门，故未预先把后门指定为所有视图共同未知区域。生成式资产素材的身份和不同 track ID 的边界已记入素材说明，避免将其当作真实配对结果。
+
+交付：[单页 PPT](../paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx)；[素材要求与双语候选图注](../paper/fig/teaser-editable/README.md)。原 PDF、LaTeX、标题、摘要、贡献与实验数值均保持原样；没有编译论文。导出文件的包结构、单页数量、尺寸、文字几何和字体检查通过；最终文件另行导入渲染目检。PPT 中的灰框为有意保留的素材占位，未冒充完成的实验画面。
+
+## 2026-11-02：生成联合补全概念型 teaser 候选
+
+用户认可概念图方向，并明确要求使用 imagegen 生成。本轮基线提交为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，从已有未提交工作区开始。此前方法总览图、方法节及其他改动不计入本轮。改动记录的真实工作区基线保存在 `paper/build/teaser-conceptual/before/paper-revision-changes.md`，哈希及生成来源见 [生成记录](figures/teaser/conceptual-generation-record.json)。本轮只新增候选图、生成指令和双语候选图注，没有替换论文图件或修改 LaTeX。
+
+具体问题：旧 teaser 采用照片式生成画面与仿重建边缘，上下重复输入，联合机制和同一补全部位跨状态复用不够突出。按用户认可的方向重绘为概念示意，输入画面也统一为示意，不标作真实数据帧。
+
+| 位置 | 原文／原图 | 候选图 | 原因及改善 |
+| --- | --- | --- | --- |
+| 共享输入 / Shared input | `Driving images` 与 `Driving observations` 分属上下两组 | 一组 `(a) Input observations` / 输入观测，分叉至两条路径 | 对照使用共同输入，减少重复与场景风格差异。 |
+| 联合机制 / Joint completion | `Joint completion` 主要标在大型街景上 | 背景、规范车辆、规范人体分别可见，并与 `Shared scene context` / 共享场景上下文连接 | 让跨组件交换上下文的含义可以从图形读出。 |
+| 跨状态复用 / Asset reuse | `Complete once; compose across states.` / 一次补全，跨状态组合 | `Completion retains motion bindings` / 补全保留运动绑定；相同后车门与上臂区域在状态变化后保持对应 | 用具体表面与动作解释复用，删除重复口号。 |
+| 图像身份 / Image provenance | 照片式场景、散点边缘及概念声明同时存在 | 统一简化绘图风格，保留 `Conceptual illustration` / 概念示意 | 图像形式与来源说明一致；上方路径仍是概念对照，不冒充具名基线输出。 |
+
+候选文件：[PNG](figures/teaser/drivecompose-teaser-conceptual.png)，2098 × 749；[双语图注](figures/teaser/conceptual-caption.txt)。使用内置 image_gen，进行了两次局部对应修正：统一上下规范车辆朝向，将人体补全标记统一到同侧上臂。已目检标注、缺失／补全区域对应、组件连接及输出构图。标题、摘要、贡献、实验数值、双语主稿和正式 PDF 均保持原样；本轮未编译，未执行真实重建或实验验证。
+
+## 2026-11-01：将用户指定的新 PDF 接入双语方法总览图
+
+本轮基线提交为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，从已有未提交工作区开始。用户更新的源 PDF、既有图件编辑记录及其他素材不计为本轮新制作。修改前的两版方法节、说明、改动记录和正式 PDF 已保存于 `paper/build/overview-replacement/before/`；各项实际基线哈希见同目录上一层 `baseline.json`。
+
+具体问题：双语论文仍引用上一版 PNG，未使用本轮用户指定的最新 PDF。仅更换图件引用，按完整页和原跨栏宽度放置。
+
+| 位置 | 原文／修改前 | 修改后 | 原因及改善 |
+| --- | --- | --- | --- |
+| English §3, Figure 2 / 英文方法节总览图 | `\includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}` | `\includegraphics[width=\textwidth]{fig/overview-editable/output/DriveCompose.pdf}` | 接入用户指定的新图，并保留 PDF 文字和线条的矢量内容。 |
+| 中文第 3 节，图 2 / Chinese method overview | `\includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}` | `\includegraphics[width=\textwidth]{fig/overview-editable/output/DriveCompose.pdf}` | 与英文同步使用同一份用户图件。 |
+| 图件说明 / Figure documentation | 当前图件入口为旧 PNG | `paper/README.md` 和总览图说明改为当前 PDF 入口，旧记录标为历史 | 使图件说明与实际 LaTeX 引用一致。 |
+
+学术内容：无文字、数字、引用键、公式或图注修改。标题、摘要、贡献与实验结果均保留。纯图件替换：源 PDF 为单页 1800×1050 pt，与旧 PNG 同为 12:7 比例；源文件 SHA256 `347a71f6d6d8b8f25b98e1ef77b9921a6db9dc891ede1474b415604e16b4b6f6`，替换与编译过程中保持原字节。旧 PNG 不再由两版主稿引用，未删除。
+
+验证：既有 `paper/tools/build.py` 完成两版正式 PDF 编译，退出码均为 0，且均实际更新。英文总览图在第 4 页，中文在第 3 页；两页已渲染目检，图面完整、无新增重叠或裁切。英文总计 11 页，结论在第 8 页，参考文献从第 9 页开始；中文总计 10 页。最终 LaTeX 日志没有未定义引用、缺字或 overfull 报告；仍有原有的纯浮动页提示。Poppler 对源图及嵌入后页面均提示 Symbol / ArialUnicode 显示字体回退，实际渲染的图中文字、符号和箭头已目检。核验摘要见 `paper/build/overview-replacement/verification.json`。
 
 ## 2026-10-30：删除停用的 pointforward 图件目录
 
@@ -574,6 +731,236 @@ Moving the camera or changing actor poses exposes surfaces that were never obser
 最终英文主稿 11 页，技术正文结束标记在第 8 页；中文主稿 10 页，正文结束标记在第 7 页。总览图分别在英文第 4 页、中文第 3 页。两版编译退出码均为 0，且正式 PDF 本轮实际更新；内嵌图像解码像素与新 PNG 一致。已检查两版首页、总览页和正文末页，无新增图面遮挡或裁切。日志中的提示仅为浮动页；无未定义引用、缺字或溢出记录。通用稿件检查器因本机缺少历史项目外归档，在执行检查前退出；未将其报告为通过。本轮独立编译、像素及页码记录见 `paper/provenance/overview-pdf-replacement-20261030.json`。
 
 此前未提交的 230 行图件编辑记录、三份 pointforward PDF 的删除及其他本地素材暂存保护，合并提交与同步完成后恢复，不包含在本轮新增提交中。
+
+## 2026-10-30：以规范查询为中心重绘 Canonical aggregation
+
+本轮按用户澄清仅重绘 Canonical aggregation 内部，不再调整 Structured latents。真实未提交基线保存为 `paper/fig/overview-editable/.build/before-canonical-query-aggregation.pptx`，SHA256 为 `228a210a36b24a3cd27a16e48ce6c8fc155c4008cd96fd44d91d1f0a5e51b224`；生成脚本及替换说明保留同轮基线。仓库 HEAD 为 `79bdd94948d4dbea340f4c4098b33aaec201c435`。
+
+保存前检测到 A10 车辆素材在另一轮中更新，因此把本轮内部重绘重放到最新 PPT。合并基线保存为 `.build/before-canonical-query-aggregation-merged.pptx`，SHA256 `4ecbc80663563664076ed2883d128b1571e2ce88fbcdebd7b7a07775a9efb735`；保留其车辆图片、裁剪和位置等更新，不计为本轮改动。
+
+具体问题：原图以两个带散点的矩形汇入第三个矩形，仅用 `Align · filter · fuse` 概括过程，未显示运动对齐的参照、无效观测的剔除或权重的作用。论文中这一步以固定规范查询为参照，将查询置于各时刻组件状态并投影，聚合同实例、可见且深度一致的图像证据。技术依据为 `paper/sec/3_method.tex` 的 Canonical feature aggregation、查询放置公式与聚合公式，并与 `docs/representations.md`、`docs/algorithm.md` 对照。
+
+| 位置 | 修改前（英文／中文） | 修改后（英文／中文） | 原因及改善 |
+| --- | --- | --- | --- |
+| Alignment reference／对齐参照 | 两个特征矩形，没有固定参照点 | 顶部规范查询 `qᵢ`；`Pose + project`／按状态放置并投影，以紫色虚线连到两张观测平面的不同采样位置 | 明确同一规范查询在不同时间／视角中的对应关系；没有用统一逆刚体变换替代人体的正向蒙皮投影。 |
+| Valid evidence／有效观测 | 很小的灰色散点与叉，缺少筛选含义 | `Depth + ID`／深度与实例筛选；有效路径旁为勾，灰色候选块划叉且没有输出路径 | 让可见性、深度一致和同实例条件可读，显示筛选对特征流的作用。 |
+| Weighted aggregation／加权聚合 | 两条灰色箭头直接连接输出矩形 | 蓝色实线经 `w₁`、`w₂` 汇入 `Σ`，输出 `hᵢ`／规范特征 | 显示置信度与深度残差决定权重，多个观测融合到同一查询。图中 Σ 表示带归一化权重的聚合；残差通道在备注中说明。 |
+| Visual hierarchy／视觉层级 | 三个平面内重复蓝／橙／绿散点 | 稀疏的大色块；橙色贯穿同一查询，紫色虚线为投影、蓝色实线为特征流 | 区分几何投影与证据流，减少格子和重复元素。主要内部文字 32 px，查询 34 px，融合符号 36 px；保留原 42 px 模块标题及紫色分组框。 |
+| Editable reconstruction／可编辑复现 | 原生简化示意 | 先用内置 imagegen 生成设计参考，再用 43 个 PPT 原生形状与文本复现，替换原 26 个内部形状 | 查询、特征平面、筛选符号、权重、线条及输出均可单独编辑；参考 PNG 未作为整块截图嵌入。 |
+
+imagegen 设计参考保存为 `paper/fig/overview-editable/assets/canonical-aggregation-concept.png`（1485×1059），完整提示词为 `canonical-aggregation-concept-prompt.txt`，来源和哈希为 `canonical-aggregation-design.json`。两个观测与一次拒绝仅为机制示意，不规定实际视角数，也不作为测量结果。背景、刚体、人体采用各自的查询放置规则；未观测内容的生成仍由后续联合补全表达。
+
+已查看最终整页渲染，并提高关键标注字号、调整底部说明与边框间距；PPTX 包结构、画布、字体及重新导入检查通过。逐对象核验确认目标模块之外的对象文字、视觉样式与几何保持，10 张既有图片的字节、裁剪和变换保持；最终包含 392 个原生形状。生成脚本、替换说明及幻灯片机制备注同步更新。最终 PPT SHA256 为 `6c398107dfd9895efafaa9446d07d10267bf19cb2ae7c467b60f184797a8e909`。未改论文正文、公式或实验值，无 LaTeX 编译。
+
+## 2026-10-30：简化背景标签并重排结构潜码三行
+
+本轮仅调整用户指出的解码背景标签和右上 Structured latents 排版。真实未提交基线保存在 `paper/fig/overview-editable/.build/before-latent-row-layout.pptx`，SHA256 为 `e19deb313eeb8a143add63d2af431f2d8ed51bf344c09c25ef9f31886db978dc`；该起点包含 A03/A10 车辆及 A09 背景等已有素材，全部继承。生成脚本与替换说明保存对应基线。仓库 HEAD 为 `79bdd94948d4dbea340f4c4098b33aaec201c435`。
+
+| 位置 | 修改前（英文／中文） | 修改后（英文／中文） | 原因及改善 |
+| --- | --- | --- | --- |
+| Decoder background caption／背景解码标签 | `Background + sky`／背景与天空，28 px | `Background`／背景，30 px，与 Rigid、Human 同字号 | 按用户要求仅突出背景类别，减少文字。背景语义仍涵盖天空。 |
+| Structured latent labels／结构潜码标签 | `Background · world`、`Rigid · canonical`、`Human · canonical`，居中放在 token 上方 | 左列为 Background／Rigid／Human，34 px 加粗；第二行为 world／canonical，28 px | 将类别与坐标说明分成两个层级；三行共享同一左边界，避免文字与 token 上下挤在一起。 |
+| Token sequences／潜码序列 | 五个 44×44 token，间距 18 px，位于标签下方 | 五个 42×42 token，间距 12 px，统一置于右列，省略号对齐 | 形成稳定的左右阅读顺序，保持三类序列的对应。token 数量仍为机制示意，未改模型维度。 |
+| Rounded bands／圆角底板 | 580×115，中心与输入箭头相差 7.5 px | 580×110，中心分别位于 y=260／390／520，与输入箭头对齐 | 统一上下留白和行间距；保留原蓝／橙／绿配色与圆角样式。 |
+
+已查看整页渲染，未见新增重叠或裁切；PPTX 包结构、画布、字体及重新导入检查通过。逐对象核验确认仅修改目标的 25 个原生形状，增加 3 个坐标说明文本；其余对象内容、位置及 10 张已有图片的字节、裁剪与变换保持。生成脚本和替换说明同步更新。最终 PPT SHA256 为 `228a210a36b24a3cd27a16e48ce6c8fc155c4008cd96fd44d91d1f0a5e51b224`。未修改论文正文、方法或实验值，无 LaTeX 编译。
+
+## 2026-10-30：将 A10 改为朝左前方的三分之四视角
+
+本轮仅按用户参考调整 A10 车辆朝向。真实未提交基线为 `.build/before-A10-direction.pptx`，SHA256 `e19deb313eeb8a143add63d2af431f2d8ed51bf344c09c25ef9f31886db978dc`；原 A10 素材保存为 `.build/A10-before-direction.png`，原提示词、素材表、替换说明及编辑脚本同时留有基线。仓库 HEAD 为 `79bdd94948d4dbea340f4c4098b33aaec201c435`。
+
+| 位置 | 修改前（英文／中文） | 修改后（英文／中文） | 原因及改善 |
+| --- | --- | --- | --- |
+| A10 vehicle orientation／车辆朝向 | 朝右、接近纯侧面 | 朝左前方的前侧三分之四视角，能看到前脸、前挡风玻璃、侧面及车顶 | 对应用户参考中 Canonical rigid 小车的展示角度，完整资产的体积更易辨认。 |
+| Image placement／图片适配 | 1774×887 图像，110×55 显示 | 1536×1024 RGBA，在原 110×55 位置内居中显示为 82.5×55，左上角 (713.75,1035) | 保持新图纵横比与原有周边间距，避免沿旧比例拉伸。 |
+
+使用内置 imagegen 编辑上一版完整车，参考图仅用于朝向与视角；白色车体、红蓝条纹与邮政车识别元素延续。选定原字节输出保存为 `assets/A10-canonical-vehicle.png`；当前完整提示词、生成源和旧版历史均保存在 `assets/A10-canonical-vehicle-prompt.txt`。参考图另存 `.build/A10-direction-reference.png`。生成素材仍用于方法示意。
+
+保存时检测到另一轮已更新背景标签及右上潜码行排版，因此在最新文件上重放 A10 图片替换。合并基线保存为 `.build/before-A10-direction-merged.pptx`，SHA256 `228a210a36b24a3cd27a16e48ce6c8fc155c4008cd96fd44d91d1f0a5e51b224`，这些既有改动全部保留。
+
+已查看合并后的整页渲染并通过包结构、字体、画布和重新导入检查。逐对象核验确认最新基线的 375 个原生对象和其余 9 张图片及位置保持，仅 A10 图片来源及其等比适配范围改变；总图片数保持 10。最终 SHA256 `4ecbc80663563664076ed2883d128b1571e2ce88fbcdebd7b7a07775a9efb735`。素材清单、替换说明及构建使用的说明同步更新，未修改论文正文。
+
+## 2026-10-30：嵌入 A03 观测车辆并生成 A10 规范车辆示意
+
+本轮按用户确定的素材方案仅替换 A03 与 A10。起始未提交基线为 `.build/before-A03-A10-vehicles.pptx`，SHA256 `6b52ec0a4728c5bcb5985d041316bf67286ed21531bf3ee7967a8b8af824c181`；脚本、素材映射及说明均保留同轮基线。仓库 HEAD 为 `79bdd94948d4dbea340f4c4098b33aaec201c435`。A03 先保存到正式 PPT；生成 A10 期间 A09 背景已由另一轮写入，因此 A10 基于最新文件修改，合并基线为 `.build/before-A10-vehicles-merged.pptx`，SHA256 `c961416db4b2fa435a58f35f1e259080057b14d645f5b022493052cf5f67f190`，保留 A09 并不计入本轮改动。
+
+| 位置 | 修改前（英文／中文） | 修改后（英文／中文） | 原因及改善 |
+| --- | --- | --- | --- |
+| A03 Rigid pose／观测车辆姿态 | 灰色 A03 占位框与编号 | V01 f000 FRONT_LEFT 半截邮政车原始透明抠图 | 与输入照片对应，保留实际观测的截断车身；1076×689 RGBA 原字节嵌入，按原 100×65 逻辑像素框等比适配。 |
+| A10 Rigid asset／规范刚体资产 | 灰色 A10 占位框与编号 | 完整白色邮政车透明 PNG，车头朝右、车轮摆正，补齐后车体与轮胎 | 以观测外观为依据展示规范完整资产，保留白色车身、红蓝条纹、邮政标识及方盒车体；原 110×55 框等比适配。 |
+| Asset provenance／素材来源 | 两处为待填占位 | A03 原始观测；A10 内置 imagegen 参考编辑的机制示意 | 原图和生成图分别记录，来源与说明写入备注；不将 A10 当作模型实际解码或重建结果。 |
+
+A10 主参考为 `assets/waymo-186/vehicles/V01_postal_front_PARTIAL_f000_FRONT_LEFT.png`，V02 仅用于辅助车身比例和后部结构；两者记录的 track ID 不同，未断言跨相机实例身份已经核验。选定输出 `assets/A10-canonical-vehicle.png` 为 1774×887 RGBA，提示词与生成源见 `assets/A10-canonical-vehicle-prompt.txt`，项目素材按生成原字节保存。另一次边缘清理变体增加了白色碎片，未采用；选定首版已按实际白底图面尺寸检查。
+
+PPTX 包结构、字体、画布及重新导入检查通过。逐对象核验确认各阶段仅删除目标灰框及编号，新增对应图片，其余原生对象、已有图片及其位置均保持；最终包含 372 个原生形状和 10 张图片。最终 SHA256 `e19deb313eeb8a143add63d2af431f2d8ed51bf344c09c25ef9f31886db978dc`。生成脚本、素材清单和替换说明同步更新；已查看整页渲染，无新增重叠。未修改论文正文、实验值或正式图引用。
+
+## 2026-10-30：为 A09 生成去动态目标的静态背景补全示意
+
+本轮按用户要求制作 A09。真实未提交基线保存在 `.build/before-A09-background.pptx`，SHA256 为 `59ce1c2452ba4433c267eda327b4bc082ea2174e521f90d74796a69a803a3853`；该实际起点已包含本轮生成期间保存的车辆图等既有编辑，全部继承，不计入本轮。生成脚本、素材映射和替换说明保存对应同轮基线。仓库 HEAD 为 `79bdd94948d4dbea340f4c4098b33aaec201c435`。
+
+| 位置 | 修改前（英文／中文） | 修改后（英文／中文） | 原因及改善 |
+| --- | --- | --- | --- |
+| A09 Background + sky／背景与天空 | 浅灰 A09 占位 | 与 A01 同一左前视角场景的静态背景补全图 | 输入与背景示意保持场景对应。移除邮政车、其他车辆、行人及自行车，补齐其遮挡的道路、人行道和背景。 |
+| Static scene appearance／静态场景外观 | 原图动态目标遮挡街景 | imagegen 编辑后保留可辨认的桥梁、树木、路牌、围挡及路口结构 | 以原视角和场景内容为依据补全；不将生成结果声称为像素完全不变的编辑。 |
+| Embedded picture／PPT 图片 | 200×56 逻辑像素占位框与编号 | 嵌入完整 1536×1024 PNG，以原框显示可编辑横幅裁剪：左右不裁、上 22%、下 36% | 清除编辑占位标记，保留之后重新取景的能力；原图单独保存。 |
+| Provenance／来源记录 | A09 待填素材 | `assets/A09-static-background.png`、`A09-static-background-prompt.txt`、`A09-static-background-provenance.json` | 记录生成提示词、两张参考图哈希、输出哈希及显示裁剪。素材状态为 `embedded-illustration`。 |
+
+采用内置 `image_gen` 编辑：主图为 `assets/waymo-186/source/f000_FRONT_LEFT.jpg`（与 A01 相同），辅助静态场景参考为 `backgrounds/B02_source_plate_f060_FRONT_LEFT.jpg`。A09 是去动态目标与遮挡补全的机制示意，不是实际高斯解码结果或真值；来源及边界写入幻灯片备注。原始输入相机照片及现有 Waymo 素材未改。
+
+PPTX 包结构、字体、画布与重新导入检查通过，已查看整页渲染，未见新增遮挡或越界。其余对象沿用本轮真实基线，未改论文正文、实验值或正式图引用，无 LaTeX 编译。
+
+## 2026-10-30：生成 A11 规范人体示意并将结构潜码改为纯 token 表达
+
+本轮依据用户对 A11 及 A05–A07 的明确要求修改同一页 PPT。真实未提交基线保存在 `.build/before-A11-token-only.pptx`，SHA256 为 `2e9afa406c784b3102a69e3ff9db4706f49a87281131df8dc7d6434fab9e5e49`；生成脚本、素材映射和替换说明保留对应同轮基线。仓库 HEAD 为 `79bdd94948d4dbea340f4c4098b33aaec201c435`。
+
+| 位置 | 修改前（英文／中文） | 修改后（英文／中文） | 原因及改善 |
+| --- | --- | --- | --- |
+| A11 Human asset／规范人体资产 | A11 灰色占位框 | 基于 P01 f020/f022 生成的透明底规范静止 A-pose 人物示意；深色夹克、蓝裤、黑鞋及体型与参考保持联系 | 区分 A04 当前帧的迈步姿态与解码后可复用资产的规范展示姿态。保留原 48×78 逻辑像素位置，按比例适配。 |
+| A05/A06/A07 in Structured latents／结构潜码中的三张图片 | 背景、车辆、人体图片占位，及车辆坐标轴／人体骨架 | 删除三张图片占位及相邻几何图标；保留 `Background · world`、`Rigid · canonical`、`Human · canonical` | 该阶段处理潜码，完整资产图像留在解码端展示，避免与补全后资产混淆。 |
+| Latent token rows／三类潜码行 | 每行五个 26×26 token，靠右放置 | 保留每行五个 token，改为 44×44 并统一居中；省略号同步对齐 | 利用删除图像后的空间，明确三条潜码序列的对应。token 数量为机制示意，未改变实际潜维度或查询数。 |
+| Asset inventory／素材映射 | A05–A07 继续列为待填图片，A11 为占位 | A05–A07 停止作为图片素材使用，A11 记录实际 PNG 来源和 `embedded-illustration` 状态 | 后续只需准备解码侧资产，无需为潜码行重复生成人物、车辆或背景。 |
+
+A11 使用内置 `image_gen` 参考编辑，原图为 `assets/A11-canonical-human.png`（893×1761 RGBA），完整提示词及来源记录为 `assets/A11-canonical-human-prompt.txt`。这是一张规范资产的机制示意图，不是实际模型解码渲染，也不包含三维几何或蒙皮权重；相关来源写入幻灯片备注。
+
+已通过 PPTX 结构、字体、画布及重新导入检查，并查看整页渲染。A04 真实人物图、输入照片、A13 相机、原配色及其余方法模块保持。论文正文、实验值与正式图引用未改，无 LaTeX 编译。
+
+## 2026-10-30：将选定人物原图放入 A04 并对应行走姿态示意
+
+本轮仅替换 A04 及其相邻姿态示意。真实未提交基线为 `.build/before-A04-human.pptx`，SHA256 `a437abdb723dc8a733e0220cc65a31263e210e59e17bbc10d6c76f9563200fd0`；生成脚本、素材表和替换说明均保存了对应同轮基线。该基线已经包含输入照片与 A13 相机，本轮不覆盖或计入这些既有修改。仓库 HEAD 为 `79bdd94948d4dbea340f4c4098b33aaec201c435`。
+
+| 位置 | 修改前（英文／中文） | 修改后（英文／中文） | 原因及改善 |
+| --- | --- | --- | --- |
+| A04 Human pose／当前帧人体姿态 | 灰色 A04 占位框与编号 | 直接嵌入 `assets/waymo-186/people/P01_dark_jacket_f020_FRONT_LEFT.png` 的原始 RGBA 人物抠图，216×426 像素 | 按用户选定的深色夹克人物放入，保留迈步姿态；按原 50×82 逻辑像素框保持比例显示。未生成、锐化或重新着色人物。 |
+| Adjacent skeleton／相邻骨架 | 通用直立姿态图标 | 原生可编辑的迈步骨架示意 | 与人物动作方向和双腿展开关系对应。该骨架为手工示意，未声称是该帧的三维姿态估计结果。 |
+| A11 Canonical asset／规范人体资产的语义 | 用户询问其是否等同“处理好的 pose” | 明确为规范坐标中的带衣人体高斯资产，以模板 rest pose 展示，保留蒙皮绑定；当前帧动作留给后续状态驱动 | 依据当前方法的 Human queries、Gaussian decoding 和 Scene composition；避免把资产仅理解为一张换姿势的人像。本轮 A11 素材未生成、占位未改。 |
+
+同一身份可由 f020 和 f022 的 Waymo track ID `219ff131-95cb-46c2-8deb-2024687ba1d4` 关联。已查看整页渲染并通过 PPTX 结构、画布、字体和重新导入检查；来源及骨架示意身份写入幻灯片备注，保留原输入照片备注。A07 未改，论文正文、实验值及正式图引用未改，无 LaTeX 编译。
+
+## 2026-10-30：生成 A13 相机简笔线稿并嵌入状态模块
+
+本轮仅制作并替换 A13 素材。真实未提交基线保存在 `paper/fig/overview-editable/.build/before-A13-camera.pptx`，SHA256 为 `e855e8350f21a44558fb1820b2e807fc9f915ca85c7a0e9c6f821d1e7c59123c`；脚本、素材清单及替换说明均在 `.build/` 留有同轮基线。仓库基线提交为 `79bdd94948d4dbea340f4c4098b33aaec201c435`。
+
+| 位置 | 修改前（英文／中文） | 修改后（英文／中文） | 原因及改善 |
+| --- | --- | --- | --- |
+| A13 Camera／状态相机 | 浅灰图片占位框及 `A13` 编号 | 透明底深蓝相机轮廓，镜头带一圈蓝线；删除灰框和编号 | 按用户要求采用简笔线稿，与右侧坐标轴、人体骨架的平面线条呼应。 |
+| Image placement／图片位置 | 左上角 (543, 812)，尺寸 42×45 逻辑像素 | 同位置同尺寸，原比例适应，不拉伸 | 保留状态模块中三个元素的间距，缩小预览后加粗了相机轮廓以保证辨识度。 |
+| Asset and source／素材及生成源 | A13 仅记录推荐像素尺寸 | `assets/A13-camera.png`，1429×1100 RGBA；提示词为 `assets/A13-camera-prompt.txt`；素材清单增加来源与嵌入状态 | 原图保留 Alpha 通道，另存于项目中，PPT 内亦嵌入实际 PNG。 |
+
+使用内置 `image_gen` 生成，并依据用户线条参考调整；早期写实草图未用于正式 PPT。相机是图片组件，旁边坐标轴与骨架继续为原生可编辑形状。PPTX 结构、画布、字体和重新导入检查通过，已查看整页渲染并核对位置。图标只表示相机状态，不作为实验结果；未改论文正文、方法或数值，无 LaTeX 编译。
+
+## 2026-10-30：将输入占位替换为 Waymo 多相机原图
+
+本轮只修改总览图输入区。真实基线为开始时的未提交 PPT，保存在 `paper/fig/overview-editable/.build/before-input-views.pptx`，SHA256 为 `e855e8350f21a44558fb1820b2e807fc9f915ca85c7a0e9c6f821d1e7c59123c`；生成脚本、素材映射和替换说明也分别保存到同一 `.build/` 目录。仓库 HEAD 为 `79bdd94948d4dbea340f4c4098b33aaec201c435`。前轮标题栏、训练状态符号、Logo 和配色均继承。
+
+| 位置 | 修改前（英文／中文） | 修改后（英文／中文） | 原因及改善 |
+| --- | --- | --- | --- |
+| Multi-view images／多视图输入 | A01、A02 两个灰色横向占位框 | 同一 Waymo 帧的三张跨相机原图；左前视图放大居中，下方两张补充邮政车后部与过街行人 | 同时呈现真实人车与跨视角观测，避免窄横条裁掉主要主体。 |
+| Input set／输入集合 | 两个显式素材编号 | 仅保留 Multi-view images 总标题，图面无相机名称，底部增加省略号 | 三张照片作为多路输入示例，避免暗示输入固定为三路相机。 |
+| Encoder connection／编码器连线 | 从 A02 右侧直接连到 E | 新增直角括线汇合多视图，再通过原加粗箭头连到 E | 表达整个多视图集合共同输入编码器。 |
+
+素材来自 case `1024360143612057520_3580_000_3600_000`、processed scene 186、第 0 帧（时间戳 `1553735853362214`）：A01 为 FRONT_LEFT，A02 为 SIDE_LEFT，新增 A16 为 FRONT，避免复用原 A03 车辆编号。图片在 PPT 中保持独立、完整原始 JPEG 嵌入及可调整裁剪；仅调整取景，没有生成、补绘、调色或移除人车。相机身份保存在备注和 `assets/waymo-186/input-views/selection.json`，不显示在论文图中。另保存三张无缩放 PNG 裁剪素材，方便复用。
+
+保存前检测到另一轮 A13 相机素材已写入同一 PPT，因此改为在最新文件上重放本轮输入区修改。该合并基线保存在 `.build/before-input-views-with-camera.pptx`，SHA256 为 `24e254c7ea446988dc438b043411f572362a222d4899e2a1c3f3fff045386285`。A13 的图片、来源记录和生成脚本更新均保留，不计为本轮改动。最终合并 PPT 的 SHA256 为 `a437abdb723dc8a733e0220cc65a31263e210e59e17bbc10d6c76f9563200fd0`。
+
+已查看整页渲染并核对间距、主体可见性和直线连接；包结构、单页画布、字体与重新导入检查通过。逐对象对照确认其余模块文字、位置、样式、Logo 及 A13 相机图片内容保留。论文正文、结果图和实验数值未改。
+
+## 2026-10-30：结合训练阶段增加标题栏、分组和状态符号
+
+本轮按用户澄清借鉴参考图的模块结构与符号设计，保留蓝／橙／绿分支和紫色机制模块。真实基线是本轮开始时的未提交 PPT，保存为 `paper/fig/overview-editable/.build/before-semantic-style.pptx`，SHA256 为 `a1217ea992130dd0dac0a4a2e21d32b261e8cddaf151848686998460f6c02b0e`；生成脚本保存为 `.build/build-before-semantic-style.mjs`。仓库基线提交仍为 `79bdd94948d4dbea340f4c4098b33aaec201c435`，不将其冒充 PPT 原文来源。
+
+技术依据为当前 `paper/sec/3_method.tex` 的 Training procedure 及训练阶段表，并与 `docs/training.md` 核对：Prior 与 Adaptation 阶段冻结 recovery 和整个 codec，仅训练／适配 GCM。因此没有把火焰泛化为所有模块的微调，也没有把雪花解释为视觉恢复模块从未训练。
+
+| 位置 | 修改前（英文／中文） | 修改后（英文／中文） | 原因及改善 |
+| --- | --- | --- | --- |
+| Canonical aggregation／规范聚合 | 标题位于实线圆角框内部 | 跨越分组顶边的淡紫标题栏，外围改为圆角虚线 | 借鉴参考图的标题与分组层次；延续原配色。 |
+| Joint latent completion／联合潜码补全 | 框内标题，外围为实线圆角框 | 跨边框标题栏及圆角虚线分组，标题左侧增加火焰 | 让整个 GCM 对应可训练／可适配状态，避免只给 CCM 单独标火。 |
+| Recovery and codec／恢复模块与编解码器 | 无训练状态符号 | 视觉编码器、三个潜码编码器及三个高斯解码器旁各增加原生雪花 | 对应 Prior／Adaptation 阶段的冻结状态；解码器图标放入侧边留白，避开相邻模块。 |
+| Training legend／训练图例 | 无 | `Prior / adaptation`／先验训练与适配；雪花 `Frozen`／冻结；火焰 `Train / adapt`／训练或适配 | 明确图标适用阶段，保留方法表中的训练与适配区别。 |
+| Geometry connector／几何输入连线 | 箭头指向原分组顶边 y=210 | 指向新标题栏顶边 y=185 | 保持连线竖直，并避免穿过标题文字。 |
+
+雪花、火焰、标题栏和图例均为 PPT 原生可编辑对象，未新增栅格素材。已通过 PPTX 结构、画布、字体与重新导入检查，并查看整页渲染，修正了解码器雪花与邻接轮廓的间距。论文正文、训练表、实验值及正式论文图引用未改，无 LaTeX 编译。
+
+## 2026-10-30：按用户反馈保留与 Logo 呼应的原配色
+
+用户提供蓝、青绿、奶油色及淡紫参考图后，本轮在 `.build/` 内生成了配色与标题色带试稿；用户随后明确认为原配色更好，且能与中央标题／Logo 呼应。因此不将参考配色试稿写入正式文件，并将生成脚本恢复到本轮真实基线。正式 PPT 和预览保留原有蓝、橙、绿分支及紫色机制模块。
+
+真实基线保存在 `paper/fig/overview-editable/.build/before-reference-palette.pptx`、`before-reference-palette.png` 和 `build-before-reference-palette.mjs`。本轮最终 PPT SHA256 为 `a1217ea992130dd0dac0a4a2e21d32b261e8cddaf151848686998460f6c02b0e`，与该基线完全一致；参考色试稿不计为最终改进。
+
+| 位置 | 参考配色试稿（英文／中文） | 最终保留（英文／中文） | 原因 |
+| --- | --- | --- | --- |
+| Background／背景分支 | 蓝 `#89B0E7` | 蓝 `#168CE3` | 与 Logo 蓝色组件呼应，保留原辨识度。 |
+| Rigid／刚体分支 | 青绿 `#0CC6C8` | 橙 `#F39A2C` | 与 Logo 橙色组件呼应。 |
+| Human／人体分支 | 粉色 `#FD75A0` | 绿 `#0AB88C` | 与 Logo 绿色组件呼应。 |
+| Completion／补全模块 | 淡紫容器、紫色标题色带和阴影 | 紫色 `#9458DE` 描边与原浅底色 | 与 Compose 紫色字标呼应，保留原有图面层次。 |
+
+已完成的七个原生梯形编解码器、加粗箭头、潜码分组框、字号和间距均保留。通过文件哈希核验恢复结果；无论文正文或 LaTeX 修改。
+
+## 2026-10-30：用梯形区分编解码网络与圆角模块
+
+本轮修改同一份可编辑 PowerPoint。仓库 HEAD 为 `79bdd94948d4dbea340f4c4098b33aaec201c435`；真实基线为本轮未提交的 PPT，保存在 `paper/fig/overview-editable/.build/before-network-shapes.pptx`，生成脚本保存在 `.build/build-before-network-shapes.mjs`。直接导入基线并编辑现有对象，未重建整页。
+
+| 位置 | 修改前（英文／中文） | 修改后（英文／中文） | 原因及改善 |
+| --- | --- | --- | --- |
+| E、E_b/E_r/E_h／视觉及组件编码器 | 与普通模块相同的圆角矩形 | 原生梯形，沿右向数据流从宽端收窄至潜码端 | 用轮廓区分编码网络与分组容器；形状表达转换角色，不表示具体层数或通道数。 |
+| D_b/D_r/D_h／组件解码器 | 与普通模块相同的圆角矩形 | 原生梯形，沿左向数据流从潜码端向输出端展开 | 对应潜码到场景组件的重建。上下排数据流相反，因此图面上的梯形都为左宽右窄；并非机械地将解码器水平翻转。 |
+| Subscripts／六个组件下标 | 原圆角框内的位置 | 各向左及向上移动 3 px，字号保留 | 为梯形斜边留出间距，保留 E/D 与下标的对应。 |
+| Geometry branch／编码器顶部支线 | 起点 y=300 | 起点 y=314，与梯形顶边相接 | 衔接新的轮廓，继续使用水平／垂直连线。 |
+
+聚合、补全、局部注意力及潜码分组保留圆角框，特征保留叠片，token 保留方块；前轮加粗箭头、颜色、字号和 Logo 均保留。PPTX 结构、字体、单页画布及重新导入检查通过；已对照整页渲染检查文字、斜边和连线。未改论文正文或实验内容，无 LaTeX 编译。
+
+## 2026-10-30：加粗总览图箭头并恢复潜码分组框
+
+本轮仅调整 `paper/fig/overview-editable/output/DriveCompose-overview-refined.pptx` 的箭头及用户圈出的潜码分组框。仓库 HEAD 为 `79bdd94948d4dbea340f4c4098b33aaec201c435`；真实基线是本轮开始时的未提交 PPT，保存在 `.build/before-arrows-frames.pptx`，对应脚本为 `.build/build-before-arrows-frames.mjs`。前轮配色、字号、标签精简及 Logo 不计入本轮修改。
+
+| 位置 | 修改前（英文／中文） | 修改后（英文／中文） | 原因及改善 |
+| --- | --- | --- | --- |
+| Main flow arrows／主流程箭头 | 默认线宽 2.2 px，箭头尖端长 9 px、宽 8 px | 默认线宽 3.8 px；较细流程线至少 3.2 px；对应尖端长 13.5 px、宽 12.6 px | 提高缩放后的方向辨识度，延续水平／垂直布线。坐标轴及骨架线保留原尺寸。 |
+| Initial latents／初始潜码 | 无可见外层分组框，三行 token 裸排 | 蓝色虚线圆角外框，三行分别增加同色虚线圆角框 | 按圈选参考恢复清晰的整体及行级分组。 |
+| Completed latents／完成潜码 | 三行 token 裸排 | 蓝、橙、绿三行分别增加同色实线圆角框，并将连线端点对齐边框 | 与初始潜码形成对应，保留完整／待补全状态的实线与虚线区别。 |
+
+验证：PPTX 包结构、2400×1400 单页画布、字体及重新导入检查通过；已查看整页渲染，未见新增重叠或裁切。主稿正文、图面文字、Logo 和图片占位内容未改，无 LaTeX 修改或编译。
+
+## 2026-10-30：提高总览图饱和度、放大字号、精简标签并加入 Logo
+
+本轮按用户对 PPT 的批注修改同一个交付文件 `paper/fig/overview-editable/output/DriveCompose-overview-refined.pptx`。仓库 HEAD 为 `79bdd94948d4dbea340f4c4098b33aaec201c435`；真实基线是上一轮未提交 PPT，已保存到 `.build/before-vibrant.pptx`，对应脚本保存为 `.build/build-before-vibrant.mjs`。不将前轮网格简化和 CCM 机制校正计入本轮。
+
+| 位置 | 修改前（英文／中文） | 修改后（英文／中文） | 原因及改善 |
+| --- | --- | --- | --- |
+| 中央标识 | `DriveCompose overview`／DriveCompose 总览，36 px 灰色文本 | imagegen 透明底 `DriveCompose` Logo；删除 overview | 按选中元素批注执行。三块蓝、橙、绿组件围出道路，字标使用深蓝与紫色；作为独立图片组件插入，非可逐字编辑文本。 |
+| 组件配色 | 蓝 `#659BC5`、橙 `#CF995D`、绿 `#76A18C`、紫 `#9685B3`，token 再叠低透明度 | 蓝 `#168CE3`、橙 `#F39A2C`、绿 `#0AB88C`、紫 `#9458DE`，token 80% 不透明度 | 提高主体对比和饱和度，容器仍使用浅色底，保持三类组件对应关系。 |
+| 字号 | 多数说明约 19–29 px，主标题约 34 px | 主标题约 40–42 px；主要标签约 30–34 px，CCM 46 px | 提高整图缩放后的可读性。图片框的素材编号属于编辑标记，小框仍采用较小字号。 |
+| 输入和编码 | `Driving images` + `Multi-view log`；`Visual encoder`；`Visual features` | `Multi-view images`／多视图图像；`Encoder`／编码器；`Features`／特征 | 合并重复输入说明，保留过程名称。 |
+| 规范聚合 | `Same component across views`、`Aligned canonical feature` 两处说明 | 删除两处文字；保留 `Canonical aggregation` 与 `Align · filter · fuse` | 对应点和汇聚图形承担说明，减少标题已经覆盖的重复文字。 |
+| 结构化潜码 | `Background (world space)`；`Rigid/Human (canonical space)` | `Background · world`；`Rigid/Human · canonical` | 保留空间语义，缩短标签以支持较大字号。 |
+| 初始化及完成模块 | `Initialized latent codes`；`Observed + unknown (noise)`；`Updated tokens`；`Shared memory`；`read/write`；`τ (flow time)` | `Initial latents`／初始潜码；删除五组辅助说明；保留 `CCM`、`Local attention` 和 `τ` | 总览保留模块和必要变量。读写方向由箭头、未知项由虚线 token 与噪声输入表达；被删说明仍在当前方法正文，不声称新迁移了内容。 |
+| 解码及输出 | `Gaussian decoders`；`Canonical rigid/human`；`Composed Gaussian scene`；`Rendering` | `Decoders`；`Rigid/Human`；`Gaussian scene`；`Render` | 规范坐标已经在结构化潜码行说明，场景类别已经明确；减少重复修饰。 |
+| 形状及间距 | 编解码器为梯形，特征为直角／斜平面，token 为直角方块；正文较小 | 统一原生圆角编码器、解码器、特征片、token 及组件框；为增大的标签腾出间距 | 按用户要求统一轮廓，保留2400×1400画布及水平／垂直主连线。 |
+
+Logo 使用内置 `image_gen` 生成，原始透明 PNG 位于 `paper/fig/overview-editable/assets/drivecompose-logo.png`，完整提示词位于同目录 `drivecompose-logo-prompt.txt`。图像为 2172×724 RGBA，Alpha 通道包含完全透明和不透明像素；PPT 中使用原生图片裁切来适配中央位置，原始 PNG 未改写。生成图只用作方法标识。
+
+验证：PPTX 包结构、画布、字体及重新导入检查通过；整页渲染检查后调整了解码器标题、Compose 框以及人体标签的间距。主稿文字、实验数值及正式论文图像引用未变，无 LaTeX 修改或编译。图面为英文，表内给出中文语义对照。
+
+## 2026-10-29：按 VGGT 图示参考精简可编辑总览图
+
+范围为单页 PowerPoint `paper/fig/overview-editable/output/DriveCompose-overview-refined.pptx`，基于本轮开始时的未提交 `DriveCompose-overview-spaced.pptx`。仓库 HEAD 为 `79bdd94948d4dbea340f4c4098b33aaec201c435`，它不是本轮 PPT 的原文来源。真实基线脚本与素材清单分别保存为 `.build/build-before-refinement.mjs`、`.build/asset-map-before-refinement.csv`；上一轮 PPT 和预览原样保留。本轮不计入此前画布放大、间距调整或占位框搭建。
+
+参考：[VGGT 作者版论文 Fig. 2（第 3 页）](https://www.robots.ox.ac.uk/~vgg/publications/2025/Wang25/wang25.pdf)，2026-10-29 检索并实际渲染查看。参考图中的色块对应 token 分组，主体使用常规衬线文字、灰色连线和少量模块容器。本轮借鉴其视觉层级，不复用其方法结构、实验图像或声称采用其精确字体。技术依据为当前 `paper/sec/3_method.tex` 的视觉编码、规范聚合及联合补全段落。
+
+| 位置 | 本轮真实基线（英文／中文说明） | 修改后（英文／中文说明） | 原因及改善 |
+| --- | --- | --- | --- |
+| Visual features／视觉特征 | 三面密集网格立方体，并带橙色小格 | 三张有偏移的平面叠片，无内部网格 | 保留多张特征图的含义，减少无信息小格及将其误解为空间体素的可能。 |
+| Canonical aggregation／规范聚合 | 三片 8×6 网格；`Multi-view features (same object)` | 三片简化平面，仅保留三个对应点及一个灰色被筛除观测；`Same component across views`／跨视图的同一组件 | 让颜色承担对应关系，让筛选有可见对象；component 与背景、刚体和人体的统一表述相符。点仅为机制示意，不表示实验样本数量。 |
+| CCM／跨组件记忆 | 紫色网格立方体，单独的 `CCM` 标签 | 扁平模块，内部为 `CCM` 与 `Shared memory`／共享记忆，三条水平读写通道 | 正文明确 CCM 是共享记忆读写机制，网格立方体没有解释该机制且易被误解为空间结构。 |
+| 组件更新 | Background/Rigid/Human component 内还重复绘制 token | `Local attention` 下的 Background/Rigid/Human 模块 | 对应正文先组内注意力、再读写共享记忆的顺序。左右的 token 行继续表示更新前后的特征。 |
+| Flow time／流时间 | τ 的箭头直达 CCM 附近 | `τ (flow time)` 从外部进入整个联合补全模块 | 正文将流时间用于局部归一化调制；总览图不将它专属绑定给 CCM。 |
+| Initialized latent codes／初始化潜码 | 仅颜色与实心／虚线 token | 补充 `Observed + unknown (noise)`／观测码与噪声初始化的未知码 | 说明噪声作用于未知码；未新增实验或方法步骤。 |
+| 标题与线框 | 多处粗体衬线字；中央 64 px 粗斜体标题；多层虚线框和高饱和边框 | 常规衬线字为主；中央 36 px 正体标题；删去潜码外围的重复边框，保留两个核心机制的浅色容器 | 减少视觉竞争，保留蓝／橙／绿的组件对应关系和紫色的联合处理模块。 |
+| 图片占位 | 灰色虚线框内两行：编号名称、显示尺寸 | 浅灰实线框内保留编号名称，小图框仅保留编号；尺寸留在 `asset-map.csv` | 减少最终图面上的编辑信息，图片替换能力保留。 |
+| 编解码符号 | Unicode 下标 b 被显示为类似 β 的字形 | E/D 与单独的小号斜体 b/r/h 文本 | 避免背景下标的字形歧义，仍可原生编辑。 |
+
+纯视觉调整与局部机制澄清均已体现在上表。标题、摘要、正文、实验数字、引用键和中英文 LaTeX 未改；未替换主稿中的正式总览图，未运行 LaTeX 编译。此文件仅有英文图面，无新中文图面需同步；上表提供中文语义对照。
+
+验证：PPTX 包结构、单页 2400×1400 画布、字体和重新导入检查通过；查看整页渲染，未见新增文字遮挡或越界。该检查不是 PowerPoint 桌面实机验证。图片占位仍待作者实际素材替换，不能作为实验结果图。
 
 ## 2026-10-30：提交前清理与归档
 
@@ -5484,3 +5871,257 @@ Component ablations further show that cross-component information sharing reduce
 当前打开的 `paper/zh/1_introduction_zh.tex` 已原位保存，并由内置 `compile_latex_document` 以 `paper/main_zh.tex` 为入口成功编译。中英文引言的引用键与原有顺序一致，摘要、方法、实验、limitations 和 conclusion 的文件哈希与本轮实际基线一致。
 
 依照当前编辑器要求，本轮没有另行生成或导出独立 PDF，也未切换编辑器标签。发布仅包含两版引言源码及本对照记录；上一轮工作区中的独立 PDF 和编译记录修改、既有 pointforward 图件删除、临时预览文件均不纳入本次提交。limitations 和 conclusion 本轮仅审读，意见在会话中交付。
+
+## 2026-11-02：P3 新视角概念素材的几何设计
+
+范围：回答“这样的话 P3 怎么绘制”，将已有 P2 空间约定具体化为独立 P3 几何预览。当前 HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`；本轮开始时工作区已有未提交修改。对照记录的真实基线已保存到 `paper/build/teaser-p3-design/before/paper-revision-changes.md`，SHA256 为 `1a75fc51a4d08c55e4321c2011f4349f5699170cc47526d80378746b38d54045`，不以 HEAD 代替工作区基线。
+
+| 位置 | 真实基线或原有设定 | 本轮具体化 | 原因 |
+| --- | --- | --- | --- |
+| P3 占位 | `New camera view s1` / `Unobserved surfaces exposed`（新相机视图 s1 / 未观测表面暴露） | 独立几何预览把车辆 +Y 远侧画成未知范围；PPT 占位文字未改 | P2 已显示车尾和地面缺口，P3 需要突出此前隐藏的另一侧缺失 |
+| P2/P3 对应 | 场景约定要求 `no object translation or rotation between P2/P3`（对象不平移或旋转） | 从同一个世界定义分别投影，固定车辆、人物关节、立面及 Uv/Ug；只改变相机 | 避免只旋转车辆或单独挪动行人造成空间矛盾 |
+| 背景立面 | `one observed facade plane`（单片已观测立面） | P3 从背向观察时仅显示浅色位置轮廓 | 避免虚构完整建筑背面，并减少前景立面对车辆缺失区域的遮挡 |
+| P3 与 P6a | `reuse the P3 camera and the completed P4 scene`（复用 P3 相机与 P4 补全场景） | 设计说明要求 P6a 在同视角、同状态显示对应补全区域 | 将真正的方法对比落在上下配对，而不是把 P2/P3 当成方法优劣对比 |
+
+新增 [P3 设计说明](figures/teaser/p3-design.md)、[P2/P3 对照预览](../paper/build/teaser-p3-design/p2-p3-design-comparison.png)、[P3 无字几何预览](../paper/build/teaser-p3-design/p3-geometry-preview.png) 及投影脚本。英文图注候选 `A new camera view exposes missing surfaces in the aggregated reconstruction.` 对应“新相机视角暴露了聚合重建中的缺失表面”；仅记录候选，没有修改论文图注。
+
+检查：已运行几何构建并目检对照图；同一场景采用相同正交比例和世界空间取景中心，远侧由隐藏变为可见，P3 没有复制近侧车窗或加入补全内容。P2 成品、场景约定 JSON 和当前 PPT 的 SHA256 与本轮开始时一致。本轮未调用 ImageGen，输出为设计预览；未修改 LaTeX、正式 PDF 或 PPT。
+
+## 2026-11-02：按用户要求交付独立无文字 P3 素材
+
+原问题 → 修改后 → 原因：上一轮提供的是带说明的 P2/P3 构图对照，未交付用户需要的独立 P3 生图素材；本轮用内置 ImageGen 独立生成 [p3-standalone.png](figures/teaser/p3-standalone.png)，只包含无文字场景，满足直接放入 teaser 的素材需求。场景依照 P3 几何底图，配色与笔触参照既有 P2；由新视角显示车辆另一侧未知区域，车顶保留已观测灰蓝色，未复制车窗或加入补全色。
+
+当前 HEAD 仍为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`；记录的工作区真实基线保存至 `paper/build/teaser-p3-standalone/before/`，日志基线 SHA256 为 `c2ec8090466c3bbf987037eaf0fa9b2dba7839430438c2bd2a4077ed84a3c010`。独立 PNG 为 1922×818、RGB，已目检无标题、标签、文字、箭头、图框或水印。新增[提示词](figures/teaser/p3-standalone-prompt.txt)与[生成记录](figures/teaser/p3-standalone-generation-record.json)，同步设计说明中的生成状态。既有 P2、PPT、论文源码和正式 PDF 未修改。
+
+## 2026-11-03：独立无文字 P4 补全场景素材
+
+按用户“接下来试着生成 P4 的素材”的要求，用内置 ImageGen 以既有 P2 为编辑目标，生成 [p4-standalone.png](figures/teaser/p4-standalone.png)。沿用 P2 的观察相机、场景位置与配色，仅把固定未知范围具体化为补全表面；不采用 P3 的另一侧视角。
+
+| 位置 | P2 实际基线 | P4 素材 | 原因 |
+| --- | --- | --- | --- |
+| 车尾 Uv / vehicle rear | 白底、灰色斜线和虚线边界 | 原四边形内填入浅金色，使用实线边界 | 表示已补全的车辆表面 |
+| 地面 Ug / background road patch | 车尾左下方的白底斜线缺失范围 | 同一位置填入浅金色，与路面齐平 | 同时展示背景与车辆的补全 |
+| 已观测内容 / observed content | 灰蓝车身及车顶、车窗和轮胎、紫色人物、灰色立面、浅青路面 | 视觉上保留原相机、布局、姿态及颜色 | 使上下路径可以追踪相同场景与表面，避免为 P4 新增人体缺口或移动对象 |
+
+本轮 HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，工作区已有未提交修改。真实记录基线保存于 `paper/build/teaser-p4-standalone/before/paper-revision-changes.md`，SHA256 为 `53e421f216193b3d0929fddd6ffbdef49c76923b3c2503a091529b47aa3b1013`。新增[提示词](figures/teaser/p4-standalone-prompt.txt)和[生成记录](figures/teaser/p4-standalone-generation-record.json)。
+
+检查：PNG 为 1920×819、RGB；已目检无文字、箭头、标签、图框或水印，两个原缺失区域均已填入金色，未添加新对象或人体补全标记。P2、空间约定 JSON 与当前 PPT 的哈希均与既有记录一致；未修改论文源码、正式 PDF 或 PPT。该素材保持概念示意身份，组件和共享场景上下文的原生标注由已有 PPT 布局承载。
+
+## 2026-11-03：P4 补入共享场景上下文的交互含义
+
+用户指出 P4 必须结合其实际含义。具体问题：上一版只有金色补全表面，没有在素材内表达背景、车辆、人体通过共同上下文交换信息，容易被理解为分别完成后的简单装配。本轮以既有 P4 为编辑目标，使用内置 ImageGen 生成独立无文字候选 [p4-joint-context.png](figures/teaser/p4-joint-context.png)，保留上一版供比较。
+
+| 位置 | 上一版实际状态 | 本轮修改 | 原因 |
+| --- | --- | --- | --- |
+| Shared scene context / 共享场景上下文 | 图像内无共同上下文载体 | 场景下方增加一个包含青、蓝、紫混合色块的共同上下文条 | 明确三类组件共用同一上下文，避免看成三个互不关联的流程 |
+| Background / 背景 | 仅见灰色立面和金色地面补全部位 | 青色双向连接在背景锚点与上下文条之间交互 | 将背景本身纳入联合机制 |
+| Vehicle、Human / 车辆与人体 | 两个对象之间无信息交互示意 | 蓝色与紫色双向连接分别接到同一上下文条 | 表达共同上下文的读取与返回；不为人体临时制造缺口 |
+| 原补全部位 | 车尾与地面均为金色 | 两处标记保留；场景整体缩放，为下方上下文条留白 | 同时保留补全结果和联合机制的因果解释，保持场景对应 |
+
+技术依据为当前 `paper/sec/3_method.tex` 的 CCM 读写机制（第 93–103 行）及 `docs/algorithm.md` 的局部组与全局记忆交互说明（第 31–33 行）。混合色块仅为共享表示的概念标记，不表示特定记忆维数或实测特征。
+
+本轮 HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，从已有未提交工作区继续；记录基线位于 `paper/build/teaser-p4-joint-context/before/paper-revision-changes.md`，SHA256 为 `d05598c4d87e5b1fd1ab447322fffc0f8df351a0f5cbc8d5ac4c00724dfe848c`。保存[提示词](figures/teaser/p4-joint-context-prompt.txt)、[生成记录](figures/teaser/p4-joint-context-generation-record.json)及用户提供的语义布局参考。PNG 为 1922×818、RGB，已目检无文字，三条双向连接均指向同一个上下文条，金色区域与既有位置对应。既有 P2/P3/P4 素材、PPT、论文源码和正式 PDF 均未修改。
+
+## 2026-11-03：P4 图内补充必要文字标签
+
+用户明确要求这块图内加入文字。原问题：无文字版本的三类对象及底部色块条主要依赖颜色识别，共享上下文的含义仍需外部说明。本轮用内置 ImageGen 在已有图上局部补充四个标签，生成 [p4-joint-context-labeled.png](figures/teaser/p4-joint-context-labeled.png)，保留无文字版本。
+
+| 位置 | 原图 | 修改后 | 原因 |
+| --- | --- | --- | --- |
+| 背景锚点 | 青色圆点，无文字 | `Background`（背景）青色标签 | 明确背景也参与共享上下文交互 |
+| 车辆与人体锚点 | 蓝色、紫色圆点，无文字 | `Vehicle`（车辆）、`Human`（人体）对应色标签 | 将对象归属与两条交互连接对应 |
+| 共享条 | 仅有混合色块 | 框内色块上方标 `Shared scene context`（共享场景上下文） | 说明三类组件连接的是同一共享表示 |
+| 容器与连接 | 上下文框高度只容纳色块 | 框向上扩展，蓝色箭头末端随边界调整 | 避免文字与箭头重叠；三条双向交互和金色补全区域保留 |
+
+当前 HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`。真实工作区日志基线位于 `paper/build/teaser-p4-labeled/before/paper-revision-changes.md`，SHA256 为 `d961d733fbe53283b8871c503624f1d8f6419135e3368a6c13cdafb19f69e04f`。新增[提示词](figures/teaser/p4-joint-context-labeled-prompt.txt)与[生成记录](figures/teaser/p4-joint-context-labeled-generation-record.json)。已目检四处标签拼写、对象指向、字号可读性、箭头与文字间距；PNG 为 1921×819、RGB。原无文字 P4 的哈希保持一致；未修改 PPT、论文源码或正式 PDF。
+
+## 2026-11-03：将 P2/P3/P4 放入现有 teaser PPT
+
+用户要求先查看三张素材在整体排版中的效果，再考虑生成 P5a/P5b。具体范围：导入当前单页 PPT，在已有图框内替换 P2/P3/P4，清除已被图像包含的占位标注，保留其他对象与现有布局。没有生成 P5/P6，也未改写论文图注或正文。
+
+| 位置 | 真实基线 | 修改后 | 原因 |
+| --- | --- | --- | --- |
+| P2 | `P2`、`All input frames aggregated / Unobserved surfaces remain`（汇总全部输入后仍有未观测表面）及虚线框 | `p2-standalone.png`，保持原 377×160 图框，等比完整显示 | 直接查看聚合观测的示意素材在上排的辨识度 |
+| P3 | `P3`、`New camera view s1 / Unobserved surfaces exposed`（新相机视图 s1 暴露未观测表面）及虚线框 | `p3-standalone.png`，保持原 350×149 图框，等比完整显示 | 与 P2 连续表达相机改变后的缺失暴露 |
+| P4 | `P4 Jointly completed scene`、两段说明、四个原生标签和对应连接 | `p4-joint-context-labeled.png`，在原 850×360 区域等比放置；移除其内部全部 17 个占位对象 | 新素材已包含组件名、共享上下文及三条双向交互，避免重复标签和连接覆盖图像 |
+| 图面小字 | `Conceptual placeholders`（概念占位） | `Conceptual illustrations`（概念示意） | P2/P3/P4 已经是概念图素材；P5/P6 仍保留各自占位 |
+
+当前 HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，本轮从已有未提交工作区继续。实际 PPT 基线 SHA256 为 `60ecadfa10823080aa648e29f8609db9df5995534db743f635f7cdf8a51917fe`，已连同原 README 与本记录保存到 `paper/fig/teaser-editable/.build/inserted-concepts/before/`；本记录的真实基线 SHA256 为 `a3b14ec410aaa55d30a6bb2d28e0c038cb376ca81fdc04a8d0922ee1d3a2982c`。未把旧 HEAD 当作本轮原图。
+
+使用 `@oai/artifact-tool` 导入并局部修改，删除 23 个目标占位对象，添加 3 张独立图片。程序核对 79 个不相关对象的位置和文字与导入基线一致；共享输入、方法框、外部箭头、P5/P6 均保持完整。README 同步说明当前填入状态，以及 P4 内部文字/连接属于位图、外部流程元素仍为原生可编辑对象。素材路径和 SHA256 加入幻灯片备注；已有来源记录与双语候选图注保留。
+
+交付更新后的 [PPT](../paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx) 和 [整图预览](../paper/fig/teaser-editable/output/DriveCompose-teaser-preview.png)。导出后已通过包结构、单页数量、1800×945 画布、参考字体与几何检查，并重新导入最终 PPT 渲染预览。当前文件有 73 个原生形状和 10 张独立图片；PPT SHA256 为 `424f0cd2697e0b98c7ec7ad8d2737e56efb57e714525c1d59e0c793da8b31420`。检查记录位于 `.build/inserted-concepts/validation.json`，目标删除/保留清单位于 `insertion-record.json`。论文 LaTeX、正式 PDF 及原始 PNG/JPEG 素材未修改。
+
+## 2026-11-03：分别绘制 P5a/P5b 并放入 teaser
+
+用户要求绘制 P5a 和 P5b。本轮使用内置 ImageGen 分两次生成独立素材：P5a 从已有 P2 中提取同视角车辆，表示全部输入聚合后仍未观测到的车尾；P5b 直接以 P5a 为编辑目标，将同一车尾面补全并标为金色。已保留纯白背景、相同观察方向、车身轮廓、车窗与两只可见轮胎，未加入道路、人物、额外缺口或图内文字。
+
+| 位置 | 真实基线 | 本轮修改 | 原因 |
+| --- | --- | --- | --- |
+| P5a | `P5a`、`Asset with unknown U`（具有未知区域 U 的资产）和占位框 | [车辆聚合后素材](figures/teaser/p5a-vehicle-observed.png)，车尾为白底灰色斜线与虚线轮廓 | 明确该区域在汇总所有输入后仍未知，与 P2 的相同车尾对应 |
+| P5b | `P5b`、`Same asset, completed U`（同一资产的 U 已补全）和占位框 | [车辆补全后素材](figures/teaser/p5b-vehicle-completed.png)，同一车尾面为浅金色实面 | 将变化集中于同一表面，已观测部分保持对应 |
+| 小图尺寸 | 两图框均高 76 px，顶部 y=792 | 两图框高 96 px，顶部 y=772；底部仍为 y=868 | 只提取车辆后，原扁图框使车尾过小；局部加高改善缩小显示的辨识度 |
+| 小对照外框与箭头 | 外框 y=780、高 123；箭头 y=831 | 外框 y=764、高 139，底边不变；箭头 y=820 | 为加高的小图留白并使比较箭头与两图居中 |
+| 前后说明与图例 | `After aggregating all inputs` / `After joint completion`（全部输入聚合后 / 联合补全后），Observed / Completed | 原文、原位置、原字号保留 | 避免改变已明确的多帧聚合含义或重复在图内加字 |
+
+当前 HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，从已有未提交工作区继续。本轮实际 PPT 基线 SHA256 为 `424f0cd2697e0b98c7ec7ad8d2737e56efb57e714525c1d59e0c793da8b31420`；原 PPT、README 和本记录已保存到 `paper/fig/teaser-editable/.build/inserted-assets-p5/before/`。日志基线 SHA256 为 `33830c248ba74150cab33edd30399c39562dd95acaa9cfb81d1c9c4ab9706032`。
+
+分别保存 [P5a 提示词](figures/teaser/p5a-vehicle-observed-prompt.txt)、[P5b 提示词](figures/teaser/p5b-vehicle-completed-prompt.txt)和[成对生成记录](figures/teaser/p5-generation-record.json)。两张 RGB PNG 分别为 1586×992 与 1585×992；已目检车尾位置、配色、相同观察方向与图像完整性，未作逐像素配准或实测可见性声明。它们是概念示意，不是 Waymo 的实验重建输出。
+
+使用 `@oai/artifact-tool` 导入当前 PPT，删除 6 个 P5 目标占位对象，增加两张独立图片；除指定的局部外框和比较箭头外，核对 75 个不相关对象的文字和位置未变。P2/P3/P4、共享输入与 P6 占位保留；README 和素材来源备注同步。更新后的 [PPT](../paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx) 已通过结构、单页、画布、参考字体及几何检查，并重新导入最终文件渲染[整图预览](../paper/fig/teaser-editable/output/DriveCompose-teaser-preview.png)。最终 PPT 包含 67 个原生形状与 12 张图片，SHA256 为 `fd87d56e814a2c7c850a1177eb1ab6081d4462bf12844b085afd6ff2b9a4d128`。验证及局部差异记录位于 `.build/inserted-assets-p5/`；未修改论文正文、正式 PDF 或原有 PNG/JPEG 素材。
+
+## 2026-11-03：依次生成 P6a/P6b/P6c 并填满状态复用栏
+
+按用户要求，通过三次独立、顺序执行的内置 ImageGen 调用生成三个场景素材。生成前沿用 P2/P3 的空间约定，并为车辆偏航和人体抬臂分别建立几何底图；不将一张图的状态改动累加到下一张图。P6a 与 P3 成对，P6b/P6c 则各自以 P4 参考状态为基准。
+
+| 位置 | 真实基线 | 本轮修改 | 原因 |
+| --- | --- | --- | --- |
+| P6a | `P6a`、`New camera view s1 / Same completed content`（新相机视图 s1 / 同一补全内容）和占位框 | [新视角补全素材](figures/teaser/p6a-new-camera.png)：保持 P3 相机与人物姿态，将同一远侧车身、车尾和地面缺口补为金色表面 | 与上排 P3 构成同视角的缺失/补全对照 |
+| P6b | `P6b`、`Same assets / Vehicle rotation`（同一资产 / 车辆旋转）和占位框 | [车辆旋转素材](figures/teaser/p6b-vehicle-rotation.png)：以 P4 相机为基准，车辆绕原地中心沿 +Z 偏航 45°，金色车尾随车刚体变换 | 显示补全表面随所属车辆复用；地面补全部位、背景和人物保持固定 |
+| P6c | `P6c`、`Same assets / Human pose change`（同一资产 / 人体姿态改变）和占位框 | [人体换姿素材](figures/teaser/p6c-human-pose.png)：恢复 P4 原车辆朝向，只将同根位置处的人物改为抬臂姿态 | 单独表达人体关节控制，避免同时变化车辆或相机 |
+| 外部状态标签 | `Camera view s1`、`Vehicle rotation`、`Human pose` | 原文字、字号与位置保留 | 素材本身无字，由既有原生标签说明唯一状态变化 |
+
+本轮 HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，从已有未提交工作区继续。真实 PPT 基线 SHA256 为 `fd87d56e814a2c7c850a1177eb1ab6081d4462bf12844b085afd6ff2b9a4d128`；原 PPT、README 和本记录保存于 `paper/fig/teaser-editable/.build/inserted-assets-p6/before/`。日志基线 SHA256 为 `b119a94449525b964495524bbd313ba2bd69dd76cec8cc12b1fdfe6eed431f30`。
+
+保存 [P6a 提示词](figures/teaser/p6a-new-camera-prompt.txt)、[P6b 提示词](figures/teaser/p6b-vehicle-rotation-prompt.txt)、[P6c 提示词](figures/teaser/p6c-human-pose-prompt.txt)、[生成记录](figures/teaser/p6-generation-record.json)与[状态约定](figures/teaser/p6-state-contract.json)。P6a 为 1922×818，P6b/P6c 均为 1920×819，全部 RGB PNG。几何底图固定 P6b/P6c 的相机、道路、立面和根位置，分别只改变车辆偏航或人物关节；最终生成图经目检，不声明逐像素配准或实测角度精度。
+
+已在当前 PPT 的原 360×153 图框内等比放入三张素材，删除 9 个原占位对象，保持 70 个不相关对象的位置和文字不变。所有 P2–P6 概念素材现已填满，P6 外部状态标签、输入序列、P4 交互标注、P5 比较及图例均保留。README 和备注同步完整状态及素材来源。最终 [PPT](../paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx) 通过包结构、单页画布、参考字体、几何与重导入检查，并重新渲染[整图预览](../paper/fig/teaser-editable/output/DriveCompose-teaser-preview.png)；含 58 个原生形状和 15 张独立图片，SHA256 为 `b7b2f31d38a2b21ad4a7802df776bf416a09df92caa18db49067f17440f76314`。核验与局部对象清单位于 `.build/inserted-assets-p6/`。本轮没有修改论文 LaTeX、正式 PDF 或已有图像素材；新增场景保持概念示意身份，不描述为实验结果。
+
+## 2026-11-03：P2 三维几何表达、人物方向与连续背景缺失修订
+
+用户指出原素材造型不协调，且单个斜线面不能表达资产几何补全。本轮实际查看 DiffComplete、PartCrafter 的 Figure 1，以及 GenAssets 的 Figures 1–2，提炼形状边界、统一材质和组件层次的做法；来源与设计判断见 [P2 分析说明](figures/teaser/p2-geometry-design.md)。随后用内置 ImageGen 生成新的独立 [P2 素材](figures/teaser/p2-geometry-concept.png)。整体上下排版未改。
+
+| 位置 | 真实基线 / before | 修改后 / after | 原因 |
+| --- | --- | --- | --- |
+| 车辆形态与缺失 | 原 P2 为方盒车，整个车尾面白底斜线 / cuboid van with a hatched rear face | 简化厢式车的局部三维壳，车顶、后角和侧后边界共同出现覆盖缺失 / partial vehicle geometry with a spatially extended missing rear region | 表达几何结构的缺失，避免被读为缺少纹理 |
+| 人物朝向 | 中间造型修订素材中的人物右向侧身，近似沿条纹方向迈步 / right-facing stride approximately along a zebra bar | 转为向画面左上、斑马线远端行走的背面斜视 / rear three-quarter walking pose toward the far end of the crosswalk | 按用户最新纠正保持输入中的过街运动方向 |
+| 车后背景 | 中间提示词要求 “Keep just ONE separate small irregular white missing ROAD patch”，实际显示大面积完整青色道路加孤立小洞 | 车后左侧连续背景几何整块缺失，留白连接到场景左边界，孤立方洞和该区车道标记移除 / broad contiguous unobserved background behind the van | 用户指出该区域在输入序列中始终被遮挡，不能表达成只有一小块没有观测到 |
+
+本轮 HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，继承已有未提交工作区。用户指出两处问题时的真实 PNG 基线保存于 `paper/build/teaser-p2-geometry-style/before/p2-geometry-concept.png`，SHA256 为 `cb4ea3878fcbf27bc0f8621a41aab3cd5115f792d725208686601c8bafe20061`；日志真实基线保存在同一 `before/`，SHA256 为 `02cb22f6b69f7940404e5161887eb12b4fcbeaa0fe5a8932af257e981418890b`。旧 P2 和原空间约定保持原文件，新的宽范围覆盖设定不沿用旧小方块的数值可见性声明。
+
+保存[初始提示词](figures/teaser/p2-geometry-concept-prompt.txt)、[边界修订提示词](figures/teaser/p2-geometry-concept-refinement-prompt.txt)、[最终人物与背景修订提示词](figures/teaser/p2-geometry-occlusion-prompt.txt)和[生成记录](figures/teaser/p2-geometry-generation-record.json)。最终 PNG 为 1921×819、RGB，已检查可解码性与视觉内容，无文字、箭头、标签或水印；SHA256 为 `f367fa6a8835a7a08527fa77c0738a290f5f4a1a1099f9a6d7a650402aea53fe`。当前只交付 P2 独立修订素材，未替换 PPT；现有 PPT 哈希仍为 `b7b2f31d38a2b21ad4a7802df776bf416a09df92caa18db49067f17440f76314`，P3–P6、论文源码及正式 PDF 均未修改。素材保持概念示意身份。
+
+## 2026-11-03：将已确认 P2 覆盖回原 PPT，并生成新版 P3 候选
+
+按用户要求，把已确认的 [P2 三维几何素材](figures/teaser/p2-geometry-concept.png) 换入当前 PPT。首次覆盖因文件占用失败；用户关闭进程后，文件哈希由 `b7b2f31d38a2b21ad4a7802df776bf416a09df92caa18db49067f17440f76314` 变为 `9b65793bdc8a0fbb49d9fe3f28c4f65e3c5a2064e07fcd06d2401a411179c16e`。为保留关闭前保存的用户修改，重新以这份最新文件为真实基线执行 P2 局部替换，而不是用此前候选覆盖用户的新状态。两份基线均保存在 `paper/fig/teaser-editable/.build/replaced-p2-geometry/before/`；最新基线为 `DriveCompose-teaser-after-close.pptx`。
+
+| 位置 | 实际基线 / before | 本轮修改 / after | 原因 |
+| --- | --- | --- | --- |
+| PPT 中 P2 图片 | `p2-standalone.png`：方盒车、斜线车尾与小路面缺口 | 换入用户确认的 `p2-geometry-concept.png`：局部三维车壳、沿过街方向行走的人物、车后连续背景缺失 | 落实已确认的新造型和几何语义 |
+| P2 图框与其他元素 | 图框为 left 721.86、top 86、width 375.29、height 160；用户关闭前保存的其余元素 | 图框不变，71 个不相关元素的可见文字与位置保留；补充 P2 素材来源备注 | 只替换 P2，保留用户当前排版与已保存修改 |
+| P3 远侧表达 | 旧 P3 为完整方盒上的斜线面；新版首稿仍错误生成完整侧门和车轮 | 独立生成 [P3 候选](figures/teaser/p3-geometry-concept.png)，将前景远侧车身和车轮留空，观测到的另一侧车壳退到后方，车后背景保留大范围缺失 | 表达新相机暴露三维缺失，而非镜像 P2 或更换纹理；先供用户查看，未放入 PPT |
+
+当前 HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`。日志真实基线保存于上述 `before/paper-revision-changes.md`，SHA256 为 `597e48f499b24b6ccc6a68dae8a07ccbf69c6d85de7c0e697ae7c7107a2fd21a`；原 P3 设计基线也已保存。README、P2 的采纳状态与 [P3 设计说明](figures/teaser/p3-design.md)同步本轮实际状态。
+
+原 [PPT 路径](../paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx)已成功覆盖，SHA256 为 `3d90daabc82b09fe2dcb022e7418268c3899a425b73f27c8abaa6f86f9263bef`；含 57 个原生形状、15 张图片，与用户关闭后基线数量一致。包结构、单页尺寸、参考字体、布局与重导入检查通过，已从最终文件重新渲染[整图预览](../paper/fig/teaser-editable/output/DriveCompose-teaser-preview.png)并目检。临时另存到 output 的备用交付副本在原路径覆盖成功后已移除；该副本的哈希经核对确认为本轮创建的文件。核验与局部差异记录位于 `.build/replaced-p2-geometry/after-close/`。
+
+P3 用两次独立 ImageGen 调用完成初稿与针对性修订；保存[初始提示词](figures/teaser/p3-geometry-concept-prompt.txt)、[修订提示词](figures/teaser/p3-geometry-concept-refinement-prompt.txt)和[生成记录](figures/teaser/p3-geometry-generation-record.json)。最终候选为 1921×819、RGB，SHA256 为 `73623551bd3889432d524624956592306b99fca9d5e788ed5dc4bd424b8bbb00`；已检查可解码性与无文字、箭头、补全色等内容。它是参考图引导的概念素材，未声称来自同一显式网格的精确重投影或真实实验输出。PPT 中 P3–P6 保留旧素材，论文 LaTeX 与正式 PDF 未修改。
+
+## 2026-11-03：重绘 P3 为几何覆盖示意，并补入人体正面未知
+
+用户指出上一版把对侧外车门和轮毂当作从车内看到的结构。该剖视设定已退回；本轮先建立共同的简化世界与两台示意相机，再用内置 ImageGen 生成[新的 P3](figures/teaser/p3-geometry-concept.png)。用户认可车辆与背景后，又指出输入没有覆盖人体正面，因此最后一次生图只针对人物的观测覆盖修改，不通过转身或换动作回避缺失。
+
+| 位置 | 真实基线 / before | 当前素材 / after | 原因 |
+| --- | --- | --- | --- |
+| 车辆内部 | 从大开口看见完整对侧外门把手、轮毂 / a cutaway showing exterior textures as an interior | 不展示内部；只保留当前可见的已观测外部片段，未知部分用粗略虚线包络表示 / outward observed fragments plus coarse unknown support | 区分未观测几何、实际车内结构与自由空间，不虚构可信内壁 |
+| 未知支撑与立面背面 | 完整白车身、精确轮拱暗示形状已知；立面背面是一堵厚白墙 | 近白色、无材质阴影的稀疏虚线支撑；逆面立面减为轻轮廓 | 表达覆盖诊断，不预先画出完成后的精确资产形状 |
+| 人体正面 | 车辆／背景修订后，人物仍为完整紫色，暗示正面已有观测 | 头、躯干及部分肢体的正面标为浅色未知，侧后缘保留少量紫色；步态和世界方向视觉保留 | 输入主要来自背面／后斜侧；模板人形和姿态支撑不能被误当作正面观测 |
+
+当前 HEAD 仍为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`。本轮从真实未提交工作区继续；旧 P3、设计说明、生成记录与日志基线保存在 `paper/build/teaser-p3-coverage/before/`。旧剖视 PNG 的 SHA256 为 `73623551bd3889432d524624956592306b99fca9d5e788ed5dc4bd424b8bbb00`；用户认可车辆／背景、提出人体问题时的素材保存为 `before/p3-before-human-coverage.png`，SHA256 为 `d1d877ac574a15c8a3959504a39659d98e35193204d68c6278fdf9ed9dc00bf9`。日志基线 SHA256 为 `84025d124de2c738d8bccff88c6ec79e294cac164bd3b4d080e043ccc4c13688`。
+
+新增共同世界设定、两个相机的方位底图与构建脚本，位于 `paper/build/teaser-p3-coverage/`；底图只作为空间关系与覆盖可视化的约束。略去背向观测片段是本示意图的绘图约定，不是假定高斯渲染具有背面剔除。最终生成像素不声称来自同一显式网格的精确重投影，也不对应 Waymo 标定掩码或实测渲染结果。
+
+保存[覆盖提示词](figures/teaser/p3-coverage-prompt.txt)、[包络修订提示词](figures/teaser/p3-coverage-refinement-prompt.txt)、[人体正面修订提示词](figures/teaser/p3-human-coverage-prompt.txt)、[完整生成记录](figures/teaser/p3-coverage-generation-record.json)及[设计说明](figures/teaser/p3-design.md)。旧剖视生成记录已标为弃用，并指向所保存的真实旧 PNG。当前 PNG 为 1920×819、RGB，完整性检查通过；SHA256 为 `b4fb4a233c74d41663ad517d2b3e7a61dbf12ee505e89ac51799bfa9f2ce0dff`。已目检无标题、标签、箭头、内部结构或金色补全内容；人体局部修改的周边有少量栅格差异，不声称逐像素不变。
+
+本轮交付独立 P3 候选，未替换 PPT。原 PPT SHA256 仍为 `3d90daabc82b09fe2dcb022e7418268c3899a425b73f27c8abaa6f86f9263bef`；P2、P4–P6、论文源码与正式 PDF 未修改。README 同步当前候选身份与人体正面的观测边界。
+
+## 2026-11-03：放入已确认 P3，按新版几何语义重绘 P4 候选
+
+按用户要求将已确认的 [P3 几何覆盖素材](figures/teaser/p3-geometry-concept.png)放回原 PPT，同时继续完善 P4。P3 保留原图框及外部文字；P4 本轮交付[独立新候选](figures/teaser/p4-joint-completion.png)，未替换 PPT 中的旧 P4。
+
+| 位置 | 真实基线 / before | 修改后 / after | 原因 |
+| --- | --- | --- | --- |
+| PPT 中 P3 | `p3-standalone.png`：方盒上的斜线面、完整图标人物 | `p3-geometry-concept.png`：车辆未知支撑、连续背景缺失与未观测人体正面 | 落实用户已确认的空间表达，避免车内剖视与完整正面观测的歧义 |
+| P3 图框及其他元素 | left 1427、top 92.02、width 350、height 148.96 | 图框不变，71 个不相关元素保留，可见文字未修改 | 保留用户当前排版和先前修改 |
+| P4 车辆 | 方盒车与单个金色车尾平面 | 沿用新版 P2 的厢式车，金色连接车尾、圆角、短车顶续接及后下部结构 | 表达连贯三维结构的补全，而非给现成面片换色 |
+| P4 背景 | 完整地台中的小金色方块 | 车后左侧大范围道路连续延伸并标为金色，与已观测青色路面齐平衔接 | 对应已确认 P2 的大范围背景缺失 |
+| P4 人体与联合上下文 | 图标人物；三个组件连到同一共享条带 | 保留 P2 的三维人形、朝向与步态；四个标签和三条双向分支保留 | 人体正面补全在当前相机下主要背向，不通过转身或把已观测背部涂金强行显示；继续突出共同上下文 |
+
+当前 HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`。真实 PPT 基线 SHA256 为 `3d90daabc82b09fe2dcb022e7418268c3899a425b73f27c8abaa6f86f9263bef`，原 PPT、预览、README、P3 说明与记录、日志保存于 `paper/fig/teaser-editable/.build/replaced-p3-coverage/before/`。日志基线 SHA256 为 `642623424ac5b6358f8f882f1f9c5fe5a61a7a72f76c9e72850cbba83be8bbc4`。旧 P4 同时保存于 `paper/build/teaser-p4-completion/before/`，原文件未覆盖。
+
+原 [PPT](../paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx)已覆盖成功，SHA256 为 `a6ba173b0aab2950e1a0aefa764e4f12b7230ba4f417b522015cb87773d60e61`；57 个原生形状、15 张图片的数量保持不变。包结构、单页尺寸、参考字体、布局及重导入检查通过，已从最终文件重新渲染并目检[整图预览](../paper/fig/teaser-editable/output/DriveCompose-teaser-preview.png)。局部差异与核验记录位于 `.build/replaced-p3-coverage/`，P2/P4/P5/P6 图片和外部原生排版未改。
+
+P4 使用一次内置 ImageGen 调用生成新候选，参考分别承担：P2 的相机、造型与姿态，旧 P4 的四个标签与三条上下文分支，P3 的未知内容定义。保存[提示词](figures/teaser/p4-joint-completion-prompt.txt)、[设计说明](figures/teaser/p4-joint-completion-design.md)和[生成记录](figures/teaser/p4-joint-completion-generation-record.json)。PNG 为 1920×819、RGB，完整性检查通过；SHA256 为 `a516ba726f37fd1dda14224c926e4abaa5c1fd9a31d6f1ebf8b2c66b86a2219f`。已目检四个标签各出现一次、三条双向分支通向同一个共享上下文、无车内剖视或额外主标题。图面为生成式概念示意，不声明精确几何掩码、逐像素对应或真实实验结果。
+
+README 与 P3 采纳状态已同步。P4 候选暂不放入 PPT，论文源码、正式 PDF、P5 与 P6 均未修改。
+
+## 2026-11-03：P4 补入缺失墙体
+
+用户指出背景墙仍需补全。本轮仅针对 [P4 独立候选](figures/teaser/p4-joint-completion.png)的墙体作局部 ImageGen 修订，延续已确认的相机、车辆、人物和共享上下文布局。
+
+| 位置 | 真实基线 / before | 修改后 / after | 原因 |
+| --- | --- | --- | --- |
+| 背景墙 | 灰色墙体的左边界仍是阶梯状断口，背景补全只体现在金色路面 / incomplete gray facade fragment | 沿原立面补入金色完整墙段，连接顶部压沿、竖直端部与地面 / connected gold facade continuation with coping and end thickness | 背景几何同时包括道路和立面；补全后的场景不应留下原有墙体缺口 |
+| 已观测墙面与图内文字 | 灰色窗墙、Background 标签及三条共享上下文分支 | 灰色窗墙保留，四个标签和三条双向分支视觉保留 / observed window wall and label topology retained | 保留观测与补全的来源区分，避免整墙涂金或改变联合补全机制 |
+
+当前 HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，从已有未提交工作区继续。补墙前 PNG、设计说明、生成记录及日志已保存至 `paper/build/teaser-p4-completion/wall-before/`。真实 PNG 基线 SHA256 为 `a516ba726f37fd1dda14224c926e4abaa5c1fd9a31d6f1ebf8b2c66b86a2219f`，日志基线 SHA256 为 `694af85f3f0d9be3045a617cdb51260362533995b9511614f3a438bc0635f3ec`。
+
+保存[墙体修订提示词](figures/teaser/p4-wall-completion-prompt.txt)，并更新同一份[生成记录](figures/teaser/p4-joint-completion-generation-record.json)和[设计说明](figures/teaser/p4-joint-completion-design.md)。采用一次内置 ImageGen 局部编辑；生成原件保留在默认输出位置，选定结果复制回项目同一素材路径。当前 PNG 为 1920×819、RGB，完整性检查通过，SHA256 为 `289324ea596082ecc52e36f5d433d8cd3ef2630f2b9e3f5859bcfb634ed0cce4`。已目检金色墙段与灰墙衔接、标签文字及共享上下文拓扑；场景主体视觉保留，不声称栅格逐像素不变。
+
+本轮没有改动 PPT；其 SHA256 仍为 `a6ba173b0aab2950e1a0aefa764e4f12b7230ba4f417b522015cb87773d60e61`。P2/P3 素材哈希保持不变，论文源码和正式 PDF 未修改。P4 仍为独立概念候选，新增墙段的形状与范围用于说明机制，不是标定后的实验输出。
+
+## 2026-11-03：放入已确认 P4，生成新版 P5a/P5b 几何对照
+
+按用户要求将包含墙体补全的 [P4](figures/teaser/p4-joint-completion.png) 放回原 PPT，然后分别生成新版 [P5a](figures/teaser/p5a-geometry-observed.png) 和 [P5b](figures/teaser/p5b-geometry-completed.png) 独立候选。上下排版、共享输入和外部原生文字均保留；P5 两张候选尚未替换到 PPT。
+
+| 位置 | 真实基线 / before | 本轮修改 / after | 原因 |
+| --- | --- | --- | --- |
+| PPT 的 P4 | `p4-joint-context-labeled.png`：方盒车、完整地台上的小金色方块 | `p4-joint-completion.png`：圆角厢式车，金色车尾后角、连续道路及墙体补全 / connected vehicle and background geometry | 落实用户确认的新版造型与背景几何含义 |
+| P4 图框与其余元素 | left 462.8、top 392、width 844.4、height 360；71 个不相关元素 | 外框保留；71 个不相关元素的位置与可见文字保留 / original placement and unrelated elements retained | 仅替换已确认的素材，延续当前排版 |
+| P5a | 方盒车尾的白底斜线四边形 / hatched planar rear cap | 新版厢式车的后部几何缺失，留白加稀疏虚线 / missing rear geometry with coarse unknown support | 说明汇总全部输入后仍有未恢复结构，不预先假定后门完整形状 |
+| P5b | 同一四边形变金色 / gold planar cap | 相同观察方向，补入金色车尾、圆角、短顶部过渡及保险杠 / connected completed rear structure | 体现三维几何的补入，与新版 P4 对应 |
+
+当前 HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，从已有未提交工作区继续。真实 PPT 基线 SHA256 为 `a6ba173b0aab2950e1a0aefa764e4f12b7230ba4f417b522015cb87773d60e61`；原 PPT、预览、README、P4 说明及生成记录、日志保存于 `paper/fig/teaser-editable/.build/replaced-p4-completion/before/`。日志基线 SHA256 为 `5379769cca22148e4fc5c5068c5a735eb044766bebd51575efc901dbf85fa39e`。旧 P5a/P5b 与生成记录另存至 `paper/build/teaser-p5-geometry/before/`，原文件保持不变。
+
+使用 `@oai/artifact-tool` 对原 PPT 作 P4 图片局部替换，包结构、单页尺寸、Times New Roman 参考字体、布局与重导入检查通过。原 [PPT 路径](../paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx)已覆盖，SHA256 为 `82f5778291c994d0c2c440d37f95a0caaf84509b3a5db5d6cd35ce358221ab2d`；含 57 个原生形状和 15 张图片。已从最终文件重新导入、渲染并目检[整图预览](../paper/fig/teaser-editable/output/DriveCompose-teaser-preview.png)。验证和局部差异记录位于 `.build/replaced-p4-completion/`；P4 素材本身没有再次生成或修改。
+
+P5 使用两次独立、顺序执行的内置 ImageGen 调用。P5a 以新版 P2 为车辆、相机和未知范围参考；P5b 以新 P5a 为编辑目标，以 P4 的金色车尾为造型参考。保存 [P5a 提示词](figures/teaser/p5a-geometry-observed-prompt.txt)、[P5b 提示词](figures/teaser/p5b-geometry-completed-prompt.txt)、[设计说明](figures/teaser/p5-geometry-design.md)和[生成记录](figures/teaser/p5-geometry-generation-record.json)。两张 RGB PNG 分别为 1586×992、1585×992，完整性检查通过；SHA256 分别为 `e8d63747d479fc1dd22c1f01ab2555bbb4aedc15e9510327f437ad47387ccdac`、`c9bf798bc88f36ef6040182031e3607d2c44fa2e17cda8409be5c9cb11c7fa66`。已目检视角、车身与轮胎的视觉对应、缺失和补全范围；不声明逐像素配准或实测遮挡范围。
+
+README 与 P4 采纳状态已同步。P5 新候选尚未放入 PPT；PPT 中 P5/P6 仍是早期素材。论文源码、正式 PDF、P2/P3/P6 及旧 P5 图片未修改。全部生成面板保持概念示意身份。
+
+## 2026-11-03：将已确认的 P5a/P5b 放回原 PPT
+
+按用户确认，将新版 [P5a](figures/teaser/p5a-geometry-observed.png) 和 [P5b](figures/teaser/p5b-geometry-completed.png) 替换到原 PPT。本轮只放入已生成素材，没有再次生图或改变整体布局。
+
+| 位置 | 真实基线 / before | 修改后 / after | 原因 |
+| --- | --- | --- | --- |
+| P5a 图片 | `p5a-vehicle-observed.png`：方盒车的斜线后面 / hatched planar rear cap | `p5a-geometry-observed.png`：新版车辆的缺失后部几何，留白及稀疏虚线 / missing rear geometry with coarse support | 放入用户确认的观测聚合示意，与新版 P2/P4 车辆一致 |
+| P5b 图片 | `p5b-vehicle-completed.png`：同一平面变金色 / gold planar rear cap | `p5b-geometry-completed.png`：连续金色车尾、圆角、短顶部过渡和保险杠 / connected completed rear geometry | 放入用户确认的三维几何补全对照 |
+| 图框与外部说明 | P5a left 552.76、top 772、width 153.48、height 96；P5b left 899.31、top 772、width 153.39、height 96；原生说明、箭头及图例 | 图框尺寸及位置不变，70 个不相关元素的可见文字与位置保留 / original frames, captions, arrow and legend retained | 将修改限制为两张图片，延续当前排版 |
+
+当前 HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，从已有未提交工作区继续。本轮真实 PPT 基线 SHA256 为 `82f5778291c994d0c2c440d37f95a0caaf84509b3a5db5d6cd35ce358221ab2d`。原 PPT、预览、README、P5 设计说明与生成记录、日志保存于 `paper/fig/teaser-editable/.build/replaced-p5-geometry/before/`；日志基线 SHA256 为 `5e4f25c417441e76860bf32cbe8c1af7753e3c48ea18afa59213d8af1190aa94`。
+
+使用 `@oai/artifact-tool` 导入并局部替换两张图片，原 [PPT](../paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx) 已覆盖，SHA256 为 `03d251bf0646e33ba1a3e8a7e7cb5a6e2f8be2a843dfb99d578e8cf9283adfc0`；含 57 个原生形状及 15 张图片。包结构、单页尺寸、参考字体、布局和重导入检查通过，最终文件已重新渲染为[整图预览](../paper/fig/teaser-editable/output/DriveCompose-teaser-preview.png)并目检。嵌入媒体哈希对照确认只更换 P5a/P5b，其余媒体完全保留。局部差异、验证与媒体对照保存在 `.build/replaced-p5-geometry/`。
+
+README 和 P5 设计、生成记录已同步采纳状态。P2/P3/P4/P6 素材、论文源码和正式 PDF 未修改；P6 保留现有早期素材。
+
+## 2026-11-03：新版 P6a/P6b/P6c 生成并放回原 PPT
+
+按用户要求继续完成右侧三张复用图，沿用新版 P3/P4 的场景身份、圆角车辆、三维人形和连续背景补全。分别生成 [P6a](figures/teaser/p6a-geometry-new-camera.png)、[P6b](figures/teaser/p6b-geometry-vehicle-rotation.png)、[P6c](figures/teaser/p6c-geometry-human-pose.png)，并在核对后放入原 PPT。
+
+| 位置 | 真实基线 / before | 修改后 / after | 原因 |
+| --- | --- | --- | --- |
+| P6a 新视角 | 旧方盒车、完整紫色图标人，前景墙保持空轮廓，小路块补全 / cuboid scene with incomplete reverse facade | 对应 P3 相机，金色补入新显露车身、人体正面、连续车后道路及实体墙背面；保留灰蓝观测车顶 / same new camera with completed actor and background geometry | 与新版 P3 的未知范围和人体正面缺少输入的设定一致 |
+| P6b 车辆旋转 | 方盒车转向、背景小金色路块 / earlier box-shaped vehicle yaw | 新版圆角厢式车绕固定中心转向，金色后部随车旋转；完整墙体、道路和行人保持原状态 / attached rear geometry under a vehicle-only yaw | 展示同一资产及其补全结构在新刚体状态下复用 |
+| P6c 人体姿态 | 图标人物举臂，背景与车辆为旧样式 / icon-style articulation scene | 保留 P4 未旋转车辆与完整背景，同一人形仅抬起双臂，行走腿姿、根位置和朝向保留 / arm articulation with original vehicle state | 避免累加 P6b 车辆旋转，也不通过转身或给已观测背部涂金强行展示补全 |
+| 三个图框及外部说明 | 既有三个约 360×153 图框，Camera view / Vehicle rotation / Human pose 原生标签 | 保留原外框、标签和流程箭头；69 个不相关元素的位置与可见文字不变 / existing layout and labels retained | 局部更新素材，延续当前上下对比结构 |
+
+本轮实际使用四次内置 ImageGen 调用：P6a 初稿及一次覆盖颜色修订、P6b 和 P6c 各一次。P6a 初稿错误地把新显露长侧车身画成灰蓝色，已局部改为金色；该首版保存在 `paper/build/teaser-p6-geometry/p6a-before-coverage-color.png`，未放入 PPT。P6b 参考既有几何导图的转向，忽略其旧造型和背景；约 45° 是目标状态，不作为生成像素实测角度。P6c 独立以 P4 为参考，未继承 P6b 的旋转。
+
+当前 HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，从已有未提交工作区继续。真实 PPT 基线 SHA256 为 `03d251bf0646e33ba1a3e8a7e7cb5a6e2f8be2a843dfb99d578e8cf9283adfc0`。原 PPT、预览、README 及日志保存于 `paper/fig/teaser-editable/.build/replaced-p6-geometry/before/`，日志基线 SHA256 为 `a97766f5e215946692dd45bb95ce1408155f7d512be523ae7ee20dc230c0890b`；旧 P6 素材与状态、生成记录保存于 `paper/build/teaser-p6-geometry/before/`，原文件保留。
+
+三张 RGB PNG 均为 1920×819，完整性检查通过；SHA256 分别为 `5112531097b6fa94e3bcb743aa509ce37df2a01a502294d3f47b5e8e9bd448f7`、`8ec47ffe8b3c227489c3e5c67fd7dab64c46ea0accb84ff3801dae210c9ee507`、`15d94de9a7df59641bdaea0657ac5c9dce106e46c15250a03536d8e45e824c91`。保存 [P6a 提示词](figures/teaser/p6a-geometry-new-camera-prompt.txt)、[P6a 修订提示词](figures/teaser/p6a-geometry-coverage-refinement-prompt.txt)、[P6b 提示词](figures/teaser/p6b-geometry-vehicle-rotation-prompt.txt)、[P6c 提示词](figures/teaser/p6c-geometry-human-pose-prompt.txt)、[设计说明](figures/teaser/p6-geometry-design.md)、[状态约定](figures/teaser/p6-geometry-state-contract.json)和[生成记录](figures/teaser/p6-geometry-generation-record.json)。已目检姿态、颜色归属、自然遮挡及图内无文字和箭头；生成像素不声明精确配准、标定掩码或实验输出。
+
+使用 `@oai/artifact-tool` 仅替换三个图片对象。原 [PPT](../paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx) 已覆盖，SHA256 为 `a49b1ce1a17846250b0aea52b1f10aee5bfb2a34f903e003565c526ff0a1ba61`；含 57 个原生形状和 15 张图片。包结构、单页尺寸、参考字体、布局及重导入检查通过，已从最终文件重新渲染并目检[整图预览](../paper/fig/teaser-editable/output/DriveCompose-teaser-preview.png)。嵌入媒体哈希对照确认只更换 P6a/P6b/P6c；其余媒体保持不变。构建、验证及媒体对照位于 `.build/replaced-p6-geometry/`。
+
+README 已同步。P2/P3/P4/P5 图片、论文 LaTeX 和正式 PDF 均未修改；本轮范围止于 P6 素材及对应 PPT 图片替换。

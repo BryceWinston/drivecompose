@@ -1,0 +1,21 @@
+Use case: precise-object-edit.
+Asset: ONE wordless P6b scene illustrating a rigid rotation of the SAME completed van; a computer-vision paper teaser asset, wide approximately 2.35:1 on pure white.
+
+Reference roles:
+Image 1 is the accepted P4 physical scene and exact source for the fixed camera, background, road, crosswalk, human, van identity, matte style and gold completion ownership. Its labels/arrows/context strip are diagram annotations, not scene objects: remove ALL of these annotations from the output.
+Image 2 is an OLD SIMPLIFIED ORIENTATION GUIDE ONLY: use only the direction of the van yaw and rear-facing projection. Ignore its cuboid vehicle, stick person, old wall, small gold tile, colors, outlines and different scale. Do NOT copy its primitive shapes or backdrop.
+
+ONLY THE VAN STATE CHANGES relative to image 1:
+Rotate the entire completed van approximately +45 degrees about the vertical world axis, at the SAME fixed ground center. The camera stays in the P2/P4 reference view; road, wall and human do not move. The nose now points more deeply away toward the upper-right; the GOLD REAR faces the viewer much more directly and occupies the broad lower/front-facing end. The observed blue-gray right-hand side becomes narrower and foreshortened, with its cab, window, wheel arches and two near-side wheels reprojected coherently. The roof rotates in perspective with the whole car. This is upright 3D yaw on the road plane, NOT a 2D image spin, camera orbit, translation, scaling or different van.
+
+Maintain the SAME rounded compact delivery-van geometry from P4 and the same closed gold rear doors, rounded rear corners, short curved rear-roof continuation and integrated bumper. Gold stays attached to those SAME rear parts as they rotate. Blue-gray observed side and supported roof stay blue-gray. Do not turn another side into the rear, leave the old gold rear floating, paint all the vehicle gold or paste an old rear face onto a different body. Keep appropriate tire contact on the road. No primitive cuboid, wrong wheels or cutaway.
+
+STRICT FIXED SCENE:
+- Preserve the broad connected GOLD road area behind/left of the original van, the known PALE TEAL road to the right, and their fixed boundary. Gold ground does not rotate or move with the vehicle.
+- Preserve the complete wall behind/left, its GOLD completed full-height left segment/coping/end thickness, and the observed GRAY right window segment, at their exact P4 locations.
+- Preserve the lavender human at the right crosswalk, SAME position, body scale, far-curb heading, walking pose and stride. Do not raise arms or turn the human in this panel. Visible observed back stays lavender; do not invent a new gold patch.
+- Preserve road silhouette, crosswalk stripes, white canvas, physical scene scale, camera and composition.
+- Remove the four word labels, leader dots, all colored connecting arrows, context container and feature tiles completely. Remove annotations cleanly without losing physical vehicle/wall geometry beneath them.
+
+Style: match P4's restrained matte pastel 3D scientific schematic, soft illumination and minimal detail. No real-world texture, gloss, splats, point cloud, voxels, extra building, extra person or extra vehicle.
+Absolutely NO text, labels, motion arrows, camera icon, skeleton, legend, panel, frame, watermark, before/after inset or context strip. ONE complete physical scene with only the vehicle yaw changed.

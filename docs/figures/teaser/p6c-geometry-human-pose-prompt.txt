@@ -1,0 +1,18 @@
+Use case: precise-object-edit.
+Asset: ONE standalone P6c scene for a computer-vision paper teaser, showing articulation of the SAME completed human asset. Wide approximately 2.35:1, pure white background.
+The supplied P4 image is the EXACT EDIT TARGET. Preserve its physical scene and reference camera. Its labels, leaders, arrows and shared-context strip are diagram annotations: remove ALL of those cleanly from the output.
+
+CHANGE ONLY THE HUMAN'S ARM JOINT POSE:
+At the same right-hand crosswalk location, the same lavender faceless human raises BOTH ARMS above the head into a clear open V, with naturally connected shoulders, upper arms, elbows, forearms and hands. Keep the SAME head, torso proportions, body scale, root position, far-curb heading and rear-three-quarter view. Preserve the existing walking legs and their foot contacts/stride exactly; only the arms articulate. Do not turn the body or head toward the viewer, move the person, swap the person, increase its height, jump, duplicate the person, detach hands or add an afterimage.
+The visible observed back stays lavender, consistent with P4. The completed anterior human geometry belongs to the opposite/front side and is mostly hidden from this camera. Do not paint the observed back gold just to force a highlight. If a small front-facing limb surface becomes exposed by articulation, any gold completion marking must stay on that anatomical surface.
+
+EVERYTHING ELSE STAYS AS IN P4:
+- Original UNROTATED compact van, nose UPPER-RIGHT and rear LOWER-LEFT, broad observed blue-gray near side and roof, same cab window, same wheels, same dimensions, exact original pose/position. Do NOT use the yaw-rotated P6b state.
+- Same connected GOLD rear closure, rounded rear corners, short rear-roof transition and bumper, with the same original gold/blue observation boundary.
+- Same BROAD contiguous GOLD road continuation behind/left of the van, the known PALE TEAL road to the right, the same road silhouette and gold/teal boundary.
+- Same complete wall: GOLD completed left wall segment/coping/end thickness, GRAY observed right window wall, identical location and scale.
+- Same crosswalk stripes, soft lighting, camera, physical scene framing and white margins.
+
+Remove all four text labels (Background, Vehicle, Human, Shared scene context), all anchor dots and leader lines, all three colored bidirectional arrows, the context container and colored feature tiles. Restore clean physical surfaces beneath annotations without changing the vehicle or background.
+
+Match the accepted restrained matte pastel 3D scientific schematic; clean rounded shapes, simple faceless human, minimal details and soft shadows. No realistic texture, point clouds, splats, voxels, new building or extra actor. Absolutely NO text, title, labels, arrows, skeleton overlay, camera icon, legend, context strip, frame, watermark, inset or second panel. ONE complete scene, with only the human arms changed relative to P4.

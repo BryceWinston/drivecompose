@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-02",
+  "baseline_commit": "09ec7adb91eca760fe8c2682d91b40a479f2bcfe",
+  "generator": "built-in image_gen",
+  "mode": "one independent P3 illustration, with a deterministic geometry guide and the existing P2 as style reference",
+  "file": "p3-standalone.png",
+  "size": [1922, 818],
+  "image_mode": "RGB",
+  "sha256": "e6e958a09a3524e7bcbf07cd0479f0d0df575574b3601ed0f89060b8a1852b8c",
+  "source_image": "C:/Users/changan/.codex/generated_images/01a19b7b-6847-7eb2-865d-edfdc3244ff9/exec-8534deb3-6524-4f90-8122-f957db7cbb1f.png",
+  "prompt": "p3-standalone-prompt.txt",
+  "geometry_contract": "p2-scene-contract.json",
+  "references": [
+    {"file": "../../../paper/build/teaser-p3-design/p3-geometry-preview.png", "role": "P3 camera and composition guide"},
+    {"file": "p2-standalone.png", "role": "style, palette and asset identity reference; not the target viewpoint"}
+  ],
+  "semantics": "The camera reveals the unknown +Y vehicle side while the unknown rear and ground patch retain their world positions. The observed roof remains blue-gray. No completion is depicted.",
+  "visual_review": [
+    "One wide scene, no text, title, panel label, caption, legend, camera icon, arrow, watermark or border.",
+    "P3 composition follows the guide: person and crosswalk upper-left, vehicle unknown rear cap at right, ground missing patch lower-right.",
+    "Unknown long vehicle side and rear are white dashed/hatched; roof remains blue-gray; no mirrored cab window or invented observed dark far-side wheels.",
+    "Facade is a faint outline, and the palette matches P2. No orange/gold completed surfaces."
+  ],
+  "review_scope": "Visual correspondence of a generated conceptual illustration, not exact calibrated 3D projection or experimental evidence.",
+  "ppt_or_manuscript_modified": false,
+  "baseline_log": "../../../paper/build/teaser-p3-standalone/before/paper-revision-changes.md",
+  "baseline_log_sha256": "c2ec8090466c3bbf987037eaf0fa9b2dba7839430438c2bd2a4077ed84a3c010"
+}

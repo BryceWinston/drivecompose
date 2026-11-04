@@ -36,9 +36,9 @@ latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=../build/supp-
 - `main.tex`：英文入口；`sec/`：英文各章节。
 - `main_zh.tex`：中文入口；`zh/`：中文各章节，采用与英文相同的方法符号与结构。
 - `main.bib`：两版共用的 84 条当前引用。用户 DOCX 的 75 条全部纳入，9 条与原书目重复、新增 66 条；文档之外的 9 条项目近邻工作保留。逐条引用位置见 [引用接入记录](provenance/reference-integration-20261021.md)。
-- `fig/drivecompose-teaser.png`：用户指定的路口场景概念 teaser，置于两版标题下、摘要前，编号 Figure 1；展示联合补全与资产复用。合并后概念对照、方法总览与联合补全机制分别为 Figure 2、3、4。图内保留概念示意说明，[设计与生成记录](../docs/figures/teaser/README.md)可追溯。
-- `fig/drivecompose-inference-overview.png`：两版共用的总览图，2026-10-30 按用户提供的 PowerPoint PDF 完整页导出替换为 6000×3500 PNG；展示规范聚合、结构潜码、联合补全及高斯组件的组合与渲染。含真实输入照片和机制示意素材，来源与渲染记录见 [本轮记录](provenance/overview-pdf-replacement-20261030.json)。旧 TikZ、历史 PNG 和未采用草稿已移至[项目外归档](../../_archive/drivecompose/20261026-tracked-intermediates)。
-- [总览图说明](../docs/figures/overview/README.md)：当前光栅总览图的设计、图注与审核记录；前版制作过程在项目外归档。
+- `fig/drivecompose-concept-merged.pdf`：两版首页 Figure 1，2026-11-04 采用用户指定的 `fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx` 完整页面，按原比例高分辨率导出；PPT、原图注与正文保持不变。展示共享多视图序列下的观测重建、联合补全和资产复用；[采用记录](provenance/teaser-ppt-replacement-20261104.json)与[设计记录](../docs/figures/teaser/README.md)可追溯。
+- `fig/overview-editable/output/DriveCompose.pdf`：两版共用的当前总览图，2026-11-01 按用户指定的新 PDF 原样接入；保留矢量文字与线条，按完整页原比例放置。展示规范聚合、结构潜码、联合补全及高斯组件的组合与渲染，含真实输入照片和机制示意素材。此前的 `fig/drivecompose-inference-overview.png` 不再由主稿引用，历史渲染记录见 [2026-10-30 记录](provenance/overview-pdf-replacement-20261030.json)。
+- [总览图说明](../docs/figures/overview/README.md)：当前总览图及历史版本的设计、图注与审核记录；前版制作过程在项目外归档。
 - [结构参考与改写依据](provenance/structure-study-20261020.md)：四篇录用论文的章节观察和本轮采用的安排。
 - `fig/assets/Shift.pdf`：当前双语空间外推对比图；已停用的 `fig/pointforward/` 三份旧副本于 2026-10-30 按用户要求删除，历史来源记录保留。
 - `sec/4_experiments.tex` / `zh/4_experiments_zh.tex`：同步消融协议、结果表与分析；原消融定性图已删除。

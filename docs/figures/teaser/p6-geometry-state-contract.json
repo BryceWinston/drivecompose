@@ -1,0 +1,36 @@
+{
+  "kind": "qualitative conceptual state contract; not Waymo calibration or measured masks",
+  "reference_scene": "p4-joint-completion.png",
+  "reference_world_proxy": "../../../paper/build/teaser-p3-coverage/coverage-world.json",
+  "style": "accepted rounded matte 3D geometry, pale gold for completed geometry",
+  "P6a": {
+    "camera_reference": "p3-geometry-concept.png",
+    "camera_proxy_position": [-8, 14, 7],
+    "state_changes_from_P4": ["camera only"],
+    "fixed": ["vehicle identity and world state", "human identity, root, heading and walking stride", "same constructed background"],
+    "completion_visible": ["newly exposed far-side van body and rear", "human anterior geometry", "broad posterior road", "reverse facade and its completion"],
+    "observed_visible": ["blue-gray roof and supported cab-glass fragment", "purple human side/back remnants", "known teal road"],
+    "occlusion": "solid completed foreground wall naturally occludes part of the crosswalk"
+  },
+  "P6b": {
+    "camera_reference": "P4 camera s0",
+    "camera_proxy_position": [-8, -14, 7],
+    "target_vehicle_yaw_degrees": 45,
+    "axis": "world +Z",
+    "pivot": "fixed vehicle ground center",
+    "actual_raster_angle_measured": false,
+    "orientation_guide": "../../../paper/fig/teaser-editable/.build/inserted-assets-p6/p6b-state-guide.png",
+    "guide_role": "yaw direction only; obsolete cuboid, stick person and small road tile excluded",
+    "fixed": ["camera", "road and gold/teal boundary", "complete wall and observed window", "human root, heading and walking stride"],
+    "ownership": "gold rear rotates with the van; gold road and wall stay with the static background"
+  },
+  "P6c": {
+    "camera_reference": "P4 camera s0",
+    "vehicle_state": "original unrotated P4 state, independently of P6b",
+    "change": "both human arms raised above head in an open V",
+    "fixed": ["human root, heading, body scale and walking legs", "original vehicle state", "camera", "complete road and facade"],
+    "human_completion": "anterior gold geometry stays attached to its anatomical regions and is mostly hidden from this back view; observed back remains purple"
+  },
+  "annotations": "none inside the three raster assets; native PPT state labels retained",
+  "verification_scope": "visual scene/state correspondence; generated pixels are not an exact reprojection, mask, angle measurement or experiment"
+}

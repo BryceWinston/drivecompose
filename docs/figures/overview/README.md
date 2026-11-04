@@ -1,6 +1,10 @@
 # DriveCompose 当前论文方法图
 
-## 当前版本：2026-10-30，采用用户提供的 PowerPoint PDF 导出
+## 当前版本：2026-11-01，直接使用用户指定的新 PDF
+
+双语方法节直接引用用户提供的 [PDF](../../../paper/fig/overview-editable/output/DriveCompose.pdf)，替换上一版 PNG。新图为单页 1800×1050 pt，与旧图同为 12:7 比例，保持完整页、跨栏宽度和原图注。文字及线条保留 PDF 矢量内容；场景照片和示意素材保持原样。本轮没有重新生成或改画图件。实际工作区基线保存在 `paper/build/overview-replacement/`，替换范围及检查结果见[改动对照](../../paper-revision-changes.md)。
+
+## 历史版本：2026-10-30，采用用户提供的 PowerPoint PDF 导出
 
 按用户指定的 [PDF](../../../paper/fig/overview-editable/output/DriveCompose.pdf) 更新[论文活动总览图](../../../paper/fig/drivecompose-inference-overview.png)。PDF 为单页 1800×1050 pt，使用 Poppler 按完整页面原比例渲染为 6000×3500 PNG；没有重新生图、裁改内容或改写图中文字。双语论文继续引用同一 PNG 路径。
 

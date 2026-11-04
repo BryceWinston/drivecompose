@@ -1,0 +1,8 @@
+Built-in image_gen; transparent_background=true
+
+Create a distinctive horizontal research-project logo for the exact name "DriveCompose", with a genuinely transparent background (alpha). It will be placed in the center of a computer vision paper's editable architecture diagram on white, at roughly 700 by 135 pixels, so it must remain clean and readable small.
+Use case: logo-brand. Asset type: transparent wordmark and compact symbol, one single logo.
+Text (verbatim): DriveCompose. Capital D and capital C, no spaces. No other text, no "overview", no tagline.
+Design: elegant custom letterforms with a slight forward movement, confident but restrained, excellent optical kerning. Dark navy #17213B for "Drive" and saturated violet #9458DE for "Compose"; favor a sophisticated italic serif wordmark compatible with academic figure typography, without exaggerated flourishes.
+At the left, create a small original geometric emblem suggesting a driving road assembled from components: three interlocking rounded planar pieces, one bright blue #168CE3, one warm orange #F39A2C, and one emerald #0AB88C, whose negative space forms a simple forward-curving road or a subtle D/C monogram. It should be a crisp, memorable compact mark, not a picture of a car and not many little squares.
+Flat vector-like appearance, smooth rounded geometry, no gradients, no drop shadow, no bevel, no 3D rendering, no decorative grid, no border, no backdrop. Horizontal symbol-plus-wordmark, generous optical whitespace between the symbol and name, balanced height, tightly composed with a small safe transparent margin. Output one logo only, not a contact sheet or mockup.

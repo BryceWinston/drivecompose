@@ -1,0 +1,69 @@
+{
+  "date": "2026-11-03",
+  "baseline_commit": "09ec7adb91eca760fe8c2682d91b40a479f2bcfe",
+  "generator": "built-in image_gen",
+  "mode": "three separate sequential single-asset calls; independently controlled camera, vehicle and human states",
+  "panels": [
+    {
+      "id": "P6a",
+      "file": "p6a-new-camera.png",
+      "size": [1922, 818],
+      "image_mode": "RGB",
+      "sha256": "9cf31c2f80a98a2885267190779304e465e5cc65f65c317063f624646e583e71",
+      "source_image": "C:/Users/changan/.codex/generated_images/01a19b7b-6847-7eb2-865d-edfdc3244ff9/exec-c93dc069-7909-460e-978e-38785c2a8fc9.png",
+      "prompt": "p6a-new-camera-prompt.txt",
+      "references": [
+        {"file": "p3-standalone.png", "role": "fixed camera s1, framing, actor states and visible missing regions"},
+        {"file": "p4-standalone.png", "role": "completed asset identity and gold highlight, not its different camera"}
+      ],
+      "controlled_state": "P4 completed content under P3 camera s1 (-8,14,7), with the same actors and poses as P3",
+      "visible_completion": "far vehicle side and rear cap are closed gold surfaces, the same road patch is gold, and the faint far wheel cues are materialized with amber outlines"
+    },
+    {
+      "id": "P6b",
+      "file": "p6b-vehicle-rotation.png",
+      "size": [1920, 819],
+      "image_mode": "RGB",
+      "sha256": "bbb3cce18cbf5392bcd44c1b1107a3b326b72af78c8dc6a1b84e4daeb00e6d72",
+      "source_image": "C:/Users/changan/.codex/generated_images/01a19b7b-6847-7eb2-865d-edfdc3244ff9/exec-982ce7c6-e96c-4ff5-b01e-c837f161cd43.png",
+      "prompt": "p6b-vehicle-rotation-prompt.txt",
+      "references": [
+        {"file": "p4-standalone.png", "role": "reference camera s0 and unchanged scene"},
+        {"file": "../../../paper/fig/teaser-editable/.build/inserted-assets-p6/p6b-state-guide.png", "role": "vehicle yaw and surface attachment guide"}
+      ],
+      "controlled_state": "P4 camera s0 (-8,-14,7); target vehicle yaw +45 degrees around world +Z at fixed center (0,0,0); human pose unchanged",
+      "surface_ownership": "gold rear rotates with the van; gold road patch, road, facade and human remain fixed"
+    },
+    {
+      "id": "P6c",
+      "file": "p6c-human-pose.png",
+      "size": [1920, 819],
+      "image_mode": "RGB",
+      "sha256": "b01ce5408ac70da4bfcdcf42945ee2a6f1b6b1dd28f9228b9a3cfccd818c3007",
+      "source_image": "C:/Users/changan/.codex/generated_images/01a19b7b-6847-7eb2-865d-edfdc3244ff9/exec-a16bddd2-28e9-4371-8b67-293f354fd7a0.png",
+      "prompt": "p6c-human-pose-prompt.txt",
+      "references": [
+        {"file": "p4-standalone.png", "role": "reference camera s0, original vehicle and background"},
+        {"file": "../../../paper/fig/teaser-editable/.build/inserted-assets-p6/p6c-state-guide.png", "role": "arms-raised human pose at fixed root"}
+      ],
+      "controlled_state": "P4 camera s0 and original vehicle yaw; human arms raised at root (4.2,-1.5,0), same heading and body scale"
+    }
+  ],
+  "state_contract": "p6-state-contract.json",
+  "visual_review": [
+    "All three are standalone text-free wide scenes, with no camera symbols, arrows, labels, feature strips, duplicate actors or missing-surface hatching.",
+    "P3/P6a visually preserve the same new-camera layout, scene crop and walking pose; gold occupies the corresponding unknown surface locations.",
+    "P6b follows the authored 45-degree yaw guide; the vehicle is upright and its roof, near window, wheels and gold rear reproject together.",
+    "P6c returns to the P4 vehicle state and changes only the human joint pose; the road, facade and two gold completion regions remain in place.",
+    "The three slots retain their original 360x153 frames and external native state labels. Other PPT objects retain their positions and text."
+  ],
+  "review_scope": "Controlled conceptual illustrations. Source guides specify geometric states; generated rasters were visually checked, not numerically calibrated or pixel-registered. No experimental reconstruction or state-editing result is claimed.",
+  "ppt": "../../../paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx",
+  "ppt_sha256": "b7b2f31d38a2b21ad4a7802df776bf416a09df92caa18db49067f17440f76314",
+  "preview": "../../../paper/fig/teaser-editable/output/DriveCompose-teaser-preview.png",
+  "previous_ppt_sha256": "fd87d56e814a2c7c850a1177eb1ab6081d4462bf12844b085afd6ff2b9a4d128",
+  "remaining_placeholders": [],
+  "baseline_log": "../../../paper/fig/teaser-editable/.build/inserted-assets-p6/before/paper-revision-changes.md",
+  "baseline_log_sha256": "b119a94449525b964495524bbd313ba2bd69dd76cec8cc12b1fdfe6eed431f30",
+  "manuscript_or_formal_pdf_modified": false
+}

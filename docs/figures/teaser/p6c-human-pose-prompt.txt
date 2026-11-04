@@ -1,0 +1,22 @@
+Use case: precise-object-edit.
+Generate ONE standalone P6c illustration demonstrating articulation of the SAME human asset in the completed P4 scene. Wide approximately 2.35:1, pure white background, no text.
+
+REFERENCE ROLES:
+Image 1, the clean P4 scene, is the EXACT edit target for camera, framing, vehicle, road, background, completion marks and the human's identity and root position.
+Image 2 is a deterministic GEOMETRY GUIDE for the new human pose ONLY. Preserve the finish of image 1 and follow the guide's raised-arm posture. Do not change the viewing camera or use the rotated-vehicle state from a different example.
+
+CHANGE ONLY THE HUMAN ARTICULATION relative to P4:
+The SAME purple faceless person at the RIGHT on the crosswalk now raises BOTH ARMS above the head in a clear open V pose. Retain the same head diameter, torso scale, limb thickness, world root at (4.2,-1.5,0) and root heading. Legs may change from the walking gait to the guide's balanced planted stance, centered on the SAME root; no jump, relocation, scale change or turn of the whole person. Both feet stay on the crosswalk. The head and torso remain at the guide's reference locations, while connected shoulders, elbows, hands, hips and knees articulate naturally. The raised hands may extend above the original head height. Use one coherent purple figure only, no duplicate pose or floating hands.
+The person stays purple. Do not invent a missing body region or add any gold human patch.
+
+EVERYTHING ELSE REMAINS EXACTLY AS IN IMAGE 1:
+- P2/P4 orthographic camera, crop, road slab corners, crosswalk and lane marks.
+- Original UNROTATED van with nose toward UPPER-RIGHT, long observed blue-gray near side and roof, pale rectangular side window near its right/front, same two dark wheels.
+- Same GOLD completed rear cap facing LOWER-LEFT, attached to the same rear surface.
+- Same small GOLD road patch behind/lower-left of the van, flush with the ground, in its fixed location.
+- Same single pale-gray facade plane behind the van.
+Do not rotate, move, resize or replace the vehicle. Do not move the road patch with the person or change the building.
+
+Match the sparse flat academic 2.5D geometric style of image 1: muted teal ground, observed blue-gray vehicle, purple faceless diagram person, pale-gray facade, localized pale gold completion marks, thin consistent outlines and minimal flat shading. No photorealistic texture, toys, point clouds, voxels, vegetation or extra scenery.
+
+ABSOLUTELY NO TEXT: no P6c, titles, labels, caption, legend, numbers, watermark or logos. No camera icon, motion arrows, skeleton overlay, shared-context strip, feature tiles, panel border, second panel or inset. ONE scene, with ONLY the human joint pose changed.

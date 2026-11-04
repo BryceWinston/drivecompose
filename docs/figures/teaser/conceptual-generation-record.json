@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-02",
+  "baseline_commit": "09ec7adb91eca760fe8c2682d91b40a479f2bcfe",
+  "status": "generated candidate, not inserted into manuscript",
+  "generator": "built-in image_gen",
+  "mode": "reference-guided conceptual redesign, followed by two correspondence corrections",
+  "file": "drivecompose-teaser-conceptual.png",
+  "size": [2098, 749],
+  "sha256": "0db49994ea6f3d098f76dad343e45b3b5912aefa7fc03a99e967e9746437b98e",
+  "source_image": "C:/Users/changan/.codex/generated_images/01a19a3e-3fc4-7b92-ac5e-5dcf5735cc14/exec-891992c0-bae7-40ef-acdd-da7197b9e3a2.png",
+  "reference_roles": [
+    {"file": "C:/Users/changan/AppData/Local/Temp/codex-clipboard-ba7c4c59-038e-45d2-9113-3bb94bf2a1ed.png", "role": "old teaser; semantic redesign target"},
+    {"file": "../../../paper/fig/overview-editable/assets/waymo-186/input-views/A01_FRONT_LEFT_f000.png", "role": "scene and subject reference; not copied as original camera pixels in this candidate"}
+  ],
+  "prompts": ["conceptual-production-prompt.txt", "conceptual-refinement-prompt.txt", "conceptual-correspondence-prompt.txt"],
+  "caption": "conceptual-caption.txt",
+  "image_semantics": "All input, construction and output imagery is generated schematic illustration; not dataset imagery, baseline output or experimental evidence.",
+  "upper_route": "conceptual reconstruction from observations; not a named baseline or a universal statement about prior methods",
+  "visual_review": [
+    "shared input and aligned observation-only/joint-completion routes",
+    "shared scene context links background and canonical vehicle/human components",
+    "matched canonical vehicle orientations and corresponding rear-panel missing/completed regions",
+    "same screen-right upper-arm region marked in canonical and articulated human illustrations",
+    "English labels and Conceptual illustration disclosure visually inspected"
+  ],
+  "manuscript_or_formal_pdf_modified": false,
+  "compiled": false,
+  "change_log_baseline": "../../../paper/build/teaser-conceptual/before/paper-revision-changes.md",
+  "change_log_baseline_sha256": "ac4b1c330a21b6bb0a71d6e03d3119d57ea9b3badb6e7b9d07c0819a9ec370a8"
+}

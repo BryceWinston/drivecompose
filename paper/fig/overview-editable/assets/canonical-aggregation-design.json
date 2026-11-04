@@ -1,0 +1,29 @@
+{
+  "kind": "imagegen-design-study-and-native-ppt-reconstruction",
+  "module": "Canonical aggregation",
+  "generator": "built-in image_gen",
+  "generated_source": "C:\\Users\\changan\\.codex\\generated_images\\01a18b83-e84a-7642-a1ad-284935796542\\exec-ddb94af3-c622-46c6-bb45-4e730ff3184e.png",
+  "concept_asset": "assets/canonical-aggregation-concept.png",
+  "concept_pixels": [
+    1485,
+    1059
+  ],
+  "concept_sha256": "e0a582a7626fb479a208e02da2eba662bcafb3cfd12571f6c888c0211c6f5675",
+  "prompt_file": "assets/canonical-aggregation-concept-prompt.txt",
+  "prompt_sha256": "4d988a05fd33d16618060ff36a34c92d5211c6c3d0bc4adc7115177e630215ff",
+  "technical_sources": [
+    "paper/sec/3_method.tex:Canonical feature aggregation, eq:query-placement and eq:aggregation",
+    "docs/representations.md:结构潜码",
+    "docs/algorithm.md:跨视角与跨时间聚合"
+  ],
+  "semantics": [
+    "fixed canonical query placed by component state and projected into each observation",
+    "visible depth-consistent evidence of the same instance is accepted",
+    "confidence and depth-residual normalized weights aggregate features at the same query"
+  ],
+  "scope": "Native editable PowerPoint shapes replace only the interior of Canonical aggregation; concept PNG is not embedded in the slide. Two observations and one rejection are mechanism illustrations, not experimental results.",
+  "baseline_sha256": "228a210a36b24a3cd27a16e48ce6c8fc155c4008cd96fd44d91d1f0a5e51b224",
+  "merge_baseline_file": ".build/before-canonical-query-aggregation-merged.pptx",
+  "merge_baseline_sha256": "4ecbc80663563664076ed2883d128b1571e2ce88fbcdebd7b7a07775a9efb735",
+  "final_ppt_sha256": "6c398107dfd9895efafaa9446d07d10267bf19cb2ae7c467b60f184797a8e909"
+}

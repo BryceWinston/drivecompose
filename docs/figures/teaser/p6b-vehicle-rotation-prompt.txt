@@ -1,0 +1,23 @@
+Use case: precise-object-edit.
+Generate ONE standalone P6b scene asset demonstrating reuse of the SAME completed vehicle under a new RIGID YAW. Wide approximately 2.35:1, pure white background. No text.
+
+REFERENCE ROLES:
+Image 1, the clean completed P4 scene, is the edit target and source of truth for camera, framing, road, facade, human, color palette and asset identity.
+Image 2 is a deterministic GEOMETRY GUIDE for the required rotated vehicle and unchanged scene. Follow its vehicle orientation and projected corners closely, while preserving image 1's visual finish. Do not invent a different viewpoint.
+
+ONLY THE VEHICLE STATE CHANGES relative to P4:
+Rotate the entire existing van by +45 degrees about world +Z, around its FIXED center at (0,0,0), on the road plane. No translation, change of dimensions, roll or pitch. The illustrative camera remains the P2/P4 camera (-8,-14,7); do not rotate the camera or the road. This is a 3D yaw, not an in-plane 2D image spin.
+The guide shows the correct result: the nose now points more deeply toward upper-right, the roof recedes steeply into the scene, the GOLD REAR CAP faces the viewer much more directly as the broad lower/front-facing end, and the observed blue-gray near side becomes visibly narrower and foreshortened on the RIGHT. Its window and two near-side wheels rotate with the body and foreshorten consistently.
+Keep the same pale GOLD region attached to that same REAR SURFACE as the van rotates. Do not leave the gold region floating in its old world orientation, recolor another face gold, paste the old rear cap onto the new body, or mirror the vehicle window. Near side and roof remain observed blue-gray. Preserve the simple original van without new cab, headlights, doors, seams or logos.
+
+EVERYTHING ELSE IS FIXED:
+- Original long teal road slab corners and crop.
+- Gray observed facade plane behind the van, in the same world location.
+- Purple walking figure at the RIGHT on the same crosswalk, with EXACTLY the same gait, body scale, foot position and root heading as P4. Do not turn it into an arms-raised person here.
+- Original small completed GOLD road patch stays at the same location on the static ground, lower-left of the vehicle. It does NOT rotate, move with the vehicle, become a raised tile or regenerate at a new spot.
+- Crosswalk orientation and lane dashes remain exactly fixed.
+No holes or missing-surface hatching return; the constructed surfaces are reused.
+
+Match the sparse flat academic 2.5D style of image 1: muted teal, blue-gray, pale gray, purple, localized pale gold, thin clean outlines and gentle flat plane shading. The geometry guide is a layout constraint, not a reason to change the visual style. No realistic street texture, point clouds, voxels, toy gloss or extra scenery.
+
+ABSOLUTELY NO TEXT: no P6b, title, labels, captions, legend, numbers, watermark or logos. No camera symbol, motion arrows, skeleton overlay, shared-context strip, feature tiles, panel border, duplicate van or second panel. ONE scene, with ONLY the van yaw changed.

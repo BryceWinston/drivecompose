@@ -1,0 +1,18 @@
+Use case: precise-object-edit / scientific-educational.
+Image 1 is the P3 draft to CORRECT. Image 2 is the approved P2 scene identity/style reference.
+Keep Image 1's new viewing-camera direction, van front pointing upper-left and open rear pointing right, scene framing, crossing on the left, matte colors and lighting. Do NOT mirror or return to the P2 camera.
+
+ONE ESSENTIAL GEOMETRIC CORRECTION:
+The large NEAREST blue sidewall and its two solid tires in Image 1 were incorrectly invented. This is the UNOBSERVED FAR SIDE of the van. Remove that entire nearest sidewall, including its cab side-door/window, large cargo panel, rounded side edges, both wheel arches and both foreground tires. These foreground parts have NO geometry. Do not just erase a small corner or rear door; remove the whole side facing the P3 viewer.
+
+In its place, show a very clear, large OPEN SIDE APERTURE with no opaque white or blue face. The surviving observed ROOF is retained. The already observed OPPOSITE SIDE shell from P2 is retained farther away, across the full WIDTH of the van. It must visibly sit BACK and HIGHER in the image, attached to the FAR edge of the roof, rather than appearing on the nearest side again. Its reverse surface can be muted slate blue with minimal detail, with its known near-side wheels set back at the distant lower edge. This should read as an open partial U-shaped surface shell: a roof plus the distant observed wall, with the entire closest side and rear structure absent. Make the depth between the empty nearest side and the surviving distant wall obvious.
+At the missing closest side, show the appropriate pale teal ground through the OPEN region where road geometry exists, and pure white through the region behind the van where background geometry is absent. Do not draw vehicle flooring, interior furnishings, thick slice caps, mechanical chassis, seats, broken parts or damage. The remaining observed roof / sloped front structure and set-back side identify the SAME delivery van.
+Use only very thin sparse light-gray DASHED outline hints for the absent closest-side lower contour and two absent wheel extents, offset DOWN and TOWARD THE VIEWER from the distant observed side. These are subtle unknown-extent cues, not complete solid wheels or a filled hatch plane. Do not close the aperture with an opaque white shape.
+
+PEDESTRIAN AND BACKGROUND CONSISTENCY:
+Preserve the same person's world pose / heading from P2, still walking across the zebra bars toward the same curb. From this opposite camera the figure should read from the FRONT / front three-quarter with its stride toward the near-left end of the crossing, rather than reusing P2's back view heading away. Keep a faceless low-detail lavender human, not a stick figure.
+Keep the broad absent background region behind the vehicle to the right, extending to the scene boundary; no tiny isolated road hole and no restored road slab. Keep the surviving pale facade as an extremely light thin reverse-side fragment, no invented complete building.
+
+AESTHETIC:
+Same elegant clean matte 3D scientific schematic as P2. Clean edges, restrained shading, slate blue vehicle, lavender figure, pale teal road, cool gray facade, white page. It must look like incomplete geometric reconstruction, not vehicle damage, a normal intact car, or a car with an open cargo door.
+ONE standalone 2.35:1 wordless scene. No text, arrows, labels, camera symbols, hatch-filled faces, gold/orange, boxes or watermark.

@@ -1,0 +1,56 @@
+{
+  "reference_file": "C:\\Users\\changan\\Downloads\\drivestudio--1024360143612057520_3580_000_3600_000--gt_000.webp",
+  "sha256": "8f4ab34e8506e46670739a7910a8ea62c8ff5172749023ca48811d69790fff23",
+  "tile_matches": [
+    {
+      "panorama_tile": 0,
+      "camera": "SIDE_LEFT",
+      "frame": 0,
+      "native_size": [
+        1920,
+        886
+      ],
+      "mean_absolute_pixel_error": 12.7216210496614
+    },
+    {
+      "panorama_tile": 1,
+      "camera": "FRONT_LEFT",
+      "frame": 0,
+      "native_size": [
+        1920,
+        1280
+      ],
+      "mean_absolute_pixel_error": 8.35731716579861
+    },
+    {
+      "panorama_tile": 2,
+      "camera": "FRONT",
+      "frame": 0,
+      "native_size": [
+        1920,
+        1280
+      ],
+      "mean_absolute_pixel_error": 6.462293294270833
+    },
+    {
+      "panorama_tile": 3,
+      "camera": "FRONT_RIGHT",
+      "frame": 0,
+      "native_size": [
+        1920,
+        1280
+      ],
+      "mean_absolute_pixel_error": 6.430717230902777
+    },
+    {
+      "panorama_tile": 4,
+      "camera": "SIDE_RIGHT",
+      "frame": 0,
+      "native_size": [
+        1920,
+        886
+      ],
+      "mean_absolute_pixel_error": 13.578394626285428
+    }
+  ]
+}

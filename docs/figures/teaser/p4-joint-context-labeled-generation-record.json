@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-03",
+  "baseline_commit": "09ec7adb91eca760fe8c2682d91b40a479f2bcfe",
+  "generator": "built-in image_gen",
+  "mode": "label-only refinement of the existing P4 joint-context illustration",
+  "file": "p4-joint-context-labeled.png",
+  "size": [1921, 819],
+  "image_mode": "RGB",
+  "sha256": "92170091ffe908b6518bd0801829942e8c7ffee026dd828e700712eaf3ea4059",
+  "source_image": "C:/Users/changan/.codex/generated_images/01a19b7b-6847-7eb2-865d-edfdc3244ff9/exec-47af7df8-0d40-41d4-9ad2-83feae22be19.png",
+  "prompt": "p4-joint-context-labeled-prompt.txt",
+  "references": [
+    {
+      "file": "p4-joint-context.png",
+      "role": "edit target; preserve the composed scene, three bidirectional context branches and gold completion regions",
+      "sha256": "6d29924d7300131a08ce31b3a1c8ebce3edc18bb3daa4dc1292bbbc868e08479"
+    }
+  ],
+  "exact_labels": ["Background", "Vehicle", "Human", "Shared scene context"],
+  "visual_review": [
+    "All four labels are spelled correctly, appear once and are legible; component callouts use teal, blue and purple.",
+    "Shared scene context appears inside the common bottom container above the mixed feature tiles.",
+    "The context box accommodates the text; the blue connection ends at the expanded top edge and does not cross its label.",
+    "All three original bidirectional interactions remain visible and reach the same shared context.",
+    "Scene viewpoint, relative arrangement, gold rear cap and gold road patch remain visually consistent with the reference.",
+    "No extra main title, P4 marker, legend, watermark or second panel."
+  ],
+  "review_scope": "Visual and text inspection of a generated conceptual illustration; no exact pixel registration or experimental output is claimed.",
+  "previous_versions_preserved": true,
+  "ppt_or_manuscript_modified": false,
+  "baseline_log": "../../../paper/build/teaser-p4-labeled/before/paper-revision-changes.md",
+  "baseline_log_sha256": "d961d733fbe53283b8871c503624f1d8f6419135e3368a6c13cdafb19f69e04f"
+}

@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-03",
+  "baseline_commit": "09ec7adb91eca760fe8c2682d91b40a479f2bcfe",
+  "generator": "built-in image_gen",
+  "file": "../../../paper/build/teaser-p3-coverage/before/p3-geometry-concept.png",
+  "status": "Rejected cutaway candidate: exterior door and wheel features appeared as an interior; replaced by geometric coverage schematic",
+  "superseded_by": "p3-coverage-generation-record.json",
+  "size": [
+    1921,
+    819
+  ],
+  "image_mode": "RGB",
+  "sha256": "73623551bd3889432d524624956592306b99fca9d5e788ed5dc4bd424b8bbb00",
+  "source_image": "C:/Users/changan/.codex/generated_images/01a1a09e-76b4-7b20-9670-74ec43039d19/exec-416d68aa-4abf-4285-9165-8adc00c65de1.png",
+  "prompts": [
+    "p3-geometry-concept-prompt.txt",
+    "p3-geometry-concept-refinement-prompt.txt"
+  ],
+  "references": [
+    {
+      "file": "p2-geometry-concept.png",
+      "role": "approved asset identity, partial geometry, broad background absence, walking-state and style reference",
+      "sha256": "f367fa6a8835a7a08527fa77c0738a290f5f4a1a1099f9a6d7a650402aea53fe"
+    },
+    {
+      "file": "p3-standalone.png",
+      "role": "rough opposite-view orientation and scene ordering only; old box geometry, hatching and road hole explicitly rejected",
+      "sha256": "e6e958a09a3524e7bcbf07cd0479f0d0df575574b3601ed0f89060b8a1852b8c"
+    }
+  ],
+  "iterations": [
+    {
+      "source": "C:/Users/changan/.codex/generated_images/01a1a09e-76b4-7b20-9670-74ec43039d19/exec-d9ed219f-5134-4954-8b4b-6360b6aa94ba.png",
+      "review": "style matched, but nearest far-side body and wheels were incorrectly materialized; not selected"
+    },
+    {
+      "source": "C:/Users/changan/.codex/generated_images/01a1a09e-76b4-7b20-9670-74ec43039d19/exec-416d68aa-4abf-4285-9165-8adc00c65de1.png",
+      "review": "selected review candidate; nearest side and wheels are absent, with surviving observed side set back across the vehicle width"
+    }
+  ],
+  "design": "p3-design.md",
+  "review": [
+    "no in-image text, labels, arrows, panel borders or gold completion color",
+    "roof and distant observed shell retained; foreground side absent",
+    "large background absence continues toward the right scene boundary",
+    "pedestrian remains in the crosswalk; world pose consistency is a visual design target, not a registered 3D measurement",
+    "PNG decoded and integrity checked"
+  ],
+  "geometry_scope": "ImageGen conceptual counterpart guided by raster references, not two renders of one explicit 3D mesh or a calibrated Waymo mask.",
+  "ppt_current": {
+    "file": "../../../paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx",
+    "sha256": "3d90daabc82b09fe2dcb022e7418268c3899a425b73f27c8abaa6f86f9263bef",
+    "p2_updated": true,
+    "p3_updated": false
+  }
+}

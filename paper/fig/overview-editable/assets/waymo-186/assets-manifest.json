@@ -1,0 +1,300 @@
+{
+  "case": "1024360143612057520_3580_000_3600_000",
+  "scene_id": 186,
+  "model": "/cloud-storage3/data/waymo_eval_case/segformer-b5",
+  "asset_count": 11,
+  "assets": [
+    {
+      "id": "P01",
+      "file": "people/P01_dark_jacket_f022_FRONT_LEFT.png",
+      "raw_crop": "crops/P01_dark_jacket_f022_FRONT_LEFT.png",
+      "mask": "masks/P01_dark_jacket_f022_FRONT_LEFT.png",
+      "source": "source/f022_FRONT_LEFT.jpg",
+      "frame": 22,
+      "camera": "FRONT_LEFT",
+      "waymo_camera_enum": 2,
+      "track_id": "219ff131-95cb-46c2-8deb-2024687ba1d4",
+      "label_bbox_xyxy": [
+        1294.443705,
+        687.16992,
+        1411.2878549999998,
+        1091.38752
+      ],
+      "crop_xyxy": [
+        1284,
+        677,
+        1422,
+        1102
+      ],
+      "source_truncated": false,
+      "size": [
+        138,
+        425
+      ],
+      "alpha_pixels": 28087,
+      "mask_method": "SegFormer-B5 semantic context crop + GrabCut boundary refinement; frame selected for nonoverlapping pedestrian boxes"
+    },
+    {
+      "id": "P02",
+      "file": "people/P02_backpack_f022_FRONT_LEFT.png",
+      "raw_crop": "crops/P02_backpack_f022_FRONT_LEFT.png",
+      "mask": "masks/P02_backpack_f022_FRONT_LEFT.png",
+      "source": "source/f022_FRONT_LEFT.jpg",
+      "frame": 22,
+      "camera": "FRONT_LEFT",
+      "waymo_camera_enum": 2,
+      "track_id": "de0f79f9-7213-4451-b94f-9fa71fe5da97",
+      "label_bbox_xyxy": [
+        1412.86683,
+        720.64419,
+        1548.02709,
+        1057.91325
+      ],
+      "crop_xyxy": [
+        1402,
+        710,
+        1559,
+        1068
+      ],
+      "source_truncated": false,
+      "size": [
+        157,
+        358
+      ],
+      "alpha_pixels": 20811,
+      "mask_method": "SegFormer-B5 semantic context crop + GrabCut boundary refinement; frame selected for nonoverlapping pedestrian boxes"
+    },
+    {
+      "id": "P03",
+      "file": "people/P03_coat_front_f020_FRONT_RIGHT.png",
+      "raw_crop": "crops/P03_coat_front_f020_FRONT_RIGHT.png",
+      "mask": "masks/P03_coat_front_f020_FRONT_RIGHT.png",
+      "source": "source/f020_FRONT_RIGHT.jpg",
+      "frame": 20,
+      "camera": "FRONT_RIGHT",
+      "waymo_camera_enum": 3,
+      "track_id": "6a2098cf-d68b-430d-810d-bfe03afd6f94",
+      "label_bbox_xyxy": [
+        536.535705,
+        735.17076,
+        658.432575,
+        1110.33522
+      ],
+      "crop_xyxy": [
+        524,
+        723,
+        671,
+        1123
+      ],
+      "source_truncated": false,
+      "size": [
+        147,
+        400
+      ],
+      "alpha_pixels": 26844,
+      "mask_method": "SegFormer-B5 semantic context crop + GrabCut boundary refinement; isolated subject selection"
+    },
+    {
+      "id": "P04",
+      "file": "people/P04_long_coat_f105_FRONT_LEFT.png",
+      "raw_crop": "crops/P04_long_coat_f105_FRONT_LEFT.png",
+      "mask": "masks/P04_long_coat_f105_FRONT_LEFT.png",
+      "source": "source/f105_FRONT_LEFT.jpg",
+      "frame": 105,
+      "camera": "FRONT_LEFT",
+      "waymo_camera_enum": 2,
+      "track_id": "1bce64e1-8530-4fef-850f-9d49491914e3",
+      "label_bbox_xyxy": [
+        662.853705,
+        746.223585,
+        858.015015,
+        1221.810855
+      ],
+      "crop_xyxy": [
+        652,
+        736,
+        869,
+        1232
+      ],
+      "source_truncated": false,
+      "size": [
+        217,
+        496
+      ],
+      "alpha_pixels": 43730,
+      "mask_method": "SegFormer-B5 semantic inference on context crop, largest component, GrabCut boundary refinement; not ground-truth instance mask"
+    },
+    {
+      "id": "V01",
+      "file": "vehicles/V01_postal_front_PARTIAL_f000_FRONT_LEFT.png",
+      "raw_crop": "crops/V01_postal_front_PARTIAL_f000_FRONT_LEFT.png",
+      "mask": "masks/V01_postal_front_PARTIAL_f000_FRONT_LEFT.png",
+      "source": "source/f000_FRONT_LEFT.jpg",
+      "frame": 0,
+      "camera": "FRONT_LEFT",
+      "waymo_camera_enum": 2,
+      "track_id": "d02e1511-51e2-47b2-81ba-9ca4b7e7525c",
+      "label_bbox_xyxy": [
+        0.0,
+        623.6951250000002,
+        1043.047496240411,
+        1280.0
+      ],
+      "crop_xyxy": [
+        0,
+        591,
+        1076,
+        1280
+      ],
+      "source_truncated": true,
+      "size": [
+        1076,
+        689
+      ],
+      "alpha_pixels": 555448,
+      "mask_method": "SegFormer-B5 semantic inference on context crop, largest component, GrabCut boundary refinement; not ground-truth instance mask",
+      "mask_refinement": {
+        "method": "limit semantic component to source object label bbox with 3 px allowance to exclude neighboring vehicles"
+      }
+    },
+    {
+      "id": "V02",
+      "file": "vehicles/V02_postal_side_PARTIAL_f105_SIDE_LEFT.png",
+      "raw_crop": "crops/V02_postal_side_PARTIAL_f105_SIDE_LEFT.png",
+      "mask": "masks/V02_postal_side_PARTIAL_f105_SIDE_LEFT.png",
+      "source": "source/f105_SIDE_LEFT.jpg",
+      "frame": 105,
+      "camera": "SIDE_LEFT",
+      "waymo_camera_enum": 4,
+      "track_id": "e57e22ab-6c2f-4dc6-8913-56b0b429dbc7",
+      "label_bbox_xyxy": [
+        29.684729999999945,
+        199.58244000000008,
+        1895.40159,
+        886.0
+      ],
+      "crop_xyxy": [
+        0,
+        165,
+        1920,
+        886
+      ],
+      "source_truncated": true,
+      "size": [
+        1920,
+        721
+      ],
+      "alpha_pixels": 1012921,
+      "mask_method": "SegFormer-B5 semantic inference on context crop, largest component, GrabCut boundary refinement; not ground-truth instance mask",
+      "mask_refinement": {
+        "method": "limit semantic component to source object label bbox with 3 px allowance to exclude neighboring vehicles"
+      }
+    },
+    {
+      "id": "V03",
+      "file": "vehicles/V03_silver_sedan_f030_SIDE_RIGHT.png",
+      "raw_crop": "crops/V03_silver_sedan_f030_SIDE_RIGHT.png",
+      "mask": "masks/V03_silver_sedan_f030_SIDE_RIGHT.png",
+      "source": "source/f030_SIDE_RIGHT.jpg",
+      "frame": 30,
+      "camera": "SIDE_RIGHT",
+      "waymo_camera_enum": 5,
+      "track_id": "41b429ca-984a-4d5c-b4be-d7dbefdd4caf",
+      "label_bbox_xyxy": [
+        341.4375657474095,
+        440.06047934261915,
+        1379.0135942525903,
+        802.6561926159334
+      ],
+      "crop_xyxy": [
+        323,
+        422,
+        1398,
+        821
+      ],
+      "source_truncated": false,
+      "size": [
+        1075,
+        399
+      ],
+      "alpha_pixels": 270837,
+      "mask_method": "SegFormer-B5 semantic inference on context crop, largest component, GrabCut boundary refinement; not ground-truth instance mask",
+      "mask_refinement": {
+        "method": "limit semantic component to source object label bbox with 3 px allowance to exclude neighboring vehicles"
+      }
+    },
+    {
+      "id": "V04",
+      "file": "vehicles/V04_silver_hatchback_f030_FRONT_RIGHT.png",
+      "raw_crop": "crops/V04_silver_hatchback_f030_FRONT_RIGHT.png",
+      "mask": "masks/V04_silver_hatchback_f030_FRONT_RIGHT.png",
+      "source": "source/f030_FRONT_RIGHT.jpg",
+      "frame": 30,
+      "camera": "FRONT_RIGHT",
+      "waymo_camera_enum": 3,
+      "track_id": "8943f915-83b3-4349-8bc8-779ad17ba294",
+      "label_bbox_xyxy": [
+        771.8051354409786,
+        820.278774972573,
+        1571.4100227424033,
+        1280.0
+      ],
+      "crop_xyxy": [
+        749,
+        798,
+        1594,
+        1280
+      ],
+      "source_truncated": true,
+      "size": [
+        845,
+        482
+      ],
+      "alpha_pixels": 288363,
+      "mask_method": "SegFormer-B5 semantic inference on context crop, largest component, GrabCut boundary refinement; not ground-truth instance mask"
+    },
+    {
+      "id": "B01",
+      "file": "backgrounds/B01_observed_background_f020_FRONT.png",
+      "source": "source/f020_FRONT.jpg",
+      "frame": 20,
+      "camera": "FRONT",
+      "size": [
+        1920,
+        1280
+      ],
+      "mask": "masks/B01_observed_background_f020_FRONT.png",
+      "mask_method": "SegFormer-B5 classes 0..10 kept; movable classes 11..18 made transparent",
+      "occluded_regions": "transparent, not reconstructed or inpainted"
+    },
+    {
+      "id": "B02",
+      "file": "backgrounds/B02_observed_background_f060_FRONT_LEFT.png",
+      "source": "source/f060_FRONT_LEFT.jpg",
+      "frame": 60,
+      "camera": "FRONT_LEFT",
+      "size": [
+        1920,
+        1280
+      ],
+      "mask": "masks/B02_observed_background_f060_FRONT_LEFT.png",
+      "mask_method": "SegFormer-B5 classes 0..10 kept; movable classes 11..18 made transparent",
+      "occluded_regions": "transparent, not reconstructed or inpainted"
+    },
+    {
+      "id": "B03",
+      "file": "backgrounds/B03_observed_background_f060_FRONT_RIGHT.png",
+      "source": "source/f060_FRONT_RIGHT.jpg",
+      "frame": 60,
+      "camera": "FRONT_RIGHT",
+      "size": [
+        1920,
+        1280
+      ],
+      "mask": "masks/B03_observed_background_f060_FRONT_RIGHT.png",
+      "mask_method": "SegFormer-B5 classes 0..10 kept; movable classes 11..18 made transparent",
+      "occluded_regions": "transparent, not reconstructed or inpainted"
+    }
+  ],
+  "pixel_policy": "Original decoded RGB pixels, no generative fill or sharpening. Alpha masks are model predictions."
+}

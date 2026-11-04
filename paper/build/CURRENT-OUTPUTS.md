@@ -1,5 +1,14 @@
 # 当前论文 PDF
 
+## 2026-11-04 采用作者指定 PPT teaser
+
+- [英文主稿](en/main.pdf)：11 页，完整正文止于第 8 页；[中文主稿](zh/main_zh.pdf)：10 页，完整正文止于第 7 页。
+- 两版首页 Figure 1 已替换为作者指定 PPT 的完整页面，保留 PPT 内现有内容、原图注和正文。正式图件为 [概念 teaser PDF](../fig/drivecompose-concept-merged.pdf)。
+- 两版重新编译成功；最终首页与正文末页已渲染复核，PDF 内嵌 teaser 像素与 PPT 高分辨率导出一致。此前本地总览图 PDF 的使用也在同步远端修改时保留。
+- [本轮前后对照](../../docs/paper-revision-changes.md)、[采用与核验记录](../provenance/teaser-ppt-replacement-20261104.json)。补充材料未修改。
+
+---
+
 ## 2026-11-04 总结全文收回第 8 页（修正旧页数误判）
 
 - [英文主稿](en/main.pdf)：共 11 页；第六章总结全文及正文结束标签均位于第 8 页，第 9 页从 LLM 使用说明开始，引用随后。

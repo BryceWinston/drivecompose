@@ -1,5 +1,13 @@
 # DriveCompose teaser 设计研究与概念样例
 
+## 当前论文图 1（2026-11-04）
+
+按用户“这个作为 teaser 替换上去就行”的要求，当前双语主稿使用 [drivecompose-concept-merged.pdf](../../../paper/fig/drivecompose-concept-merged.pdf)，来源为作者最新保存的 [可编辑 PPT](../../../paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx)。完整单页渲染为 5400 × 2835 像素，再封装至原有 720 × 378 pt 图幅；没有重绘、裁切或修改 PPT 内的内容。两版图注与正文保持当前版本。输入缩略图来自 Waymo，P2–P6 为概念示意。
+
+两版已重新编译并检查首页与正文末页；英文完整正文止于第 8 页，中文止于第 7 页。源文件哈希、内嵌像素核对与编译结果见[采用记录](../../../paper/provenance/teaser-ppt-replacement-20261104.json)。下方保留早期设计研究与旧样例，不代表当前使用的图件。
+
+## 历史设计与样例
+
 日期：2026-10-28。范围：参考图研究、teaser 叙事与 Image Gen 概念图；随后按用户要求插入双语主稿标题下、摘要前。样例为生成式示意，不作为实验结果。
 
 本轮场景样例：[drivecompose-teaser-waymo-concept.png](../../../paper/fig/drivecompose-teaser.png)，2172 × 724，宽高比 3:1。以用户提供的路口参考图调整场景、车辆与行人，并保留原有三栏版式。完整指令见 [waymo-production-prompt.txt](waymo-production-prompt.txt)，生成记录见 [waymo-generation-record.json](waymo-generation-record.json)。

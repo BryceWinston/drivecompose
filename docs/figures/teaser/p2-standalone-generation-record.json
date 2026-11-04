@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-02",
+  "baseline_commit": "09ec7adb91eca760fe8c2682d91b40a479f2bcfe",
+  "generator": "built-in image_gen",
+  "mode": "one standalone P2 asset, guided by deterministic scene geometry and a separate style reference",
+  "status": "candidate P2 illustration; no P3 generated in this round; not inserted into the PPT or manuscript",
+  "file": "p2-standalone.png",
+  "size": [1921, 819],
+  "image_mode": "RGB",
+  "sha256": "e47e8883d0e4d0957604e44ab6e9f2e0bfceac456ad02f67756ff2b84f1da00b",
+  "source_image": "C:/Users/changan/.codex/generated_images/01a19b7b-6847-7eb2-865d-edfdc3244ff9/exec-655dd806-b059-4917-8163-0391d61c3278.png",
+  "prompt": "p2-standalone-prompt.txt",
+  "spatial_plan": "p2-spatial-plan.md",
+  "geometry_contract": "p2-scene-contract.json",
+  "geometry_contract_sha256": "f2090e45a7d00922cd50347a520f5274bb74a2732d470d5f11ea0fda09d28b0d",
+  "references": [
+    {
+      "file": "../../../paper/build/teaser-p2-standalone/geometry-guide.png",
+      "role": "deterministic placement and orthographic projection guide",
+      "sha256": "b277091e82e72a6c4adaa160a789eddaf54f17218282db2a0fea06e7cfc697c2"
+    },
+    {
+      "file": "references/abstract-diagram-style.jpg",
+      "role": "user-provided visual style only"
+    }
+  ],
+  "guide_builder": "../../../paper/build/teaser-p2-standalone/build-geometry-guide.mjs",
+  "guide_svg": "../../../paper/build/teaser-p2-standalone/geometry-guide.svg",
+  "geometry_check": "../../../paper/build/teaser-p2-standalone/geometry-validation.json",
+  "geometry_check_scope": "54 road-patch sight lines are occluded in the authored camera corridor; rear and far-side face orientations are checked. This verifies the controlled design, not Waymo calibration or the generated raster's exact 3D projection.",
+  "image_semantics": "An external view of aggregated observed surfaces. The illustrative viewing camera differs from the input acquisition cameras. Gray-blue is observed vehicle surface; dashed and hatched white regions are missing rear/road surfaces. No completed surfaces are drawn.",
+  "review": [
+    "One wide scene asset only, without a second panel, title, text, camera icon, arrow or legend.",
+    "The van front remains toward the upper right; its unknown rear faces the lower left.",
+    "The walking figure stays to the right on the crosswalk, ahead of the vehicle.",
+    "The facade remains behind the vehicle; the road patch remains behind the rear.",
+    "Flat abstract colors and simple geometry preserve the requested visual direction.",
+    "Alignment to the geometry guide was visually checked; numerical calibration of the generated raster was not performed."
+  ],
+  "future_correspondence": "P3 changes only the viewing camera in p2-scene-contract.json. P4 reuses the P2 camera and world anchors while adding completed surfaces. P5 crops the same vehicle; P6a reuses the P3 camera on the completed scene.",
+  "ppt_unchanged_sha256": "60ecadfa10823080aa648e29f8609db9df5995534db743f635f7cdf8a51917fe",
+  "manuscript_or_formal_pdf_modified": false,
+  "compiled": false,
+  "change_log_baseline": "../../../paper/build/teaser-p2-standalone/before/paper-revision-changes.md",
+  "change_log_baseline_sha256": "1ca5f973a4cdc7cb3265700a62614baabb986425f7ed798af8da48e36602b522"
+}

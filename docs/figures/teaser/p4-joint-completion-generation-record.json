@@ -1,0 +1,90 @@
+{
+  "date": "2026-11-03",
+  "baseline_commit": "09ec7adb91eca760fe8c2682d91b40a479f2bcfe",
+  "generator": "built-in image_gen",
+  "file": "p4-joint-completion.png",
+  "status": "accepted by user; inserted into original PPT",
+  "size": [
+    1920,
+    819
+  ],
+  "image_mode": "RGB",
+  "sha256": "289324ea596082ecc52e36f5d433d8cd3ef2630f2b9e3f5859bcfb634ed0cce4",
+  "source_image": "C:/Users/changan/.codex/generated_images/01a1a09e-76b4-7b20-9670-74ec43039d19/exec-2c673952-289e-4699-b6c1-a7728339f82a.png",
+  "prompt": "p4-wall-completion-prompt.txt",
+  "initial_prompt": "p4-joint-completion-prompt.txt",
+  "design": "p4-joint-completion-design.md",
+  "references": [
+    {
+      "file": "p2-geometry-concept.png",
+      "role": "authoritative scene, camera, observed geometry, actor pose and matte style",
+      "sha256": "f367fa6a8835a7a08527fa77c0738a290f5f4a1a1099f9a6d7a650402aea53fe"
+    },
+    {
+      "file": "p4-joint-context-labeled.png",
+      "role": "four labels and three bidirectional branches to one context strip only; obsolete cuboid and tiny road tile excluded",
+      "sha256": "92170091ffe908b6518bd0801829942e8c7ffee026dd828e700712eaf3ea4059"
+    },
+    {
+      "file": "p3-geometry-concept.png",
+      "role": "accepted coverage semantics from the other viewing side, including unsupported human front; not P4 camera",
+      "sha256": "b4fb4a233c74d41663ad517d2b3e7a61dbf12ee505e89ac51799bfa9f2ce0dff"
+    }
+  ],
+  "exact_labels": [
+    "Background",
+    "Vehicle",
+    "Human",
+    "Shared scene context"
+  ],
+  "geometry_semantics": [
+    "P2 reference viewpoint and actor state retained in the conceptual illustration",
+    "gold rear closure and rounded corner/roof/bumper continuation add connected three-dimensional structure",
+    "broad missing road behind the van filled by a contiguous gold surface extension, not an isolated tiny tile",
+    "missing facade extended in gold along the same wall plane, with connected coping, full-height wall and visible end thickness; observed gray window wall retained",
+    "observed near-side body, roof, wheels, known road and visible human back keep their source colors",
+    "human front is completed but faces away in this reference viewpoint; no arbitrary gold painted on observed back",
+    "three bidirectional component branches meet one common interleaved context strip"
+  ],
+  "review": [
+    "visually checked all four labels are correct and appear once",
+    "teal, blue and purple branches each have two arrowheads and reach the same context",
+    "no vehicle cutaway, unsupported interior or unknown ghost body remains",
+    "human still walks toward far curb rather than turning toward the viewer",
+    "wall refinement visually checked: continuous gold addition closes the broken left silhouette, while the gray observed window section remains",
+    "PNG integrity verified; no extra panel, title, watermark or legend",
+    "qualitative correspondence checked; no numerical mask calibration or pixel registration claim"
+  ],
+  "baseline_image": "../../../paper/build/teaser-p4-completion/before/p4-joint-context-labeled.png",
+  "change_log_baseline": "../../../paper/fig/teaser-editable/.build/replaced-p3-coverage/before/paper-revision-changes.md",
+  "change_log_baseline_sha256": "642623424ac5b6358f8f882f1f9c5fe5a61a7a72f76c9e72850cbba83be8bbc4",
+  "wall_refinement": {
+    "request": "background wall must also be completed",
+    "edit_target": "../../../paper/build/teaser-p4-completion/wall-before/p4-joint-completion.png",
+    "edit_target_sha256": "a516ba726f37fd1dda14224c926e4abaa5c1fd9a31d6f1ebf8b2c66b86a2219f",
+    "initial_source_image": "C:/Users/changan/.codex/generated_images/01a1a09e-76b4-7b20-9670-74ec43039d19/exec-927dd7f3-9fd0-486e-b875-db318e27e18b.png",
+    "prompt": "p4-wall-completion-prompt.txt",
+    "change_log_baseline": "../../../paper/build/teaser-p4-completion/wall-before/paper-revision-changes.md",
+    "change_log_baseline_sha256": "694af85f3f0d9be3045a617cdb51260362533995b9511614f3a438bc0635f3ec",
+    "built_in_imagegen_calls": 1,
+    "review": "gold facade extension, cornice and end thickness connected; original window and label topology retained visually; no claim of pixel-identical unchanged regions or calibrated completion extent",
+    "p2_p3_and_ppt_sha256_unchanged": true
+  },
+  "ppt_current": {
+    "file": "../../../paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx",
+    "sha256": "82f5778291c994d0c2c440d37f95a0caaf84509b3a5db5d6cd35ce358221ab2d",
+    "p3_updated": true,
+    "p4_updated": true
+  },
+  "ppt_insertion": {
+    "source_sha256": "a6ba173b0aab2950e1a0aefa764e4f12b7230ba4f417b522015cb87773d60e61",
+    "baseline": "../../../paper/fig/teaser-editable/.build/replaced-p4-completion/before/DriveCompose-teaser-placeholder.pptx",
+    "validation": "../../../paper/fig/teaser-editable/.build/replaced-p4-completion/validation.json",
+    "preserved_unrelated_elements": 71,
+    "preserved_outer_frame": {"left": 462.8, "top": 392, "width": 844.4, "height": 360},
+    "visible_text_changed": false,
+    "final_ppt_reimport_and_render": "passed"
+  },
+  "manuscript_modified": false,
+  "formal_pdf_modified": false
+}

@@ -1,0 +1,29 @@
+Use case: scientific-educational.
+Asset type: ONE standalone P3 concept illustration for a computer-vision paper teaser, 2.35:1 wide landscape, pure white background.
+Primary request: redraw P3 as a polished NOVEL-VIEW GEOMETRIC COVERAGE DIAGRAM. Show what is observed versus unobserved in the same driving scene. This is a diagnostic schematic of evidence coverage, not a simulated physical car interior.
+
+INPUT ROLES:
+Image 1 is the approved P2: authoritative for the recognizable compact delivery van proportions, rounded roof and short cab, matte slate-blue observed geometry, muted lavender faceless 3D pedestrian, pale teal street, cool gray facade and restrained clean illustration style.
+Image 2 is a simple PROJECTION / COVERAGE GUIDE for P3: authoritative for viewing direction, world arrangement, what survives as outward-facing observed geometry, and the rough three-dimensional unobserved support. Its blocky gray shape and stick figure are only placeholders. Re-render them beautifully in Image 1's style. Do not copy the crude guide as final art. Do not move the separate world objects to make a prettier arrangement.
+
+FIXED WORLD / NEW CAMERA:
+The van's front now projects toward the upper-left; its rear and missing background project to the right. The crossing and same pedestrian project to the left of the van. This is a camera orbit around a stationary scene, not a mirrored P2 bitmap.
+Keep the same person's ground anchor, walking instant and world heading toward the far curb. In P3 the stride projects toward the lower-left, perpendicular to the zebra bars, and the figure is seen from the front / front three-quarter. Do not independently turn the pedestrian back toward the facade.
+The same facade fragment is now seen obliquely from its reverse side near the left/foreground, as shown in the guide. Use a VERY pale thin outline / lightly indicated plane; do not repeat its front-window frame and exterior trim on its reverse side. No thick free-standing billboard and no new building.
+
+CRITICAL SEMANTIC REDESIGN — NO CUTAWAY:
+Do NOT remove a car side and reveal a complete opposite blue sidewall as a cargo interior. Do NOT show any external door handles, exterior windows, tires or hubcaps facing the viewer from inside the van. Do NOT depict a hollow open-sided truck, a sliced vehicle, a floating roof over visible interior panels, seats, floor, chassis or mechanical parts.
+Instead use the coverage guide's visual grammar:
+1. OBSERVED outward-facing surface fragments are matte slate blue. From this P3 view, the recognizable remaining roof and a small upper cab/windshield contour are visible. Preserve the observed roof's curved delivery-van shape and irregular coverage edge, rather than inventing a complete new roof. The previously observed opposite side faces AWAY from this camera. Its reverse is NOT drawn as a trustworthy interior; omit its door texture, wheel faces and body-panel details entirely in this diagnostic diagram.
+2. The large unobserved far-side and rear structural region is a COARSE UNKNOWN 3D SUPPORT ENVELOPE, not an already reconstructed vehicle shell. Place a very pale neutral gray-blue ghost volume across that region, with sparse THIN DASHED edges spanning the side, rounded roof-rear transition and rear extent. It should read as a simple three-dimensional uncertain extent within the known asset bounds. Include two connected depth-facing directions so it is not merely a flat white missing panel.
+The ghost support is schematic, mostly white, and has no material gloss, surface detail or cast shadow. No exact unknown door outlines, wheel arches, tires, handles, precise unseen rear doors, dense voxel grid or full mesh wireframe. Its far/side/rear extent should be visibly provisional rather than a fully drawn hidden shape.
+The unknown coverage overlay suppresses any false view into a detailed opposite exterior wall. Do not render the known sidewall or its tires through the ghost region. This overlay does not claim that unknown space is empty, nor that a complete car has already been inferred.
+3. The observed roof / cab fragments remain visually distinct from the very pale unknown envelope. Use differences in saturation, edge continuity and sparse dashed coverage boundaries, not a filled orange/gold completion.
+
+BACKGROUND:
+Keep the same broad unobserved background behind the van. Here it projects to the right / lower-right and continues into white space at the outer scene boundary. Do not restore a complete rectangular road slab or replace the region with one tiny square hole. Keep only the observed thin pale teal road fragment under the crossing and surviving vehicle support. No road thickness, pit walls, dark excavation, raised tile or shadow in unknown background.
+Reproject the crosswalk in one coherent perspective. Aesthetic low-detail pedestrian, not the guide's stick symbol.
+
+STYLE / FRAMING:
+Match Image 1's clean, quiet matte 3D scientific illustration. Carefully balanced proportions, crisp silhouettes, subtle directional shading on genuinely observed geometry, uniform pastel materials, no photographic texture, no dense lines, no glossy toy finish, no harsh shadow. Keep enough van identity in the observed roof/cab silhouette to recognize the same asset. The unknown envelope remains coarse and light, not an opaque solid gray box or a complete gray vehicle.
+One scene asset, wide 2.35:1. Clear at paper thumbnail size. No text, panel letters, labels, arrows, legend, camera symbols, decorative frames, borders or watermark. No orange / gold completion.

@@ -1,0 +1,19 @@
+Use case: precise-object-edit.
+Generate ONE standalone P6a illustration: the COMPLETED counterpart of the supplied P3 new-camera scene, for a scientific paper teaser. Wide approximately 2.35:1, pure white background, no text.
+
+REFERENCE ROLES:
+Image 1 (P3) is the EXACT EDIT TARGET for camera, framing, all projected object positions and scene geometry. Preserve it closely.
+Image 2 (clean P4) supplies ONLY the same completed asset identity, restrained pale gold completion highlight and visual style. Do not copy its different camera view or object screen positions.
+
+P6a must be directly paired with P3: SAME new camera s1, same road corners and crop, same van heading and dimensions, same purple person's position and walking pose, same crosswalk, same pale dashed facade-plane reverse outline. Only fill the surfaces that were missing in P3. Do not rotate or move the vehicle or human, mirror the scene or change any already-observed surface. In this projection the van nose is toward UPPER-LEFT; its short rear cap is the RIGHT end, the person is UPPER-LEFT on the crosswalk, and the existing road missing patch is LOWER-RIGHT of the van.
+
+VISIBLE COMPLETION CHANGES:
+- Both the LONG newly visible vehicle side and its short RIGHT rear cap, currently white with gray hatching and dashed boundaries in P3, become continuous CLOSED surfaces in matching PALE AMBER-GOLD (#F4D18D), with clean thin solid amber contours (#D99A34). Remove all missing-surface hatch and dashed boundaries on these two faces. Their quadrilateral bounds and van geometry stay fixed.
+- Materialize the two formerly faint far-side wheel-outline cues at their EXACT existing locations as simple dark blue-gray wheel disks with a subtle thin amber outline. They stay attached to the same body and must not move or become holes in the gold side.
+- The same small ground patch at LOWER-RIGHT becomes a filled pale-gold road surface, flush with the road plane, in its EXACT existing footprint. No raised tile, depth or pit.
+Keep the observed ROOF blue-gray. The cab window seen in P2/P4 belongs to the opposite hidden side; DO NOT add or mirror a window onto the newly completed gold side. No new doors, handles, seams, logos, windshield or lights.
+Keep the reverse facade as its existing faint dashed position outline; do not invent a new filled building backside. Purple human and crosswalk remain unchanged. No new gold patches on the human, facade or elsewhere.
+
+Match the clean flat academic 2.5D geometric style: muted teal road, blue-gray observed roof, purple faceless diagram person, pale gray context outline, locally gold completed surfaces, thin precise outlines, gentle flat plane shading only. No realistic texture, toy gloss, vegetation, Gaussian splats, voxels or decorative scenery.
+
+ABSOLUTELY NO TEXT, labels, P6a marker, captions, legend, watermark or logos. No camera icon, arrows, shared-context strip, feature tiles, panel border, duplicate actor, second panel or before/after inset. ONE completed new-view scene only.

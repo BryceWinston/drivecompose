@@ -1,0 +1,67 @@
+{
+  "date": "2026-11-03",
+  "baseline_commit": "09ec7adb91eca760fe8c2682d91b40a479f2bcfe",
+  "generator": "built-in image_gen",
+  "file": "p2-geometry-concept.png",
+  "status": "User-accepted P2 geometry concept; inserted into the original PPT on 2026-11-03",
+  "size": [
+    1921,
+    819
+  ],
+  "mode": "RGB",
+  "sha256": "f367fa6a8835a7a08527fa77c0738a290f5f4a1a1099f9a6d7a650402aea53fe",
+  "design": "p2-geometry-design.md",
+  "prompts": [
+    "p2-geometry-concept-prompt.txt",
+    "p2-geometry-concept-refinement-prompt.txt",
+    "p2-geometry-occlusion-prompt.txt"
+  ],
+  "generation_history": [
+    {
+      "stage": "initial shape/style redraw",
+      "source": "C:/Users/changan/.codex/generated_images/01a19b7b-6847-7eb2-865d-edfdc3244ff9/exec-815597fb-1827-4503-92df-ff76fe04a734.png"
+    },
+    {
+      "stage": "intermediate road-through-void and boundary refinement; subsequently corrected by the user",
+      "source": "C:/Users/changan/.codex/generated_images/01a19b7b-6847-7eb2-865d-edfdc3244ff9/exec-e9f10177-1a1a-4aaf-a056-d38003bd4aaf.png",
+      "sha256": "cb4ea3878fcbf27bc0f8621a41aab3cd5115f792d725208686601c8bafe20061",
+      "baseline_copy": "../../../paper/build/teaser-p2-geometry-style/before/p2-geometry-concept.png"
+    },
+    {
+      "stage": "current: align pedestrian with crosswalk; replace broad occluded background with absent geometry",
+      "source": "C:/Users/changan/.codex/generated_images/01a1a09e-76b4-7b20-9670-74ec43039d19/exec-ddc9e1dd-159b-4274-a123-6e2efc5a7f04.png"
+    }
+  ],
+  "semantic_updates": [
+    "partial 3D asset geometry instead of a hatched rear face",
+    "pedestrian heads toward upper-left along the crosswalk corridor, perpendicular to zebra bars",
+    "large contiguous unobserved background behind the van; no isolated tiny road hole"
+  ],
+  "review": [
+    "visually inspected the generated output",
+    "one standalone wide wordless scene",
+    "van nose remains upper-right; pedestrian remains on the crosswalk in front/right",
+    "unobserved background is absent, not a pit or white tile",
+    "file decoded and PNG verified",
+    "new conceptual extent is not numerically calibrated or pixel-registered to the old scene contract"
+  ],
+  "unchanged_scope": "At image-generation time, before the subsequent user-authorized PPT insertion",
+  "unchanged": {
+    "old_p2_sha256": "e47e8883d0e4d0957604e44ab6e9f2e0bfceac456ad02f67756ff2b84f1da00b",
+    "old_scene_contract_sha256": "f2090e45a7d00922cd50347a520f5274bb74a2732d470d5f11ea0fda09d28b0d",
+    "ppt_sha256": "b7b2f31d38a2b21ad4a7802df776bf416a09df92caa18db49067f17440f76314"
+  },
+  "change_log_baseline": "../../../paper/build/teaser-p2-geometry-style/before/paper-revision-changes.md",
+  "change_log_baseline_sha256": "02cb22f6b69f7940404e5161887eb12b4fcbeaa0fe5a8932af257e981418890b",
+  "ppt_insertion": {
+    "file": "../../../paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx",
+    "source_after_user_close_sha256": "9b65793bdc8a0fbb49d9fe3f28c4f65e3c5a2064e07fcd06d2401a411179c16e",
+    "sha256": "3d90daabc82b09fe2dcb022e7418268c3899a425b73f27c8abaa6f86f9263bef",
+    "preserved_unrelated_elements": 71,
+    "visible_text_or_placement_changed": false,
+    "shape_count": 57,
+    "image_count": 15
+  },
+  "manuscript_modified": false,
+  "formal_pdf_modified": false
+}
