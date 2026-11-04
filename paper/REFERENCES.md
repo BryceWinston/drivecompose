@@ -1,3 +1,9 @@
+## 2026-11-04 JRM 正式会议版本
+
+主稿及补充材料的 `wu2026jrm` 统一改为 `inproceedings`，采用 CVPR 2026、307–316 页和 [CVF 正式记录](https://openaccess.thecvf.com/content/CVPR2026/html/Wu_JRM_Joint_Reconstruction_Model_for_Multiple_Objects_without_Alignment_CVPR_2026_paper.html)。题名、作者和引用键保持，主书目 52 条、补充书目 4 条。中英文四份 PDF 的最终书目均已核对。
+
+---
+
 ## 2026-11-02 机制比较引用
 
 主书目仍为原 52 条。本轮复用 `liao2025complete` 和 `wu2026jrm`，分别归因场景级高斯潜码生成与跨对象潜码耦合；新增成绩明确归属于共享接口下的任务适配对照。已复核原文入口 [CompleteSplat](https://arxiv.org/html/2508.21542v1) 与 [JRM](https://arxiv.org/html/2603.25985v1)。补充材料按实际新增引用同步这两个既有条目，活动补充书目从 2 条增为 4 条，未新增未核验文献。

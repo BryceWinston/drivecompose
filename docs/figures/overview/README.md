@@ -1,6 +1,12 @@
 # DriveCompose 当前论文方法图
 
-## 当前版本：2026-11-01，直接使用用户指定的新 PDF
+## 当前版本：2026-11-04，直接采用作者指定 PDF
+
+按作者指定的 `E:/Users/changan/Downloads/feishu/DriveCompose.pdf` 更新[论文活动总览图](../../../paper/fig/drivecompose-inference-overview.pdf)。文件逐字节复制，SHA-256 为 `51fa17215849349251411f7e641a5b54f916dcd7f7fb77974c43576ba1ebe4e9`；没有裁切、重画或改写图中文字。两版主稿图 2 均直接引用 PDF，位于第 3 页，保留原跨栏宽度。图内含照片与矢量对象，原有图片像素保留。
+
+两版主稿已重新编译并复核图页及完整正文末页；未见裁切或重叠。按实际插入宽度，原文件中少量局部文字仍偏小，例如 `Depth+ ID` 约 4.39 pt；此次按作者要求保留源 PDF 内容。机制示意身份与原图注保持。完整来源、页码与验收见[本轮记录](../../../paper/provenance/figure-replacement-20261104.json)。
+
+## 历史版本：2026-11-01，直接使用用户指定的新 PDF
 
 双语方法节直接引用用户提供的 [PDF](../../../paper/fig/overview-editable/output/DriveCompose.pdf)，替换上一版 PNG。新图为单页 1800×1050 pt，与旧图同为 12:7 比例，保持完整页、跨栏宽度和原图注。文字及线条保留 PDF 矢量内容；场景照片和示意素材保持原样。本轮没有重新生成或改画图件。实际工作区基线保存在 `paper/build/overview-replacement/`，替换范围及检查结果见[改动对照](../../paper-revision-changes.md)。
 

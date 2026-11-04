@@ -6,6 +6,8 @@ Learning is divided into four stages so that the completion target has a stable 
 \paragraph{Data and splits.}
 Counts in Table~\ref{tab:data-splits} include only data passing quality checks. The original Waymo training set is divided into 740 training and 58 development sequences; the 58 development sequences select checkpoints, and the 202 validation sequences are used for testing. Synthetic maps, base vehicle models, and human identities are separated by source asset. Texture variants of a vehicle and clothing/motion variants of a human remain in one split. Real logs are deduplicated and separated by road segment, continuous capture, and identifiable actors. Completeness refers to geometry, materials, and motion bindings within the finite query support.
 
+The synthetic test split supplies 100 scenes for paired hidden-surface evaluation and 20 scenes for asset editing. Fixed-asset reuse is also evaluated on 20 real scenes (Appendices H and I).
+
 \begin{table*}[!t]
 \centering\small
 \setlength{\tabcolsep}{4pt}
@@ -56,7 +58,7 @@ Module & Configuration \\
 Visual recovery & Width 128; patch size 16; 4 heads; 1 image-attention layer and 2 cross-view/time-summary layers \\
 Identity and human state & 24 identity slots; 10-dimensional shape code; 17-joint interface \\
 Query features and latents & Feature dimension 129; latent dimension 128; type-specific $135\rightarrow128\rightarrow128$ encoders with LayerNorm \\
-Completion network & Width 128; 4 layers; 4 heads; 16 memory tokens \\
+Completion network & Width 128; 4 layers; 4 heads; 16 learnable memory tokens \\
 Gaussian decoding & 4 children per query; 23 outputs per child, including 12 appearance parameters \\
 Directional appearance & Constant RGB and three local directional coefficients per channel \\
 Base supports & Background $20\times12\times6$ ($5\times5\times3$ m cells); rigid $8\times4\times4$ inside each asset box; sky $4\times4$ per face \\

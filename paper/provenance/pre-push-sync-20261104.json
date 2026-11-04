@@ -1,0 +1,109 @@
+{
+  "date": "2026-11-04",
+  "operation": "Archive new temporary files, preserve current local paper revisions, integrate remote text update, commit and push",
+  "baseline_head": "a0ccb6b509f7b6454313f4108b956741b5ca4fd3",
+  "integrated_remote_head": "2c6bab6151e40d58f67d17e94a943fe5306b7288",
+  "baseline_state": "Uncommitted local manuscript, supplement and adopted vector figures preserved; remote text-only update integrated",
+  "archive_root_relative_to_project": "../_archive/drivecompose/20261104-pre-push-sync",
+  "workspace_baseline": "../_archive/drivecompose/20261104-pre-push-sync/workspace-before.json",
+  "archive_manifest_relative_to_project": "../_archive/drivecompose/20261104-pre-push-sync/archive-manifest.json",
+  "archived_existing_files": 7,
+  "archived_existing_bytes": 2311034,
+  "archive_integrity": "Every moved file verified by SHA-256",
+  "path_mapping": {
+    "docs/figures/joint-completion-vector/.$figure3-drawio.drawio.dtmp": "../_archive/drivecompose/20261104-pre-push-sync/files/docs/figures/joint-completion-vector/.$figure3-drawio.drawio.dtmp",
+    "docs/figures/teaser/figure1-comparison-draft.png": "../_archive/drivecompose/20261104-pre-push-sync/files/docs/figures/teaser/figure1-comparison-draft.png",
+    "docs/figures/teaser/figure1-comparison-prompt.txt": "../_archive/drivecompose/20261104-pre-push-sync/files/docs/figures/teaser/figure1-comparison-prompt.txt",
+    "docs/figures/teaser/figure1-design-spec.json": "../_archive/drivecompose/20261104-pre-push-sync/files/docs/figures/teaser/figure1-design-spec.json",
+    "docs/figures/teaser/figure1-generation-record.json": "../_archive/drivecompose/20261104-pre-push-sync/files/docs/figures/teaser/figure1-generation-record.json",
+    "paper/tools/__pycache__/build.cpython-313.pyc": "../_archive/drivecompose/20261104-pre-push-sync/files/paper/tools/__pycache__/build.cpython-313.pyc",
+    "paper/build/verification.json": "../_archive/drivecompose/20261104-pre-push-sync/files/paper/build/verification.json"
+  },
+  "documentation_updated": [
+    ".gitignore",
+    "docs/figures/overview/README.md",
+    "docs/figures/teaser/README.md",
+    "docs/paper-revision-changes.md",
+    "paper/README.md",
+    "paper/build/CURRENT-OUTPUTS.md"
+  ],
+  "automatic_save_ignore_rule": "*.dtmp",
+  "preserved_formal_PDFs": [
+    {
+      "path": "paper/build/en/main.pdf",
+      "sha256": "569f0ca169e0c6f0cb4cb673ff93d0f995cd7d16c98a0c19d4dd6e4ca98ef301",
+      "matches_existing_successful_compile": true,
+      "unchanged_by_cleanup": true
+    },
+    {
+      "path": "paper/build/zh/main_zh.pdf",
+      "sha256": "2fa27de230aa9e64447d39abf1aa6c8532ee05a233a45a46108b34b1f16d0c89",
+      "matches_existing_successful_compile": true,
+      "unchanged_by_cleanup": true
+    },
+    {
+      "path": "paper/build/supp-en/main.pdf",
+      "sha256": "7b36e5b641a471dbef1cd21b614e9f7a005e5043c8efc2466a2f132809d09dff",
+      "matches_existing_successful_compile": true,
+      "unchanged_by_cleanup": true
+    },
+    {
+      "path": "paper/build/supp-zh/main_zh.pdf",
+      "sha256": "cd7f4b43cc7a8032f0e699907050f95169bcc9b3804202d3513e3fd5c5880078",
+      "matches_existing_successful_compile": true,
+      "unchanged_by_cleanup": true
+    }
+  ],
+  "adopted_mechanism_source_and_exports_preserved": true,
+  "manuscript_source_or_layout_changes_in_cleanup": false,
+  "other_baseline_files_preserved_by_sha256": 191,
+  "line_endings_restored_after_git_checkout": [
+    "docs/paper-revision-workflow.md",
+    "docs/technical-review.md",
+    "docs/figures/joint-completion-vector/review.md",
+    "paper/main_zh.tex",
+    "paper/main.tex",
+    "paper/build/en/compile-result.json",
+    "paper/build/zh/compile-result.json",
+    "paper/supplementary/frontend.tex",
+    "paper/supplementary/references.bib",
+    "paper/supplementary/training_zh.tex",
+    "paper/supplementary/training.tex"
+  ],
+  "remote_integration": {
+    "method": "Rebase previously unpublished local checkpoint on the fetched remote commit; preserve remote ancestry",
+    "conflict_resolution": "../_archive/drivecompose/20261104-pre-push-sync/resolution-report.json",
+    "resolved_paths": [
+      "docs/figures/overview/README.md",
+      "docs/figures/teaser/README.md",
+      "docs/paper-revision-changes.md",
+      "paper/README.md",
+      "paper/build/CURRENT-OUTPUTS.md",
+      "paper/build/en/compile-result.json",
+      "paper/build/zh/compile-result.json",
+      "paper/main.tex",
+      "paper/main_zh.tex"
+    ],
+    "remote_added_text_files_preserved": 71,
+    "remote_revision_history_preserved": true,
+    "current_local_figure_selections_and_compile_metadata_preserved": true,
+    "missing_remote_artifacts": [
+      "paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx",
+      "Version of paper/fig/drivecompose-concept-merged.pdf with SHA-256 5f1e29a61e407e9e4c597e579b1eb8b7eeb2f58d21560b430562908b58e59d3e"
+    ],
+    "missing_artifacts_handling": "Retain the exact locally validated active teaser and qualify the remote PPT adoption as an external record; no new figure substitution performed"
+  },
+  "validation": {
+    "manuscript_structure": {
+      "passed": true,
+      "checks": 73,
+      "failed": [],
+      "full_result_relative_to_project": "../_archive/drivecompose/20261104-pre-push-sync/validation/manuscript-verification.json"
+    },
+    "formal_PDFs_and_entry_sources_match_existing_compile_records": true,
+    "formal_PDFs_match_latest_local_validation": true,
+    "generated_temporary_check_output_archived": true,
+    "compilation_rerun": false,
+    "compilation_note": "Scientific sources, active figures and formal PDFs remain byte-for-byte equal to the current local validated baseline."
+  }
+}

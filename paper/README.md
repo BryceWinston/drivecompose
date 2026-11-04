@@ -1,4 +1,8 @@
-## 2026-11-02 当前修订
+## 2026-11-04 当前图件
+
+两版主稿已直接采用作者指定的总览 PDF 和修订后的 draw.io 机制矢量 PDF，图 2 位于第 3 页，图 3 位于第 4 页。两版均已重新编译并复核排版：英文共 11 页、完整正文止于第 8 页；中文共 10 页、正文止于第 7 页。73 项稿件结构检查及 21 项本轮核验通过。来源与哈希见[图件替换记录](provenance/figure-replacement-20261104.json)，当前输出见 [CURRENT-OUTPUTS.md](build/CURRENT-OUTPUTS.md)。
+
+## 2026-11-02 修订记录
 
 已按作者统一证据同步中英文主稿及补充材料，保留原数据规模、240×160 评价和 C 主规则；F 为独立对照。新增机制比较与真实编辑四项联合质量，原有图件保持，本轮不放新增结果图。正式路径与页数见 [当前 PDF](build/CURRENT-OUTPUTS.md)，逐处变化见 [修改对照](../docs/paper-revision-changes.md)。
 
@@ -36,9 +40,10 @@ latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=../build/supp-
 - `main.tex`：英文入口；`sec/`：英文各章节。
 - `main_zh.tex`：中文入口；`zh/`：中文各章节，采用与英文相同的方法符号与结构。
 - `main.bib`：两版共用的 84 条当前引用。用户 DOCX 的 75 条全部纳入，9 条与原书目重复、新增 66 条；文档之外的 9 条项目近邻工作保留。逐条引用位置见 [引用接入记录](provenance/reference-integration-20261021.md)。
-- `fig/drivecompose-concept-merged.pdf`：两版首页 Figure 1，2026-11-04 采用用户指定的 `fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx` 完整页面，按原比例高分辨率导出；PPT、原图注与正文保持不变。展示共享多视图序列下的观测重建、联合补全和资产复用；[采用记录](provenance/teaser-ppt-replacement-20261104.json)与[设计记录](../docs/figures/teaser/README.md)可追溯。
-- `fig/overview-editable/output/DriveCompose.pdf`：两版共用的当前总览图，2026-11-01 按用户指定的新 PDF 原样接入；保留矢量文字与线条，按完整页原比例放置。展示规范聚合、结构潜码、联合补全及高斯组件的组合与渲染，含真实输入照片和机制示意素材。此前的 `fig/drivecompose-inference-overview.png` 不再由主稿引用，历史渲染记录见 [2026-10-30 记录](provenance/overview-pdf-replacement-20261030.json)。
-- [总览图说明](../docs/figures/overview/README.md)：当前总览图及历史版本的设计、图注与审核记录；前版制作过程在项目外归档。
+- `fig/drivecompose-concept-merged.pdf`：两版首页 Figure 1。本次同步保留本机正式图件；远端 [PPT teaser 采用记录](provenance/teaser-ppt-replacement-20261104.json)及设计文本已接入，但其 PPT 和对应导出未随文本提交提供，当前本机文件与该记录中的图件哈希不同。详情见[图 1 说明](../docs/figures/teaser/README.md)。
+- `fig/drivecompose-inference-overview.pdf`：两版共用的图 2，2026-11-04 直接复制作者指定 `E:/Users/changan/Downloads/feishu/DriveCompose.pdf`，保留原文件的矢量对象及图片；来源与核验见[本轮记录](provenance/figure-replacement-20261104.json)。旧 PNG 保留为历史资产。
+- `fig/drivecompose-joint-completion.pdf`：两版共用的图 3，采用已修正局部注意力箭头和反馈连线的矢量 PDF；可编辑源文件及复核见[机制图说明](../docs/figures/joint-completion-vector/README.md)。
+- [总览图说明](../docs/figures/overview/README.md)：当前 PDF 的来源、图注与核验记录，保留各历史版本入口。
 - [结构参考与改写依据](provenance/structure-study-20261020.md)：四篇录用论文的章节观察和本轮采用的安排。
 - `fig/assets/Shift.pdf`：当前双语空间外推对比图；已停用的 `fig/pointforward/` 三份旧副本于 2026-10-30 按用户要求删除，历史来源记录保留。
 - `sec/4_experiments.tex` / `zh/4_experiments_zh.tex`：同步消融协议、结果表与分析；原消融定性图已删除。

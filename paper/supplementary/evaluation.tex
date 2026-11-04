@@ -166,6 +166,8 @@ The two learned variants use training seeds $\{0,1,2\}$ and generation seeds $\{
 Each of the 202 test sequences contributes one 29-timestamp window. Inputs $\mathcal T_2=\{0,28\}$, $\mathcal T_4=\{0,8,20,28\}$, and $\mathcal T_8=\{0,4,\ldots,28\}$ share seven target timestamps $\{2,6,\ldots,26\}$ and three cameras, giving 4,242 target images per combination. Two learned variants, three input settings, and nine seed combinations yield 54 groups and 229,068 predictions. The deterministic w/o GCM control adds 4,242, totaling 233,310.
 
 Non-renderable counts are $0/10,908$ learned-variant window instances and $0/202$ for w/o GCM. Low quality, holes, and contact errors remain scored. All variants share preprocessing, $240\times160$ resolution, annotation-based dynamic masks, and equal sequence weighting. Training samples $T\in\{2,4,8\}$ uniformly, and inference uses 24 Euler steps. Hyperparameters are selected only on the development split.
+
+At $T=2,4,8$, CCM increases full-image PSNR by 1.104, 0.738, and 0.627 dB and reduces LPIPS by 0.041, 0.028, and 0.018 (Table~\ref{tab:seed-inputs}). The largest gains occur with the sparsest input.
 \section{Off-trajectory rendering and completion analysis}
 \label{sec:supp-hidden}
 
@@ -219,23 +221,24 @@ F_\tau&=\frac{2P_\tau R_\tau}{P_\tau+R_\tau}.
 Coverage is reference-surface recall $R_\tau$. We compute metrics per scene and seed before averaging. Asset coverage uses only surfaces assigned to that actor, with 2 cm vehicle and 1 cm human thresholds. Complete reference geometry and input visibility define newly visible surfaces; reference surfaces outside query support remain in the coverage denominator.
 
 \paragraph{Real-view correspondences.}
-Independent reference geometry establishes correspondences between recorded and off-trajectory views. Dynamic actors are transformed with shared states. The reference evaluator removes occlusion-ambiguous correspondences for every method; finite outputs and rendering coverage determine method validity. Test LiDAR is used only by the evaluator. Linear-RGB MAE is measured on both each method's valid subset and their intersection, which covers 58.7\% of the reference set (Table~\ref{tab:reprojection}). Ours achieves 0.019 common-support MAE and 92.4\% overall coverage.
+Independent reference geometry establishes correspondences between recorded and off-trajectory views. Dynamic actors are transformed with shared states. The reference evaluator removes occlusion-ambiguous correspondences for every method; finite outputs and rendering coverage determine method validity. Test LiDAR is used only by the evaluator. Linear-RGB MAE is measured on both each method's valid subset and their intersection, which covers 58.7\% of the reference set (Table~\ref{tab:reprojection}). CCM reduces common-support MAE from 0.028 to 0.019 and raises overall coverage from 86.9\% to 92.4\% relative to w/o CCM.
 
 \paragraph{Task-adapted completion mechanisms.}
 The scene-latent control adapts the scene-level Gaussian latent generation mechanism of CompleteSplat~\cite{liao2025complete}; the object-coupling control adapts JRM's cross-object latent coupling~\cite{wu2026jrm}. Both operate through the shared recovery module, codec, query layout, and state interface. They replace the completion interaction mechanism while using the same input evidence, training data, supervision, and 24-step sampling setup. The shared recovery and codec stay fixed. The completion training schedule is given in Appendix B, and comparison scores average three training and three generation seeds without sample selection.
 
-Table~\ref{tab:hidden-regions} uses the same 100 synthetic test scenes and 12,000 shifted target images per seed combination. Over the stronger object-coupling control, CCM adds 0.67 dB PSNR, reduces LPIPS by 0.020, and increases coverage and F-score by 2.6 and 3.6 percentage points. Surface evaluation uses original metric coordinates, 65,536 area-uniform samples from each mesh, and a shared 2 cm point-to-triangle threshold.
+Table~\ref{tab:hidden-regions} uses the same 100 synthetic test scenes and 12,000 shifted target images per seed combination. Each learned variant produces 108,000 outputs across nine seed combinations; scene-wise scores include all views, frames, and seeds. Over the object-coupling control, CCM adds 0.67 dB PSNR, reduces LPIPS by 0.020, and increases coverage and F-score by 2.6 and 3.6 percentage points. The PSNR gain over the scene-latent control is 0.94 dB. Surface evaluation uses original metric coordinates, 65,536 area-uniform samples from each mesh, and a shared 2 cm point-to-triangle threshold.
 
 
 
 
 
-Common-support error and coverage separate correspondence accuracy from the extent of reconstructed content.
 
 \paragraph{Visibility-stratified synthetic evaluation.}
 Table~\ref{tab:visibility} reuses the same 100 synthetic test scenes, $\pm2$ m shifts, inputs, checkpoints, and generated samples as the paired hidden-region evaluation. Each scene supplies one 20-frame clip with three cameras and context timestamps $\{0,5,10,15\}$ (12 images). Targets cover both shift directions, all 20 timestamps, and three cameras, giving 12,000 images per seed combination. Context timestamps are also valid targets because the shifted cameras differ from the input cameras. Three training seeds and three generation seeds reuse trained weights without adapting on these scenes.
 
 Visibility $v$ is the fraction of a fixed reference surface region's area covered by the union of input views. Well-observed regions have coverage $\geq80\%$, severely missing regions $\leq20\%$, and intermediate regions $20\%<v<80\%$. Reference-surface correspondences assign target pixels to background, vehicle, or human and to a visibility group. Methods use the same valid masks; group-wise frame means are averaged with equal scene weight. Group PSNRs and full-image PSNR are computed independently. The hidden-region test requires exactly 0\% input coverage, whereas the severely missing group permits up to 20\%.
+
+CCM adds 1.02, 1.28, and 1.54 dB for severely missing background, vehicle, and human regions (Table~\ref{tab:visibility}). Well-observed regions gain 0.04, 0.04, and 0.03 dB, concentrating the benefit where input coverage is limited.
 
 \paragraph{Read-scope interventions on Waymo.}
 Table~\ref{tab:context-read} uses the same 202 Waymo windows as the main $T=8$ ablation. Each 29-timestamp window uses $\{0,4,8,12,16,20,24,28\}$ from three cameras (24 inputs), with targets $\{2,6,10,14,18,22,26\}$ (4,242 images per seed combination). Training seeds $\{0,1,2\}$ and generation seeds $\{7,17,27\}$ give nine combinations. Recovery, codec, query layout, target states, and 24-step sampling are fixed.
@@ -342,19 +345,19 @@ Training seed 0 and generation seed 7 give forty edits (Table~\ref{tab:edit-fail
 
 
 \paragraph{Seed variation and scene clustering.}
-The three training seeds $\{0,1,2\}$ and three generation seeds $\{7,17,27\}$ yield 360 edits on the same twenty real scenes (Table~\ref{tab:edit-seeds}). Vehicles succeed in 177/180 edits (98.33\%), humans in 157/180 (87.22\%), and the aggregate in 334/360 (92.78\%). The sample SD of the three training-seed mean success rates is 0.48 percentage points. Scene-cluster bootstrap sampling retains all eighteen edits for a selected scene, giving a 95\% interval of 85.28--99.17\%. The 26 failures are concentrated in four scenes with 9, 8, 6, and 3 failures. The clustered interval describes scene variation; training-seed SD is reported separately.
+The three training seeds $\{0,1,2\}$ and three generation seeds $\{7,17,27\}$ yield 360 edits on the same twenty real scenes (Table~\ref{tab:edit-seeds}). Vehicles succeed in 177/180 edits (98.33\%), humans in 157/180 (87.22\%), and the aggregate in 334/360 (92.78\%). The sample SD of the three training-seed mean structural-integrity rates is 0.48 percentage points. Scene-cluster bootstrap sampling retains all eighteen edits for a selected scene, giving a 95\% structural-integrity interval of 85.28--99.17\%. The 26 failures are concentrated in four scenes with 9, 8, 6, and 3 failures.
 
 
 
 \paragraph{Newly visible texture, identity, and geometry.}
 An asset surface is newly visible when it is invisible in every input observation and visible after editing. Canonical surface correspondences and visibility tests define these regions. Five independent raters inspect newly visible texture, appearance identity, and local geometry; each dimension passes with at least four positive judgments. Texture ratings inspect blur, repetition, stretching, and seams. Identity ratings inspect vehicle shape and paint, and human clothing, body shape, and visible identity features. Geometry ratings inspect wheel/body connections, limb volume, joint bends, and intersections.
 
-Table~\ref{tab:real-edit-quality} scores the original 360 actor edits from twenty scenes and nine seed combinations; camera shifts add no actor-edit trials. Joint acceptance is the per-edit intersection of the four criteria. Of 334 structurally intact edits, 36 fail at least one added quality check, leaving 298 joint passes (82.78\%). The 62 joint failures comprise 26 structural failures and these 36 additional failures. The 0.48-point training-seed SD and 85.28--99.17\% scene-cluster interval above describe structural integrity. Canonical linear-RGB MAE 0.014 measures previously observed human texture; new-surface ratings measure visual quality and identity consistency.
+Table~\ref{tab:real-edit-quality} scores 360 actor edits from twenty scenes and nine seed combinations; camera shifts add no actor-edit trials. Joint acceptance is the per-edit intersection of the four criteria, yielding 298 passes (82.78\%). The 62 failures comprise 26 structural failures and 36 structurally intact edits that fail at least one other quality check.
 
 
 
 \paragraph{Extended state and view protocol.}
-The 360-edit quality evaluation uses fixed target-state and view lists. A separate expanded protocol applies vehicle yaw changes of $30^\circ$, $60^\circ$, and $90^\circ$, and human maximum non-root joint rotation differences of $15^\circ$, $30^\circ$, and $45^\circ$ at fixed root placement. Across the same scene/seed combinations, this state grid defines 1,080 actor edits and 3,240 images from three predefined target views per edit. Its sample count is separate from the 360-edit quality evaluation. Each seed reuses one completed asset across all states, with the five-pixel criterion defined at $240\times160$ resolution.
+The 360-edit quality evaluation uses fixed target-state and view lists. The expanded protocol applies vehicle yaw changes of $30^\circ$, $60^\circ$, and $90^\circ$, and human maximum non-root joint rotation differences of $15^\circ$, $30^\circ$, and $45^\circ$ at fixed root placement. Twenty scenes and nine seed combinations yield $20\times9\times(3+3)=1,080$ actor edits. Three predefined target views per edit give 3,240 images. Each seed reuses one completed asset across all states, with the five-pixel criterion defined at $240\times160$ resolution.
 
 \section{Observation consistency}
 \label{sec:supp-preservation}
@@ -378,7 +381,7 @@ Ours w/o free-ray loss & 0 & 29.970 & 0.0208 & 0.134 m & 1.34\% & 0.91\% \\
 
 We fix original cameras, actor states, and evaluation pixels, using the observed-only scene as the pre-completion reference (Table~\ref{tab:preservation}). Observed Gaussian parameters are preserved exactly, while added Gaussians can change rendering through occlusion and alpha compositing. We fix 10,000 rays per sequence, totaling 2,020,000. Added occlusion means added content produces accumulated opacity above 0.01 more than 5 cm in front of an observed surface. Strict free-ray violation requires opacity above 0.05 more than 10 cm in front of the surface.
 
-For Ours, 0.18\% added occlusion corresponds to 3,636 rays and 0.07\% strict violation to 1,414. The stricter violation set can be a subset of the added-occlusion set. Relative to the pre-completion scene, input-view PSNR decreases by 0.029 dB and depth MAE increases by 2 mm. Removing the free-ray loss raises the two ray rates to 1.34\% and 0.91\%, showing its effect on rendering beyond query-level parameter preservation.
+For Ours, 0.18\% added occlusion corresponds to 3,636 rays and 0.07\% strict violation to 1,414. Relative to the pre-completion scene, input-view PSNR decreases by 0.029 dB and depth MAE increases by 2 mm. Removing the free-ray loss raises the two ray rates to 1.34\% and 0.91\%, showing its effect on rendering beyond query-level parameter preservation.
 
 
 \section{Efficiency and reuse cost}
@@ -423,6 +426,8 @@ $N$ & Total time & Per query \\
 \end{table*}
 
 Training uses $8\times$ A100 80 GB GPUs. Inference timing uses one RTX 4090 24 GB, FP16, batch 1, and $240\times160$ output, with an average of 1.4 million non-transparent Gaussians per scene. After 20 warmups, 100 repetitions include CPU--GPU transfers and synchronization but exclude disk reads and initial model loading. Construction takes $2.66\pm0.11$ s, state composition plus one camera render takes $7.8\pm0.4$ ms (approximately 128.2 FPS), and peak memory is 14.2 GB.
+
+Let $Q=Q_b+\sum_a Q_a^{\mathrm{vehicle}}+\sum_h Q_h^{\mathrm{human}}$ count non-sky queries. Decoding produces $4Q$ candidate Gaussians, which bound the non-transparent output count. The mean of 1.4 million therefore corresponds to at least 350,000 non-sky queries per scene on average. Sky uses the separate cubemap head.
 
 Table~\ref{tab:timing-stages} breaks down construction. The w/o CCM control takes 2.53 s, so CCM adds 0.13 s (approximately 5.1\%). Table~\ref{tab:reuse-time} computes total time including one construction as $2.66+0.0078N$. Here $N$ counts single-camera outputs; a three-camera query counts as three renders.
 

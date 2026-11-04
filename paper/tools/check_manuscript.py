@@ -198,13 +198,29 @@ def main() -> int:
     )
     details["historical_overview_copy"] = str(historical_overview)
     details["raster_overview_role"] = "historical design draft; current entries use author-selected mechanism illustrations"
-    overview = ROOT / "fig/drivecompose-inference-overview.png"
+    selection_path = provenance / "figure-replacement-20261104.json"
+    selection = (json.loads(selection_path.read_text(encoding="utf-8"))
+                 if selection_path.is_file() else None)
+    overview_filename = (Path(selection["figures"]["fig:overview"]["active_path"]).name
+                         if selection else "drivecompose-inference-overview.png")
+    overview = ROOT / "fig" / overview_filename
     checks["generated_overview_exists"] = overview.is_file()
     mechanism_raster_records = sorted(provenance.glob("mechanism-image-replacement-*.json"))
-    mechanism_filename = (
-        "drivecompose-joint-completion.png" if mechanism_raster_records
-        else "drivecompose-joint-completion.pdf"
-    )
+    mechanism_filename = (Path(selection["figures"]["fig:joint-completion"]["active_path"]).name
+                          if selection else ("drivecompose-joint-completion.png" if mechanism_raster_records
+                                             else "drivecompose-joint-completion.pdf"))
+    if selection:
+        details["active_figure_selection"] = str(selection_path.relative_to(ROOT))
+        for label, figure in selection["figures"].items():
+            active = ROOT.parent / figure["active_path"]
+            checks[label + ":active_export_matches_record"] = (
+                active.is_file() and digest(active.read_bytes()) == figure["sha256"]
+            )
+            if "native_source" in figure:
+                native = ROOT.parent / figure["native_source"]
+                checks[label + ":editable_source_matches_record"] = (
+                    native.is_file() and digest(native.read_bytes()) == figure["native_sha256"]
+                )
     for entry in ("main.tex", "main_zh.tex"):
         source = uncomment((ROOT / entry).read_text(encoding="utf-8"))
         if revised_layout:
@@ -224,7 +240,7 @@ def main() -> int:
                 < source.index(r"\input{" + related + "}")
             )
             checks[entry + ":overview_queued_once_for_method"] = (
-                overview_sources.count("{fig/drivecompose-inference-overview.png}") == 1
+                overview_sources.count("{fig/" + overview_filename + "}") == 1
                 and overview_sources.count(r"\label{fig:overview}") == 1
                 and r"\ref{fig:overview}" in method_text
                 and (queued_before_method or r"\label{fig:overview}" in method_text)
@@ -240,7 +256,7 @@ def main() -> int:
             )
         else:
             checks[entry + ":generated_overview_active"] = (
-                r"\includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}" in source
+                (r"\includegraphics[width=\textwidth]{fig/" + overview_filename + "}") in source
                 and "drivecompose-overview.png" not in source
             )
     figure_record_path = provenance / "three-figure-integration-20261029.json"
@@ -294,7 +310,7 @@ def main() -> int:
             if revised_layout:
                 current_figures = {
                     "drivecompose-concept-merged.pdf": "fig:teaser",
-                    "drivecompose-inference-overview.png": "fig:overview",
+                    overview_filename: "fig:overview",
                     mechanism_filename: "fig:joint-completion",
                     "experiment1-dynamic-reconstruction.png": "fig:dynamic-reconstruction",
                     "assets/Shift.pdf": "fig:waymo-left-shift",

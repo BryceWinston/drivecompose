@@ -1,3 +1,628 @@
+## 2026-11-04 更新后归档临时文件并整合远端
+
+本轮仅处理作者要求的归档、提交与推送。实际起点为 `a0ccb6b509f7b6454313f4108b956741b5ca4fd3` 之后的未提交工作区；[真实工作区基线](../../_archive/drivecompose/20261104-pre-push-sync/workspace-before.json)及当时已修改文件的原件已保存。远端新增 `2c6bab6` 文本提交，本轮将尚未发布的本地修订接到该提交之后，保留全部 71 份远端新增文本和两侧修订历史。
+
+| 原位置／状态 | 本轮处理 | 原因 |
+|---|---|---|
+| draw.io 的 `.$figure3-drawio.drawio.dtmp` 与 Python 缓存 | 移入仓库外，新增 `*.dtmp` 忽略规则 | 移出自动保存和缓存；当前已采用的 draw.io 源文件及 PDF／SVG／PNG 保留 |
+| 未采用的 `figure1-comparison-draft.png` 及其提示词、规格、生成记录 | 四份文件按原层级归档，更新说明中的链接 | 保留完整原件，避免将草稿作为活动图件提交 |
+| 旧 `paper/build/verification.json` 与本轮新检查输出 | 分别归档，不把检查中间输出留在仓库 | 原检查与本轮 73 项检查均可追溯 |
+| 两侧图件引用、输出说明和修订记录的合并冲突 | 保留本机当前已核验图件和对应编译记录，合并两侧新增历史 | 不用异机旧输出记录覆盖当前正式 PDF；[逐文件处理依据](../../_archive/drivecompose/20261104-pre-push-sync/resolution-report.json)已保存 |
+
+共归档 7 份既有临时文件及 1 份本轮检查输出，逐文件 SHA-256 核对一致。除明确更新的说明和忽略规则外，191 份本机文件恢复并保持原始字节，包括全部论文源文、当前活动图件、四份正式 PDF 及编译记录；Git 检出造成的换行转换也已按真实基线恢复。本轮未改论文文字、数值、图表内容或排版，未重新编译；已核对四份 PDF 及入口源文件与现有成功编译记录的哈希，73 项稿件检查通过。
+
+远端只提交了文本：其 PPT teaser 记录所指的 PPT 及 SHA-256 为 `5f1e29a61e407e9e4c597e579b1eb8b7eeb2f58d21560b430562908b58e59d3e` 的导出没有同步到本机。本次保留当前本机 `drivecompose-concept-merged.pdf`（SHA-256 `3031f2f09069d714ed267cb0390d6ea978e23304b7c7a23d5f5e0225773b1a40`），将异机记录及其适用状态写入图件和输出说明，未据文字记录替换图件。
+
+完整原路径、归档路径和哈希见[归档清单](../../_archive/drivecompose/20261104-pre-push-sync/archive-manifest.json)，核验与保留项见[本轮仓库记录](../paper/provenance/pre-push-sync-20261104.json)。
+
+---
+
+## 2026-11-04 图一录用论文对照与构图草稿
+
+按作者要求优化首页对比表达，检查 ReconDreamer、StreetCrafter、GenAssets、HorizonForge 的实际首页 Figure 1。原图把失败流程与完整 teaser 上下拼接，输入、标签和信息重复；本轮用内置 Image Gen 生成[共享输入、两行三列的对照草稿](../../_archive/drivecompose/20261104-pre-push-sync/files/docs/figures/teaser/figure1-comparison-draft.png)，放大车辆旋转和人体换姿的对应区域。保持概念示意身份，没有制作具名基线结果、修改实验值或替换活动图一。
+
+完整“原问题 → 实际改动 → 原因”、论文原图画法与来源见[图件记录](figures/teaser/README.md)。[最终提示词](../../_archive/drivecompose/20261104-pre-push-sync/files/docs/figures/teaser/figure1-comparison-prompt.txt)、[设计规格](../../_archive/drivecompose/20261104-pre-push-sync/files/docs/figures/teaser/figure1-design-spec.json)和[生成记录](../../_archive/drivecompose/20261104-pre-push-sync/files/docs/figures/teaser/figure1-generation-record.json)随草稿归档；首轮草稿、基线及参考页图仍在项目外[原过程归档](../../_archive/drivecompose/20261104-figure1-optimization/)。本轮没有编译主稿；其他同期论文修订原样保留。
+
+---
+
+## 2026-11-04 补充材料局部修订与 JRM 正式引文
+
+按作者本轮授权，主稿仅更新 JRM 引文，舍弃图 5 参照列更名。其余修改集中在中英文补充材料，采用[作者补充原文](../paper/provenance/author-supplement-20261104.txt)的数值与结论，沿用现有章节和行文方式。
+
+实际基线 HEAD 为 `a0ccb6b509f7b6454313f4108b956741b5ca4fd3`，并非仅以 HEAD 代替工作区原文。[本轮真实基线](../../_archive/drivecompose/20261104-supplementary-author-revision/baseline/)、[完整逐行差异](../../_archive/drivecompose/20261104-supplementary-author-revision/source-changes.diff)及[验收记录](../paper/provenance/supplementary-author-revision-20261104.json)已保留。
+
+本轮期间另有图 2/3 矢量替换及使用说明更新，发生在六份主稿 TeX 文件中。这些同期工作保留原样，单独保存于[同期差异](../../_archive/drivecompose/20261104-supplementary-author-revision/concurrent-source-changes.diff)，不计入本轮修改。正式 PDF 采用编译时的稳定工作区，编译期间输入没有变化。
+
+四份 PDF 均重编成功。英文主稿 11 页、完整技术正文止于第 8 页；中文主稿 10 页、正文止于第 7 页。英文/中文补充材料分别为 12/10 页。73 项既有检查和 27 项本轮检查通过；补充表 S1–S24 顺序连续、全部表格数字保持，最终日志无未定义引用、缺字或溢出。补充材料全部页图及主稿受影响页已复核。
+
+### 修改位置与理由
+
+| 文件 | 修改理由 |
+|---|---|
+
+| `paper/main.bib` | 主稿只更新 JRM 的正式会议书目信息，保留引用键和其他条目。 |
+
+| `paper/supplementary/composition.tex` | 在现有蒙皮公式旁补权重非负、归一化和静止状态恒等性质。 |
+
+| `paper/supplementary/composition_zh.tex` | 同步英文蒙皮定义，公式编号保持。 |
+
+| `paper/supplementary/evaluation.tex` | 补每学习版本 108,000 张输出、稀疏输入和可见率分组增益、真实共有支撑比较及高斯计数关系；就地标明结构完整性统计，精简重复解释。 |
+
+| `paper/supplementary/evaluation_zh.tex` | 同步英文新增数值结论及局部精简，保留所有表格数值和评价口径。 |
+
+| `paper/supplementary/frontend.tex` | 将 0.10 m 明确为支撑邻域边长；中文现文已有该定义，保持原文。 |
+
+| `paper/supplementary/references.bib` | 补充材料使用相同的 JRM 正式条目。 |
+
+| `paper/supplementary/training.tex` | 补明 100/20 个合成场景和 20 个真实场景的评价用途，明确 16 个记忆 token 为可学习参数。 |
+
+| `paper/supplementary/training_zh.tex` | 同步英文数据用途与记忆 token 定义。 |
+
+
+### 实际原文与修改后
+
+
+#### paper/main.bib
+
+主稿只更新 JRM 的正式会议书目信息，保留引用键和其他条目。
+
+
+原文（本轮基线第 458 行）
+
+```latex
+@article{wu2026jrm,
+```
+
+
+修改后（当前第 458 行）
+
+```latex
+@inproceedings{wu2026jrm,
+```
+
+
+原文（本轮基线第 461 行）
+
+```latex
+  journal={arXiv preprint arXiv:2603.25985},
+```
+
+
+修改后（当前第 461 行）
+
+```latex
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+```
+
+
+原文（本轮基线第 463 行）
+
+```latex
+  url={https://arxiv.org/abs/2603.25985},
+```
+
+
+修改后（当前第 463 行）
+
+```latex
+  pages={307--316},
+  url={https://openaccess.thecvf.com/content/CVPR2026/html/Wu_JRM_Joint_Reconstruction_Model_for_Multiple_Objects_without_Alignment_CVPR_2026_paper.html},
+```
+
+
+#### paper/supplementary/composition.tex
+
+在现有蒙皮公式旁补权重非负、归一化和静止状态恒等性质。
+
+
+原文（本轮基线第 15 行）
+
+```latex
+For humans, the weighted skinning transform is $\mathbf A_i=\sum_j w_{ij}\mathbf P_j\mathbf B_j^{-1}$, where $\mathbf B_j$ and $\mathbf P_j$ are rest and current global joints in the root frame. The transformed center is $\bar{\boldsymbol\mu}_i^w=\mathbf T^w_h\mathbf A_i\bar{\boldsymbol\mu}_i^h$. The combined local linear map $\mathbf J_i$ gives covariance $\mathbf J_i\boldsymbol\Sigma_i\mathbf J_i^\top$. Its inverse $\mathbf J_i^{-1}$ maps viewing directions into the canonical frame; the direction is normalized before appearance evaluation. The inverse is evaluated for nonsingular skinning transforms. The root pose controls overall placement, while the root joint retains its rest transform.
+```
+
+
+修改后（当前第 15 行）
+
+```latex
+For humans, the weighted skinning transform is $\mathbf A_i=\sum_j w_{ij}\mathbf P_j\mathbf B_j^{-1}$, where $\mathbf B_j$ and $\mathbf P_j$ are rest and current global joints in the root frame. Weights satisfy $w_{ij}\geq0$ and $\sum_j w_{ij}=1$, giving $\mathbf A_i=\mathbf I$ in the rest state $\mathbf P_j=\mathbf B_j$. The transformed center is $\bar{\boldsymbol\mu}_i^w=\mathbf T^w_h\mathbf A_i\bar{\boldsymbol\mu}_i^h$. The combined local linear map $\mathbf J_i$ gives covariance $\mathbf J_i\boldsymbol\Sigma_i\mathbf J_i^\top$. Its inverse $\mathbf J_i^{-1}$ maps viewing directions into the canonical frame; the direction is normalized before appearance evaluation. The inverse is evaluated for nonsingular skinning transforms. The root pose controls overall placement, while the root joint retains its rest transform.
+```
+
+
+#### paper/supplementary/composition_zh.tex
+
+同步英文蒙皮定义，公式编号保持。
+
+
+原文（本轮基线第 15 行）
+
+```latex
+人体使用加权蒙皮变换 $\mathbf A_i=\sum_j w_{ij}\mathbf P_j\mathbf B_j^{-1}$，其中 $\mathbf B_j$ 和 $\mathbf P_j$ 是根坐标系中的静止与当前全局关节矩阵。变换后的中心为 $\bar{\boldsymbol\mu}_i^w=\mathbf T^w_h\mathbf A_i\bar{\boldsymbol\mu}_i^h$。组合局部线性映射 $\mathbf J_i$ 将协方差变换为 $\mathbf J_i\boldsymbol\Sigma_i\mathbf J_i^\top$，其逆 $\mathbf J_i^{-1}$ 将观察方向映回规范坐标，并在外观求值前归一化。上述逆映射使用非奇异蒙皮变换。根位姿控制整体放置，根关节保持静止变换。
+```
+
+
+修改后（当前第 15 行）
+
+```latex
+人体使用加权蒙皮变换 $\mathbf A_i=\sum_j w_{ij}\mathbf P_j\mathbf B_j^{-1}$，其中 $\mathbf B_j$ 和 $\mathbf P_j$ 是根坐标系中的静止与当前全局关节矩阵。权重满足 $w_{ij}\geq0$、$\sum_j w_{ij}=1$，因此静止状态 $\mathbf P_j=\mathbf B_j$ 下有 $\mathbf A_i=\mathbf I$。变换后的中心为 $\bar{\boldsymbol\mu}_i^w=\mathbf T^w_h\mathbf A_i\bar{\boldsymbol\mu}_i^h$。组合局部线性映射 $\mathbf J_i$ 将协方差变换为 $\mathbf J_i\boldsymbol\Sigma_i\mathbf J_i^\top$，其逆 $\mathbf J_i^{-1}$ 将观察方向映回规范坐标，并在外观求值前归一化。上述逆映射使用非奇异蒙皮变换。根位姿控制整体放置，根关节保持静止变换。
+```
+
+
+#### paper/supplementary/evaluation.tex
+
+补每学习版本 108,000 张输出、稀疏输入和可见率分组增益、真实共有支撑比较及高斯计数关系；就地标明结构完整性统计，精简重复解释。
+
+
+原文（本轮基线第 169 行）
+
+```latex
+% 原位置无此段。
+```
+
+
+修改后（当前第 169 行）
+
+```latex
+
+At $T=2,4,8$, CCM increases full-image PSNR by 1.104, 0.738, and 0.627 dB and reduces LPIPS by 0.041, 0.028, and 0.018 (Table~\ref{tab:seed-inputs}). The largest gains occur with the sparsest input.
+```
+
+
+原文（本轮基线第 222 行）
+
+```latex
+Independent reference geometry establishes correspondences between recorded and off-trajectory views. Dynamic actors are transformed with shared states. The reference evaluator removes occlusion-ambiguous correspondences for every method; finite outputs and rendering coverage determine method validity. Test LiDAR is used only by the evaluator. Linear-RGB MAE is measured on both each method's valid subset and their intersection, which covers 58.7\% of the reference set (Table~\ref{tab:reprojection}). Ours achieves 0.019 common-support MAE and 92.4\% overall coverage.
+```
+
+
+修改后（当前第 224 行）
+
+```latex
+Independent reference geometry establishes correspondences between recorded and off-trajectory views. Dynamic actors are transformed with shared states. The reference evaluator removes occlusion-ambiguous correspondences for every method; finite outputs and rendering coverage determine method validity. Test LiDAR is used only by the evaluator. Linear-RGB MAE is measured on both each method's valid subset and their intersection, which covers 58.7\% of the reference set (Table~\ref{tab:reprojection}). CCM reduces common-support MAE from 0.028 to 0.019 and raises overall coverage from 86.9\% to 92.4\% relative to w/o CCM.
+```
+
+
+原文（本轮基线第 227 行）
+
+```latex
+Table~\ref{tab:hidden-regions} uses the same 100 synthetic test scenes and 12,000 shifted target images per seed combination. Over the stronger object-coupling control, CCM adds 0.67 dB PSNR, reduces LPIPS by 0.020, and increases coverage and F-score by 2.6 and 3.6 percentage points. Surface evaluation uses original metric coordinates, 65,536 area-uniform samples from each mesh, and a shared 2 cm point-to-triangle threshold.
+```
+
+
+修改后（当前第 229 行）
+
+```latex
+Table~\ref{tab:hidden-regions} uses the same 100 synthetic test scenes and 12,000 shifted target images per seed combination. Each learned variant produces 108,000 outputs across nine seed combinations; scene-wise scores include all views, frames, and seeds. Over the object-coupling control, CCM adds 0.67 dB PSNR, reduces LPIPS by 0.020, and increases coverage and F-score by 2.6 and 3.6 percentage points. The PSNR gain over the scene-latent control is 0.94 dB. Surface evaluation uses original metric coordinates, 65,536 area-uniform samples from each mesh, and a shared 2 cm point-to-triangle threshold.
+```
+
+
+原文（本轮基线第 233 行）
+
+```latex
+Common-support error and coverage separate correspondence accuracy from the extent of reconstructed content.
+```
+
+
+修改后（当前第 235 行）
+
+```latex
+% 此重复句已删除，定义和数值保留在相邻段落及表格。
+```
+
+
+原文（本轮基线第 239 行）
+
+```latex
+% 原位置无此段。
+```
+
+
+修改后（当前第 240 行）
+
+```latex
+
+CCM adds 1.02, 1.28, and 1.54 dB for severely missing background, vehicle, and human regions (Table~\ref{tab:visibility}). Well-observed regions gain 0.04, 0.04, and 0.03 dB, concentrating the benefit where input coverage is limited.
+```
+
+
+原文（本轮基线第 345 行）
+
+```latex
+The three training seeds $\{0,1,2\}$ and three generation seeds $\{7,17,27\}$ yield 360 edits on the same twenty real scenes (Table~\ref{tab:edit-seeds}). Vehicles succeed in 177/180 edits (98.33\%), humans in 157/180 (87.22\%), and the aggregate in 334/360 (92.78\%). The sample SD of the three training-seed mean success rates is 0.48 percentage points. Scene-cluster bootstrap sampling retains all eighteen edits for a selected scene, giving a 95\% interval of 85.28--99.17\%. The 26 failures are concentrated in four scenes with 9, 8, 6, and 3 failures. The clustered interval describes scene variation; training-seed SD is reported separately.
+```
+
+
+修改后（当前第 348 行）
+
+```latex
+The three training seeds $\{0,1,2\}$ and three generation seeds $\{7,17,27\}$ yield 360 edits on the same twenty real scenes (Table~\ref{tab:edit-seeds}). Vehicles succeed in 177/180 edits (98.33\%), humans in 157/180 (87.22\%), and the aggregate in 334/360 (92.78\%). The sample SD of the three training-seed mean structural-integrity rates is 0.48 percentage points. Scene-cluster bootstrap sampling retains all eighteen edits for a selected scene, giving a 95\% structural-integrity interval of 85.28--99.17\%. The 26 failures are concentrated in four scenes with 9, 8, 6, and 3 failures.
+```
+
+
+原文（本轮基线第 352 行）
+
+```latex
+Table~\ref{tab:real-edit-quality} scores the original 360 actor edits from twenty scenes and nine seed combinations; camera shifts add no actor-edit trials. Joint acceptance is the per-edit intersection of the four criteria. Of 334 structurally intact edits, 36 fail at least one added quality check, leaving 298 joint passes (82.78\%). The 62 joint failures comprise 26 structural failures and these 36 additional failures. The 0.48-point training-seed SD and 85.28--99.17\% scene-cluster interval above describe structural integrity. Canonical linear-RGB MAE 0.014 measures previously observed human texture; new-surface ratings measure visual quality and identity consistency.
+```
+
+
+修改后（当前第 355 行）
+
+```latex
+Table~\ref{tab:real-edit-quality} scores 360 actor edits from twenty scenes and nine seed combinations; camera shifts add no actor-edit trials. Joint acceptance is the per-edit intersection of the four criteria, yielding 298 passes (82.78\%). The 62 failures comprise 26 structural failures and 36 structurally intact edits that fail at least one other quality check.
+```
+
+
+原文（本轮基线第 357 行）
+
+```latex
+The 360-edit quality evaluation uses fixed target-state and view lists. A separate expanded protocol applies vehicle yaw changes of $30^\circ$, $60^\circ$, and $90^\circ$, and human maximum non-root joint rotation differences of $15^\circ$, $30^\circ$, and $45^\circ$ at fixed root placement. Across the same scene/seed combinations, this state grid defines 1,080 actor edits and 3,240 images from three predefined target views per edit. Its sample count is separate from the 360-edit quality evaluation. Each seed reuses one completed asset across all states, with the five-pixel criterion defined at $240\times160$ resolution.
+```
+
+
+修改后（当前第 360 行）
+
+```latex
+The 360-edit quality evaluation uses fixed target-state and view lists. The expanded protocol applies vehicle yaw changes of $30^\circ$, $60^\circ$, and $90^\circ$, and human maximum non-root joint rotation differences of $15^\circ$, $30^\circ$, and $45^\circ$ at fixed root placement. Twenty scenes and nine seed combinations yield $20\times9\times(3+3)=1,080$ actor edits. Three predefined target views per edit give 3,240 images. Each seed reuses one completed asset across all states, with the five-pixel criterion defined at $240\times160$ resolution.
+```
+
+
+原文（本轮基线第 381 行）
+
+```latex
+For Ours, 0.18\% added occlusion corresponds to 3,636 rays and 0.07\% strict violation to 1,414. The stricter violation set can be a subset of the added-occlusion set. Relative to the pre-completion scene, input-view PSNR decreases by 0.029 dB and depth MAE increases by 2 mm. Removing the free-ray loss raises the two ray rates to 1.34\% and 0.91\%, showing its effect on rendering beyond query-level parameter preservation.
+```
+
+
+修改后（当前第 384 行）
+
+```latex
+For Ours, 0.18\% added occlusion corresponds to 3,636 rays and 0.07\% strict violation to 1,414. Relative to the pre-completion scene, input-view PSNR decreases by 0.029 dB and depth MAE increases by 2 mm. Removing the free-ray loss raises the two ray rates to 1.34\% and 0.91\%, showing its effect on rendering beyond query-level parameter preservation.
+```
+
+
+原文（本轮基线第 427 行）
+
+```latex
+% 原位置无此段。
+```
+
+
+修改后（当前第 430 行）
+
+```latex
+Let $Q=Q_b+\sum_a Q_a^{\mathrm{vehicle}}+\sum_h Q_h^{\mathrm{human}}$ count non-sky queries. Decoding produces $4Q$ candidate Gaussians, which bound the non-transparent output count. The mean of 1.4 million therefore corresponds to at least 350,000 non-sky queries per scene on average. Sky uses the separate cubemap head.
+
+```
+
+
+#### paper/supplementary/evaluation_zh.tex
+
+同步英文新增数值结论及局部精简，保留所有表格数值和评价口径。
+
+
+原文（本轮基线第 174 行）
+
+```latex
+% 原位置无此段。
+```
+
+
+修改后（当前第 174 行）
+
+```latex
+
+在 $T=2,4,8$ 时，CCM 分别将全图 PSNR 提高 1.104、0.738 和 0.627 dB，LPIPS 降低 0.041、0.028 和 0.018（表~\ref{tab:seed-inputs}）。输入最稀疏时收益最大。
+```
+
+
+原文（本轮基线第 227 行）
+
+```latex
+独立参考几何建立记录视图与离轨视图的对应，动态参与者按共享状态变换。参考评价器统一排除遮挡不确定的对应，各方法的有效性由有限输出和渲染覆盖确定。测试 LiDAR 专用于评价器。线性 RGB MAE 同时在各自有效区域及其交集上计算，共有区域占参考集合的 58.7\%（表~\ref{tab:reprojection}）。Ours 的共有区域 MAE 为 0.019，总覆盖率为 92.4\%。
+```
+
+
+修改后（当前第 229 行）
+
+```latex
+独立参考几何建立记录视图与离轨视图的对应，动态参与者按共享状态变换。参考评价器统一排除遮挡不确定的对应，各方法的有效性由有限输出和渲染覆盖确定。测试 LiDAR 专用于评价器。线性 RGB MAE 同时在各自有效区域及其交集上计算，共有区域占参考集合的 58.7\%（表~\ref{tab:reprojection}）。相对 w/o CCM，CCM 将共有区域 MAE 从 0.028 降至 0.019，总覆盖率从 86.9\% 提高至 92.4\%。
+```
+
+
+原文（本轮基线第 232 行）
+
+```latex
+表~\ref{tab:hidden-regions} 使用相同的 100 个合成测试场景，每组种子含 12,000 张偏移目标图像。相对较强的对象耦合对照，CCM 将 PSNR 提高 0.67 dB、LPIPS 降低 0.020，覆盖率与 F-score 分别提高 2.6 和 3.6 个百分点。表面评价在原始米制坐标中进行，预测与参考网格各取 65,536 个面积均匀采样点，采用相同的 2 cm 点到三角网格距离阈值。
+```
+
+
+修改后（当前第 234 行）
+
+```latex
+表~\ref{tab:hidden-regions} 使用相同的 100 个合成测试场景，每组种子含 12,000 张偏移目标图像。每个学习版本的九组种子共生成 108,000 张输出，场景统计保留全部视角、帧和种子结果。相对对象耦合对照，CCM 将 PSNR 提高 0.67 dB、LPIPS 降低 0.020，覆盖率与 F-score 分别提高 2.6 和 3.6 个百分点；相对场景潜码对照，PSNR 提高 0.94 dB。表面评价在原始米制坐标中进行，预测与参考网格各取 65,536 个面积均匀采样点，采用相同的 2 cm 点到三角网格距离阈值。
+```
+
+
+原文（本轮基线第 238 行）
+
+```latex
+表~\ref{tab:reprojection} 的共有支持集误差与覆盖率分别描述对应精度和重建内容范围。
+```
+
+
+修改后（当前第 240 行）
+
+```latex
+% 此重复句已删除，定义和数值保留在相邻段落及表格。
+```
+
+
+原文（本轮基线第 244 行）
+
+```latex
+% 原位置无此段。
+```
+
+
+修改后（当前第 245 行）
+
+```latex
+
+CCM 在严重缺失的背景、车辆和人体区域分别增加 1.02、1.28 和 1.54 dB（表~\ref{tab:visibility}），充分观测区域分别增加 0.04、0.04 和 0.03 dB，收益主要集中在输入覆盖不足的区域。
+```
+
+
+原文（本轮基线第 350 行）
+
+```latex
+三个训练种子 $\{0,1,2\}$ 与三个生成种子 $\{7,17,27\}$ 在相同二十个真实场景上形成 360 次编辑（表~\ref{tab:edit-seeds}）。车辆成功 177/180 次（98.33\%），人体 157/180 次（87.22\%），总体 334/360 次（92.78\%）。三个训练种子均值的样本 SD 为 0.48 个百分点。场景聚类 bootstrap 每次保留被抽中场景的全部十八次编辑，95\% 区间为 85.28--99.17\%。26 次失败集中在四个场景，分别为 9、8、6 和 3 次。聚类区间描述场景差异，训练种子 SD 单独报告。
+```
+
+
+修改后（当前第 353 行）
+
+```latex
+三个训练种子 $\{0,1,2\}$ 与三个生成种子 $\{7,17,27\}$ 在相同二十个真实场景上形成 360 次编辑（表~\ref{tab:edit-seeds}）。车辆成功 177/180 次（98.33\%），人体 157/180 次（87.22\%），总体 334/360 次（92.78\%）。三个训练种子结构完整性均值的样本 SD 为 0.48 个百分点。场景聚类 bootstrap 每次保留被抽中场景的全部十八次编辑，结构完整性的 95\% 区间为 85.28--99.17\%。26 次失败集中在四个场景，分别为 9、8、6 和 3 次。
+```
+
+
+原文（本轮基线第 357 行）
+
+```latex
+表~\ref{tab:real-edit-quality} 评价原有二十个场景、九组种子的 360 次演员编辑，相机平移不增加演员编辑分母。联合通过按逐例交集计算。334 次结构完整编辑中，36 次未通过至少一项新增质量检查，四项联合通过 298 次（82.78\%）。62 次联合失败由 26 次结构失败与另外 36 次质量失败组成。前述 0.48 个百分点训练种子 SD 和 85.28--99.17\% 场景聚类区间均描述结构完整性。规范对应线性 RGB MAE 0.014 衡量人体原已见纹理保持，新增表面评价衡量视觉质量与身份一致性。
+```
+
+
+修改后（当前第 360 行）
+
+```latex
+表~\ref{tab:real-edit-quality} 评价二十个场景、九组种子的 360 次演员编辑，相机平移不增加演员编辑分母。联合通过按四项判据的逐例交集计算，共通过 298 次（82.78\%）。62 次失败包括 26 次结构失败，以及 36 次结构完整但未通过至少一项其他质量检查的编辑。
+```
+
+
+原文（本轮基线第 362 行）
+
+```latex
+360 次编辑质量评价使用固定目标状态与视角清单。扩展协议设置车辆偏航角变化 $30^\circ$、$60^\circ$、$90^\circ$，人体最大非根关节旋转差 $15^\circ$、$30^\circ$、$45^\circ$，根放置固定。在相同场景／种子组合上，该状态网格定义 1,080 次演员编辑，每次三个预定义目标视角，共 3,240 幅图像，分母与原 360 次编辑质量评价分开。每个种子在全部状态中复用同一完成资产，五像素判据在 $240\times160$ 分辨率下计算。
+```
+
+
+修改后（当前第 365 行）
+
+```latex
+360 次编辑质量评价使用固定目标状态与视角清单。扩展协议设置车辆偏航角变化 $30^\circ$、$60^\circ$、$90^\circ$，人体最大非根关节旋转差 $15^\circ$、$30^\circ$、$45^\circ$，根放置固定。二十个场景与九组种子共形成 $20\times9\times(3+3)=1,080$ 次演员编辑，每次三个预定义目标视角，共 3,240 幅图像。每个种子在全部状态中复用同一完成资产，五像素判据在 $240\times160$ 分辨率下计算。
+```
+
+
+原文（本轮基线第 386 行）
+
+```latex
+Ours 的 0.18\% 新增遮挡对应 3,636 条射线，0.07\% 严格违规对应 1,414 条；更严格的违规集合可以是新增遮挡集合的子集。相对补全前，输入视角 PSNR 下降 0.029 dB，深度 MAE 增加 2 mm。去掉自由射线损失后，两类射线比例升至 1.34\% 和 0.91\%，说明该损失约束了查询级参数保持之外的渲染影响。
+```
+
+
+修改后（当前第 389 行）
+
+```latex
+Ours 的 0.18\% 新增遮挡对应 3,636 条射线，0.07\% 严格违规对应 1,414 条。相对补全前，输入视角 PSNR 下降 0.029 dB，深度 MAE 增加 2 mm。去掉自由射线损失后，两类射线比例升至 1.34\% 和 0.91\%，说明该损失约束了查询级参数保持之外的渲染影响。
+```
+
+
+原文（本轮基线第 432 行）
+
+```latex
+% 原位置无此段。
+```
+
+
+修改后（当前第 435 行）
+
+```latex
+令 $Q=Q_b+\sum_a Q_a^{\mathrm{vehicle}}+\sum_h Q_h^{\mathrm{human}}$ 为非天空查询总数。解码生成 $4Q$ 个候选高斯，非透明输出数量以此为上界，因此平均 140 万非透明高斯对应每场景平均至少 350,000 个非天空查询。天空由独立 cubemap 头输出。
+
+```
+
+
+#### paper/supplementary/frontend.tex
+
+将 0.10 m 明确为支撑邻域边长；中文现文已有该定义，保持原文。
+
+
+原文（本轮基线第 21 行）
+
+```latex
+The background base grid spans $[-20,80]\times[-30,30]\times[-3,15]$ m with $20\times12\times6$ cells, giving $5\times5\times3$ m cell scales. Up to 2,048 observed anchors add 0.20 m support cells. Each vehicle uses an $8\times4\times4$ grid inside its actual bounding box, with cell sides $(L/8,W/4,H/4)$ and up to 512 observed anchors of side 0.20 m. Human queries lie on the canonical template with 0.10 m support neighborhoods. Sky has six cubemap faces with $4\times4$ direction queries per face. Background attention groups use 4 m spatial bins; this grouping scale is independent of the support-cell scales.
+```
+
+
+修改后（当前第 21 行）
+
+```latex
+The background base grid spans $[-20,80]\times[-30,30]\times[-3,15]$ m with $20\times12\times6$ cells, giving $5\times5\times3$ m cell scales. Up to 2,048 observed anchors add 0.20 m support cells. Each vehicle uses an $8\times4\times4$ grid inside its actual bounding box, with cell sides $(L/8,W/4,H/4)$ and up to 512 observed anchors of side 0.20 m. Human queries lie on the canonical template with support neighborhoods of side 0.10 m. Sky has six cubemap faces with $4\times4$ direction queries per face. Background attention groups use 4 m spatial bins; this grouping scale is independent of the support-cell scales.
+```
+
+
+#### paper/supplementary/references.bib
+
+补充材料使用相同的 JRM 正式条目。
+
+
+原文（本轮基线第 27 行）
+
+```latex
+@article{wu2026jrm,
+```
+
+
+修改后（当前第 27 行）
+
+```latex
+@inproceedings{wu2026jrm,
+```
+
+
+原文（本轮基线第 30 行）
+
+```latex
+  journal={arXiv preprint arXiv:2603.25985},
+```
+
+
+修改后（当前第 30 行）
+
+```latex
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+```
+
+
+原文（本轮基线第 32 行）
+
+```latex
+  url={https://arxiv.org/abs/2603.25985},
+```
+
+
+修改后（当前第 32 行）
+
+```latex
+  pages={307--316},
+  url={https://openaccess.thecvf.com/content/CVPR2026/html/Wu_JRM_Joint_Reconstruction_Model_for_Multiple_Objects_without_Alignment_CVPR_2026_paper.html},
+```
+
+
+#### paper/supplementary/training.tex
+
+补明 100/20 个合成场景和 20 个真实场景的评价用途，明确 16 个记忆 token 为可学习参数。
+
+
+原文（本轮基线第 8 行）
+
+```latex
+% 原位置无此段。
+```
+
+
+修改后（当前第 8 行）
+
+```latex
+
+The synthetic test split supplies 100 scenes for paired hidden-surface evaluation and 20 scenes for asset editing. Fixed-asset reuse is also evaluated on 20 real scenes (Appendices H and I).
+```
+
+
+原文（本轮基线第 59 行）
+
+```latex
+Completion network & Width 128; 4 layers; 4 heads; 16 memory tokens \\
+```
+
+
+修改后（当前第 61 行）
+
+```latex
+Completion network & Width 128; 4 layers; 4 heads; 16 learnable memory tokens \\
+```
+
+
+#### paper/supplementary/training_zh.tex
+
+同步英文数据用途与记忆 token 定义。
+
+
+原文（本轮基线第 8 行）
+
+```latex
+% 原位置无此段。
+```
+
+
+修改后（当前第 8 行）
+
+```latex
+
+合成测试划分中，100 个场景用于隐藏表面的配对评价，20 个场景用于资产编辑；另在 20 个真实场景上评价固定资产复用（附录 H 和 I）。
+```
+
+
+原文（本轮基线第 59 行）
+
+```latex
+补全网络 & 宽度 128，4 层，4 头，16 个记忆 token \\
+```
+
+
+修改后（当前第 61 行）
+
+```latex
+补全网络 & 宽度 128，4 层，4 头，16 个可学习记忆 token \\
+```
+
+---
+
+## 2026-11-04 总览 PDF 与机制矢量图入稿
+
+本轮按作者“替换到中英文论文并重新编译检查排版”的要求，接入指定总览 PDF 和修订后的 draw.io 机制 PDF。真实起点为 HEAD `a0ccb6b509f7b6454313f4108b956741b5ca4fd3` 之后的未提交工作区；已有改动不计入本轮贡献。插图引用和使用说明原文取自[本轮实际基线](../../_archive/drivecompose/20261104-overview-mechanism-replacement/baseline/)，完整哈希与范围见[基线清单](../../_archive/drivecompose/20261104-overview-mechanism-replacement/baseline-manifest.json)。
+
+### 插图引用与连线
+
+| 位置 | 修改前 | 修改后 | 原因 |
+|---|---|---|---|
+| `paper/main.tex`、`paper/main_zh.tex` 的图 2 | `\includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}` | `\includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.pdf}` | 直接采用作者指定的最新 PDF，保留原文件的矢量对象与图片 |
+| `paper/sec/3_method.tex`、`paper/zh/3_method_zh.tex` 的图 3 | `\includegraphics[width=\linewidth]{fig/drivecompose-joint-completion.png}` | `\includegraphics[width=\linewidth]{fig/drivecompose-joint-completion.pdf}` | 接入已修正箭头及反馈路径的机制矢量图 |
+| 三组局部注意力 | 中间 token 上方两个箭头拥挤，曲率不统一 | 平滑公共弧线及三个均匀箭头 | 解决作者指出的箭头外观问题 |
+| 迭代反馈 | 反馈线在 `S steps` 文字处断开 | 一条完整反馈连接，文字放在线外 | 保持状态迭代路径连续、可编辑 |
+
+插图宽度、图注、编号和引用标签保持。两版图 2 仍位于第 3 页、图 3 位于第 4 页。机制 PDF 无内嵌光栅图，实际单栏宽度约 83.34 mm，正文标签约 8.16–8.33 pt；总览 PDF 逐字节采用作者文件，原有照片像素保留。总览局部小字仍偏小，`Depth+ ID` 按实际放置尺寸约 4.39 pt，未擅自重画源图。
+
+### 使用说明的中英同步
+
+为准确说明当前图件的制作方式，仅替换两版使用说明中的相关一句，其余说明保持。
+
+英文原文：
+
+> OpenAI Image Gen was used for the conceptual scene and method illustrations in Figs.~\ref{fig:teaser}--\ref{fig:joint-completion}.
+
+英文修改后：
+
+> OpenAI Image Gen assisted the conceptual scene and method-illustration designs. The overview uses the author-supplied PDF, and the joint-completion diagram was rebuilt as editable vectors in draw.io.
+
+中文原文：
+
+> OpenAI Image Gen 用于图~\ref{fig:teaser}--\ref{fig:joint-completion} 的概念场景与方法插图。
+
+中文修改后：
+
+> OpenAI Image Gen 辅助概念场景与方法插图设计。总览图采用作者提供的 PDF，联合补全机制图通过 draw.io 重建为可编辑矢量图。
+
+### 编译与最终输出
+
+两份主稿通过已有 `paper/tools/build.py` 及 Tectonic 重编。最初正式英文 PDF 被占用，已在项目外编译候选、完成校验后按字节一致地原子替换正式路径；编译记录同时保留实际候选路径及正式安装结果。英文共 11 页，完整结论及 `sec:main-text-end` 均在第 8 页；中文共 10 页，完整正文止于第 7 页。结论全文匹配、图表页码、引用、溢出、图件哈希和页面渲染均已检查，未见缺字、未定义引用、裁切或重叠；中文保留原有第 6 页仅含浮动图的提示。
+
+73 项稿件结构检查及 21 项本轮核验通过。检查器改为从当前图件清单读取 PDF 选择并核对两个 PDF 和 draw.io 源文件的哈希，历史 PNG 来源检查仍保留。未修改科研叙述、公式、实验数值、图注或格式参数；同期其他会话的补充材料修改原样保留。本轮仅重新编译主稿，不声称重编补充。完整来源和最终输出见[验收记录](../paper/provenance/figure-replacement-20261104.json)，页图与候选统一在[项目外工作目录](../../_archive/drivecompose/20261104-overview-mechanism-replacement/)。
+
+---
+
 ## 2026-11-04 将作者指定 PPT 替换为首页 teaser
 
 本轮问题与范围：作者指定 `paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx` 直接替换论文 teaser；原 Figure 1 仍是早期概念图。本轮只接入现有图稿并重编主稿，PPT 内容、两版图注、正文与版式参数保持。

@@ -1,12 +1,56 @@
 # DriveCompose teaser 设计研究与概念样例
 
-## 当前论文图 1（2026-11-04）
+## 异机图 1 采用记录（2026-11-04；原件未同步）
 
-按用户“这个作为 teaser 替换上去就行”的要求，当前双语主稿使用 [drivecompose-concept-merged.pdf](../../../paper/fig/drivecompose-concept-merged.pdf)，来源为作者最新保存的 [可编辑 PPT](../../../paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx)。完整单页渲染为 5400 × 2835 像素，再封装至原有 720 × 378 pt 图幅；没有重绘、裁切或修改 PPT 内的内容。两版图注与正文保持当前版本。输入缩略图来自 Waymo，P2–P6 为概念示意。
+按用户“这个作为 teaser 替换上去就行”的要求，该次异机替换使用 [drivecompose-concept-merged.pdf](../../../paper/fig/drivecompose-concept-merged.pdf)，来源为作者最新保存的 [可编辑 PPT](../../../paper/fig/teaser-editable/output/DriveCompose-teaser-placeholder.pptx)。完整单页渲染为 5400 × 2835 像素，再封装至原有 720 × 378 pt 图幅；没有重绘、裁切或修改 PPT 内的内容。两版图注与正文保持当前版本。输入缩略图来自 Waymo，P2–P6 为概念示意。
 
-两版已重新编译并检查首页与正文末页；英文完整正文止于第 8 页，中文止于第 7 页。源文件哈希、内嵌像素核对与编译结果见[采用记录](../../../paper/provenance/teaser-ppt-replacement-20261104.json)。下方保留早期设计研究与旧样例，不代表当前使用的图件。
+两版已重新编译并检查首页与正文末页；英文完整正文止于第 8 页，中文止于第 7 页。源文件哈希、内嵌像素核对与编译结果见[采用记录](../../../paper/provenance/teaser-ppt-replacement-20261104.json)。该记录仅描述异机编译。对应 PPT 及 SHA-256 为 `5f1e29a61e407e9e4c597e579b1eb8b7eeb2f58d21560b430562908b58e59d3e` 的导出未随纯文本提交提供；本次同步保留本机现有图件，其 SHA-256 为 `3031f2f09069d714ed267cb0390d6ea978e23304b7c7a23d5f5e0225773b1a40`。
 
-## 历史设计与样例
+## 2026-11-04 首页对比图优化
+
+针对当前活动图一 `paper/fig/drivecompose-concept-merged.pdf`，完成录用论文原图核验和一张新的对齐对比草稿。实际起点为当时未提交工作区，文件哈希和 Git 状态见[本轮基线](../../../../_archive/drivecompose/20261104-figure1-optimization/baseline.json)。本轮由 `design-scientific-figure` 主导设计、`nature-academic-search` 核验参考，图内字号和图注参考项目已确认的 `cvpr-paper-standard`。没有启动第二套论文写作或演示制作流程。
+
+**已归档草稿：** [figure1-comparison-draft.png](../../../../_archive/drivecompose/20261104-pre-push-sync/files/docs/figures/teaser/figure1-comparison-draft.png)，2172 × 724，内置 Image Gen 生成，仍是概念示意。共享一组驾驶观测，上下对照 Observation-only / DriveCompose，右侧按 Camera shift / Vehicle rotation / Human articulation 三列逐列对应。车辆与人体用近景，灰斜线表示缺失、金色斜线表示补全。未替换论文活动图一，未修改正文或图注。
+
+### 已录用论文的原图如何组织
+
+核验日期：2026-11-04。下表分析的是各论文实际 Figure 1，而非只依据摘要或项目宣传图。[四篇原图联系图](../../../../_archive/drivecompose/20261104-figure1-optimization/references/accepted-figure1-comparison.png)由源 PDF 第 1 页裁切渲染，保留源图布局，用于个人设计研究。只迁移画法原则，不转用源图像素、数值或科学结论。
+
+| 已录用来源与定位 | 原图实际画法 | 本图采用的原则 |
+|---|---|---|
+| [ReconDreamer，CVPR 2025，p.1 Fig.1](https://openaccess.thecvf.com/content/CVPR2025/papers/Ni_ReconDreamer_Crafting_World_Models_for_Driving_Scene_Reconstruction_via_Online_CVPR_2025_paper.pdf) | 方法按行、相同视点位移按列，上方轨迹示意定义变化条件；从原视角到更大的横向位移，直接看画面差别。已下载并核验 CVF 正式版本。 | 共享列条件，固定同列目标状态；把对比放在视觉中心。DriveCompose 按三种不同干预分列，不复制原图的位移数值。 |
+| [StreetCrafter，CVPR 2025，p.1 Fig.1](https://openaccess.thecvf.com/content/CVPR2025/papers/Yan_StreetCrafter_Street_View_Synthesis_with_Controllable_Video_Diffusion_Models_CVPR_2025_paper.pdf) | 上方紧凑输入与生成路径，下方分别展示同场景方法对照和编辑；相同位置的局部框突出道路细节差异。 | 先选能暴露差异的局部，统一对应位置。草稿直接放大车辆和人体，避免输出太小后再加一圈小框。 |
+| [GenAssets，CVPR 2025，p.1 Fig.1](https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_GenAssets_Generating_in-the-wild_3D_Assets_in_Latent_Space_CVPR_2025_paper.pdf) | 输入街景与多角度资产形成对应；转向序列显示资产在新状态下的用途，右侧展示生成资产的覆盖。 | 用同一车辆的转动说明未见表面为何重要。没有继承该论文的 360°、类别覆盖或规模主张。 |
+| [HorizonForge，CVPR 2026，p.1 Fig.1](https://openaccess.thecvf.com/content/CVPR2026/html/Wang_HorizonForge_Driving_Scene_Editing_with_Any_Trajectories_and_Any_Vehicles_CVPR_2026_paper.html) | 原序列与操作后序列成对排列，操作文字直接指向相机转动或车辆插入；时间对应明确。 | 将可见操作作为列标题，同列保持状态和构图对应，不再靠长段流程文字解释结果。 |
+
+另检查了 UrbanCAD（CVPR 2025）首页编辑矩阵。OmniRe 和 DGGT 的所读版本首页没有放 Figure 1，未将它们作为“首页对比图”的主要样本。上述选择是与本任务相关的案例分析，不是对所有录用论文的统计规律。
+
+### 原图问题 → 新草稿改动 → 作用
+
+| 原图可见问题 | 本轮改动 | 对阅读的作用 |
+|---|---|---|
+| 上方失败流程与下方完整 teaser 采用不同构图，输入重复 | 两行共用左侧两张观测；行高、表示尺度和结果列统一 | 读者直接比较相同输入下的两种构建条件 |
+| 上半没有与下半三种状态一一对应的画面 | 相机移动、车辆转动、人体换姿分别成列，上下配对 | 明确每次干预暴露哪一类未观测表面 |
+| 大蓝色流程框、中心全景与下方车辆小插图争夺空间 | 删除大流程框及重复小插图，结果区约占六成宽度 | 让旋转车辆与换姿人体成为视觉中心，方法细节回现有图二／三 |
+| 合并图比例 720:378，首页占高较大 | 新草稿比例为 3:1 | 等宽放置的图像高度减少约 36.5%；该值为几何计算，不是本轮重排 PDF 的实测 |
+| 旧图两套面板字母与不一致字号 | 使用共享列标题、两行条件名和一个图例 | 减少标签重复，保留表面缺失／补全的语义 |
+
+旧的主要图中文字为 `Driving images → Observation-only reconstruction → Observed surfaces → State-driven rendering → Unseen regions exposed`，下面另起 `Driving observations / Joint completion / Reuse the same assets`。新图将它们整理为共享 `Driving observations`，两行 `Observation-only / DriveCompose`，三列 `Camera shift / Vehicle rotation / Human articulation`。变化只服务于同条件对比，未增添实验结论。
+
+### 产物、来源与复核
+
+- [完整最终提示词](../../../../_archive/drivecompose/20261104-pre-push-sync/files/docs/figures/teaser/figure1-comparison-prompt.txt)：最终局部修正调用的全文，26,642 个非空白字符；绑定模板为 15,356 个，长度检查通过。原始全图生成提示词保留在归档。
+- [设计规格](../../../../_archive/drivecompose/20261104-pre-push-sync/files/docs/figures/teaser/figure1-design-spec.json)：主张、来源、节点／关系、配对条件、组件绑定、字号、颜色及不可误读的边界。
+- [生成与复核记录](../../../../_archive/drivecompose/20261104-pre-push-sync/files/docs/figures/teaser/figure1-generation-record.json)：两次实际出图、局部修正、最终像素尺寸、SHA-256、采样密度和证据范围。
+- [本轮过程归档](../../../../_archive/drivecompose/20261104-figure1-optimization/)：旧图、旧首页、参考 PDF 页图、首次草稿、提示词和缩小／灰度审阅图。生成原件另由 Image Gen 保留。
+
+已查看全图、缩小预览及隐藏标题和一项次要注释的灰度副本；属于知情自审，不声称独立盲审。布局方向可供审阅。车辆与人体的配对修正减少了目标状态差异，但生成画面不是严格像素配准的实验比较。灰度下仅靠斜线颜色区分缺失／补全的效果弱于彩色，最终排版时需保留可读图例。约 173 mm 宽时源图采样密度约 319 dpi；该值只说明分辨率，不证明全部烘焙文字达到精确字号。
+
+本轮没有改写正式 PDF。任务期间检测到其他图件／补充修订引起的 PDF 更新，未覆盖这些同期工作；当前活动图一以及两个主入口相对本轮起点保持。可编辑重建与正式入稿不在本轮已执行的范围内。
+
+---
+
+## 历史设计记录：2026-10-28
 
 日期：2026-10-28。范围：参考图研究、teaser 叙事与 Image Gen 概念图；随后按用户要求插入双语主稿标题下、摘要前。样例为生成式示意，不作为实验结果。
 

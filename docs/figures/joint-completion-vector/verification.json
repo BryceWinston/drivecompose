@@ -1,0 +1,317 @@
+{
+  "date": "2026-11-04",
+  "status": "active_in_bilingual_main_manuscripts",
+  "reference": "paper/fig/drivecompose-joint-completion.png",
+  "reference_sha256": "bce38035a72ccedf18e614281389585fab64b0ed96199bd7598311c058e280ed",
+  "baseline": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-mechanism-vector-continuation\\baseline.drawio",
+  "baseline_sha256": "01cd0e712a84e2e0e614786d9a8d951e26b2d8011c02d25314261a306100e290",
+  "changes": [
+    "One continuous connector links the projected next latent to the current latent; S steps is a separate label.",
+    "Each local group now uses one consistent outer curve and three evenly spaced arrowheads.",
+    "The legend is lowered to clear the continuous feedback route; completion label frame is wider.",
+    "A narrow saved-file metadata repair preserves the 1402 x 1201 page size on reopening."
+  ],
+  "exports_sha256": {
+    "figure3-drawio.drawio": "582e3684907f5872d09e9739ded4727293d54a06e0c244a7bc459f1a2d2f156c",
+    "figure3-drawio.png": "a7da9fd37577cac425ec9622654ddd965fa0e7f271182635f646e6986b901f17",
+    "figure3-drawio.pdf": "93a923a7ffe450b28aa9a5fe315b41d6bcbac7d37d3fdab5d25bc6964b018444",
+    "figure3-drawio.svg": "124a42faf25b912dc33ccaaa5298a7abf9855e0844b8b4b53a71fa7ecc4360b4"
+  },
+  "renderer": "draw.io desktop live model and CLI PDF/PNG; SVG is PDF outlines with native vector panel gradients",
+  "svg_text_editability": "outlined; use the draw.io source to edit labels",
+  "review": "self-review against the selected image, current method, reopened draw.io and physical-size proof",
+  "reopened_live_audit": {
+    "backend": "drawio",
+    "page_size": {
+      "width": 1402,
+      "height": 1201,
+      "visible": true
+    },
+    "object_counts": {
+      "total": 138,
+      "vertices": 117,
+      "edges": 21,
+      "pictures": 0,
+      "native_or_composite": 138
+    },
+    "picture_audit": [],
+    "hard_failure_count": 0,
+    "warning_count": 0,
+    "findings_truncated": false,
+    "passed": true,
+    "findings": [],
+    "reviewer_contract": "Every hard finding must be converted by the Corrector into named geometry, routing, text-fit, or decomposition operations, executed by the Drawer, rerendered, and audited again."
+  },
+  "validation": {
+    "drawio_cells_including_roots": 140,
+    "native_model_objects": 138,
+    "vertices": 117,
+    "edges": 21,
+    "groups": 4,
+    "raster_images_in_drawio": 0,
+    "broken_cell_references": [],
+    "directed_routes_checked": {
+      "condition-to-local": [
+        "condition-cue",
+        "panel-local"
+      ],
+      "initial-to-updated-memory": [
+        "memory-initial",
+        "memory-updated"
+      ],
+      "local-to-updated-memory": [
+        "panel-local",
+        "memory-updated"
+      ],
+      "memory-to-contextual": [
+        "memory-updated",
+        "panel-contextual"
+      ],
+      "local-to-contextual-residual": [
+        "panel-local",
+        "panel-contextual"
+      ],
+      "contextual-to-velocity": [
+        "panel-contextual",
+        "velocity-head"
+      ],
+      "current-to-local": [
+        "latent-current",
+        "panel-local"
+      ],
+      "state-to-update": [
+        "latent-current",
+        "euler-add"
+      ],
+      "velocity-to-update": [
+        "velocity-head",
+        "euler-add"
+      ],
+      "update-to-projection": [
+        "euler-add",
+        "projection"
+      ],
+      "projection-to-next": [
+        "projection",
+        "latent-next"
+      ],
+      "next-to-completion": [
+        "latent-next",
+        "completed-state"
+      ],
+      "latent-feedback-right": [
+        "latent-next",
+        "latent-current"
+      ]
+    },
+    "feedback_is_a_single_direct_edge": true,
+    "page_attributes": {
+      "page": "1",
+      "pageScale": "1",
+      "pageWidth": "1402",
+      "pageHeight": "1201"
+    },
+    "svg_tags": {
+      "svg": 1,
+      "defs": 1,
+      "clipPath": 4,
+      "path": 264,
+      "g": 5,
+      "linearGradient": 1,
+      "stop": 2,
+      "use": 234,
+      "rect": 2
+    },
+    "svg_base64_occurrences": 0,
+    "pdf_page_size_pt": [
+      964.0799560546875,
+      845.0399780273438
+    ],
+    "pdf_raster_images": 0,
+    "pdf_vector_drawings": 126,
+    "pdf_text_spans": [
+      {
+        "text": "Cross-component context",
+        "point_size_at_83_34mm": 9.718
+      },
+      {
+        "text": "C, τ",
+        "point_size_at_83_34mm": 9.371
+      },
+      {
+        "text": "Local attention",
+        "point_size_at_83_34mm": 9.024
+      },
+      {
+        "text": "Background",
+        "point_size_at_83_34mm": 8.33
+      },
+      {
+        "text": "Rigid",
+        "point_size_at_83_34mm": 8.33
+      },
+      {
+        "text": "Human",
+        "point_size_at_83_34mm": 8.33
+      },
+      {
+        "text": "X̃",
+        "point_size_at_83_34mm": 10.065
+      },
+      {
+        "text": "Fixed query layout",
+        "point_size_at_83_34mm": 8.33
+      },
+      {
+        "text": "M",
+        "point_size_at_83_34mm": 9.718
+      },
+      {
+        "text": "Shared memory",
+        "point_size_at_83_34mm": 9.371
+      },
+      {
+        "text": "M′",
+        "point_size_at_83_34mm": 9.718
+      },
+      {
+        "text": "U",
+        "point_size_at_83_34mm": 10.412
+      },
+      {
+        "text": "Velocity head",
+        "point_size_at_83_34mm": 8.33
+      },
+      {
+        "text": "Constrained update",
+        "point_size_at_83_34mm": 9.371
+      },
+      {
+        "text": "0",
+        "point_size_at_83_34mm": 8.156
+      },
+      {
+        "text": "0",
+        "point_size_at_83_34mm": 8.156
+      },
+      {
+        "text": "z",
+        "point_size_at_83_34mm": 9.718
+      },
+      {
+        "text": "j",
+        "point_size_at_83_34mm": 6.594
+      },
+      {
+        "text": "z",
+        "point_size_at_83_34mm": 9.718
+      },
+      {
+        "text": "(j+1)",
+        "point_size_at_83_34mm": 6.594
+      },
+      {
+        "text": "Projection",
+        "point_size_at_83_34mm": 8.156
+      },
+      {
+        "text": "Completed",
+        "point_size_at_83_34mm": 8.156
+      },
+      {
+        "text": " z",
+        "point_size_at_83_34mm": 9.718
+      },
+      {
+        "text": "S",
+        "point_size_at_83_34mm": 6.594
+      },
+      {
+        "text": "after S",
+        "point_size_at_83_34mm": 8.33
+      },
+      {
+        "text": "Δτ u ",
+        "point_size_at_83_34mm": 8.677
+      },
+      {
+        "text": "⊙",
+        "point_size_at_83_34mm": 8.677
+      },
+      {
+        "text": " v",
+        "point_size_at_83_34mm": 8.677
+      },
+      {
+        "text": "θ",
+        "point_size_at_83_34mm": 6.074
+      },
+      {
+        "text": "(unknown only)",
+        "point_size_at_83_34mm": 8.33
+      },
+      {
+        "text": "S steps",
+        "point_size_at_83_34mm": 8.677
+      },
+      {
+        "text": "0",
+        "point_size_at_83_34mm": 8.156
+      },
+      {
+        "text": "Observed",
+        "point_size_at_83_34mm": 8.33
+      },
+      {
+        "text": "fixed",
+        "point_size_at_83_34mm": 8.33
+      },
+      {
+        "text": "Unknown",
+        "point_size_at_83_34mm": 8.33
+      },
+      {
+        "text": "updated",
+        "point_size_at_83_34mm": 8.33
+      },
+      {
+        "text": "Free",
+        "point_size_at_83_34mm": 8.33
+      },
+      {
+        "text": "zero",
+        "point_size_at_83_34mm": 8.33
+      }
+    ],
+    "body_text_size_range_pt_at_83_34mm": [
+      8.156,
+      8.33
+    ],
+    "physical_proof_width_mm": 83.34,
+    "local_symbol": {
+      "shared_outer_arcs": 3,
+      "center_branches": 3,
+      "arrowheads_per_row": 3,
+      "interpretation": "schematic group interaction, not individual attention weights"
+    }
+  },
+  "proof": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-mechanism-vector-continuation\\physical-width-proof.pdf",
+  "active_in_manuscript": true,
+  "manuscript_png_preserved": true,
+  "last_local_refinement": {
+    "reason": "The prior middle arrowheads were crowded and the local curves were uneven.",
+    "changed_cell_ids": [
+      "local-arc-0-left",
+      "local-arc-0-right",
+      "local-arc-1-left",
+      "local-arc-1-right",
+      "local-arc-2-left",
+      "local-arc-2-right"
+    ],
+    "other_graph_objects_changed": 0,
+    "proof_width_mm": 83.34,
+    "visual_review": "reopened draw.io, fresh PNG and PDF physical-size proof, rendered SVG",
+    "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-mechanism-vector-continuation\\arrow-refinement"
+  },
+  "manuscript_provenance": "paper/provenance/figure-replacement-20261104.json"
+}

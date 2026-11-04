@@ -1,0 +1,111 @@
+{
+  "date": "2026-11-04",
+  "baseline_head": "a0ccb6b509f7b6454313f4108b956741b5ca4fd3",
+  "baseline": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-supplementary-author-revision\\baseline",
+  "author_source": "paper/provenance/author-supplement-20261104.txt",
+  "author_source_sha256": "f16ac47879bbc1ab8b10b5338cb9469e6bdb6edf89bbc447e7a2280be8df7f28",
+  "author_confirmed_supporting_materials_available": true,
+  "scope": "Main: JRM citation only. Figure 5 unchanged. Supplementary: localized EN/ZH definitions and numeric conclusions from author text.",
+  "primary_skill": "nature-polishing",
+  "venue_standard": "cvpr-paper-standard",
+  "terminology": [
+    "GCM",
+    "CCM",
+    "Scene latent",
+    "Object coupling",
+    "structural integrity",
+    "joint acceptance",
+    "C",
+    "F"
+  ],
+  "our_source_files": [
+    "paper/main.bib",
+    "paper/supplementary/composition.tex",
+    "paper/supplementary/composition_zh.tex",
+    "paper/supplementary/evaluation.tex",
+    "paper/supplementary/evaluation_zh.tex",
+    "paper/supplementary/frontend.tex",
+    "paper/supplementary/references.bib",
+    "paper/supplementary/training.tex",
+    "paper/supplementary/training_zh.tex"
+  ],
+  "concurrent_external_source_changes": [
+    "paper/main.tex",
+    "paper/main_zh.tex",
+    "paper/sec/3_method.tex",
+    "paper/sec/7_llm_usage.tex",
+    "paper/zh/3_method_zh.tex",
+    "paper/zh/7_llm_usage_zh.tex"
+  ],
+  "source_checks": {
+    "our_changes_within_authorized_files": true,
+    "Figure_5_asset_unchanged": true,
+    "paper/sec/4_experiments.tex_unchanged": true,
+    "paper/zh/4_experiments_zh.tex_unchanged": true,
+    "evaluation_tables_unchanged": true,
+    "labels_unchanged": true,
+    "evaluation_tables_unchanged_zh": true,
+    "labels_unchanged_zh": true
+  },
+  "verification": {
+    "passed": true,
+    "checks": {
+      "paper/main.bib_only_JRM_changed": true,
+      "paper/main.bib_formal_entry": true,
+      "paper/supplementary/references.bib_only_JRM_changed": true,
+      "paper/supplementary/references.bib_formal_entry": true,
+      "table_environment_count_preserved": true,
+      "all_table_numerics_preserved": true,
+      "labels_preserved": true,
+      "table_environment_count_preserved_zh": true,
+      "all_table_numerics_preserved_zh": true,
+      "labels_preserved_zh": true,
+      "paper/sec/4_experiments.tex_unchanged": true,
+      "paper/zh/4_experiments_zh.tex_unchanged": true,
+      "paper/fig/assets/Shift.pdf_unchanged": true,
+      "en_final_log_clean": true,
+      "en_formal_JRM_rendered": true,
+      "en_complete_conclusion_on_expected_page": true,
+      "zh_final_log_clean": true,
+      "zh_formal_JRM_rendered": true,
+      "zh_complete_conclusion_on_expected_page": true,
+      "supp-en_final_log_clean": true,
+      "supp-en_formal_JRM_rendered": true,
+      "supp-en_captions_1_to_24": true,
+      "supp-en_new_results_present": true,
+      "supp-zh_final_log_clean": true,
+      "supp-zh_formal_JRM_rendered": true,
+      "supp-zh_captions_1_to_24": true,
+      "supp-zh_new_results_present": true
+    },
+    "failed": [],
+    "outputs": {
+      "en": {
+        "pages": 11,
+        "sha256": "569f0ca169e0c6f0cb4cb673ff93d0f995cd7d16c98a0c19d4dd6e4ca98ef301",
+        "main_text_end": 8
+      },
+      "zh": {
+        "pages": 10,
+        "sha256": "2fa27de230aa9e64447d39abf1aa6c8532ee05a233a45a46108b34b1f16d0c89",
+        "main_text_end": 7
+      },
+      "supp-en": {
+        "pages": 12,
+        "sha256": "7b36e5b641a471dbef1cd21b614e9f7a005e5043c8efc2466a2f132809d09dff"
+      },
+      "supp-zh": {
+        "pages": 10,
+        "sha256": "cd7f4b43cc7a8032f0e699907050f95169bcc9b3804202d3513e3fd5c5880078"
+      }
+    },
+    "existing_checker": {
+      "passed": true,
+      "checks": 73
+    }
+  },
+  "experiments_executed": false,
+  "source_diff": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-supplementary-author-revision\\source-changes.diff",
+  "concurrent_diff": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-supplementary-author-revision\\concurrent-source-changes.diff",
+  "intermediates": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-supplementary-author-revision"
+}

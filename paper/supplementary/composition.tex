@@ -12,7 +12,7 @@ At online step $k$, state $s_k$ specifies the ego pose, active assets, rigid tra
 \label{eq:rigid}
 \end{equation}
 
-For humans, the weighted skinning transform is $\mathbf A_i=\sum_j w_{ij}\mathbf P_j\mathbf B_j^{-1}$, where $\mathbf B_j$ and $\mathbf P_j$ are rest and current global joints in the root frame. The transformed center is $\bar{\boldsymbol\mu}_i^w=\mathbf T^w_h\mathbf A_i\bar{\boldsymbol\mu}_i^h$. The combined local linear map $\mathbf J_i$ gives covariance $\mathbf J_i\boldsymbol\Sigma_i\mathbf J_i^\top$. Its inverse $\mathbf J_i^{-1}$ maps viewing directions into the canonical frame; the direction is normalized before appearance evaluation. The inverse is evaluated for nonsingular skinning transforms. The root pose controls overall placement, while the root joint retains its rest transform.
+For humans, the weighted skinning transform is $\mathbf A_i=\sum_j w_{ij}\mathbf P_j\mathbf B_j^{-1}$, where $\mathbf B_j$ and $\mathbf P_j$ are rest and current global joints in the root frame. Weights satisfy $w_{ij}\geq0$ and $\sum_j w_{ij}=1$, giving $\mathbf A_i=\mathbf I$ in the rest state $\mathbf P_j=\mathbf B_j$. The transformed center is $\bar{\boldsymbol\mu}_i^w=\mathbf T^w_h\mathbf A_i\bar{\boldsymbol\mu}_i^h$. The combined local linear map $\mathbf J_i$ gives covariance $\mathbf J_i\boldsymbol\Sigma_i\mathbf J_i^\top$. Its inverse $\mathbf J_i^{-1}$ maps viewing directions into the canonical frame; the direction is normalized before appearance evaluation. The inverse is evaluated for nonsingular skinning transforms. The root pose controls overall placement, while the root joint retains its rest transform.
 
 The renderer composites the background, active assets, and valid sky. External policy and dynamics can advance the state:
 
