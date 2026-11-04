@@ -1,5 +1,15 @@
 # 来源与项目外归档
 
+## 2026-11-04 同步同事提交
+
+本机已拉取 `edcd19c` 并保留目录整理。当前图 3 采用同事的矢量 PDF；其原生 draw.io 源稿与远端原件保存在[同步归档](../../../_archive/drivecompose/20261104-sync-collaborator/remote/)，当前路径及核验见[布局记录](figure-layout.json)。同事提交的历史来源 JSON 保持原文。
+
+## 2026-11-04 图件目录统一
+
+五张正式论文图统一放在 `paper/fig/`，只保留两份作者可编辑 PPT 与五份 PDF。当前入口为[图件索引](../../docs/figures/README.md)，文件哈希、格式转换和旧路径见[布局记录](figure-layout.json)。旧图、素材、提示词、预览及构建快照保存在[本轮归档](../../../_archive/drivecompose/20261104-figure-cleanup/)；历史记录保持原文，其旧项目相对路径按归档内 `files/<原路径>` 查找。可重建的依赖缓存不作为历史证据。
+
+---
+
 2026-10-20 目录整理将历史材料移至 `pre-research/_archive/drivecompose/20261020-cleanup/`，位于 DriveCompose 项目之外。目录整理当时，双语论文入口、正文、实验章节、图件依赖、书目和样式保持原字节。后续非实验改写另见下方记录。
 
 - [原始来源清单](source-manifest.json)：从旧 `paper/archive/` 原样归位，保留迁移时的路径、Git 提交和 SHA-256，不以当前文件覆盖历史记录。

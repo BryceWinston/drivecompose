@@ -1,11 +1,11 @@
 {
   "language": "zh",
   "command": [
-    "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1029.7803.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
+    "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1016.6573.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
     "-X",
     "compile",
     "--outdir",
-    "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-overview-mechanism-replacement\\candidate-build\\zh",
+    "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\zh",
     "--outfmt",
     "pdf",
     "--print",
@@ -15,17 +15,13 @@
     "main_zh.tex"
   ],
   "exit_code": 0,
-  "started_at": "2026-11-04T06:40:32.102492+00:00",
-  "finished_at": "2026-11-04T06:40:53.774922+00:00",
-  "elapsed_seconds": 21.672,
-  "fontconfig_file": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\tools\\fontconfig.conf",
-  "source_sha256": "7f508948c873bb3fa95a4c83e1fcd210811788bb323f9cdddad2ef4e978f1ce2",
-  "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+  "started_at": "2026-11-04T08:41:19.208104+00:00",
+  "finished_at": "2026-11-04T08:41:37.060496+00:00",
+  "elapsed_seconds": 17.86,
+  "fontconfig_file": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\tools\\fontconfig.conf",
+  "source_sha256": "613cb53fb3c1dda4a19d7c46e503ccd8068dc7638870828a5fcd1b89f7c6070b",
+  "pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
   "pdf_exists": true,
   "pdf_written_this_run": true,
-  "pdf_sha256": "2fa27de230aa9e64447d39abf1aa6c8532ee05a233a45a46108b34b1f16d0c89",
-  "compiler_pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-overview-mechanism-replacement\\candidate-build\\zh\\main_zh.pdf",
-  "formal_output_installed_this_run": true,
-  "formal_output_installed_at_utc": "2026-11-04T06:48:03.017057+00:00",
-  "installation": "Validated candidate copied byte-for-byte and atomically installed at the formal path."
+  "pdf_sha256": "c33259ae48da3152d075fa72acf191476fdc44c72f81e02ef27cb174b0c0dcb4"
 }

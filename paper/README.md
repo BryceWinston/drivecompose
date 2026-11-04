@@ -1,4 +1,8 @@
-## 2026-11-04 当前图件
+## 2026-11-04 本机同步状态
+
+已拉取同事提交 `edcd19c`，保留补充材料、正式引文、使用说明与新机制矢量图。当前图件统一位于 `fig/`；本机两份最终 PPT 保留，图 2、3 使用同事提供的 PDF 原件并统一改名。四份 PDF 已在本机重编，页数及验收见[当前输出](build/CURRENT-OUTPUTS.md)，来源和可编辑文件见[图件索引](../docs/figures/README.md)。按作者要求，本次仅提交源码、说明和旧文件的清理记录，最终 PPT、图件 PDF 及重编后的论文 PDF 留在本机；新检出编译前需另行补齐 `fig/` 下的五份图件 PDF。
+
+## 2026-11-04 远端图件修订记录
 
 两版主稿已直接采用作者指定的总览 PDF 和修订后的 draw.io 机制矢量 PDF，图 2 位于第 3 页，图 3 位于第 4 页。两版均已重新编译并复核排版：英文共 11 页、完整正文止于第 8 页；中文共 10 页、正文止于第 7 页。73 项稿件结构检查及 21 项本轮核验通过。来源与哈希见[图件替换记录](provenance/figure-replacement-20261104.json)，当前输出见 [CURRENT-OUTPUTS.md](build/CURRENT-OUTPUTS.md)。
 
@@ -40,12 +44,13 @@ latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=../build/supp-
 - `main.tex`：英文入口；`sec/`：英文各章节。
 - `main_zh.tex`：中文入口；`zh/`：中文各章节，采用与英文相同的方法符号与结构。
 - `main.bib`：两版共用的 84 条当前引用。用户 DOCX 的 75 条全部纳入，9 条与原书目重复、新增 66 条；文档之外的 9 条项目近邻工作保留。逐条引用位置见 [引用接入记录](provenance/reference-integration-20261021.md)。
-- `fig/drivecompose-concept-merged.pdf`：两版首页 Figure 1。本次同步保留本机正式图件；远端 [PPT teaser 采用记录](provenance/teaser-ppt-replacement-20261104.json)及设计文本已接入，但其 PPT 和对应导出未随文本提交提供，当前本机文件与该记录中的图件哈希不同。详情见[图 1 说明](../docs/figures/teaser/README.md)。
-- `fig/drivecompose-inference-overview.pdf`：两版共用的图 2，2026-11-04 直接复制作者指定 `E:/Users/changan/Downloads/feishu/DriveCompose.pdf`，保留原文件的矢量对象及图片；来源与核验见[本轮记录](provenance/figure-replacement-20261104.json)。旧 PNG 保留为历史资产。
-- `fig/drivecompose-joint-completion.pdf`：两版共用的图 3，采用已修正局部注意力箭头和反馈连线的矢量 PDF；可编辑源文件及复核见[机制图说明](../docs/figures/joint-completion-vector/README.md)。
-- [总览图说明](../docs/figures/overview/README.md)：当前 PDF 的来源、图注与核验记录，保留各历史版本入口。
+- `fig/fig01-teaser.pptx` / `fig/fig01-teaser.pdf`：本机保留的作者最终可编辑 PPT 与原生 PDF，作为两版首页图 1。
+- `fig/fig02-overview.pptx` / `fig/fig02-overview.pdf`：图 2；保留本机可编辑 PPT，PDF 采用同事本次同步的作者指定原件，原样改名。
+- `fig/fig03-joint-completion.pdf`：图 3；采用同事本次同步的修正后机制矢量图。原生 draw.io 源稿及原始导出保存在同步归档，入口见[图件索引](../docs/figures/README.md)。
+- `fig/fig04-dynamic-reconstruction.pdf`：原 PNG 的无损 PDF 封装；实验图像像素保持。
+- [图件索引](../docs/figures/README.md)：五张正式图统一放在 `fig/`，按 `figNN-英文短名` 命名，文件哈希及归档见[布局记录](provenance/figure-layout.json)。
 - [结构参考与改写依据](provenance/structure-study-20261020.md)：四篇录用论文的章节观察和本轮采用的安排。
-- `fig/assets/Shift.pdf`：当前双语空间外推对比图；已停用的 `fig/pointforward/` 三份旧副本于 2026-10-30 按用户要求删除，历史来源记录保留。
+- `fig/fig05-off-trajectory-rendering.pdf`：当前双语空间外推对比图，由原 `fig/assets/Shift.pdf` 原样改名，PDF 字节保持不变。
 - `sec/4_experiments.tex` / `zh/4_experiments_zh.tex`：同步消融协议、结果表与分析；原消融定性图已删除。
 - `provenance/source-manifest.json`：原始来源哈希及实验冻结清单，内容保持迁移时的版本。
 - [归档索引](provenance/README.md)：MOSAIC 原包、迁移报告、终校备份与历史编译检查记录。
@@ -80,7 +85,7 @@ python tools/check_manuscript.py
 
 `tools/check_manuscript.py` 优先读取 `provenance/ablation-standard-metrics-20261029.json`，逐格核对两张消融表的版本、输入数量与作者提供的 33 个结果值，检查通用指标、旧指标删除、T=8 跨表一致性及双语公式。新指标数值来自作者于 2026-10-29 提供的汇总结果，旧自定义指标仅保留历史溯源。原实验归档、依赖图哈希、会议年份、引用和方法公式检查继续保留。归档位置由 `provenance/archive-map.json` 指定；缺少归档时检查会报错，论文编译不依赖外部归档。
 
-来源清单保留旧路径和原哈希，当前文档链接的改动另行记录。校验时，已更新的两份设计文档与其整理前快照核对，其余设计与实现文件仍与原清单核对；检查结果分别列出历史证据完整性和当前文档变化。当前构建目录保留主稿及补充材料的双语正式 PDF、`compile-result.json`、`build/verification.json` 和总览图最终核验记录。历史检查、预览、基线快照及编译文本日志已归档。历史检查与编译中间文件移至项目外，旧路径及归档位置见 [整理记录](provenance/build-directory-cleanup-20261021.json)。
+来源清单保留旧路径和原哈希，当前文档链接的改动另行记录。校验时，已更新的两份设计文档与其整理前快照核对，其余设计与实现文件仍与原清单核对；检查结果分别列出历史证据完整性和当前文档变化。当前构建目录仅保留主稿及补充材料的四份正式 PDF、四份 `compile-result.json` 和 `CURRENT-OUTPUTS.md`。图件布局与本轮验收见 `provenance/figure-layout.json`；历史检查、预览、基线快照、编译辅助文件及文本日志已归档。历史检查与编译中间文件移至项目外，旧路径及归档位置见 [整理记录](provenance/build-directory-cleanup-20261021.json)。
 
 ## 模板状态
 

@@ -1,12 +1,11 @@
 {
-  "language": "en",
-  "material": "supplementary",
+  "language": "supp-en",
   "command": [
-    "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1029.7803.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
+    "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1016.6573.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
     "-X",
     "compile",
     "--outdir",
-    "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-supplementary-author-revision\\build\\supp-en",
+    "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\supp-en",
     "--outfmt",
     "pdf",
     "--print",
@@ -16,15 +15,13 @@
     "main.tex"
   ],
   "exit_code": 0,
-  "started_at": "2026-11-04T06:43:54.346945+00:00",
-  "finished_at": "2026-11-04T06:44:00.905118+00:00",
-  "elapsed_seconds": 6.558,
-  "fontconfig_file": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\tools\\fontconfig.conf",
+  "started_at": "2026-11-04T08:44:01.874921+00:00",
+  "finished_at": "2026-11-04T08:44:31.741510+00:00",
+  "elapsed_seconds": 29.86,
+  "fontconfig_file": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\tools\\fontconfig.conf",
   "source_sha256": "0ade5e980fbf832f278512df7ac0f6436137e0cfc683270bc8a5fcdc55354a78",
-  "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\supp-en\\main.pdf",
+  "pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\supp-en\\main.pdf",
   "pdf_exists": true,
   "pdf_written_this_run": true,
-  "pdf_sha256": "7b36e5b641a471dbef1cd21b614e9f7a005e5043c8efc2466a2f132809d09dff",
-  "compiler_pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-supplementary-author-revision\\build\\supp-en\\main.pdf",
-  "verification_record": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-supplementary-author-revision\\pdf-checks-before-promotion.json"
+  "pdf_sha256": "a8a8b58177c85311619965bc8f97cd8bc3eba49a28df1924d084285aca7573b1"
 }

@@ -1,7 +1,0 @@
-English candidate caption (not inserted into the manuscript)
-
-DriveCompose concept: joint completion for compositional scene reconstruction. Input observations leave background and actor surfaces unseen. DriveCompose exchanges context across the background and canonical assets to jointly complete missing content. Completed surfaces retain their component identities and motion bindings, allowing the same assets to be reused under vehicle rotation and human pose changes. Dashed outlines indicate unobserved regions; gold hatching marks completed surfaces. All scene and asset images are schematic illustrations.
-
-中文候选图注（尚未写入论文）
-
-DriveCompose 概念示意：面向可组合场景重建的联合补全。输入观测无法覆盖全部背景与参与者表面。DriveCompose 在背景与规范资产之间交换上下文，联合补全缺失内容。补全表面保留组件归属与运动绑定，使同一组资产能够在车辆转动与人体姿态变化时复用。虚线轮廓表示未观测区域，金色斜线表示补全表面。全部场景与资产画面均为概念示意。

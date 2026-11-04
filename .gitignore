@@ -6,5 +6,19 @@ dist/
 checkpoints/
 outputs/
 
+# Local figure sources and generated caches.
+paper/fig/*.pptx
+paper/fig/fig*.pdf
+node_modules/
+**/.build/
+*.aux
+*.bbl
+*.blg
+*.brf
+*.log
+*.out
+*.synctex.gz
+paper/build/*/compiler-output.txt
+
 # draw.io automatic save files
 *.dtmp

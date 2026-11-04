@@ -1,11 +1,11 @@
 {
   "language": "en",
   "command": [
-    "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1029.7803.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
+    "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1016.6573.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
     "-X",
     "compile",
     "--outdir",
-    "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-overview-mechanism-replacement\\candidate-build\\en",
+    "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\en",
     "--outfmt",
     "pdf",
     "--print",
@@ -15,17 +15,13 @@
     "main.tex"
   ],
   "exit_code": 0,
-  "started_at": "2026-11-04T06:40:11.625183+00:00",
-  "finished_at": "2026-11-04T06:40:32.022385+00:00",
-  "elapsed_seconds": 20.397,
-  "fontconfig_file": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\tools\\fontconfig.conf",
-  "source_sha256": "ccfd731ebad3fa5be5980b13db5fe599fccdeaa565d2d6cbc94134dbfa69d6d3",
-  "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+  "started_at": "2026-11-04T08:41:03.515950+00:00",
+  "finished_at": "2026-11-04T08:41:19.124626+00:00",
+  "elapsed_seconds": 15.609,
+  "fontconfig_file": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\tools\\fontconfig.conf",
+  "source_sha256": "dbe996e624b19c7fa567aef175dc0970afa95f950dbacd858494785ef4a1ac2e",
+  "pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\en\\main.pdf",
   "pdf_exists": true,
   "pdf_written_this_run": true,
-  "pdf_sha256": "569f0ca169e0c6f0cb4cb673ff93d0f995cd7d16c98a0c19d4dd6e4ca98ef301",
-  "compiler_pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-overview-mechanism-replacement\\candidate-build\\en\\main.pdf",
-  "formal_output_installed_this_run": true,
-  "formal_output_installed_at_utc": "2026-11-04T06:48:02.855135+00:00",
-  "installation": "Validated candidate copied byte-for-byte and atomically installed at the formal path."
+  "pdf_sha256": "7a8673a15c409c59b00967bae7fbd102e6f18e52381f65db4fbd83431f90ef39"
 }

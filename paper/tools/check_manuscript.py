@@ -12,6 +12,34 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
+# Preserve evidence paths when current figures are renamed and old files archived.
+def figure_asset(name: str | Path) -> Path:
+    path = Path(name)
+    value = str(path).replace("\\", "/")
+    if "/drivecompose/" in value:
+        relative = value.split("/drivecompose/", 1)[1]
+    elif value.startswith(("paper/", "docs/")):
+        relative = value
+    elif value.startswith("fig/"):
+        relative = "paper/" + value
+    else:
+        return path
+    current = ROOT.parent / relative
+    if current.is_file():
+        return current
+    layout_path = ROOT / "provenance/figure-layout.json"
+    if layout_path.is_file():
+        layout = json.loads(layout_path.read_text(encoding="utf-8"))
+        roots = layout.get("historical_asset_roots_relative_to_project", [
+            layout["archive_root_relative_to_project"] + "/files"
+        ])
+        for archive in roots:
+            historical = ROOT.parent / archive / relative
+            if historical.is_file():
+                return historical
+    return current
+
+
 def digest(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
@@ -201,23 +229,32 @@ def main() -> int:
     selection_path = provenance / "figure-replacement-20261104.json"
     selection = (json.loads(selection_path.read_text(encoding="utf-8"))
                  if selection_path.is_file() else None)
-    overview_filename = (Path(selection["figures"]["fig:overview"]["active_path"]).name
-                         if selection else "drivecompose-inference-overview.png")
+    layout_path = provenance / "figure-layout.json"
+    layout = (json.loads(layout_path.read_text(encoding="utf-8"))
+              if layout_path.is_file() else None)
+    layout_figures = {figure["label"]: figure for figure in layout["figures"]} if layout else {}
+    overview_filename = (Path(layout_figures["fig:overview"]["pdf"]).name
+                         if "fig:overview" in layout_figures else
+                         (Path(selection["figures"]["fig:overview"]["active_path"]).name
+                          if selection else "drivecompose-inference-overview.png"))
     overview = ROOT / "fig" / overview_filename
     checks["generated_overview_exists"] = overview.is_file()
     mechanism_raster_records = sorted(provenance.glob("mechanism-image-replacement-*.json"))
-    mechanism_filename = (Path(selection["figures"]["fig:joint-completion"]["active_path"]).name
-                          if selection else ("drivecompose-joint-completion.png" if mechanism_raster_records
-                                             else "drivecompose-joint-completion.pdf"))
+    mechanism_filename = (Path(layout_figures["fig:joint-completion"]["pdf"]).name
+                          if "fig:joint-completion" in layout_figures else
+                          (Path(selection["figures"]["fig:joint-completion"]["active_path"]).name
+                           if selection else ("drivecompose-joint-completion.png" if mechanism_raster_records
+                                              else "drivecompose-joint-completion.pdf")))
     if selection:
         details["active_figure_selection"] = str(selection_path.relative_to(ROOT))
         for label, figure in selection["figures"].items():
-            active = ROOT.parent / figure["active_path"]
+            active = (ROOT.parent / layout_figures[label]["pdf"]
+                      if label in layout_figures else figure_asset(ROOT.parent / figure["active_path"]))
             checks[label + ":active_export_matches_record"] = (
                 active.is_file() and digest(active.read_bytes()) == figure["sha256"]
             )
             if "native_source" in figure:
-                native = ROOT.parent / figure["native_source"]
+                native = figure_asset(ROOT.parent / figure["native_source"])
                 checks[label + ":editable_source_matches_record"] = (
                     native.is_file() and digest(native.read_bytes()) == figure["native_sha256"]
                 )
@@ -248,6 +285,7 @@ def main() -> int:
             checks[entry + ":mechanism_selected_asset_in_main_only"] = (
                 method_text.count("{fig/" + mechanism_filename + "}") == 1
                 and "drivecompose-joint-completion" not in supplement_text
+                and Path(mechanism_filename).stem not in supplement_text
                 and r"\label{fig:supp-detail}" not in supplement_text
             )
             checks[entry + ":llm_usage_statement_active"] = (
@@ -265,7 +303,7 @@ def main() -> int:
         for language, entry, folder in (("en", "main.tex", "sec"), ("zh", "main_zh.tex", "zh")):
             text = document(entry, folder)
             for figure in figure_record["figures"]:
-                path = Path(figure["path"])
+                path = figure_asset(figure["path"])
                 name = "fig/" + path.name
                 if not revised_layout:
                     checks[f"{language}:figure{figure['number']}_active"] = (
@@ -278,7 +316,7 @@ def main() -> int:
                     replacements = sorted(provenance.glob("overview-pdf-replacement-*.json"))
                     if replacements:
                         replacement = json.loads(replacements[-1].read_text(encoding="utf-8"))
-                        approved = ROOT.parent / replacement["active_png"]
+                        approved = figure_asset(ROOT.parent / replacement["active_png"])
                         if approved.resolve() == path.resolve():
                             expected_sha = replacement["png_sha256"]
                 if figure.get("label") == "fig:joint-completion":
@@ -287,7 +325,7 @@ def main() -> int:
                     )
                     if replacements:
                         replacement = json.loads(replacements[-1].read_text(encoding="utf-8"))
-                        approved = ROOT.parent / replacement["active_png"]
+                        approved = figure_asset(ROOT.parent / replacement["active_png"])
                         if approved.resolve() == path.resolve():
                             expected_sha = replacement["png_sha256"]
                         if mechanism_raster_records:
@@ -296,8 +334,8 @@ def main() -> int:
                                 and digest(approved.read_bytes()) == replacement["source_sha256"]
                             )
                         else:
-                            vector = ROOT.parent / replacement["active_pdf"]
-                            native = ROOT.parent / replacement["native_source"]
+                            vector = figure_asset(ROOT.parent / replacement["active_pdf"])
+                            native = figure_asset(ROOT.parent / replacement["native_source"])
                             checks["mechanism_vector_export_matches_record"] = (
                                 vector.is_file()
                                 and digest(vector.read_bytes()) == replacement["pdf_sha256"]
@@ -309,11 +347,11 @@ def main() -> int:
                 )
             if revised_layout:
                 current_figures = {
-                    "drivecompose-concept-merged.pdf": "fig:teaser",
+                    "fig01-teaser.pdf": "fig:teaser",
                     overview_filename: "fig:overview",
                     mechanism_filename: "fig:joint-completion",
-                    "experiment1-dynamic-reconstruction.png": "fig:dynamic-reconstruction",
-                    "assets/Shift.pdf": "fig:waymo-left-shift",
+                    "fig04-dynamic-reconstruction.pdf": "fig:dynamic-reconstruction",
+                    "fig05-off-trajectory-rendering.pdf": "fig:waymo-left-shift",
                 }
                 for name, label in current_figures.items():
                     checks[f"{language}:{label}:active_once"] = (

@@ -1,3 +1,62 @@
+## 2026-11-04 提交图件整理的源码与文本
+
+按作者本轮推送要求，以已同步的 `edcd19c6c8b63d5ae8b242044fedf2f83838762b` 为提交基线，提交统一图件路径、命名、来源说明、检查脚本与已归档旧文件的删除记录。保留此前合并的同事修订，不改学术正文、实验数值或图注。
+
+最终 PPT、五份图件 PDF、四份本机重编的论文 PDF 及图片均不新增上传；新增最终图件 PDF 忽略规则，图件索引明确说明新检出在编译前需要另行补齐图件。编译结果 JSON 与布局记录用于记录本机验收，不能代替未上传的最终 PDF。下方“未提交或推送”描述保留为各阶段的当时状态。
+
+本次检查提交差异、冲突和上传对象范围；四份 PDF 的编译与版面验收沿用上一阶段结果，本阶段未改论文内容，也未重复编译。
+
+---
+
+## 2026-11-04 拉取同事更新并保留本地图件整理
+
+按作者要求执行 `git pull --ff-only origin main`，分支由 `2c6bab6151e40d58f67d17e94a943fe5306b7288` 快进至 `edcd19c6c8b63d5ae8b242044fedf2f83838762b`。本轮真实基线含上一轮未提交的目录整理；[本地原件、状态与哈希](../../_archive/drivecompose/20261104-sync-collaborator/baseline.json)在拉取前保存，远端 47 个更新文件也在恢复本地修改前逐文件保存于同一归档的 `remote/`。
+
+同事的补充材料修订、JRM 正式会议引文、技术审查、LLM 使用说明和图件选择全部接入。逐文件核对 38 个 LaTeX／书目文件，当前内容等于远端原文，仅将主稿的 10 处插图路径映射为本机统一文件名；未改写同事的学术内容或实验数值。
+
+| 冲突位置 | 拉取后的原文件／远端修改 | 合并结果 | 依据 |
+|---|---|---|---|
+| 两版总览引用及图 2 | `fig/drivecompose-inference-overview.pdf` | `fig/fig02-overview.pdf`，采用远端 PDF 原件 | PDF SHA-256 保持同事来源记录中的 `51fa1721…`；本机原生可编辑 PPT 原字节保留 |
+| 两版机制图引用及图 3 | `fig/drivecompose-joint-completion.pdf`，修正后的 draw.io 矢量图 | `fig/fig03-joint-completion.pdf`，替代上一轮 PNG 封装版 | PDF SHA-256 保持 `93a923a7…`；检查确认无内嵌位图，保留原矢量内容 |
+| 机制图可编辑原件及过程材料 | `docs/figures/joint-completion-vector/` | 原件保存在[同步归档](../../_archive/drivecompose/20261104-sync-collaborator/remote/docs/figures/joint-completion-vector/)，当前入口加入[图件索引](figures/README.md) | `.drawio` 原生源稿完整保留；工作区图目录继续只放最终 PDF 与已有 PPT |
+| 修改记录与输出索引 | 远端新增修订记录，本地也新增整理记录 | 两边记录合并保留，当前同步记录置顶 | 不用一方全文覆盖另一方的新增内容 |
+| 检查脚本与忽略规则 | 远端新增 PDF／原生源稿哈希检查及 `*.dtmp` 规则 | 保留远端检查，并读取统一布局与归档路径；忽略规则取并集 | 当前路径与历史证据分别核对 |
+| PDF 临时保存及编译结果 | Git 对两张 ASCII PDF 提示换行转换，四份编译结果随版本不同 | 从拉取前逐字节备份恢复最终图件，新增 PDF／PPTX 二进制属性，重新编译四份正式 PDF | 避免 Windows 换行转换改变 PDF 字节；不选择任意一方旧编译输出充作新结果 |
+
+恢复本地修改时的 16 个冲突已解决。两份本机 PPT 哈希不变，图目录仍为 5 份 PDF 与 2 份 PPT；新的 draw.io 源稿可从索引进入归档。所有原有 stash 保留，本轮临时 stash 在核验后清除，原件另有仓库外备份。
+
+四份 PDF 已在本机重编并核对输出哈希：英文／中文主稿为 11／10 页，完整总结与正文结束标签仍在第 8／7 页；英文／中文补充为 12／10 页。最终日志无未定义引用、缺字或溢出；新矢量图、主稿受影响页与正文末页、补充首末页均已渲染复核。当前机器缺少旧 `20261020-cleanup` 归档，因此不将同事机器上记录的 73 项历史检查称为本轮重跑结果。
+
+完整文件、来源和验收见[布局记录](../paper/provenance/figure-layout.json)。本轮只拉取和恢复合并，未新增提交或推送；本地图件整理继续保留为未提交修改。
+
+---
+
+## 2026-11-04 统一图件目录、格式与命名
+
+本轮范围是文件整理与图件格式，不改学术正文。真实基线为提交 `2c6bab6151e40d58f67d17e94a943fe5306b7288` 之后的工作区，已有四份未提交 PDF 修改一并保留；本轮不把这些既有修改计作新成果。[基线及文件哈希](../../_archive/drivecompose/20261104-figure-cleanup/baseline.json)、源码与当前主稿 PDF 快照保存在同一归档的 `before/`。摘要、贡献、标题、公式、图注和实验数值保持原文。
+
+原问题：活动图件散落在 `paper/fig/`、`assets/` 与两个 `*-editable/output/` 目录；文件名混用 `DriveCompose`、`placeholder`、`refined`、`merged` 和 `Shift`。旧候选、逐面板 PNG、预览、提示词及构建依赖与正式图件混存，难以判断哪个文件应当继续编辑。
+
+| 位置（英文／中文同步） | 真实基线原文／原文件 | 修改后 | 原因与核验 |
+|---|---|---|---|
+| 首页 Figure 1 引用：`main.tex` / `main_zh.tex` | `fig/drivecompose-concept-merged.pdf` | `fig/fig01-teaser.pdf`；可编辑源稿为同名 PPTX | 按图号命名，集中最终源稿及导出；作者 PPT 字节不变 |
+| 方法总览引用：两版入口 | `fig/overview-editable/output/DriveCompose.pdf` | `fig/fig02-overview.pdf`；可编辑源稿为同名 PPTX | 消除多层输出目录与版本词；原生 PowerPoint 导出保留文字、线条及图片 |
+| 方法机制图引用：`sec/3_method.tex` / `zh/3_method_zh.tex` | `fig/drivecompose-joint-completion.png` | `fig/fig03-joint-completion.pdf` | PNG 无损封装；1374 × 1145 内嵌像素与原件一致 |
+| 动态重建结果引用：两版实验节 | `fig/experiment1-dynamic-reconstruction.png` | `fig/fig04-dynamic-reconstruction.pdf` | PNG 无损封装；2424 × 1693 内嵌像素与原件一致，保留透明通道 |
+| 轨迹外渲染引用：两版实验节 | `fig/assets/Shift.pdf` | `fig/fig05-off-trajectory-rendering.pdf` | 名称对应任务；原 PDF 逐字节不变 |
+| 正式图件存放 | 根目录 PNG、`assets/`、`overview-editable/`、`teaser-editable/` 及 `docs/figures/` 多处分散 | `paper/fig/` 仅保留 5 份 PDF 和 2 份 PPTX | 两个 PPT 均含原生可编辑文本与形状，图片已内嵌，不依赖被归档的零散素材 |
+| 旧候选、素材及过程文件 | 保留在活动图目录与多个 build 目录 | 移至仓库外 `../_archive/drivecompose/20261104-figure-cleanup/files/<原路径>` | 9,439 个已归档文件，共约 1.68 GiB，逐文件 SHA-256 核对一致；可重建的依赖缓存路径不作为恢复原件 |
+| 图件说明与工具引用 | 多个分散说明页，检查脚本硬编码旧 PNG 名称 | 单一 [图件索引](figures/README.md) 与 [布局记录](../paper/provenance/figure-layout.json)；检查脚本使用新路径并能解析归档旧图 | 当前入口统一；历史来源 JSON 保留原文，通过原路径映射读取证据 |
+
+图 1 的当前 PPT 保存时间晚于旧主稿编译记录。本轮保留作者最后保存的文件，直接用 PowerPoint 原生导出 PDF，没有用旧构建脚本重建或修改 PPT。首页图 PDF 从 6,503,246 字节降为 448,038 字节；文字和线条恢复为可提取的矢量内容。图 2 同样从最终 PPT 原生导出。图 3–5 未提供当前采用图件的原生可编辑 PPT，不把位图装入 PPT 冒充可编辑源稿。
+
+双语 LaTeX 仅修改 10 处图文件引用；与真实基线逐文件对照，替换这些路径后，其余内容完全一致。当前依赖、PPT 原件、两张 PNG 的内嵌像素、图 5 原件哈希与五张 PDF 的独立渲染均已核对。完整历史稿件检查仍依赖本机未提供的 2026-10-20 外部归档，不据此声称旧 70 项检查已重新通过。
+
+双语主稿本轮重编成功，英文共 11 页、完整正文及总结止于第 8 页；中文共 10 页、完整正文及总结止于第 7 页。逐段匹配完整总结，并与正文结束标签互相核对；两版受影响页已渲染复核，无新增重叠或裁切，最终日志无缺字、溢出或未定义引用。编译新生成的 14 个辅助文件也已移至归档的 `after-build/`；`paper/build/` 只保留四份正式 PDF、四份编译结果 JSON 和当前输出索引。补充材料源文与正式 PDF 保持原字节。本轮未提交或推送，大文件留在本地。
+
+
+---
+
 ## 2026-11-04 更新后归档临时文件并整合远端
 
 本轮仅处理作者要求的归档、提交与推送。实际起点为 `a0ccb6b509f7b6454313f4108b956741b5ca4fd3` 之后的未提交工作区；[真实工作区基线](../../_archive/drivecompose/20261104-pre-push-sync/workspace-before.json)及当时已修改文件的原件已保存。远端新增 `2c6bab6` 文本提交，本轮将尚未发布的本地修订接到该提交之后，保留全部 71 份远端新增文本和两侧修订历史。

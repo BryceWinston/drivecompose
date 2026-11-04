@@ -122,7 +122,7 @@ z_{\tau+\Delta\tau}=\Pi_{m,f}\left[z_\tau+\Delta\tau\,u\odot v_\theta(z_\tau,\ta
 
 [Mermaid 结构草图](diagrams/paper-overview.mmd) · [SVG 预览](diagrams/paper-overview.svg)。它是论文图的语义骨架；最终论文图按下面的视觉场景制作。
 
-当前论文使用 [三阶段总览图](figures/overview/README.md)，活动 PNG 保存在论文图目录，图注和设计规格集中在该说明页。前版原生 SVG、绘图源码、旧候选和论文风格参考已移入项目外归档，入口见该页的来源记录。
+当前论文图件统一保存在 `paper/fig/`，总览图为 `fig02-overview.pptx` 与同名 PDF；完整文件入口及来源见[图件索引](figures/README.md)。旧候选、设计记录、零散素材与预览已移至项目外归档，原路径及哈希见索引中的归档清单。
 
 | 区域 | 建议面积 | 应画出的可见变化 |
 | --- | --- | --- |

@@ -1,3 +1,25 @@
+# 当前论文 PDF
+
+## 2026-11-04 同步同事提交 edcd19c
+
+- 主稿与补充材料的中英文四份 PDF 均在本机重新编译；[英文主稿](en/main.pdf)共 11 页，完整正文止于第 8 页；[中文主稿](zh/main_zh.pdf)共 10 页，正文止于第 7 页。[英文补充](supp-en/main.pdf)为 12 页，[中文补充](supp-zh/main_zh.pdf)为 10 页。
+- 保留同事的补充材料、正式引文和 LLM 使用说明修订；38 个 LaTeX／书目文件仅增加统一图路径映射。
+- 图 2、3 采用同事本次同步的原始 PDF，分别统一为 `fig02-overview.pdf`、`fig03-joint-completion.pdf`。图 3 已更新为矢量版，可编辑 draw.io 源稿见[图件索引](../../docs/figures/README.md)。本机两份 PPT 原件保持。
+- 冲突已解决，输出哈希、完整总结、图号及受影响页面已核对；编译辅助文件移至同步归档。详情见[修改对照](../../docs/paper-revision-changes.md)及[布局与核验](../provenance/figure-layout.json)。未新增提交或推送。
+
+---
+
+## 2026-11-04 图件目录与命名统一
+
+- [英文主稿](en/main.pdf)本轮重编成功：11 页，完整正文与总结止于第 8 页；[中文主稿](zh/main_zh.pdf)：10 页，完整正文与总结止于第 7 页。
+- 五张正式图统一位于 `paper/fig/`，命名为 `fig01-teaser` 至 `fig05-off-trajectory-rendering`。图 1、2 同时保留可编辑 PPT 与原生导出 PDF；图 3、4 为像素不变的 PDF 封装；图 5 仅改名。
+- 双语仅更新 10 处图路径，正文、图注、公式及结果保持；已检查所有受影响页，完整总结逐段匹配且结束标签页码一致，无新增重叠或裁切。
+- 构建目录只保留四份正式 PDF、四份 `compile-result.json` 与本索引。编译日志、辅助文件及旧快照已移入[本轮归档](../../../_archive/drivecompose/20261104-figure-cleanup/)。两版补充 PDF 哈希未变。
+- [图件索引](../../docs/figures/README.md)、[本轮对照](../../docs/paper-revision-changes.md)、[文件与验收记录](../provenance/figure-layout.json)。本轮未提交或推送。
+
+
+---
+
 ## 2026-11-04 JRM 引文与补充材料局部修订
 
 - [英文主稿](en/main.pdf)共 11 页，完整正文止于第 8 页；[中文主稿](zh/main_zh.pdf)共 10 页，正文止于第 7 页。本轮主稿仅更新 JRM 正式引文，图 5 保持。
