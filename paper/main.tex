@@ -49,6 +49,14 @@
 \makeatother
 \def\CVPRMAIN{}
 \input{sec/1_introduction}
+% Queue the overview to open the method page.
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig/drivecompose-inference-overview.png}
+  \caption{\textbf{DriveCompose overview.} Visual encoding and canonical aggregation recover component features; type-specific encoders, joint completion, and Gaussian decoders produce background, vehicle, and human content for state-driven composition. Scene and asset images are schematic illustrations.}
+  \label{fig:overview}
+\end{figure*}
+
 
 \input{sec/2_related_work}
 \input{sec/3_method}
@@ -57,6 +65,7 @@
 \input{sec/5_discussion}
 \input{sec/6_conclusion}
 \FloatBarrier
+\Needspace{12\baselineskip}
 \input{sec/7_llm_usage}
 {\small
 \bibliographystyle{ieeenat_fullname}

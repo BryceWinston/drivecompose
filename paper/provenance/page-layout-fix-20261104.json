@@ -1,0 +1,158 @@
+{
+  "date": "2026-11-04",
+  "status": "complete",
+  "request": "整理篇幅与排版；仔细检查第六章总结超出第8页的问题。",
+  "baseline_head": "09ec7adb91eca760fe8c2682d91b40a479f2bcfe",
+  "baseline_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-page-layout-fix\\baseline",
+  "prior_report_error": {
+    "problem": "The old check used the Conclusion heading page as the body endpoint and missed its four continuation lines on page 9.",
+    "affected_pdf_sha256": "7989fbe80ff430c4ff8d652c31e085f24b2fc6c03b58ef6aa8a0c0873b38988a",
+    "actual_conclusion_first_page": 8,
+    "actual_conclusion_last_page": 9,
+    "actual_main_text_end_label_page": 9,
+    "previous_eight_page_claim_invalid": true
+  },
+  "primary_skill": "nature-polishing (layout and local redundancy removal)",
+  "standard": "cvpr-paper-standard",
+  "official_guideline": {
+    "verified_date": "2026-11-04",
+    "url": "https://cvpr.thecvf.com/Conferences/2027/AuthorGuidelines",
+    "rule": "Eight pages including figures and tables; additional pages may contain cited references and the mandatory LLM Usage Statement."
+  },
+  "scientific_source_changes": [
+    "paper/sec/4_experiments.tex",
+    "paper/zh/4_experiments_zh.tex"
+  ],
+  "edits": [
+    {
+      "location": "Table 3 caption",
+      "change": "Remove duplicate seed-count sentence; the full seed protocol remains in Completion components."
+    },
+    {
+      "location": "Visibility-stratified analysis",
+      "change": "Remove the introductory restatement; all visibility groups and measured gains remain."
+    },
+    {
+      "location": "Completion after editing",
+      "change": "Replace repeated camera/vehicle/human edit conditions by Sec. 4.4 reference; retain coverage thresholds in Table 5 caption."
+    }
+  ],
+  "format_settings_unchanged": [
+    "Body and table font sizes",
+    "Margins and line spacing",
+    "Figure assets and display widths",
+    "Float declarations and boundaries",
+    "Section order and titles"
+  ],
+  "conclusion_source_unchanged_both_languages": true,
+  "validation": {
+    "passed": true,
+    "checks": {
+      "en:complete_conclusion_within_eight_pages": true,
+      "en:endpoint_matches_aux_label": true,
+      "en:all_main_floats_within_eight_pages": true,
+      "en:all_five_table_bodies_unchanged": true,
+      "en:all_numeric_values_retained": true,
+      "en:citation_keys_retained": true,
+      "en:conclusion_source_unchanged": true,
+      "en:fresh_successful_compile": true,
+      "en:clean_final_log": true,
+      "zh:complete_conclusion_within_eight_pages": true,
+      "zh:endpoint_matches_aux_label": true,
+      "zh:all_main_floats_within_eight_pages": true,
+      "zh:all_five_table_bodies_unchanged": true,
+      "zh:all_numeric_values_retained": true,
+      "zh:citation_keys_retained": true,
+      "zh:conclusion_source_unchanged": true,
+      "zh:fresh_successful_compile": true,
+      "zh:clean_final_log": true,
+      "baseline_checker_detects_known_page9_overflow": true,
+      "other_scientific_sources_and_format_unchanged": true,
+      "supplements_unchanged": true
+    },
+    "baseline": {
+      "en": {
+        "pages": 11,
+        "sha256": "7989fbe80ff430c4ff8d652c31e085f24b2fc6c03b58ef6aa8a0c0873b38988a",
+        "complete_conclusion_matched_in_pdf": true,
+        "conclusion_first_page": 8,
+        "conclusion_last_page": 9,
+        "main_text_end_label_page": 9,
+        "endpoint_agrees": true,
+        "all_main_floats_within_eight_pages": true,
+        "within_eight_pages": false,
+        "conclusion_source": "DriveCompose jointly completes world-space background and canonical actor latents, preserving component identity and motion bindings for state-driven reuse. Shared scene context improves hidden geometry and appearance over task-adapted scene-latent and object-coupling controls. Fixed Gaussian assets support camera shifts, vehicle rotation, and human pose edits. Waymo reconstruction, paired surface metrics, and multidimensional real-edit ratings establish completion quality and state-driven reuse.",
+        "page9_opening": "CVPR\nCVPR\nCVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE.\nFixed Gaussian assets support camera shifts, vehicle rota-\n456\ntion, and human pose edits. Waymo recons"
+      },
+      "zh": {
+        "pages": 10,
+        "sha256": "5b2885c30c5fa43844954c0a67364dc7d5b4fc40d274d9f3684884251183df1d",
+        "complete_conclusion_matched_in_pdf": true,
+        "conclusion_first_page": 7,
+        "conclusion_last_page": 7,
+        "main_text_end_label_page": 7,
+        "endpoint_agrees": true,
+        "all_main_floats_within_eight_pages": true,
+        "within_eight_pages": true,
+        "conclusion_source": "DriveCompose 联合补全世界空间背景与规范参与者潜码，保留组件身份和运动绑定，实现状态驱动复用。共享场景上下文相对任务适配的场景潜码和对象耦合对照，改善隐藏几何与外观。固定高斯资产支持相机平移、车辆旋转和人体换姿。Waymo 重建、配对表面指标及多维真实编辑评价验证了补全质量与状态复用。",
+        "page9_opening": "CVPR\nCVPR\nCVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE.\nbanCAD: Towards Highly Controllable and Photorealistic 3D\n466\nVehicles for Urban Scene Simulation.\nIn P"
+      }
+    },
+    "final": {
+      "en": {
+        "pages": 11,
+        "sha256": "478a6bb0daa7ff225920a5c6e0a0b0646fad6e0e01a2ce07684880dae2782286",
+        "complete_conclusion_matched_in_pdf": true,
+        "conclusion_first_page": 8,
+        "conclusion_last_page": 8,
+        "main_text_end_label_page": 8,
+        "endpoint_agrees": true,
+        "all_main_floats_within_eight_pages": true,
+        "within_eight_pages": true,
+        "conclusion_source": "DriveCompose jointly completes world-space background and canonical actor latents, preserving component identity and motion bindings for state-driven reuse. Shared scene context improves hidden geometry and appearance over task-adapted scene-latent and object-coupling controls. Fixed Gaussian assets support camera shifts, vehicle rotation, and human pose edits. Waymo reconstruction, paired surface metrics, and multidimensional real-edit ratings establish completion quality and state-driven reuse.",
+        "page9_opening": "CVPR\nCVPR\nCVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE.\nLLM Usage Statement\n457\nOpenAI Codex assisted manuscript revision, translation,\n458\nLaTeX editing, and "
+      },
+      "zh": {
+        "pages": 10,
+        "sha256": "a1dd5ee510b9675af16b6048f57b04e8ff6f71905407dc7a34ea8b86a148fe94",
+        "complete_conclusion_matched_in_pdf": true,
+        "conclusion_first_page": 7,
+        "conclusion_last_page": 7,
+        "main_text_end_label_page": 7,
+        "endpoint_agrees": true,
+        "all_main_floats_within_eight_pages": true,
+        "within_eight_pages": true,
+        "conclusion_source": "DriveCompose 联合补全世界空间背景与规范参与者潜码，保留组件身份和运动绑定，实现状态驱动复用。共享场景上下文相对任务适配的场景潜码和对象耦合对照，改善隐藏几何与外观。固定高斯资产支持相机平移、车辆旋转和人体换姿。Waymo 重建、配对表面指标及多维真实编辑评价验证了补全质量与状态复用。",
+        "page9_opening": "CVPR\nCVPR\nCVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE.\nbanCAD: Towards Highly Controllable and Photorealistic 3D\n464\nVehicles for Urban Scene Simulation.\nIn P"
+      }
+    },
+    "changes": {
+      "en": {
+        "source": "paper/sec/4_experiments.tex",
+        "word_tokens_before": 1527,
+        "word_tokens_after": 1491
+      },
+      "zh": {
+        "source": "paper/zh/4_experiments_zh.tex",
+        "word_tokens_before": 592,
+        "word_tokens_after": 591
+      }
+    }
+  },
+  "manuscript_structure_checks": 70,
+  "visual_review": {
+    "en": [
+      7,
+      8,
+      9
+    ],
+    "zh": [
+      7
+    ],
+    "contact_sheets": "All English 1-8 and Chinese 1-7 body pages inspected.",
+    "result": "Conclusion is fully on page 8. Page 9 starts with LLM Usage Statement; no conclusion continuation. No clipping or overlap."
+  },
+  "intermediates": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-page-layout-fix",
+  "supplements_unchanged": true,
+  "final_outputs_verified_after_cleanup": true
+}

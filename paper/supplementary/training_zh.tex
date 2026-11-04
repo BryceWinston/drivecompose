@@ -59,7 +59,7 @@ n_f=\max\!\left(1,\left\lceil\frac{64A_f}{\delta_{\min}^{\,2}}\right\rceil\right
 补全网络 & 宽度 128，4 层，4 头，16 个记忆 token \\
 高斯解码 & 每查询 4 个子高斯，每个 23 个输出参数，其中外观参数 12 个 \\
 方向外观 & 每颜色通道包含常数项和三个局部方向系数 \\
-基础支撑 & 背景 $20\times12\times6$，刚体 $8\times4\times4$，天空每面 $4\times4$ \\
+基础支撑 & 背景 $20\times12\times6$（单元 $5\times5\times3$ m），刚体实际包围盒内 $8\times4\times4$，天空每面 $4\times4$ \\
 采样 & 24 步显式 Euler，每步恢复已见潜码并清零自由空间潜码 \\
 \bottomrule
 \end{tabular}

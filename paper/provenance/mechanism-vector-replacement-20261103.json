@@ -1,0 +1,180 @@
+{
+  "date": "2026-11-03",
+  "author_approval": "Confirmed current Image Gen reference and explicitly requested editable draw.io reconstruction, replacement in both main manuscripts, and removal of mechanism figure from supplements.",
+  "approved_reference": "docs/figures/joint-completion-vector/simplification/imagegen-draft.png",
+  "approved_reference_sha256": "bce38035a72ccedf18e614281389585fab64b0ed96199bd7598311c058e280ed",
+  "active_png": "paper/fig/drivecompose-joint-completion.png",
+  "png_sha256": "7a5dd02b3b5bc9e471bf1a34ed5bc0088a5c980e7a8699d16e80136ad0f2e441",
+  "active_pdf": "paper/fig/drivecompose-joint-completion.pdf",
+  "pdf_sha256": "9de15fe9ebcbea07035a1aa94bdc8c508cd9e45f5d9c39d633cfeaffbd0296db",
+  "native_source": "docs/figures/joint-completion-vector/figure3-drawio.drawio",
+  "native_sha256": "01cd0e712a84e2e0e614786d9a8d951e26b2d8011c02d25314261a306100e290",
+  "svg": "docs/figures/joint-completion-vector/figure3-drawio.svg",
+  "svg_sha256": "08dc3397452dd18c4fb4aa313b24cab3bbbd1738728a077adb3cd60450ecf179",
+  "renderer": "draw.io live graph API; native snapshot exported with installed draw.io desktop renderer",
+  "objects": {
+    "native": 135,
+    "groups": 4,
+    "total": 139,
+    "raster_pictures": 0
+  },
+  "main_graphic_format": "vector PDF",
+  "supplement_mechanism_figure": false,
+  "supplement_removed_section": "L",
+  "source_locations": [
+    "paper/sec/3_method.tex",
+    "paper/zh/3_method_zh.tex",
+    "paper/supplementary/evaluation.tex",
+    "paper/supplementary/evaluation_zh.tex",
+    "paper/sec/7_llm_usage.tex",
+    "paper/zh/7_llm_usage_zh.tex"
+  ],
+  "validation_status": "Historical vector candidate; superseded by author-selected PNG.",
+  "archive": "pre-research/_archive/drivecompose/20261103-figure3-simplification/native-work/",
+  "validation_checks": 24,
+  "figure_body_font_range_pt": [
+    8.233,
+    8.408
+  ],
+  "body_end_page": {
+    "en": 8,
+    "zh": 7
+  },
+  "pdfs": [
+    {
+      "kind": "en",
+      "pages": 11,
+      "mechanism_pages": [
+        4
+      ],
+      "conclusion_pages": [
+        8
+      ],
+      "references_heading_pages": [
+        9
+      ],
+      "sha256": "a1e8cbd04faa0891862388ce49dcebad9334e6f8b9c3efef0076d729ad331827",
+      "figure_page_raster_images": 0,
+      "actual_compiler_warnings": [],
+      "technical_body_pages": 8,
+      "mechanism_body_min_font_pt": 8.233,
+      "mechanism_body_max_font_pt": 8.408
+    },
+    {
+      "kind": "zh",
+      "pages": 10,
+      "mechanism_pages": [
+        4
+      ],
+      "conclusion_pages": [
+        7
+      ],
+      "references_heading_pages": [
+        7
+      ],
+      "sha256": "5b9ed1044c3f2e9c4fb2742021cbf74f54396b92feb9a2488eda950bfa75db74",
+      "figure_page_raster_images": 0,
+      "actual_compiler_warnings": [
+        "LaTeX Warning: Text page 6 contains only floats.",
+        "LaTeX Warning: Text page 6 contains only floats."
+      ],
+      "technical_body_pages": 7,
+      "mechanism_body_min_font_pt": 8.233,
+      "mechanism_body_max_font_pt": 8.408
+    },
+    {
+      "kind": "supp-en",
+      "pages": 11,
+      "mechanism_pages": [],
+      "conclusion_pages": [],
+      "references_heading_pages": [
+        11
+      ],
+      "sha256": "4ab5f1b363c14fc453f050266b410d0612dab078e305ed499edc4cd3b3c971ec",
+      "table_caption_ids_present": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "actual_compiler_warnings": [
+        "LaTeX hooks Warning: Cannot remove chunk 'lineno' from hook"
+      ],
+      "technical_body_pages": null
+    },
+    {
+      "kind": "supp-zh",
+      "pages": 10,
+      "mechanism_pages": [],
+      "conclusion_pages": [],
+      "references_heading_pages": [
+        10
+      ],
+      "sha256": "40a4a3604d747858190749f7d169b5c84d92d07a4dbfcadd3c562024dfa25a77",
+      "table_caption_ids_present": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "actual_compiler_warnings": [
+        "LaTeX hooks Warning: Cannot remove chunk 'lineno' from hook"
+      ],
+      "technical_body_pages": null
+    }
+  ],
+  "editability_verified": true,
+  "vector_pdf_verified": true,
+  "svg_foreignObject_labels": 36,
+  "reviewer": "self_review",
+  "native_object_counts": {
+    "vertices": 117,
+    "edges": 22,
+    "groups": 4,
+    "native_primitives": 135,
+    "total_native_plus_groups": 139,
+    "pictures": 0
+  },
+  "active_for_manuscript": false,
+  "superseded_by": "paper/provenance/mechanism-image-replacement-20261103.json"
+}

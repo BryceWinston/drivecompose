@@ -1,0 +1,73 @@
+{
+  "date": "2026-11-03",
+  "status": "complete",
+  "author_instruction": "Use exact supplied PNG instead of the draw.io vector candidate; keep mechanism figure removed from supplements.",
+  "source_image": "C:\\Users\\changan\\.codex\\generated_images\\01a19f2a-27bf-7c20-8f7c-47fc6bf10955\\exec-3c098566-0ff6-4440-970a-2499b09464ee.png",
+  "source_sha256": "bce38035a72ccedf18e614281389585fab64b0ed96199bd7598311c058e280ed",
+  "active_png": "paper/fig/drivecompose-joint-completion.png",
+  "png_sha256": "bce38035a72ccedf18e614281389585fab64b0ed96199bd7598311c058e280ed",
+  "active_graphic_format": "PNG",
+  "unchanged_source_pixels": true,
+  "source_dimensions": [
+    1374,
+    1145
+  ],
+  "main_include": [
+    "paper/sec/3_method.tex",
+    "paper/zh/3_method_zh.tex"
+  ],
+  "supplement_mechanism_figure": false,
+  "supersedes": "paper/provenance/mechanism-vector-replacement-20261103.json",
+  "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-figure3-simplification\\author-png-selection",
+  "structure_checks": 70,
+  "source_pixel_sha256": "cc1c5f8bdef8865db0996b3e2db17f4ab9e1a8ed1e1db13c7e77fabcae077c29",
+  "embedded_pixels_match_source_both_languages": true,
+  "pdfs": [
+    {
+      "kind": "en",
+      "pages": 11,
+      "conclusion_page": 8,
+      "mechanism": {
+        "page": 4,
+        "pixel_match": true,
+        "embedded_pixel_sha256": "cc1c5f8bdef8865db0996b3e2db17f4ab9e1a8ed1e1db13c7e77fabcae077c29",
+        "width_mm": 83.34,
+        "height_mm": 69.45
+      },
+      "pdf_sha256": "cc756e181bdad2adea2604545085f3d1c6405e44f0ab9d229349e5e2a00ea36e"
+    },
+    {
+      "kind": "zh",
+      "pages": 10,
+      "conclusion_page": 7,
+      "mechanism": {
+        "page": 4,
+        "pixel_match": true,
+        "embedded_pixel_sha256": "cc1c5f8bdef8865db0996b3e2db17f4ab9e1a8ed1e1db13c7e77fabcae077c29",
+        "width_mm": 83.34,
+        "height_mm": 69.45
+      },
+      "pdf_sha256": "4ef3f5fb9c1e0c26b47f3db1595b1658c9182b7aefbe1b060929e6f7181365d5"
+    },
+    {
+      "kind": "supp-en",
+      "pages": 11,
+      "mechanism_removed": true,
+      "pdf_sha256": "4ab5f1b363c14fc453f050266b410d0612dab078e305ed499edc4cd3b3c971ec",
+      "rebuilt_in_png_switch": false
+    },
+    {
+      "kind": "supp-zh",
+      "pages": 10,
+      "mechanism_removed": true,
+      "pdf_sha256": "40a4a3604d747858190749f7d169b5c84d92d07a4dbfcadd3c562024dfa25a77",
+      "rebuilt_in_png_switch": false
+    }
+  ],
+  "main_technical_pages": {
+    "en": 8,
+    "zh": 7
+  },
+  "review": "actual page4 and body-end render check; supplement removal retained",
+  "raster_resampling_or_redrawing": false
+}

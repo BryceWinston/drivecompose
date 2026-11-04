@@ -1,0 +1,82 @@
+{
+  "date": "2026-11-04",
+  "operation": "Archive temporary figure files before author-requested commit and push",
+  "baseline_head": "09ec7adb91eca760fe8c2682d91b40a479f2bcfe",
+  "baseline_state": "Existing uncommitted bilingual manuscript and supplement revisions preserved",
+  "workspace_baseline": "../_archive/drivecompose/20261104-pre-push-cleanup/workspace-before.json",
+  "archive_root_relative_to_project": "../_archive/drivecompose/20261104-pre-push-cleanup",
+  "archive_manifest_relative_to_project": "../_archive/drivecompose/20261104-pre-push-cleanup/archive-manifest.json",
+  "archived_existing_files": 16,
+  "archived_existing_bytes": 3874113,
+  "archive_integrity": "Every moved file verified by SHA-256",
+  "path_mapping": {
+    "docs/figures/joint-completion-vector/figure3-comparison.png": "../_archive/drivecompose/20261104-pre-push-cleanup/files/docs/figures/joint-completion-vector/figure3-comparison.png",
+    "docs/figures/joint-completion-vector/figure3-drawio.drawio": "../_archive/drivecompose/20261104-pre-push-cleanup/files/docs/figures/joint-completion-vector/figure3-drawio.drawio",
+    "docs/figures/joint-completion-vector/figure3-drawio.pdf": "../_archive/drivecompose/20261104-pre-push-cleanup/files/docs/figures/joint-completion-vector/figure3-drawio.pdf",
+    "docs/figures/joint-completion-vector/figure3-drawio.png": "../_archive/drivecompose/20261104-pre-push-cleanup/files/docs/figures/joint-completion-vector/figure3-drawio.png",
+    "docs/figures/joint-completion-vector/figure3-drawio.svg": "../_archive/drivecompose/20261104-pre-push-cleanup/files/docs/figures/joint-completion-vector/figure3-drawio.svg",
+    "docs/figures/joint-completion-vector/figure3-powerpoint.png": "../_archive/drivecompose/20261104-pre-push-cleanup/files/docs/figures/joint-completion-vector/figure3-powerpoint.png",
+    "docs/figures/joint-completion-vector/figure3-powerpoint.pptx": "../_archive/drivecompose/20261104-pre-push-cleanup/files/docs/figures/joint-completion-vector/figure3-powerpoint.pptx",
+    "docs/figures/joint-completion-vector/reconstruction_spec.json": "../_archive/drivecompose/20261104-pre-push-cleanup/files/docs/figures/joint-completion-vector/reconstruction_spec.json",
+    "docs/figures/joint-completion-vector/verification.json": "../_archive/drivecompose/20261104-pre-push-cleanup/files/docs/figures/joint-completion-vector/verification.json",
+    "docs/figures/joint-completion-vector/simplification/design_spec.json": "../_archive/drivecompose/20261104-pre-push-cleanup/files/docs/figures/joint-completion-vector/simplification/design_spec.json",
+    "docs/figures/joint-completion-vector/simplification/generation-record.json": "../_archive/drivecompose/20261104-pre-push-cleanup/files/docs/figures/joint-completion-vector/simplification/generation-record.json",
+    "docs/figures/joint-completion-vector/simplification/imagegen-draft.png": "../_archive/drivecompose/20261104-pre-push-cleanup/files/docs/figures/joint-completion-vector/simplification/imagegen-draft.png",
+    "docs/figures/joint-completion-vector/simplification/production-prompt.txt": "../_archive/drivecompose/20261104-pre-push-cleanup/files/docs/figures/joint-completion-vector/simplification/production-prompt.txt",
+    "docs/figures/joint-completion-vector/simplification/README.md": "../_archive/drivecompose/20261104-pre-push-cleanup/files/docs/figures/joint-completion-vector/simplification/README.md",
+    "docs/figures/joint-completion-vector/simplification/review.md": "../_archive/drivecompose/20261104-pre-push-cleanup/files/docs/figures/joint-completion-vector/simplification/review.md",
+    "paper/fig/drivecompose-joint-completion.pdf": "../_archive/drivecompose/20261104-pre-push-cleanup/files/paper/fig/drivecompose-joint-completion.pdf"
+  },
+  "historical_records": "Original provenance records remain unchanged; resolve retired paths using this mapping",
+  "documentation_updated": [
+    "docs/figures/joint-completion-vector/README.md",
+    "docs/paper-revision-changes.md"
+  ],
+  "preserved_formal_PDFs": [
+    {
+      "path": "paper/build/en/main.pdf",
+      "sha256": "478a6bb0daa7ff225920a5c6e0a0b0646fad6e0e01a2ce07684880dae2782286",
+      "matches_existing_successful_compile": true,
+      "unchanged_by_cleanup": true
+    },
+    {
+      "path": "paper/build/zh/main_zh.pdf",
+      "sha256": "a1dd5ee510b9675af16b6048f57b04e8ff6f71905407dc7a34ea8b86a148fe94",
+      "matches_existing_successful_compile": true,
+      "unchanged_by_cleanup": true
+    },
+    {
+      "path": "paper/build/supp-en/main.pdf",
+      "sha256": "4ab5f1b363c14fc453f050266b410d0612dab078e305ed499edc4cd3b3c971ec",
+      "matches_existing_successful_compile": true,
+      "unchanged_by_cleanup": true
+    },
+    {
+      "path": "paper/build/supp-zh/main_zh.pdf",
+      "sha256": "40a4a3604d747858190749f7d169b5c84d92d07a4dbfcadd3c562024dfa25a77",
+      "matches_existing_successful_compile": true,
+      "unchanged_by_cleanup": true
+    }
+  ],
+  "active_mechanism_png_preserved": "paper/fig/drivecompose-joint-completion.png",
+  "manuscript_source_or_layout_changes_in_cleanup": false,
+  "other_baseline_files_preserved_by_sha256": 182,
+  "validation": {
+    "manuscript_structure": {
+      "passed": true,
+      "checks": 70,
+      "failed": [],
+      "full_result_relative_to_project": "../_archive/drivecompose/20261104-pre-push-cleanup/validation/manuscript-verification.json"
+    },
+    "formal_PDFs_match_existing_compile_records": true,
+    "main_PDFs_match_latest_page_layout_validation": true,
+    "unexpected_baseline_changes": [],
+    "generated_temporary_check_output_archived": true,
+    "git_diff_check": {
+      "changed_files_except_preserved_author_source": "passed",
+      "preserved_original_whitespace": "paper/provenance/author-results-unified-20261102.txt retains its original trailing blank line at EOF (line 151), verified byte-for-byte against the pre-cleanup baseline."
+    },
+    "compilation_rerun": false,
+    "compilation_note": "No manuscript sources, active figures, or formal PDFs changed during cleanup; existing successful compile records verified by source-entry and PDF hashes."
+  }
+}

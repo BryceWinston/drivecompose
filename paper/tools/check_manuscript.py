@@ -200,6 +200,11 @@ def main() -> int:
     details["raster_overview_role"] = "historical design draft; current entries use author-selected mechanism illustrations"
     overview = ROOT / "fig/drivecompose-inference-overview.png"
     checks["generated_overview_exists"] = overview.is_file()
+    mechanism_raster_records = sorted(provenance.glob("mechanism-image-replacement-*.json"))
+    mechanism_filename = (
+        "drivecompose-joint-completion.png" if mechanism_raster_records
+        else "drivecompose-joint-completion.pdf"
+    )
     for entry in ("main.tex", "main_zh.tex"):
         source = uncomment((ROOT / entry).read_text(encoding="utf-8"))
         if revised_layout:
@@ -207,14 +212,27 @@ def main() -> int:
             supplement_text = uncomment((ROOT / "supplementary" / supplement).read_text(encoding="utf-8"))
             method = "zh/3_method_zh.tex" if entry == "main_zh.tex" else "sec/3_method.tex"
             method_text = uncomment((ROOT / method).read_text(encoding="utf-8"))
-            checks[entry + ":overview_active_in_method"] = (
-                "{fig/drivecompose-inference-overview.png}" in method_text
-                and method_text.count(r"\label{fig:overview}") == 1
-                and r"\label{fig:overview}" not in source
+            # A double-column float can be queued before Related Work so that
+            # it opens the Method page. Its asset and label must remain unique.
+            introduction = "zh/1_introduction_zh" if entry == "main_zh.tex" else "sec/1_introduction"
+            related = "zh/2_related_work_zh" if entry == "main_zh.tex" else "sec/2_related_work"
+            overview_sources = source + method_text
+            queued_before_method = (
+                r"\label{fig:overview}" in source
+                and source.index(r"\input{" + introduction + "}")
+                < source.index(r"\label{fig:overview}")
+                < source.index(r"\input{" + related + "}")
             )
-            checks[entry + ":detail_enlargement_in_supplement"] = (
-                "{../fig/drivecompose-joint-completion.png}" in supplement_text
-                and r"\label{fig:supp-detail}" in supplement_text
+            checks[entry + ":overview_queued_once_for_method"] = (
+                overview_sources.count("{fig/drivecompose-inference-overview.png}") == 1
+                and overview_sources.count(r"\label{fig:overview}") == 1
+                and r"\ref{fig:overview}" in method_text
+                and (queued_before_method or r"\label{fig:overview}" in method_text)
+            )
+            checks[entry + ":mechanism_selected_asset_in_main_only"] = (
+                method_text.count("{fig/" + mechanism_filename + "}") == 1
+                and "drivecompose-joint-completion" not in supplement_text
+                and r"\label{fig:supp-detail}" not in supplement_text
             )
             checks[entry + ":llm_usage_statement_active"] = (
                 "7_llm_usage" in source
@@ -238,14 +256,46 @@ def main() -> int:
                         text.count("{" + name + "}") == 1
                         and text.count("\\label{" + figure["label"] + "}") == 1
                     )
+                expected_sha = figure["sha256"]
+                # Later author-selected exports supersede the initial overview.
+                if figure.get("label") == "fig:overview":
+                    replacements = sorted(provenance.glob("overview-pdf-replacement-*.json"))
+                    if replacements:
+                        replacement = json.loads(replacements[-1].read_text(encoding="utf-8"))
+                        approved = ROOT.parent / replacement["active_png"]
+                        if approved.resolve() == path.resolve():
+                            expected_sha = replacement["png_sha256"]
+                if figure.get("label") == "fig:joint-completion":
+                    replacements = mechanism_raster_records or sorted(
+                        provenance.glob("mechanism-vector-replacement-*.json")
+                    )
+                    if replacements:
+                        replacement = json.loads(replacements[-1].read_text(encoding="utf-8"))
+                        approved = ROOT.parent / replacement["active_png"]
+                        if approved.resolve() == path.resolve():
+                            expected_sha = replacement["png_sha256"]
+                        if mechanism_raster_records:
+                            checks["mechanism_author_selected_image_exact"] = (
+                                approved.is_file()
+                                and digest(approved.read_bytes()) == replacement["source_sha256"]
+                            )
+                        else:
+                            vector = ROOT.parent / replacement["active_pdf"]
+                            native = ROOT.parent / replacement["native_source"]
+                            checks["mechanism_vector_export_matches_record"] = (
+                                vector.is_file()
+                                and digest(vector.read_bytes()) == replacement["pdf_sha256"]
+                                and native.is_file()
+                                and digest(native.read_bytes()) == replacement["native_sha256"]
+                            )
                 checks[f"figure{figure['number']}_approved_pixels_exact"] = (
-                    path.is_file() and digest(path.read_bytes()) == figure["sha256"]
+                    path.is_file() and digest(path.read_bytes()) == expected_sha
                 )
             if revised_layout:
                 current_figures = {
                     "drivecompose-concept-merged.pdf": "fig:teaser",
                     "drivecompose-inference-overview.png": "fig:overview",
-                    "drivecompose-joint-completion.png": "fig:joint-completion",
+                    mechanism_filename: "fig:joint-completion",
                     "experiment1-dynamic-reconstruction.png": "fig:dynamic-reconstruction",
                     "assets/Shift.pdf": "fig:waymo-left-shift",
                 }
@@ -281,8 +331,17 @@ def main() -> int:
                 if results_path == standard_metrics_path:
                     checks[language + ":standard_ablation_metrics"] = all(
                         metric in scoped_source for metric in ("PSNR", "SSIM", "LPIPS"))
-                    checks[language + ":custom_ablation_metrics_removed"] = not re.search(
-                        r"New-MAE|NVS-MAE|Obs-Reg|Cov\.|\bPass\b|eq:regression", scoped_source)
+                    ablation_metric_tables = "\n".join(
+                        body for body in re.findall(
+                            r"\\begin\{table\*?\}(.*?)\\end\{table\*?\}",
+                            scoped_source, re.S)
+                        if any(r"\label{" + label + "}" in body
+                               for label in ("tab:ablation-components", "tab:ablation-inputs"))
+                    )
+                    checks[language + ":custom_ablation_metrics_removed"] = (
+                        not re.search(r"New-MAE|NVS-MAE|Obs-Reg|eq:regression", scoped_source)
+                        and not re.search(r"Cov\.|\bPass\b", ablation_metric_tables)
+                    )
                 else:
                     checks[language + ":ablation_error_scale_explicit"] = (
                         r"$[0,1]$" in scoped_source and "RGB" in scoped_source

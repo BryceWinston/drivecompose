@@ -1,3 +1,551 @@
+## 2026-11-04 提交前归档临时图稿
+
+按作者“将临时文件移出仓库并提交和推送”的要求，仅整理文件及归档入口。起点为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe` 之后的未提交工作区；已有论文修订属于本次整理前的成果。实际起点的文件哈希和 Git 状态见[工作区基线](../../_archive/drivecompose/20261104-pre-push-cleanup/workspace-before.json)，本轮修改的两份说明文件原文也已单独保存。
+
+| 位置／原状态 | 整理后 | 原因 |
+|---|---|---|
+| `docs/figures/joint-completion-vector/` 中未采用的 draw.io／PowerPoint 候选、导出与核验 | 移至仓库外，原目录仅保留当前选择和归档入口说明 | 保留可恢复的原件，移出已退出论文的候选 |
+| `simplification/` 中生成草稿、提示词、规格与审查记录 | 按原层级归档；正式 `paper/fig/drivecompose-joint-completion.png` 保留 | 草稿 PNG 与活动图重复，过程材料可由清单追溯 |
+| `paper/fig/drivecompose-joint-completion.pdf` | 移至仓库外 | 两版主稿均使用作者选定 PNG，此 PDF 为未采用的矢量候选 |
+
+共迁移 16 个文件，逐文件核对 SHA-256；正式图件、四份主稿／补充 PDF、论文源文、实验值和证据记录保留。本轮未改中英文论文文字或排版。完整原路径与新路径见[迁移清单](../../_archive/drivecompose/20261104-pre-push-cleanup/archive-manifest.json)，整理与检查结果见[仓库记录](../paper/provenance/pre-push-cleanup-20261104.json)。
+
+---
+
+## 2026-11-04 修正正文超页：总结全文收回第 8 页
+
+作者指出的问题属实：上一版英文 PDF 中，第六章标题在第 8 页，但结尾四行续到了第 9 页。此前记录将标题所在页误当作正文终止页，所称“正文 8 页”不成立。本轮以完整总结段落的 PDF 文本匹配、最后一句的实际位置及 `sec:main-text-end` 标签共同验收，不再用标题页代替正文结束页。
+
+真实基线为实验集中组织后的未提交工作区，HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`。原英文 PDF SHA-256 为 `7989fbe80ff430c4ff8d652c31e085f24b2fc6c03b58ef6aa8a0c0873b38988a`；[本轮实际基线](../../_archive/drivecompose/20261104-page-layout-fix/baseline/)、[英文逐行差异](../../_archive/drivecompose/20261104-page-layout-fix/en-source-changes.diff)和[中文逐行差异](../../_archive/drivecompose/20261104-page-layout-fix/zh-source-changes.diff)已保留。
+
+### 正文终止位置前后对照
+
+| 检查对象 | 修改前 | 修改后 | 依据 |
+|---|---|---|---|
+| 英文第六章标题 | 第 8 页 | 第 8 页 | 标题页只能说明起点 |
+| 英文总结最后一句 | 第 9 页 | 第 8 页 | 将源文完整段落匹配到 PDF，逐行复核末句 |
+| 英文正文结束标签 | 第 9 页 | 第 8 页 | `sec:main-text-end` 的编译结果 |
+| 英文第 9 页开头 | 总结续行，然后是使用说明 | 从 LLM Usage Statement 开始 | 已渲染并目视复核 |
+| 中文正文结束 | 第 7 页 | 第 7 页 | 同样核对全文与结束标签 |
+
+英文完整总结原文逐字保留，最后一句仍为：
+
+> Waymo reconstruction, paired surface metrics, and multidimensional real-edit ratings establish completion quality and state-driven reuse.
+
+[CVPR 2027 作者指南](https://cvpr.thecvf.com/Conferences/2027/AuthorGuidelines)于 2026-11-04 复核：正文含图表最多 8 页，引用与必需的 LLM 使用说明另计。新英文 PDF 共 11 页，技术内容完整止于第 8 页，第 9–11 页为使用说明与引用；中文共 10 页，正文完整止于第 7 页。
+
+### 三处局部去重及中英对应
+
+没有压缩总结、删去实验结果或改变图表内容。只处理实验中重复的说明，保持 4.5 集中消融的组织。
+
+英文表 3 图注原文：
+
+```latex
+\caption{\textbf{Component ablations on Waymo.} $T=8$, with shared recovery, codec, and target views. Means cover three training and three generation seeds; full SDs are in Appendix G.}
+```
+
+修改后：
+
+```latex
+\caption{\textbf{Component ablations on Waymo.} $T=8$, with shared recovery, codec, and target views. Full SDs are in Appendix G.}
+```
+
+原因：三个训练种子、三个生成种子及所有输出平均的协议已在紧邻正文完整说明；图注保留 T=8、共享组件和完整 SD 的附录定位。
+
+英文编辑后补全段落原文：
+
+```latex
+\paragraph{Completion after editing.}
+On twenty identity-disjoint synthetic scenes, each containing one vehicle and one human, we apply a 1 m camera shift, $30^\circ$ vehicle rotation, and human pose change to fixed completed assets. Joint completion gives the best PSNR, LPIPS, and surface coverage for newly visible vehicle and human surfaces (Table~\ref{tab:asset-reuse}), evaluated at 2 cm vehicle and 1 cm human thresholds.
+```
+
+修改后：
+
+```latex
+\paragraph{Completion after editing.}
+We apply the edits in Sec.~\ref{sec:ablation-reuse} to twenty identity-disjoint synthetic scenes, each containing one vehicle and one human. Joint completion gives the best PSNR, LPIPS, and surface coverage for newly visible surfaces (Table~\ref{tab:asset-reuse}).
+```
+
+原因：相机平移 1 m、车辆旋转 30 度及人体换姿已在 4.4 给出，当前直接引用该节；车辆 2 cm／人体 1 cm 的覆盖率阈值在表 5 图注及表头保留。20 个身份隔离场景和每场景车辆／人体构成保留，结果含义不变。
+
+中文表 3 图注原文：
+
+```latex
+\caption{\textbf{Waymo 组件消融。}$T=8$，恢复模块、codec 与目标视图相同。报告三个训练种子和三个生成种子的均值；完整 SD 见补充材料附录 G。}
+```
+
+修改后：
+
+```latex
+\caption{\textbf{Waymo 组件消融。}$T=8$，恢复模块、codec 与目标视图相同。完整 SD 见附录 G。}
+```
+
+原因：三个训练种子、三个生成种子及所有输出平均的协议已在紧邻正文完整说明；图注保留 T=8、共享组件和完整 SD 的附录定位。
+
+中文编辑后补全段落原文：
+
+```latex
+\paragraph{编辑后的补全。}
+在 20 个身份隔离合成场景上，每个场景各含一辆车和一个人体，相机平移 1 m、车辆旋转 $30^\circ$ 及人体换姿均复用固定完成资产。联合补全在新增可见车辆与人体表面的 PSNR、LPIPS 和覆盖率上均取得最优结果（表~\ref{tab:asset-reuse}），车辆／人体评价阈值为 2／1 cm。
+```
+
+修改后：
+
+```latex
+\paragraph{编辑后的补全。}
+在 20 个身份隔离合成场景上执行第~\ref{sec:ablation-reuse} 节的相同编辑，每个场景各含一辆车和一个人体。联合补全在新增可见表面的 PSNR、LPIPS 和覆盖率上均取得最优结果（表~\ref{tab:asset-reuse}）。
+```
+
+原因：相机平移 1 m、车辆旋转 30 度及人体换姿已在 4.4 给出，当前直接引用该节；车辆 2 cm／人体 1 cm 的覆盖率阈值在表 5 图注及表头保留。20 个身份隔离场景和每场景车辆／人体构成保留，结果含义不变。
+
+可见率段落原文首句：
+
+- EN: `CCM benefits severely missing regions more than well-observed ones.`
+- ZH: `CCM 对严重缺失区域的收益高于充分可见区域。`
+
+修改后删除这两个重复概括句。后文仍完整保留 100 个合成场景、充分可见与严重缺失的分组阈值、三类资产各自的增益及读取范围干预的补充定位；这组实测比较已经直接说明同一发现。
+
+### 保留项与验收
+
+- 题名、确认摘要、引言、相关工作、方法、讨论及两版总结源文件全部保持。所有公式、五张表主体、实验数值、引用键、图片及显示尺寸保持；补充材料源文和两份 PDF 保持。编辑条件从正文重复列举改为明确交叉引用，没有迁入补充材料。
+- 没有改页边距、字体、行距、表格字级、图大小或模板；没有新增负间距、强制分页或浮动规则。篇幅收益来自上述三处文本去重。
+- 专项检查先对旧 PDF 验证，准确识别总结跨第 8–9 页；再对新 PDF 匹配完整总结，确认全文及末尾标签均为第 8 页。21 项专项检查和 70 项现有结构检查通过。最终编译日志无未定义引用、缺字、重复标签或 overfull。
+- 已看英文第 8、9 页高清渲染及中文第 7 页；同时检查两版全部正文缩略图。英文总结完整收在第 8 页，第 9 页不再出现总结续行。没有正文图表漂到第 9 页。
+- 上轮 `experiment-consolidation-20261103.json` 已补充勘误，改正实际正文终止页及错误的页数检查状态，并标记由[本轮验收](../paper/provenance/page-layout-fix-20261104.json)替代；不将其旧页数结论继续当作当前状态。
+
+---
+
+## 2026-11-03 实验组织：将受控比较集中到消融实验
+
+本轮问题有明确位置：原 4.4“隐藏表面补全”含 w/o GCM、w/o CCM 和替代机制比较，4.5 再解释组件消融，4.6“资产复用”又加入相同组件比较、自由射线损失移除和 CCM 成本。读者需要跨三个小节拼接设计证据。按作者“消融实验不要写得到处都是”的要求，合并这些受控比较；其他准确段落原样保留。沿用 `ml-paper-writing` 与已确认的 `cvpr-paper-standard`。
+
+真实基线为作者指定 PNG 入稿后的未提交工作区，HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，不是本轮原文。两版实验源文、正式 PDF 及记录的真实起点保存在[本轮基线](../../_archive/drivecompose/20261103-experiment-consolidation/baseline/)；[英文逐行差异](../../_archive/drivecompose/20261103-experiment-consolidation/en-source-changes.diff)和[中文逐行差异](../../_archive/drivecompose/20261103-experiment-consolidation/zh-source-changes.diff)仅比较本轮起点与当前实验文件。
+
+### 对照的录用论文与实际采用之处
+
+| 样本与复核位置 | 实际观察 | 本稿采用 |
+|---|---|---|
+| [VGGT，CVPR 2025，第 7 页 / 4.5 节](https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_VGGT_Visual_Geometry_Grounded_Transformer_CVPR_2025_paper.pdf) | 骨干与多任务设计比较集中在 Ablation Studies，以短段题说明设计问题 | 一个消融小节，下设按问题命名的段首标题 |
+| [Fast3R，CVPR 2025，第 7–8 页 / 第 5 节](https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_Fast3R_Towards_3D_Reconstruction_of_1000_Images_in_One_Forward_CVPR_2025_paper.pdf) | 主要任务比较与视图数量、模型和局部头等设计干预分开组织 | 主任务先建立效果，随后集中解释组件和机制 |
+| [HorizonForge，CVPR 2026，第 7–8 页 / 4.2–4.3 节](https://openaccess.thecvf.com/content/CVPR2026/papers/Wang_HorizonForge_Driving_Scene_Editing_with_Any_Trajectories_and_Any_Vehicles_CVPR_2026_paper.pdf) | 条件表示和扩散模型比较归入同一消融节，用户评价另节呈现 | 完整方法的真实编辑质量与合成配对组件消融分别叙述 |
+
+这些是样本的组织方式，不是 CVPR 对章节数量的规定；未模仿样本中无证据的宣传语或改变本稿实验条件。
+
+### 章节与表格位置前后对照
+
+| 原位置 / 标题 | 当前位置 / 标题 | 原因 |
+|---|---|---|
+| 4.1 Experimental setup / 实验设置 | 4.1，正文原样保留 | 现有协议已清楚，无需重写 |
+| 4.2 Dynamic scene reconstruction / 动态场景重建 | 4.2，正文原样保留 | 负责完整方法的 Waymo 重建比较 |
+| 4.3 Off-trajectory rendering / 轨迹外渲染 | 4.3，正文原样保留 | 负责完整方法的轨迹外分布质量比较 |
+| 4.6 State-driven asset reuse / 状态驱动资产复用 | 4.4，同名；只保留完整方法的真实编辑、观测保持和绝对效率 | 组件删减与损失移除集中到后面的消融 |
+| 4.5 Ablation studies / 消融实验 | 4.5，先定义控制变体，再依次解释 Waymo 组件、隐藏表面、可见率、编辑后补全及自由空间约束 | 一处建立完整的设计证据链 |
+| 独立 4.4 Hidden-surface completion / 隐藏表面补全 | 4.5 内段首标题，原分析及指标保留 | 本质是相同重建接口下的机制对照 |
+| 原表 4：组件消融 | 当前表 3，位于 4.5 的首项比较 | 先说明核心设计在 Waymo 上的效果 |
+| 原表 3：隐藏区域机制比较 | 当前表 4，接续解释隐藏表面的收益 | 顺着“有效→作用在哪里”推进 |
+| 原表 5：编辑后的新增表面比较 | 当前表 5，移入 4.5 | 其行是组件控制，属于消融证据 |
+
+三张消融表的表格主体（含数值、变体和标粗）逐字保留。表 3 图注补出 Waymo，表 5 图注明确是补全消融；表 1–2、两张实验结果图及既有采样和评价段落原样保留。相关工作和方法中的稳定交叉引用标签保留，自动解析至新的 4.5 节。
+
+### 协议限定：保留真实基线，只明确适用范围
+
+英文原文（原 4.5）：
+
+```latex
+Ablations use one 29-timestamp window per test sequence, three cameras, nested $T=2,4,8$ inputs, and seven shared targets (Appendix G).
+```
+
+修改后（当前 4.5）：
+
+```latex
+Waymo ablations use one 29-timestamp window per test sequence, three cameras, nested $T=2,4,8$ inputs, and seven shared targets (Appendix G).
+```
+
+中文原文（原 4.5）：
+
+```latex
+每条测试序列取一个 29 时刻窗口，使用三相机、$T=2,4,8$ 嵌套输入与七个共享目标（附录 G）。
+```
+
+修改后（当前 4.5）：
+
+```latex
+Waymo 组件消融从每条测试序列取一个 29 时刻窗口，使用三相机、$T=2,4,8$ 嵌套输入与七个共享目标（附录 G）。
+```
+
+原因：29 时刻、嵌套 T=2/4/8 和七个目标属于 Waymo 组件实验；100 个合成隐藏表面场景与 20 个身份隔离合成编辑场景继续在各自段落说明，不让读者误认为所有消融采用同一组数据。主比较的 20 帧片段、12 张上下文图和 C 主协议均保留。
+
+### 资产复用与组件对照分开，但不删除编辑证据
+
+英文原文（原 4.6 同时混写两种比较）：
+
+```latex
+\paragraph{Asset edits.}
+We test fixed-asset reuse on twenty real and twenty identity-disjoint synthetic scenes, each containing one vehicle and one human. A 1 m camera shift, $30^\circ$ vehicle rotation, and human pose change reuse fixed completed assets. Joint completion gives the best PSNR, LPIPS, and surface coverage for newly visible vehicle and human surfaces in the synthetic scenes (Table~\ref{tab:asset-reuse}), evaluated at 2 cm vehicle and 1 cm human thresholds.
+```
+
+修改后（4.4 完整方法的真实编辑）：
+
+```latex
+\paragraph{Asset edits.}
+We test fixed-asset reuse on twenty real scenes, each containing one vehicle and one human. A 1 m camera shift, $30^\circ$ vehicle rotation, and human pose change reuse fixed completed assets. Nine training/generation-seed combinations yield 360 actor edits. The five-pixel structural-integrity criterion passes 334/360 (92.78\%); 298/360 (82.78\%) jointly pass structure, newly visible texture, appearance identity, and local geometry checks. Appendix I reports the four-of-five rating rule, failure breakdown, and seed statistics.
+```
+
+迁入 4.5 的合成配对比较：
+
+```latex
+\paragraph{Completion after editing.}
+On twenty identity-disjoint synthetic scenes, each containing one vehicle and one human, we apply a 1 m camera shift, $30^\circ$ vehicle rotation, and human pose change to fixed completed assets. Joint completion gives the best PSNR, LPIPS, and surface coverage for newly visible vehicle and human surfaces (Table~\ref{tab:asset-reuse}), evaluated at 2 cm vehicle and 1 cm human thresholds.
+```
+
+中文原文（原 4.6 同时混写两种比较）：
+
+```latex
+\paragraph{资产编辑。}
+我们在 20 个真实和 20 个身份隔离合成场景上测试固定资产复用，每个场景各含一辆车和一个人体。相机平移 1 m、车辆旋转 $30^\circ$ 及人体换姿均复用固定完成资产。联合补全在合成场景新增可见车辆与人体表面的 PSNR、LPIPS 和覆盖率上均取得最优结果（表~\ref{tab:asset-reuse}），车辆／人体评价阈值为 2／1 cm。
+```
+
+修改后（4.4 完整方法的真实编辑）：
+
+```latex
+\paragraph{资产编辑。}
+我们在 20 个真实场景上测试固定资产复用，每个场景各含一辆车和一个人体。相机平移 1 m、车辆旋转 $30^\circ$ 及人体换姿均复用固定完成资产。九组训练／生成种子共形成 360 次参与者编辑。五像素结构完整性判据通过 334／360 次（92.78\%）；结构、新增表面纹理、外观身份与局部几何四项联合通过 298／360 次（82.78\%）。五人中至少四人同意的评判规则、失败分解与种子统计见附录 I。
+```
+
+迁入 4.5 的合成配对比较：
+
+```latex
+\paragraph{编辑后的补全。}
+在 20 个身份隔离合成场景上，每个场景各含一辆车和一个人体，相机平移 1 m、车辆旋转 $30^\circ$ 及人体换姿均复用固定完成资产。联合补全在新增可见车辆与人体表面的 PSNR、LPIPS 和覆盖率上均取得最优结果（表~\ref{tab:asset-reuse}），车辆／人体评价阈值为 2／1 cm。
+```
+
+原因：真实编辑的结构完整性和四项联合质量回答完整资产是否可复用；合成配对测试回答去掉组件后新可见表面如何变化。两类证据、各自场景数量、状态变化、阈值和统计均保留。中文把 actor edits 的“演员编辑”改为“参与者编辑”，与道路参与者术语一致。
+
+### 自由射线损失与 CCM 成本：文字保留，位置集中
+
+| 语言 / 项目 | 原文和原位置 | 当前表达和位置 | 原因 |
+|---|---|---|---|
+| EN / ray loss | 4.6 Observation preservation: “On 2,020,000 fixed rays, added-occlusion and strict free-ray violation rates are 0.18\% and 0.07\%; removing the free-ray loss raises them to 1.34\% and 0.91\%.” | 4.5 Free-space constraints，原句后明确指向 Appendix J | 损失移除属于设计干预；完整方法的参数保持、输入视角退化和纹理 MAE 仍在 4.4 |
+| ZH / 射线损失 | 4.6 观测保持：“在 2,020,000 条固定射线上，新增遮挡及严格自由射线违规率为 0.18\% 和 0.07\%；移除自由射线损失后增至 1.34\% 和 0.91\%。” | 4.5 自由空间约束，原数值和比较保留，注明附录 J | 与 C/F 标记干预集中，区分两种实验及其原补充定位 |
+| EN / CCM time | 4.6 Efficiency: “CCM adds 5.1\% construction time.” | 4.5 Completion components: “CCM adds 5.1\% construction time (Appendix K).” | 将增量代价放在相应组件收益旁；完整方法绝对速度留在 4.4 |
+| ZH / CCM 时间 | 4.6 效率：“CCM 增加 5.1\% 构建时间。” | 4.5 补全组件：“CCM 增加 5.1\% 构建时间（附录 K）。” | 同英文同步 |
+
+### 排版调整与核验
+
+- 英文消融标题始于第 7 页，三张受控表集中在第 8 页，按正文首次引用次序为表 3、4、5。英文技术正文和全部表图仍止于第 8 页，共 11 页，References 从第 9 页开始。
+- 中文在消融之前增加浮动边界，使第 6 页的两张主结果图先排完；第 7 页从“4.5 消融实验”开始，三张受控表也在同页，不再被整页结果图打断。中文正文仍止于第 7 页，共 10 页，References 从第 8 页开始。没有改变字体、页边距、表格字级或图片尺寸。
+- 双语五个表格主体、引用键、标签、所有数值种类和其实验条件均已核对；设置和主结果的源文原样保留。31 项本轮源文／编译／位置核验通过，70 项既有稿件结构检查通过。最终日志没有未定义引用、缺字、重复标签或 overfull；英文 7–8 页、中文 5–7 页已逐页视觉检查。
+- 题名、确认摘要、引言、相关工作、方法、讨论和结论源文件保留。作者指定 PNG 及两版 PDF 内嵌像素一致。两份补充源文和 PDF 哈希均保持，机制图仍不放入补充材料。
+- 未运行新实验，未更改结果或新增科学主张；本轮只重新组织已有、作者确认的实验。核验记录见 [experiment-consolidation-20261103.json](../paper/provenance/experiment-consolidation-20261103.json)。
+
+---
+
+## 2026-11-03 机制图定稿：采用作者指定 PNG
+
+按作者最新明确选择，中英文主稿图3采用 exec-3c098566-0ff6-4440-970a-2499b09464ee.png 原图，替代此前 draw.io 矢量候选。文件1374×1145，复制到正式图件路径后 SHA-256 与作者源文件一致；两份主稿 PDF 的内嵌图像像素逐像素一致，插入宽度83.34 mm，均位于第4页。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+|---|---|---|---|
+| 中英文方法图引用 | fig/drivecompose-joint-completion.pdf | fig/drivecompose-joint-completion.png | 执行作者选定的原图，不使用矢量候选 |
+| 中英文使用说明 | 声称联合补全机制图用draw.io矢量重绘 | 说明最终概念与方法插图来自Image Gen，去掉矢量入稿表述 | 与实际最终图件一致 |
+| 补充材料 | 原附录L含放大机制图，前一步已删除 | 维持删除，主稿也不再指向放大图 | 遵从作者不在补充中放机制图的要求 |
+
+本次切换的真实起点为已完成矢量候选但尚未最终交付的未提交工作区；必要源文件及两份主稿保存在 ../../_archive/drivecompose/20261103-figure3-simplification/author-png-selection/baseline/，未以更早HEAD冒充本轮原文。此前未采用的矢量候选与来源保留为过程记录。
+
+两份主稿已重新编译并检查第4页：英文总11页、技术正文止于第8页；中文总10页、正文止于第7页。70项结构检查通过。补充材料保持已删除机制图的英文11页／中文10页版本，表S1–S24完整；这次PNG切换未改补充源文。当前选择和哈希见 paper/provenance/mechanism-image-replacement-20261103.json。
+
+---
+
+## 2026-11-03 图表摆放与阅读顺序优化
+
+按作者“图表的摆放位置也需要对照中稿论文”的要求，检查双语主稿和补充材料的图表位置、首次引用、相应任务段落、单双栏选择和末页留白。应用 `cvpr-paper-standard` 的图表标准，并沿用既有 Tectonic／PDF 后端。保留上轮定下的题名、摘要、标题层级、正文、图注和实验数据，仅调整浮动声明位置、容器与排队方式。
+
+本轮真实基线为标题和编号审查后的未提交工作区，HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`。[修改前源文与四份 PDF](../../_archive/drivecompose/20261103-figure-table-layout/baseline/)、[本轮逐行差异](../../_archive/drivecompose/20261103-figure-table-layout/source-changes.diff)均单独保存，没有以累计 HEAD 差异代替本轮起点。
+
+### 对照论文与采用的摆放方式
+
+| 来源及实际复核页 | 页面组织 | 对应处理 |
+|---|---|---|
+| [VGGT，CVPR 2025](https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_VGGT_Visual_Geometry_Grounded_Transformer_CVPR_2025_paper.pdf)，PDF 第 3 页，复用已核对页图 | 跨栏架构图位于方法开头页上部，下面进入方法定义 | 提前声明总览图，让英文图 2 出现在第 3 页方法开头页，而不是等到第 4 页 |
+| [Fast3R，CVPR 2025](https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_Fast3R_Towards_3D_Reconstruction_of_1000_Images_in_One_Forward_CVPR_2025_paper.pdf)，放大复核 PDF 第 6 页 | 宽表与单栏表混排，相关结果可以集中呈现，并保留相邻讨论 | 保留结果表的成组布局；按实际自然宽度选择单栏或跨栏，让短表随正文流动 |
+| [HorizonForge，CVPR 2026](https://openaccess.thecvf.com/content/CVPR2026/papers/Wang_HorizonForge_Driving_Scene_Editing_with_Any_Trajectories_and_Any_Vehicles_CVPR_2026_paper.pdf)，放大复核 PDF 第 7 页 | 定量表、定性对比与结果分析在相邻区域构成一组证据 | 让英文重建结果图与 §4.2 同页，离轨图与 §4.3 同页，避免结果图在讨论结束后滞后两页 |
+
+这些是录用样本的布局观察，不规定每页只能放一张图或每张表必须单独占栏。图注位于图下、表注位于表上，字号和版心沿用[当前官方模板](https://github.com/cvpr-org/author-kit/blob/main/sec/2_formatting.tex)。没有修改图片显示宽度、正文字号、行距或页边距。
+
+### 主稿图件的实际前后位置
+
+页码是各自 PDF 内的顺序。表中的引用距离来自 PDF 超链接指向的图件标签；同页顶部图件与下方文字记为相隔 0 页。
+
+| 图件 | 英文原页 → 新页 | 中文原页 → 新页 | 原问题与处理 |
+|---|---:|---:|---|
+| 图 1：首页概念图 | 1 → 1 | 1 → 1 | 沿用作者确认的标题下位置及完整内容 |
+| 图 2：方法总览 | 4 → 3 | 3 → 3 | 英文首次引用在第 2 页，原来要到第 4 页才看到图；提前声明后在方法开头页上部展示 |
+| 图 3：联合补全细节 | 4 → 4 | 4 → 4 | 保留在机制说明附近，图件宽度和标签可读性保持 |
+| 图 4：动态重建对比 | 7 → 6 | 6 → 6 | 英文调整为与 §4.2 及表 1 同页；中文保留在第 5 页说明之后的相邻结果页 |
+| 图 5：离轨渲染对比 | 8 → 7 | 6 → 6 | 英文调整为与 §4.3、表 2 同页；中文按自身正文密度摆放，避免试排时出现图先于说明一页的情况 |
+
+双语主稿的全部主图均处于首次引用的同页或次页。英文全部图表的最大首次引用距离从 2 页降至 1 页；中文主稿最大图表距离仍为 2 页，其中表 4 延续跨页的消融讨论。主稿图件同页／相邻页是本轮阅读目标，不是官方录用条件。
+
+### 表格与补充材料的实际调整
+
+| 位置 | 修改前 | 修改后 | 原因及保留项 |
+|---|---|---|---|
+| 英文实验图 4、5 | 在具体讨论段落之后才声明，跨栏队列分别推迟到第 7、8 页 | 在实验开头提前声明，实际落在第 6、7 页 | 图件本身和正文顺序保持，改变 LaTeX 的排队时点 |
+| 主稿结果表 | 多张短表只允许页顶浮动 | 允许正常的行间、页顶、页底或浮动页位置 | 表 1、2、3 分别随重建、离轨和隐藏表面讨论出现；表 4、5 随消融和资产复用讨论摆放，数据与图注保持 |
+| 补充表 S12、S15 | 表格自然宽度能放入单栏，却占用跨栏浮动队列 | 改为单栏表 | 英文自然宽度约 224、222 pt，均小于约 236 pt 的单栏；没有缩小表格或字体 |
+| 补充 F–K 表格 | 一些表格在长段说明后才进入浮动队列 | 在所属节开头按原编号顺序声明 | 缩短排队等待，原段落任务、顺序和科学含义保持 |
+| 补充表 S23、S24 | 两个独立小表纵向分开，留有较多空白 | 同一跨栏浮动组内并排，各保留独立表注、标签和编号 | 保留原字号、列内容和原有间距；两张表的单元内容逐字一致 |
+| 补充 L 放大图与参考文献 | 英文图在第 13 页，参考文献另占第 14 页；中文图在第 11 页，参考文献另占第 12 页 | 用标准跨栏页首块承载原尺寸图片，英文图与参考文献同在第 12 页，中文同在第 11 页 | 消除整块图片在浮动页居中的留白，并利用图后剩余栏位；图注和图片显示宽度保持 |
+
+英文补充的最大首次引用距离从 3 页降至 1 页；中文补充的协议概览仍会提前引用后续成组表格，最大距离为 3 页，与本轮基线一致。两版均保留表 S1–S24 的可见顺序。中文按自身篇幅独立设置结果图位置，不强制复制英文页码。
+
+### 源文保护、检查与交付
+
+- 逐文档展开 `input` 后，移除浮动容器的正文与公式顺序完全一致；全部表格单元、图注、引用键、标题、图片路径及显示宽度核对一致。确认摘要和既有图片资产保持字节一致。
+- 总览图的声明现在位于主入口中，以便提前进入队列；其展示位置仍围绕方法节。相应更新稿件检查器的源文件定位规则，保留图片及标签唯一性、作者确认图片哈希检查，并新增最终 PDF 中总览图与方法开头页的距离检查。
+- 69 项稿件结构检查与本轮 81 项源文／图表位置检查通过；四份 PDF 已重新编译。已核对主稿全部技术页和补充全部页的缩略图，并放大复核受影响页面。没有发现缺字、未定义引用、溢出或内容重叠。
+- 英文主稿 11 页、技术正文与全部正文图表止于第 8 页；中文主稿 10 页、正文止于第 7 页。英文补充 14→12 页，中文补充 12→11 页，页数减少来自摆放变化，没有删除科学内容。
+
+[本轮验收及逐图引用距离](../paper/provenance/figure-table-layout-20261103.json)、[当前正式 PDF](../paper/build/CURRENT-OUTPUTS.md)。基线、源文差异、来源页图、最终页面图和编译辅助文件统一放在项目外 `_archive/drivecompose/20261103-figure-table-layout/`。
+
+---
+
+## 2026-11-03 章节标题、层级与编号专项审查
+
+按作者“编号、标题都需要对照中稿论文的写法，仔细审查”的要求，检查双语主稿和补充材料的章节、小节、段首标题、图表与公式编号、正文交叉引用及最终页面。复用 `ml-paper-writing` 和已确认的 `cvpr-paper-standard`。论文题名、确认版摘要、上一轮叙述正文和实验数据保持；本轮修改标题、层级、引用目标及局部浮动／断行设置。
+
+本轮真实起点是四节叙述优化后的未提交工作区，HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`。[本轮基线](../../_archive/drivecompose/20261103-heading-numbering-audit/baseline/)保存修改前的双语源文和四份 PDF，[逐行差异](../../_archive/drivecompose/20261103-heading-numbering-audit/source-changes.diff)只比较本轮起点与实际结果。
+
+### 对照依据与取舍
+
+- [VGGT，CVPR 2025](https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_VGGT_Visual_Geometry_Grounded_Transformer_CVPR_2025_paper.pdf)：方法按问题定义、主干和预测头组织，具体说明使用不编号段首标题。复核其 PDF 第 2–8 页标题，放大检查第 3 页。
+- [Fast3R，CVPR 2025](https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_Fast3R_Towards_3D_Reconstruction_of_1000_Images_in_One_Forward_CVPR_2025_paper.pdf)：在同一架构小节内以段首标题说明编码器、融合与解码，避免把每个短操作都独立编号。复核其 PDF 第 2–8 页标题，放大检查第 4 页。
+- [HorizonForge，CVPR 2026](https://openaccess.thecvf.com/content/CVPR2026/papers/Wang_HorizonForge_Driving_Scene_Editing_with_Any_Trajectories_and_Any_Vehicles_CVPR_2026_paper.pdf)：方法小节按主要任务组织，较多预备知识另设三级标题。复核其 PDF 第 2–8 页标题，放大检查第 3 页。本文没有增加三级编号的必要。
+
+样本的章节数、大小写和相关工作位置各有差异，不能作为统一录用条件。本文采用两级编号，短操作用不编号的段首标题；章节和小节沿用官方模板的句首大写、专名与缩写规则。`Related work`、`Method`、`Experiments`、`Discussion`、`Conclusion` 等清楚的主标题保持。
+
+### 实际问题与中英修改对照
+
+| 位置 | 修改前 | 修改后 | 理由 |
+|---|---|---|---|
+| 方法 3.1 | Problem formulation and compositional representation／问题定义与可组合表示 | Problem formulation／问题定义 | 输入、输出与表示均属于问题定义；缩短双主题标题 |
+| 方法 3.3–3.5 | 编码、联合补全和解码分别编号，其中编码仅一段 | 统一为 3.3 Joint latent completion／联合潜空间补全；内部以潜码编码、跨组件记忆、流训练与采样、分类型解码作段首标题 | 保持原有技术顺序，围绕中心机制组织层级；没有删除或迁移正文 |
+| 方法原 3.6 | Scene composition／场景组合，紧接 State-driven rendering／状态驱动渲染 | 3.4 State-driven scene composition／状态驱动场景组合；删除重复段首标题 | 上下两层标题原来指向同一段内容，合并后直接说明任务 |
+| 方法原 3.7 | Training procedure／训练流程 | 标题保持，自动顺延为 3.5 | 训练承担独立小节任务；同步更新所有自动引用 |
+| 实验原 4.3 | Off-trajectory rendering and missing surfaces／轨迹外渲染与缺失表面 | 4.3 Off-trajectory rendering／轨迹外渲染；4.4 Hidden-surface completion／隐藏表面补全 | Waymo 分布评价与合成配对几何评价分别组织，清楚呈现两套数据及指标 |
+| 相关工作引用 | 机制适配比较引用原 4.3 混合小节 | 改为引用独立的 4.4 隐藏表面补全 | 将读者直接引向场景潜码／对象耦合对照及其条件 |
+| 实验原 4.4 | Ablations and component context／消融与组件上下文 | 4.5 Ablation studies／消融实验 | 标题覆盖模块、输入数量、可见率及自由空间规则四类分析 |
+| 消融段首 | Where CCM helps／CCM 在哪里有效 | Visibility-stratified analysis／可见率分组分析 | 直接点明按可见率分组的评价方式 |
+| 消融段首 | Protocol／协议；Completion and context／补全与上下文；Free-space rule／自由空间规则 | Evaluation protocol／评价协议；Completion components／补全组件；Free-space labeling rules／自由空间标记规则 | 明确标题所指对象，规则用复数对应 C／F |
+| 实验原 4.5 | State-driven reuse and observation preservation／状态复用与观测保持 | 4.6 State-driven asset reuse／状态驱动资产复用 | 以资产复用统领编辑、观测检查和摊销代价，保留内部结果及限定 |
+| 相关工作段首 | Compositional scenes and controllable assets／可组合场景与可控资产 | Compositional scene representations／可组合场景表示 | 以表示路线归组，该段仍保留控制与绑定关系 |
+| 相关工作段首 | Generative driving scenes and videos／驾驶场景与视频生成 | Driving-scene generation／驾驶场景生成 | 使用任务名称，覆盖该段图像、视频及混合生成方法 |
+| 附录 F | Conditional reconstruction and comparison protocol／条件重建与比较协议 | Reconstruction protocols and baselines／重建协议与基线 | 概括该节的比较协议、训练资源、状态适配与深度评价 |
+| 附录 G | Ablations, seed statistics, and evaluation denominators／消融、种子统计与评价分母 | Ablation protocols and seed statistics／消融协议与种子统计 | 精简并列项；分母定义仍完整保留 |
+| 附录 H | Off-trajectory, hidden-region, and context diagnostics／离轨、隐藏区域与上下文诊断 | Off-trajectory rendering and completion analysis／轨迹外渲染与补全分析 | 用任务与分析对象概括该节内容 |
+| 附录 I、J | State-driven reuse of completed assets／完成资产的状态驱动复用；Parameter and observation-rendering preservation／参数与观测渲染保持 | State-driven asset reuse／状态驱动资产复用；Observation consistency／观测一致性 | 与正文任务名称对应；参数保持与渲染误差仍分别报告 |
+
+### 编号和版面修正
+
+- 主文原来先引用离轨结果表 3，再引用隐藏区域表 2。将离轨表及对应图的环境移至该任务段落后，隐藏区域表仍随补全段落；现在离轨表为表 2，隐藏区域表为表 3，全文首次引用及可见表序均为 1–5。表格数据与图表标题保持。
+- 补充原来固定表格跳过未排出的浮动表格，导致 S17／S18 早于 S15／S16、S23／S24 早于 S22。六张原固定表格改用普通浮动，在附录 L 放大图之前排完剩余表格；最终两版 S1–S24 均按可见顺序连续排列。没有缩字号或修改表格间距。
+- 方法 3.3 的编码、补全、解码标签均指向同一小节，内部内容仍可通过原标签定位；场景组合 3.6→3.4、训练 3.7→3.5，消融 4.4→4.5、复用 4.5→4.6。正文引用使用标签自动更新，机制比较改用新标签 `sec:hidden-completion`。
+- 保留主文连续公式编号 (1)–(11)、图 1–5、附录 A–L 和补充 S 前缀；保留无需修改的图表标题。检查段首标题与二级标题的任务是否重复、是否出现跨页孤立标题，以及标题和正文是否对应。
+- 英文阶段范围 “Stages 3–4” 曾在页边界断出孤立的 “4.”，已对该范围作不换行处理，数字与科学含义保持。
+
+### 最终主文层级
+
+```text
+1. Introduction
+2. Related work
+3. Method
+   3.1. Problem formulation
+   3.2. Visual recovery and canonical aggregation
+   3.3. Joint latent completion
+   3.4. State-driven scene composition
+   3.5. Training procedure
+4. Experiments
+   4.1. Experimental setup
+   4.2. Dynamic scene reconstruction
+   4.3. Off-trajectory rendering
+   4.4. Hidden-surface completion
+   4.5. Ablation studies
+   4.6. State-driven asset reuse
+5. Discussion
+6. Conclusion
+```
+
+### 核验与文件
+
+本轮八份既有论文源文之外的源文件保持字节一致，图表内容与图注、行间公式、实验数值和引用键保持。英文仍为 11 页、技术正文止于第 8 页；中文 10 页、正文止于第 7 页。英文补充 14 页，中文补充 12 页；英文补充相对本轮起点增加 1 页，用于恢复表格顺序，正文篇幅不变。69 项稿件结构检查与本轮 141 项编号／源文／PDF 检查全部通过；最终技术页缩略图、全部补充页缩略图及受影响重点页已复核。完整结果见[验收记录](../paper/provenance/heading-numbering-audit-20261103.json)，正式文件入口见[当前 PDF](../paper/build/CURRENT-OUTPUTS.md)。
+
+---
+
+## 2026-11-03 引言、相关工作、方法与实验的双语叙述优化
+
+按作者“继续以相同方式优化引言和相关工作和方法还有实验，对照中稿论文怎么写”的要求，沿用已确认摘要的主线，修改四节的中英文叙述。由 `ml-paper-writing` 统筹并应用已确认的 CVPR 标准；英文用 humanizer 检查，中文仅对本轮改动段落按 lieflat 白名单终校。科学正文改动限于八份章节源文件，已确认摘要保持字节一致。
+
+本轮起点为已有未提交修改的工作区，Git HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`。[真实修改前基线](../../_archive/drivecompose/20261103-main-sections-polish/baseline/)保存本轮八份源文及双语 PDF；[完整逐行差异](../../_archive/drivecompose/20261103-main-sections-polish/source-changes.diff)只包含本轮改动，不能用累计 HEAD 差异代替。诊断与结果分配见[本轮工作记录](../../_archive/drivecompose/20261103-main-sections-polish/revision-plan.json)。
+
+### 对照论文与采用的写法
+
+| 录用论文及原文范围 | 观察到的组织方式 | 本轮对应处理 |
+|---|---|---|
+| [VGGT，CVPR 2025](https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_VGGT_Visual_Geometry_Grounded_Transformer_CVPR_2025_paper.pdf)，PDF 2–5、7 页 | 先定义输入、输出与坐标，再说明信息交互设计；消融对应具体架构选择 | 保留原方法顺序，解释规范／世界坐标、统一潜码维度及记忆读写的用途；实验区分整体效果与机制证据 |
+| [Fast3R，CVPR 2025](https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_Fast3R_Towards_3D_Reconstruction_of_1000_Images_in_One_Forward_CVPR_2025_paper.pdf)，PDF 2–3、7 页 | 从具体处理瓶颈引出联合建模，并检验更多上下文带来的变化 | 合并引言两段重复流程，将跨组件信息与未知表面补全连接；解释输入数量与可见率下的收益差异 |
+| [HorizonForge，CVPR 2026](https://openaccess.thecvf.com/content/CVPR2026/papers/Wang_HorizonForge_Driving_Scene_Editing_with_Any_Trajectories_and_Any_Vehicles_CVPR_2026_paper.pdf)，PDF 2–3、6–7 页 | 按重建、生成及其结合组织相关方法；编辑目标对应表示与评价 | 沿用四条既有技术路线，前置其方法关系；把固定资产编辑与新显露表面评价联系起来 |
+
+采用上述论证方式，不复制论文措辞，不把其宣传性表述、任务条件或排版压缩方式移入本文。
+
+### 代表性前后对照
+
+| 位置 | 本轮原文或原问题 | 修改后 | 原因 |
+|---|---|---|---|
+| 引言结果预览（英文） | Under shared camera and actor states on Waymo, DriveCompose improves reconstruction and off-trajectory rendering. | Experiments on Waymo show higher reconstruction accuracy and better off-trajectory rendering quality than the feed-forward baselines. | 在引言集中陈述 Waymo 的比较结论；编辑百分比仍保留在 §4.5 与附录 I |
+| 引言结果预览（中文） | 在 Waymo 的统一相机与参与者状态条件下，DriveCompose 改善了重建与轨迹外渲染。隐藏表面测试中，异构联合补全优于任务适配的场景级潜码生成和跨对象耦合对照。真实编辑跨状态复用固定资产，结构完整性成功率为 92.78\%，四项质量联合通过率为 82.78\%（第~\ref{sec:experiments} 节）。 | Waymo 实验表明，相比前馈重建基线，DriveCompose 获得了更高的重建精度和更好的轨迹外渲染质量。合成配对测试将联合补全与场景级生成、跨对象耦合进行比较，真实参与者编辑则验证同一组补全资产的复用（第~\ref{sec:experiments} 节）。 | 与英文的比较对象、任务和主张强度同步 |
+| 相关工作近邻对照（英文） | We compare their task-adapted mechanisms through a shared reconstruction interface (Sec.~\ref{sec:spatial_evaluation}). | Our matched comparisons adapt scene-level generation and cross-object coupling to the same reconstruction interface (Sec.~\ref{sec:spatial_evaluation}). | 明确比较场景级生成与跨对象耦合两个适配机制，消除 their 可能包含 GenAssets 的歧义 |
+| 相关工作近邻对照（中文） | 我们在共享重建接口下比较相应任务适配机制（第~\ref{sec:spatial_evaluation} 节）。 | 匹配比较将场景级生成与跨对象耦合适配到相同重建接口（第~\ref{sec:spatial_evaluation} 节）。 | 以机制关系组织近邻比较，不把适配成绩归于原生方法 |
+| 方法双坐标作用（英文） | The fixed layout stores canonical coordinates for component identity and first-input world coordinates $\mathbf q_i^w$ (including human skinning) for relating components to their surroundings. | The layout retains canonical coordinates to identify component surfaces and first-input world coordinates $\mathbf q_i^w$, including human skinning, to locate them relative to the background and other actors. | 说明规范坐标标识组件表面、参考世界坐标联系背景与其他参与者；计算及变量保持 |
+| 方法双坐标作用（中文） | 固定布局以规范坐标标识组件内容，以第一帧世界坐标 $\mathbf q_i^w$（包括人体蒙皮）联系组件与周围场景。 | 布局保留规范坐标以标识组件表面，并以首个输入时刻的世界坐标 $\mathbf q_i^w$（包括人体蒙皮）确定其相对背景与其他参与者的位置。 | 补足两种坐标描述的用途，保留人体蒙皮条件 |
+| 方法 CCM 读写（英文） | 原文给出 memory-exchange 公式和 query/key/value 次序，随后直接进入前馈更新。 | Memory first reads all local groups, then supplies the updated scene context to each group's tokens. | 把公式的两步注意力与“汇集局部特征、回写场景上下文”对应，不修改公式 |
+| 方法 CCM 读写（中文） | 原文给出注意力参数次序，随后直接进入残差前馈更新。 | 记忆先读取全部局部组，再将更新后的场景上下文传回各组的 token。$\mathbf U$ 后接残差前馈更新。流时间调制局部归一化，记忆由可学习 token 与日志摘要初始化。 | 与英文相同的机制解释，不增加新的网络组件或能力 |
+| Waymo 离轨结果（英文） | Figure~\ref{fig:waymo-left-shift} compares shifted renders against an original-trajectory reference. | DriveCompose achieves the lowest FID and FVD at all three Waymo offsets, improving both image and video distribution quality (Table~\ref{tab:spatial_current}). | 原文此处仅交代图示；新增对现有三个偏移下 FID/FVD 的解读，主表数值不变 |
+| Waymo 离轨结果（中文） | 图~\ref{fig:waymo-left-shift} 展示偏移渲染及原轨迹参考。 | DriveCompose 在 Waymo 的三种偏移下均取得最低 FID 和 FVD，改善了图像与视频的分布质量（表~\ref{tab:spatial_current}）。图~\ref{fig:waymo-left-shift} 展示偏移渲染及原轨迹参考。 | 将实测优势落到 Waymo，随后以独立段落进入合成隐藏区域评价 |
+| 输入稀疏度消融（英文） | At $T=2,4,8$, PSNR gains are 1.104, 0.738, and 0.627 dB (Appendix G). | PSNR gains are 1.104, 0.738, and 0.627 dB at $T=2,4,8$, with the largest benefit at the sparsest input setting (Appendix G). | 保留全部增益，说明最稀疏输入下上下文收益最大；可见率分组仍按原阈值定义 |
+| 输入稀疏度消融（中文） | $T=2,4,8$ 时的 PSNR 增益为 1.104、0.738 和 0.627 dB（附录 G）。 | $T=2,4,8$ 时的 PSNR 增益为 1.104、0.738 和 0.627 dB，输入最稀疏时收益最大（附录 G）。 | 与英文一致，从数值复述推进到已有比较所支持的发现 |
+
+### 内容保留与删减位置
+
+- 引言合并原第 4、5 段重复概述，不改变研究问题、输入、表示或生成机制。第三项贡献聚焦共享场景上下文的机制认识与真实资产复用；自由空间规则的原有分析仍在 §4.4 和附录 D。
+- 引言不再重复 92.78%／82.78% 编辑成绩；§4.5 与附录 I 中的 334/360 结构判据、298/360 四项联合质量、场景数和种子条件全部保留。本轮没有把材料重新迁入补充。
+- 相关工作保留四个主题和全部原引用，明确场景级生成与跨对象耦合是适配机制对照。保留本文与生成视图／视频精修方法在固定三维内容复用上的具体关系。
+- 方法只修改解释性文字；输入标定、给定状态、目标数据用途、查询布局、三种掩码、绑定、采样、目标有效性、四阶段训练及全部数值保持。
+- 实验保留全部表格、图件、协议、成绩、种子 SD、覆盖阈值和计时条件；保留输入视角 PSNR 下降 0.029 dB、深度 MAE 增加 2 mm 等限定结果，区分参数保持与渲染变化。新增文字解释既有比较，没有新训练或新增测量。
+- 英文改动段落完成一轮 humanizer 复读；中文按 lieflat 白名单检查，技术清单、公式引导和领域术语按科研语体保留，不机械改动句长、条目数或未命中表达。
+
+### 核验与交付
+
+双语主稿已重新编译。英文共 11 页，技术正文、讨论、结论及全部正文图表止于第 8 页，参考文献从第 9 页开始；中文共 10 页，正文止于第 7 页。69 项稿件结构检查与本轮 70 项源文／PDF 检查全部通过：双语各 9 个方法行间公式环境、全部图表环境、引用键和方法／实验数值保持不变，八份章节以外的既有论文源文件及已确认摘要保持字节一致。
+
+已检查最终两版全部技术页缩略图，并放大复核英文第 4、5、8 页和中文第 2、3、4、5、7 页；首轮另已放大复核英文第 2、3、5–8 页。首轮发现英文第 5 页页首孤立的 “memory:”，将前句收紧为 “Cross-component memory (CCM) then exchanges context across groups:”，同步中文后再次编译，最终第 4／5 页断句已检查。日志保留浮动页提示，未发现未定义引用、缺字、溢出或页面内容重叠；字体、版心和间距未调整。
+
+下表用于比较叙述文字量：排除图表、公式、标题、引文键和 LaTeX 控制后，英文按含字母或数字的空格分词计数，中文仅计汉字；不作为会议官方词数。
+
+| 章节 | 英文修改前 → 后 | 中文汉字修改前 → 后 |
+|---|---:|---:|
+| 引言 | 441 → 378 | 842 → 718 |
+| 相关工作 | 285 → 293 | 480 → 476 |
+| 方法 | 1059 → 1087 | 1833 → 1901 |
+| 实验 | 819 → 907 | 1281 → 1418 |
+
+结构检查、源文件保护、逐节文字量和双语 PDF 核验见[本轮验收记录](../paper/provenance/main-sections-polish-20261103.json)。正式文件及页数见[当前 PDF](../paper/build/CURRENT-OUTPUTS.md)。基线、检索与阅读材料、差异、编译辅助文件及页图均保存在项目外 `_archive/drivecompose/20261103-main-sections-polish/`。
+
+---
+
+## 2026-11-03 采用作者确认的中英文摘要
+
+按作者“就用这一版，更新论文中英文摘要”的指令，逐字采用本轮对话最后确认的双语文本，不再改写。英文摘要以视点和姿态变化暴露未知表面切入，串联共享场景上下文、联合补全与绑定资产复用，效果陈述落在 Waymo 的重建和轨迹外渲染，不列具体提升数值。
+
+本轮开始时工作区已有未提交修改。Git HEAD 为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，本轮真实基线是[修改前摘要、记录和 PDF](../../_archive/drivecompose/20261103-abstract-adoption/baseline/)，不能用 HEAD 差异代替本轮前后对照。[本轮摘要逐行差异](../../_archive/drivecompose/20261103-abstract-adoption/abstracts.diff)只包含这次替换。
+
+### 代表性前后对照与理由
+
+| 位置 | 原文 | 修改后 | 理由 |
+|---|---|---|---|
+| 英文开头 | “Reconstructing complete and controllable 3D scenes from partial observations is essential …” | “Moving the camera or changing actor poses exposes surfaces …” | 从具体可见性问题切入，直接引出补全与运动控制需求 |
+| 中文开头 | “从局部观测中重建完整、可控的三维场景，是……重要基础” | “相机视点与参与者姿态的变化会显露……从未观测到的表面” | 与英文问题表述同步，删除泛化的重要性开场 |
+| 英文效果陈述 | “Under shared states on Waymo, DriveCompose improves reconstruction and off-trajectory rendering.” | “Experiments on Waymo show higher reconstruction accuracy and better off-trajectory rendering quality than feed-forward reconstruction baselines.” | 明确 Waymo、比较对象和两项效果，不报告具体幅度 |
+| 中文效果陈述 | “在 Waymo 的统一状态条件下，DriveCompose 改善了重建与轨迹外渲染。” | “Waymo 实验表明，相比前馈重建基线，DriveCompose 获得了更高的重建精度和更好的轨迹外渲染质量。” | 与英文比较范围及主张强度一致 |
+| 摘要结果细节 | 0.67 dB、2.6 个百分点、360 次编辑、92.78%／82.78% 及检查项目 | 用 Waymo 上的比较结论及参与者编辑复用结果收束 | 按作者要求精简摘要；上述数值和评价条件原已存在于实验及补充材料，本轮保留原文，没有重新迁移或删除正文证据 |
+| 方法细节 | 摘要中的潜码硬恢复与自由射线约束说明 | 摘要集中解释跨组件上下文、几何与外观补全、刚体／骨架绑定和状态复用 | 聚焦主要设计直觉；方法节与相应证据保留原文 |
+
+### 英文摘要全文对照
+
+修改前：
+
+Reconstructing complete and controllable 3D scenes from partial observations is essential for autonomous driving simulation and scene editing. We present DriveCompose, a framework for compositional generative reconstruction from driving image sequences. Visual features are aggregated in world coordinates for the background and canonical frames for actors, then encoded into component-specific latents. A conditional flow model uses cross-component memory to exchange scene context and jointly complete missing codes. Type-specific decoders convert the completed latents into Gaussian components with rigid and skeletal bindings, allowing the same assets to be composed and rendered under different camera and actor states. Hard latent restoration preserves observed Gaussian parameters, and free-ray constraints control the rendering effects of added content. Under shared states on Waymo, DriveCompose improves reconstruction and off-trajectory rendering. In paired hidden-region tests, cross-component completion exceeds the strongest task-adapted mechanism control by 0.67 dB PSNR and 2.6 percentage points of surface coverage. Across 360 actor edits in 20 real scenes and nine seed combinations, structural integrity succeeds in 92.78\% of edits; 82.78\% jointly pass structure, newly visible texture, appearance identity, and local geometry checks.
+
+修改后（作者确认文本）：
+
+Moving the camera or changing actor poses exposes surfaces that were never observed in the input driving images. Reconstructing scenes for simulation and editing therefore requires completing these surfaces while retaining control over actor motion. We present DriveCompose, a framework for compositional generative reconstruction from calibrated driving image sequences. Visual evidence is aggregated in world coordinates for the background and canonical frames for vehicles and humans. A conditional flow model uses cross-component memory to share scene context and jointly complete missing geometry and appearance in the component latents. The completed latents are decoded into Gaussian components with rigid and skeletal bindings, allowing generated surfaces to move with their corresponding actors. The same background and actor assets can then be assembled and rendered under new camera viewpoints and actor states. Experiments on Waymo show higher reconstruction accuracy and better off-trajectory rendering quality than feed-forward reconstruction baselines. Actor editing experiments further demonstrate that completed vehicles and humans can be reused across motion and pose changes.
+
+### 中文摘要全文对照
+
+修改前：
+
+从局部观测中重建完整、可控的三维场景，是自动驾驶仿真与场景编辑的重要基础。我们提出 DriveCompose，从驾驶图像序列中生成式地重建可组合场景。视觉特征在背景的世界坐标系和参与者各自的规范坐标系中聚合，再编码为对应组件的潜表示。条件流模型通过跨组件记忆交换场景上下文，联合补全缺失潜码。分类型解码器将补全潜码转换为具有刚体和骨架绑定的高斯组件，使同一组资产能够在不同相机与参与者状态下组合和渲染场景。潜码硬恢复保持已见高斯参数，自由射线约束控制新增内容对渲染的影响。在 Waymo 的统一状态条件下，DriveCompose 改善了重建与轨迹外渲染。配对隐藏区域测试中，跨组件补全相对最强任务适配机制对照将 PSNR 提高 0.67 dB、表面覆盖率提高 2.6 个百分点。20 个真实场景、九组种子的 360 次演员编辑中，结构完整性成功率为 92.78\%；结构、新增表面纹理、外观身份与局部几何四项联合通过率为 82.78\%。
+
+修改后（作者确认文本）：
+
+相机视点与参与者姿态的变化会显露输入驾驶图像中从未观测到的表面。面向仿真与编辑的场景重建需要补全这些表面，同时保留对参与者运动的控制。我们提出 DriveCompose，从有标定的驾驶图像序列中生成式重建可组合场景。视觉证据分别在背景的世界坐标系和车辆、人体的规范坐标系中聚合。条件流模型通过跨组件记忆共享场景上下文，在组件潜表示中联合补全缺失的几何与外观。补全后的潜表示被解码为具有刚体和骨架绑定的高斯组件，使生成表面随对应参与者运动。同一组背景与参与者资产随后可在新的相机视点和参与者状态下装配与渲染。Waymo 实验表明，相比前馈重建基线，DriveCompose 获得了更高的重建精度和更好的轨迹外渲染质量。参与者编辑实验进一步验证了补全车辆与人体在运动和姿态变化下的复用能力。
+
+### 本轮范围与核验
+
+科学正文仅替换 `paper/sec/0_abstract.tex` 与 `paper/zh/0_abstract_zh.tex`。标题、其他章节、实验数值、图表、公式、书目、模板及补充材料保持本轮基线。重新编译两份主稿，检查结果见[采用与核验记录](../paper/provenance/abstract-adoption-20261103.json)，正式文件见[当前 PDF](../paper/build/CURRENT-OUTPUTS.md)。
+
+验收结果：两份源文与作者确认文本逐字一致；英文摘要 163 词。中英文主稿均编译成功，分别共 11／10 页，技术正文分别止于第 8／7 页；两份摘要完整出现在首页。检查覆盖全部技术正文缩略图，以及双语首页和结论页的高清页图，无缺字、溢出、裁切或重叠。编译日志仅有图表专页提示，无未定义引用或缺字警告。新生成的日志、辅助文件、页图和本轮基线归入项目外 `../_archive/drivecompose/20261103-abstract-adoption/`，正式路径仅保留当前 PDF 与构建记录。
+
+---
+
+## 2026-11-02 统一证据修订与语言终校
+
+本轮基线为 `09ec7adb91eca760fe8c2682d91b40a479f2bcfe`，开始时工作区干净。[实际源文件和 PDF 基线](../../_archive/drivecompose/20261102-review-evidence-revision/baseline/)与[完整逐行差异](../../_archive/drivecompose/20261102-review-evidence-revision/source-changes.diff)仅记录本轮改动。采用最新统一作者文本，前一份 600 场景、512×512 与另一套网格／绑定设置未用于稿件。
+
+### 具体修改与理由
+
+| 位置 | 原文或原问题 | 修改后 | 理由 |
+|---|---|---|---|
+| 摘要与引言 | “Real-scene edits achieve 92.78% success”；“真实场景编辑……92.78% 成功率” | “structural integrity succeeds in 92.78%”；“结构完整性成功率为 92.78%”，并加入四项联合质量 82.78% | 将结构判据和纹理／身份／几何质量分别归因，明确 360 次、二十个场景、九组种子 |
+| 相关工作、§4.3 与补充 H | 仅有 w/o GCM、w/o CCM 和 Ours 的隐藏表面结果 | 增加 Scene latent／场景潜码与 Object coupling／对象耦合的任务适配对照；明确共享模块、输入、监督和采样 | 将异构联合补全的增量直接定位到可比机制，不归为原生 CompleteSplat／JRM 成绩 |
+| 主稿新表 2、补充表 S15 | 原隐藏结果 23.18 dB 主要与内部变体比较 | 对最强新增对照提高 0.67 dB PSNR、2.6 个百分点覆盖率、3.6 个百分点 F-score；LPIPS 减少 0.020 | 主张与相同 100 场景、C 规则和九组种子的证据一致 |
+| §3.2／§4.4、补充 D 表 S6–S7 | 足迹仅报告掩码误标 | 增加隐藏区域下游指标及薄结构、边界、人体切片，报告 F 的质量与代价 | 将 1,355 个净误标减少与 1.2 个百分点表面覆盖增益分开，不推断错误集合对应关系 |
+| 主表协议 | 原数据规模与中心射线结果 | 保留 740/58/202、10,000/1,000/1,000 等划分及 240×160；C 为主协议，F 单列 | 不把原表数值移用于另一套规则或数据配置 |
+| §4.5、补充 I 表 S19–S21 | 总成功率与原种子区间 | 保留 334/360 结构结果，新增 298/360 联合质量；62 次联合失败分为 26 次结构失败与另外 36 次质量失败 | 原 0.48 个百分点 SD 和 85.28%–99.17% 区间仅对应结构；联合通过按逐例交集 |
+| 观测保持 | MAE 0.014 与资产编辑段并列 | 移到主稿观测保持段；补充明确其为已见人体纹理指标 | 避免用已见区域误差代表新增表面纹理质量 |
+| 补充 D、表 S3 | 仅给基础网格维数 | 补充背景米制范围、5×5×3 m 单元、2,048／512 锚点上限、0.20 m 去重、4 m 注意力分组和 0.10 m 人体邻域 | 区分网格、锚点、注意力分组及人体体型尺度；保留查询先绑定、子高斯继承 |
+| 引言与实验重复文字 | 引言重复逐模块流程；正文重复附录 F/G/H 已有完整数值 | 局部删减重复说明；完整插值／外推、输入敏感性、读取干预和失败统计保留在原附录 | 为新增证据腾出版面，不改变原有数值及协议 |
+| 原资产编辑表 | 车辆与人体分成六行 | 同一变体一行，车辆与人体指标并列，全部十八个结果保留 | 紧凑原生表格，维持可读字号，正文止于第 8 页 |
+| 补充材料页内留白 | 固定表格之间弹性空白被拉大 | 使用 raggedbottom 保留自然段表间距 | 不修改字体、版心或基线行距 |
+| 英文声明分页 | 新内容使声明段在第 8／9 页之间拆开 | 使用 Needspace 将声明标题及段落保持在同页 | 技术正文仍在第 8 页结束，声明仍位于参考文献之前 |
+| 稿件检查器 | 图 2 仍比较早期 PNG 哈希；把后续资产表的标准覆盖率误判为旧自定义消融指标 | 图 2 读取最新已有作者批准记录；旧指标禁用检查明确限制到对应消融范围 | 纠正过期校验依据，仍保留完整图像哈希与旧指标检测 |
+
+### 保留项与展示决定
+
+标题、既有图 1–5、主书目、原主重建／离轨／组件消融数值及公式保持；图像文件未改。用户明确要求本轮不放新增结果图，新增结论以文字和表格呈现。正文没有声称展示尚未提供的编辑渲染或局部放大图。
+
+### 摘要全文前后对照
+
+**英文摘要原文。**
+
+> Reconstructing complete and controllable 3D scenes from partial observations is essential for autonomous driving simulation and scene editing. We present DriveCompose, a framework for compositional generative reconstruction from driving image sequences. Visual features are aggregated in world coordinates for the background and canonical frames for actors, then encoded into component-specific latents. A conditional flow model uses cross-component memory to exchange scene context and jointly complete missing codes. Type-specific decoders convert the completed latents into Gaussian components with rigid and skeletal bindings, allowing the same assets to be composed and rendered under different camera and actor states. Hard latent restoration preserves observed Gaussian parameters, and free-ray constraints control the rendering effects of added content. Under shared states on Waymo, DriveCompose improves reconstruction and off-trajectory rendering over state-adapted baselines; cross-component memory adds 0.627 dB full-image PSNR. Real-scene edits achieve 92.78\% success across nine training/generation-seed combinations, demonstrating reuse of fixed completed assets.
+
+**英文摘要修改后。**
+
+> Reconstructing complete and controllable 3D scenes from partial observations is essential for autonomous driving simulation and scene editing. We present DriveCompose, a framework for compositional generative reconstruction from driving image sequences. Visual features are aggregated in world coordinates for the background and canonical frames for actors, then encoded into component-specific latents. A conditional flow model uses cross-component memory to exchange scene context and jointly complete missing codes. Type-specific decoders convert the completed latents into Gaussian components with rigid and skeletal bindings, allowing the same assets to be composed and rendered under different camera and actor states. Hard latent restoration preserves observed Gaussian parameters, and free-ray constraints control the rendering effects of added content. Under shared states on Waymo, DriveCompose improves reconstruction and off-trajectory rendering. In paired hidden-region tests, cross-component completion exceeds the strongest task-adapted mechanism control by 0.67 dB PSNR and 2.6 percentage points of surface coverage. Across 360 actor edits in 20 real scenes and nine seed combinations, structural integrity succeeds in 92.78\% of edits; 82.78\% jointly pass structure, newly visible texture, appearance identity, and local geometry checks.
+
+**中文摘要原文。**
+
+> 从局部观测中重建完整、可控的三维场景，是自动驾驶仿真与场景编辑的重要基础。我们提出 DriveCompose，从驾驶图像序列中生成式地重建可组合场景。视觉特征在背景的世界坐标系和参与者各自的规范坐标系中聚合，再编码为对应组件的潜表示。条件流模型通过跨组件记忆交换场景上下文，联合补全缺失潜码。分类型解码器将补全潜码转换为具有刚体和骨架绑定的高斯组件，使同一组资产能够在不同相机与参与者状态下组合和渲染场景。潜码硬恢复保持已见高斯参数，自由射线约束控制新增内容对渲染的影响。在 Waymo 的统一状态条件下，DriveCompose 的重建与轨迹外渲染优于状态适配后的基线，跨组件记忆使全图 PSNR 提高 0.627 dB。真实场景编辑在九组训练／生成种子下取得 92.78\% 成功率，固定完成资产可跨状态复用。
+
+**中文摘要修改后。**
+
+> 从局部观测中重建完整、可控的三维场景，是自动驾驶仿真与场景编辑的重要基础。我们提出 DriveCompose，从驾驶图像序列中生成式地重建可组合场景。视觉特征在背景的世界坐标系和参与者各自的规范坐标系中聚合，再编码为对应组件的潜表示。条件流模型通过跨组件记忆交换场景上下文，联合补全缺失潜码。分类型解码器将补全潜码转换为具有刚体和骨架绑定的高斯组件，使同一组资产能够在不同相机与参与者状态下组合和渲染场景。潜码硬恢复保持已见高斯参数，自由射线约束控制新增内容对渲染的影响。在 Waymo 的统一状态条件下，DriveCompose 改善了重建与轨迹外渲染。配对隐藏区域测试中，跨组件补全相对最强任务适配机制对照将 PSNR 提高 0.67 dB、表面覆盖率提高 2.6 个百分点。20 个真实场景、九组种子的 360 次演员编辑中，结构完整性成功率为 92.78\%；结构、新增表面纹理、外观身份与局部几何四项联合通过率为 82.78\%。
+
+### 科学与语言复查
+
+英文新改与受影响段落按 humanizer 检查，中文只选 lieflat-less-ai-tone 检查明确触发项。删除重复段尾判断和修订过程口吻，保留参数、协议、公式、引用与主张强度；把 newly visible 的条件统一为输入不可见，涵盖遮挡和视野外表面。论文不出现 R1-M1 等审稿编号或“为回应质疑”的段落。
+
+原件缺口只记录在 [EVIDENCE](../paper/EVIDENCE.md) 和 [来源记录](../paper/provenance/review-evidence-revision-20261102.json)。当前没有编造两种新增机制对照的参数量、成本、运行 ID 或数据资源全集。本轮未重新训练或评测。
+
+### 交付与验收
+
+- 英文主稿 11 页，技术正文、结论和全部正文表图止于第 8 页；中文主稿 10 页，正文止于第 7 页。英文摘要 183 词。
+- 双语独立补充材料页数以[最终验收](../paper/provenance/review-evidence-revision-20261102-verification.json)为准。
+- 稿件结构检查 69 项通过；数值转录、原表保留、分母算术、双语公式、正式样式、实际编译和页数的定向检查 74 项通过。
+- 四份正式 PDF 均为本轮编译输出；最终日志无溢出、缺字、未定义引用或重复标签。全稿页图与新增／受影响表格已目视检查。基线、构建脚本、预览和差异保存在项目外归档。
+
+---
+
 ## 2026-10-30：删除停用的 pointforward 图件目录
 
 按用户明确要求删除本地及 Git 上的 `paper/fig/pointforward/`。本轮基线为 `156726d45cb5ee3317c96c1d8e99a4d0ac074c7f`；开始时目录为空，Shift.pdf、Waymo.pdf、nuScenes.pdf 已在本地删除但尚未提交。本轮实际移除空目录，并将三项删除登记、提交和推送。README、检查器与本轮前实际工作区日志保存于 `paper/fig/overview-editable/.build/remove-pointforward/before/`。

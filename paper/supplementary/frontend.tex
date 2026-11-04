@@ -17,6 +17,11 @@ A query stores canonical position $\mathbf q_i$, cell scale $\boldsymbol\delta_i
 
 The layout remains fixed during completion. We obtain $\mathbf q_i^w$ by placing the query in the first input configuration, including skinning for humans. Canonical coordinates identify the content within its component; reference-world coordinates let the generator relate that component to its surroundings.
 
+\paragraph{Metric support and anchor selection.}
+The background base grid spans $[-20,80]\times[-30,30]\times[-3,15]$ m with $20\times12\times6$ cells, giving $5\times5\times3$ m cell scales. Up to 2,048 observed anchors add 0.20 m support cells. Each vehicle uses an $8\times4\times4$ grid inside its actual bounding box, with cell sides $(L/8,W/4,H/4)$ and up to 512 observed anchors of side 0.20 m. Human queries lie on the canonical template with 0.10 m support neighborhoods. Sky has six cubemap faces with $4\times4$ direction queries per face. Background attention groups use 4 m spatial bins; this grouping scale is independent of the support-cell scales.
+
+Valid estimated depths generate anchors in each branch's coordinates. We deduplicate by the bucket index $\lfloor\mathbf p/0.20\rfloor$, retaining the first point in each bucket. If the unique-bucket count exceeds the branch cap, we select equally spaced indices in the ordered unique-bucket list. Anchor positions retain their sampled coordinates. Human queries carry template-provided binding weights before completion; all four decoded children inherit them. The root pose supplies global placement, and the internal root joint retains its rest transform.
+
 \paragraph{Motion-aware evidence aggregation.}
 
 For each observation, we place the canonical query at the corresponding actor state:
@@ -41,14 +46,14 @@ w_{i,t,v}&=a_{i,t,v}c_{i,t,v}\exp(-r_{i,t,v}^2/2),\\
 \end{align}
 
 
-The query confidence is the maximum over accepted observations. The reconstruction experiments use center-ray voting with $\eta=0.15+0.02d$ meters and confidence at least 0.8. A reliable query-center ray votes for free space when
+The query confidence is the maximum over accepted observations. The main reconstruction protocol uses center-ray rule C with $\eta=0.15+0.02d$ meters and confidence at least 0.8. A reliable query-center ray votes for free space when
 \begin{equation}
 z_{i,t,v}+\tfrac12\|\boldsymbol\delta_i\|_2<d_{i,t,v}-\eta.
 \label{eq:free-space}
 \end{equation}
 Positive observation weight labels a query observed. Among the remaining queries, at least two free-space votes establish a free label; all others remain unknown. Sky projection uses camera rotation, reliable sky semantics, and zero depth residual, and receives no free-space votes.
 
-\paragraph{Footprint-based free-space audit.}
+\paragraph{Footprint rule and downstream reconstruction.}
 We compare center-ray voting with a footprint rule on the same fixed query layouts in 100 synthetic test scenes. The footprint rule places all eight cell vertices using the query's rigid or skinning transform and computes
 \begin{equation}
 z^{\max}_{i,t,v}=\max_{x\in B_i(t)}z_v(x),\qquad
@@ -64,7 +69,7 @@ Other views abstain. The two-vote rule, observed-surface priority, and hard clea
 
 \begin{table*}[t]
 \centering\small
-\caption{Free-space mask audit on 100 synthetic scenes. Counts measure cells containing reference surfaces that receive a free label. Categories are mutually exclusive. Center-ray voting is used in the reconstruction tables; footprint results are a separate mask audit.}
+\caption{Free-space mask audit on 100 synthetic scenes. Counts measure cells containing reference surfaces that receive a free label. Categories are mutually exclusive. C denotes center-ray voting and F the projected-footprint rule. Main reconstruction tables use C; F is evaluated separately.}
 \label{tab:free-space-audit}
 \begin{tabular}{@{}lrrr@{}}
 \toprule
@@ -83,3 +88,29 @@ Surface contamination / free labels & & 2.906\% & 0.058\% \\
 \end{table*}
 
 The footprint rule reduces occupied-cell errors from 1,374 to 19 (Table~\ref{tab:free-space-audit}). With reference depth, center-ray voting still mislabels 934 occupied cells, localizing an error source to lateral cell coverage. Continuous reference-depth footprint bounds yield zero such errors on this audit set. The remaining 19 errors with discrete estimated depth arise mainly at subpixel structures and depth boundaries.
+
+\paragraph{From mask labels to reconstructed surfaces.}
+The two rules start from the same intermediate state before the first hard clearing. We fix weights, query layout, input depth, postprocessing, and per-query random noise. On the same 100-scene hidden-region evaluation, F improves PSNR by 0.18 dB, coverage by 1.2 percentage points, and F-score by 1.3 points (Table~\ref{tab:free-space-downstream}). Thin structures, occlusion boundaries, and human surfaces gain 2.7, 2.2, and 1.0 points of hidden-surface coverage. Human semantic slices can overlap the structural slices and are scored separately. All coverage entries here use a 2 cm point-to-mesh threshold; human asset editing uses 1 cm.
+
+\begin{table}[t]
+\centering\small
+\caption{\textbf{Downstream effects of free-space voting.} Shared checkpoints and per-query noise, with nine seed combinations. Coverage and F-score use 2 cm.}
+\label{tab:free-space-downstream}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrr@{}}
+\toprule
+Metric & C & F\\
+\midrule
+Hidden PSNR $\uparrow$ & 23.18 & \textbf{23.36}\\
+Hidden LPIPS $\downarrow$ & 0.192 & \textbf{0.185}\\
+Hidden coverage $\uparrow$ & 95.0\% & \textbf{96.2\%}\\
+Hidden F-score $\uparrow$ & 88.6\% & \textbf{89.9\%}\\
+Thin-structure coverage $\uparrow$ & 92.1\% & \textbf{94.8\%}\\
+Boundary coverage $\uparrow$ & 93.0\% & \textbf{95.2\%}\\
+Human coverage $\uparrow$ & 95.8\% & \textbf{96.8\%}\\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+The mask audit counts 99,184 reference-surface-containing query cells. Its disjoint categories describe cell-label errors; hidden-surface coverage instead measures reference-surface recall using area-uniform samples. The 1,355 net reduction in mislabeled cells (98.62\%) and the 1.2-point coverage gain measure these different stages. Ray violations use the 2,020,000 fixed-ray denominator in Appendix J.
+
+On Waymo input views, F gives 30.406 dB PSNR and 0.1215 m depth MAE, versus 30.391 dB and 0.1220 m for C. Added occlusion changes from 0.18\% to 0.17\%, and strict free-ray violations from 0.07\% to 0.08\%. Both rules preserve observed Gaussian parameters exactly. Construction takes 2.86 s with F versus 2.66 s with C, a 7.5\% increase on the RTX 4090. Appendix J reports the rendering measurements, and Appendix K specifies timing conditions.

@@ -1,21 +1,15 @@
-# DriveCompose 图 3：PPT 与 draw.io 矢量重建
+# DriveCompose 图 3 资产
 
-对应当前英文论文第 4 页 Figure 3（Joint latent completion）。原稿和论文插图保持原样。
+## 当前论文采用：作者指定 PNG
 
-## 文件
+2026-11-03，作者明确选择生成文件 exec-3c098566-0ff6-4440-970a-2499b09464ee.png，替代 draw.io 矢量候选。正式图件为 paper/fig/drivecompose-joint-completion.png；中英文主稿均直接插入该 PNG，未重绘、裁剪或重采样。源文件与论文资产的 SHA-256 均为 bce38035a72ccedf18e614281389585fab64b0ed96199bd7598311c058e280ed，两份 PDF 的内嵌像素也已逐像素核对。
 
-- `figure3-powerpoint.pptx`：1 页，471 个原生可编辑对象，8 个区域组；文本、公式项、token、斜线纹理、箭头和边框均可编辑。
-- `figure3-drawio.drawio`：1 页，471 个原生图元与 8 个区域组；在可见 draw.io 画布通过 graph API 构建后保存。
-- `figure3-drawio.svg`：draw.io 原生图形渲染器导出的矢量图，无嵌入图片；用 HTML `foreignObject` 保留富文本标签，建议在浏览器查看，编辑优先使用 `.drawio`。
-- 两个同名 PNG 为实际应用渲染；`figure3-comparison.png` 用于并排比较。
-- `reconstruction_spec.json` 保存逐对象几何与来源；`verification.json` 保存结构核验结果。
+补充材料不放机制图；原附录 L 及主稿放大图指引已删除。当前结果见 paper/provenance/mechanism-image-replacement-20261103.json。
 
-## 编辑和验证
+## 已归档的备选与过程文件（2026-11-04）
 
-PPTX 使用原生 OOXML 构建。本机的 PowerPoint COM 注册指向 WPS，因此实际渲染已用 WPS Presentation 验证；未使用 Microsoft PowerPoint。字体为 Times New Roman，未嵌入字体。公式是可编辑富文本，不是 Office 公式对象。自定义曲线和路径为可编辑矢量；移动分组后应检查连线，尤其是补全出口的跨线断口。
+按作者要求，未采用的 draw.io／PowerPoint 源文件、导出、对比图、几何规格、核验及 `simplification/` 生成过程文件已移至[项目外归档](../../../../_archive/drivecompose/20261104-pre-push-cleanup/files/docs/figures/joint-completion-vector/)。其中 `simplification/imagegen-draft.png` 是正式 PNG 的重复副本；论文继续使用上述活动图件。
 
-两版均无图片对象、无位图嵌入。图中文字已与重建清单逐项核对，连接端点引用完整。draw.io 最终结构审查为 0 hard / 0 warning。各区域和整图已对照原图及实际渲染自审；不声称独立盲审。按放大图查看字体与线条，未对原单栏 86mm 排版重新认证。
+未采用的 `paper/fig/drivecompose-joint-completion.pdf` 同步归档。原路径、归档路径和逐文件 SHA-256 见[迁移清单](../../../../_archive/drivecompose/20261104-pre-push-cleanup/archive-manifest.json)及[仓库记录](../../../paper/provenance/pre-push-cleanup-20261104.json)。历史来源 JSON 保留原文，其中旧路径按本次迁移清单解析。
 
-与原图的局部差异：原有虚线补全出口在穿过实线速度回路处留出 16px 断口，以表达非连接交叉；少量字号和文本框作适配，保留原文字、布局、面板范围与配色。没有替换论文中的原始图 3。
-
-构建脚本、阶段文件和审查中间产物保存在 `pre-research/_archive/drivecompose/20261030-figure3-vector-work/`。
+此前各轮生成、重构与选择记录仍保存在[原过程归档](../../../../_archive/drivecompose/20261103-figure3-simplification/)。

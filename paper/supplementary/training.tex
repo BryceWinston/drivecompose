@@ -59,7 +59,7 @@ Query features and latents & Feature dimension 129; latent dimension 128; type-s
 Completion network & Width 128; 4 layers; 4 heads; 16 memory tokens \\
 Gaussian decoding & 4 children per query; 23 outputs per child, including 12 appearance parameters \\
 Directional appearance & Constant RGB and three local directional coefficients per channel \\
-Base supports & Background $20\times12\times6$; rigid $8\times4\times4$; sky $4\times4$ per cubemap face \\
+Base supports & Background $20\times12\times6$ ($5\times5\times3$ m cells); rigid $8\times4\times4$ inside each asset box; sky $4\times4$ per face \\
 Sampling & 24 explicit Euler steps with observed-code restoration and free-space clearing after each step \\
 \bottomrule
 \end{tabular}

@@ -1,0 +1,207 @@
+{
+  "date": "2026-11-03",
+  "request": "Adopt exactly the last user-approved English and Chinese abstracts; no further rewriting",
+  "baseline_head": "09ec7adb91eca760fe8c2682d91b40a479f2bcfe",
+  "baseline_kind": "uncommitted working tree snapshot",
+  "baseline_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-abstract-adoption\\baseline",
+  "scope": "two abstracts and revision/output records; main PDFs rebuilt",
+  "english_word_count": 163,
+  "checks": {
+    "en:matches_approved_text_exactly": true,
+    "zh:matches_approved_text_exactly": true,
+    "only_two_scientific_source_files_changed": true,
+    "en:waymo_result_present": true,
+    "zh:waymo_result_present": true,
+    "abstracts:performance_numbers_absent": true,
+    "en:compile_success": true,
+    "en:pdf_fresh_and_hash_matches": true,
+    "en:abstract_complete_on_page_1": true,
+    "en:technical_body_within_8_pages": true,
+    "en:main_figures_and_tables_within_8_pages": true,
+    "en:no_errors_missing_glyphs_or_overflow": true,
+    "en:letter_size": true,
+    "en:no_actionable_compile_warnings": true,
+    "zh:compile_success": true,
+    "zh:pdf_fresh_and_hash_matches": true,
+    "zh:abstract_complete_on_page_1": true,
+    "zh:technical_body_within_8_pages": true,
+    "zh:main_figures_and_tables_within_8_pages": true,
+    "zh:no_errors_missing_glyphs_or_overflow": true,
+    "zh:letter_size": true,
+    "zh:no_actionable_compile_warnings": true,
+    "visual:reviewed_pages_passed": true
+  },
+  "changed_scientific_sources": [
+    "paper/sec/0_abstract.tex",
+    "paper/zh/0_abstract_zh.tex"
+  ],
+  "source_hashes": {
+    "paper/sec/0_abstract.tex": "470b81479820811d90ca7af8be612f255479f81bbbe941ab592d31ea763be876",
+    "paper/zh/0_abstract_zh.tex": "0e296e6400bbc251c34a7f3931cee4556a209aa81dd6aeef0d719644fbd9e346"
+  },
+  "approved_texts": {
+    "en": "Moving the camera or changing actor poses exposes surfaces that were never observed in the input driving images. Reconstructing scenes for simulation and editing therefore requires completing these surfaces while retaining control over actor motion. We present DriveCompose, a framework for compositional generative reconstruction from calibrated driving image sequences. Visual evidence is aggregated in world coordinates for the background and canonical frames for vehicles and humans. A conditional flow model uses cross-component memory to share scene context and jointly complete missing geometry and appearance in the component latents. The completed latents are decoded into Gaussian components with rigid and skeletal bindings, allowing generated surfaces to move with their corresponding actors. The same background and actor assets can then be assembled and rendered under new camera viewpoints and actor states. Experiments on Waymo show higher reconstruction accuracy and better off-trajectory rendering quality than feed-forward reconstruction baselines. Actor editing experiments further demonstrate that completed vehicles and humans can be reused across motion and pose changes.",
+    "zh": "相机视点与参与者姿态的变化会显露输入驾驶图像中从未观测到的表面。面向仿真与编辑的场景重建需要补全这些表面，同时保留对参与者运动的控制。我们提出 DriveCompose，从有标定的驾驶图像序列中生成式重建可组合场景。视觉证据分别在背景的世界坐标系和车辆、人体的规范坐标系中聚合。条件流模型通过跨组件记忆共享场景上下文，在组件潜表示中联合补全缺失的几何与外观。补全后的潜表示被解码为具有刚体和骨架绑定的高斯组件，使生成表面随对应参与者运动。同一组背景与参与者资产随后可在新的相机视点和参与者状态下装配与渲染。Waymo 实验表明，相比前馈重建基线，DriveCompose 获得了更高的重建精度和更好的轨迹外渲染质量。参与者编辑实验进一步验证了补全车辆与人体在运动和姿态变化下的复用能力。"
+  },
+  "manuscript_evidence": "Existing Waymo reconstruction and off-trajectory comparison, plus real actor-edit evaluation; experimental text and values preserved",
+  "verification_status": "complete",
+  "pdfs": {
+    "en": {
+      "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "pages": 11,
+      "technical_body_end_pages": [
+        8
+      ],
+      "references_begin_pages": [
+        9
+      ],
+      "llm_statement_pages": [
+        9
+      ],
+      "main_caption_pages": [
+        1,
+        4,
+        6,
+        7,
+        8
+      ],
+      "abstract_complete_on_page_1": true,
+      "pdf_sha256": "7a061ba8fc43a9d8dd1525e1a32e15a62d491107d214583db6ff22852955268b",
+      "compile_exit_code": 0,
+      "float_only_page_warnings": [
+        "LaTeX Warning: Text page 4 contains only floats."
+      ],
+      "actionable_warnings": [],
+      "errors_or_overflow_flags": [],
+      "baseline_log_available": false
+    },
+    "zh": {
+      "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+      "pages": 10,
+      "technical_body_end_pages": [
+        7
+      ],
+      "references_begin_pages": [
+        7
+      ],
+      "llm_statement_pages": [
+        7
+      ],
+      "main_caption_pages": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "abstract_complete_on_page_1": true,
+      "pdf_sha256": "ec531a4ecd18bcce1faa9e33f22b36d8499f740fd837b2c140dc42d780426d6b",
+      "compile_exit_code": 0,
+      "float_only_page_warnings": [
+        "LaTeX Warning: Text page 6 contains only floats.",
+        "LaTeX Warning: Text page 6 contains only floats."
+      ],
+      "actionable_warnings": [],
+      "errors_or_overflow_flags": [],
+      "baseline_log_available": false
+    }
+  },
+  "render_directory": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-abstract-adoption\\render",
+  "visual_qa": {
+    "technical_page_contact_sheets_reviewed": {
+      "en": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "zh": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    "full_page_images_reviewed": {
+      "en": [
+        1,
+        8
+      ],
+      "zh": [
+        1,
+        7
+      ]
+    },
+    "no_clipping_missing_glyphs_or_overlap_on_reviewed_pages": true,
+    "abstracts_complete_on_first_page": true
+  },
+  "build_method": "Existing paper/tools/build.py --language both, using installed Tectonic; no template/layout edits",
+  "intermediate_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-abstract-adoption",
+  "archived_build_files": [
+    {
+      "from": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\compiler-output.txt",
+      "to": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-abstract-adoption\\build-intermediates\\en\\compiler-output.txt"
+    },
+    {
+      "from": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.aux",
+      "to": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-abstract-adoption\\build-intermediates\\en\\main.aux"
+    },
+    {
+      "from": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.bbl",
+      "to": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-abstract-adoption\\build-intermediates\\en\\main.bbl"
+    },
+    {
+      "from": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.blg",
+      "to": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-abstract-adoption\\build-intermediates\\en\\main.blg"
+    },
+    {
+      "from": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.brf",
+      "to": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-abstract-adoption\\build-intermediates\\en\\main.brf"
+    },
+    {
+      "from": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.log",
+      "to": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-abstract-adoption\\build-intermediates\\en\\main.log"
+    },
+    {
+      "from": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.out",
+      "to": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-abstract-adoption\\build-intermediates\\en\\main.out"
+    },
+    {
+      "from": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\compiler-output.txt",
+      "to": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-abstract-adoption\\build-intermediates\\zh\\compiler-output.txt"
+    },
+    {
+      "from": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.aux",
+      "to": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-abstract-adoption\\build-intermediates\\zh\\main_zh.aux"
+    },
+    {
+      "from": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.bbl",
+      "to": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-abstract-adoption\\build-intermediates\\zh\\main_zh.bbl"
+    },
+    {
+      "from": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.blg",
+      "to": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-abstract-adoption\\build-intermediates\\zh\\main_zh.blg"
+    },
+    {
+      "from": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.brf",
+      "to": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-abstract-adoption\\build-intermediates\\zh\\main_zh.brf"
+    },
+    {
+      "from": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.log",
+      "to": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-abstract-adoption\\build-intermediates\\zh\\main_zh.log"
+    },
+    {
+      "from": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.out",
+      "to": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-abstract-adoption\\build-intermediates\\zh\\main_zh.out"
+    }
+  ],
+  "claim_scope": "Adopts the approved abstract; existing Waymo comparison and actor-edit evidence retained in the body; no new experiments or changes to numerical evidence"
+}

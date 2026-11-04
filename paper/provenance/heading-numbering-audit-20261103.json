@@ -1,0 +1,1910 @@
+{
+  "date": "2026-11-03",
+  "scope": "Bilingual headings, section hierarchy, numbering, cross-references and table floats in main and supplementary manuscripts",
+  "baseline_head": "09ec7adb91eca760fe8c2682d91b40a479f2bcfe",
+  "baseline_kind": "Working-tree snapshot after four-section bilingual prose optimization",
+  "baseline_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\baseline",
+  "checks": {
+    "paper/sec/2_related_work.tex:prose_unchanged_except_reference_target": true,
+    "paper/sec/2_related_work.tex:equations_unchanged": true,
+    "paper/sec/2_related_work.tex:table_contents_and_captions_unchanged": true,
+    "paper/sec/2_related_work.tex:figures_and_captions_unchanged": true,
+    "paper/sec/2_related_work.tex:citation_keys_unchanged": true,
+    "paper/sec/2_related_work.tex:numbers_unchanged": true,
+    "paper/sec/2_related_work.tex:existing_labels_preserved": true,
+    "paper/sec/3_method.tex:prose_unchanged_except_reference_target": true,
+    "paper/sec/3_method.tex:equations_unchanged": true,
+    "paper/sec/3_method.tex:table_contents_and_captions_unchanged": true,
+    "paper/sec/3_method.tex:figures_and_captions_unchanged": true,
+    "paper/sec/3_method.tex:citation_keys_unchanged": true,
+    "paper/sec/3_method.tex:numbers_unchanged": true,
+    "paper/sec/3_method.tex:existing_labels_preserved": true,
+    "paper/sec/4_experiments.tex:prose_unchanged_except_reference_target": true,
+    "paper/sec/4_experiments.tex:equations_unchanged": true,
+    "paper/sec/4_experiments.tex:table_contents_and_captions_unchanged": true,
+    "paper/sec/4_experiments.tex:figures_and_captions_unchanged": true,
+    "paper/sec/4_experiments.tex:citation_keys_unchanged": true,
+    "paper/sec/4_experiments.tex:numbers_unchanged": true,
+    "paper/sec/4_experiments.tex:existing_labels_preserved": true,
+    "paper/zh/2_related_work_zh.tex:prose_unchanged_except_reference_target": true,
+    "paper/zh/2_related_work_zh.tex:equations_unchanged": true,
+    "paper/zh/2_related_work_zh.tex:table_contents_and_captions_unchanged": true,
+    "paper/zh/2_related_work_zh.tex:figures_and_captions_unchanged": true,
+    "paper/zh/2_related_work_zh.tex:citation_keys_unchanged": true,
+    "paper/zh/2_related_work_zh.tex:numbers_unchanged": true,
+    "paper/zh/2_related_work_zh.tex:existing_labels_preserved": true,
+    "paper/zh/3_method_zh.tex:prose_unchanged_except_reference_target": true,
+    "paper/zh/3_method_zh.tex:equations_unchanged": true,
+    "paper/zh/3_method_zh.tex:table_contents_and_captions_unchanged": true,
+    "paper/zh/3_method_zh.tex:figures_and_captions_unchanged": true,
+    "paper/zh/3_method_zh.tex:citation_keys_unchanged": true,
+    "paper/zh/3_method_zh.tex:numbers_unchanged": true,
+    "paper/zh/3_method_zh.tex:existing_labels_preserved": true,
+    "paper/zh/4_experiments_zh.tex:prose_unchanged_except_reference_target": true,
+    "paper/zh/4_experiments_zh.tex:equations_unchanged": true,
+    "paper/zh/4_experiments_zh.tex:table_contents_and_captions_unchanged": true,
+    "paper/zh/4_experiments_zh.tex:figures_and_captions_unchanged": true,
+    "paper/zh/4_experiments_zh.tex:citation_keys_unchanged": true,
+    "paper/zh/4_experiments_zh.tex:numbers_unchanged": true,
+    "paper/zh/4_experiments_zh.tex:existing_labels_preserved": true,
+    "paper/supplementary/evaluation.tex:prose_unchanged_except_reference_target": true,
+    "paper/supplementary/evaluation.tex:equations_unchanged": true,
+    "paper/supplementary/evaluation.tex:table_contents_and_captions_unchanged": true,
+    "paper/supplementary/evaluation.tex:figures_and_captions_unchanged": true,
+    "paper/supplementary/evaluation.tex:citation_keys_unchanged": true,
+    "paper/supplementary/evaluation.tex:numbers_unchanged": true,
+    "paper/supplementary/evaluation.tex:existing_labels_preserved": true,
+    "paper/supplementary/evaluation_zh.tex:prose_unchanged_except_reference_target": true,
+    "paper/supplementary/evaluation_zh.tex:equations_unchanged": true,
+    "paper/supplementary/evaluation_zh.tex:table_contents_and_captions_unchanged": true,
+    "paper/supplementary/evaluation_zh.tex:figures_and_captions_unchanged": true,
+    "paper/supplementary/evaluation_zh.tex:citation_keys_unchanged": true,
+    "paper/supplementary/evaluation_zh.tex:numbers_unchanged": true,
+    "paper/supplementary/evaluation_zh.tex:existing_labels_preserved": true,
+    "only_eight_existing_paper_sources_changed": true,
+    "approved_abstracts_unchanged": true,
+    "sec:main_table_first_mentions_in_order": true,
+    "sec:completion_comparison_targets_dedicated_subsection": true,
+    "zh:main_table_first_mentions_in_order": true,
+    "zh:completion_comparison_targets_dedicated_subsection": true,
+    "en:fresh_successful_pdf": true,
+    "en:no_undefined_refs_glyph_errors_or_overflow": true,
+    "en:letter_pages": true,
+    "en:tables_numbered_in_visible_order": true,
+    "en:figures_numbered_in_visible_order": true,
+    "en:continuous_main_section_numbers": true,
+    "en:continuous_two_level_subsection_numbers": true,
+    "en:no_third_numbered_level": true,
+    "en:number:sec:representation": true,
+    "en:number:sec:visual-encoding": true,
+    "en:number:sec:queries": true,
+    "en:number:sec:codec": true,
+    "en:number:sec:completion": true,
+    "en:number:sec:decoding": true,
+    "en:number:sec:composition": true,
+    "en:number:sec:training": true,
+    "en:number:sec:temporal_evaluation": true,
+    "en:number:sec:spatial_evaluation": true,
+    "en:number:sec:hidden-completion": true,
+    "en:number:sec:ablations": true,
+    "en:number:sec:ablation-reuse": true,
+    "en:number:sec:observation-preservation": true,
+    "en:number:tab:spatial_current": true,
+    "en:number:tab:completion-mechanisms": true,
+    "en:technical_body_within_8_pages": true,
+    "en:all_main_figures_tables_within_8_pages": true,
+    "en:equation_numbers_continuous": true,
+    "en:stage_range_is_on_one_page": true,
+    "zh:fresh_successful_pdf": true,
+    "zh:no_undefined_refs_glyph_errors_or_overflow": true,
+    "zh:letter_pages": true,
+    "zh:tables_numbered_in_visible_order": true,
+    "zh:figures_numbered_in_visible_order": true,
+    "zh:continuous_main_section_numbers": true,
+    "zh:continuous_two_level_subsection_numbers": true,
+    "zh:no_third_numbered_level": true,
+    "zh:number:sec:representation": true,
+    "zh:number:sec:visual-encoding": true,
+    "zh:number:sec:queries": true,
+    "zh:number:sec:codec": true,
+    "zh:number:sec:completion": true,
+    "zh:number:sec:decoding": true,
+    "zh:number:sec:composition": true,
+    "zh:number:sec:training": true,
+    "zh:number:sec:temporal_evaluation": true,
+    "zh:number:sec:spatial_evaluation": true,
+    "zh:number:sec:hidden-completion": true,
+    "zh:number:sec:ablations": true,
+    "zh:number:sec:ablation-reuse": true,
+    "zh:number:sec:observation-preservation": true,
+    "zh:number:tab:spatial_current": true,
+    "zh:number:tab:completion-mechanisms": true,
+    "zh:technical_body_within_8_pages": true,
+    "zh:all_main_figures_tables_within_8_pages": true,
+    "zh:equation_numbers_continuous": true,
+    "supp-en:fresh_successful_pdf": true,
+    "supp-en:no_undefined_refs_glyph_errors_or_overflow": true,
+    "supp-en:letter_pages": true,
+    "supp-en:tables_numbered_in_visible_order": true,
+    "supp-en:figures_numbered_in_visible_order": true,
+    "supp-en:appendix_sections_A_to_L": true,
+    "supp-en:letter:sec:supp-protocol": true,
+    "supp-en:letter:sec:supp-ablations": true,
+    "supp-en:letter:sec:supp-hidden": true,
+    "supp-en:letter:sec:supp-reuse": true,
+    "supp-en:letter:sec:supp-preservation": true,
+    "supp-en:letter:sec:supp-timing": true,
+    "supp-zh:fresh_successful_pdf": true,
+    "supp-zh:no_undefined_refs_glyph_errors_or_overflow": true,
+    "supp-zh:letter_pages": true,
+    "supp-zh:tables_numbered_in_visible_order": true,
+    "supp-zh:figures_numbered_in_visible_order": true,
+    "supp-zh:appendix_sections_A_to_L": true,
+    "supp-zh:letter:sec:supp-protocol": true,
+    "supp-zh:letter:sec:supp-ablations": true,
+    "supp-zh:letter:sec:supp-hidden": true,
+    "supp-zh:letter:sec:supp-reuse": true,
+    "supp-zh:letter:sec:supp-preservation": true,
+    "supp-zh:letter:sec:supp-timing": true
+  },
+  "source_hashes": {
+    "paper/sec/2_related_work.tex": "d9fd8ee90fff704a10145536ee8c6102410146b4d9c0d4dad95c27832b57e710",
+    "paper/sec/3_method.tex": "9576f21c749303906ccfedc2f1530032b732f5124c0a6790f4a0147e3ae3fb14",
+    "paper/sec/4_experiments.tex": "015fd185ae9f2382780b3b8dacba1c7139c3f47da94bfd6120cb6736a0a7d21f",
+    "paper/zh/2_related_work_zh.tex": "89cf7e53d63e637dd4d32ecd772195d4440c16d2cf6321eb00c404a164bacda5",
+    "paper/zh/3_method_zh.tex": "5fa3c099408a6fa8db8ec2d1193f5891cefe9bd05a09e6a8a701b5fd539de7aa",
+    "paper/zh/4_experiments_zh.tex": "14e9b67a1f68be7dadb53aebdc485e62dc61e0ca2993fb678ab2433304deb5b2",
+    "paper/supplementary/evaluation.tex": "a154c86cb76cceb1d6fd4fe17cdeeab69c7044539b92ebca18df012d12f62c1d",
+    "paper/supplementary/evaluation_zh.tex": "051404d3295ea1d5655f84429f27b27d89db7e00bcbb787a71ed784a76870ade"
+  },
+  "structural_checker": {
+    "passed": true,
+    "checks": 69,
+    "failed": [],
+    "bibliography_entries": 52,
+    "method_math_blocks": {
+      "en": 9,
+      "zh": 9
+    }
+  },
+  "pdfs": {
+    "en": {
+      "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "pages": 11,
+      "sha256": "bbffb85b5b75d92bd1b5381138d0b174693db1a6f9e1b9c995cce09deba1207f",
+      "technical_body_end_page": 8,
+      "references_begin_pages": [
+        9
+      ],
+      "heading_numbers": [
+        {
+          "level": "section",
+          "number": "1"
+        },
+        {
+          "level": "section",
+          "number": "2"
+        },
+        {
+          "level": "section",
+          "number": "3"
+        },
+        {
+          "level": "subsection",
+          "number": "3.1"
+        },
+        {
+          "level": "subsection",
+          "number": "3.2"
+        },
+        {
+          "level": "subsection",
+          "number": "3.3"
+        },
+        {
+          "level": "subsection",
+          "number": "3.4"
+        },
+        {
+          "level": "subsection",
+          "number": "3.5"
+        },
+        {
+          "level": "section",
+          "number": "4"
+        },
+        {
+          "level": "subsection",
+          "number": "4.1"
+        },
+        {
+          "level": "subsection",
+          "number": "4.2"
+        },
+        {
+          "level": "subsection",
+          "number": "4.3"
+        },
+        {
+          "level": "subsection",
+          "number": "4.4"
+        },
+        {
+          "level": "subsection",
+          "number": "4.5"
+        },
+        {
+          "level": "subsection",
+          "number": "4.6"
+        },
+        {
+          "level": "section",
+          "number": "5"
+        },
+        {
+          "level": "section",
+          "number": "6"
+        }
+      ],
+      "table_locations": [
+        {
+          "page": 6,
+          "number": "1"
+        },
+        {
+          "page": 6,
+          "number": "2"
+        },
+        {
+          "page": 6,
+          "number": "3"
+        },
+        {
+          "page": 7,
+          "number": "4"
+        },
+        {
+          "page": 8,
+          "number": "5"
+        }
+      ],
+      "figure_locations": [
+        {
+          "page": 1,
+          "number": "1"
+        },
+        {
+          "page": 4,
+          "number": "2"
+        },
+        {
+          "page": 4,
+          "number": "3"
+        },
+        {
+          "page": 7,
+          "number": "4"
+        },
+        {
+          "page": 8,
+          "number": "5"
+        }
+      ],
+      "labels": {
+        "fig:teaser": {
+          "number": "1",
+          "page": 1
+        },
+        "fig:title-teaser": {
+          "number": "1",
+          "page": 1
+        },
+        "sec:introduction": {
+          "number": "1",
+          "page": 1
+        },
+        "sec:related": {
+          "number": "2",
+          "page": 2
+        },
+        "sec:method": {
+          "number": "3",
+          "page": 3
+        },
+        "sec:representation": {
+          "number": "3.1",
+          "page": 3
+        },
+        "eq:world": {
+          "number": "1",
+          "page": 3
+        },
+        "eq:generative-reconstruction": {
+          "number": "2",
+          "page": 3
+        },
+        "sec:visual-encoding": {
+          "number": "3.2",
+          "page": 3
+        },
+        "sec:queries": {
+          "number": "3.2",
+          "page": 3
+        },
+        "eq:query-placement": {
+          "number": "3",
+          "page": 3
+        },
+        "eq:aggregation": {
+          "number": "5",
+          "page": 3
+        },
+        "fig:overview": {
+          "number": "2",
+          "page": 4
+        },
+        "sec:codec": {
+          "number": "3.3",
+          "page": 4
+        },
+        "sec:completion": {
+          "number": "3.3",
+          "page": 4
+        },
+        "fig:joint-completion": {
+          "number": "3",
+          "page": 4
+        },
+        "eq:memory-exchange": {
+          "number": "7",
+          "page": 5
+        },
+        "eq:flow-path": {
+          "number": "8",
+          "page": 5
+        },
+        "eq:flow-loss": {
+          "number": "9",
+          "page": 5
+        },
+        "eq:sampling": {
+          "number": "10",
+          "page": 5
+        },
+        "sec:decoding": {
+          "number": "3.3",
+          "page": 5
+        },
+        "sec:composition": {
+          "number": "3.4",
+          "page": 5
+        },
+        "eq:simulation": {
+          "number": "11",
+          "page": 5
+        },
+        "sec:training": {
+          "number": "3.5",
+          "page": 5
+        },
+        "sec:experiments": {
+          "number": "4",
+          "page": 5
+        },
+        "sec:experimental_setup": {
+          "number": "4.1",
+          "page": 5
+        },
+        "sec:temporal_evaluation": {
+          "number": "4.2",
+          "page": 6
+        },
+        "tab:regions_current": {
+          "number": "1",
+          "page": 6
+        },
+        "sec:spatial_evaluation": {
+          "number": "4.3",
+          "page": 6
+        },
+        "tab:spatial_current": {
+          "number": "2",
+          "page": 6
+        },
+        "tab:completion-mechanisms": {
+          "number": "3",
+          "page": 6
+        },
+        "sec:hidden-completion": {
+          "number": "4.4",
+          "page": 6
+        },
+        "sec:ablation-protocol": {
+          "number": "4.5",
+          "page": 6
+        },
+        "sec:ablations": {
+          "number": "4.5",
+          "page": 6
+        },
+        "sec:ablation-studies": {
+          "number": "4.5",
+          "page": 6
+        },
+        "fig:dynamic-reconstruction": {
+          "number": "4",
+          "page": 7
+        },
+        "tab:ablation-components": {
+          "number": "4",
+          "page": 7
+        },
+        "sec:ablation-reuse": {
+          "number": "4.6",
+          "page": 7
+        },
+        "fig:waymo-left-shift": {
+          "number": "5",
+          "page": 8
+        },
+        "tab:asset-reuse": {
+          "number": "5",
+          "page": 8
+        },
+        "sec:observation-preservation": {
+          "number": "4.6",
+          "page": 8
+        },
+        "sec:discussion": {
+          "number": "5",
+          "page": 8
+        },
+        "sec:conclusion": {
+          "number": "6",
+          "page": 8
+        },
+        "sec:main-text-end": {
+          "number": "6",
+          "page": 8
+        }
+      },
+      "warnings": [
+        "LaTeX Warning: Text page 4 contains only floats."
+      ],
+      "errors": [],
+      "compile_started_at": "2026-11-03T08:12:15.659851+00:00",
+      "compile_finished_at": "2026-11-03T08:12:46.954340+00:00"
+    },
+    "zh": {
+      "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+      "pages": 10,
+      "sha256": "b15377d4dd9f11706bbb2ecaf6a04ce7aab5670de725bfffd65bd9e601a9915d",
+      "technical_body_end_page": 7,
+      "references_begin_pages": [
+        7
+      ],
+      "heading_numbers": [
+        {
+          "level": "section",
+          "number": "1"
+        },
+        {
+          "level": "section",
+          "number": "2"
+        },
+        {
+          "level": "section",
+          "number": "3"
+        },
+        {
+          "level": "subsection",
+          "number": "3.1"
+        },
+        {
+          "level": "subsection",
+          "number": "3.2"
+        },
+        {
+          "level": "subsection",
+          "number": "3.3"
+        },
+        {
+          "level": "subsection",
+          "number": "3.4"
+        },
+        {
+          "level": "subsection",
+          "number": "3.5"
+        },
+        {
+          "level": "section",
+          "number": "4"
+        },
+        {
+          "level": "subsection",
+          "number": "4.1"
+        },
+        {
+          "level": "subsection",
+          "number": "4.2"
+        },
+        {
+          "level": "subsection",
+          "number": "4.3"
+        },
+        {
+          "level": "subsection",
+          "number": "4.4"
+        },
+        {
+          "level": "subsection",
+          "number": "4.5"
+        },
+        {
+          "level": "subsection",
+          "number": "4.6"
+        },
+        {
+          "level": "section",
+          "number": "5"
+        },
+        {
+          "level": "section",
+          "number": "6"
+        }
+      ],
+      "table_locations": [
+        {
+          "page": 5,
+          "number": "1"
+        },
+        {
+          "page": 5,
+          "number": "2"
+        },
+        {
+          "page": 5,
+          "number": "3"
+        },
+        {
+          "page": 7,
+          "number": "4"
+        },
+        {
+          "page": 7,
+          "number": "5"
+        }
+      ],
+      "figure_locations": [
+        {
+          "page": 1,
+          "number": "1"
+        },
+        {
+          "page": 3,
+          "number": "2"
+        },
+        {
+          "page": 4,
+          "number": "3"
+        },
+        {
+          "page": 6,
+          "number": "4"
+        },
+        {
+          "page": 6,
+          "number": "5"
+        }
+      ],
+      "labels": {
+        "fig:teaser": {
+          "number": "1",
+          "page": 1
+        },
+        "fig:title-teaser": {
+          "number": "1",
+          "page": 1
+        },
+        "sec:introduction": {
+          "number": "1",
+          "page": 1
+        },
+        "sec:related": {
+          "number": "2",
+          "page": 2
+        },
+        "sec:method": {
+          "number": "3",
+          "page": 2
+        },
+        "sec:representation": {
+          "number": "3.1",
+          "page": 2
+        },
+        "eq:world": {
+          "number": "1",
+          "page": 2
+        },
+        "eq:generative-reconstruction": {
+          "number": "2",
+          "page": 2
+        },
+        "sec:visual-encoding": {
+          "number": "3.2",
+          "page": 2
+        },
+        "sec:queries": {
+          "number": "3.2",
+          "page": 2
+        },
+        "fig:overview": {
+          "number": "2",
+          "page": 3
+        },
+        "eq:query-placement": {
+          "number": "3",
+          "page": 3
+        },
+        "eq:aggregation": {
+          "number": "5",
+          "page": 3
+        },
+        "sec:codec": {
+          "number": "3.3",
+          "page": 3
+        },
+        "sec:completion": {
+          "number": "3.3",
+          "page": 3
+        },
+        "fig:joint-completion": {
+          "number": "3",
+          "page": 4
+        },
+        "eq:memory-exchange": {
+          "number": "7",
+          "page": 4
+        },
+        "eq:flow-path": {
+          "number": "8",
+          "page": 4
+        },
+        "eq:flow-loss": {
+          "number": "9",
+          "page": 4
+        },
+        "eq:sampling": {
+          "number": "10",
+          "page": 4
+        },
+        "sec:decoding": {
+          "number": "3.3",
+          "page": 4
+        },
+        "sec:composition": {
+          "number": "3.4",
+          "page": 4
+        },
+        "eq:simulation": {
+          "number": "11",
+          "page": 4
+        },
+        "sec:training": {
+          "number": "3.5",
+          "page": 4
+        },
+        "sec:experiments": {
+          "number": "4",
+          "page": 4
+        },
+        "sec:experimental_setup": {
+          "number": "4.1",
+          "page": 5
+        },
+        "sec:temporal_evaluation": {
+          "number": "4.2",
+          "page": 5
+        },
+        "tab:regions_current": {
+          "number": "1",
+          "page": 5
+        },
+        "sec:spatial_evaluation": {
+          "number": "4.3",
+          "page": 5
+        },
+        "tab:spatial_current": {
+          "number": "2",
+          "page": 5
+        },
+        "tab:completion-mechanisms": {
+          "number": "3",
+          "page": 5
+        },
+        "sec:hidden-completion": {
+          "number": "4.4",
+          "page": 5
+        },
+        "sec:ablation-protocol": {
+          "number": "4.5",
+          "page": 5
+        },
+        "sec:ablations": {
+          "number": "4.5",
+          "page": 5
+        },
+        "sec:ablation-studies": {
+          "number": "4.5",
+          "page": 5
+        },
+        "fig:dynamic-reconstruction": {
+          "number": "4",
+          "page": 6
+        },
+        "fig:waymo-left-shift": {
+          "number": "5",
+          "page": 6
+        },
+        "tab:ablation-components": {
+          "number": "4",
+          "page": 7
+        },
+        "tab:asset-reuse": {
+          "number": "5",
+          "page": 7
+        },
+        "sec:ablation-reuse": {
+          "number": "4.6",
+          "page": 7
+        },
+        "sec:observation-preservation": {
+          "number": "4.6",
+          "page": 7
+        },
+        "sec:discussion": {
+          "number": "5",
+          "page": 7
+        },
+        "sec:conclusion": {
+          "number": "6",
+          "page": 7
+        },
+        "sec:main-text-end": {
+          "number": "6",
+          "page": 7
+        }
+      },
+      "warnings": [
+        "LaTeX Warning: Text page 6 contains only floats.",
+        "LaTeX Warning: Text page 6 contains only floats."
+      ],
+      "errors": [],
+      "compile_started_at": "2026-11-03T07:57:07.628285+00:00",
+      "compile_finished_at": "2026-11-03T07:57:41.534249+00:00"
+    },
+    "supp-en": {
+      "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\supp-en\\main.pdf",
+      "pages": 14,
+      "sha256": "79bdd6f95371da385852e5f92ebc1de174c36a5d5bb416d91cac86d42cdaf88c",
+      "technical_body_end_page": null,
+      "references_begin_pages": [
+        14
+      ],
+      "heading_numbers": [
+        {
+          "level": "section",
+          "number": "A"
+        },
+        {
+          "level": "section",
+          "number": "B"
+        },
+        {
+          "level": "section",
+          "number": "C"
+        },
+        {
+          "level": "section",
+          "number": "D"
+        },
+        {
+          "level": "section",
+          "number": "E"
+        },
+        {
+          "level": "section",
+          "number": "F"
+        },
+        {
+          "level": "section",
+          "number": "G"
+        },
+        {
+          "level": "section",
+          "number": "H"
+        },
+        {
+          "level": "section",
+          "number": "I"
+        },
+        {
+          "level": "section",
+          "number": "J"
+        },
+        {
+          "level": "section",
+          "number": "K"
+        },
+        {
+          "level": "section",
+          "number": "L"
+        }
+      ],
+      "table_locations": [
+        {
+          "page": 1,
+          "number": "S1"
+        },
+        {
+          "page": 2,
+          "number": "S2"
+        },
+        {
+          "page": 2,
+          "number": "S3"
+        },
+        {
+          "page": 2,
+          "number": "S4"
+        },
+        {
+          "page": 4,
+          "number": "S5"
+        },
+        {
+          "page": 5,
+          "number": "S6"
+        },
+        {
+          "page": 5,
+          "number": "S7"
+        },
+        {
+          "page": 7,
+          "number": "S8"
+        },
+        {
+          "page": 7,
+          "number": "S9"
+        },
+        {
+          "page": 8,
+          "number": "S10"
+        },
+        {
+          "page": 8,
+          "number": "S11"
+        },
+        {
+          "page": 8,
+          "number": "S12"
+        },
+        {
+          "page": 8,
+          "number": "S13"
+        },
+        {
+          "page": 8,
+          "number": "S14"
+        },
+        {
+          "page": 10,
+          "number": "S15"
+        },
+        {
+          "page": 10,
+          "number": "S16"
+        },
+        {
+          "page": 10,
+          "number": "S17"
+        },
+        {
+          "page": 10,
+          "number": "S18"
+        },
+        {
+          "page": 10,
+          "number": "S19"
+        },
+        {
+          "page": 10,
+          "number": "S20"
+        },
+        {
+          "page": 11,
+          "number": "S21"
+        },
+        {
+          "page": 12,
+          "number": "S22"
+        },
+        {
+          "page": 12,
+          "number": "S23"
+        },
+        {
+          "page": 12,
+          "number": "S24"
+        }
+      ],
+      "figure_locations": [
+        {
+          "page": 13,
+          "number": "S1"
+        }
+      ],
+      "labels": {
+        "sec:supp-generalization": {
+          "number": "A",
+          "page": 1
+        },
+        "tab:generalization": {
+          "number": "S1",
+          "page": 1
+        },
+        "sec:supp-training": {
+          "number": "B",
+          "page": 1
+        },
+        "eq:target-samples": {
+          "number": "S1",
+          "page": 1
+        },
+        "eq:complete-code": {
+          "number": "S2",
+          "page": 1
+        },
+        "tab:data-splits": {
+          "number": "S2",
+          "page": 2
+        },
+        "tab:network-config": {
+          "number": "S3",
+          "page": 2
+        },
+        "tab:recovery-weights": {
+          "number": "S4",
+          "page": 2
+        },
+        "eq:codec-loss": {
+          "number": "S3",
+          "page": 2
+        },
+        "eq:reconstruction-loss": {
+          "number": "S5",
+          "page": 2
+        },
+        "eq:adaptation": {
+          "number": "S6",
+          "page": 3
+        },
+        "sec:supp-composition": {
+          "number": "C",
+          "page": 3
+        },
+        "eq:rigid": {
+          "number": "S8",
+          "page": 3
+        },
+        "eq:simulation": {
+          "number": "S10",
+          "page": 3
+        },
+        "sec:supp-queries": {
+          "number": "D",
+          "page": 3
+        },
+        "tab:training-schedule": {
+          "number": "S5",
+          "page": 4
+        },
+        "eq:query-placement": {
+          "number": "S11",
+          "page": 4
+        },
+        "eq:aggregation": {
+          "number": "S13",
+          "page": 4
+        },
+        "eq:free-space": {
+          "number": "S14",
+          "page": 4
+        },
+        "eq:footprint-free": {
+          "number": "S16",
+          "page": 4
+        },
+        "tab:free-space-audit": {
+          "number": "S6",
+          "page": 5
+        },
+        "tab:free-space-downstream": {
+          "number": "S7",
+          "page": 5
+        },
+        "sec:supp-codec": {
+          "number": "E",
+          "page": 5
+        },
+        "eq:child-center": {
+          "number": "S17",
+          "page": 5
+        },
+        "sec:supp-protocol": {
+          "number": "F",
+          "page": 6
+        },
+        "eq:depth-alignment": {
+          "number": "S18",
+          "page": 6
+        },
+        "sec:supp-ablations": {
+          "number": "G",
+          "page": 6
+        },
+        "sec:supp-hidden": {
+          "number": "H",
+          "page": 6
+        },
+        "tab:baseline-resources": {
+          "number": "S8",
+          "page": 7
+        },
+        "tab:adapter-effect": {
+          "number": "S9",
+          "page": 7
+        },
+        "eq:geometry-metrics": {
+          "number": "S21",
+          "page": 7
+        },
+        "tab:shared-inputs": {
+          "number": "S10",
+          "page": 8
+        },
+        "tab:temporal-groups": {
+          "number": "S11",
+          "page": 8
+        },
+        "tab:depth-scale": {
+          "number": "S12",
+          "page": 8
+        },
+        "tab:seed-components": {
+          "number": "S13",
+          "page": 8
+        },
+        "tab:seed-inputs": {
+          "number": "S14",
+          "page": 8
+        },
+        "sec:supp-reuse": {
+          "number": "I",
+          "page": 9
+        },
+        "tab:hidden-regions": {
+          "number": "S15",
+          "page": 10
+        },
+        "tab:reprojection": {
+          "number": "S16",
+          "page": 10
+        },
+        "tab:visibility": {
+          "number": "S17",
+          "page": 10
+        },
+        "tab:context-read": {
+          "number": "S18",
+          "page": 10
+        },
+        "tab:edit-failures": {
+          "number": "S19",
+          "page": 10
+        },
+        "tab:edit-seeds": {
+          "number": "S20",
+          "page": 10
+        },
+        "sec:supp-preservation": {
+          "number": "J",
+          "page": 10
+        },
+        "tab:real-edit-quality": {
+          "number": "S21",
+          "page": 11
+        },
+        "sec:supp-timing": {
+          "number": "K",
+          "page": 11
+        },
+        "tab:preservation": {
+          "number": "S22",
+          "page": 12
+        },
+        "tab:timing-stages": {
+          "number": "S23",
+          "page": 12
+        },
+        "tab:reuse-time": {
+          "number": "S24",
+          "page": 12
+        },
+        "fig:supp-detail": {
+          "number": "S1",
+          "page": 13
+        }
+      },
+      "warnings": [
+        "LaTeX hooks Warning: Cannot remove chunk 'lineno' from hook",
+        "LaTeX Warning: Text page 8 contains only floats.",
+        "LaTeX Warning: Text page 8 contains only floats."
+      ],
+      "errors": [],
+      "compile_started_at": "2026-11-03T08:10:39.979080+00:00",
+      "compile_finished_at": "2026-11-03T08:10:53.147893+00:00"
+    },
+    "supp-zh": {
+      "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\supp-zh\\main_zh.pdf",
+      "pages": 12,
+      "sha256": "b09a8efc5857897da4fe6361f6ad3a0b61f49334e2f0be846c4eac85d44446f4",
+      "technical_body_end_page": null,
+      "references_begin_pages": [
+        12
+      ],
+      "heading_numbers": [
+        {
+          "level": "section",
+          "number": "A"
+        },
+        {
+          "level": "section",
+          "number": "B"
+        },
+        {
+          "level": "section",
+          "number": "C"
+        },
+        {
+          "level": "section",
+          "number": "D"
+        },
+        {
+          "level": "section",
+          "number": "E"
+        },
+        {
+          "level": "section",
+          "number": "F"
+        },
+        {
+          "level": "section",
+          "number": "G"
+        },
+        {
+          "level": "section",
+          "number": "H"
+        },
+        {
+          "level": "section",
+          "number": "I"
+        },
+        {
+          "level": "section",
+          "number": "J"
+        },
+        {
+          "level": "section",
+          "number": "K"
+        },
+        {
+          "level": "section",
+          "number": "L"
+        }
+      ],
+      "table_locations": [
+        {
+          "page": 1,
+          "number": "S1"
+        },
+        {
+          "page": 2,
+          "number": "S2"
+        },
+        {
+          "page": 2,
+          "number": "S3"
+        },
+        {
+          "page": 2,
+          "number": "S4"
+        },
+        {
+          "page": 3,
+          "number": "S5"
+        },
+        {
+          "page": 5,
+          "number": "S6"
+        },
+        {
+          "page": 5,
+          "number": "S7"
+        },
+        {
+          "page": 6,
+          "number": "S8"
+        },
+        {
+          "page": 6,
+          "number": "S9"
+        },
+        {
+          "page": 7,
+          "number": "S10"
+        },
+        {
+          "page": 7,
+          "number": "S11"
+        },
+        {
+          "page": 7,
+          "number": "S12"
+        },
+        {
+          "page": 7,
+          "number": "S13"
+        },
+        {
+          "page": 7,
+          "number": "S14"
+        },
+        {
+          "page": 8,
+          "number": "S15"
+        },
+        {
+          "page": 8,
+          "number": "S16"
+        },
+        {
+          "page": 8,
+          "number": "S17"
+        },
+        {
+          "page": 8,
+          "number": "S18"
+        },
+        {
+          "page": 8,
+          "number": "S19"
+        },
+        {
+          "page": 8,
+          "number": "S20"
+        },
+        {
+          "page": 10,
+          "number": "S21"
+        },
+        {
+          "page": 10,
+          "number": "S22"
+        },
+        {
+          "page": 10,
+          "number": "S23"
+        },
+        {
+          "page": 10,
+          "number": "S24"
+        }
+      ],
+      "figure_locations": [
+        {
+          "page": 11,
+          "number": "S1"
+        }
+      ],
+      "labels": {
+        "sec:supp-generalization": {
+          "number": "A",
+          "page": 1
+        },
+        "tab:generalization": {
+          "number": "S1",
+          "page": 1
+        },
+        "sec:supp-training": {
+          "number": "B",
+          "page": 1
+        },
+        "eq:target-samples": {
+          "number": "S1",
+          "page": 1
+        },
+        "eq:complete-code": {
+          "number": "S2",
+          "page": 1
+        },
+        "eq:codec-loss": {
+          "number": "S3",
+          "page": 1
+        },
+        "eq:reconstruction-loss": {
+          "number": "S5",
+          "page": 1
+        },
+        "tab:data-splits": {
+          "number": "S2",
+          "page": 2
+        },
+        "tab:network-config": {
+          "number": "S3",
+          "page": 2
+        },
+        "tab:recovery-weights": {
+          "number": "S4",
+          "page": 2
+        },
+        "eq:adaptation": {
+          "number": "S6",
+          "page": 2
+        },
+        "sec:supp-composition": {
+          "number": "C",
+          "page": 2
+        },
+        "eq:rigid": {
+          "number": "S8",
+          "page": 2
+        },
+        "tab:training-schedule": {
+          "number": "S5",
+          "page": 3
+        },
+        "eq:simulation": {
+          "number": "S10",
+          "page": 3
+        },
+        "sec:supp-queries": {
+          "number": "D",
+          "page": 3
+        },
+        "eq:query-placement": {
+          "number": "S11",
+          "page": 3
+        },
+        "eq:aggregation": {
+          "number": "S13",
+          "page": 3
+        },
+        "eq:free-space": {
+          "number": "S14",
+          "page": 4
+        },
+        "eq:footprint-free": {
+          "number": "S16",
+          "page": 4
+        },
+        "sec:supp-codec": {
+          "number": "E",
+          "page": 4
+        },
+        "eq:child-center": {
+          "number": "S17",
+          "page": 4
+        },
+        "sec:supp-protocol": {
+          "number": "F",
+          "page": 4
+        },
+        "tab:free-space-audit": {
+          "number": "S6",
+          "page": 5
+        },
+        "tab:free-space-downstream": {
+          "number": "S7",
+          "page": 5
+        },
+        "eq:depth-alignment": {
+          "number": "S18",
+          "page": 5
+        },
+        "sec:supp-ablations": {
+          "number": "G",
+          "page": 5
+        },
+        "sec:supp-hidden": {
+          "number": "H",
+          "page": 5
+        },
+        "tab:baseline-resources": {
+          "number": "S8",
+          "page": 6
+        },
+        "tab:adapter-effect": {
+          "number": "S9",
+          "page": 6
+        },
+        "eq:geometry-metrics": {
+          "number": "S21",
+          "page": 6
+        },
+        "sec:supp-reuse": {
+          "number": "I",
+          "page": 6
+        },
+        "tab:shared-inputs": {
+          "number": "S10",
+          "page": 7
+        },
+        "tab:temporal-groups": {
+          "number": "S11",
+          "page": 7
+        },
+        "tab:depth-scale": {
+          "number": "S12",
+          "page": 7
+        },
+        "tab:seed-components": {
+          "number": "S13",
+          "page": 7
+        },
+        "tab:seed-inputs": {
+          "number": "S14",
+          "page": 7
+        },
+        "tab:hidden-regions": {
+          "number": "S15",
+          "page": 8
+        },
+        "tab:reprojection": {
+          "number": "S16",
+          "page": 8
+        },
+        "tab:visibility": {
+          "number": "S17",
+          "page": 8
+        },
+        "tab:context-read": {
+          "number": "S18",
+          "page": 8
+        },
+        "tab:edit-failures": {
+          "number": "S19",
+          "page": 8
+        },
+        "tab:edit-seeds": {
+          "number": "S20",
+          "page": 8
+        },
+        "sec:supp-preservation": {
+          "number": "J",
+          "page": 9
+        },
+        "sec:supp-timing": {
+          "number": "K",
+          "page": 9
+        },
+        "tab:real-edit-quality": {
+          "number": "S21",
+          "page": 10
+        },
+        "tab:preservation": {
+          "number": "S22",
+          "page": 10
+        },
+        "tab:timing-stages": {
+          "number": "S23",
+          "page": 10
+        },
+        "tab:reuse-time": {
+          "number": "S24",
+          "page": 10
+        },
+        "fig:supp-detail": {
+          "number": "S1",
+          "page": 11
+        }
+      },
+      "warnings": [
+        "LaTeX hooks Warning: Cannot remove chunk 'lineno' from hook",
+        "LaTeX Warning: Text page 7 contains only floats.",
+        "LaTeX Warning: Text page 7 contains only floats."
+      ],
+      "errors": [],
+      "compile_started_at": "2026-11-03T08:10:53.173355+00:00",
+      "compile_finished_at": "2026-11-03T08:11:08.118023+00:00"
+    }
+  },
+  "references": [
+    {
+      "id": "VGGT",
+      "venue": "CVPR 2025",
+      "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_VGGT_Visual_Geometry_Grounded_Transformer_CVPR_2025_paper.pdf",
+      "heading_pages_reviewed": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "local_pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\cvpr-paper-standard-20261020\\sources\\papers\\vggt.pdf",
+      "sha256": "b2e33f1040badf274373ad810c6ac0c272597195427ac6a0f171d5933b639a0e"
+    },
+    {
+      "id": "Fast3R",
+      "venue": "CVPR 2025",
+      "url": "https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_Fast3R_Towards_3D_Reconstruction_of_1000_Images_in_One_Forward_CVPR_2025_paper.pdf",
+      "heading_pages_reviewed": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "local_pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\cvpr-paper-standard-20261020\\sources\\papers\\fast3r.pdf",
+      "sha256": "3deb2db40328f9875b80acf91442c28afaa369340fdafd95e0fbaa40ea837058"
+    },
+    {
+      "id": "HorizonForge",
+      "venue": "CVPR 2026",
+      "url": "https://openaccess.thecvf.com/content/CVPR2026/papers/Wang_HorizonForge_Driving_Scene_Editing_with_Any_Trajectories_and_Any_Vehicles_CVPR_2026_paper.pdf",
+      "heading_pages_reviewed": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "local_pdf": "E:\\Users\\changan\\Desktop\\论文\\reference_papers\\HorizonForge\\Wang_HorizonForge_CVPR_2026.pdf",
+      "sha256": "2d4522c01e17125cfbbc4e9799d7db7b7a98296bfcf8cad877011f59c5283e5c"
+    }
+  ],
+  "style_decision": "Two numbered levels in the main manuscript; short subordinate operations use unnumbered run-in paragraphs. Retain official sentence-case convention rather than copy inconsistent capitalization from individual accepted papers. No template/font/spacing changes.",
+  "float_decision": "Move the off-trajectory table/figure ahead of the separate hidden-surface subsection; use ordinary !htbp floats for the six previously fixed supplementary tables and flush remaining tables before Appendix L. No font, geometry or spacing changes.",
+  "source_diff": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\source-changes.diff",
+  "render_directory": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\render-final",
+  "status": "complete",
+  "main_skill": "ml-paper-writing",
+  "standard_skill": "cvpr-paper-standard",
+  "render_bindings": {
+    "en": {
+      "pdf_sha256": "bbffb85b5b75d92bd1b5381138d0b174693db1a6f9e1b9c995cce09deba1207f",
+      "rendered_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "supp-en": {
+      "pdf_sha256": "79bdd6f95371da385852e5f92ebc1de174c36a5d5bb416d91cac86d42cdaf88c",
+      "rendered_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    "supp-zh": {
+      "pdf_sha256": "b09a8efc5857897da4fe6361f6ad3a0b61f49334e2f0be846c4eac85d44446f4",
+      "rendered_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    "zh": {
+      "pdf_sha256": "b15377d4dd9f11706bbb2ecaf6a04ce7aab5670de725bfffd65bd9e601a9915d",
+      "rendered_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "note": "Unchanged since main rendering and visual review."
+    }
+  },
+  "archive_root": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit",
+  "archived_build_files": [
+    {
+      "source": "paper\\build\\en\\compiler-output.txt",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\en\\compiler-output.txt",
+      "sha256": "48d8f05f077bddce987fb12231b12871302a9801aa32971de0799bac8d5d0d3a"
+    },
+    {
+      "source": "paper\\build\\en\\main.aux",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\en\\main.aux",
+      "sha256": "395253d55b0648515e8ad2575f5f94e85b897abb8e927c734532132dec687f7e"
+    },
+    {
+      "source": "paper\\build\\en\\main.bbl",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\en\\main.bbl",
+      "sha256": "86d2f7799915ab7503c584669fab5297ebeb6794e6116d3800c5029091836984"
+    },
+    {
+      "source": "paper\\build\\en\\main.blg",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\en\\main.blg",
+      "sha256": "5c4be67aa5e75cb2b17ba550f078321eb06cfa4eebbf6e0a33ba106c2309f455"
+    },
+    {
+      "source": "paper\\build\\en\\main.brf",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\en\\main.brf",
+      "sha256": "d28137d414c294f48e1dcb12778fa46e9fbcf26bbea85b5be47aabcc7c6393bb"
+    },
+    {
+      "source": "paper\\build\\en\\main.log",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\en\\main.log",
+      "sha256": "f8463529420c30c06d11902003af917543aa9d7b20b38a4ad07ebf64f1af638f"
+    },
+    {
+      "source": "paper\\build\\en\\main.out",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\en\\main.out",
+      "sha256": "407f8f29fdc523eecd1bb65be02689e0a8d571073ddba5eb577713c4476297cf"
+    },
+    {
+      "source": "paper\\build\\zh\\compiler-output.txt",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\zh\\compiler-output.txt",
+      "sha256": "89c36978d050e5cb5cb6f3ece6a2dbd684ea8ea522f8eec404a08ff68bf7c68e"
+    },
+    {
+      "source": "paper\\build\\zh\\main_zh.aux",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\zh\\main_zh.aux",
+      "sha256": "6a6da06c9bfb229672b178fd110e311bbbcec13a74fa0aeff28e9f61d9b668c6"
+    },
+    {
+      "source": "paper\\build\\zh\\main_zh.bbl",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\zh\\main_zh.bbl",
+      "sha256": "86d2f7799915ab7503c584669fab5297ebeb6794e6116d3800c5029091836984"
+    },
+    {
+      "source": "paper\\build\\zh\\main_zh.blg",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\zh\\main_zh.blg",
+      "sha256": "799904f331cbb6ea9ebb4bbb6a69e6a1264b98446fb678994d0309b19742ce32"
+    },
+    {
+      "source": "paper\\build\\zh\\main_zh.brf",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\zh\\main_zh.brf",
+      "sha256": "7da8a91b863c3f93ee5b7211cdf5da8ec413045d9b2997a7d8b63feb4c43a30e"
+    },
+    {
+      "source": "paper\\build\\zh\\main_zh.log",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\zh\\main_zh.log",
+      "sha256": "7adaa996e4d98b869e424687233c69f5fe467bf9a5f5c683c199ec5958aad67f"
+    },
+    {
+      "source": "paper\\build\\zh\\main_zh.out",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\zh\\main_zh.out",
+      "sha256": "0e6fa29da45a5b73eed5bfc71808c0f1733b32abcfd9de0c6c90c59fce4db901"
+    },
+    {
+      "source": "paper\\build\\supp-en\\compiler-output.txt",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\supp-en\\compiler-output.txt",
+      "sha256": "e041fef1ced9470e778404fd326726b801529b0bdd42de9f74e6b6a74e2520ae"
+    },
+    {
+      "source": "paper\\build\\supp-en\\main.aux",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\supp-en\\main.aux",
+      "sha256": "65561cd1d0d6d0381e14a12ce6456b1c940343aa2a6cc182e71c0e979097a253"
+    },
+    {
+      "source": "paper\\build\\supp-en\\main.bbl",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\supp-en\\main.bbl",
+      "sha256": "1c40118bdade60da6865c3da7466a7f031df4b5008431bd28348d7f20bd5c9aa"
+    },
+    {
+      "source": "paper\\build\\supp-en\\main.blg",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\supp-en\\main.blg",
+      "sha256": "a69e37f9c43e2071d914797d33190d330d95ab0cdd355743124a21b178ba7299"
+    },
+    {
+      "source": "paper\\build\\supp-en\\main.brf",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\supp-en\\main.brf",
+      "sha256": "88a49484777636a286b78bf2f9b1f8d0bf986fad28d3e0cba2d3dc19ed89bab0"
+    },
+    {
+      "source": "paper\\build\\supp-en\\main.log",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\supp-en\\main.log",
+      "sha256": "d99f57c82bd0ea8edf0090401d3611a42b43713745811ff7e3c8c7cf944847ca"
+    },
+    {
+      "source": "paper\\build\\supp-en\\main.out",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\supp-en\\main.out",
+      "sha256": "c72a01945b3cb42af919d5998f7e9171642d950d0a1351da3d6b0931e01304a3"
+    },
+    {
+      "source": "paper\\build\\supp-zh\\compiler-output.txt",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\supp-zh\\compiler-output.txt",
+      "sha256": "f40c5f7967af15a48422096c8bd16bae3f114ec47135442dbf6efecd3c494dd7"
+    },
+    {
+      "source": "paper\\build\\supp-zh\\main_zh.aux",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\supp-zh\\main_zh.aux",
+      "sha256": "c2962bf2d5421c85e4f3a6168a50b443b572ca18a58a0df559a54d8f44d37b75"
+    },
+    {
+      "source": "paper\\build\\supp-zh\\main_zh.bbl",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\supp-zh\\main_zh.bbl",
+      "sha256": "1c40118bdade60da6865c3da7466a7f031df4b5008431bd28348d7f20bd5c9aa"
+    },
+    {
+      "source": "paper\\build\\supp-zh\\main_zh.blg",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\supp-zh\\main_zh.blg",
+      "sha256": "3322d8fea83cae0de62ec63fac4d26cbda04285328e2fb500f6238e6986106d8"
+    },
+    {
+      "source": "paper\\build\\supp-zh\\main_zh.brf",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\supp-zh\\main_zh.brf",
+      "sha256": "df2935aa0d9d41c174430de6e18de74e86c3bacd53f08adecc17d5e6aefc4a75"
+    },
+    {
+      "source": "paper\\build\\supp-zh\\main_zh.log",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\supp-zh\\main_zh.log",
+      "sha256": "166f760ff589ed7a16aafe7ce4aa4ed8827aeb900edbc0db835223385ccf17f6"
+    },
+    {
+      "source": "paper\\build\\supp-zh\\main_zh.out",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\supp-zh\\main_zh.out",
+      "sha256": "30bb4e841ba4e0ce76763c3c7f7c86f29e3a526b8ed4fa2718040849237a3a2f"
+    },
+    {
+      "source": "paper\\tools\\__pycache__\\build.cpython-313.pyc",
+      "archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\build-intermediates\\python-cache\\build.cpython-313.pyc",
+      "sha256": "c961dae1dd2c77be53bea34b57fb4b20e63ffb2b7dfbd329864b48beaede8014"
+    }
+  ],
+  "git_diff_check_passed": true,
+  "visual_review": {
+    "passed": true,
+    "contact_sheet_pages": {
+      "en": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "zh": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "supp-en": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "supp-zh": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    "full_resolution_pages_after_last_changes": {
+      "en": [
+        6,
+        7
+      ],
+      "zh": [
+        3,
+        5
+      ],
+      "supp-en": [
+        6
+      ],
+      "supp-zh": [
+        5
+      ]
+    },
+    "additional_main_pages_reviewed_before_last_stage_range_fix": {
+      "en": [
+        4,
+        5
+      ]
+    },
+    "primary_paper_full_pages_reviewed": {
+      "VGGT": [
+        3
+      ],
+      "Fast3R": [
+        4
+      ],
+      "HorizonForge": [
+        3
+      ]
+    },
+    "outcome": "Heading hierarchy, title wrapping, caption order and cross-reference locations reviewed. Isolated trailing stage digit removed. No clipping, missing glyphs or content overlap observed."
+  },
+  "record_diff": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\record-changes.diff",
+  "record_hashes": {
+    "docs/paper-revision-changes.md": "59ca31e19aa6f2bb5f118bd1820f1b3696aec4873810eb1da504f3000dd12b0e",
+    "docs/paper-revision-workflow.md": "810ca203dcf1dea3ec068c24b1565ab000aae0b69d2f0858ce073a94b7a6ed04",
+    "paper/build/CURRENT-OUTPUTS.md": "f8ec84c5a9135a9db485611c2811a9fd1912dc2bcc80edc45c8c6e3a89f324ef"
+  },
+  "preserved_content": "Author-approved title and abstracts, body prose except the corrected section target and nonbreaking stage formatting, all formula content, citations, numerical results and figure/table captions retained.",
+  "supplementary_page_change": {
+    "en": {
+      "before": 13,
+      "after": 14
+    },
+    "zh": {
+      "before": 12,
+      "after": 12
+    }
+  },
+  "evidence_scope": "No new training, evaluation or scientific measurement; heading, hierarchy, cross-reference and layout edits only.",
+  "validation_script": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261103-heading-numbering-audit\\validate-final.py"
+}
