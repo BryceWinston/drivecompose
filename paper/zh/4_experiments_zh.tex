@@ -11,14 +11,14 @@ Waymo 实验评价重建精度与轨迹外渲染质量，隐藏表面配对测�
 Waymo 的 798 条训练序列拆为 740 条训练和 58 条开发序列，202 条验证序列用于测试。合成训练使用 10,000 个场景、80 张地图、10,000 辆车和 2,500 个人体身份。源地图、车辆基础模型与人体身份先划分，再生成外观／动作变体；真实日志按路段、采集片段及可识别身份隔离。完整划分规模与监督见附录 B。
 
 \paragraph{基线。}
-STORM、DGGT 和 StreetForward~\cite{yang2025storm,chen2025dggt,yu2026streetforward} 均随机初始化，在相同真实日志、合成场景和完整资产上重训。各方法使用自身监督目标，Ours 另用单元空域及模板绑定监督。统一状态适配器为预测高斯分配归属并转入规范坐标，用于刚体和骨架放置。所有方法共享上下文 RGB、标定、自车位姿、车辆框／根轨迹及目标人体关节，体型与绑定来自上下文，测试权重固定。训练成本和适配细节见附录 F。
+STORM、DGGT 和 StreetForward~\cite{yang2025storm,chen2025dggt,yu2026streetforward} 均随机初始化，在相同真实日志、合成场景和完整资产上重训。各方法使用自身监督目标，Ours 另用单元空域及模板绑定监督。统一状态适配器为预测高斯分配归属并转入规范坐标，用于刚体和骨架放置。所有方法共享上下文 RGB、标定、自车位姿、车辆框／根轨迹及目标人体关节，体型与绑定来自上下文，测试权重固定。DGGT 指高斯分支 DGGT-G；附录 F 给出训练成本、适配及状态敏感性。
 
 \paragraph{采样与指标。}
 每条测试序列取 200 帧，共形成 2,020 个互不重叠的 20 帧、10 Hz 片段。三个前向相机在 $\{0,5,10,15\}$ 提供上下文~\cite{yang2025storm}，其余 12 帧插值与四帧外推共形成 96,960 张目标图像，外推使用给定状态。以 $240\times160$ 图像~\cite{huang2026instantnurec} 计算全图／动态 PSNR 和 SSIM，并在有效 LiDAR 点计算深度 AbsRel/$\delta_1$。深度逐帧尺度对齐后评价，附录 F 同时报未对齐结果；指标按帧、片段、序列依次平均，各序列等权。
 
 \subsection{动态场景重建}
 \label{sec:temporal_evaluation}
-DriveCompose 在 Waymo 的六项指标上均领先（表~\ref{tab:regions_current}），全图与动态区域 PSNR 分别比 DGGT 高 1.21 和 1.56 dB。结果按 $3{:}1$ 汇总插值与外推，附录 F 分别报告两组结果。图~\ref{fig:dynamic-reconstruction} 显示更清晰的参与者轮廓与道路结构。
+DriveCompose 在 Waymo 的六项指标上均领先（表~\ref{tab:regions_current}），全图与动态区域 PSNR 分别比 DGGT 高 1.28 和 1.68 dB。结果按 $3{:}1$ 汇总插值与外推，附录 F 分别报告两组结果。图~\ref{fig:dynamic-reconstruction} 显示更清晰的参与者轮廓与道路结构。
 \begin{table}[!htbp]
 \centering
 \footnotesize
@@ -33,11 +33,11 @@ DriveCompose 在 Waymo 的六项指标上均领先（表~\ref{tab:regions_curren
 \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
 方法 & PSNR $\uparrow$ & SSIM $\uparrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ & AbsRel $\downarrow$ & $\delta_1$ $\uparrow$ \\
 \midrule
-STORM & 25.79 & 0.78 & 22.38 & 0.617 & 0.194 & 0.733 \\
-DGGT & 27.35 & 0.87 & 23.49 & 0.643 & 0.238 & 0.702 \\
-StreetForward & 25.88 & 0.82 & 21.34 & 0.604 & 0.216 & 0.721 \\
+STORM & 25.79 & 0.782 & 22.38 & 0.617 & 0.194 & 0.733 \\
+DGGT & 27.35 & 0.875 & 23.49 & 0.643 & 0.238 & 0.702 \\
+StreetForward & 25.88 & 0.819 & 21.34 & 0.604 & 0.216 & 0.721 \\
 \midrule
-Ours & \textbf{28.56} & \textbf{0.90} & \textbf{25.05} & \textbf{0.862} & \textbf{0.095} & \textbf{0.877} \\
+Ours & \textbf{28.63} & \textbf{0.903} & \textbf{25.17} & \textbf{0.867} & \textbf{0.093} & \textbf{0.881} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -50,9 +50,9 @@ Ours & \textbf{28.56} & \textbf{0.90} & \textbf{25.05} & \textbf{0.862} & \textb
 
 \subsection{轨迹外渲染}
 \label{sec:spatial_evaluation}
-相机横向偏移 $\pm1$、$\pm2$、$\pm4$ m，方向、内参和时间戳固定~\cite{chi2026pointforward,zhu2025worldsplat}，比较扩散精修之前的高斯渲染。每个方向包含 121,200 张图像和 6,060 段 20 帧、10 Hz 视频，参考为相同片段、相机与时刻的原轨迹记录。左右方向分别计算 FID 和 FVD 后取均值（表~\ref{tab:spatial_current}；附录 H）。
+相机横向偏移 $\pm1$、$\pm2$、$\pm4$ m，方向、内参和时间戳固定~\cite{chi2026pointforward,zhu2025worldsplat}，比较高斯分支及完整生成式管线。每个方向包含 121,200 张图像和 6,060 段 20 帧、10 Hz 视频，参考为相同片段、相机与时刻的原轨迹记录。左右方向分别计算 FID 和 FVD 后取均值（表~\ref{tab:spatial_current}；附录 H）。
 
-DriveCompose 在 Waymo 的三种偏移下均取得最低 FID 和 FVD，改善了图像与视频的分布质量（表~\ref{tab:spatial_current}）。图~\ref{fig:waymo-left-shift} 展示偏移渲染及原轨迹参考。
+完整生成式对照包括 DGGT-Full、STORM+Difix~\cite{wu2025difix3d} 和 FreeGen~\cite{chen2026freegen}。Ours 在 1 m 的 FID 与 4 m 的 FVD 上最优，FreeGen 在 2 m 两项指标及其余两项上领先（表~\ref{tab:spatial_current}）。固定参考区域评价中，Ours 的 MAE／LPIPS 比 FreeGen 低 0.0014／0.005（附录 H）；图~\ref{fig:waymo-left-shift} 给出离轨样例。
 
 \begin{table}[!htbp]
 \centering
@@ -75,23 +75,15 @@ DriveCompose 在 Waymo 的三种偏移下均取得最低 FID 和 FVD，改善了
 & FID $\downarrow$ & FVD $\downarrow$
 & FID $\downarrow$ & FVD $\downarrow$ \\
 \midrule
-STORM
-& 61.97 & 722.27
-& 83.72 & 1029.36
-& 132.57 & 1704.16 \\
-DGGT
-& 73.99 & 984.00
-& 93.36 & 1197.03
-& 128.01 & 1661.70 \\
-StreetForward
-& 84.30 & 878.95
-& 103.31 & 1095.02
-& 123.58 & 1578.63 \\
+STORM & 65.27 & 756.43 & 87.63 & 1074.81 & 136.41 & 1762.37 \\
+DGGT-G & 70.13 & 914.73 & 90.47 & 1135.81 & 127.69 & 1593.27 \\
+StreetForward & 84.67 & 883.29 & 103.79 & 1103.67 & 125.31 & 1589.43 \\
 \midrule
-Ours
-& \textbf{28.52} & \textbf{544.27}
-& \textbf{37.43} & \textbf{673.17}
-& \textbf{58.19} & \textbf{817.13} \\
+DGGT-Full & 36.47 & 592.63 & 46.81 & 743.17 & 69.23 & 997.41 \\
+STORM+Difix & 33.19 & 578.43 & 42.87 & 723.61 & 65.31 & 945.27 \\
+FreeGen & 29.14 & \textbf{541.73} & \textbf{37.06} & \textbf{669.27} & \textbf{55.93} & 847.61 \\
+\midrule
+Ours & \textbf{28.52} & 544.27 & 37.43 & 673.17 & 58.19 & \textbf{817.13} \\
 \bottomrule
 \end{tabular}%
 }
@@ -107,14 +99,14 @@ Ours
 \subsection{状态驱动资产复用}
 \label{sec:ablation-reuse}
 \paragraph{资产编辑。}
-我们在 20 个真实场景上测试固定资产复用，每个场景各含一辆车和一个人体。相机平移 1 m、车辆旋转 $30^\circ$ 及人体换姿均复用固定完成资产。九组训练／生成种子共形成 360 次参与者编辑。五像素结构完整性判据通过 334／360 次（92.78\%）；结构、新增表面纹理、外观身份与局部几何四项联合通过 298／360 次（82.78\%）。合成场景配对比较、五人中至少四人同意的评判规则、失败分解与种子统计见附录 I。
+我们在 20 个真实场景上测试固定资产复用，每个场景各含一辆车和一个人体。相机平移 1 m、车辆旋转 $30^\circ$ 及人体换姿均复用固定完成资产。九组训练／生成种子共形成 360 次参与者编辑。结构完整性通过 334／360 次（92.78\%），结构、新增表面纹理、身份与几何四项联合通过 298／360 次（82.78\%），比 Asset Harvester~\cite{cao2026assetharvester} 高 2.50 个百分点；后者的身份保持高 0.83 个百分点。扩展六档编辑的联合通过率为 74.54\%，领先 4.91 个百分点（附录 I）。
 
 \paragraph{观测保持。}
 \label{sec:observation-preservation}
-在固定相机与参与者状态下，相对仅已见场景，Ours 严格保持已见高斯参数，输入视角 PSNR 下降 0.029 dB，深度 MAE 增加 2 mm。人体原已见纹理的规范对应线性 RGB MAE 为 0.014。参数与渲染测量见附录 J。
+在固定相机与参与者状态下，相对仅已见场景，Ours 严格保持已见高斯参数，输入视角 PSNR 下降 0.03 dB，深度 MAE 增加 2 mm。人体原已见纹理的规范对应线性 RGB MAE 为 0.014。参数与渲染测量见附录 J。
 
 \paragraph{效率。}
-RTX 4090 上（FP16、batch 1、C 规则），构建耗时 $2.66\pm0.11$ s，单相机装配与 $240\times160$ 渲染耗时 $7.8\pm0.4$ ms，峰值显存 14.2 GB。复用已构建资产，1,000 次输出的总成本摊销为每图 10.46 ms。计时条件见附录 K。
+RTX 4090 上（FP16、batch 1、C 规则），构建耗时 $2.66\pm0.11$ s，单相机装配与 $240\times160$ 渲染耗时 $7.8\pm0.4$ ms，峰值显存 14.2 GB。复用已构建资产，1,000 次输出的总成本摊销为每图 10.46 ms。附录 K 比较分辨率与成本。
 
 % Keep the main qualitative comparisons before the ablation block.
 \FloatBarrier

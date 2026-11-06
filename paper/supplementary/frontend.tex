@@ -90,7 +90,7 @@ Surface contamination / free labels & & 2.906\% & 0.058\% \\
 The footprint rule reduces occupied-cell errors from 1,374 to 19 (Table~\ref{tab:free-space-audit}). With reference depth, center-ray voting still mislabels 934 occupied cells, localizing an error source to lateral cell coverage. Continuous reference-depth footprint bounds yield zero such errors on this audit set. The remaining 19 errors with discrete estimated depth arise mainly at subpixel structures and depth boundaries.
 
 \paragraph{From mask labels to reconstructed surfaces.}
-The two rules start from the same intermediate state before the first hard clearing. We fix weights, query layout, input depth, postprocessing, and per-query random noise. On the same 100-scene hidden-region evaluation, F improves PSNR by 0.18 dB, coverage by 1.2 percentage points, and F-score by 1.3 points (Table~\ref{tab:free-space-downstream}). Thin structures, occlusion boundaries, and human surfaces gain 2.7, 2.2, and 1.0 points of hidden-surface coverage. Human semantic slices can overlap the structural slices and are scored separately. All coverage entries here use a 2 cm point-to-mesh threshold; human asset editing uses 1 cm.
+The two rules start from the same intermediate state before the first hard clearing. We fix weights, query layout, input depth, postprocessing, and per-query random noise. On 202 Waymo sequences, F improves full-image/dynamic PSNR by 0.03/0.04 dB; on the same 100-scene hidden-region evaluation, it improves hidden PSNR by 0.18 dB, coverage by 1.2 percentage points, and F-score by 1.3 points (Table~\ref{tab:free-space-downstream}). Thin structures, occlusion boundaries, and human surfaces gain 2.7, 2.2, and 1.0 points of hidden-surface coverage. Human semantic slices can overlap the structural slices and are scored separately. All coverage entries here use a 2 cm point-to-mesh threshold; human asset editing uses 1 cm.
 
 \begin{table}[t]
 \centering\small
@@ -100,6 +100,9 @@ The two rules start from the same intermediate state before the first hard clear
 \toprule
 Metric & C & F\\
 \midrule
+Main full-image PSNR $\uparrow$ & 28.63 & \textbf{28.66} \\
+Main dynamic PSNR $\uparrow$ & 25.17 & \textbf{25.21} \\
+Construction (s) $\downarrow$ & \textbf{2.66} & 2.86 \\
 Hidden PSNR $\uparrow$ & 23.18 & \textbf{23.36}\\
 Hidden LPIPS $\downarrow$ & 0.192 & \textbf{0.185}\\
 Hidden coverage $\uparrow$ & 95.0\% & \textbf{96.2\%}\\
@@ -113,4 +116,4 @@ Human coverage $\uparrow$ & 95.8\% & \textbf{96.8\%}\\
 
 The mask audit counts 99,184 reference-surface-containing query cells. Its disjoint categories describe cell-label errors; hidden-surface coverage instead measures reference-surface recall using area-uniform samples. The 1,355 net reduction in mislabeled cells (98.62\%) and the 1.2-point coverage gain measure these different stages. Ray violations use the 2,020,000 fixed-ray denominator in Appendix J.
 
-On Waymo input views, F gives 30.406 dB PSNR and 0.1215 m depth MAE, versus 30.391 dB and 0.1220 m for C. Added occlusion changes from 0.18\% to 0.17\%, and strict free-ray violations from 0.07\% to 0.08\%. Both rules preserve observed Gaussian parameters exactly. Construction takes 2.86 s with F versus 2.66 s with C, a 7.5\% increase on the RTX 4090. Appendix J reports the rendering measurements, and Appendix K specifies timing conditions.
+On Waymo input views, F gives 30.41 dB PSNR and 121.5 mm depth MAE, versus 30.39 dB and 122 mm for C. Added occlusion changes from 0.18\% to 0.17\%, and strict free-ray violations from 0.07\% to 0.08\%. Both rules preserve observed Gaussian parameters exactly. Construction takes 2.86 s with F versus 2.66 s with C, a 7.52\% increase on the RTX 4090. Appendix J reports the rendering measurements, and Appendix K specifies timing conditions.

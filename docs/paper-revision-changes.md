@@ -1,3 +1,103 @@
+## 2026-11-06 审稿后更新的提交前归档
+
+按作者“已更新，清理临时文件，然后提交并推送”的要求执行。本轮真实起点为 `5698689bcf123689d4bcb4ebd00408968ffc0c4a` 后的未提交工作区；最新作者结果、Table 1／S11 同步及已编译成品均为本轮清理前的成果。[工作区状态与逐文件哈希](../../_archive/drivecompose/20261106-post-review-cleanup/workspace-before.json)已保存。
+
+| 原位置／状态 | 本轮处理 | 原因 |
+|---|---|---|
+| `reviews/` 中完整审稿包、重复来源、页图和过程目录 | 按原层级完整移出，在 `reviews/README.md` 保留报告及依赖入口 | 保留全部审稿原件及其内部相对路径，移出非论文构建内容 |
+| 四个 `paper/build/` 输出目录中的 aux／bbl／blg／brf／log／out 与编译输出文本 | 归档至仓库外 | 清理可重新生成的辅助文件，保留原日志供核验 |
+| 四份正式 PDF、编译结果 JSON、论文源文、图件及作者证据 | 按清理前原字节保留 | 本轮只做归档和提交整理，不重新写作或编译 |
+
+共移动 333 份文件，逐文件 SHA-256 核对一致。正式 PDF 与现有成功编译记录的哈希、入口源文及已记录输入源文逐项核对；当前主稿／补充成品、活动图件和全部科研源文保持。没有把作者已完成的结果修订计为本轮新增内容，也没有把旧审稿输入快照当作当前正式稿。
+
+报告与原件可从[审稿归档入口](../reviews/README.md)打开；完整原路径、归档路径和 SHA-256 见[迁移清单](../../_archive/drivecompose/20261106-post-review-cleanup/archive-manifest.json)，保留项及核验见[本轮记录](../paper/provenance/pre-push-cleanup-20261106.json)。
+
+---
+
+## 2026-11-06 Table 1 全图 SSIM 精度与补充 S11 同步
+
+本轮真实起点为上一轮未提交工作区，HEAD 为 `5698689bcf123689d4bcb4ebd00408968ffc0c4a`；四份旧 PDF、源文与记录保存在 `../../_archive/drivecompose/20261106-table1-ssim-update/baseline/`。作者先要求更新 Table 1 并重编，随后要求补充材料也与主表一致。
+
+| 位置（中英文同步） | 原值／原文 | 当前值／呈现 | 原因 |
+|---|---|---|---|
+| Table 1，STORM 全图 SSIM | 0.78 | 0.782 | 作者新值 |
+| Table 1，DGGT 全图 SSIM | 0.87 | 0.875 | 作者新值 |
+| Table 1，StreetForward 全图 SSIM | 0.82 | 0.819 | 作者新值 |
+| Table 1，Ours 全图 SSIM | 0.903，粗体 | 0.903，粗体 | 作者确认的值保持 |
+| S11 全图列 | 分组 PSNR/SSIM | 分组全图 PSNR ＋跨两行的方法级汇总全图 SSIM | 使用与主表相同的四个 SSIM，避免将汇总值当作两个时间组的实测值 |
+| 附录 F 的汇总说明 | “recovers the main-table means”／“恢复主表均值” | 分组指标使用 3:1 权重；全图 SSIM 单独报告主表的方法级汇总 | 与 S11 新列定义一致 |
+
+原 S11 基线全图 SSIM 按 3:1 汇总为 0.780／0.870／0.820，与作者本轮主表新值不一致。作者要求补充与主表一致，但没有提供新的六个插值／外推 SSIM。因此本轮撤下活动表中的分组全图 SSIM，原值继续保留在原始作者文本与真实基线；S11 仅对全图 SSIM 报告汇总列，未通过主表反推分组结果。所有分组全图 PSNR、动态 PSNR/SSIM、深度 AbsRel/δ1 原值保留，五类指标共 20 个汇总值仍逐项匹配主表。
+
+科学源文仅更改四个文件：`paper/sec/4_experiments.tex`、`paper/zh/4_experiments_zh.tex` 各三个数值；`paper/supplementary/evaluation.tex`、`evaluation_zh.tex` 的 S11 及对应汇总说明。其余段落、表格、指标、公式、图件、字号和模板保持本轮起点。
+
+四份 PDF 已真实重编并替换正式文件：英文／中文主稿 11／10 页，完整结论止于第 8／7 页；英文／中文补充 15／13 页，S1–S39 顺序完整。表 1 在第 6／5 页，S11 在第 8／7 页，已查看实际渲染。无缺字、未定义引用或溢出；既有中文浮动页及补充 lineno 提示保留。193 项本轮定向检查通过；上一轮 670 项为对应旧版本的历史记录。
+
+来源、逐项核验、四份 PDF 哈希与完整差异见[本轮记录](../paper/provenance/table1-full-ssim-20261106.json)和 `../../_archive/drivecompose/20261106-table1-ssim-update/`。[当前正式输出](../paper/build/CURRENT-OUTPUTS.md)。
+
+---
+
+## 2026-11-06 审稿后实验结果完整同步（双语正文与补充材料）
+
+基线提交：`5698689bcf123689d4bcb4ebd00408968ffc0c4a`；开始时仓库工作区干净。真实源文与四份旧 PDF 保存于 `../../_archive/drivecompose/20261106-review-result-update/baseline/`。本轮按作者提供的第 2–19 节结果修订；[原始作者文本](../paper/provenance/author-results-review-update-20261106.txt)、[逐表结构化记录及补充确认](../paper/provenance/review-results-20261106.json)原样可追溯。证据等级为作者汇总结果，本轮完成转录、计算及稿件核验。
+
+| 位置 | 原文／原值 | 修改后 | 修改原因 |
+|---|---|---|---|
+| 正文 Table 1，Ours 六项 | 28.56 / 0.90 / 25.05 / 0.862 / 0.095 / 0.877 | 28.63 / 0.903 / 25.17 / 0.867 / 0.093 / 0.881 | 采用本轮作者结果；基线 SSIM 保留已知的两位精度 |
+| 正文 §4.2，中英对应 | 1.21 / 1.56 dB over DGGT；全图／动态高 1.21 / 1.56 dB | 1.28 / 1.68 dB；全图／动态高 1.28 / 1.68 dB | 由新主表复算 |
+| 正文 Table 2 | 仅 STORM、DGGT、StreetForward、Ours | 七种方法，加入 DGGT-Full、STORM+Difix、FreeGen，Gaussian 分支标作 DGGT-G | 覆盖完整生成式管线，修正各基线数值和最优值标记 |
+| §4.3 结论，中英对应 | “lowest FID and FVD at all three Waymo offsets”；“三种偏移下均取得最低 FID 和 FVD” | 1 m FID 与 4 m FVD 最优；其余四项为 FreeGen 更低 | 保留新比较中的分项优劣 |
+| 附录 A，S1 | 原均值与旧训练 SD；相对 DGGT 为 1.16 dB / 0.009 | 新均值；26.33 / 0.805，增益 1.42 dB / 0.014 | 作者明确要求仅报告均值，移除未更新的旧 SD |
+| 附录 F，S9 / S11 / S12 | 适配、分组及深度仍为旧值 | 全部替换，分组 24 项按 3:1 与主表逐项相符 | 修复上一轮正文先改、补充尚未同步的不一致 |
+| 附录 H，S20 / S21 | 未有外部固定区域比较；可见率只有两档 | 固定参考区域七方法比较、缺失输出保留；可见率完整九行 | 区分固定参考评价与原共有有效区域消融 |
+| 附录 I，S26 / S30–S34 | 原配对编辑仅三个消融版本；真实质量表仅 Ours；扩展协议未给完整表 | 加入外部资产方法、六方法四项及联合计数、逐角度与总计、训练 SD 和评分者一致性 | 编辑分母 120/360 与扩展 360/1,080 明确分开，独立场景数保持 20 |
+| 正文 §4.4 及附录 I | 原文仅报告 Ours 结构／联合结果 | 基本联合 82.78%，比 Asset Harvester 高 2.50 pp；后者身份高 0.83 pp；扩展联合 74.54%，高 4.91 pp | 增加直接对照并保留身份维度的真实优势 |
+| 附录 F / K，S15 / S38–S39 | 无状态敏感性及分辨率成本对照表 | 四档状态动态 PSNR；240/480/960 分辨率及 480 外部质量／成本 | 区分给定、预测、扰动状态及资产复用、重新构建 |
+| 附录 D / J，S7 / S35 | 未给主任务 C/F 对照；深度以米报到三位 | 主任务与隐藏表面 C/F 对照；深度用 mm；增加无潜码投影对照 | 121.5 与 122 mm 可见；0.03 dB 观测变化按本轮精度复算 |
+| 附录 H，S23–S25 | 未给查询匹配的稠密注意力及记忆容量表 | 固定 16,384 查询与 24 步、查询规模、8/16/32/64 token 完整结果 | 与旧全量查询隐藏表面表分别解释，避免将协议混为一项 |
+| 附录 F / I，S13–S14 / S31 | 训练重复及完整成本统计不全 | 主任务 R0/R1/R2、编辑训练 SD、九方法训练／适配成本；共同去重 3,621.3 GPU 小时 | 共享 462.9 GPU 小时只计一次，不将重复输出当独立场景 |
+| 本轮方法名 | 作者汇总包含 STORM-A、DGGT-A、StreetForward-A、Asset Harvester-A | 稿内均删除 -A，适配流程保留在协议说明 | 按作者后续指令执行；原始作者文本不改写 |
+
+英文 §4.2 的真实前后原文：
+
+```tex
+DriveCompose leads all six Waymo metrics (Table~\ref{tab:regions_current}), exceeding DGGT by 1.21 and 1.56 dB in full-image and dynamic-region PSNR. Results aggregate interpolation and extrapolation at $3{:}1$; Appendix F reports both groups. Figure~\ref{fig:dynamic-reconstruction} shows clearer actor silhouettes and street structure.
+```
+
+```tex
+DriveCompose leads all six Waymo metrics (Table~\ref{tab:regions_current}), exceeding DGGT by 1.28 and 1.68 dB in full-image and dynamic-region PSNR. Results aggregate interpolation and extrapolation at $3{:}1$; Appendix F reports both groups. Figure~\ref{fig:dynamic-reconstruction} shows clearer actor silhouettes and street structure.
+```
+
+中文对应：
+
+```tex
+DriveCompose 在 Waymo 的六项指标上均领先（表~\ref{tab:regions_current}），全图与动态区域 PSNR 分别比 DGGT 高 1.21 和 1.56 dB。结果按 $3{:}1$ 汇总插值与外推，附录 F 分别报告两组结果。图~\ref{fig:dynamic-reconstruction} 显示更清晰的参与者轮廓与道路结构。
+```
+
+```tex
+DriveCompose 在 Waymo 的六项指标上均领先（表~\ref{tab:regions_current}），全图与动态区域 PSNR 分别比 DGGT 高 1.28 和 1.68 dB。结果按 $3{:}1$ 汇总插值与外推，附录 F 分别报告两组结果。图~\ref{fig:dynamic-reconstruction} 显示更清晰的参与者轮廓与道路结构。
+```
+
+英文 §4.3 的真实前后原文：
+
+```tex
+DriveCompose achieves the lowest FID and FVD at all three Waymo offsets, improving both image and video distribution quality (Table~\ref{tab:spatial_current}). Figure~\ref{fig:waymo-left-shift} compares shifted renders against an original-trajectory reference.
+```
+
+```tex
+Full generative controls include DGGT-Full, STORM+Difix~\cite{wu2025difix3d}, and FreeGen~\cite{chen2026freegen}. Ours leads in 1 m FID and 4 m FVD; FreeGen leads in the other four entries (Table~\ref{tab:spatial_current}). On a fixed reference region, Ours lowers MAE/LPIPS over FreeGen by 0.0014/0.005 (Appendix H). Figure~\ref{fig:waymo-left-shift} shows shifted renders.
+```
+
+本轮科学源文只涉及双语实验节、补充 A/D/F–K 相关文件及新增基线引用。摘要、引言、相关工作、方法、讨论、结论、图件、模板与独立 29 时刻消融保持基线；未将主任务 28.63 dB 覆盖到独立消融的 28.913 dB。FreeGen 采用已核验的 [ECCV 2026 正式书目](https://link.springer.com/chapter/10.1007/978-3-032-37362-5_37)，作者确认其对应 [arXiv:2512.04830](https://arxiv.org/abs/2512.04830)；Asset Harvester 采用 [NVIDIA 白皮书原文](https://arxiv.org/abs/2604.18468)。表中成绩来自本轮作者结果，不是从这些文献引用的成绩。
+
+排版改动限于新增表：能按原字号放入单栏的窄表改为单栏，成本宽表提前排入，消除试编译尾部空白；修正新增观测段落的跨页孤立单位。字号、页边距、行距和既有图件尺寸保持。
+
+四份正式 PDF 已真实重编并写回原路径：英文主稿 11 页、完整技术正文和结论止于第 8 页；中文主稿 10 页、止于第 7 页；英文／中文补充 15／13 页，S1–S39 连续齐全。670 项本轮数值、双语、源文保持与引用检查全部通过，其中 118 项为算术核对。49 页均已渲染，全部缩略页及关键结果、结论和补充表页已目视复核，无未定义引用、缺字或溢出。补充材料的 lineno 提示及仅表格页面提示单独记录，未将它们误报为编译失败。
+
+既有 80 项检查仍为 76 项通过、4 项历史图源失败，与修改前记录一致；本轮图件字节保持。验收详见[本轮核验](../paper/provenance/review-result-update-20261106-verification.json)，[正式输出](../paper/build/CURRENT-OUTPUTS.md)。完整逐行差异、670 项检查明细、候选、日志与页图均在 `../../_archive/drivecompose/20261106-review-result-update/`，没有执行新训练或评测。
+
+---
+
 ## 2026-11-06 Table 1 基线数值替换（审稿意见 W01，正文部分完成）
 
 原问题：自审（best-paper-review）发现 Table 1 中 STORM 的 26.380 / 22.100 / 0.624 与 DGGT 的 27.410 与两篇原论文公开值逐位相同，DGGT 行的 SSIM 0.794 恰为 STORM 原文全图 SSIM，与“随机初始化重训 + 状态适配器”的描述冲突。作者按自己的实验结果分两次填写核对表（第一次 `C:\Users\changan\Downloads\baseline-numbers-filled-20261106.json`；第二次为对话中提交的 v2 JSON，2026-11-06T06:37Z，填写页面 [baseline-numbers-fillin-v2-20261106.html](../paper/provenance/baseline-numbers-fillin-v2-20261106.html)）。作者要求 PSNR 与全图 SSIM 用两位小数；动态 SSIM 与深度保留三位。

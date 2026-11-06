@@ -1,3 +1,23 @@
+## 2026-11-06 审稿后更新的提交前归档
+
+审稿包、重复来源、页图、执行过程与编译辅助文件共 333 份已移至[项目外归档](../../../_archive/drivecompose/20261106-post-review-cleanup/)，按原相对层级逐文件核对 SHA-256。审稿阅读器、意见页面和完整依赖见[归档入口](../../reviews/README.md)；原路径、归档路径与哈希见[迁移清单](../../../_archive/drivecompose/20261106-post-review-cleanup/archive-manifest.json)。
+
+最新论文源文、四份正式 PDF、编译结果 JSON、活动图件和本轮作者证据保持清理前字节。原日志已归档，正式输出与现有成功编译记录已逐项核对；本轮不重新编译。见[归档与核验记录](pre-push-cleanup-20261106.json)。
+
+---
+
+## 2026-11-06 全图 SSIM 后续同步
+
+本轮后续更正以[Table 1 / S11 全图 SSIM 记录](table1-full-ssim-20261106.json)为准，替代上一轮这三条基线的两位全图 SSIM 及分组展示。原始作者文本与历史核验均保持，不反推新的分组值。
+
+---
+
+## 2026-11-06 审稿后结果完整同步
+
+当前结果以[作者本轮原文](author-results-review-update-20261106.txt)、[24 表结构化数据及后续确认](review-results-20261106.json)和[最终验收](review-result-update-20261106-verification.json)为准。已替代先前“仅 Table 1 正文部分完成”的待同步状态。正式中英文主稿与补充均已更新，完整前后对照见[修改记录](../../docs/paper-revision-changes.md)。本轮真实基线、逐行差异、候选、670 项检查明细、编译日志和页图位于 `../../../_archive/drivecompose/20261106-review-result-update/`。
+
+---
+
 # 来源与项目外归档
 
 ## 2026-11-04 同步同事提交

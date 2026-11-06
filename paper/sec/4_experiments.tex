@@ -22,14 +22,14 @@ Waymo experiments test reconstruction accuracy and off-trajectory rendering qual
 We divide Waymo's 798 training sequences into 740 training and 58 development sequences, evaluating on 202 validation sequences. Synthetic training uses 10,000 scenes, 80 maps, 10,000 vehicles, and 2,500 human identities. Source maps, vehicle models, and human identities are split before creating appearance/motion variants; real logs are separated by road segment, capture, and identifiable actors. Appendix B gives all split sizes and supervision.
 
 \paragraph{Baselines.}
-STORM, DGGT, and StreetForward~\cite{yang2025storm,chen2025dggt,yu2026streetforward} are retrained from random initialization on the same real logs, synthetic scenes, and complete assets. Each uses its native supervision; Ours also uses cell-empty and template-binding targets. A shared state adapter assigns ownership and canonicalizes predicted Gaussians for rigid and skeletal placement. Methods share context RGB, calibration, ego poses, vehicle boxes/root tracks, and target human joints; shape and binding come from context. Test-time weights are fixed. Appendix F reports training costs and adaptation details.
+STORM, DGGT, and StreetForward~\cite{yang2025storm,chen2025dggt,yu2026streetforward} are retrained from random initialization on the same real logs, synthetic scenes, and complete assets. Each uses its native supervision; Ours also uses cell-empty and template-binding targets. A shared state adapter assigns ownership and canonicalizes predicted Gaussians for rigid and skeletal placement. Methods share context RGB, calibration, ego poses, vehicle boxes/root tracks, and target human joints; shape and binding come from context. Test-time weights are fixed. DGGT denotes its Gaussian branch (DGGT-G); Appendix F reports training costs, adaptation, and state sensitivity.
 
 \paragraph{Sampling and metrics.}
 Each test sequence supplies 200 frames, forming 2,020 disjoint 20-frame clips at 10 Hz. Three front cameras provide context at $\{0,5,10,15\}$~\cite{yang2025storm}; the remaining 12 interpolation and four extrapolation frames give 96,960 targets. Extrapolation renders supplied states. We evaluate $240\times160$ images~\cite{huang2026instantnurec} using full/dynamic PSNR and SSIM, and depth AbsRel/$\delta_1$ at valid LiDAR points. Depth is aligned per frame for evaluation; Appendix F also reports unaligned results. Frames, clips, then sequences are averaged with equal sequence weight.
 
 \subsection{Dynamic scene reconstruction}
 \label{sec:temporal_evaluation}
-DriveCompose leads all six Waymo metrics (Table~\ref{tab:regions_current}), exceeding DGGT by 1.21 and 1.56 dB in full-image and dynamic-region PSNR. Results aggregate interpolation and extrapolation at $3{:}1$; Appendix F reports both groups. Figure~\ref{fig:dynamic-reconstruction} shows clearer actor silhouettes and street structure.
+DriveCompose leads all six Waymo metrics (Table~\ref{tab:regions_current}), exceeding DGGT by 1.28 and 1.68 dB in full-image and dynamic-region PSNR. Results aggregate interpolation and extrapolation at $3{:}1$; Appendix F reports both groups. Figure~\ref{fig:dynamic-reconstruction} shows clearer actor silhouettes and street structure.
 \begin{table}[!htbp]
 \centering
 \footnotesize
@@ -44,20 +44,20 @@ DriveCompose leads all six Waymo metrics (Table~\ref{tab:regions_current}), exce
 \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
 Method & PSNR $\uparrow$ & SSIM $\uparrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ & AbsRel $\downarrow$ & $\delta_1$ $\uparrow$ \\
 \midrule
-STORM & 25.79 & 0.78 & 22.38 & 0.617 & 0.194 & 0.733 \\
-DGGT & 27.35 & 0.87 & 23.49 & 0.643 & 0.238 & 0.702 \\
-StreetForward & 25.88 & 0.82 & 21.34 & 0.604 & 0.216 & 0.721 \\
+STORM & 25.79 & 0.782 & 22.38 & 0.617 & 0.194 & 0.733 \\
+DGGT & 27.35 & 0.875 & 23.49 & 0.643 & 0.238 & 0.702 \\
+StreetForward & 25.88 & 0.819 & 21.34 & 0.604 & 0.216 & 0.721 \\
 \midrule
-Ours & \textbf{28.56} & \textbf{0.90} & \textbf{25.05} & \textbf{0.862} & \textbf{0.095} & \textbf{0.877} \\
+Ours & \textbf{28.63} & \textbf{0.903} & \textbf{25.17} & \textbf{0.867} & \textbf{0.093} & \textbf{0.881} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \subsection{Off-trajectory rendering}
 \label{sec:spatial_evaluation}
-We shift cameras laterally by $\pm1$, $\pm2$, and $\pm4$ m while fixing orientation, intrinsics, and timestamps~\cite{chi2026pointforward,zhu2025worldsplat}. Gaussian renders are compared before diffusion refinement. Each direction contains 121,200 images and 6,060 20-frame videos at 10 Hz, referenced to recordings from the same clips, cameras, and timestamps. Left/right FID and FVD are computed separately, then averaged (Table~\ref{tab:spatial_current}; Appendix H).
+We shift cameras laterally by $\pm1$, $\pm2$, and $\pm4$ m while fixing orientation, intrinsics, and timestamps~\cite{chi2026pointforward,zhu2025worldsplat}. We compare Gaussian branches and full generative pipelines. Each direction contains 121,200 images and 6,060 20-frame videos at 10 Hz, referenced to recordings from the same clips, cameras, and timestamps. Left/right FID and FVD are computed separately, then averaged (Table~\ref{tab:spatial_current}; Appendix H).
 
-DriveCompose achieves the lowest FID and FVD at all three Waymo offsets, improving both image and video distribution quality (Table~\ref{tab:spatial_current}). Figure~\ref{fig:waymo-left-shift} compares shifted renders against an original-trajectory reference.
+Full generative controls include DGGT-Full, STORM+Difix~\cite{wu2025difix3d}, and FreeGen~\cite{chen2026freegen}. Ours leads in 1 m FID and 4 m FVD; FreeGen leads in the other four entries (Table~\ref{tab:spatial_current}). On a fixed reference region, Ours lowers MAE/LPIPS over FreeGen by 0.0014/0.005 (Appendix H). Figure~\ref{fig:waymo-left-shift} shows shifted renders.
 
 \begin{table}[!htbp]
 \centering
@@ -80,23 +80,15 @@ Method
 & FID $\downarrow$ & FVD $\downarrow$
 & FID $\downarrow$ & FVD $\downarrow$ \\
 \midrule
-STORM
-& 61.97 & 722.27
-& 83.72 & 1029.36
-& 132.57 & 1704.16 \\
-DGGT
-& 73.99 & 984.00
-& 93.36 & 1197.03
-& 128.01 & 1661.70 \\
-StreetForward
-& 84.30 & 878.95
-& 103.31 & 1095.02
-& 123.58 & 1578.63 \\
+STORM & 65.27 & 756.43 & 87.63 & 1074.81 & 136.41 & 1762.37 \\
+DGGT-G & 70.13 & 914.73 & 90.47 & 1135.81 & 127.69 & 1593.27 \\
+StreetForward & 84.67 & 883.29 & 103.79 & 1103.67 & 125.31 & 1589.43 \\
 \midrule
-Ours
-& \textbf{28.52} & \textbf{544.27}
-& \textbf{37.43} & \textbf{673.17}
-& \textbf{58.19} & \textbf{817.13} \\
+DGGT-Full & 36.47 & 592.63 & 46.81 & 743.17 & 69.23 & 997.41 \\
+STORM+Difix & 33.19 & 578.43 & 42.87 & 723.61 & 65.31 & 945.27 \\
+FreeGen & 29.14 & \textbf{541.73} & \textbf{37.06} & \textbf{669.27} & \textbf{55.93} & 847.61 \\
+\midrule
+Ours & \textbf{28.52} & 544.27 & 37.43 & 673.17 & 58.19 & \textbf{817.13} \\
 \bottomrule
 \end{tabular}%
 }
@@ -106,14 +98,14 @@ Ours
 \subsection{State-driven asset reuse}
 \label{sec:ablation-reuse}
 \paragraph{Asset edits.}
-We test fixed-asset reuse on twenty real scenes, each containing one vehicle and one human. A 1 m camera shift, $30^\circ$ vehicle rotation, and human pose change reuse fixed completed assets. Nine training/generation-seed combinations yield 360 actor edits. The five-pixel structural-integrity criterion passes 334/360 (92.78\%); 298/360 (82.78\%) jointly pass structure, newly visible texture, appearance identity, and local geometry checks. Appendix I reports paired synthetic comparisons, the four-of-five rating rule, failure breakdown, and seed statistics.
+We test fixed-asset reuse on twenty real scenes, each containing one vehicle and one human. A 1 m camera shift, $30^\circ$ vehicle rotation, and human pose change reuse fixed completed assets. Nine training/generation-seed combinations yield 360 actor edits. Structural integrity passes 334/360 (92.78\%); 298/360 (82.78\%) jointly pass structure, new-surface texture, identity, and geometry, exceeding Asset Harvester~\cite{cao2026assetharvester} by 2.50 percentage points. The latter leads identity preservation by 0.83 points. Across six edit levels, joint acceptance is 74.54\%, a 4.91-point gain (Appendix I).
 
 \paragraph{Observation preservation.}
 \label{sec:observation-preservation}
-Compared with the observed-only scene at fixed cameras and actor states, Ours preserves observed Gaussian parameters exactly, while input-view PSNR decreases by 0.029 dB and depth MAE increases by 2 mm. Previously observed human texture has canonical linear-RGB MAE 0.014. Appendix J reports parameter and rendering measurements.
+Compared with the observed-only scene at fixed cameras and actor states, Ours preserves observed Gaussian parameters exactly, while input-view PSNR decreases by 0.03 dB and depth MAE increases by 2 mm. Previously observed human texture has canonical linear-RGB MAE 0.014. Appendix J reports parameter and rendering measurements.
 
 \paragraph{Efficiency.}
-On an RTX 4090 (FP16, batch 1, rule C), construction takes $2.66\pm0.11$ s, single-camera composition/rendering $7.8\pm0.4$ ms at $240\times160$, and peak memory 14.2 GB. Reusing the constructed assets amortizes the total cost over 1,000 outputs to 10.46 ms each. Appendix K specifies timing conditions.
+On an RTX 4090 (FP16, batch 1, rule C), construction takes $2.66\pm0.11$ s, single-camera composition/rendering $7.8\pm0.4$ ms at $240\times160$, and peak memory 14.2 GB. Reusing the constructed assets amortizes the total cost over 1,000 outputs to 10.46 ms each. Appendix K compares resolution and cost.
 
 \subsection{Ablation studies}
 \label{sec:ablation-protocol}\label{sec:ablations}\label{sec:ablation-studies}

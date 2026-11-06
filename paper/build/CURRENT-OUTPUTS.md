@@ -1,3 +1,29 @@
+## 2026-11-06 Table 1 与补充 S11 全图 SSIM 已同步（最新）
+
+- [英文正文](en/main.pdf)／[中文正文](zh/main_zh.pdf)：11／10 页，完整正文和结论仍止于第 8／7 页。
+- [英文补充](supp-en/main.pdf)／[中文补充](supp-zh/main_zh.pdf)：15／13 页，S1–S39 连续齐全。
+
+最新全图 SSIM 为 STORM 0.782、DGGT 0.875、StreetForward 0.819、Ours 0.903。S11 的全图 SSIM 改为与主表一致的方法级汇总列，其余分组指标保留。四份 PDF 均已真实重编、核验并写回正式路径。
+
+[当前文件哈希与核验](../provenance/table1-full-ssim-20261106.json)、[真实前后对照](../../docs/paper-revision-changes.md)。
+
+---
+
+## 2026-11-06 审稿后实验结果完整同步（当前正式输出）
+
+| 文件 | 总页数 | 完整技术正文／结论终止页 |
+|---|---:|---:|
+| [英文主稿](en/main.pdf) | 11 | 8 |
+| [中文主稿](zh/main_zh.pdf) | 10 | 7 |
+| [英文补充](supp-en/main.pdf) | 15 | — |
+| [中文补充](supp-zh/main_zh.pdf) | 13 | — |
+
+全部成品对应本轮当前源文，双语补充表 S1–S39 连续齐全。采用作者第 2–19 节最新结果；FreeGen 身份已核验；方法后缀 -A 已删除；nuScenes 按作者确认仅报告均值。670 项本轮检查通过，原始日志独立审计与新实验不属于本轮完成内容。
+
+[逐项改动与理由](../../docs/paper-revision-changes.md)、[作者输入及确认](../provenance/review-results-20261106.json)、[最终文件哈希与验收](../provenance/review-result-update-20261106-verification.json)。既有四项历史图源审计失败单列，不影响本轮已通过的数值与成品检查。
+
+---
+
 ## 2026-11-06 四份材料按当前源文件重新编译
 
 - [英文主稿](en/main.pdf)：11 页，完整总结和正文结束标签均在第 8 页；[中文主稿](zh/main_zh.pdf)：10 页，完整正文止于第 7 页。
