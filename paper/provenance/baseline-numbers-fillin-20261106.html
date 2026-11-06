@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>DriveCompose 基线与分组数字核对</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { --err:#c62828; --errbg:#fdecea; --warn:#b26a00; --warnbg:#fff4e0; --ok:#2e7d32; --okbg:#e8f5e9; --info:#1565c0; --line:#d9dce1; --muted:#6b7280; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:14px/1.5 -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif; color:#1f2328; background:#f6f7f9; }
+  header { position:sticky; top:0; z-index:10; background:#fff; border-bottom:1px solid var(--line); padding:10px 20px; display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+  header h1 { font-size:16px; margin:0 12px 0 0; }
+  .pill { padding:2px 10px; border-radius:999px; font-weight:600; font-size:13px; }
+  .pill.err { background:var(--errbg); color:var(--err); }
+  .pill.warn { background:var(--warnbg); color:var(--warn); }
+  .pill.ok { background:var(--okbg); color:var(--ok); }
+  .progress { width:160px; height:8px; background:#eee; border-radius:4px; overflow:hidden; }
+  .progress > div { height:100%; background:#4f7cff; }
+  button { font:inherit; padding:5px 12px; border:1px solid var(--line); background:#fff; border-radius:6px; cursor:pointer; }
+  button:hover { background:#f0f3ff; }
+  button.primary { background:#4f7cff; color:#fff; border-color:#4f7cff; }
+  main { display:grid; grid-template-columns: minmax(0,1fr) 380px; gap:16px; padding:16px 20px 60px; }
+  section { background:#fff; border:1px solid var(--line); border-radius:8px; padding:14px 16px; margin-bottom:16px; }
+  section h2 { font-size:15px; margin:0 0 4px; }
+  section p.desc { margin:0 0 10px; color:var(--muted); font-size:13px; }
+  table { border-collapse:collapse; width:100%; }
+  th, td { border:1px solid var(--line); padding:4px 6px; vertical-align:top; }
+  th { background:#f3f4f6; font-weight:600; font-size:13px; text-align:left; white-space:nowrap; }
+  td.cell { min-width:96px; position:relative; }
+  td.cell .cur { font-size:12px; color:var(--muted); }
+  td.cell .cur b { font-weight:600; }
+  td.cell input { width:100%; font:13px ui-monospace, Consolas, monospace; padding:3px 5px; border:1px solid #c8ccd2; border-radius:4px; }
+  td.cell .st { font-size:11px; min-height:14px; margin-top:2px; }
+  td.cell.flag-x { background:#fff7f7; }
+  td.cell.flag-w { background:#fffbf2; }
+  td.cell.lv-err input { border-color:var(--err); background:var(--errbg); }
+  td.cell.lv-warn input { border-color:var(--warn); background:var(--warnbg); }
+  td.cell.lv-ok input { border-color:var(--ok); background:var(--okbg); }
+  .tag { display:inline-block; font-size:11px; padding:0 5px; border-radius:3px; margin-left:4px; font-weight:600; }
+  .tag.x { background:var(--errbg); color:var(--err); }
+  .tag.w { background:var(--warnbg); color:var(--warn); }
+  .meta input[type=text] { width:100%; font:13px inherit; padding:3px 5px; border:1px solid #c8ccd2; border-radius:4px; }
+  .meta select { font:inherit; padding:2px 4px; }
+  aside { position:sticky; top:64px; align-self:start; max-height:calc(100vh - 80px); overflow:auto; }
+  .issue { padding:6px 8px; border-left:3px solid; margin-bottom:6px; background:#fff; border-radius:0 4px 4px 0; font-size:13px; cursor:pointer; }
+  .issue.err { border-color:var(--err); background:var(--errbg); }
+  .issue.warn { border-color:var(--warn); background:var(--warnbg); }
+  .issue.info { border-color:var(--info); background:#eef4fd; }
+  .issue.ok { border-color:var(--ok); background:var(--okbg); }
+  .filters label { margin-right:10px; font-size:13px; }
+  .stmt td { font-size:13px; }
+  .attest label { display:block; margin:4px 0; }
+  textarea { width:100%; min-height:70px; font:13px inherit; padding:6px; border:1px solid #c8ccd2; border-radius:4px; }
+  .legend span { margin-right:14px; font-size:13px; }
+  .hl { outline:3px solid #4f7cff; outline-offset:-3px; transition: outline .3s; }
+</style>
+</head>
+<body>
+<header>
+  <h1>DriveCompose 基线与分组数字核对</h1>
+  <div class="progress" title="必填项（❌ / ⚠）完成度"><div id="bar"></div></div>
+  <span id="prog"></span>
+  <span class="pill err" id="nErr"></span>
+  <span class="pill warn" id="nWarn"></span>
+  <span class="pill ok" id="nOk"></span>
+  <span style="flex:1"></span>
+  <button class="primary" id="btnExport">导出 JSON</button>
+  <button id="btnCopy">复制 JSON</button>
+  <button id="btnImport">导入 JSON</button>
+  <input type="file" id="fileImport" accept=".json" hidden>
+  <button id="btnClear">清空</button>
+</header>
+
+<main>
+<div>
+  <section>
+    <h2>怎么填</h2>
+    <p class="desc" style="margin-bottom:6px">每个格子上方灰字是论文当前值。在输入框里填<b>原始评测日志中的实测值</b>，日志给几位就填几位，不要补零。数字没变也请照填，便于确认。
+    填 <code>-</code> 表示把这个数从表中删除。留空的格子在检查时按当前值计算。内容自动保存在本浏览器；填完点“导出 JSON”，把文件放进 <code>paper/provenance/</code>，或者点“复制 JSON”贴到对话里。</p>
+    <div class="legend"><span><span class="tag x">❌</span> 与原论文公开值逐位相同</span><span><span class="tag w">⚠</span> 取整或反推模式</span><span>无标记：未发现问题，但须与同一次运行一致</span></div>
+  </section>
+
+  <section id="sec-meta">
+    <h2>0. 运行信息</h2>
+    <p class="desc">“来源”决定后面的检查规则。“引自原文”的方法会核对原文协议是否与本文一致；“重训实测”的方法会检查数字是否仍与原文相同。</p>
+    <div id="metaTable"></div>
+  </section>
+
+  <section id="sec-t1"><h2>A. 正文 Table 1：Waymo 条件重建（插值:外推 = 3:1 汇总）</h2><p class="desc">深度为逐帧尺度对齐的 AbsRel / δ1。</p><div id="t1"></div></section>
+  <section id="sec-s9"><h2>B. 补充 Table S9：转换为固定规范资产前后的全图 PSNR</h2><p class="desc">“适配后”应等于 Table 1 的全图 PSNR；原生与适配后须来自两次独立评测。</p><div id="s9"></div></section>
+  <section id="sec-s11"><h2>C. 补充 Table S11：插值 / 外推分组</h2><p class="desc">两组须分别由日志计算，不能从主表反推。</p><div id="s11"></div></section>
+  <section id="sec-s12"><h2>D. 补充 Table S12：未对齐深度（对齐列 = Table 1）</h2><div id="s12"></div></section>
+  <section id="sec-s1"><h2>E. 补充 Table S1：nuScenes 零样本（均值 ± 训练种子 SD）</h2><p class="desc">本文协议：150 个验证场景、3 前视相机、240×160。</p><div id="s1"></div></section>
+  <section id="sec-s17"><h2>F. 补充 Table S17：按组件与可见度分层的 PSNR</h2><div id="s17"></div></section>
+
+  <section id="sec-att" class="attest">
+    <h2>G. 确认</h2>
+    <label><input type="checkbox" data-att="s11"> S11 的插值组与外推组均由日志分别计算，不是从主表反推</label>
+    <label><input type="checkbox" data-att="s9"> S9 的原生列与适配后列是两次独立评测</label>
+    <label><input type="checkbox" data-att="s17"> S17 的 w/o CCM 与 Ours 各自独立计算，增益由两者相减得到</label>
+    <label><input type="checkbox" data-att="prec"> 所有数字保留日志原始精度，未补零、未手工取整</label>
+    <p class="desc" style="margin-top:10px">备注（例如某个数为什么与原文相同、哪些表要删除）：</p>
+    <textarea id="notes"></textarea>
+  </section>
+
+  <section id="sec-stmt" class="stmt">
+    <h2>H. 受影响的正文陈述（按当前填写值实时复算）</h2>
+    <div id="stmts"></div>
+  </section>
+</div>
+
+<aside>
+  <section>
+    <h2>检查结果</h2>
+    <div class="filters"><label><input type="checkbox" id="fErr" checked> 错误</label><label><input type="checkbox" id="fWarn" checked> 警告</label><label><input type="checkbox" id="fInfo" checked> 提示</label><label><input type="checkbox" id="fOk"> 通过</label></div>
+    <div id="issues" style="margin-top:8px"></div>
+  </section>
+</aside>
+</main>
+
+<script>
+"use strict";
+const STORE = "drivecompose-baseline-fill-20261106";
+const METHODS = ["STORM", "DGGT", "StreetForward", "Ours"];
+const BASE = ["STORM", "DGGT", "StreetForward"];
+const MET = [
+  { k: "fp", n: "全图 PSNR", hi: true }, { k: "fs", n: "全图 SSIM", hi: true },
+  { k: "dp", n: "动态 PSNR", hi: true }, { k: "ds", n: "动态 SSIM", hi: true },
+  { k: "ar", n: "AbsRel", hi: false }, { k: "d1", n: "δ1", hi: true },
+];
+const CUR = {}, FLAG = {}, NOTE = {}, LABEL = {};
+function def(k, v, label, flag, note) { CUR[k] = v; LABEL[k] = label; if (flag) FLAG[k] = flag; if (note) NOTE[k] = note; }
+
+// ---- current values in the manuscript ----
+const T1 = {
+  STORM: ["26.380", "0.826", "22.100", "0.624", "0.178", "0.741"],
+  DGGT: ["27.410", "0.794", "22.710", "0.651", "0.249", "0.668"],
+  StreetForward: ["27.010", "0.818", "20.919", "0.592", "0.197", "0.759"],
+  Ours: ["28.564", "0.901", "25.050", "0.862", "0.095", "0.877"],
+};
+METHODS.forEach(m => MET.forEach((mt, i) => def(`t1.${m}.${mt.k}`, T1[m][i], `Table 1 ${m} ${mt.n}`)));
+FLAG["t1.STORM.fp"] = "x"; NOTE["t1.STORM.fp"] = "= STORM 原文 26.38";
+FLAG["t1.STORM.dp"] = "x"; NOTE["t1.STORM.dp"] = "= STORM 原文 22.10";
+FLAG["t1.STORM.ds"] = "x"; NOTE["t1.STORM.ds"] = "= STORM 原文 0.624";
+FLAG["t1.DGGT.fp"] = "x"; NOTE["t1.DGGT.fp"] = "= DGGT 原文 27.41（含扩散细化，518×518）";
+FLAG["t1.DGGT.fs"] = "x"; NOTE["t1.DGGT.fs"] = "= STORM 原文全图 SSIM；DGGT 原文为 0.846";
+
+const S11 = {
+  STORM: { i: ["26.800", "0.838", "22.600", "0.640", "0.170", "0.753"], e: ["25.120", "0.790", "20.600", "0.576", "0.202", "0.705"] },
+  DGGT: { i: ["27.800", "0.806", "23.200", "0.667", "0.237", "0.680"], e: ["26.240", "0.758", "21.240", "0.603", "0.285", "0.632"] },
+  StreetForward: { i: ["27.400", "0.830", "21.500", "0.608", "0.185", "0.771"], e: ["25.840", "0.782", "19.176", "0.544", "0.233", "0.723"] },
+  Ours: { i: ["28.900", "0.909", "25.500", "0.870", "0.091", "0.885"], e: ["27.556", "0.877", "23.700", "0.838", "0.107", "0.853"] },
+};
+const GRP = { i: "插值", e: "外推" };
+METHODS.forEach(m => ["i", "e"].forEach(g => MET.forEach((mt, j) => {
+  const k = `s11.${m}.${g}.${mt.k}`;
+  const isPsnr = mt.k === "fp" || mt.k === "dp";
+  def(k, S11[m][g][j], `S11 ${m} ${GRP[g]} ${mt.n}`,
+    g === "e" ? "w" : (isPsnr ? "w" : null),
+    g === "e" ? "由主表 3:1 反推" : (isPsnr ? "恰为 0.1 dB 整格" : null));
+})));
+
+const S9 = { STORM: ["26.492", "26.380"], DGGT: ["27.538", "27.410"], StreetForward: ["27.094", "27.010"] };
+BASE.forEach(m => {
+  def(`s9.${m}.native`, S9[m][0], `S9 ${m} 原生`, "w", "= 适配后 + 差值");
+  def(`s9.${m}.adapted`, S9[m][1], `S9 ${m} 适配后`, "w", "= Table 1 值（与原文相同）");
+});
+
+const S12 = { STORM: ["0.226", "0.683"], DGGT: ["0.327", "0.572"], StreetForward: ["0.254", "0.694"], Ours: ["0.121", "0.842"] };
+METHODS.forEach(m => { def(`s12.${m}.ar`, S12[m][0], `S12 ${m} 未对齐 AbsRel`); def(`s12.${m}.d1`, S12[m][1], `S12 ${m} 未对齐 δ1`); });
+
+const S1 = {
+  STORM: ["17.77", "0.12", "0.669", "0.003"], DGGT: ["25.31", "0.08", "0.794", "0.002"],
+  StreetForward: ["23.17", "0.10", "0.712", "0.003"], Ours: ["26.47", "0.07", "0.803", "0.002"],
+};
+const S1F = [["psnr", "PSNR 均值"], ["psnrSd", "PSNR SD"], ["ssim", "SSIM 均值"], ["ssimSd", "SSIM SD"], ["seeds", "种子数"]];
+METHODS.forEach(m => {
+  def(`s1.${m}.psnr`, S1[m][0], `S1 ${m} PSNR`); def(`s1.${m}.psnrSd`, S1[m][1], `S1 ${m} PSNR SD`);
+  def(`s1.${m}.ssim`, S1[m][2], `S1 ${m} SSIM`); def(`s1.${m}.ssimSd`, S1[m][3], `S1 ${m} SSIM SD`);
+  def(`s1.${m}.seeds`, "", `S1 ${m} 种子数`);
+});
+["STORM", "DGGT"].forEach(m => {
+  ["psnr", "ssim"].forEach(f => { FLAG[`s1.${m}.${f}`] = "x"; NOTE[`s1.${m}.${f}`] = "= DGGT 原文零样本表"; });
+  ["psnrSd", "ssimSd"].forEach(f => { FLAG[`s1.${m}.${f}`] = "w"; NOTE[`s1.${m}.${f}`] = "需说明 SD 来源"; });
+});
+
+const S17R = [
+  ["bgWell", "背景，观测充分", "30.20", "30.24"], ["bgMiss", "背景，严重缺失", "22.10", "23.12"],
+  ["vehWell", "车辆，观测充分", "28.30", "28.34"], ["vehMiss", "车辆，严重缺失", "21.10", "22.38"],
+  ["humWell", "人体，观测充分", "26.90", "26.93"], ["humMiss", "人体，严重缺失", "19.70", "21.24"],
+];
+S17R.forEach(([k, n, wo, ours]) => {
+  def(`s17.${k}.wo`, wo, `S17 ${n} w/o CCM`, "w", "一位小数补零");
+  def(`s17.${k}.ours`, ours, `S17 ${n} Ours`, "w", "= w/o CCM + 增益");
+});
+
+// published values in the original papers
+const PUB = [
+  { k: "t1.STORM.fp", v: "26.38", ds: "waymo", m: "STORM", paper: "STORM 原文 Table 2" },
+  { k: "t1.STORM.dp", v: "22.10", ds: "waymo", m: "STORM", paper: "STORM 原文 Table 2" },
+  { k: "t1.STORM.ds", v: "0.624", ds: "waymo", m: "STORM", paper: "STORM 原文 Table 2" },
+  { k: "t1.STORM.fs", v: "0.794", ds: "waymo", m: "STORM", paper: "STORM 原文 Table 2" },
+  { k: "t1.DGGT.fp", v: "27.41", ds: "waymo", m: "DGGT", paper: "DGGT 原文（含扩散细化）" },
+  { k: "t1.DGGT.fp", v: "27.32", ds: "waymo", m: "DGGT", paper: "DGGT 原文（去掉扩散细化）" },
+  { k: "t1.DGGT.fs", v: "0.846", ds: "waymo", m: "DGGT", paper: "DGGT 原文（含扩散细化）" },
+  { k: "t1.DGGT.fs", v: "0.844", ds: "waymo", m: "DGGT", paper: "DGGT 原文（去掉扩散细化）" },
+  { k: "t1.DGGT.fs", v: "0.794", ds: "waymo", m: "DGGT", paper: "STORM 原文的全图 SSIM" },
+  { k: "s1.STORM.psnr", v: "17.77", ds: "nusc", m: "STORM", paper: "DGGT 原文零样本表" },
+  { k: "s1.STORM.ssim", v: "0.669", ds: "nusc", m: "STORM", paper: "DGGT 原文零样本表" },
+  { k: "s1.DGGT.psnr", v: "25.31", ds: "nusc", m: "DGGT", paper: "DGGT 原文零样本表" },
+  { k: "s1.DGGT.ssim", v: "0.794", ds: "nusc", m: "DGGT", paper: "DGGT 原文零样本表" },
+];
+
+// ---- state ----
+let state = { v: {}, meta: {}, att: {}, notes: "" };
+try { const s = JSON.parse(localStorage.getItem(STORE) || "null"); if (s && s.v) state = Object.assign(state, s); } catch (e) { /* ignore */ }
+function save() { localStorage.setItem(STORE, JSON.stringify(state)); }
+
+const trim = s => String(s == null ? "" : s).trim();
+const isNum = s => /^-?\d+(\.\d+)?$/.test(trim(s));
+const isRemoved = s => ["-", "—", "–"].includes(trim(s));
+const dec = s => { const m = trim(s).match(/\.(\d+)$/); return m ? m[1].length : 0; };
+const filled = k => trim(state.v[k]) !== "";
+const val = k => filled(k) ? trim(state.v[k]) : trim(CUR[k]);
+const num = k => isNum(val(k)) ? parseFloat(val(k)) : null;
+const src = (ds, m) => state.meta[`${ds}.${m}.source`] || "";
+const fmt = (x, d) => (x == null || isNaN(x)) ? "—" : x.toFixed(d);
+const SRC = { "": "（未选）", retrain: "重训实测", cited: "引自原文", mixed: "部分引用 / 部分实测" };
+
+// ---- rendering ----
+function cellHtml(k) {
+  const f = FLAG[k];
+  const tag = f === "x" ? '<span class="tag x">❌</span>' : f === "w" ? '<span class="tag w">⚠</span>' : "";
+  const cur = CUR[k] === "" ? "（未报告）" : `<b>${CUR[k]}</b>`;
+  return `<td class="cell ${f ? "flag-" + f : ""}" data-cell="${k}" title="${NOTE[k] || ""}">
+    <div class="cur">当前 ${cur}${tag}</div>
+    <input data-k="${k}" value="${(state.v[k] || "").replace(/"/g, "&quot;")}" placeholder="实测值">
+    <div class="st"></div></td>`;
+}
+
+function renderMeta() {
+  const rows = [];
+  [["waymo", "Waymo（Table 1 / S9 / S11 / S12）"], ["nusc", "nuScenes（Table S1）"]].forEach(([ds, title]) => {
+    rows.push(`<tr><th colspan="7">${title}</th></tr>`);
+    METHODS.forEach(m => {
+      const p = `${ds}.${m}`;
+      const opts = Object.entries(SRC).filter(([v]) => m !== "Ours" || v !== "cited")
+        .map(([v, n]) => `<option value="${v}" ${src(ds, m) === v ? "selected" : ""}>${n}</option>`).join("");
+      const t = f => `<input type="text" data-meta="${p}.${f}" value="${(state.meta[p + "." + f] || "").replace(/"/g, "&quot;")}">`;
+      rows.push(`<tr data-cell="meta.${p}"><td><b>${m}</b></td><td><select data-meta="${p}.source">${opts}</select></td>
+        <td>${t("res")}</td><td>${t("seeds")}</td>
+        <td><select data-meta="${p}.adapter"><option value="">—</option><option value="yes" ${state.meta[p + ".adapter"] === "yes" ? "selected" : ""}>是</option><option value="no" ${state.meta[p + ".adapter"] === "no" ? "selected" : ""}>否</option></select></td>
+        <td>${t("log")}</td>
+        <td>${m === "Ours" ? "" : `<label title="标为重训实测、但数字仍与原文相同时勾选"><input type="checkbox" data-metachk="${p}.proof" ${state.meta[p + ".proof"] ? "checked" : ""}> 有日志截图</label>`}</td></tr>`);
+    });
+  });
+  document.getElementById("metaTable").innerHTML = `<table class="meta"><tr><th>方法</th><th>来源</th><th>评测分辨率</th><th>训练种子数</th><th>经状态适配器</th><th>日志 / 运行 ID</th><th>与原文相同的证明</th></tr>${rows.join("")}</table>`;
+}
+
+function render() {
+  renderMeta();
+  document.getElementById("t1").innerHTML = `<table><tr><th>方法</th>${MET.map(m => `<th>${m.n} ${m.hi ? "↑" : "↓"}</th>`).join("")}</tr>` +
+    METHODS.map(m => `<tr><th>${m}</th>${MET.map(mt => cellHtml(`t1.${m}.${mt.k}`)).join("")}</tr>`).join("") + "</table>";
+  document.getElementById("s9").innerHTML = `<table><tr><th>方法</th><th>原生</th><th>适配后</th></tr>` +
+    BASE.map(m => `<tr><th>${m}</th>${cellHtml(`s9.${m}.native`)}${cellHtml(`s9.${m}.adapted`)}</tr>`).join("") + "</table>";
+  document.getElementById("s11").innerHTML = `<table><tr><th>方法</th><th>组</th>${MET.map(m => `<th>${m.n}</th>`).join("")}</tr>` +
+    METHODS.map(m => ["i", "e"].map(g => `<tr><th>${m}</th><th>${GRP[g]}</th>${MET.map(mt => cellHtml(`s11.${m}.${g}.${mt.k}`)).join("")}</tr>`).join("")).join("") + "</table>";
+  document.getElementById("s12").innerHTML = `<table><tr><th>方法</th><th>未对齐 AbsRel ↓</th><th>未对齐 δ1 ↑</th></tr>` +
+    METHODS.map(m => `<tr><th>${m}</th>${cellHtml(`s12.${m}.ar`)}${cellHtml(`s12.${m}.d1`)}</tr>`).join("") + "</table>";
+  document.getElementById("s1").innerHTML = `<table><tr><th>方法</th>${S1F.map(f => `<th>${f[1]}</th>`).join("")}</tr>` +
+    METHODS.map(m => `<tr><th>${m}</th>${S1F.map(f => cellHtml(`s1.${m}.${f[0]}`)).join("")}</tr>`).join("") + "</table>";
+  document.getElementById("s17").innerHTML = `<table><tr><th>组件 / 可见度</th><th>w/o CCM</th><th>Ours</th><th>增益（自动）</th></tr>` +
+    S17R.map(([k, n]) => `<tr><th>${n}</th>${cellHtml(`s17.${k}.wo`)}${cellHtml(`s17.${k}.ours`)}<td data-gain="${k}"></td></tr>`).join("") + "</table>";
+  document.querySelectorAll("[data-att]").forEach(c => { c.checked = !!state.att[c.dataset.att]; });
+  document.getElementById("notes").value = state.notes || "";
+}
+
+// ---- checks ----
+function compute() {
+  const out = [];
+  const add = (lv, keys, msg) => out.push({ lv, keys: [].concat(keys), msg });
+  const T = (d) => 0.5 * Math.pow(10, -d) + 1e-9;
+
+  // 0. run metadata
+  ["waymo", "nusc"].forEach(ds => METHODS.forEach(m => {
+    const p = `${ds}.${m}`, s = src(ds, m), name = ds === "waymo" ? "Waymo" : "nuScenes";
+    if (!s) add("warn", `meta.${p}`, `${name} ${m}：未选择来源`);
+    if ((s === "retrain" || s === "mixed") && !trim(state.meta[p + ".log"])) add("warn", `meta.${p}`, `${name} ${m}：缺少日志 / 运行 ID`);
+    if (s === "mixed") add("info", `meta.${p}`, `${name} ${m}：部分引用时，请在备注中逐个写明哪些数字引自原文`);
+  }));
+
+  // 1. identical to published values
+  PUB.forEach(p => {
+    const v = val(p.k);
+    if (!isNum(v) || Math.abs(parseFloat(v) - parseFloat(p.v)) > 1e-9) return;
+    const s = src(p.ds, p.m), proof = !!state.meta[`${p.ds}.${p.m}.proof`];
+    if (s === "cited") return;
+    if (p.k === "t1.DGGT.fs" && p.v === "0.794") { add("err", p.k, `${LABEL[p.k]} = ${v}，等于 ${p.paper}，像是填错了行`); return; }
+    if (s === "retrain" || s === "mixed") add(proof ? "warn" : "err", p.k, `${LABEL[p.k]} = ${v}，仍与 ${p.paper} 逐位相同；标为实测时需附日志${proof ? "（已勾选有截图）" : "截图说明"}`);
+    else add("err", p.k, `${LABEL[p.k]} = ${v}，与 ${p.paper} 逐位相同，且未选择来源`);
+  });
+
+  // 2. protocol rules for cited methods
+  const removedRow = (pref, keys) => keys.every(k => isRemoved(val(`${pref}.${k}`)));
+  const ownKeys = m => [...["i", "e"].flatMap(g => MET.map(mt => `s11.${m}.${g}.${mt.k}`)),
+    ...(m === "Ours" ? [] : [`s9.${m}.native`, `s9.${m}.adapted`]), `s12.${m}.ar`, `s12.${m}.d1`];
+  BASE.forEach(m => {
+    if (src("waymo", m) !== "cited") return;
+    const left = ownKeys(m).filter(k => !isRemoved(val(k)));
+    if (left.length) add("warn", left, `${m} 引自原文，但 S9 / S11 / S12 中仍有 ${left.length} 个本文自测格式的值；原文未报告这些分组，需填 “-” 删除或改为实测`);
+  });
+  if (src("waymo", "STORM") === "cited") {
+    add("info", "meta.waymo.STORM", "STORM 原文协议与本文一致（3 前视相机、160×240、4 个上下文帧），可作为 reported 引用；正文须删去“重训”说法，并注明本方法额外使用合成数据与给定角色状态");
+    const fs = val("t1.STORM.fs");
+    if (!isRemoved(fs) && !(isNum(fs) && Math.abs(parseFloat(fs) - 0.794) < 1e-9)) add("err", "t1.STORM.fs", `STORM 引自原文时全图 SSIM 应为原文的 0.794，当前为 ${fs}`);
+    ["ar", "d1"].forEach(k => { if (!isRemoved(val(`t1.STORM.${k}`))) add("warn", `t1.STORM.${k}`, `STORM 原文只报告 D-RMSE，没有 ${k === "ar" ? "AbsRel" : "δ1"}；引用时填 “-”，或把来源改为部分引用并注明自测`); });
+  }
+  if (src("waymo", "DGGT") === "cited") {
+    if (removedRow("t1.DGGT", MET.map(m => m.k))) add("info", "meta.waymo.DGGT", "DGGT 已从 Table 1 移除；Fig. 4、Fig. 5、Table 2 和正文中的 DGGT 也要同步处理");
+    else add("err", MET.map(m => `t1.DGGT.${m.k}`), "DGGT 原文 27.41 含扩散细化且在 518×518 评测，与本文 240×160、不含细化的协议不一致，不能并列比较：需在本文协议下重跑，或把整行填 “-” 移除");
+  }
+  if (src("waymo", "StreetForward") === "cited") add("warn", "meta.waymo.StreetForward", "StreetForward 原文协议尚未核对：请在备注写明原文表号、分辨率与帧选择");
+  ["STORM", "DGGT"].forEach(m => {
+    if (src("nusc", m) !== "cited") return;
+    if (removedRow(`s1.${m}`, ["psnr", "ssim"])) add("info", `meta.nusc.${m}`, `${m} 已从 Table S1 移除`);
+    else add("err", [`s1.${m}.psnr`, `s1.${m}.ssim`], `${m} 的 nuScenes 数字引自 DGGT 原文零样本表（100 场景、518×518、单次），不能写成本文 150 场景、240×160 的“均值 ± SD”：需重跑或填 “-” 删除`);
+  });
+
+  // 3. Table 1 = 3:1 aggregate of S11
+  METHODS.forEach(m => MET.forEach(mt => {
+    if (src("waymo", m) === "cited") return;  // cited rows are handled by the protocol rules above
+    const kt = `t1.${m}.${mt.k}`, ki = `s11.${m}.i.${mt.k}`, ke = `s11.${m}.e.${mt.k}`;
+    if ([kt, ki, ke].some(k => isRemoved(val(k)))) return;
+    if (![kt, ki, ke].some(filled)) return;
+    const t = num(kt), i = num(ki), e = num(ke);
+    if (t == null || i == null || e == null) { add("warn", [kt, ki, ke], `${m} ${mt.n}：Table 1 / S11 有非数字或缺失，无法核对 3:1 汇总`); return; }
+    const agg = (3 * i + e) / 4, tol = T(dec(val(kt))) + T(Math.min(dec(val(ki)), dec(val(ke))));
+    if (Math.abs(agg - t) > tol) add("err", [kt, ki, ke], `${m} ${mt.n}：S11 按 3:1 汇总为 ${fmt(agg, 4)}，Table 1 为 ${val(kt)}（差 ${fmt(agg - t, 4)}）`);
+    else add("ok", [kt, ki, ke], `${m} ${mt.n}：Table 1 与 S11 的 3:1 汇总一致`);
+  }));
+
+  // 4. S9 adapted = Table 1 full PSNR
+  BASE.forEach(m => {
+    if (src("waymo", m) === "cited") return;
+    const ka = `s9.${m}.adapted`, kn = `s9.${m}.native`, kt = `t1.${m}.fp`;
+    if ([ka, kt].some(k => isRemoved(val(k)))) return;
+    if (![ka, kn, kt].some(filled)) return;
+    const a = num(ka), t = num(kt), n = num(kn);
+    if (a != null && t != null) {
+      if (Math.abs(a - t) > T(dec(val(kt))) + T(dec(val(ka)))) add("err", [ka, kt], `${m}：S9 适配后 ${val(ka)} ≠ Table 1 全图 PSNR ${val(kt)}`);
+      else add("ok", [ka, kt], `${m}：S9 适配后与 Table 1 一致`);
+    }
+    if (a != null && n != null) add("info", kn, `${m}：适配改变 ${fmt(a - n, 3)} dB`);
+  });
+
+  // 5. precision / padding
+  Object.keys(CUR).forEach(k => {
+    if (!filled(k)) return;
+    const v = val(k);
+    if (isRemoved(v)) return;
+    if (!isNum(v)) { add("err", k, `${LABEL[k]}：“${v}” 不是数字（删除请填 “-”）`); return; }
+    if (dec(v) >= 3 && /00$/.test(v)) add("warn", k, `${LABEL[k]} = ${v}：末尾两位为 0，是否补了零？请按日志原始精度填写`);
+  });
+  const interp = METHODS.flatMap(m => ["fp", "dp"].map(x => `s11.${m}.i.${x}`)).filter(k => isNum(val(k)));
+  if (interp.length === 8 && interp.every(k => Math.abs(parseFloat(val(k)) * 10 - Math.round(parseFloat(val(k)) * 10)) < 1e-6))
+    add("warn", interp, "S11 的 8 个插值组 PSNR 仍全部落在 0.1 dB 整格上");
+  const wo = S17R.map(r => `s17.${r[0]}.wo`).filter(k => isNum(val(k)));
+  if (wo.length === 6 && wo.every(k => Math.abs(parseFloat(val(k)) * 10 - Math.round(parseFloat(val(k)) * 10)) < 1e-6))
+    add("warn", wo, "S17 的 w/o CCM 列仍全部是一位小数");
+
+  // 6. S1 seeds / SD
+  METHODS.forEach(m => {
+    const seeds = num(`s1.${m}.seeds`), hasSd = ["psnrSd", "ssimSd"].some(f => isNum(val(`s1.${m}.${f}`)));
+    if (hasSd && (seeds == null || seeds < 2)) add("warn", `s1.${m}.seeds`, `S1 ${m}：报告了 SD，请填写训练种子数（至少 2）`);
+    if (src("nusc", m) === "cited" && hasSd && !removedRow(`s1.${m}`, ["psnrSd", "ssimSd"])) add("err", [`s1.${m}.psnrSd`, `s1.${m}.ssimSd`], `S1 ${m}：引用的原文结果没有种子 SD`);
+  });
+
+  // 7. attestations
+  const ATT = { s11: "S11 两组分别计算", s9: "S9 两列独立评测", s17: "S17 两列独立计算", prec: "保留原始精度" };
+  Object.entries(ATT).forEach(([k, n]) => { if (!state.att[k]) add("warn", `att.${k}`, `尚未确认：${n}`); });
+  return out;
+}
+
+// ---- affected statements ----
+function statements() {
+  const rows = [];
+  const avail = m => !MET.every(mt => isRemoved(val(`t1.${m}.${mt.k}`)));
+  const bases = BASE.filter(avail);
+  const best = mt => {
+    let b = null;
+    bases.forEach(m => { const v = num(`t1.${m}.${mt.k}`); if (v != null && (b == null || (mt.hi ? v > b.v : v < b.v))) b = { m, v }; });
+    return b;
+  };
+  const lose = MET.filter(mt => { const b = best(mt), o = num(`t1.Ours.${mt.k}`); return b && o != null && (mt.hi ? o <= b.v : o >= b.v); });
+  rows.push(["§4.2 “DriveCompose leads all six Waymo metrics”", lose.length ? `不成立：${lose.map(mt => mt.n + "（" + best(mt).m + " " + val(`t1.${best(mt).m}.${mt.k}`) + "）").join("、")}` : "成立", !lose.length]);
+  const fpB = best(MET[0]), dpB = best(MET[2]);
+  if (avail("DGGT")) {
+    const g1 = num("t1.Ours.fp") - num("t1.DGGT.fp"), g2 = num("t1.Ours.dp") - num("t1.DGGT.dp");
+    const same = Math.abs(g1 - 1.154) < 5e-4 && Math.abs(g2 - 2.340) < 5e-4;
+    rows.push(["§4.2 “exceeding DGGT by 1.154 and 2.340 dB”", `复算为 ${fmt(g1, 3)} / ${fmt(g2, 3)} dB`, same]);
+  } else rows.push(["§4.2 “exceeding DGGT by 1.154 and 2.340 dB”", "DGGT 已移除，需改写此句", false]);
+  if (fpB && dpB) rows.push(["最强基线（供改写参考）", `全图 PSNR：${fpB.m} ${fmt(fpB.v, 3)}，Ours 高 ${fmt(num("t1.Ours.fp") - fpB.v, 3)} dB；动态 PSNR：${dpB.m} ${fmt(dpB.v, 3)}，Ours 高 ${fmt(num("t1.Ours.dp") - dpB.v, 3)} dB`, null]);
+  if (!isRemoved(val("s1.DGGT.psnr")) && num("s1.DGGT.psnr") != null) {
+    const a = num("s1.Ours.psnr") - num("s1.DGGT.psnr"), b = num("s1.Ours.ssim") - num("s1.DGGT.ssim");
+    rows.push(["附录 A “improves over DGGT by 1.16 dB PSNR and 0.009 SSIM”", `复算为 ${fmt(a, 2)} dB / ${fmt(b, 3)}`, Math.abs(a - 1.16) < 5e-3 && Math.abs(b - 0.009) < 5e-4]);
+  } else rows.push(["附录 A “improves over DGGT by 1.16 dB …”", "DGGT 已从 S1 移除，需改写此句", false]);
+  const g = k => num(`s17.${k}.ours`) - num(`s17.${k}.wo`);
+  const miss = ["bgMiss", "vehMiss", "humMiss"].map(g), well = ["bgWell", "vehWell", "humWell"].map(g);
+  rows.push(["附录 H “CCM adds 1.02, 1.28, and 1.54 dB for severely missing …”", `复算为 ${miss.map(x => fmt(x, 2)).join(" / ")} dB`, [1.02, 1.28, 1.54].every((x, i) => Math.abs(miss[i] - x) < 5e-3)]);
+  rows.push(["附录 H “Well-observed regions gain 0.04, 0.04, and 0.03 dB”", `复算为 ${well.map(x => fmt(x, 2)).join(" / ")} dB`, [0.04, 0.04, 0.03].every((x, i) => Math.abs(well[i] - x) < 5e-3)]);
+  document.getElementById("stmts").innerHTML = `<table><tr><th>陈述</th><th>按当前填写复算</th><th>正文要改？</th></tr>` +
+    rows.map(([a, b, ok]) => `<tr><td>${a}</td><td>${b}</td><td>${ok === null ? "—" : ok ? '<span style="color:var(--ok)">不用</span>' : '<b style="color:var(--err)">要改</b>'}</td></tr>`).join("") + "</table>";
+  S17R.forEach(([k]) => { const td = document.querySelector(`[data-gain="${k}"]`); if (td) td.textContent = isNaN(g(k)) ? "—" : (g(k) >= 0 ? "+" : "") + fmt(g(k), 2) + " dB"; });
+}
+
+// ---- refresh UI ----
+let lastIssues = [];
+function refresh() {
+  const issues = compute();
+  lastIssues = issues;
+  const rank = { err: 3, warn: 2, ok: 1, info: 0 };
+  const byKey = {};
+  issues.forEach(is => is.keys.forEach(k => { if (!byKey[k] || rank[is.lv] > rank[byKey[k].lv]) byKey[k] = is; }));
+  document.querySelectorAll("td.cell").forEach(td => {
+    const k = td.dataset.cell, is = byKey[k];
+    td.classList.remove("lv-err", "lv-warn", "lv-ok");
+    const st = td.querySelector(".st");
+    if (is && is.lv !== "info") { td.classList.add("lv-" + is.lv); st.textContent = is.lv === "ok" ? "✓" : (is.lv === "err" ? "✗ " : "! ") + is.msg.slice(0, 26) + (is.msg.length > 26 ? "…" : ""); st.style.color = `var(--${is.lv})`; st.title = is.msg; }
+    else if (!filled(k) && FLAG[k]) { st.textContent = "待填"; st.style.color = "var(--muted)"; st.title = ""; }
+    else { st.textContent = ""; st.title = ""; }
+  });
+  const req = Object.keys(FLAG), done = req.filter(filled).length;
+  document.getElementById("bar").style.width = (100 * done / req.length) + "%";
+  document.getElementById("prog").textContent = `必填 ${done}/${req.length}`;
+  const c = lv => issues.filter(i => i.lv === lv).length;
+  document.getElementById("nErr").textContent = `错误 ${c("err")}`;
+  document.getElementById("nWarn").textContent = `警告 ${c("warn")}`;
+  document.getElementById("nOk").textContent = `通过 ${c("ok")}`;
+  const show = { err: fErr.checked, warn: fWarn.checked, info: fInfo.checked, ok: fOk.checked };
+  const order = ["err", "warn", "info", "ok"];
+  document.getElementById("issues").innerHTML = issues.filter(i => show[i.lv])
+    .sort((a, b) => order.indexOf(a.lv) - order.indexOf(b.lv))
+    .map((i, n) => `<div class="issue ${i.lv}" data-jump="${i.keys[0]}">${i.msg}</div>`).join("") || '<p class="desc">没有需要显示的条目。</p>';
+  statements();
+}
+
+// ---- events ----
+document.addEventListener("input", e => {
+  const t = e.target;
+  if (t.dataset.k) { state.v[t.dataset.k] = t.value; }
+  else if (t.dataset.meta) { state.meta[t.dataset.meta] = t.value; }
+  else if (t.dataset.metachk) { state.meta[t.dataset.metachk] = t.checked; }
+  else if (t.dataset.att) { state.att[t.dataset.att] = t.checked; }
+  else if (t.id === "notes") { state.notes = t.value; }
+  else return;
+  save(); refresh();
+});
+document.addEventListener("change", e => { if (e.target.matches("select,[type=checkbox]")) e.target.dispatchEvent(new Event("input", { bubbles: true })); });
+["fErr", "fWarn", "fInfo", "fOk"].forEach(id => document.getElementById(id).addEventListener("change", e => { e.stopPropagation(); refresh(); }));
+document.getElementById("issues").addEventListener("click", e => {
+  const d = e.target.closest("[data-jump]"); if (!d) return;
+  const k = d.dataset.jump;
+  let el = document.querySelector(`[data-cell="${k}"]`) || document.querySelector(`[data-att="${k.replace("att.", "")}"]`);
+  if (!el && k.startsWith("meta.")) el = document.getElementById("sec-meta");
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "center" });
+  el.classList.add("hl"); setTimeout(() => el.classList.remove("hl"), 1500);
+  const inp = el.querySelector && el.querySelector("input"); if (inp) inp.focus({ preventScroll: true });
+});
+
+function payload() {
+  return JSON.stringify({
+    form: "drivecompose-baseline-numbers", version: 1, savedAt: new Date().toISOString(),
+    values: Object.fromEntries(Object.keys(CUR).filter(filled).map(k => [k, trim(state.v[k])])),
+    current: CUR, meta: state.meta, attest: state.att, notes: state.notes,
+    issues: lastIssues.filter(i => i.lv !== "ok").map(i => ({ level: i.lv, keys: i.keys, msg: i.msg })),
+  }, null, 2);
+}
+document.getElementById("btnExport").onclick = () => {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([payload()], { type: "application/json" }));
+  a.download = "baseline-numbers-filled-20261106.json"; a.click(); URL.revokeObjectURL(a.href);
+};
+document.getElementById("btnCopy").onclick = async () => {
+  try { await navigator.clipboard.writeText(payload()); alert("已复制，可直接粘贴到对话中。"); }
+  catch (e) { const w = window.open("", "_blank"); w.document.write("<pre>" + payload().replace(/</g, "&lt;") + "</pre>"); }
+};
+document.getElementById("btnImport").onclick = () => document.getElementById("fileImport").click();
+document.getElementById("fileImport").onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const d = JSON.parse(r.result);
+      state = { v: d.values || {}, meta: d.meta || {}, att: d.attest || {}, notes: d.notes || "" };
+      save(); render(); refresh();
+    } catch (err) { alert("无法读取：" + err.message); }
+  };
+  r.readAsText(f, "utf-8");
+};
+document.getElementById("btnClear").onclick = () => {
+  if (!confirm("清空所有已填内容？")) return;
+  state = { v: {}, meta: {}, att: {}, notes: "" }; save(); render(); refresh();
+};
+
+render(); refresh();
+</script>
+</body>
+</html>

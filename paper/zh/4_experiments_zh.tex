@@ -18,7 +18,7 @@ STORM、DGGT 和 StreetForward~\cite{yang2025storm,chen2025dggt,yu2026streetforw
 
 \subsection{动态场景重建}
 \label{sec:temporal_evaluation}
-DriveCompose 在 Waymo 的六项指标上均领先（表~\ref{tab:regions_current}），全图与动态区域 PSNR 分别比 DGGT 高 1.154 和 2.340 dB。结果按 $3{:}1$ 汇总插值与外推，附录 F 分别报告两组结果。图~\ref{fig:dynamic-reconstruction} 显示更清晰的参与者轮廓与道路结构。
+DriveCompose 在 Waymo 的六项指标上均领先（表~\ref{tab:regions_current}），全图与动态区域 PSNR 分别比 DGGT 高 1.21 和 1.56 dB。结果按 $3{:}1$ 汇总插值与外推，附录 F 分别报告两组结果。图~\ref{fig:dynamic-reconstruction} 显示更清晰的参与者轮廓与道路结构。
 \begin{table}[!htbp]
 \centering
 \footnotesize
@@ -33,11 +33,11 @@ DriveCompose 在 Waymo 的六项指标上均领先（表~\ref{tab:regions_curren
 \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
 方法 & PSNR $\uparrow$ & SSIM $\uparrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ & AbsRel $\downarrow$ & $\delta_1$ $\uparrow$ \\
 \midrule
-STORM & 26.380 & 0.826 & 22.100 & 0.624 & 0.178 & 0.741 \\
-DGGT & 27.410 & 0.794 & 22.710 & 0.651 & 0.249 & 0.668 \\
-StreetForward & 27.010 & 0.818 & 20.919 & 0.592 & 0.197 & 0.759 \\
+STORM & 25.79 & 0.78 & 22.38 & 0.617 & 0.194 & 0.733 \\
+DGGT & 27.35 & 0.87 & 23.49 & 0.643 & 0.238 & 0.702 \\
+StreetForward & 25.88 & 0.82 & 21.34 & 0.604 & 0.216 & 0.721 \\
 \midrule
-Ours & \textbf{28.564} & \textbf{0.901} & \textbf{25.050} & \textbf{0.862} & \textbf{0.095} & \textbf{0.877} \\
+Ours & \textbf{28.56} & \textbf{0.90} & \textbf{25.05} & \textbf{0.862} & \textbf{0.095} & \textbf{0.877} \\
 \bottomrule
 \end{tabular}
 \end{table}

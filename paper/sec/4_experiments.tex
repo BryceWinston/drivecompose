@@ -29,7 +29,7 @@ Each test sequence supplies 200 frames, forming 2,020 disjoint 20-frame clips at
 
 \subsection{Dynamic scene reconstruction}
 \label{sec:temporal_evaluation}
-DriveCompose leads all six Waymo metrics (Table~\ref{tab:regions_current}), exceeding DGGT by 1.154 and 2.340 dB in full-image and dynamic-region PSNR. Results aggregate interpolation and extrapolation at $3{:}1$; Appendix F reports both groups. Figure~\ref{fig:dynamic-reconstruction} shows clearer actor silhouettes and street structure.
+DriveCompose leads all six Waymo metrics (Table~\ref{tab:regions_current}), exceeding DGGT by 1.21 and 1.56 dB in full-image and dynamic-region PSNR. Results aggregate interpolation and extrapolation at $3{:}1$; Appendix F reports both groups. Figure~\ref{fig:dynamic-reconstruction} shows clearer actor silhouettes and street structure.
 \begin{table}[!htbp]
 \centering
 \footnotesize
@@ -44,11 +44,11 @@ DriveCompose leads all six Waymo metrics (Table~\ref{tab:regions_current}), exce
 \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
 Method & PSNR $\uparrow$ & SSIM $\uparrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ & AbsRel $\downarrow$ & $\delta_1$ $\uparrow$ \\
 \midrule
-STORM & 26.380 & 0.826 & 22.100 & 0.624 & 0.178 & 0.741 \\
-DGGT & 27.410 & 0.794 & 22.710 & 0.651 & 0.249 & 0.668 \\
-StreetForward & 27.010 & 0.818 & 20.919 & 0.592 & 0.197 & 0.759 \\
+STORM & 25.79 & 0.78 & 22.38 & 0.617 & 0.194 & 0.733 \\
+DGGT & 27.35 & 0.87 & 23.49 & 0.643 & 0.238 & 0.702 \\
+StreetForward & 25.88 & 0.82 & 21.34 & 0.604 & 0.216 & 0.721 \\
 \midrule
-Ours & \textbf{28.564} & \textbf{0.901} & \textbf{25.050} & \textbf{0.862} & \textbf{0.095} & \textbf{0.877} \\
+Ours & \textbf{28.56} & \textbf{0.90} & \textbf{25.05} & \textbf{0.862} & \textbf{0.095} & \textbf{0.877} \\
 \bottomrule
 \end{tabular}
 \end{table}

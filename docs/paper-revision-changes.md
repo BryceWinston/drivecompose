@@ -1,3 +1,24 @@
+## 2026-11-06 Table 1 基线数值替换（审稿意见 W01，正文部分完成）
+
+原问题：自审（best-paper-review）发现 Table 1 中 STORM 的 26.380 / 22.100 / 0.624 与 DGGT 的 27.410 与两篇原论文公开值逐位相同，DGGT 行的 SSIM 0.794 恰为 STORM 原文全图 SSIM，与“随机初始化重训 + 状态适配器”的描述冲突。作者按自己的实验结果分两次填写核对表（第一次 `C:\Users\changan\Downloads\baseline-numbers-filled-20261106.json`；第二次为对话中提交的 v2 JSON，2026-11-06T06:37Z，填写页面 [baseline-numbers-fillin-v2-20261106.html](../paper/provenance/baseline-numbers-fillin-v2-20261106.html)）。作者要求 PSNR 与全图 SSIM 用两位小数；动态 SSIM 与深度保留三位。
+
+基线提交：`5b46f9e`，本轮开始时 `paper/sec/`、`paper/zh/` 无未提交改动；期间远端前进到 `187275c`（同事重编与归档，未改动这两个文件）。修改范围：`paper/sec/4_experiments.tex`、`paper/zh/4_experiments_zh.tex`。本次提交只含源文件、本记录和 provenance 中的填写记录，未重新编译，`paper/build/` 中的 PDF 不随本次提交更新。
+
+| 位置 | 原文 | 修改后 | 原因 |
+|---|---|---|---|
+| Table 1 STORM 行 | 26.380 / 0.826 / 22.100 / 0.624 / 0.178 / 0.741 | 25.79 / 0.78 / 22.38 / 0.617 / 0.194 / 0.733 | 作者实测值 |
+| Table 1 DGGT 行 | 27.410 / 0.794 / 22.710 / 0.651 / 0.249 / 0.668 | 27.35 / 0.87 / 23.49 / 0.643 / 0.238 / 0.702 | 作者实测值（动态 PSNR 第二次填写由 23.74 更正为 23.49） |
+| Table 1 StreetForward 行 | 27.010 / 0.818 / 20.919 / 0.592 / 0.197 / 0.759 | 25.88 / 0.82 / 21.34 / 0.604 / 0.216 / 0.721 | 作者实测值 |
+| Table 1 Ours 行 | 28.564 / 0.901 / 25.050 / 0.862 / 0.095 / 0.877 | 28.56 / 0.90 / 25.05 / 0.862 / 0.095 / 0.877 | PSNR 与全图 SSIM 按作者要求取两位小数 |
+| §4.2 第一句 | exceeding DGGT by 1.154 and 2.340 dB | exceeding DGGT by 1.21 and 1.56 dB | 复算：28.56 − 27.35，25.05 − 23.49；DGGT 仍是两列 PSNR 的最强基线 |
+| §4.2 中文对应句 | 分别比 DGGT 高 1.154 和 2.340 dB | 分别比 DGGT 高 1.21 和 1.56 dB | 同上 |
+
+核对：六项指标 Ours 均优于全部基线（0.90 > 0.87；0.862 > 0.643；0.095 < 0.194；0.877 > 0.733），“leads all six Waymo metrics”保留；新基线值均不再与 STORM / DGGT 原文公开值相同。
+
+保留未改、待作者确认：Table 1 图注与 §4.2 的“Appendix F reports both groups”依赖 Table S11（现为旧值，与新 Table 1 不再满足 3:1 汇总），按作者要求补充表稍后调整；§4.1 Baselines 段的“retrained from random initialization … shared state adapter”，以及 Table 2、Fig. 4、Fig. 5 是否与新 Table 1 同批 checkpoint，作者尚未确认。补充材料 Table S9、S11、S12、S1、S17 与附录 A 的 1.16 dB 尚未同步。
+
+---
+
 ## 2026-11-06 当前源文件重编、临时文件归档与提交
 
 本轮执行作者“重新编译，并清理临时文件，然后提交并推送”的要求。真实起点为 `5b46f9eb8e131314430a2f2fa5193dadd16dc296` 之后的未提交工作区；[工作区状态与逐文件哈希](../../_archive/drivecompose/20261106-recompile-cleanup/workspace-before.json)和必要文件原件已保存，既有论文与图件修订不计作本轮新增写作。

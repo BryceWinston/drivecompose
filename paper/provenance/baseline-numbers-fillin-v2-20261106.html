@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>DriveCompose 实验数字填写与分析 v2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{--err:#c62828;--errbg:#fdecea;--warn:#b26a00;--warnbg:#fff4e0;--ok:#2e7d32;--okbg:#e8f5e9;--info:#1565c0;--infobg:#eef4fd;--line:#d9dce1;--muted:#6b7280;--ours:#4f7cff;--base:#9aa4b2}
+*{box-sizing:border-box}
+body{margin:0;font:14px/1.5 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif;color:#1f2328;background:#f6f7f9}
+header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);padding:10px 20px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+header h1{font-size:16px;margin:0 10px 0 0}
+.pill{padding:2px 10px;border-radius:999px;font-weight:600;font-size:13px}
+.pill.err{background:var(--errbg);color:var(--err)}.pill.warn{background:var(--warnbg);color:var(--warn)}.pill.ok{background:var(--okbg);color:var(--ok)}
+.progress{width:150px;height:8px;background:#eee;border-radius:4px;overflow:hidden}.progress>div{height:100%;background:var(--ours)}
+button{font:inherit;padding:5px 12px;border:1px solid var(--line);background:#fff;border-radius:6px;cursor:pointer}
+button:hover{background:#f0f3ff}button.primary{background:var(--ours);color:#fff;border-color:var(--ours)}
+nav{display:flex;gap:6px;flex-wrap:wrap}nav a{font-size:13px;color:#374151;text-decoration:none;padding:2px 8px;border-radius:4px;background:#f3f4f6}nav a:hover{background:#e5e7eb}
+main{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:16px;padding:16px 20px 60px}
+section{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:16px}
+section h2{font-size:15px;margin:0 0 4px}p.desc{margin:0 0 10px;color:var(--muted);font-size:13px}
+table{border-collapse:collapse;width:100%}th,td{border:1px solid var(--line);padding:4px 6px;vertical-align:top}
+th{background:#f3f4f6;font-weight:600;font-size:13px;text-align:left;white-space:nowrap}
+td.cell{min-width:92px}
+td.cell .cur{font-size:12px;color:var(--muted)}td.cell .cur b{color:#374151}
+td.cell input{width:100%;font:13px ui-monospace,Consolas,monospace;padding:3px 5px;border:1px solid #c8ccd2;border-radius:4px}
+td.cell .st{font-size:11px;min-height:14px;margin-top:2px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:150px}
+td.cell.req{background:#fff7f7}td.cell.req input{border-style:dashed}
+td.cell.lv-err input{border-color:var(--err);background:var(--errbg)}td.cell.lv-warn input{border-color:var(--warn);background:var(--warnbg)}td.cell.lv-ok input{border-color:var(--ok);background:var(--okbg)}
+td.ro{background:#fafafa;color:#374151;font-family:ui-monospace,Consolas,monospace;font-size:13px}
+.tag{display:inline-block;font-size:11px;padding:0 5px;border-radius:3px;margin-left:4px;font-weight:600}
+.tag.req{background:var(--errbg);color:var(--err)}.tag.w{background:var(--warnbg);color:var(--warn)}
+aside{position:sticky;top:64px;align-self:start;max-height:calc(100vh - 80px);overflow:auto}
+.issue{padding:6px 8px;border-left:3px solid;margin-bottom:6px;border-radius:0 4px 4px 0;font-size:13px;cursor:pointer}
+.issue.err{border-color:var(--err);background:var(--errbg)}.issue.warn{border-color:var(--warn);background:var(--warnbg)}.issue.info{border-color:var(--info);background:var(--infobg)}.issue.ok{border-color:var(--ok);background:var(--okbg)}
+.filters label{margin-right:10px;font-size:13px}
+.charts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.chart{border:1px solid var(--line);border-radius:6px;padding:8px}.chart h3{font-size:13px;margin:0 0 4px}
+.chart .lead{font-size:12px;margin-top:4px}
+.checks label{display:block;margin:4px 0}
+textarea{width:100%;min-height:70px;font:13px inherit;padding:6px;border:1px solid #c8ccd2;border-radius:4px}
+.meta input[type=text]{width:100%;font:13px inherit;padding:3px 5px;border:1px solid #c8ccd2;border-radius:4px}
+.hl{outline:3px solid var(--ours);outline-offset:-3px}
+.rule{font-size:13px;background:#f8fafc;border:1px solid var(--line);border-radius:6px;padding:8px 10px;margin-bottom:10px}
+svg text{font:11px -apple-system,"Segoe UI","Microsoft YaHei",sans-serif}
+</style>
+</head>
+<body>
+<header>
+  <h1>DriveCompose 实验数字 v2</h1>
+  <div class="progress" title="必填项完成度"><div id="bar"></div></div><span id="prog"></span>
+  <span class="pill err" id="nErr"></span><span class="pill warn" id="nWarn"></span><span class="pill ok" id="nOk"></span>
+  <nav><a href="#sec-meta">运行信息</a><a href="#sec-t1">Table 1</a><a href="#sec-viz">领先情况</a><a href="#sec-s11">S11</a><a href="#sec-s9">S9/S12</a><a href="#sec-s1">S1</a><a href="#sec-s17">S17</a><a href="#sec-chk">确认</a><a href="#sec-stmt">正文陈述</a></nav>
+  <span style="flex:1"></span>
+  <button class="primary" id="btnExport">导出 JSON</button><button id="btnCopy">复制 JSON</button><button id="btnImport">导入 JSON</button>
+  <input type="file" id="fileImport" accept=".json" hidden><button id="btnClear">清空</button>
+</header>
+<main>
+<div>
+  <section>
+    <h2>说明</h2>
+    <p class="desc" style="margin:0">灰字“论文”是论文里的现值：Table 1 是 2026-11-06 已写入正文的你的数字，补充表仍是旧值。<b>红底虚线框</b>是必填项。请填实验日志里的值，精度为 <b>PSNR 两位小数，SSIM 与深度三位小数</b>。填 <code>-</code> 表示从表里删除这个数。留空的格子按论文现值参与检查。填写内容自动保存在本浏览器。上一版导出的 JSON 可以直接导入。</p>
+  </section>
+
+  <section id="sec-meta"><h2>0. 运行信息</h2><p class="desc">来源和日志 ID 用来写 provenance；“引自原文”会触发协议检查。</p><div id="metaTable"></div></section>
+
+  <section id="sec-t1"><h2>A. 正文 Table 1：Waymo 条件重建</h2><p class="desc">深度为逐帧尺度对齐。这里的修改会自动同步到 S9 适配后列、S12 对齐列，以及 S11 的约束。</p><div id="t1"></div></section>
+
+  <section id="sec-viz"><h2>A′. 各指标领先情况（按当前填写实时绘制）</h2><p class="desc">蓝色为 Ours，灰色为基线；虚线为最强基线。TBD 的格子不画。</p><div class="charts" id="charts"></div></section>
+
+  <section id="sec-s11"><h2>C. 补充 Table S11：插值 / 外推分组</h2>
+    <div class="rule"><b>硬约束：</b>Table 1 = (3 × 插值 + 外推) / 4，舍入误差内必须成立。外推通常更难：PSNR / SSIM / δ1 满足 插值 ≥ Table 1 ≥ 外推，AbsRel 反过来。<br>
+    <b>合理范围怎么算：</b>设外推比插值差 Δ，则 插值 = T + Δ/4，外推 = T − 3Δ/4（AbsRel 符号相反）。Δ 取上方的经验区间（默认全图 PSNR 0.3–3.0 dB、动态 PSNR 0.5–4.0 dB、SSIM 0.005–0.06 / 0.01–0.08、AbsRel 0.005–0.06、δ1 0.01–0.08）。区间只是复核提示，不是证据，可按你们的经验修改。<br>
+    <b>怎么读：</b>小图中绿色和红色浅色带分别是插值和外推的合理范围，<span style="color:#16a34a">●</span> 为插值，<span style="color:#111">┃</span> 为 Table 1，<span style="color:#dc2626">●</span> 为外推，汇总不一致时竖线标红。请填日志里分别统计的两组值，不要按范围凑数；暂时没有分组结果的，先留空或整组填 <code>-</code>。</div>
+    <div id="s11"></div></section>
+
+  <section id="sec-s9"><h2>B. 补充 Table S9（适配前后全图 PSNR）与 Table S12（深度）</h2><div id="s9"></div><div style="height:12px"></div><div id="s12"></div></section>
+
+  <section id="sec-s1"><h2>E. 补充 Table S1：nuScenes 零样本（均值 ± 训练种子 SD）</h2><p class="desc">本文协议：150 个场景、240×160、多个训练种子。STORM 和 DGGT 的现值与 DGGT 原文零样本表逐位相同。</p><div id="s1"></div></section>
+
+  <section id="sec-s17"><h2>F. 补充 Table S17：按组件与可见度分层的 PSNR</h2><div id="s17"></div></section>
+
+  <section id="sec-chk" class="checks"><h2>G. 确认</h2>
+    <label><input type="checkbox" data-chk="proto"> Table 1 的三个基线是按 §4.1 描述得到的（在我们的数据上重训，经过共享状态适配器）</label>
+    <label><input type="checkbox" data-chk="t2"> Table 2（FID/FVD）的基线与新 Table 1 使用同一批 checkpoint</label>
+    <label><input type="checkbox" data-chk="fig4"> Fig. 4 的基线图像来自同一批 checkpoint</label>
+    <label><input type="checkbox" data-chk="fig5"> Fig. 5 的基线图像来自同一批 checkpoint</label>
+    <label><input type="checkbox" data-chk="s11"> S11 的插值组和外推组分别由日志统计</label>
+    <label><input type="checkbox" data-chk="s9"> S9 的原生列和适配后列是两次独立评测</label>
+    <label><input type="checkbox" data-chk="s17"> S17 两列各自独立计算</label>
+    <p class="desc" style="margin-top:8px">备注（例如哪些 checkpoint 不同、哪些表打算删除）：</p><textarea id="notes"></textarea>
+  </section>
+
+  <section id="sec-stmt"><h2>H. 受影响的正文陈述（实时复算）</h2><div id="stmts"></div></section>
+</div>
+<aside><section><h2>检查结果</h2>
+  <div class="filters"><label><input type="checkbox" id="fErr" checked> 错误</label><label><input type="checkbox" id="fWarn" checked> 警告</label><label><input type="checkbox" id="fInfo" checked> 提示</label><label><input type="checkbox" id="fOk"> 通过</label></div>
+  <div id="issues" style="margin-top:8px"></div></section></aside>
+</main>
+<script>
+"use strict";
+const STORE="drivecompose-numbers-v2-20261106";
+const M=["STORM","DGGT","StreetForward","Ours"], B=["STORM","DGGT","StreetForward"];
+const MET=[{k:"fp",n:"全图 PSNR",hi:true,d:2},{k:"fs",n:"全图 SSIM",hi:true,d:2},{k:"dp",n:"动态 PSNR",hi:true,d:2},{k:"ds",n:"动态 SSIM",hi:true,d:3},{k:"ar",n:"AbsRel",hi:false,d:3},{k:"d1",n:"δ1",hi:true,d:3}];
+const MK=Object.fromEntries(MET.map(m=>[m.k,m]));
+const CUR={},LABEL={},REQ={},DEC={},NOTE={};
+function def(k,v,l,o={}){CUR[k]=v;LABEL[k]=l;if(o.req)REQ[k]=1;if(o.d!=null)DEC[k]=o.d;if(o.note)NOTE[k]=o.note;}
+
+// Table 1 as written into the manuscript on 2026-11-06 (author values)
+const T1={STORM:["25.79","0.78","22.38","0.617","0.194","0.733"],DGGT:["27.35","0.87","23.49","0.643","0.238","0.702"],StreetForward:["25.88","0.82","21.34","0.604","0.216","0.721"],Ours:["28.56","0.90","25.05","0.862","0.095","0.877"]};
+M.forEach(m=>MET.forEach((mt,i)=>{const v=T1[m][i];def(`t1.${m}.${mt.k}`,v,`Table 1 ${m} ${mt.n}`,{d:mt.d});}));
+// Heuristic range of the extrapolation drop Δ = |interp − extrap| (editable on the page; not evidence)
+const DELTA0={fp:[0.3,3.0],fs:[0.005,0.06],dp:[0.5,4.0],ds:[0.01,0.08],ar:[0.005,0.06],d1:[0.01,0.08]};
+const S11O={STORM:{i:["26.800","0.838","22.600","0.640","0.170","0.753"],e:["25.120","0.790","20.600","0.576","0.202","0.705"]},DGGT:{i:["27.800","0.806","23.200","0.667","0.237","0.680"],e:["26.240","0.758","21.240","0.603","0.285","0.632"]},StreetForward:{i:["27.400","0.830","21.500","0.608","0.185","0.771"],e:["25.840","0.782","19.176","0.544","0.233","0.723"]},Ours:{i:["28.900","0.909","25.500","0.870","0.091","0.885"],e:["27.556","0.877","23.700","0.838","0.107","0.853"]}};
+const G={i:"插值",e:"外推"};
+M.forEach(m=>["i","e"].forEach(g=>MET.forEach((mt,j)=>def(`s11.${m}.${g}.${mt.k}`,S11O[m][g][j],`S11 ${m} ${G[g]} ${mt.n}`,{d:mt.d,req:true,note:"旧值为整格 + 反推，需替换"}))));
+const S9O={STORM:"26.492",DGGT:"27.538",StreetForward:"27.094"};
+B.forEach(m=>def(`s9.${m}.native`,S9O[m],`S9 ${m} 原生`,{d:2,req:true,note:"旧值 = 旧适配后 + 差值"}));
+const S12O={STORM:["0.226","0.683"],DGGT:["0.327","0.572"],StreetForward:["0.254","0.694"],Ours:["0.121","0.842"]};
+M.forEach(m=>{def(`s12.${m}.ar`,S12O[m][0],`S12 ${m} 未对齐 AbsRel`,{d:3,req:m!=="Ours"});def(`s12.${m}.d1`,S12O[m][1],`S12 ${m} 未对齐 δ1`,{d:3,req:m!=="Ours"});});
+const S1O={STORM:["17.77","0.12","0.669","0.003"],DGGT:["25.31","0.08","0.794","0.002"],StreetForward:["23.17","0.10","0.712","0.003"],Ours:["26.47","0.07","0.803","0.002"]};
+const S1F=[["psnr","PSNR",2],["psnrSd","PSNR SD",2],["ssim","SSIM",3],["ssimSd","SSIM SD",3],["seeds","种子数",0]];
+M.forEach(m=>S1F.forEach(([f,n,d],j)=>def(`s1.${m}.${f}`,f==="seeds"?"":S1O[m][j],`S1 ${m} ${n}`,{d,req:(["STORM","DGGT"].includes(m)&&f!=="seeds")||f==="seeds",note:["STORM","DGGT"].includes(m)&&(f==="psnr"||f==="ssim")?"= DGGT 原文零样本表":""})));
+const S17R=[["bgWell","背景，观测充分","30.20","30.24"],["bgMiss","背景，严重缺失","22.10","23.12"],["vehWell","车辆，观测充分","28.30","28.34"],["vehMiss","车辆，严重缺失","21.10","22.38"],["humWell","人体，观测充分","26.90","26.93"],["humMiss","人体，严重缺失","19.70","21.24"]];
+S17R.forEach(([k,n,a,b])=>{def(`s17.${k}.wo`,a,`S17 ${n} w/o CCM`,{d:2,req:true,note:"一位小数补零"});def(`s17.${k}.ours`,b,`S17 ${n} Ours`,{d:2,req:true,note:"= w/o CCM + 增益"});});
+const PUB=[["t1.STORM.fp","26.38","STORM 原文"],["t1.STORM.dp","22.10","STORM 原文"],["t1.STORM.ds","0.624","STORM 原文"],["t1.STORM.fs","0.794","STORM 原文"],["t1.DGGT.fp","27.41","DGGT 原文（含扩散）"],["t1.DGGT.fp","27.32","DGGT 原文（无扩散）"],["t1.DGGT.fs","0.846","DGGT 原文"],["t1.DGGT.fs","0.794","STORM 原文 SSIM"],["s1.STORM.psnr","17.77","DGGT 原文零样本表"],["s1.STORM.ssim","0.669","DGGT 原文零样本表"],["s1.DGGT.psnr","25.31","DGGT 原文零样本表"],["s1.DGGT.ssim","0.794","DGGT 原文零样本表"]];
+
+// ---- state ----
+let S={v:{},meta:{},chk:{},notes:"",delta:{}};
+try{const s=JSON.parse(localStorage.getItem(STORE)||"null");if(s&&s.v)S=Object.assign(S,s);}catch(e){}
+S.delta=S.delta||{};
+// drop stale Table 1 entries that now equal the manuscript value
+Object.keys(S.v).forEach(k=>{if(k.startsWith("t1.")&&String(S.v[k]).trim()===CUR[k])delete S.v[k];});
+const dl=(k,j)=>{const x=S.delta[k]&&S.delta[k][j];return x!=null&&x!==""&&!isNaN(+x)?+x:DELTA0[k][j];};
+// reasonable ranges given T and Δ∈[a,b]: better = T + Δ/4, worse = T − 3Δ/4 (AbsRel reversed)
+function ranges(m,k){
+  const T=num(`t1.${m}.${k}`);if(T==null)return null;
+  const a=dl(k,0),b=dl(k,1),s=MK[k].hi?1:-1;
+  const i=[T+s*a/4,T+s*b/4].sort((x,y)=>x-y),e=[T-s*3*b/4,T-s*3*a/4].sort((x,y)=>x-y);
+  return {T,i,e,a,b};
+}
+const save=()=>localStorage.setItem(STORE,JSON.stringify(S));
+const tr=s=>String(s==null?"":s).trim(), isNum=s=>/^-?\d+(\.\d+)?$/.test(tr(s)), isDel=s=>["-","—","–"].includes(tr(s)), isTBD=s=>/^tbd$/i.test(tr(s));
+const dec=s=>{const m=tr(s).match(/\.(\d+)$/);return m?m[1].length:0;};
+const filled=k=>tr(S.v[k])!=="";
+const val=k=>filled(k)?tr(S.v[k]):tr(CUR[k]);
+const num=k=>isNum(val(k))?parseFloat(val(k)):null;
+const tol=s=>0.5*Math.pow(10,-dec(s))+1e-9;
+const f=(x,d)=>x==null||isNaN(x)?"—":x.toFixed(d);
+const SRC={"":"（未选）",retrain:"重训实测",cited:"引自原文",mixed:"部分引用"};
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+
+function cell(k){
+  const r=REQ[k]?" req":"", cur=CUR[k]===""?"（空）":`<b>${esc(CUR[k])}</b>`;
+  const tag=REQ[k]?`<span class="tag req" title="${esc(NOTE[k]||"必填")}">必填</span>`:"";
+  return `<td class="cell${r}" data-cell="${k}" title="${esc(NOTE[k]||"")}"><div class="cur">论文 ${cur}${tag}</div><input data-k="${k}" value="${esc(S.v[k]||"")}" placeholder="${REQ[k]?"实测值":"不变可留空"}"><div class="st"></div></td>`;
+}
+function render(){
+  const meta=[];
+  [["waymo","Waymo（Table 1 / S9 / S11 / S12 / Table 2 / Fig. 4–5）"],["nusc","nuScenes（Table S1）"]].forEach(([ds,t])=>{
+    meta.push(`<tr><th colspan="4">${t}</th></tr>`);
+    M.forEach(m=>{const p=`${ds}.${m}`;const o=Object.entries(SRC).filter(([v])=>m!=="Ours"||v!=="cited").map(([v,n])=>`<option value="${v}" ${S.meta[p+".src"]===v?"selected":""}>${n}</option>`).join("");
+      meta.push(`<tr data-cell="meta.${p}"><td><b>${m}</b></td><td><select data-meta="${p}.src">${o}</select></td><td><input type="text" data-meta="${p}.ckpt" placeholder="checkpoint / 训练种子" value="${esc(S.meta[p+".ckpt"]||"")}"></td><td><input type="text" data-meta="${p}.log" placeholder="日志路径或运行 ID" value="${esc(S.meta[p+".log"]||"")}"></td></tr>`);});
+  });
+  metaTable.innerHTML=`<table class="meta"><tr><th>方法</th><th>来源</th><th>checkpoint / 种子</th><th>日志 / 运行 ID</th></tr>${meta.join("")}</table>`;
+  t1.innerHTML=`<table><tr><th>方法</th>${MET.map(m=>`<th>${m.n} ${m.hi?"↑":"↓"}</th>`).join("")}</tr>${M.map(m=>`<tr><th>${m}</th>${MET.map(mt=>cell(`t1.${m}.${mt.k}`)).join("")}</tr>`).join("")}</table>`;
+  s11.innerHTML=`<h3 style="font-size:14px;margin:0 0 6px">外推下降 Δ = |插值 − 外推| 的经验区间（可改，改后范围实时更新）</h3>
+  <table style="margin-bottom:12px"><tr><th>指标</th>${MET.map(mt=>`<th>${mt.n}</th>`).join("")}</tr>
+  <tr><th>Δ 下限</th>${MET.map(mt=>`<td class="cell"><input data-delta="${mt.k}.0" value="${esc(S.delta[mt.k]&&S.delta[mt.k][0]!=null?S.delta[mt.k][0]:DELTA0[mt.k][0])}"></td>`).join("")}</tr>
+  <tr><th>Δ 上限</th>${MET.map(mt=>`<td class="cell"><input data-delta="${mt.k}.1" value="${esc(S.delta[mt.k]&&S.delta[mt.k][1]!=null?S.delta[mt.k][1]:DELTA0[mt.k][1])}"></td>`).join("")}</tr></table>
+  <table><tr><th>方法</th><th>指标</th><th>Table 1</th><th>插值合理范围</th><th>插值</th><th>外推合理范围</th><th>外推</th><th>关系</th><th>3:1 汇总 / Δ</th></tr>${M.map(m=>MET.map((mt,j)=>`<tr>${j===0?`<th rowspan="6">${m}</th>`:""}<th>${mt.n}</th><td class="ro" data-t1="${m}.${mt.k}"></td><td class="ro" data-ri="${m}.${mt.k}"></td>${cell(`s11.${m}.i.${mt.k}`)}<td class="ro" data-re="${m}.${mt.k}"></td>${cell(`s11.${m}.e.${mt.k}`)}<td data-viz="${m}.${mt.k}" style="width:190px"></td><td class="ro" data-agg="${m}.${mt.k}"></td></tr>`).join("")).join("")}</table>`;
+  s9.innerHTML=`<h3 style="font-size:14px;margin:0 0 6px">S9：转换为固定规范资产前后的全图 PSNR</h3><table><tr><th>方法</th><th>原生（不经适配器）</th><th>适配后 = Table 1</th><th>适配改变</th></tr>${B.map(m=>`<tr><th>${m}</th>${cell(`s9.${m}.native`)}<td class="ro" data-ad="${m}"></td><td class="ro" data-dl="${m}"></td></tr>`).join("")}</table>`;
+  s12.innerHTML=`<h3 style="font-size:14px;margin:0 0 6px">S12：深度（对齐列 = Table 1）</h3><table><tr><th>方法</th><th>对齐 AbsRel</th><th>对齐 δ1</th><th>未对齐 AbsRel ↓</th><th>未对齐 δ1 ↑</th></tr>${M.map(m=>`<tr><th>${m}</th><td class="ro" data-al="${m}.ar"></td><td class="ro" data-al="${m}.d1"></td>${cell(`s12.${m}.ar`)}${cell(`s12.${m}.d1`)}</tr>`).join("")}</table>`;
+  s1.innerHTML=`<table><tr><th>方法</th>${S1F.map(x=>`<th>${x[1]}</th>`).join("")}</tr>${M.map(m=>`<tr><th>${m}</th>${S1F.map(x=>cell(`s1.${m}.${x[0]}`)).join("")}</tr>`).join("")}</table>`;
+  s17.innerHTML=`<table><tr><th>组件 / 可见度</th><th>w/o CCM</th><th>Ours</th><th>增益（自动）</th></tr>${S17R.map(([k,n])=>`<tr><th>${n}</th>${cell(`s17.${k}.wo`)}${cell(`s17.${k}.ours`)}<td class="ro" data-gain="${k}"></td></tr>`).join("")}</table>`;
+  document.querySelectorAll("[data-chk]").forEach(c=>c.checked=!!S.chk[c.dataset.chk]);
+  notes.value=S.notes||"";
+}
+
+// ---- checks ----
+function compute(){
+  const out=[],add=(lv,keys,msg)=>out.push({lv,keys:[].concat(keys),msg});
+  const src=(ds,m)=>S.meta[`${ds}.${m}.src`]||"";
+  ["waymo","nusc"].forEach(ds=>M.forEach(m=>{const p=`${ds}.${m}`,n=ds==="waymo"?"Waymo":"nuScenes";
+    if(!src(ds,m))add("warn",`meta.${p}`,`${n} ${m}：未选择来源`);
+    else if(src(ds,m)!=="cited"&&!tr(S.meta[p+".log"]))add("warn",`meta.${p}`,`${n} ${m}：缺少日志 / 运行 ID`);}));
+  // required & format
+  Object.keys(CUR).forEach(k=>{const v=val(k);
+    if(isDel(v))return;
+    if(REQ[k]&&!filled(k)){add(isTBD(v)?"err":"warn",k,`${LABEL[k]}：${NOTE[k]||"待填写"}`);return;}
+    if(!filled(k))return;
+    if(isTBD(v)){add("err",k,`${LABEL[k]}：仍为 TBD`);return;}
+    if(!isNum(v)){add("err",k,`${LABEL[k]}：“${v}”不是数字`);return;}
+    const d=DEC[k];
+    if(d&&dec(v)!==d)add("warn",k,`${LABEL[k]} = ${v}：应为 ${d} 位小数（当前 ${dec(v)} 位）`);
+    else if(d===3&&/00$/.test(v))add("warn",k,`${LABEL[k]} = ${v}：末两位为 0，是否补零？`);
+    else if(filled(k))add("ok",k,`${LABEL[k]} 已填`);
+  });
+  PUB.forEach(([k,p,who])=>{const v=num(k);if(v!=null&&Math.abs(v-parseFloat(p))<1e-9&&!isDel(val(k))){
+    const ds=k.startsWith("s1.")?"nusc":"waymo",m=k.split(".")[1];
+    if(src(ds,m)!=="cited")add("err",k,`${LABEL[k]} = ${val(k)}，与 ${who} 逐位相同`);}});
+  ["STORM","DGGT"].forEach(m=>{if(src("nusc",m)==="cited"&&!isDel(val(`s1.${m}.psnr`)))add("err",[`s1.${m}.psnr`,`s1.${m}.ssim`],`${m} 的 nuScenes 值引自 DGGT 原文（100 场景、518×518、单次），不能作为本文协议下的均值 ± SD：重测或填 “-” 删除`);});
+  if(src("waymo","DGGT")==="cited")add("err","meta.waymo.DGGT","DGGT 原文为 518×518 且含扩散细化，与本文协议不一致，不能并列引用");
+  // S11 aggregation + direction
+  M.forEach(m=>MET.forEach(mt=>{
+    const kt=`t1.${m}.${mt.k}`,ki=`s11.${m}.i.${mt.k}`,ke=`s11.${m}.e.${mt.k}`;
+    if(!filled(ki)&&!filled(ke))return;
+    if(isDel(val(ki))||isDel(val(ke)))return;
+    const T=num(kt),i=num(ki),e=num(ke);
+    if(T==null){add("warn",[ki,ke],`${m} ${mt.n}：Table 1 尚无数值，无法核对 S11`);return;}
+    if(i==null||e==null){add("warn",[ki,ke],`${m} ${mt.n}：插值和外推都要填`);return;}
+    const a=(3*i+e)/4,t=tol(val(kt))+(tol(val(ki))*3+tol(val(ke)))/4;
+    if(Math.abs(a-T)>t)add("err",[kt,ki,ke],`${m} ${mt.n}：S11 3:1 汇总 ${f(a,4)} ≠ Table 1 ${val(kt)}（差 ${f(a-T,4)}，允许 ±${f(t,4)}）`);
+    else add("ok",[ki,ke],`${m} ${mt.n}：S11 与 Table 1 一致`);
+    const easierI=mt.hi?i>=e:i<=e;
+    if(!easierI)add("warn",[ki,ke],`${m} ${mt.n}：外推（${val(ke)}）好于插值（${val(ki)}），与常见情况相反，请复核`);
+    const R=ranges(m,mt.k),D=Math.abs(i-e),dd=mt.d+1;
+    if(R&&easierI&&(D<R.a-1e-9||D>R.b+1e-9))add("warn",[ki,ke],`${m} ${mt.n}：Δ = ${f(D,dd)}，超出经验区间 [${R.a}, ${R.b}]，请复核或在备注说明`);
+    else if(R&&easierI)add("ok",[ki,ke],`${m} ${mt.n}：Δ = ${f(D,dd)}，在经验区间内`);
+  }));
+  // single-cell range hints
+  M.forEach(m=>MET.forEach(mt=>{const R=ranges(m,mt.k);if(!R)return;
+    [["i",R.i,"插值"],["e",R.e,"外推"]].forEach(([g,r,n])=>{const k=`s11.${m}.${g}.${mt.k}`;if(!filled(k)||isDel(val(k)))return;const x=num(k);
+      if(x!=null&&(x<r[0]-tol(val(k))||x>r[1]+tol(val(k))))add("warn",k,`${LABEL[k]} = ${val(k)}，不在合理范围 ${f(r[0],mt.d)} – ${f(r[1],mt.d)} 内`);});}));
+
+  const ip=M.flatMap(m=>["fp","dp"].map(x=>`s11.${m}.i.${x}`)).filter(filled);
+  if(ip.length>=6&&ip.every(k=>isNum(val(k))&&Math.abs(parseFloat(val(k))*10-Math.round(parseFloat(val(k))*10))<1e-6))add("warn",ip,"填写的插值组 PSNR 全部落在 0.1 dB 整格上");
+  // S9
+  B.forEach(m=>{const n=num(`s9.${m}.native`),a=num(`t1.${m}.fp`);
+    if(filled(`s9.${m}.native`)&&n!=null&&a!=null){const d=a-n;
+      if(d>0.005)add("warn",`s9.${m}.native`,`${m}：适配后（${f(a,2)}）高于原生（${f(n,2)}），适配器不应提高画质，请复核`);
+      else if(Math.abs(d)>0.5)add("warn",`s9.${m}.native`,`${m}：适配损失 ${f(d,2)} dB，比旧稿的 −0.08 ~ −0.13 dB 大很多，正文需相应说明`);
+      else add("info",`s9.${m}.native`,`${m}：适配改变 ${f(d,2)} dB`);}});
+  // S12
+  M.forEach(m=>{const aA=num(`t1.${m}.ar`),uA=num(`s12.${m}.ar`),aD=num(`t1.${m}.d1`),uD=num(`s12.${m}.d1`);
+    if(filled(`s12.${m}.ar`)&&aA!=null&&uA!=null&&uA<aA)add("warn",`s12.${m}.ar`,`${m}：未对齐 AbsRel（${val(`s12.${m}.ar`)}）好于对齐（${val(`t1.${m}.ar`)}），通常相反`);
+    if(filled(`s12.${m}.d1`)&&aD!=null&&uD!=null&&uD>aD)add("warn",`s12.${m}.d1`,`${m}：未对齐 δ1 好于对齐，通常相反`);});
+  // S1 seeds
+  M.forEach(m=>{const sd=isNum(val(`s1.${m}.psnrSd`))&&!isDel(val(`s1.${m}.psnr`)),n=num(`s1.${m}.seeds`);if(sd&&(n==null||n<2))add("warn",`s1.${m}.seeds`,`S1 ${m}：报告了 SD，需填训练种子数（≥ 2）`);});
+  // S17
+  const wo=S17R.map(r=>`s17.${r[0]}.wo`);
+  if(wo.every(k=>isNum(val(k))&&dec(val(k))===2&&/0$/.test(val(k))))add("warn",wo,"S17 的 w/o CCM 列仍全部以 0 结尾（一位小数补零）");
+  // confirmations
+  const CH={proto:"§4.1 协议",t2:"Table 2 同批 checkpoint",fig4:"Fig. 4 同批 checkpoint",fig5:"Fig. 5 同批 checkpoint",s11:"S11 分别统计",s9:"S9 独立评测",s17:"S17 独立计算"};
+  Object.entries(CH).forEach(([k,n])=>{if(!S.chk[k])add("warn",`chk.${k}`,`尚未确认：${n}`);});
+  return out;
+}
+
+// ---- charts ----
+function charts(){
+  charts_el.innerHTML=MET.map(mt=>{
+    const pts=M.map(m=>({m,v:num(`t1.${m}.${mt.k}`)})).filter(p=>p.v!=null&&!isDel(val(`t1.${p.m}.${mt.k}`)));
+    if(!pts.length)return `<div class="chart"><h3>${mt.n}</h3><p class="desc">无数据</p></div>`;
+    const vs=pts.map(p=>p.v),lo=Math.min(...vs),hi=Math.max(...vs),pad=(hi-lo)*0.25||Math.abs(hi)*0.05||0.01;
+    const a=mt.hi?lo-pad:0,b=mt.hi?hi+pad*0.3:hi+pad*0.3;
+    const W=260,H=18*4+8,x0=88,sc=v=>x0+(W-x0-34)*((v-a)/(b-a));
+    const bases=pts.filter(p=>p.m!=="Ours"),best=bases.length?bases.reduce((u,p)=>(mt.hi?p.v>u.v:p.v<u.v)?p:u):null,ours=pts.find(p=>p.m==="Ours");
+    let s=`<svg width="100%" viewBox="0 0 ${W} ${H}">`;
+    M.forEach((m,r)=>{const p=pts.find(q=>q.m===m),y=4+r*18;s+=`<text x="0" y="${y+11}">${m}</text>`;
+      if(p){s+=`<rect x="${x0}" y="${y+2}" width="${Math.max(1,sc(p.v)-x0)}" height="11" fill="${m==="Ours"?"var(--ours)":"var(--base)"}"/><text x="${sc(p.v)+3}" y="${y+11}">${val(`t1.${m}.${mt.k}`)}</text>`;}
+      else s+=`<text x="${x0}" y="${y+11}" fill="#c62828">TBD</text>`;});
+    if(best)s+=`<line x1="${sc(best.v)}" x2="${sc(best.v)}" y1="0" y2="${H}" stroke="#111" stroke-dasharray="3,2"/>`;
+    s+="</svg>";
+    let lead="";
+    if(ours&&best){const g=mt.hi?ours.v-best.v:best.v-ours.v;lead=g>0?`<span style="color:var(--ok)">Ours 领先最强基线 ${best.m} ${f(Math.abs(ours.v-best.v),mt.d)}</span>`:`<b style="color:var(--err)">Ours 不领先：${best.m} 更好</b>`;}
+    const miss=B.filter(m=>!pts.find(p=>p.m===m));
+    if(miss.length)lead+=`<br><span style="color:var(--err)">待填：${miss.join("、")}</span>`;
+    return `<div class="chart"><h3>${mt.n} ${mt.hi?"↑":"↓"}</h3>${s}<div class="lead">${lead}</div></div>`;
+  }).join("");
+}
+const charts_el=document.getElementById("charts");
+
+function vizS11(){
+  M.forEach(m=>MET.forEach(mt=>{
+    const T=num(`t1.${m}.${mt.k}`),i=num(`s11.${m}.i.${mt.k}`),e=num(`s11.${m}.e.${mt.k}`);
+    const td=document.querySelector(`[data-viz="${m}.${mt.k}"]`),ag=document.querySelector(`[data-agg="${m}.${mt.k}"]`),t1c=document.querySelector(`[data-t1="${m}.${mt.k}"]`);
+    t1c.textContent=val(`t1.${m}.${mt.k}`);
+    const R=ranges(m,mt.k),ri=document.querySelector(`[data-ri="${m}.${mt.k}"]`),re=document.querySelector(`[data-re="${m}.${mt.k}"]`);
+    ri.textContent=R?`${f(R.i[0],mt.d)} – ${f(R.i[1],mt.d)}`:"—";re.textContent=R?`${f(R.e[0],mt.d)} – ${f(R.e[1],mt.d)}`:"—";
+    const useI=filled(`s11.${m}.i.${mt.k}`)&&i!=null,useE=filled(`s11.${m}.e.${mt.k}`)&&e!=null;
+    if(T==null){td.innerHTML='<span style="color:var(--err);font-size:12px">先填 Table 1</span>';ag.textContent="—";return;}
+    const vs=[T].concat(useI?[i]:[],useE?[e]:[],R?[...R.i,...R.e]:[]),lo=Math.min(...vs),hi=Math.max(...vs),span=(hi-lo)||Math.abs(T)*0.02||0.01;
+    const a=lo-span*0.08,b=hi+span*0.08,W=180,sc=v=>6+(W-12)*((v-a)/(b-a));
+    let ok=true;
+    if(useI&&useE){const A=(3*i+e)/4;ok=Math.abs(A-T)<=tol(val(`t1.${m}.${mt.k}`))+(tol(val(`s11.${m}.i.${mt.k}`))*3+tol(val(`s11.${m}.e.${mt.k}`)))/4;ag.innerHTML=`<span style="color:var(--${ok?"ok":"err"})">${f(A,mt.d+1)}</span><br><span style="font-size:11px;color:var(--muted)">Δ ${f(Math.abs(i-e),mt.d+1)}</span>`;}else ag.textContent="—";
+    let s=`<svg width="${W}" height="22"><line x1="4" x2="${W-4}" y1="11" y2="11" stroke="#ccc"/>`;
+    if(R){s+=`<rect x="${sc(R.i[0])}" y="5" width="${Math.max(1,sc(R.i[1])-sc(R.i[0]))}" height="12" fill="#16a34a" opacity="0.18"><title>插值合理范围</title></rect>`;
+      s+=`<rect x="${sc(R.e[0])}" y="5" width="${Math.max(1,sc(R.e[1])-sc(R.e[0]))}" height="12" fill="#dc2626" opacity="0.15"><title>外推合理范围</title></rect>`;}
+    s+=`<line x1="${sc(T)}" x2="${sc(T)}" y1="2" y2="20" stroke="${ok?"#111":"#c62828"}" stroke-width="2"/>`;
+    if(useI)s+=`<circle cx="${sc(i)}" cy="11" r="5" fill="#16a34a"><title>插值 ${val(`s11.${m}.i.${mt.k}`)}</title></circle>`;
+    if(useE)s+=`<circle cx="${sc(e)}" cy="11" r="5" fill="#dc2626"><title>外推 ${val(`s11.${m}.e.${mt.k}`)}</title></circle>`;
+    td.innerHTML=s+"</svg>"+(!useI&&!useE?'<span style="font-size:11px;color:var(--muted)">未填</span>':"");
+  }));
+}
+
+function statements(){
+  const rows=[],ready=MET.every(mt=>B.every(m=>num(`t1.${m}.${mt.k}`)!=null||isDel(val(`t1.${m}.${mt.k}`))));
+  const lose=MET.filter(mt=>{const o=num(`t1.Ours.${mt.k}`),bs=B.map(m=>num(`t1.${m}.${mt.k}`)).filter(x=>x!=null);return o!=null&&bs.some(b=>mt.hi?b>=o:b<=o);});
+  rows.push(["§4.2 “DriveCompose leads all six Waymo metrics”",lose.length?`不成立：${lose.map(x=>x.n).join("、")}`:ready?"六项均领先":`已填各项领先；还有 TBD，暂只能确认 ${MET.length-MET.filter(mt=>B.some(m=>num(`t1.${m}.${mt.k}`)==null)).length} 项`,lose.length?false:ready?true:null]);
+  const g1=num("t1.Ours.fp")-num("t1.DGGT.fp"),g2=num("t1.Ours.dp")-num("t1.DGGT.dp");
+  rows.push(["§4.2 “exceeding DGGT by 1.21 and 1.56 dB”（已改）",`复算 ${f(g1,2)} / ${f(g2,2)} dB`,Math.abs(g1-1.21)<0.005&&Math.abs(g2-1.56)<0.005]);
+  const best=k=>B.map(m=>({m,v:num(`t1.${m}.${k}`)})).filter(p=>p.v!=null).reduce((u,p)=>!u||p.v>u.v?p:u,null);
+  const bf=best("fp"),bd=best("dp");
+  if(bf&&bd&&(bf.m!=="DGGT"||bd.m!=="DGGT"))rows.push(["该句用 DGGT 作比较对象",`最强基线已变为 全图 ${bf.m}、动态 ${bd.m}，句子需改写`,false]);
+  B.forEach(m=>{const n=num(`s9.${m}.native`),a=num(`t1.${m}.fp`);if(filled(`s9.${m}.native`)&&n!=null&&a!=null)rows.push([`附录 F 适配器说明（${m}）`,`适配改变 ${f(a-n,2)} dB`,Math.abs(a-n)<=0.2?true:null]);});
+  if(!isDel(val("s1.DGGT.psnr"))){const a=num("s1.Ours.psnr")-num("s1.DGGT.psnr"),b=num("s1.Ours.ssim")-num("s1.DGGT.ssim");rows.push(["附录 A “improves over DGGT by 1.16 dB PSNR and 0.009 SSIM”",`复算 ${f(a,2)} dB / ${f(b,3)}`,Math.abs(a-1.16)<0.005&&Math.abs(b-0.009)<0.0005]);}
+  const gn=k=>num(`s17.${k}.ours`)-num(`s17.${k}.wo`),ms=["bgMiss","vehMiss","humMiss"].map(gn),ws=["bgWell","vehWell","humWell"].map(gn);
+  rows.push(["附录 H “1.02, 1.28, and 1.54 dB … severely missing”",`复算 ${ms.map(x=>f(x,2)).join(" / ")}`,[1.02,1.28,1.54].every((x,i)=>Math.abs(ms[i]-x)<0.005)]);
+  rows.push(["附录 H “well-observed regions gain 0.04, 0.04, and 0.03 dB”",`复算 ${ws.map(x=>f(x,2)).join(" / ")}`,[0.04,0.04,0.03].every((x,i)=>Math.abs(ws[i]-x)<0.005)]);
+  stmts.innerHTML=`<table><tr><th>陈述</th><th>按当前填写复算</th><th>正文要改？</th></tr>${rows.map(([a,b,ok])=>`<tr><td>${a}</td><td>${b}</td><td>${ok===null?'<span style="color:var(--warn)">待定</span>':ok?'<span style="color:var(--ok)">不用</span>':'<b style="color:var(--err)">要改</b>'}</td></tr>`).join("")}</table>`;
+  S17R.forEach(([k])=>{const td=document.querySelector(`[data-gain="${k}"]`),g=gn(k);td.textContent=isNaN(g)?"—":(g>=0?"+":"")+f(g,2)+" dB";});
+  B.forEach(m=>{const a=num(`t1.${m}.fp`),n=num(`s9.${m}.native`);document.querySelector(`[data-ad="${m}"]`).textContent=val(`t1.${m}.fp`);document.querySelector(`[data-dl="${m}"]`).textContent=filled(`s9.${m}.native`)&&a!=null&&n!=null?f(a-n,2)+" dB":"—";});
+  M.forEach(m=>["ar","d1"].forEach(k=>document.querySelector(`[data-al="${m}.${k}"]`).textContent=val(`t1.${m}.${k}`)));
+}
+
+let last=[];
+function refresh(){
+  const is=compute();last=is;
+  const rank={err:3,warn:2,ok:1,info:0},by={};
+  is.forEach(x=>x.keys.forEach(k=>{if(!by[k]||rank[x.lv]>rank[by[k].lv])by[k]=x;}));
+  document.querySelectorAll("td.cell").forEach(td=>{const k=td.dataset.cell,x=by[k],st=td.querySelector(".st");
+    td.classList.remove("lv-err","lv-warn","lv-ok");
+    if(x&&x.lv!=="info"){td.classList.add("lv-"+x.lv);st.textContent=x.lv==="ok"?"✓":(x.lv==="err"?"✗ ":"! ")+x.msg;st.title=x.msg;st.style.color=`var(--${x.lv})`;}
+    else{st.textContent="";st.title="";}});
+  const req=Object.keys(REQ),done=req.filter(k=>filled(k)&&!isTBD(val(k))).length;
+  bar.style.width=(100*done/req.length)+"%";prog.textContent=`必填 ${done}/${req.length}`;
+  const c=l=>is.filter(i=>i.lv===l).length;nErr.textContent=`错误 ${c("err")}`;nWarn.textContent=`警告 ${c("warn")}`;nOk.textContent=`通过 ${c("ok")}`;
+  const show={err:fErr.checked,warn:fWarn.checked,info:fInfo.checked,ok:fOk.checked},ord=["err","warn","info","ok"];
+  issues.innerHTML=is.filter(i=>show[i.lv]).sort((a,b)=>ord.indexOf(a.lv)-ord.indexOf(b.lv)).map(i=>`<div class="issue ${i.lv}" data-jump="${i.keys[0]}">${esc(i.msg)}</div>`).join("")||'<p class="desc">没有需要显示的条目。</p>';
+  charts();vizS11();statements();
+}
+
+document.addEventListener("input",e=>{const t=e.target;
+  if(t.dataset.k)S.v[t.dataset.k]=t.value;else if(t.dataset.delta){const [k,j]=t.dataset.delta.split(".");S.delta[k]=S.delta[k]||[];S.delta[k][+j]=t.value;}else if(t.dataset.meta)S.meta[t.dataset.meta]=t.value;else if(t.dataset.chk)S.chk[t.dataset.chk]=t.checked;else if(t.id==="notes")S.notes=t.value;else return;
+  save();refresh();});
+document.addEventListener("change",e=>{if(e.target.matches("select,[data-chk]"))e.target.dispatchEvent(new Event("input",{bubbles:true}));});
+["fErr","fWarn","fInfo","fOk"].forEach(id=>document.getElementById(id).addEventListener("change",ev=>{ev.stopPropagation();refresh();}));
+issues.addEventListener("click",e=>{const d=e.target.closest("[data-jump]");if(!d)return;const k=d.dataset.jump;
+  let el=document.querySelector(`[data-cell="${k}"]`)||(k.startsWith("chk.")?document.querySelector(`[data-chk="${k.slice(4)}"]`):null)||(k.startsWith("meta.")?document.getElementById("sec-meta"):null);
+  if(!el)return;el.scrollIntoView({behavior:"smooth",block:"center"});el.classList.add("hl");setTimeout(()=>el.classList.remove("hl"),1500);const inp=el.querySelector&&el.querySelector("input");if(inp)inp.focus({preventScroll:true});});
+
+function payload(){return JSON.stringify({form:"drivecompose-numbers",version:2,savedAt:new Date().toISOString(),
+  values:Object.fromEntries(Object.keys(CUR).filter(filled).map(k=>[k,tr(S.v[k])])),final:Object.fromEntries(Object.keys(CUR).map(k=>[k,val(k)])),
+  paperCurrent:CUR,meta:S.meta,confirm:S.chk,notes:S.notes,issues:last.filter(i=>i.lv!=="ok").map(i=>({level:i.lv,keys:i.keys,msg:i.msg}))},null,2);}
+btnExport.onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([payload()],{type:"application/json"}));a.download="drivecompose-numbers-v2.json";a.click();URL.revokeObjectURL(a.href);};
+btnCopy.onclick=async()=>{try{await navigator.clipboard.writeText(payload());alert("已复制，可直接粘贴到对话中。");}catch(e){const w=window.open("","_blank");w.document.write("<pre>"+esc(payload())+"</pre>");}};
+btnImport.onclick=()=>fileImport.click();
+fileImport.onchange=e=>{const fl=e.target.files[0];if(!fl)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);
+  const v={};Object.entries(d.values||{}).forEach(([k,x])=>{if(k in CUR&&tr(x)!==tr(CUR[k]))v[k]=x;});
+  S={v,meta:d.meta||{},chk:d.confirm||{},notes:d.notes||""};
+  if(d.version===1&&d.meta){ /* v1 meta keys differ; ignore */ S.meta={}; }
+  save();render();refresh();}catch(err){alert("无法读取："+err.message);}};r.readAsText(fl,"utf-8");};
+btnClear.onclick=()=>{if(!confirm("清空所有已填内容？"))return;S={v:{},meta:{},chk:{},notes:""};save();render();refresh();};
+render();refresh();
+</script>
+</body>
+</html>
