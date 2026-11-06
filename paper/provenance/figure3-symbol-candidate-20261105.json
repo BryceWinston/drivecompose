@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-05",
+  "status": "superseded_by_compact_symbol_candidate",
+  "user_instruction": "Do not change the caption. Replace the text in the attached local-attention region with symbols.",
+  "source_candidate": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-figure3-symbol-candidate\\baseline\\paper\\fig\\fig03-joint-completion-revised.pdf",
+  "source_candidate_sha256": "7412b4eae8a89d124ef24c0a7b2bde596ea247087752d13d5d6a78c6a7852a53",
+  "candidate": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\fig\\fig03-joint-completion-revised.pdf",
+  "candidate_sha256": "5b88cc872d3bc68bc3e5bb72b2cdcb92320f928253bcd53af0a9b3751baedeb4",
+  "symbol_mapping": {
+    "Local attention": "Attn_g",
+    "Background": "X_b",
+    "Rigid": "X_r",
+    "Human": "X_h"
+  },
+  "notation_source": "g_i is the local-attention group in paper/sec/3_method.tex:42; Attn is consistent with the operator family in lines 91-94. b/r/h are component mnemonics.",
+  "caption_policy": "Both comparison panels use the exact original English caption. The actual English/Chinese manuscript captions are untouched. The prior expanded-caption draft is withdrawn and archived.",
+  "projection_operator_pi_mf_retained": true,
+  "all_113_vector_drawings_unchanged": true,
+  "other_22_candidate_text_objects_unchanged": true,
+  "text_objects_before": 26,
+  "text_objects_after": 30,
+  "raster_images": 0,
+  "pixel_checks": {
+    "1": {
+      "all_pixels_outside_four_label_regions_identical": true
+    },
+    "2": {
+      "all_pixels_outside_four_label_regions_identical": true
+    }
+  },
+  "original_figure_sha256_unchanged": "6978ecdd8aaadf84fbac991163a7b60a5a119ce4e10b81e981eaa97f3a819ffd",
+  "original_manuscripts_untouched": true,
+  "protected_original_files_unchanged": 66,
+  "comparison_pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-figure3-symbol-candidate\\comparison.pdf",
+  "active_paper_figure_replaced": false,
+  "paper_recompiled": false,
+  "visual_review": {
+    "renderer": "Poppler pdftoppm",
+    "images": [
+      "candidate-poppler.png",
+      "comparison.png"
+    ],
+    "result": "Attn_g and X_b/X_r/X_h are clear of the arcs and tokens. Both comparison panels match the original caption after line-wrap and canonical Unicode normalization."
+  },
+  "caption_text_en_zh_matches_original": true,
+  "superseded_by": "paper/provenance/figure3-symbol-compact-candidate-20261105.json",
+  "archived_candidate_pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-figure3-symbol-compact\\before.pdf"
+}

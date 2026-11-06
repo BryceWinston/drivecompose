@@ -1,3 +1,63 @@
+## 2026-11-06 四份材料重新编译并归档临时文件
+
+已按当前工作区源文件重新编译并核验中英文主稿与补充材料，再替换四份正式 PDF。英文／中文主稿共 11／10 页，完整正文止于第 8／7 页；英文／中文补充材料共 12／10 页，表 S1–S25 完整。43 页已渲染复核，最终日志无新增警告、缺字、未定义引用或溢出。
+
+论文文字、图注、数值、模板及当前活动图件保持。旧候选、原稿副本、自动备份及缓存共 29 份已移至[仓库外归档](../../_archive/drivecompose/20261106-recompile-cleanup/)；活动 Teaser PDF／draw.io、加框图 3 PDF／SVG／PPTX、组件消融图及六张原始结果图保留。旧正文中的候选路径按[迁移清单](../../_archive/drivecompose/20261106-recompile-cleanup/archive-manifest.json)追溯。
+
+80 项历史审计中 76 项通过，4 项旧图源核验与清理前一致；该审计与本轮通过的编译、当前资源、完整正文和排版检查分别记录。详见[本轮验收](provenance/recompile-cleanup-20261106.json)、[修改对照](../docs/paper-revision-changes.md)及[正式输出](build/CURRENT-OUTPUTS.md)。
+
+---
+
+## 2026-11-06 简化版 Teaser 已正式采用
+
+作者确认的[新版 Teaser](fig/fig01-teaser.pdf)已逐字节替换正式图，匹配的[可编辑 draw.io](fig/fig01-teaser.drawio)与[预览](fig/fig01-teaser-preview.png)同步更新：加宽画布，输入箭头停在框外，删除三个组件标签及连线，Shared scene context 和向量居中于主场景上方。原稿和替换前正式版均保留。
+
+[英文主稿](build/en/main.pdf)和[中文主稿](build/zh/main_zh.pdf)均已真实重编并写回正式路径，分别11／10页，完整正文止于第8／7页。正文、图注源文、其余图件和补充材料保持；首页与全稿缩略图已复核，无新增编译警告。[当前输出](build/CURRENT-OUTPUTS.md)、[实际对照](../docs/paper-revision-changes.md)和[本轮采用及验收](provenance/teaser-style-adoption-20261106.json)可追溯。
+
+---
+
+## 2026-11-06 英文图表位置调整
+
+参考 6 篇 CVPR 2025／2026 正式录用论文，已将图 3 放入第 4 页 §3.3；第 8 页两张定量消融表及分析集中左栏，图 6 位于右栏顶部。正文、图注、数据、图件尺寸与模板保持。英文正式稿真实重编，11 页总 PDF，完整技术正文、结论和全部图表仍止于第 8 页；29 项本轮核验通过。中文及两版补充材料保持。
+
+详细来源、前后对照和历史检查情况见本轮修改记录与 `paper/provenance/figure-table-layout-20261106.json`。全部中间文件与真实基线存于 `pre-research/_archive/drivecompose/20261106-cvpr-float-layout/`。
+
+---
+
+## 2026-11-06 确认的加框版图 3 已替换中英文主稿
+
+按作者确认，将中英文方法源文中图 3 的插图路径由 `fig/fig03-joint-completion.pdf` 切换为 `fig/fig03-joint-completion-core-boxed.pdf`。只改两处路径，原中英文图注、图号、单栏宽度、技术正文和公式保持；原图及所有候选继续保留。
+
+两版均已真实重编并替换正式输出：[英文主稿](build/en/main.pdf)、[中文主稿](build/zh/main_zh.pdf)。图 3 仍在两版第 4 页，约 83.34 × 50.14 mm；相比原图同宽放置约减少 3.46 mm 高度。英文／中文仍共 11／10 页，完整正文止于第 8／7 页。
+
+已检查图 3、前后页、完整总结页及中文第 6 页的既有结果浮动页。批准图中的 83 条矢量绘制、24 个原生文字和 16 处矢量渐变均在两版编译 PDF 中匹配；图注源文和渲染文字均保持。Poppler 复核没有新增裁切、重叠或浮动异常，无新增最终编译警告。全量检查器 80 项中既有历史图源失败由 5 项减为 4 项，没有新增失败；旧图源问题未在本轮扩展处理。
+
+[中英文第 4 页排版预览](../../_archive/drivecompose/20261106-figure3-boxed-adoption/layout-preview.png)与[本轮采用、编译及验收](provenance/figure3-boxed-adoption-20261106.json)可直接核对。两版补充材料及其他图件未改，未重编补充材料。编译中间文件和真实修改前基线保存在外部归档。
+
+---
+
+## 2026-11-05 确认版 Teaser 入稿
+
+两版首页已采用作者确认的 [Teaser PDF](fig/fig01-teaser.pdf)，对应[可编辑 draw.io](fig/fig01-teaser.drawio)。英文、中文主稿均已真实重编并替换正式输出，共 11／10 页，正文仍止于第 8／7 页。原稿与确认候选保留，其他技术正文和图件保持；英文工具说明补记实际 Image Gen 用途。见[当前输出](build/CURRENT-OUTPUTS.md)、[修改对照](../docs/paper-revision-changes.md)及[来源与验收](provenance/teaser-coordinated-preview-20261105.json)。
+
+---
+
+## 2026-11-05 单栏组件消融图与对应分析入稿
+
+中英文主稿 §4.5 已加入单栏图 6 与两句视觉分析；英文／中文 PDF 共 11／10 页，完整正文仍止于第 8／7 页。图与组件表分别位于第 8／7 页。已有数值与协议保持，两版补充材料未改。
+
+[六张原图](fig/source/component-ablation/)、[图 6 PDF](fig/fig06-component-ablation.pdf)、[可编辑 SVG](fig/fig06-component-ablation.svg)与[生成脚本](tools/make_component_ablation.py)均在工程内。图源重建：在 `paper/` 运行 `python tools/make_component_ablation.py`（Pillow、PyMuPDF；默认使用 Windows Times New Roman，可通过 `--font-file` 指定字体）。[修改对照](../docs/paper-revision-changes.md)、[来源与验收](provenance/component-ablation-figure-20261105.json)。
+
+---
+
+## 2026-11-04 正文消融收拢为两组核心实验
+
+正文消融现为两段、两张表：组件贡献与输入数量敏感性。完整隐藏机制、可见率、编辑后表面及自由空间证据保留在补充材料；所有既有结果值保持。中英文主稿及两版补充材料均已编译、核验并更新至原正式路径。英文／中文主稿共 11／10 页，完整正文止于第 8／7 页；英文／中文补充材料共 12／10 页。
+
+75 项既有稿件检查及 107 项本轮源文、数据保留与编译核验通过；四份最终日志无未定义引用、缺字或溢出。补充表编号连续为 S1–S25。受影响正文与补充页已渲染复核。详见[当前输出](build/CURRENT-OUTPUTS.md)、[修改对照](../docs/paper-revision-changes.md)与[来源记录](provenance/core-ablation-revision-20261104.json)。
+
+---
+
 ## 2026-11-04 源码协作与编译
 
 已同步同事提交 `edcd19c`，保留补充材料、正式引文、使用说明与新机制矢量图。当前编译必需的五份图件 PDF 统一位于 `fig/` 并纳入 Git，拉取后无需另行复制文件。PPT、重编后的论文成品 PDF 和历史素材不随本次提交上传。来源和可编辑文件见[图件索引](../docs/figures/README.md)。
@@ -59,7 +119,7 @@ latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=../build/supp-
 - `main.tex`：英文入口；`sec/`：英文各章节。
 - `main_zh.tex`：中文入口；`zh/`：中文各章节，采用与英文相同的方法符号与结构。
 - `main.bib`：两版共用的 84 条当前引用。用户 DOCX 的 75 条全部纳入，9 条与原书目重复、新增 66 条；文档之外的 9 条项目近邻工作保留。逐条引用位置见 [引用接入记录](provenance/reference-integration-20261021.md)。
-- `fig/fig01-teaser.pptx` / `fig/fig01-teaser.pdf`：本机保留的作者最终可编辑 PPT 与原生 PDF，作为两版首页图 1。
+- `fig/fig01-teaser.drawio` / `fig/fig01-teaser.pdf`：作者确认的当前可编辑 draw.io 与原生 PDF，作为两版首页图 1；文字和箭头原生可编辑，场景为独立位图。最初原稿保留为 `fig01-teaser-original.drawio` / `fig01-teaser-original.pdf`。
 - `fig/fig02-overview.pptx` / `fig/fig02-overview.pdf`：图 2；保留本机可编辑 PPT，PDF 采用同事本次同步的作者指定原件，原样改名。
 - `fig/fig03-joint-completion.pdf`：图 3；采用同事本次同步的修正后机制矢量图。原生 draw.io 源稿及原始导出保存在同步归档，入口见[图件索引](../docs/figures/README.md)。
 - `fig/fig04-dynamic-reconstruction.pdf`：原 PNG 的无损 PDF 封装；实验图像像素保持。

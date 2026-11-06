@@ -1,4 +1,101 @@
+## 2026-11-06 四份材料按当前源文件重新编译
+
+- [英文主稿](en/main.pdf)：11 页，完整总结和正文结束标签均在第 8 页；[中文主稿](zh/main_zh.pdf)：10 页，完整正文止于第 7 页。
+- [英文补充](supp-en/main.pdf)：12 页；[中文补充](supp-zh/main_zh.pdf)：10 页。两版表 S1–S25 完整。
+- 四份 PDF 均由本轮新编译生成、核验后写回正式路径。全部 43 页已渲染，两版正文末页另经 Poppler 复核；最终日志无新增警告、缺字、未定义引用或溢出。已采用图件与全部论文源文件保持。
+- 29 份旧候选、备份、缓存和检查文件及本轮检查输出已归档。历史图源审计的 4 项既有失败保持，无新增失败；与本轮成功的重编和 PDF 核验分别记录。
+- [重编、归档与核验记录](../provenance/recompile-cleanup-20261106.json)、[本轮实际对照](../../docs/paper-revision-changes.md)。
+
+---
+
+## 2026-11-06 简化版 Teaser 已替换两版首页
+
+[英文主稿](en/main.pdf)与[中文主稿](zh/main_zh.pdf)已采用作者确认的 revision 4 Teaser 真实重编并替换正式输出。正式[图1 PDF](../fig/fig01-teaser.pdf)与确认候选字节一致，同步[可编辑源](../fig/fig01-teaser.drawio)和[预览](../fig/fig01-teaser-preview.png)。加宽画布、框外分流箭头、删除三处组件标签及连线、context 和向量居中均已入稿。
+
+英文／中文仍共11／10页，完整正文分别止于第8／7页；全部图表页码保持。43份正文、书目及样式源文件保持，首页高度变化引起自然重排。14张图内位图在两版首页中像素一致，无新增编译警告；中文第6页既有浮动页提示保留。检查器76／80项通过，4项历史图源失败与基线一致，无新增失败。
+
+[两版首页](../../../_archive/drivecompose/20261106-teaser-context-adoption/layout-preview.png)、[采用和完整核验](../provenance/teaser-style-adoption-20261106.json)、[实际前后对照](../../docs/paper-revision-changes.md)。最初原稿保留在原路径，替换前正式图与主稿、日志和所有中间产物存于外部归档。
+
+---
+
+## 2026-11-06 英文图表位置调整
+
+参考 6 篇 CVPR 2025／2026 正式录用论文，已将图 3 放入第 4 页 §3.3；第 8 页两张定量消融表及分析集中左栏，图 6 位于右栏顶部。正文、图注、数据、图件尺寸与模板保持。英文正式稿真实重编，11 页总 PDF，完整技术正文、结论和全部图表仍止于第 8 页；29 项本轮核验通过。中文及两版补充材料保持。
+
+详细来源、前后对照和历史检查情况见本轮修改记录与 `paper/provenance/figure-table-layout-20261106.json`。全部中间文件与真实基线存于 `pre-research/_archive/drivecompose/20261106-cvpr-float-layout/`。
+
+---
+
+## 2026-11-06 确认的加框版图 3 已替换中英文主稿
+
+按作者确认，将中英文方法源文中图 3 的插图路径由 `fig/fig03-joint-completion.pdf` 切换为 `fig/fig03-joint-completion-core-boxed.pdf`。只改两处路径，原中英文图注、图号、单栏宽度、技术正文和公式保持；原图及所有候选继续保留。
+
+两版均已真实重编并替换正式输出：[英文主稿](en/main.pdf)、[中文主稿](zh/main_zh.pdf)。图 3 仍在两版第 4 页，约 83.34 × 50.14 mm；相比原图同宽放置约减少 3.46 mm 高度。英文／中文仍共 11／10 页，完整正文止于第 8／7 页。
+
+已检查图 3、前后页、完整总结页及中文第 6 页的既有结果浮动页。批准图中的 83 条矢量绘制、24 个原生文字和 16 处矢量渐变均在两版编译 PDF 中匹配；图注源文和渲染文字均保持。Poppler 复核没有新增裁切、重叠或浮动异常，无新增最终编译警告。全量检查器 80 项中既有历史图源失败由 5 项减为 4 项，没有新增失败；旧图源问题未在本轮扩展处理。
+
+[中英文第 4 页排版预览](../../../_archive/drivecompose/20261106-figure3-boxed-adoption/layout-preview.png)与[本轮采用、编译及验收](../provenance/figure3-boxed-adoption-20261106.json)可直接核对。两版补充材料及其他图件未改，未重编补充材料。编译中间文件和真实修改前基线保存在外部归档。
+
+---
+
+## 2026-11-05 确认版 Teaser 已入稿
+
+[英文主稿](en/main.pdf)和[中文主稿](zh/main_zh.pdf)已用作者确认的 Teaser 真实重编，并保存至正式路径。首页采用上下对齐、箭头留白及已修正空间位置与人体未知面的版本；与候选 PDF 字节一致的正式图件为 [fig01-teaser.pdf](../fig/fig01-teaser.pdf)。
+
+英文／中文共 11／10 页，完整正文仍止于第 8／7 页。首页新图、原图注、正文末页及全页布局已检查；新局部图像在两版编译 PDF 中与确认图解码像素一致。英文工具使用说明补记了 Image Gen 的实际用途，其他技术源文、图件及补充材料保持，无新增编译警告。原稿保留，细节见[修改对照](../../docs/paper-revision-changes.md)与[采用和核验](../provenance/teaser-coordinated-preview-20261105.json)。
+
+---
+
+## 2026-11-05 收紧图 3 删除文字后的空白
+
+[英文主稿](en/main.pdf)和[中文主稿](zh/main_zh.pdf)均已真实重编并保存到正式路径。图 3 高度由 760 pt 收紧至 620 pt，宽度、字号和模块尺寸不变；采样流程上移，公式、速度头及关联连线同步靠拢。
+
+两版图 3 均位于第 4 页，英文／中文共 11／10 页，完整正文仍止于第 8／7 页。保留另一任务同期更新的图 1，并用当前图件重编；其他源文、图件和补充 PDF 保持。最终文字差异仅为参考文献页码回引，正文源文未修改。Poppler 页面复核无重叠或裁切，编译无新增警告；检查器 5 项历史图源失败保持，本轮未新增失败。正式输出哈希及验收见[本轮记录](../provenance/figure3-compact-layout-20261105.json)，中间产物统一保存在外部归档。
+
+---
+
+## 2026-11-05 删除图 3 的六处指定文字
+
+[英文主稿](en/main.pdf)与[中文主稿](zh/main_zh.pdf)已真实重编并保存到正式路径。删除图 3 的 `Cross-component context`、`Shared memory`、`Fixed query layout`、`Constrained update`、`(unknown only)`、`after S`；其余对象和页面尺寸保持。
+
+两版图 3 均位于第 4 页，英文／中文共 11／10 页，正文仍止于第 8／7 页。全文文本差异只包含上述六处文字，其他源文、图件及补充 PDF 保持；Poppler 页面复核无裁切或重叠。检查器 5 项历史图源失败与基线相同，本轮未新增失败。[本轮来源和验收](../provenance/figure3-label-removal-20261105.json)记录正式输出哈希，全部中间产物位于外部归档。
+
+---
+
+## 2026-11-05 删除图 3 底部图例
+
+[英文主稿](en/main.pdf)和[中文主稿](zh/main_zh.pdf)已真实重编并替换至正式路径，图 3 均位于第 4 页，截图中的三项图例、符号及外框已移除。英文／中文共 11／10 页，正文仍止于第 8／7 页。其余图件、正文源文、图注和两版补充材料保持。
+
+图 3 保留区域逐像素一致；Poppler 独立图件及两版第 4 页复核通过，无新增编译警告。80 项既有检查的 5 项历史图源失败与基线相同。来源、原文件哈希与当前输出哈希见[本轮验收](../provenance/figure3-legend-removal-20261105.json)。全部中间产物存于 `../../../_archive/drivecompose/20261105-figure3-remove-legend/`。
+
+---
+
 # 当前论文 PDF
+
+## 2026-11-05 单栏组件消融图与对应分析入稿
+
+- [英文主稿](en/main.pdf)：本轮真实重编，11 页；完整正文与图 6 在第 8 页。
+- [中文主稿](zh/main_zh.pdf)：本轮真实重编，10 页；完整正文与图 6 在第 7 页。
+- 图 6 为单栏，两组样例，Ours 位于第一列；标签实际约 9 pt。既有表 3／4 的源文逐字保持。
+- 42 项专项核验通过；全量检查器 80 项中 75 项通过，5 项旧图来源失败与修改前相同。两版补充文件保持原哈希，未重编。
+- [本轮前后对照](../../docs/paper-revision-changes.md)、[图件来源与验收](../provenance/component-ablation-figure-20261105.json)。日志、辅助文件及本轮真实基线存入外部归档。
+
+---
+
+## 2026-11-04 正文消融收拢为两组核心实验
+
+中英文主稿及两版补充材料均已编译、核验并更新至原正式路径。
+
+- [英文主稿](en/main.pdf)，已更新至正式路径。
+- [中文主稿](zh/main_zh.pdf)、[英文补充](supp-en/main.pdf)、[中文补充](supp-zh/main_zh.pdf)均已更新。
+- 英文／中文主稿共 11／10 页，完整正文止于第 8／7 页；英文／中文补充材料共 12／10 页。
+- 正文 §4.5 为组件表 3 与输入数量表 4；组件完整指标和 SD 在附录 G。编辑后表面表移入附录 I 为 S19，后续补充表顺延至 S25。
+- 75 项既有稿件检查及 107 项本轮源文、数据保留与编译核验通过；四份最终日志无未定义引用、缺字或溢出。补充表编号连续为 S1–S25。受影响正文与补充页已渲染复核。
+- 内置编辑器预览返回“超过 20 MiB 上限”；正式 PDF 使用项目原有 Tectonic 编译器构建。Codex LaTeX 编辑器保持打开。
+
+[本轮前后对照](../../docs/paper-revision-changes.md)、[来源与验收](../provenance/core-ablation-revision-20261104.json)。
+
+---
 
 ## 2026-11-04 协作构建依赖已纳入 Git
 
@@ -201,7 +298,7 @@
 - [中文当前版](zh/main_zh.pdf)
 - [表格预览（已归档）](../../../_archive/drivecompose/20261026-tracked-intermediates/paper/build/ablation-tables-preview.png)
 
-当前编译状态以各语言目录的 `compile-result.json` 为准；逐格数值、T=8 跨表一致性及双语检查见 [核验记录](verification.json)，数据来源见 [消融结果记录](../provenance/ablation-results-20261023.json)。`ablation-framework-check.json` 是 2026-10-21 空表阶段的历史检查，现已移入项目外归档。修改前稿件、PDF 和本轮临时检查文件存入项目外 `pre-research/_archive/drivecompose/20261023-ablation-results/`。
+当前编译状态以各语言目录的 `compile-result.json` 为准；逐格数值、T=8 跨表一致性及双语检查见 [核验记录](../../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/build/verification.json)，数据来源见 [消融结果记录](../provenance/ablation-results-20261023.json)。`ablation-framework-check.json` 是 2026-10-21 空表阶段的历史检查，现已移入项目外归档。修改前稿件、PDF 和本轮临时检查文件存入项目外 `pre-research/_archive/drivecompose/20261023-ablation-results/`。
 
 2026-10-23 按用户要求移除无世界坐标和软观测对照。此次修改前的稿件、PDF 与检查材料保存在项目外 pre-research/_archive/drivecompose/20261023-ablation-simplification/。
 

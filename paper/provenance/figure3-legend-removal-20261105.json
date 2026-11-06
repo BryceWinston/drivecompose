@@ -1,0 +1,116 @@
+{
+  "date": "2026-11-05",
+  "status": "complete",
+  "author_instruction": "Remove the bottom legend shown in the supplied screenshot from DriveCompose Figure 3.",
+  "baseline_head": "5b46f9eb8e131314430a2f2fa5193dadd16dc296",
+  "baseline_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-figure3-remove-legend\\baseline",
+  "baseline_figure_sha256": "93a923a7ffe450b28aa9a5fe315b41d6bcbac7d37d3fdab5d25bc6964b018444",
+  "active_figure": "paper/fig/fig03-joint-completion.pdf",
+  "active_figure_sha256": "2a19c18a3f83b040f5dd928204a917647c62bbe97e8d4bb55dea37b472ad7a0e",
+  "operations": [
+    "Delete the contiguous native PDF content-stream suffix containing only the legend panel, its three symbols and seven text spans.",
+    "Close the two remaining graphics-state scopes; retain every content-stream byte preceding the legend.",
+    "Set the MediaBox lower bound to 85.039978 points, keeping its original upper bound, to remove the unused bottom band without shifting the retained artwork."
+  ],
+  "removed_labels": [
+    "Observed / fixed",
+    "Unknown / updated",
+    "Free / zero"
+  ],
+  "removed_pdf_drawings": 13,
+  "removed_text_spans": 7,
+  "vector_drawings_after": 113,
+  "raster_images_after": 0,
+  "original_page_size_points": [
+    964.079956,
+    845.039978
+  ],
+  "new_page_size_points": [
+    964.079956,
+    760
+  ],
+  "preserved_region_pixels_exact_at_scales": [
+    1,
+    2
+  ],
+  "preserved_text_exact": true,
+  "native_source_status": "The matching draw.io source recorded previously is unavailable in the checkout; historical variants are preserved. Current revision directly edits the author-selected native-vector PDF.",
+  "baseline_check": {
+    "total": 80,
+    "passed": 75,
+    "preexisting_failures": [
+      "fig:joint-completion:editable_source_matches_record",
+      "figure1_approved_pixels_exact",
+      "figure2_approved_pixels_exact",
+      "mechanism_author_selected_image_exact",
+      "figure3_approved_pixels_exact"
+    ]
+  },
+  "scope": "Figure 3 PDF, current figure provenance, compiled English/Chinese main PDFs and concise change records.",
+  "outputs": {
+    "en": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "sha256": "7a1aa77b93fb9048abccaf1cb211575d45eb775879fafcae77049a4d82a0b502",
+      "total_pages": 11,
+      "figure_page": 4,
+      "body_last_page": 8,
+      "layout_warnings": [],
+      "removed_text_tokens": {
+        "Observed": 1,
+        "fixed": 1,
+        "0": 1,
+        "Unknown": 1,
+        "updated": 1,
+        "Free": 1,
+        "zero": 1,
+        "7": 2
+      },
+      "added_text_tokens": {
+        "6": 2
+      }
+    },
+    "zh": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+      "sha256": "c730f25372784193bacc1c3d3a6d57f4a9f1a2c32452635bd945e40addd5c60a",
+      "total_pages": 10,
+      "figure_page": 4,
+      "body_last_page": 7,
+      "layout_warnings": [],
+      "removed_text_tokens": {
+        "Observed": 1,
+        "0": 1,
+        "fixed": 1,
+        "Unknown": 1,
+        "updated": 1,
+        "Free": 1,
+        "zero": 1
+      },
+      "added_text_tokens": {}
+    }
+  },
+  "preserved_files_unchanged": 56,
+  "manuscript_check_after": {
+    "passed": false,
+    "checks": 80,
+    "failed": [
+      "fig:joint-completion:editable_source_matches_record",
+      "figure1_approved_pixels_exact",
+      "figure2_approved_pixels_exact",
+      "mechanism_author_selected_image_exact",
+      "figure3_approved_pixels_exact"
+    ],
+    "bibliography_entries": 52,
+    "math_blocks": 9
+  },
+  "new_manuscript_check_failures": [],
+  "visual_review": {
+    "renderer": "Poppler pdftoppm",
+    "views": [
+      "after-poppler.png",
+      "en-page4.png",
+      "zh-page4.png"
+    ],
+    "result": "Legend absent; retained native artwork unchanged; no new overlaps or clipping on either Figure 3 page."
+  },
+  "unrelated_manuscript_sources_figures_and_supplement_pdfs_unchanged": true
+}

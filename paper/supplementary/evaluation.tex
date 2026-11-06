@@ -284,6 +284,27 @@ All components & \textbf{28.913} \\
 \section{State-driven asset reuse}
 \label{sec:supp-reuse}
 
+\paragraph{Paired synthetic edits.}
+Twenty identity-disjoint synthetic test scenes each contain one vehicle and one human. A 1 m camera shift, $30^\circ$ vehicle rotation, and human pose change reuse fixed completed assets. Joint completion gives the best PSNR, LPIPS, and surface coverage for newly visible surfaces (Table~\ref{tab:asset-reuse}).
+
+\begin{table}[!htbp]
+\centering\small
+\setlength{\tabcolsep}{1.5pt}
+\caption{\textbf{Newly visible asset surfaces after editing.} Completion ablations in paired synthetic tests; vehicle/human coverage thresholds are 2/1 cm.}
+\label{tab:asset-reuse}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrr@{}}
+\toprule
+Variant & \multicolumn{3}{c}{Vehicle (2 cm)} & \multicolumn{3}{c}{Human (1 cm)}\\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+& PSNR$\uparrow$ & LPIPS$\downarrow$ & Cov.$\uparrow$ & PSNR$\uparrow$ & LPIPS$\downarrow$ & Cov.$\uparrow$\\
+\midrule
+w/o GCM & 17.80 & 0.362 & 63.4\% & 17.12 & 0.391 & 60.8\%\\
+w/o CCM & 22.46 & 0.218 & 91.8\% & 21.38 & 0.247 & 88.6\%\\
+Ours & \textbf{24.18} & \textbf{0.176} & \textbf{96.1\%} & \textbf{23.06} & \textbf{0.201} & \textbf{94.3\%}\\
+\bottomrule
+\end{tabular*}
+\end{table}
+
 \begin{table}[!htbp]
 \centering\small
 \caption{Structural integrity of real actor edits with training seed 0 and generation seed 7. Columns give successes.}

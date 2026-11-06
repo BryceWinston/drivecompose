@@ -1,15 +1,15 @@
 # DriveCompose 消融实验方案
 
-版本：2026-10-29。按用户确认，仅保留组件消融和输入数量敏感性两张表，采用通用图像指标，已填入作者本次提供的 33 个汇总结果。数据见 `paper/provenance/ablation-standard-metrics-20261029.json`；此前自定义指标结果仅作历史溯源，不转换为新指标。
+版本：2026-11-04。按用户确认，正文仅保留组件消融和输入数量敏感性两张表，采用通用图像指标，共展示 30 格既有均值；完整 33 格均值与 SD 保留在附录 G。原始数据见 `paper/provenance/ablation-standard-metrics-20261029.json`，本轮展示选择见 `paper/provenance/core-ablation-revision-20261104.json`。此前自定义指标结果仅作历史溯源，不转换为新指标。
 
 ## 范围与指标
 
 | 实验 | 对照 | 全图指标 | 动态区域指标 |
 | --- | --- | --- | --- |
-| 组件消融 | w/o GCM、w/o CCM、Ours | PSNR ↑、SSIM ↑、LPIPS ↓ | PSNR ↑、SSIM ↑ |
+| 组件消融 | w/o GCM、w/o CCM、Ours | PSNR ↑、SSIM ↑、LPIPS ↓ | PSNR ↑；SSIM 留附录 |
 | 输入数量 | 每档 T=2/4/8 比较 w/o CCM 与 Ours | PSNR ↑、SSIM ↑、LPIPS ↓ | 本表不设此列 |
 
-组件表 3 行、每行 5 个结果格，共 15 格；输入表 6 行、每行 3 个结果格，共 18 格。两版表格均按作者原值保留三位小数；组件表按列、输入表在各 T 内标粗最优值。既有状态复用段落保留，不新增消融图或额外主表。
+正文组件表 3 行、每行 4 个结果格，共 12 格；输入表 6 行、每行 3 个结果格，共 18 格。两版表格均按作者原值保留三位小数；组件表按列、输入表在各 T 内标粗最优值。既有状态复用段落保留，不新增消融图或额外主表。
 
 ## 数据与输入
 
@@ -46,6 +46,10 @@
 
 ## 来源与当前状态
 
-文献依据见 [前馈高斯消融调研](paper-literature-audit.md#2026-10-29前馈高斯消融指标调研)。当前机器可读合同为 `paper/provenance/ablation-standard-metrics-20261029.json`；它取代旧指标合同在稿件检查中的优先级，旧原始记录保持原样。
+文献依据见 [前馈高斯消融调研](paper-literature-audit.md#2026-10-29前馈高斯消融指标调研)。原始数值合同为 `paper/provenance/ablation-standard-metrics-20261029.json`，当前正文列选择由 `paper/provenance/core-ablation-revision-20261104.json` 指定；检查器按原始合同核对展示子集，同时要求两张核心表均在正文。旧原始记录保持原样。
 
-本次回填前的真实工作区基线保存在 `../_archive/drivecompose/20261029-pre-push-cleanup/files/paper/build/ablation-results-revision/baseline/`；更早的通用指标改版基线仍在 `../_archive/drivecompose/20261029-standard-ablation/baseline/`。中英文稿分别对应 `paper/sec/4_experiments.tex` 和 `paper/zh/4_experiments_zh.tex`，两张表各语言共 33 个结果值已全部填写。
+本次回填前的真实工作区基线保存在 `../_archive/drivecompose/20261029-pre-push-cleanup/files/paper/build/ablation-results-revision/baseline/`；更早的通用指标改版基线仍在 `../_archive/drivecompose/20261029-standard-ablation/baseline/`。中英文稿分别对应 `paper/sec/4_experiments.tex` 和 `paper/zh/4_experiments_zh.tex`，各语言正文两张表展示 30 个结果值，完整 33 个均值及 SD 保留在附录 G。
+
+## 正文取舍（2026-11-04）
+
+隐藏机制与可见率分析保留在附录 H；编辑后新可见表面表逐字移入附录 I；自由空间规则与射线损失分析保留附录 D／J。正文 §4.4 保留资产复用、观测保持与效率，§4.5 只写组件贡献和输入数量敏感性。未新增实验或结果图。

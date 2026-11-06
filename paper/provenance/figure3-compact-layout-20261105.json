@@ -1,0 +1,392 @@
+{
+  "date": "2026-11-05",
+  "status": "complete",
+  "author_instruction": "Tighten blank space left by deleted Figure 3 text; make the layout more compact and preserve all other content.",
+  "baseline_head": "5b46f9eb8e131314430a2f2fa5193dadd16dc296",
+  "baseline_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-figure3-compact\\baseline",
+  "baseline_figure_sha256": "11067cccfea969be42d62b4c18c7fde29c4d9ea6eb90dd0fc70cc4cbefc77135",
+  "active_figure": "paper/fig/fig03-joint-completion.pdf",
+  "candidate_sha256": "6978ecdd8aaadf84fbac991163a7b60a5a119ce4e10b81e981eaa97f3a819ffd",
+  "previous_revision": "paper/provenance/figure3-label-removal-20261105.json",
+  "native_backend": "Direct vector PDF operand editing; original fonts, glyphs, gradients and resources retained.",
+  "layout_changes_points": {
+    "sampling_row_and_feedback_loop_dy": -100,
+    "velocity_head_dy": -12,
+    "update_formula_dy": -60,
+    "top_whitespace_trimmed": 40,
+    "bottom_whitespace_trimmed": 100,
+    "modified_connector_drawings": [
+      65,
+      107,
+      109
+    ]
+  },
+  "page_size_before": [
+    964.0799560546875,
+    760.0
+  ],
+  "page_size_after": [
+    964.0799560546875,
+    620.0
+  ],
+  "height_reduction_percent": 18.42,
+  "all_text_glyphs_fonts_sizes_and_colors_preserved": true,
+  "all_nonconnector_shape_sizes_and_styles_preserved": true,
+  "vector_drawings_before_and_after": 113,
+  "native_text_objects_before_and_after": 25,
+  "raster_images": 0,
+  "upper_modules_original_coordinates_and_styles_preserved": true,
+  "upper_modules_preview_comparison": {
+    "1": {
+      "different_color_channels": 7,
+      "total_color_channels": 1056675,
+      "maximum_color_difference_0_to_255": 6,
+      "note": "Tiny raster edge differences can result from changing the page origin; original upper vector coordinates and styles are retained."
+    },
+    "2": {
+      "different_color_channels": 6,
+      "total_color_channels": 4224510,
+      "maximum_color_difference_0_to_255": 1,
+      "note": "Tiny raster edge differences can result from changing the page origin; original upper vector coordinates and styles are retained."
+    }
+  },
+  "modified_native_paints": [
+    {
+      "seq": 109,
+      "drawing_index": 60
+    },
+    {
+      "seq": 110,
+      "drawing_index": 60
+    },
+    {
+      "seq": 118,
+      "drawing_index": 65
+    },
+    {
+      "seq": 119,
+      "drawing_index": 66
+    },
+    {
+      "seq": 120,
+      "drawing_index": 66
+    },
+    {
+      "seq": 121,
+      "drawing_index": 67
+    },
+    {
+      "seq": 122,
+      "drawing_index": 67
+    },
+    {
+      "seq": 123,
+      "drawing_index": 68
+    },
+    {
+      "seq": 124,
+      "drawing_index": 68
+    },
+    {
+      "seq": 125,
+      "drawing_index": 69
+    },
+    {
+      "seq": 126,
+      "drawing_index": 69
+    },
+    {
+      "seq": 127,
+      "drawing_index": 70
+    },
+    {
+      "seq": 128,
+      "drawing_index": 71
+    },
+    {
+      "seq": 129,
+      "drawing_index": 71
+    },
+    {
+      "seq": 130,
+      "drawing_index": 72
+    },
+    {
+      "seq": 131,
+      "drawing_index": 73
+    },
+    {
+      "seq": 132,
+      "drawing_index": 73
+    },
+    {
+      "seq": 133,
+      "drawing_index": 74
+    },
+    {
+      "seq": 134,
+      "drawing_index": 75
+    },
+    {
+      "seq": 135,
+      "drawing_index": 76
+    },
+    {
+      "seq": 136,
+      "drawing_index": 77
+    },
+    {
+      "seq": 137,
+      "drawing_index": 78
+    },
+    {
+      "seq": 138,
+      "drawing_index": 79
+    },
+    {
+      "seq": 139,
+      "drawing_index": 80
+    },
+    {
+      "seq": 140,
+      "drawing_index": 81
+    },
+    {
+      "seq": 141,
+      "drawing_index": 81
+    },
+    {
+      "seq": 142,
+      "drawing_index": 82
+    },
+    {
+      "seq": 143,
+      "drawing_index": 83
+    },
+    {
+      "seq": 144,
+      "drawing_index": 84
+    },
+    {
+      "seq": 145,
+      "drawing_index": 85
+    },
+    {
+      "seq": 146,
+      "drawing_index": 86
+    },
+    {
+      "seq": 147,
+      "drawing_index": 87
+    },
+    {
+      "seq": 148,
+      "drawing_index": 88
+    },
+    {
+      "seq": 149,
+      "drawing_index": 89
+    },
+    {
+      "seq": 150,
+      "drawing_index": 90
+    },
+    {
+      "seq": 152,
+      "drawing_index": 91
+    },
+    {
+      "seq": 153,
+      "drawing_index": 92
+    },
+    {
+      "seq": 159,
+      "drawing_index": 93
+    },
+    {
+      "seq": 160,
+      "drawing_index": 93
+    },
+    {
+      "seq": 161,
+      "drawing_index": 94
+    },
+    {
+      "seq": 162,
+      "drawing_index": 95
+    },
+    {
+      "seq": 163,
+      "drawing_index": 96
+    },
+    {
+      "seq": 164,
+      "drawing_index": 96
+    },
+    {
+      "seq": 166,
+      "drawing_index": 97
+    },
+    {
+      "seq": 167,
+      "drawing_index": 98
+    },
+    {
+      "seq": 175,
+      "drawing_index": 99
+    },
+    {
+      "seq": 176,
+      "drawing_index": 100
+    },
+    {
+      "seq": 177,
+      "drawing_index": 100
+    },
+    {
+      "seq": 178,
+      "drawing_index": 101
+    },
+    {
+      "seq": 179,
+      "drawing_index": 102
+    },
+    {
+      "seq": 180,
+      "drawing_index": 102
+    },
+    {
+      "seq": 181,
+      "drawing_index": 103
+    },
+    {
+      "seq": 182,
+      "drawing_index": 104
+    },
+    {
+      "seq": 183,
+      "drawing_index": 104
+    },
+    {
+      "seq": 184,
+      "drawing_index": 105
+    },
+    {
+      "seq": 185,
+      "drawing_index": 106
+    },
+    {
+      "seq": 186,
+      "drawing_index": 106
+    },
+    {
+      "seq": 187,
+      "drawing_index": 107
+    },
+    {
+      "seq": 190,
+      "drawing_index": 109
+    },
+    {
+      "seq": 191,
+      "drawing_index": 110
+    },
+    {
+      "seq": 192,
+      "drawing_index": 110
+    },
+    {
+      "seq": 194,
+      "drawing_index": 111
+    },
+    {
+      "seq": 195,
+      "drawing_index": 112
+    },
+    {
+      "seq": 196,
+      "drawing_index": 112
+    }
+  ],
+  "protected_file_count": 58,
+  "active_figure_sha256": "6978ecdd8aaadf84fbac991163a7b60a5a119ce4e10b81e981eaa97f3a819ffd",
+  "visual_review": {
+    "kind": "Scoped self-review of the permitted layout adjustment",
+    "renderer": "Poppler pdftoppm",
+    "image": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-figure3-compact\\after-poppler.png",
+    "result": "Main modules and sampled-code row remain distinct; labels and formula operands are readable; connector tips, bends and endpoints remain clear; no new overlap or cropping.",
+    "reviewed_views": [
+      "after-poppler.png",
+      "en-current-page4.png",
+      "zh-current-page4.png"
+    ],
+    "paper_result": "Both Figure 3 pages are clear, with all formulas, captions and routing readable; no new overlap or clipping."
+  },
+  "outputs": {
+    "en": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "sha256": "a6bc3a12d360b00449869314603ffb1b65d9b6b77d25afd1370118b3cad25144",
+      "page_count": 11,
+      "figure_page": 4,
+      "body_last_page": 8,
+      "compiler_warnings": [],
+      "text_token_removed": {
+        "4": 2,
+        "3,": 1
+      },
+      "text_token_added": {
+        "2": 1,
+        "3": 1
+      },
+      "current_figure1_sha256": "9b6c15f90670f6386ececf763b865685633b2a9dab8ee8acbeff9ca946f93847"
+    },
+    "zh": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+      "sha256": "7a2025305f9284eed89ba436763dd20f4de90fc0ac7be133c95d9ea3f701a171",
+      "page_count": 10,
+      "figure_page": 4,
+      "body_last_page": 7,
+      "compiler_warnings": [],
+      "text_token_removed": {},
+      "text_token_added": {},
+      "current_figure1_sha256": "9b6c15f90670f6386ececf763b865685633b2a9dab8ee8acbeff9ca946f93847"
+    }
+  },
+  "formal_outputs_installed": true,
+  "originally_protected_files_unchanged": 57,
+  "concurrent_figure1_change_preserved": {
+    "changes": {
+      "paper\\fig\\fig01-teaser.pdf": {
+        "baseline_sha256": "6183604dca2eae5cfa7a65e7e65c64599ee84be00640159bc7f0b3ac487326a5",
+        "current_sha256": "9b6c15f90670f6386ececf763b865685633b2a9dab8ee8acbeff9ca946f93847"
+      }
+    },
+    "source_record": "paper/provenance/teaser-compact-framing-20261105.json",
+    "handling": "Preserve the concurrent Figure 1 revision; rebuild both main PDFs from the current shared figure directory. Figure 1 was not edited by this task."
+  },
+  "current_rebuild_inputs_hashes_verified": 58,
+  "manuscript_check_after": {
+    "passed": false,
+    "checks": 80,
+    "failed": [
+      "fig:joint-completion:editable_source_matches_record",
+      "figure1_approved_pixels_exact",
+      "figure2_approved_pixels_exact",
+      "mechanism_author_selected_image_exact",
+      "figure3_approved_pixels_exact"
+    ],
+    "bibliography_entries": 52,
+    "math_blocks": 9
+  },
+  "new_manuscript_check_failures": [],
+  "connector_clearance_verification": {
+    "velocity_head_output_connection_error_points": 0.0,
+    "arrow_to_sum_boundary_points": 3.28594970703125,
+    "arrow_to_velocity_head_points": 2.3370361328125,
+    "formula_to_update_path_points": 8.498321533203125,
+    "formula_to_projection_points": 13.93841552734375
+  },
+  "figure3_only_compile_full_document_text_tokens_unchanged_in_both_languages": true,
+  "final_compile_text_changes_only_numeric_bibliographic_page_backreferences": true,
+  "manuscript_sources_other_figures_and_supplement_pdfs_unchanged_except_concurrent_figure1": true
+}

@@ -1,3 +1,683 @@
+## 2026-11-06 当前源文件重编、临时文件归档与提交
+
+本轮执行作者“重新编译，并清理临时文件，然后提交并推送”的要求。真实起点为 `5b46f9eb8e131314430a2f2fa5193dadd16dc296` 之后的未提交工作区；[工作区状态与逐文件哈希](../../_archive/drivecompose/20261106-recompile-cleanup/workspace-before.json)和必要文件原件已保存，既有论文与图件修订不计作本轮新增写作。
+
+| 位置／原状态 | 本轮结果 | 原因 |
+|---|---|---|
+| 四份正式 PDF 及其编译记录 | 按当前源文件真实重编，经检查后替换正式路径 | 保证提交的成品对应当前论文和已采用图件 |
+| 未采用图稿、原稿副本、对比预览、自动备份、缓存和旧检查输出 | 29 份既有文件及本轮新检查输出分别归档，逐文件 SHA-256 核对 | 保留可恢复原件，移出当前论文无须加载的文件 |
+| 历史过程记录中的候选文件链接 | 91 处 Markdown 链接指向归档原件；图件布局索引增加本轮归档根 | 保持来源、候选及实际原稿可追溯，不改写历史 JSON 中的事实 |
+| draw.io 自动备份 | 新增 `*.drawio.bkp` 忽略规则，沿用 `*.dtmp` 规则 | 避免自动保存文件再次进入待提交清单 |
+
+四次编译均成功并生成本轮新 PDF。英文／中文主稿共 11／10 页，完整总结逐段匹配且正文结束标签位于第 8／7 页，全部主文图表位于预算内；英文／中文补充共 12／10 页，表 S1–S25 完整。全部 43 页已渲染复核，另用 Poppler 检查两版正文末页，未见裁切或重叠。最终日志没有新增警告、缺字、未定义引用或溢出；中文仅浮动页提示和补充材料的 lineno hook 提示均有旧编译日志可核对。
+
+所有 TeX、书目、样式源文件与活动图件保持本轮真实基线；未改文字、图注、实验值、字号、边距或行距。保留当前 Teaser 的 draw.io／PDF、已采用的加框图 3 PDF／SVG／PPTX、图 6 及六张结果原图；其余候选可从归档恢复。
+
+历史证据审计仍为 80 项中 76 项通过。4 项失败为 `figure1_approved_pixels_exact`、`figure2_approved_pixels_exact`、`mechanism_author_selected_image_exact` 和 `figure3_approved_pixels_exact`，与本轮开始时保存的检查结果完全相同；不将历史审计报告为全量通过。当前编译、资源依赖、正文终止位置和 PDF 核验另行通过并记录。
+
+[逐文件迁移与 SHA-256](../../_archive/drivecompose/20261106-recompile-cleanup/archive-manifest.json)、[完整重编与清理验收](../paper/provenance/recompile-cleanup-20261106.json)及[当前四份正式输出](../paper/build/CURRENT-OUTPUTS.md)已更新。编译候选、辅助文件、旧成品、日志、43 页渲染和专项脚本均放在仓库外同一归档目录。
+
+---
+
+## 2026-11-06 确认的简化版 Teaser 已替换中英文主稿
+
+按作者“用这版替换”，将 revision 4 候选逐字节复制至正式 `paper/fig/fig01-teaser.pdf`，并同步可编辑 draw.io 与预览 PNG。真实基线是本轮开始时的未提交工作区，旧正式 PDF 哈希为 `7fe29dcf…`；最初原稿及替换前正式图、主稿、编译记录均已保留在 `../../_archive/drivecompose/20261106-teaser-context-adoption/baseline/`。
+
+| 位置 | 原正式版 | 本轮采用版 | 原因 |
+|---|---|---|---|
+| 输入及画面 | 1350×690画布、折线共享输入 | 1440×690画布、框外柔和分流箭头 | 采用作者已确认的加宽和箭头样式 |
+| 主场景注释 | Background、Vehicle、Human 三个标签及连接 | 删除三处文字与对应箭头 | 采用作者最新确认的简化版 |
+| context 表示 | Shared scene context 与向量偏向场景右侧 | 标题和九个色块共同居中于主场景上方 | 减少视觉干扰并统一对齐 |
+| 论文入口 | 中英文均引用 `fig/fig01-teaser.pdf` | 路径及图注源文保持，正式图内容更新 | 两版共用同一确认图，无需修改技术正文 |
+
+两版已真实重编并写回正式输出：英文11页、完整正文止于第8页；中文10页、正文止于第7页。图表页码映射保持。宽高比例改变引起首页及后续自然重排；不声称所有后续页像素不变。全部43份 TeX／书目／样式源文件、其余图件、确认候选、最初原稿和两版补充材料保持原哈希。
+
+新图在两版首页中的14个位图解码像素均与确认版一致，Form 边界匹配1038×498 pt。已检查中英文首页、全稿缩略图、正文结束标签和独立 Poppler 首页渲染，没有新增裁切或重叠。英文最终日志无警告；中文沿用第6页仅含浮动体的既有提示，无新增编译警告。80项既有检查中76项通过，4项历史图源失败与修改前一致，无新增失败；不将其报告为全量通过。
+
+[正式图](../paper/fig/fig01-teaser.pdf)、[可编辑文件](../paper/fig/fig01-teaser.drawio)、[英文主稿](../paper/build/en/main.pdf)、[中文主稿](../paper/build/zh/main_zh.pdf)、[两版首页预览](../../_archive/drivecompose/20261106-teaser-context-adoption/layout-preview.png)与[采用及验收记录](../paper/provenance/teaser-style-adoption-20261106.json)。所有中间产物位于外部归档；未提交或推送。
+
+---
+
+## 2026-11-06 候选 Teaser：删除三个组件标签与箭头，居中 context 表示
+
+本轮按作者要求，只修改独立候选。实际基线为上一轮77对象预览，原生文件 SHA-256 为 `9c7550c2…`；该轮 PDF、PNG、draw.io、对照和来源记录已完整保存在 `../../_archive/drivecompose/20261106-teaser-context-centered/baseline/`。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+|---|---|---|---|
+| 主场景组件注释 | Background、Vehicle、Human 三个彩色标签及三条双向连接 | 删除三个文字、三条连线及对应隐形标签框 | 按作者要求简化主场景上方的注释 |
+| Shared scene context 与向量 | 二者中心位于 x766.72，偏向主场景右侧 | 作为整体左移56.58单位，共同对齐主场景水平中心 x710.14 | 建立居中的上下关系；标题、九个色块的相对位置、尺寸、颜色与高度保持 |
+
+本轮移除9个原生对象、平移11个原生对象；当前68个对象，包括14张独立图片。其余57个对象的内容、样式和几何保持，父组的子对象数量正常更新。PDF 仅删除 Background、Vehicle、Human 三个词，其余文字、页面尺寸以及14张图片的解码像素和位置一致；PNG 在局部注释区域外逐像素相同。原始审计为0条硬性问题、1条原子场景图尺寸提示；原生窗口、局部前后对照和最终 PDF 已复核。
+
+[候选 PDF](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-preview.pdf)、[PNG](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-preview.png)、[可编辑文件](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-preview.drawio)和[正式版／候选对照](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-comparison.png)已更新；[本轮局部前后对照](../../_archive/drivecompose/20261106-teaser-context-centered/local-before-after.png)展示实际删除和居中变化。[来源记录](../paper/provenance/teaser-style-preview-20261106.json)已更新为 revision 4。正式图、最初原稿和两版主稿保持原哈希，未重编论文；未提交或推送。
+
+---
+
+## 2026-11-06 候选 Teaser：Background 居中落点与 context 向量连接
+
+本轮只修改独立候选。实际基线为上一轮保留箭头、去除圆点的77对象版本，原生文件 SHA-256 为 `40efb5a9…`；其 PDF、PNG、draw.io 和来源记录已完整保存在 `../../_archive/drivecompose/20261106-teaser-background-center-vector/baseline/`。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+|---|---|---|---|
+| Background 双向连接 | 落在标签右上角，绿色曲线较短 | 落在标签上边中点 (589.16, 346.8)，保留一个柔和弯曲及两端箭头 | 让箭头对应整个 Background 标签，并增加曲线舒展空间 |
+| context 向量落点 | 三条连接依附包含标题的隐形外框 | 将隐形连接范围收紧到九个色块外侧，统一留3单位空隙；绿色到左侧中线，蓝色到底边中心，紫色保留横向落点后贴合底边 | 使箭头明确连接向量而非标题，并避免压住色块 |
+
+只改3个原生对象；其余74个对象一致。文字、字体、所有标签位置、14张图片和左侧框外箭头保持。蓝色连接对象未改，其向量端随隐形锚框自动贴合。PDF 文字清单、页面尺寸与14个位图解码像素相同；PNG 在 context 连线区域以外逐像素一致。原始审计仍为4条已核对的图片白底覆盖误报，无新增发现；新原生窗口、局部前后对照与最终 PDF 已复核。
+
+[候选 PDF](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-preview.pdf)、[PNG](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-preview.png)、[可编辑文件](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-preview.drawio)与[正式版／候选对照](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-comparison.png)已更新；[本轮局部前后对照](../../_archive/drivecompose/20261106-teaser-background-center-vector/local-before-after.png)展示实际落点变化。[既有来源记录](../paper/provenance/teaser-style-preview-20261106.json)已回填为 revision 3。正式图、最初原稿和两版主稿保持原哈希，未重编论文；未提交或推送。
+
+---
+
+## 2026-11-06 候选 Teaser：灰色曲线恢复箭头，背景连线改为柔和单弯
+
+本轮按作者两张局部截图，仅修改独立候选。真实起点为上一轮加宽候选，原生文件 SHA-256 为 `29c1e5b7…`；原候选 PDF / PNG / draw.io 已完整保存在 `../../_archive/drivecompose/20261106-teaser-arrowhead-softcurve/baseline/`。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+|---|---|---|---|
+| 输入共享连接 | 两条无头灰色曲线和三个圆点端口 | 删除三个圆点，改为两条带小实心三角端头的灰色曲线；尖端仍在框外 x362，距框左边 x372 为10单位 | 按作者要求使用箭头，同时保留此前“不要进入框内”的约束 |
+| Background 双向连接 | 两个控制点的弯曲路径 | 一个控制点的柔和单弯，保留绿色、线宽和两端箭头 | 与现有行人连接的曲线语法一致，避免局部反复拐弯 |
+
+只改三条线并删除三个圆点；其余74个对象逐项一致，全部文字、字体、配色、Human 位置、相机对齐、1440×690画布和14张图片均保持。导出 PDF 文字、页面尺寸与14个位图的解码像素保持；原生 PNG 在两处修改区以外逐像素相同（含10px导出边缘保护）。原始审计仍为4条已核对的原图白底矩形误报，无新增问题；新原生窗口、绿色曲线近景和最终PDF已复核。
+
+[候选PDF](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-preview.pdf)、[PNG](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-preview.png)、[可编辑文件](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-preview.drawio)和[正式版／候选对照](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-comparison.png)已更新；[本轮局部前后对照](../../_archive/drivecompose/20261106-teaser-arrowhead-softcurve/local-before-after.png)可直接检查圆点与箭头、两种曲线。正式图、最初原稿与两版主稿保持，未重编论文。完整对象核验与哈希回填[既有来源记录](../paper/provenance/teaser-style-preview-20261106.json)，中间产物在本轮归档；未提交或推送。
+
+---
+
+## 2026-11-06 Teaser 局部样式候选：加宽画布、框外共享连接与人体标签对齐
+
+作者要求“做一版我看下效果，保留当前版本”，随后明确否定“输入箭头加长并进入框内”，说明可以加宽整个画面、换用其他共享输入符号，并将 Human 放在人头上方。本轮以当前已入稿的 `fig01-teaser.drawio` / PDF 为真实基线，另存独立候选；没有替换正式图或重编论文。
+
+| 位置 / Location | 当前正式版 / Before | 候选版 / After | 理由 / Reason |
+|---|---|---|---|
+| 左侧共享输入 / shared input | 硬折线一分二和短三角箭头，端点靠近框边 | 两条浅灰无箭头曲线连接圆点端口，全部停在框外；上下外框恢复完整左边线 | 撤掉被作者否定的“箭头进入框内”；用更轻的连接明确相同输入供两条路径共享 |
+| 画布 / canvas | 1350×690 | 1440×690，主图区域整体右移90单位，图片与文字尺寸保持 | 加宽的是整幅画面，为左侧连接预留真实空间 |
+| 共享上下文 / shared context | 上下文卡片和三个彩色标签框，关系线弧度较散 | 居中的标题＋原九个token，彩色无框标签，保留三条双向连接 | 降低边框数量，统一注释与表示的视觉层级 |
+| 相机条件 / camera condition | 图标／文字组合偏向竖箭头右侧 | 收紧文字框，图标与文字作为整体与竖箭头、渲染模块同轴 | 消除文本框尾部空白导致的偏心 |
+| 人体标签 / human annotation | Human 在人头右上方 | 标签中心与主图人头对齐，上方留12单位净距 | 按作者最新截图建立直接的对象对应，保留原人体画面 |
+
+[候选 PDF](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-preview.pdf)、[可编辑 draw.io](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-preview.drawio)、[预览 PNG](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-preview.png)和[当前／候选对照](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-comparison.png)已保存。当前正式 `fig01-teaser.pdf` / `.drawio`、既有原稿、此前确认候选以及两版主稿共9项文件保持原哈希；正式 PDF 仍为 `7fe29dcf…`，正式 draw.io 仍为 `2c3b2fc8…`。
+
+候选保留全部文字、字体、组件配色与14张独立图片。14个PDF位图的解码像素与基线完全一致；除整个主图区平移90单位外，场景内部相对位置和图片尺寸未变。当前候选为80个对象，其中66个原生／组对象及14个位图。已检查原生窗口、实际导出PDF及灰度论文宽度预览；共享输入端口最右边为x364.5，外框左边为x372，连接没有进入框内；相机共同中轴为x1020，Human与人头中心为x853.3038。自动审计的4条图像矩形覆盖提示均核对为原图白底，实际路线包络内源像素最低253，无墙体／人体覆盖；保留原始审计计数，不冒称原始报告为零。
+
+本轮为有上下文的局部自审和候选交付，不重新批准整幅图的出版设计。作者否定的最初“箭头伸入框内”尝试只留在归档 `rejected-arrow-extension/` 中，不作为交付版本。真实基线、原生操作、反馈修订与核验在 `../../_archive/drivecompose/20261106-teaser-style-preview/`；[来源与验收](../paper/provenance/teaser-style-preview-20261106.json)记录精确哈希及范围。未提交或推送。
+
+---
+
+## 2026-11-06 参考 CVPR 录用论文调整英文图表位置
+
+本轮按作者指定的英文主稿执行，修改范围为 `paper/sec/3_method.tex` 与 `paper/sec/4_experiments.tex` 的浮动选项、图块位置及一个局部浮动边界。基线提交为 `5b46f9eb8e131314430a2f2fa5193dadd16dc296`，实际原文来自本轮修改前的未提交工作区快照；既有改动完整保留。纯排版调整不涉及中英文语义变更，中文源文及输出保持。
+
+调研以 CVF 正式录用版为准，复用已有归档 PDF，核验日期为 2026-11-06。查看以下六篇论文前 8 页的布局与图表页码。这是目的性排版样本，不将其解释为录用率或官方强制摆法。
+
+| 录用论文 | 年份 | 与本轮有关的可核验版式观察 |
+|---|---|---|
+| [StreetCrafter](https://openaccess.thecvf.com/content/CVPR2025/papers/Yan_StreetCrafter_Street_View_Synthesis_with_Controllable_Video_Diffusion_Models_CVPR_2025_paper.pdf) | 2025 | 第 3 页跨栏总览位于页顶；第 6 页两幅定性图上下排列，并在同页下方配主表。 |
+| [ReconDreamer](https://openaccess.thecvf.com/content/CVPR2025/papers/Ni_ReconDreamer_Crafting_World_Models_for_Driving_Scene_Reconstruction_via_Online_CVPR_2025_paper.pdf) | 2025 | 第 3 页总览位于页顶；第 4 页方法局部图采用单栏。页顶总览下仍承接相关工作尾段，说明无需强制在章节边界换页。 |
+| [VGGT](https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_VGGT_Visual_Geometry_Grounded_Transformer_CVPR_2025_paper.pdf) | 2025 | 第 3 页跨栏架构图在方法节附近；第 7 页将单栏表、定性图与各项分析交错组织。 |
+| [Fast3R](https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_Fast3R_Towards_3D_Reconstruction_of_1000_Images_in_One_Forward_CVPR_2025_paper.pdf) | 2025 | 第 3 页跨栏架构图位于页顶；第 6 页将跨栏主表与单栏分任务表组合；第 7–8 页消融图表保持单栏。 |
+| [D4RT](https://openaccess.thecvf.com/content/CVPR2026/papers/Zhang_Efficiently_Reconstructing_Dynamic_Scenes_One_D4RT_at_a_Time_CVPR_2026_paper.pdf) | 2026 | 第 2 页跨栏方法总览；第 8 页消融图及表 7 在左栏，表 8–9 在右栏，与消融文字共享末页。 |
+| [Native3D](https://openaccess.thecvf.com/content/CVPR2026/papers/Xiang_Native_and_Compact_Structured_Latents_for_3D_Generation_CVPR_2026_paper.pdf) | 2026 | 第 3 页两幅方法图使用单栏；第 8 页定量表主要排列于左侧，右侧保留定性图和分析。 |
+
+本稿第 3 页总览图、第 6 页重建图、第 7 页轨迹外图已经与相应内容相邻，继续保留。对末页采用定量表在左、定性图在右的组织方式，并将机制图放入所属小节。
+
+| 位置 | 本轮真实基线 | 调整后 | 原因 |
+|---|---|---|---|
+| 图 3 / §3.3 | 第 4 页右栏顶部；其后先接 §3.2 尾文；`figure[t]` | 第 4 页 §3.3 的 Latent encoding 之后；`figure[!htbp]` | 避免方法细节图出现在所属小节之前 |
+| 表 4 / Input-timestamp sensitivity | 第 8 页右栏顶部，与分析分栏 | 第 8 页左栏，紧接对应分析 | 保持两张定量消融表及解释的连续阅读 |
+| 图 6 / Completion component ablations | 第 8 页左栏中部；源文为“表 3 → 图 6 → 输入分析 → 表 4” | 第 8 页右栏顶部；源文为“表 3 → 输入分析 → 表 4 → 图 6” | 让定性证据独立成列，给两张定量表留出连续空间 |
+| 实验末尾浮动边界 | `\FloatBarrier` 将 Discussion 推到右栏 | 移除这一个局部边界，保留 `main.tex` 正文末尾的边界 | 让 Discussion 使用左栏余量；图表仍在使用说明和参考文献之前 |
+
+正文、公式、引用、所有表格单元格、图注、图号、图件路径、显示尺寸、标题及模板保持；六张图的原始 PDF 没有编辑。原组件分析跨第 7–8 页的自然分页仍保留，不宣称已消除全部段落分页。
+
+英文正式稿已由现有 Tectonic 入口真实编译并替换，11 页总 PDF，全部技术正文、完整结论和六图四表均在前 8 页。29 项本轮检查通过，最终日志没有未定义引用、缺字、溢出或浮动超页警告；第 1、2、3、5、6、7 页与实际基线逐像素一致。全部 11 页缩略图及第 4／8 页详细图已复核，并以 Poppler 独立渲染第 4／8 页。既有检查器 80 项仍为 76 项通过，原有 4 项历史图源核对失败与基线相同，无新增失败。
+
+[英文正式稿](../paper/build/en/main.pdf)、[第 4／8 页前后对照](../../_archive/drivecompose/20261106-cvpr-float-layout/layout-comparison.png)、[只含本轮改动的逐行差异](../../_archive/drivecompose/20261106-cvpr-float-layout/layout-only.diff)、[完整来源与验收](../paper/provenance/figure-table-layout-20261106.json)。基线、候选、日志、页图和所有中间文件均在项目外 `../../_archive/drivecompose/20261106-cvpr-float-layout/`。
+
+---
+
+## 2026-11-06 确认的加框版图 3 已替换中英文主稿
+
+按作者确认，将中英文方法源文中图 3 的插图路径由 `fig/fig03-joint-completion.pdf` 切换为 `fig/fig03-joint-completion-core-boxed.pdf`。只改两处路径，原中英文图注、图号、单栏宽度、技术正文和公式保持；原图及所有候选继续保留。
+
+两版均已真实重编并替换正式输出：[英文主稿](../paper/build/en/main.pdf)、[中文主稿](../paper/build/zh/main_zh.pdf)。图 3 仍在两版第 4 页，约 83.34 × 50.14 mm；相比原图同宽放置约减少 3.46 mm 高度。英文／中文仍共 11／10 页，完整正文止于第 8／7 页。
+
+已检查图 3、前后页、完整总结页及中文第 6 页的既有结果浮动页。批准图中的 83 条矢量绘制、24 个原生文字和 16 处矢量渐变均在两版编译 PDF 中匹配；图注源文和渲染文字均保持。Poppler 复核没有新增裁切、重叠或浮动异常，无新增最终编译警告。全量检查器 80 项中既有历史图源失败由 5 项减为 4 项，没有新增失败；旧图源问题未在本轮扩展处理。
+
+[中英文第 4 页排版预览](../../_archive/drivecompose/20261106-figure3-boxed-adoption/layout-preview.png)与[本轮采用、编译及验收](../paper/provenance/figure3-boxed-adoption-20261106.json)可直接核对。两版补充材料及其他图件未改，未重编补充材料。编译中间文件和真实修改前基线保存在外部归档。
+
+---
+
+## 2026-11-06 图 3 加框与连线留白候选（保留当前版）
+
+按作者标出的连线问题，将三组左上特征用一层细浅蓝灰框归为同一集合，替代两侧括号。另存[加框候选 PDF](../paper/fig/fig03-joint-completion-core-boxed.pdf)、[SVG](../paper/fig/fig03-joint-completion-core-boxed.svg)、[可编辑 PPTX](../paper/fig/fig03-joint-completion-core-boxed.pptx)与[预览](../paper/fig/fig03-joint-completion-core-boxed.png)。[同尺度前后对照](../../_archive/drivecompose/20261106-figure3-boxed-candidate/comparison.png)左侧为保留的当前版，右侧为本轮候选。
+
+| 位置 | 当前版（保留） | 加框候选 | 原因 |
+|---|---|---|---|
+| 左上特征边界 | 左右两根括号 | 一层白底细浅色框，不加标题 | 明确三组特征属于同一集合，给连线提供清楚边界 |
+| 红框所指更新线 | 从括号下方伸出，经过两次直角转折 | 从框右下侧出线，以一条平滑曲线进入投影框顶部中心 | 消除悬空起点与阶梯折线，清楚衔接约束更新 |
+| 箭头交接 | 多处贴近边框 | 主要箭头起止处统一留 10 个原生单位白隙 | 按作者补充要求保持端点清爽 |
+| 掩码速度公式 | 紧邻原竖直线 | 仅右移 65 个原生单位，字形、字号、内容不变 | 与新曲线分开，避免挤靠 |
+
+特征色块、组内注意力小箭头、记忆内容、投影与状态条保持。99 个原生对象，含 24 个文本、68 个可编辑路径、7 个椭圆；13 个逻辑分组及独立外框，无图片。六处科学图形区域的实际 PDF 渲染逐像素一致，全部文字内容、字体、字号及颜色保持。新版沿用此前可编辑源的数学上标间距；与旧 PDF 的极小上标位置差异已记在验收中。
+
+已通过独立文件构建和 WPS 新副本导出核对，随后检查 Poppler、SVG、单栏彩色／灰度和并排预览。当前版四个交付文件及全部原图 3、图注源文哈希保持；本轮没有替换论文选图、修改图注或重编正文。[设计、精确修改清单与验收](../paper/provenance/figure3-boxed-candidate-20261106.json)可追溯。本轮为局部自审，连接线仍为可编辑自由曲线，移动模块后需调整端点。
+
+---
+
+## 2026-11-05 确认版 Teaser 替换入中英文论文
+
+作者明确要求“用这版替换论文中的 teaser”。本轮真实起点为未提交工作区；原正式图、两版主稿、源码及选择记录保存在 `../../_archive/drivecompose/20261105-teaser-adoption/baseline/`，HEAD 为 `5b46f9e`，没有把 HEAD 当作本轮正文基线。
+
+| 位置 / Location | 修改前 / Before | 修改后 / After | 原因 / Reason |
+|---|---|---|---|
+| 首页图 1 / title teaser | 主稿仍加载之前的紧凑框版 `fig01-teaser.pdf`，不是已确认候选 | 以已确认的 `fig01-teaser-balanced.pdf` 原字节替换正式 `fig01-teaser.pdf` | 让论文实际采用作者确认的布局和已修正的空间位置、人体未观测面 |
+| 可编辑源 / editable source | 最新改动保存在独立候选 draw.io | 同步为正式 `fig01-teaser.drawio` 和当前预览 | 正式 PDF 与可编辑稿、预览对应；原稿另存保留 |
+| 英文工具说明 / English usage statement | “OpenAI Codex was used solely for language polishing…” | 去掉 solely，并加入 “OpenAI Image Gen was used to revise a schematic scene illustration in Figure 1.” | 真实记录已采用的生成式示意图修订；中文既有说明已覆盖，保持原文 |
+
+中英文入口的图路径、图宽与图注保持原样，技术正文、公式、实验值和其余图件保持。使用项目原有 Tectonic 构建入口真实重编两版主稿，先在本轮归档中核验，再替换原正式路径。英文／中文共 11／10 页，完整正文分别止于第 8／7 页；已查看两版首页、正文末页和全页缩略图。两版首页均检出新标题，1981×794 局部示意图的解码像素与确认图逐字节一致；无缺字、未定义引用或新增编译警告。中文原有第 6 页仅浮动图警告与基线相同。
+
+[英文主稿](../paper/build/en/main.pdf)、[中文主稿](../paper/build/zh/main_zh.pdf)、[正式 Teaser](../paper/fig/fig01-teaser.pdf)及[可编辑源](../paper/fig/fig01-teaser.drawio)已更新。[最初原稿](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-original.pdf)和原始 draw.io 继续保持原始字节，确认候选也保持。两版补充材料未改、未重编。采用、哈希、编译及图像核验均回填[既有来源记录](../paper/provenance/teaser-coordinated-preview-20261105.json)，中间文件保存在本轮归档。未提交或推送。
+
+---
+
+## 2026-11-05 图 3 核心机制矢量重建，删除 CCM 标题并统一 N
+
+按作者“改成矢量图，且不要 CCM 标题”及随后“S 换成 N”的要求，基于已选光栅预览重建[矢量 PDF](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion-core-vector.pdf)、[SVG](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion-core-vector.svg)、[可编辑 PPTX](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion-core-vector.pptx)及[PDF 渲染预览](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion-core-vector.png)。原稿、全部此前候选和中英文图注保持；本轮没有替换论文选图或重编正文。
+
+| 位置 | 上一版预览 | 本轮矢量版 |
+|---|---|---|
+| 表现形式 | 1536 × 1024 的光栅图 | 100 个原生文字／几何对象，14 个逻辑分组，无图片；SVG、PPTX 与矢量 PDF |
+| 顶部标题 | CCM | 删除，并裁去顶部仅含标题的 100 单位画布；其余对象保持原相对位置 |
+| 迭代与终态 | ×S，z 的 S 上标 | ×N，z 的 N 上标 |
+| 科学结构 | 组件局部特征、共享记忆读写、掩码速度及投影更新 | 保持，数学符号用原生文字项重建 |
+
+本轮通过独立原生 OOXML 文件构建，再由本机 WPS Presentation 后台打开同一 PPTX 并导出，未声称使用 Microsoft PowerPoint。最终 PDF 有 83 条矢量绘制记录、24 个原生文本对象、零位图，字体已嵌入。SVG 有独立文字、曲线、色块和斜线；不是把整张 PNG 包进 SVG。PPTX 的 69 个自定义路径、7 个椭圆和 24 个文字对象可分别编辑。
+
+已查看 WPS 导出、实际 PDF 的 Poppler 全图、SVG 的 CairoSVG 渲染，以及 83.34 mm 单栏彩色／灰度预览；修正上标间距后重新导出并核验。连接线为可编辑自由曲线，移动模块后需手动调整端点；数学式由独立文本项构成。图 3 原稿、此前候选与图注源文哈希保持；同期另一任务修改的图 1 与使用说明保留，未回退或计入本轮修改。本轮为有前文背景的自审。[来源、对象清单与验收](../paper/provenance/figure3-core-vector-20261105.json)可追溯。
+
+---
+
+## 2026-11-05 重生成 Teaser 新视角缺失场景，修正空间位置和人体未观测面
+
+真实起点为本轮保存的 revision 7 候选，见 `../../_archive/drivecompose/20261105-teaser-unseen-regeneration/baseline/`。本轮只替换上排右侧独立示意图片 `scene-unseen`，不改论文文字、标题、布局或其他图件。
+
+| 位置 / Location | 修改前 / Before | 修改后 / After | 原因 / Reason |
+|---|---|---|---|
+| 新视角三维场景 / changed-view scene | 车体、墙体和路面未知区域浅白相连，边界不清 | 用蓝灰已观测表面和白色缺口、浅灰虚线轮廓区分未知面 | 改善未知区域与白底的区分，保留 observation-only reconstruction 暴露缺失面的科学含义 |
+| 空间关系 / spatial arrangement | 首次生成移动了相对位置，墙柱落在错误一端；作者指出不正确，未插入候选图 | 以现有右下第一张相机变化图作位置模板：墙柱在左端、车在右且朝左、行人在左后侧斑马线上 | 上下两条路线对应同一场景和同一目标视角，只比较是否补全 |
+| 人体表面 / human surfaces | 第二次生成把紫色已观测面与白色未知面画反 | 依参考图逐肢体对应：金色表示的前侧未知面改为白色缺失，保留右后侧的紫色已观测部分 | 未观测面必须来自同一参考视角的完成区域；不是任意左右分半 |
+
+最终用内置 Image Gen 生成独立示意资产，非实验输出。六张输入照片及其余 80 个原生/图片对象逐项保持；所有对象几何不变，导出图在替换图片附近以外逐像素一致（含 10 px 导出/滤波边缘保护），最终 PDF 的文字和 14 张独立图片数量保持。已有 6 条关于中部原图白底矩形的自动审计误报保持记录，无新增问题；原生窗口和最终 PDF 已目视检查。
+
+[候选 PDF](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.pdf)、[可编辑稿](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.drawio)、[本轮局部前后对照](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-unseen-comparison.png)、[最初原稿／当前稿](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-comparison.png)已更新。[独立新资产](../paper/fig/source/fig01-scene-unseen-regenerated.png)保存在项目中。原始 PDF 和 draw.io 均保持原始字节；原局部图、被否定的尝试、最终两步提示词及核验记录均保存在本轮归档目录，并回填[既有来源记录](../paper/provenance/teaser-coordinated-preview-20261105.json)。主选图及主稿编译产物未替换，未提交或推送。
+
+---
+
+## 2026-11-05 图 3 核心机制重绘预览
+
+按作者“只突出核心机制，布局简洁紧凑，保留原稿，图注不变，先看看效果”的要求，另存[核心机制预览 PNG](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion-core-preview.png)。保留全部原图和此前矢量候选；当前论文选图及中英文图注未改，未重编论文。
+
+| 位置 | 上一候选 | 本轮预览 |
+|---|---|---|
+| 记忆交换主体 | M / M′、U 和较多独立中间状态 | 一组组件特征、一组共享记忆，用方向相反的读／写箭头呈现交换 |
+| 更新机制 | 独立速度头、加法节点、展开 Euler 算术和中间状态 | 未知掩码速度边、紧凑 Π 算子及一条 ×S 回路 |
+| 约束效果 | 大幅状态条与末端符号 | 成对的小状态条：观测格、自由空间零值保持，未知格变化 |
+
+本轮使用内置 Image Gen 生成光栅视觉草稿；没有声称交付可编辑矢量源或最终出版图。参考作者提供的另一篇论文示意图，仅借鉴信息取舍、短标签、特征图形与更新回路，未沿用其采样／投影的科学拓扑。首稿的重复 M 和灰色输入箭头落点已通过 Image Gen 修正，随后检查整图、单栏和灰度预览。
+
+[完整最终提示词](../../_archive/drivecompose/20261105-figure3-core-preview/prompt.txt)与[设计、来源和验收](../paper/provenance/figure3-core-mechanism-preview-20261105.json)可追溯。提示词按绑定机制模板检查；原稿、此前候选、正式稿件与图注共 71 项文件哈希保持。本轮为有前文背景的自审，预览供作者判断构图效果。
+
+---
+
+## 2026-11-05 Teaser 标题改为「问题—作用」的直接对照
+
+作者指出上一版两条标题不合适。本轮按英文科研图标题作局部润色，保留 Previous methods / Ours、现有科学含义及所有图形；用具体动词交代状态变化暴露什么问题、联合补全支持什么用途。
+
+| 位置 | 修改前 | 修改后 | 理由与来源 |
+|---|---|---|---|
+| (a) | Previous methods: observation-only reconstruction | Previous methods: state changes expose missing surfaces | 从重复模块名称改为明确的可见问题；与现有图注中视角和 actor changes expose missing surfaces 一致（paper/main.tex:30） |
+| (b) | Ours: joint completion for state-driven asset reuse | Ours: joint completion enables asset reuse across states | 从名词串改为机制与用途的关系；由现有图注及状态驱动装配定义支持（paper/main.tex:30；paper/sec/3_method.tex:143） |
+
+[PDF](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.pdf)、[可编辑稿](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.drawio)、[预览](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.png)及[原稿／新稿对照](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-comparison.png)已更新。仅两处 label 值改变；所有几何和样式、其余 79 个对象、14 张图片、已删除标注及箭头留白保持。原生渲染在两条标题之外逐像素相同；最终 PDF 文字差异也严格对应两条标题，无新增裁切或溢出。
+
+[最初原稿](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-original.pdf)继续保持原始字节。真实起点、措辞依据和核验保存在 `../../_archive/drivecompose/20261105-teaser-heading-refinement/`，回填[既有来源记录](../paper/provenance/teaser-coordinated-preview-20261105.json)。未修改论文源文、主选图或编译产物，未提交或推送。
+
+---
+
+## 2026-11-05 删除 Teaser 红框说明，a/b 改为 Previous methods / Ours 加简短介绍
+
+本轮仅按作者图 1 红框删除文字，并参考作者图 2 的命名方式重写两条分区标题，不移植参考图中的速度、模型或任务结论。
+
+| 位置 | 修改前 | 修改后／原因 |
+|---|---|---|
+| 输入旁 | Multi-view sequence、Time、Example frames | 删除这三处指定文字；六张照片、时间标签与轴保持 |
+| 上下分块说明 | Aggregated observed surfaces、Unseen regions exposed、Joint completion、Asset reuse | 删除四处分块小标题 |
+| 右侧三种状态 | Camera view、Vehicle rotation、Human pose | 删除三处指定文字，三个原图保持 |
+| 底部车辆与图例 | After aggregating all inputs、After joint completion、Observed、Completed，以及两个图例色块 | 删除四处文字及整套图例；两车及中间箭头保持 |
+| (a) 标题 | (a) Observation-only reconstruction | (a) Previous methods: observation-only reconstruction |
+| (b) 标题 | (b) DriveCompose | (b) Ours: joint completion for state-driven asset reuse |
+
+共删除 14 个文本对象和 2 个图例色块，重写 2 个标题。标题保持原字体、字号和位置，仅扩大文本框以容纳单行介绍。其余 79 个对象逐项相同；14 张原始图像和所有箭头保持，指定区域外的原生渲染逐像素一致。最终 PDF 的文字差异严格对应删除清单及两条新标题，未出现新增溢出或裁切。
+
+[新版 PDF](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.pdf)、[源文件](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.drawio)、[预览](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.png)及[前后对照](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-comparison.png)已更新。[最初原稿](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-original.pdf)继续保持原始字节。实际起点与证据在 `../../_archive/drivecompose/20261105-teaser-label-removal/`，验收回填[既有来源记录](../paper/provenance/teaser-coordinated-preview-20261105.json)。未改正文、主选图或编译产物，未提交或推送。
+
+---
+
+## 2026-11-05 图 3 候选的全图联动修改
+
+按作者“修改”的要求，已将上轮三项全图建议落实到独立[候选 PDF](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion-revised.pdf)和[PNG](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion-revised.png)。[同尺度全图对照](../../_archive/drivecompose/20261105-figure3-global-revision/comparison.png)保留相同的原英文图注。
+
+| 位置 | 修改前 | 修改后 |
+|---|---|---|
+| 全图与中间连线 | 964.08 × 620 pt；模块间跨度 404.93 pt | 820 × 570 pt；跨度 335.70 pt，联动重排记忆、U 与采样链 |
+| 两侧特征三行 | 行中心和 token 尺寸略有差异 | 三行严格对齐，统一 35.41 pt 方形 token |
+| M / M′ | token 和容器大小不一致 | 均为 194 × 46 pt 条带，token 均为 28 × 28 pt |
+| 算子与输出 | 两根匿名黑线；Velocity head；Completed | Attn 的 r / w 下标；v 的 θ 下标；保留 z 的 S 上标 |
+| 投影与最终输出框 | 宽 164.30 / 217.42 pt | 宽 92 / 80 pt，保留原投影公式和最终状态 |
+
+**原稿、图注和正式论文保持。** 本轮保留修改前候选，未更改 LaTeX 选图或重编论文，也未向图中补回一般解释性备注。原生画布面积减少 21.80%；按同一 83.34 mm 单栏宽放置时，内容相应放大，图高由 53.60 mm 变为 57.93 mm。
+
+最终 PDF 含 112 个矢量对象、34 个原生文本对象、无位图面板。保留的 28 个原文字形、字体、字号和颜色均核对；70 项原有文件（含原图注与主稿）哈希保持。已查看新的 Poppler 全图、同尺度对照和单栏彩色／灰度预览，修正 M′ 标签图层遮挡；未观察到新增裁切、遮挡或含糊交叉。本轮为有前文背景的自审，未声称独立盲审或取得匹配 draw.io / PPTX 源稿。[参数与验收](../paper/provenance/figure3-global-revision-candidate-20261105.json)可追溯。
+
+---
+
+## 2026-11-05 四根指定横向箭头两端留白
+
+按作者截图，仅调整上排三根流程箭头和下排补全至复用的箭头，不移动框、图像或标题。坐标单位为原生 1350×690 画布单位，箭头垂直中心线保持。
+
+| 箭头 | 修改前起止 x | 修改后起止 x | 两侧白隙 |
+|---|---|---|---|
+| 观测重建框 → 聚合场景 | 520 → 550 | 528 → 550 | 与两侧对象边界各距 8 |
+| 聚合场景 → 状态渲染框 | 811 → 850 | 811 → 842 | 各距 8 |
+| 状态渲染框 → 未见区域场景 | 1010 → 1042 | 1018 → 1042 | 各距 8 |
+| 联合补全场景 → 复用分组括号 | 899.36 → 980.32 | 899.36 → 965.60 | 各距 14.72 |
+
+[PDF](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.pdf)、[可编辑稿](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.drawio)及[预览](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.png)已更新，箭头线宽、箭头头部大小及方向保持。其余 93 个对象逐项相同，四处箭头区域以外的原生渲染逐像素一致；最终 PDF 全部文字及 14 张图片保持。没有新增文字溢出或路由问题。
+
+[最初原稿](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-original.pdf)保持原始字节，[并排对照](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-comparison.png)已同步。实际基线和验证位于 `../../_archive/drivecompose/20261105-teaser-arrow-clearance/`；结果回填[既有来源记录](../paper/provenance/teaser-coordinated-preview-20261105.json)。未改主选图、正文或编译产物，未提交或推送。
+
+---
+
+## 2026-11-05 修正 Teaser 下方为「一个大标题＋两个小标题」
+
+作者明确指出，上下分区都应有一个大标题和两个分块小标题。此前把 (b) 大标题当作左侧分块标题，遗漏了独立的左侧小标题；本轮按真实层级修正。
+
+| 层级／位置 | 修改前 | 修改后 | 与上方对应 |
+|---|---|---|---|
+| 第一行：下方大标题 | `(b) Joint completion and reuse` | `(b) DriveCompose` | 同 (a) 的 x300、宽520、字号22.5；y251 对应 y23 |
+| 第二行：左块小标题 | 缺失 | 新增 `Joint completion` | 同 Aggregated observed surfaces 的 x548、宽260、字号19；y281 对应 y53 |
+| 第二行：右块小标题 | `Same assets, new states` | `Asset reuse` | 同 Unseen regions exposed 的 x1045、宽280、字号19；y281 对应 y53 |
+
+[修改稿 PDF](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.pdf)、[源文件](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.drawio)和[预览](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.png)已更新。此次只更新两个原生文本对象，并新增一个原生小标题；其余 94 个既有对象逐项保持，标题区之外的原生导出逐像素一致。14 张图片、所有箭头、此前确定的下半部分缩放与内容位置均保持。最终 PDF 的文字差异严格对应三处标题，未发现新增文字溢出或裁切。
+
+[最初原稿 PDF](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-original.pdf)保持首轮修改前的原始字节；[原稿／新稿对照](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-comparison.png)已同步更新。本轮真实起点与核验在 `../../_archive/drivecompose/20261105-teaser-three-heading-hierarchy/`，当前结果回填[既有来源记录](../paper/provenance/teaser-coordinated-preview-20261105.json)。未改主选图、论文正文或编译产物，未提交或推送。
+
+---
+
+## 2026-11-05 Teaser 小标题重写并按上下两行对齐，独立保留最初原稿
+
+根据作者指出的小标题层级，本轮仅修改 balanced 候选中的两个文本对象。与本轮真实起点相比，其余 94 个对象逐项一致；标题区域之外的原生导出逐像素相同。原图和箭头未再缩放或移动。
+
+| 位置 | 修改前 | 修改后 | 对齐依据 |
+|---|---|---|---|
+| 下方分区小标题 | `(b) DriveCompose: joint completion and asset reuse` | `(b) Joint completion and reuse` | 与 (a) 同为 x300、宽520、字号22.5；y251 对应上方 y23，加上分区间距228 |
+| 右侧复用小标题 | `Reuse the same assets`，y287、字号20.7 | `Same assets, new states` | 与上方 Unseen 小标题同为 x1045、宽280、字号19；y281 对应上方 y53，加上分区间距228 |
+
+作者要求保留的**最初原稿**已从首轮修改前的真实备份逐字节复制为[原稿 PDF](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-original.pdf)，SHA-256 为 `6183604dca2eae5cfa7a65e7e65c64599ee84be00640159bc7f0b3ac487326a5`，不是将中间修改版当作原稿。既有原稿 draw.io 也保持。[并排对照](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-comparison.png)使用同等显示宽度的两个实际 PDF 渲染。
+
+[修改稿 PDF](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.pdf)、[修改稿源文件](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.drawio)和[预览](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.png)已更新。最终 PDF 文字差异严格对应上述两处名称；14 张图片和其余文字保持，未发现新增溢出、裁切或路由问题。当前主选图及论文正文未改，未重编论文，未提交或推送。来源及验证更新到[既有记录](../paper/provenance/teaser-coordinated-preview-20261105.json)；本轮真实起点与过程位于 `../../_archive/drivecompose/20261105-teaser-subtitle-alignment/`。
+
+---
+
+## 2026-11-05 收紧图 3 候选左侧模块空白
+
+本轮继续编辑独立候选，图注、原稿及正式论文保持。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+|---|---|---|---|
+| 左侧模块外框 | 361.18 × 250.70 pt | 261.18 × 238.70 pt，面积减少 31.15% | 回收符号替换文字后留下的空白 |
+| 符号与 token 间距 | 87.82 pt | 32.82 pt | 收紧横向间距，保留原字号和 token 大小 |
+| 三行、括号及关联连线 | 沿用上一候选位置 | 后两行上移 6／12 pt；括号缩短，输出与反馈端点随边框调整 | 保持清楚的分组及端点连接 |
+
+所有字形、字号、颜色、公式和连接关系保持。113 个矢量对象、30 个文本对象保留；局部模块及关联连线之外在 72／144 dpi 下逐像素一致。68 项原有文件哈希保持，包含中英文图注与正式论文 PDF。没有重编或替换论文。
+
+[当前候选](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion-revised.pdf)、[同尺度局部前后对照](../../_archive/drivecompose/20261105-figure3-symbol-compact/comparison.png)及[参数／验收](../paper/provenance/figure3-symbol-compact-candidate-20261105.json)可核对。真实基线与脚本保存在 `../../_archive/drivecompose/20261105-figure3-symbol-compact/`，原稿继续保留。
+
+---
+
+## 2026-11-05 Teaser 下半部分缩小，标题独占一行
+
+按作者截图，在现有 balanced 候选上局部调整；原文件及来源记录保存在 `../../_archive/drivecompose/20261105-teaser-title-row/baseline/`。本轮继续更新[候选 PDF](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.pdf)、[可编辑源稿](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.drawio)及[预览](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.png)。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+|---|---|---|---|
+| 下半部分图文内容 | 主场景、共享单元、复用示例和对照沿用上一版尺寸 | 整体缩至 92%，水平居中，内容从 y287 开始 | 给标题腾出独立横行 |
+| (b) 标题 | 与右侧 Reuse 标题处在同一行 | 独占首行；与 (a) 同为 x300、22.5 字号，距各自上框线 9 单位 | 对齐上下标题层级 |
+| 下方入口与复用连接 | 中心线 y440 | 随内容移动至 y460.88，保留分区入口缺口和原连接关系 | 避免缩放后箭头错位 |
+
+上方区域原生导出逐像素一致；全部文字、14 张图片资源、96 个对象及原有语义关系保持。图件已原生重新导出并核对 PDF 文字、图片数量和边界。当前选图 `fig01-teaser.pdf`、正文与主稿 PDF 未由本轮修改。来源和验收更新至[既有记录](../paper/provenance/teaser-coordinated-preview-20261105.json)。
+
+---
+
+## 2026-11-05 图 3 候选区域符号化，保留原图注
+
+作者明确要求不改图注，并将截图中的四处文字改成符号。本轮只更新独立候选，保留原稿和当前论文选择。
+
+| 位置 | 前一候选 | 本轮候选 | 原因 |
+|---|---|---|---|
+| 局部注意力标题 | `Local attention` | Attn 的 g 下标 | 以分组注意力算子替代长文字，g 对应正文的局部组索引 |
+| 三行类型标签 | `Background / Rigid / Human` | X 的 b／r／h 下标 | 使用对应分量的特征符号 |
+| 候选图注 | 曾提议增补分组和状态说明 | 恢复原中英文图注，预览两栏相同 | 按作者要求撤回图注改动 |
+
+保留上一候选中的 Π 算子。113 个矢量对象及其余 22 个候选文本对象逐项保持；四处标签区域之外在 72／144 dpi 下逐像素一致。66 项原有源文、图件及 PDF 哈希保持，未重编或替换论文。原图 SHA-256 仍为 `6978ecdd8aaadf84fbac991163a7b60a5a119ce4e10b81e981eaa97f3a819ffd`。
+
+[候选图](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion-revised.pdf)、[相同图注的并排预览](../../_archive/drivecompose/20261105-figure3-symbol-candidate/comparison.png)和[来源／验收](../paper/provenance/figure3-symbol-candidate-20261105.json)可核对。前一候选和撤回的图注位于 `../../_archive/drivecompose/20261105-figure3-symbol-candidate/baseline/`；正式中英文图注源文未改动。
+
+---
+
+## 2026-11-05 Teaser 连线与协调性修订候选
+
+作者在上一版预览后指出布局不协调、箭头混乱，并授权按只读审查结果改一版看效果。本轮保留当前选图 `fig01-teaser.pdf`（SHA-256 `9b6c15f90670f6386ececf763b865685633b2a9dab8ee8acbeff9ca946f93847`），从匹配的原稿 draw.io 制作[独立候选 PDF](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.pdf)、[可编辑源稿](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.drawio)及[预览](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.png)。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+|---|---|---|---|
+| 共享输入 | 输入括号、分流竖线及框边密集平行；箭头横穿边框 | 一条分流线，两个分区入口各留缺口 | 消除重复骨架，让入口统一 |
+| 右侧复用 | 长竖线加三根输出小箭头 | 一根主箭头接浅灰分组括号；三图共用一条垂直对齐线 | 表达并列复用结果，降低连接线重量 |
+| 中央共享关系 | 三条饱和彩色回路环绕场景 | 原生共享单元移至上方，三条局部细双向连接 | 保留跨组件共享关系，并让场景轮廓清楚 |
+| 上排、标题与底部 | 虚实流程混用，相机条件悬空；标题在底部，车辆说明分散 | 主流程实线；相机短竖箭头；a/b 标题左上；两车及说明对齐 | 区分数据流和条件输入，减少跳跃阅读 |
+
+原始六张输入照片字节保持，八个图像裁剪经逐像素核验；没有新生成或改画场景。重复的 Joint completion 标题并入完整 b 标题，Also 说明并入既有三种状态标签；全部科学条件与聚合所有输入后的对照保留。画布 1350×690。96 个对象中，82 个原生构件或组合对象、14 个独立图片；中央场景及上下文组成一个可展开编辑的语义组。
+
+完成 draw.io 实际模型审计、应用截图、原生文件重新导出，以及最终 PDF 的 Poppler/PyMuPDF 渲染复核。自动审计的六项命中均来自中央底图的白色矩形边界，已用实际像素及完整渲染确认连接线位于留白，不遮挡三维主体；逐项证据与原始输出保留，未将原始计数改成零。文字溢出和实际路由问题已修正；本轮为已知主张下的局部自审，不冒充独立盲审或完整投稿审查。
+
+正式选图、原稿及其他 draw.io 变体保持；未改论文正文或重编论文，未提交或推送。完整记录见[本轮来源与验收](../paper/provenance/teaser-coordinated-preview-20261105.json)，过程位于 `../../_archive/drivecompose/20261105-teaser-coordinated/`。
+
+---
+
+## 2026-11-05 图 3 的独立算子标注候选（未替换论文）
+
+作者要求保留原稿，本轮仅另存候选 PDF／PNG 及图注，当前论文与图件选择不变。
+
+| 位置 | 原稿 | 候选稿 | 原因 |
+|---|---|---|---|
+| 投影模块标签 | `Projection` | Π 及斜体 m,f 下标 | 与正文约束投影算子一致，避免与相机投影混淆 |
+| 图注 | 简述 CCM 读写和未知码更新 | 增补局部组示例、实心点／斜线／零的含义，以及观测恢复和自由空间归零 | 将一般解释置于图注，保持图内简化机制结构 |
+
+原图 SHA-256 保持 `6978ecdd8aaadf84fbac991163a7b60a5a119ce4e10b81e981eaa97f3a819ffd`。其余 24 个原文本对象与 113 个矢量对象逐项相同；投影模块标签区之外在 72／144 dpi 下逐像素一致。当前两版主稿和方法图注源文均未修改，未重编。图注候选尚未写入论文。
+
+[候选图](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion-revised.pdf)、[中英文图注](../../_archive/drivecompose/20261106-recompile-cleanup/files/docs/figures/fig03-joint-completion-revised-caption.txt)和[等尺寸并排预览](../../_archive/drivecompose/20261105-figure3-operator-candidate/comparison.png)可审阅；[来源与验收](../paper/provenance/figure3-operator-candidate-20261105.json)记录字体、像素核验与原稿保护。所有中间产物在 `../../_archive/drivecompose/20261105-figure3-operator-candidate/`。
+
+---
+
+## 2026-11-05 收紧图 3 删除文字后的空白
+
+按作者要求只收紧图 3 布局，保留上一轮已删除的图例和六处文字。真实基线为上一轮未提交版本，图 3 SHA-256 为 `11067cccfea969be42d62b4c18c7fde29c4d9ea6eb90dd0fc70cc4cbefc77135`；原件、复现脚本、候选、编译与页图保存在 `../../_archive/drivecompose/20261105-figure3-compact/`。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+|---|---|---|---|
+| 上下两段流程之间 | 删除说明后留有较大间隔 | 下方采样链与橙色循环整体上移 100 pt；更新公式上移 60 pt | 收紧主要空白，同时保留公式与下方模块间距 |
+| 速度头及关联连线 | 沿用旧位置 | 速度头上移 12 pt；只缩短三条受影响连线 | 保持端点连接和清楚的箭头方向 |
+| 顶部与底部画布 | 高 760 pt | 顶部裁去 40 pt，底部随采样链上移裁去 100 pt；最终高 620 pt，宽度保持 964.08 pt | 图高减少 18.42%，保持字号和模块大小 |
+
+全部 25 个文本对象的字形、字体、字号、颜色，以及 113 个矢量对象的样式保持；除三条连线长度调整外，图形尺寸保持。公式、符号、剩余标签、模块关系及图注无改动。上方模块保留原坐标与样式，仅随画布原点变化整体显示；栅格预览有极少量边缘取样差异，已在验收记录中注明，不宣称逐像素相同。更新公式与连线相隔约 8.50 pt，与下方投影框相隔约 13.94 pt，箭头端点未侵入模块。
+
+仅替换图 3 后，两版初次编译的全文词项计数均与基线相同。收尾检查发现另一任务同期更新了图 1 PDF，已保留该文件及其记录，再用当前图件完整重编。最终英文／中文共 11／10 页，完整正文仍止于第 8／7 页，图 3 均在第 4 页；最终全文词项差异仅为参考文献中的页码回引数字，未改正文源文或科学数值。独立图与两版第 4 页经 Poppler 复核，无裁切、重叠、缺字、未定义引用或溢出。
+
+原保护清单中 57 项文件保持原哈希，图 1 为已保留的同期独立改动；最终重编前后 58 项当前输入哈希均稳定。80 项检查仍为 75 项通过，5 项历史图源失败保持，本轮未新增失败。详见[本轮来源与验收](../paper/provenance/figure3-compact-layout-20261105.json)。
+
+---
+
+## 2026-11-05 Teaser PDF 收紧留白并加上下分区框
+
+本轮以作者指定的当前 `fig01-teaser.pdf` 为真实基线，不采用独立 draw.io 修订稿。基线提交为 `5b46f9e`，实际起点为既有未提交工作区；原 PDF SHA-256 为 `6183604dca2eae5cfa7a65e7e65c64599ee84be00640159bc7f0b3ac487326a5`。原版与本轮必要记录已备份到 `../../_archive/drivecompose/20261105-teaser-compact-framing/baseline/`。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+|---|---|---|---|
+| 上下两条路径 | 仅中间一条分隔线 | 两个左右边界相同的灰蓝细框，框间距 12 pt | 明确观测路径和补全／复用路径的范围 |
+| 上排两个操作框 | 高 89.28 pt | 高 66 pt，原蓝色及文字字号保持 | 收紧框内空白 |
+| 底部车辆对照 | 图片下方另放整行说明，图例占对照区右侧 | 说明分两行放在车辆旁，图例移至中央场景的右上空白 | 回收纵向空间，保留原有全部文字 |
+| 整图 | 1350 × 708.72 pt | 1350 × 640 pt，高度减少约 9.7% | 压缩空白，保留主场景及图片比例 |
+
+已更新[正式图件](../paper/fig/fig01-teaser.pdf)，[调整后预览](../paper/fig/fig01-teaser-preview.png)可直接查看。15 张原始图片资源和全部文字词项均与基线一致；图片只裁外沿空白，不重采样或改画。主场景原有烘焙标注沿用，不将其声称为全原生矢量。PyMuPDF 与 Poppler 实际渲染复核通过，未发现缺字、文字相交、裁切或连线遮挡；本轮是指定布局的自审回归，不替代完整科学叙事审阅。
+
+独立 draw.io 变体及其他图件未由本轮修改；本轮未改论文源文或重编主稿，未提交或推送。完整来源与验收见[记录](../paper/provenance/teaser-compact-framing-20261105.json)。期间观察到其他图件／编译产物由并行工作更新，按外部变更记入验收，不覆盖、不算作本轮贡献。
+
+---
+
+## 2026-11-05 删除图 3 的六处指定文字
+
+按作者补充的五张截图，仅删除当前图 3 的六处指定文字。真实起点为上一轮已去除图例的未提交版本，基线图件 SHA-256 为 `2a19c18a3f83b040f5dd928204a917647c62bbe97e8d4bb55dea37b472ad7a0e`；基线、中间产物与截图在 `../../_archive/drivecompose/20261105-figure3-remove-labels/`。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+|---|---|---|---|
+| 图上方 | `Cross-component context`、`Shared memory` | 删除这两处标题，保留 M、M′ 和 C、τ | 按截图删除 |
+| 图中部 | `Fixed query layout`、`Constrained update` | 删除这两处说明，连线及其他对象位置保持 | 按截图删除 |
+| 更新公式右侧 | `(unknown only)` | 删除括号说明，保留 Δτ u ⊙ vθ | 按截图删除 |
+| 完成输出上方 | `after S` | 删除此处文字，保留输出的 S 上标及 `S steps` | 按截图删除 |
+
+删除六个完整原生文本对象，其余 25 个文本对象的内容流逐字节保持，113 个矢量绘制对象的全部属性相同。页面尺寸不变；72／144 dpi 下，六处目标文字区域之外的像素完全一致。中英文主稿全文文本差异均严格对应以上六处文字，没有其他新增或删除词项。
+
+两版主稿已重编并保存到正式路径；英文／中文共 11／10 页，正文仍止于第 8／7 页，图 3 均在第 4 页。独立图和两版第 4 页经 Poppler 复核，无新增重叠、裁切或编译警告。58 项正文源文、其他图件和补充材料文件哈希保持。80 项既有检查仍为 75 项通过，5 项历史图源失败与基线相同；本轮未新增失败。详细证据见[本轮验收](../paper/provenance/figure3-label-removal-20261105.json)。
+
+---
+
+## 2026-11-05 删除图 3 底部图例
+
+作者指定删除截图中的底部备注。本轮起点为 `5b46f9e` 之上的既有未提交工作区；真实修改前文件、差异、页图与编译中间产物保存在 `../../_archive/drivecompose/20261105-figure3-remove-legend/`。
+
+| 位置 | 修改前 | 修改后 | 原因 |
+|---|---|---|---|
+| 两版主稿图 3 底部 | `Observed / fixed`、`Unknown / updated`、`Free / zero`，含三个符号和浅色外框 | 删除上述图例、符号及外框 | 按作者截图指定范围删除 |
+| 图 3 页面底部 | 高 845.04 pt，包含图例条带 | 高 760 pt；宽度和其余对象位置保持 | 去除删除图例后的多余空白 |
+
+直接删除当前原生矢量 PDF 的图例内容流，保留区域在 72 与 144 dpi 渲染下逐像素一致；其余文字完全相同。图注、中英文正文源文、公式、数据、其他图件和补充 PDF 的 56 项文件哈希保持。英文／中文主稿重编并保存至正式路径，共 11／10 页，正文仍止于第 8／7 页，图 3 均位于第 4 页。Poppler 页图复核无新增裁切或重叠，编译无缺字、未定义引用或溢出。
+
+80 项既有检查中 75 项通过，5 项历史图源检查失败与修改前相同；本轮未新增失败。当前匹配的 draw.io 源稿未在检出中找到，本轮直接编辑现用矢量 PDF，历史 draw.io 变体保持。详见[本轮来源与验收](../paper/provenance/figure3-legend-removal-20261105.json)。
+
+---
+
+## 2026-11-05 Teaser 按已讨论建议另存修改稿
+
+作者授权“按这些建议改一版 draw.io，保留原稿，改好后给我看预览”。本轮真实基线为当前[原稿 draw.io](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-original.drawio)，SHA-256 为 `05fe93a91a09496c72b3be1c2038d1ae17fc2a4b4f41122f129767bd3dba8324`；仅制作独立[修改稿](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-revised.drawio)与[预览](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-revised.png)，未改论文文字或当前 PDF 选图。
+
+| 位置 | 本轮原稿 | 修改后 | 原因 |
+|---|---|---|---|
+| 上方观测路径 | 两个大蓝色流程框；未见面接近白底 | 浅灰紧凑节点，未见车身增加原生灰斜线；相机图标改原生形状 | 减少操作框的视觉重量，让缺失表面可见 |
+| 输入 | 两列视角未标明；小字号时间标签 | 添加 View 1 / View 2，统一时间标签字号与矩阵间距 | 明确视角／时间两个维度，保留六张原始输入照片 |
+| 中央和底部补全说明 | 主场景标签约 5.56 pt，底部重复完整车辆 | 机制标签约 8.07 pt；底部保留“全部输入聚合后”条件，改为同位置车尾局部对照 | 提高可读性，并保留能解释补全增量的必要信息 |
+| 右侧复用 | 三张小全景，状态名称在细小侧注中 | 相机全景、车辆转动近景、人体两姿态近景；独立动作箭头与随姿态变化的金色上臂标记 | 让复用与表面运动在画面中可观察 |
+| 图例与冗余注释 | Observed 仅蓝灰单色；重复 Also 注释 | 三类观测组件色加金色完成标记；删除重复注释 | 区分组件身份与完成状态，回收空间 |
+
+[并排前后预览](../../_archive/drivecompose/20261105-teaser-revised/before-after-comparison.png)包含本轮真实基线。新文件 109 个对象，其中 94 个原生构件与 15 个独立位图；六张照片原始字节保持，五个裁剪保留源像素。标签最小字号按当前跨栏宽约为 8.07 pt。draw.io 实际重新打开、原生结构审计及独立阅读均完成，0 个硬错误；大幅底图提示经目视确认为单张连续三维示意场景。
+
+原稿、原版／调整版图一 PDF 和两版论文入口文件均通过起止哈希一致检查。未改科学主张、实验结果或图注，未替换正式论文图件，未编译、提交或推送。完整来源和过程见[验收记录](../paper/provenance/teaser-revision-20261105.json)及既有项目外归档 `../../_archive/drivecompose/20261105-teaser-revised/`。
+
+---
+
+## 2026-11-05 原稿 PPT 转入 draw.io（保持原稿布局）
+
+作者补充原稿 `E:/Users/changan/Downloads/feishu/fig01-teaser.pptx`，并明确要求先按原稿转换，不采用调整稿。已交付[原稿 draw.io](../../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-original.drawio)。源稿 SHA-256：`610b31c35ba550a9b0319982e24ba47d9d261d76854525631445a58d7119f4b5`。
+
+| 项目 | 原稿 | draw.io 结果 |
+|---|---|---|
+| 版式与内容 | 一页 1350×708.75，36 个形状、17 条连接线、15 张图片 | 原有 68 个对象全部对应；原位置、尺寸和文字保持，不套用调整稿 |
+| 主场景标注 | Background、Vehicle、Human、共享上下文与彩色曲线烘焙在主场景图中 | 仅去除底图中的标注，以 26 个独立原生对象按原位复建；场景保持光栅图片 |
+| 图片 | 15 张独立图像 | 14 张原字节保留，1 张主场景为去标注派生底图；所有图片内嵌，无外链依赖；真实输入照片不作生成式修改 |
+| 可编辑性 | PPT 原生对象及图片 | 29 个文本、23 条线、28 个形状、15 张图片；仅白色画布背景锁定，其余 94 个对象可编辑及移动，无分组 |
+| 原始文件 | 原稿 PPT、原版 PDF、调整版 PDF | 三者哈希不变，当前论文图件路径和正文不变 |
+
+最终文件已在独立 draw.io Desktop 会话实际重新打开并查看，原生审计 0 个硬错误；单张主场景占页 17.9% 的提示已核对。导出了全彩预览、标题隐藏灰度副本及跨栏尺度预览。此次为原稿转换自审，出版尺度的小字号继承原稿，不宣称完成版式优化或独立盲审。
+
+完整[来源与验收记录](../paper/provenance/teaser-original-drawio-20261105.json)包含原稿映射、图片处理说明、逐项哈希和原生打开证据；[过程归档](../../_archive/drivecompose/20261105-teaser-drawio/)保留原始素材、提示词和预览。主稿未重编，未提交或推送。
+
+---
+
+## 2026-11-05 单栏组件消融图与对应分析入稿
+
+按作者要求参考 HUGS（CVPR 2024，§4.4／Fig. 9）、DeSiRe-GS（CVPR 2025，§5.4／Fig. 6）和 Street Gaussians（ECCV 2024，§5.3／Fig. 5）的消融写法，在现有组件定义与表 3 结论后补两句具体视觉分析，并加入单栏图 6。真实起点为已有未提交改动的工作区，HEAD 为 `5b46f9eb8e131314430a2f2fa5193dadd16dc296`；[基线与完整差异](../../_archive/drivecompose/20261105-component-ablation-insertion/)保存本轮实际修改前文件，未把已有改动归入本轮。
+
+### 正文实际前后对照
+
+英文 §4.5“Completion components”，原文：
+
+```latex
+At $T=8$, exchanging component context adds 0.627/0.934 dB full-image/dynamic PSNR (Table~\ref{tab:ablation-components}). Appendix H reports paired hidden-surface mechanism comparisons and visibility-stratified results.
+```
+
+修改后：
+
+```latex
+At $T=8$, exchanging component context adds 0.627/0.934 dB full-image/dynamic PSNR (Table~\ref{tab:ablation-components}). Figure~\ref{fig:component-ablation} shows cleaner traffic-signal contours and sharper foliage detail with the full model. Pedestrian silhouettes and vehicle windows have fewer distortions and ghosting artifacts. Appendix H reports paired hidden-surface mechanism comparisons and visibility-stratified results.
+```
+
+中文对应原文：
+
+```latex
+在 $T=8$ 时，交换组件上下文使全图／动态 PSNR 分别提高 0.627／0.934 dB（表~\ref{tab:ablation-components}）。隐藏表面配对机制比较与可见率分组结果见附录 H。
+```
+
+修改后：
+
+```latex
+在 $T=8$ 时，交换组件上下文使全图／动态 PSNR 分别提高 0.627／0.934 dB（表~\ref{tab:ablation-components}）。图~\ref{fig:component-ablation} 中，完整模型的信号灯杆轮廓更清晰，树冠纹理更鲜明。行人轮廓与车窗区域的局部形变和重影也更少。隐藏表面配对机制比较与可见率分组结果见附录 H。
+```
+
+修改理由：原段已说明删减版本和指标收益，缺少结果图及可定位的视觉解释。新增文字直接描述灯杆轮廓、树冠纹理、行人和车窗区域的差异，不添加泛泛的有效性宣言、假想质疑或新的机制结论。英文新增文字按 humanizer 检查；中文仅按 lieflat 白名单核查，未触发额外改写。
+
+### 图件与图注
+
+| 位置 | 修改前 | 修改后 | 原因 |
+|---|---|---|---|
+| §4.5，表 3 后 | 没有定性组件消融图 | [图 6](../paper/fig/fig06-component-ablation.pdf)，单栏 83.34×54.44 mm；Ours、w/o CCM、w/o GCM；标签 9 pt | 与组件表同页展示局部轮廓和纹理差异 |
+| 英文图注 | 无 | **Completion component ablations.** Rows show two scenes; columns are Ours, w/o CCM, and w/o GCM. Colored boxes mark the regions enlarged below each view. | 简洁交代样例、版本与放大关系 |
+| 中文图注 | 无 | **补全组件消融。** 每行一个场景，各列依次为 Ours、w/o CCM 和 w/o GCM。彩色框标记各图下方对应的放大区域。 | 与英文对应 |
+| 检查器 | 沿用“消融图已删除”的旧约定 | 核对当前单栏图、正文引用、PDF／SVG 哈希与六张原图 | 与本轮作者授权同步，保留旧占位图禁用检查 |
+
+六张原图逐字节保存在 `paper/fig/source/component-ablation/`，图中全景与局部均保持原生像素；没有调色、锐化或生成式处理。图注不额外假定尚未提供的输入数量或种子。已有表 3／4、实验设置、摘要、引言、方法、讨论、结论、图 1–5 与两版补充材料的源文件及资产均保持本轮起点；主稿重编自然包含工作区已有的图一更新。
+
+### 验证与输出
+
+- 两版主稿真实重编成功；英文／中文总页数 11／10，完整结论与正文结束标签在第 8／7 页。图 6 与组件表分别同在第 8／7 页，单栏标签实际约 9 pt。
+- 42 项专项检查通过，含两张表逐字一致、原图与 18 张内嵌图像像素一致、改动范围、完整结论、列顺序、字号及编译产物核验。无缺字、未定义引用或溢出。
+- 现有稿件检查器 80 项中 75 项通过；5 项旧图来源检查在本轮修改前已经失败，本轮没有新增失败。完整名称与真实结果保存在[专项验收](../../_archive/drivecompose/20261105-component-ablation-insertion/verification.json)，未声称全部既有检查通过。中文保留第 6 页仅含浮动图的既有提示。
+- 正式稿：[英文](../paper/build/en/main.pdf)、[中文](../paper/build/zh/main_zh.pdf)。[图件、来源与本轮记录](../paper/provenance/component-ablation-figure-20261105.json)；[可编辑 SVG](../paper/fig/fig06-component-ablation.svg)。未提交或推送。
+
+---
+
+## 2026-11-05 原版与调整稿分开保留（当前选择）
+
+按作者“原版先保留，方便我对比”的要求，将 `paper/fig/fig01-teaser.pdf` 恢复为最初原版，SHA-256 为 `6183604dca2eae5cfa7a65e7e65c64599ee84be00640159bc7f0b3ac487326a5`。最新调整稿另存为 `paper/fig/fig01-teaser-layout.pdf`，SHA-256 为 `d51b5eccbdf24ac23724ea143fc5a536e7b9efe661801589332c7450ff1c2383`。两份文件均逐字节核对，后续编译默认仍采用原版，调整稿留待作者比较选择。
+
+同尺度[原版／调整稿并排预览](../../_archive/drivecompose/20261105-teaser-version-comparison/fig01-teaser-comparison.png)已生成；首轮调整 PDF 也继续保留在既有归档中。当前[版本选择记录](../paper/provenance/teaser-layout-20261105.json)已同步，LaTeX 和已编译论文 PDF 未改。
+
+---
+
+## 2026-11-05 按作者反馈重新校正子图尺度与连线（调整稿，现已另存）
+
+作者指出首轮重排中的左右分叉线、长标题等细节仍未处理好。本轮以首轮实际输出为基线，SHA-256 为 `7f2a9d1d6cb688e60f2d8e16424246d6d1a9cb039d5c80bf54c5785666d9cc84`；没有将 HEAD 或最初原图冒充本轮基线。[原文件、三张作者反馈截图和说明备份](../../_archive/drivecompose/20261105-teaser-layout-refinement/)保留。下方首轮的版面自审结论由本轮复核接续。
+
+| 位置 | 首轮状态 | 本轮处理 | 原因 |
+|---|---|---|---|
+| 共享输入出口 | 输入括线与分支竖线并排，另有中央短横线，两个分支端点不一致 | 一条输入分组括线同时作为两条路径的起点；两条水平箭头均约 50 pt，去掉中央短横线 | 让连线明确对应整组输入，避免重复竖线和悬空线段 |
+| 右侧复用 | 一条短横线接三叉竖线，三枚箭头轴段过短，原点离场景主体较远 | 从主场景可见道路端点附近发出一条约 49 pt 的完整箭头，连接明确括起的三个状态示例 | 表达同一场景组件的三种复用，避免细碎分叉和看不清的箭头 |
+| `(b)` 长标题 | `(b) DriveCompose: joint completion and asset reuse`，约 516 pt 宽 | `(b) DriveCompose: joint completion`，约 359 pt；资产复用由右侧原有标题说明 | 标题控制在主场景区域内，取消重复信息 |
+| 上方标题 | `(a)` 标题与 Aggregated observed surfaces 的字行相邻，信息偏长 | `(a) Observation-only`；`Aggregated surfaces`，完整 reconstruction 名称保留在操作框 | 增加标题之间的真实空隙，并保持上方路径的观测限定 |
+| 图例 | 位于主场景底部、靠近右侧连线和车辆对照 | 放入主场景右上方原有空白区域 | 使图例直接服务主场景，避免与连接线和辅助图竞争；核对底层区域没有原有非白内容 |
+| 辅助车辆对照 | 图像与长说明、图例混排 | 说明置于两车上方，两车字段同尺寸、同基线，独立保留一条完整比较箭头 | 将辅助证据与主图、状态复用分组分开阅读 |
+
+### 按可见主体校正尺寸
+
+首轮主要按整张图片外框统一，图片内部空白差异仍使实际主体大小不一。本轮只通过 PDF 裁剪窗口移除外侧空白，在源图允许范围内保留约 8 个像素的边缘留白，不改图像字节、不重采样。下表为可见主体宽度，单位为图源 pt；辅助照片和原生标签仍分别处理。
+
+| 子图 | 首轮主体宽度 | 本轮主体宽度 | 排布 |
+|---|---:|---:|---|
+| 两幅上方场景 | 约 252.5／258.0 | 约 258.1／258.3 | 相同 265×160 pt 字段，保持比例并垂直居中 |
+| 联合补全主场景 | 约 538.8 | 约 574.4 | 占主要视觉面积，约为一个状态场景的 2.26 倍宽 |
+| 三个状态示例 | 约 239.9／227.0／227.0 | 约 254.0／253.6／253.6 | 相同 260×114 pt 字段，中心距 125 pt，标签共同对齐 |
+| 两辆辅助车辆 | 约 90.7／90.7 | 约 94.3／94.3 | 同尺寸裁剪字段、同一水平比较轴 |
+| 六张输入帧 | 90 pt 图宽 | 100 pt 图宽 | 保留两视角×三时刻，统一行距和边框 |
+
+最终仍为 1350×708.72 pt，15 张原始图像的像素签名逐项相同。原生文字无重叠或裁切、字体均嵌入；三幅复用图的可见宽度差小于 0.35 pt。已经查看 Poppler 实际渲染、495 pt 插入宽度预览和隐藏分区标题后的灰度图。本轮为针对作者反馈的排版自审，没有把源图中的光栅标注或表面语义问题称为新完成的矢量审查。
+
+当前[图一 PDF](../paper/fig/fig01-teaser.pdf)已替换为本轮结果；[来源与验收](../paper/provenance/teaser-layout-20261105.json)已更新，旧记录原件保存于本轮基线。完整[重排脚本](../../_archive/drivecompose/20261105-teaser-layout-refinement/reflow_teaser.py)、[最终预览](../../_archive/drivecompose/20261105-teaser-layout-refinement/final-preview.png)与逐对象规范可复核。正文、图注、实验结果、其他图件和现有论文 PDF 保持；未重编主稿、未提交或推送。
+
+---
+
+## 2026-11-05 首轮 teaser 版式调整（已由上方复核接续）
+
+按作者要求直接更新 `paper/fig/fig01-teaser.pdf`。真实基线为 HEAD `5b46f9e` 下的当前工作副本，原 PDF 的 SHA-256 为 `6183604dca2eae5cfa7a65e7e65c64599ee84be00640159bc7f0b3ac487326a5`；原文件及本轮修改前的说明已保存于[本轮基线](../../_archive/drivecompose/20261105-teaser-layout/baseline/)。既有未提交工作保留。
+
+| 位置 | 原状态 | 本轮修改 | 原因 |
+|---|---|---|---|
+| 上方流程框和场景 | 两个深蓝框约 220×90／138×90 pt，场景宽约 255／240 pt | 流程框统一为浅蓝、约 190×66／185×66 pt；场景宽增至 300／278 pt | 减轻流程框视觉重量，让观测与缺失场景更突出 |
+| 上下分区标题 | `(a)`、`(b)` 在各自区域底部，另有重复的 Joint completion 标题 | 分区标题放到同一左对齐锚点；Joint completion 并入 `(b)` 标题 | 进入每个区域时即可识别其作用，减少重复层级 |
+| 右侧状态示例 | 图像、标签位置分散，字号 15 pt | 三图宽度统一 267 pt、行距 125 pt；标签共用左边界与基线，字号 21.8 pt | 建立一致的阅读节奏与对应关系 |
+| 图例与前后对照 | 图例 13.56 pt，状态文字 15 pt，跨栏后约 4.97／5.50 pt；对照使用较重虚线外框 | 图例、状态与对照文字改为 21.8 pt，跨栏后约 8 pt；外框改为浅色分隔线 | 提高关键文字可读性，减轻底部边框的干扰 |
+
+页面保持 1350×708.72 pt，原始 15 张图像像素逐项核对一致，全部原标签信息保留。保留原始实线／虚线流程关系；仅裁掉上方观测场景右边缘的一条导出残留细线。原生文字无重叠或裁切，两套字体已嵌入；已查看 PyMuPDF、Poppler 渲染，以及按 495 pt 插入宽度的缩小预览和隐藏分区标题后的灰度图。本轮为排版范围自审，未重绘场景、未解决原图表面标记的历史语义问题。
+
+本轮只更新图一及相应记录；未修改 LaTeX、图注、实验数据，未重编或替换两版主稿 PDF，未提交或推送。新图会被后续正常编译采用。完整[来源与验收](../paper/provenance/teaser-layout-20261105.json)、[重排脚本](../../_archive/drivecompose/20261105-teaser-layout/reflow_teaser.py)、[最终预览](../../_archive/drivecompose/20261105-teaser-layout/final-preview.png)保留可追溯。
+
+---
+
+## 2026-11-04 拉取最新文件并审阅新 teaser
+
+按作者要求，分支从 `edcd19c` 快进到 `5b46f9e`，接入远端统一图件目录和五份最终 PDF。本地未提交的核心消融、补充材料、检查脚本及四份正式 PDF 已逐项备份并恢复；两版实验源文只叠加远端的图件路径改名。双方文档新增记录合并保留，四份编译结果 JSON 与被保留 PDF 的 SHA-256 相符，没有用另一机器的旧编译记录覆盖本机输出。没有新增提交或推送。
+
+本轮审阅的是当前 `paper/fig/fig01-teaser.pdf`，保留共享多视角输入和几何示意风格。具体问题为：上方缺失区域过浅、补全表面的跨状态对应不明确；大流程框及车辆前后条带重复占位；实际跨栏图例和状态标签仅约 4.97／5.50 pt。建议先统一未知／补全标记，再压缩重复内容、放大状态示例及文字。当前图件、图注和正文科学内容未被本轮修改，未重新生图或编译。
+
+详细“位置 → 当前问题 → 改法 → 验收”、新构图建议及中英文图注候选见[图件索引](figures/README.md)，完整证据与同步状态见[本轮记录](../paper/provenance/teaser-latest-review-20261104.json)。拉取前真实原件、恢复补丁、逐文字号、原图及缩小灰度预览保存在[本轮归档](../../_archive/drivecompose/20261104-teaser-latest-review/)。此前录用论文参考拆解继续作为历史依据，没有重复开展文献检索。
+
+---
+
+## 2026-11-04 正文消融收拢为两组核心实验
+
+作者确认按录用论文的主文篇幅收拢消融。本轮实际起点为干净工作区 HEAD `edcd19c6c8b63d5ae8b242044fedf2f83838762b`，真实原件已逐文件保存于[本轮基线](../../_archive/drivecompose/20261104-core-ablation-revision/baseline/)。本轮只修改中英文实验正文、必要的相关工作交叉引用、补充材料中的编辑表位置，以及相应检查与项目记录。
+
+中英文主稿及两版补充材料均已编译、核验并更新至原正式路径。英文／中文主稿共 11／10 页，完整正文止于第 8／7 页；英文／中文补充材料共 12／10 页。75 项既有稿件检查及 107 项本轮源文、数据保留与编译核验通过；四份最终日志无未定义引用、缺字或溢出。补充表编号连续为 S1–S25。受影响正文与补充页已渲染复核。
+
+### 位置与取舍
+
+| 位置 | 原文／原状态 | 修改后 | 原因 |
+|---|---|---|---|
+| 主稿 §4.5 | 组件、隐藏机制、可见率、编辑后表面、自由空间五项展开，三张受控表 | 组件贡献、输入数量两段，两张表 | 集中回答补全与组件交换的作用及输入稀疏性 |
+| 组件表 | 全图三项＋动态 PSNR／SSIM | 全图三项＋动态 PSNR；动态 SSIM 原值和 SD 在附录 G 保留 | 精简单栏表宽，保留完整记录 |
+| 输入数量 | 正文只概述增益，均值与 SD 在附录 G | 均值表进入主文表 4，附录完整 SD 保持 | 让第二组核心消融可直接阅读 |
+| 隐藏机制、可见率 | 正文重复展示附录 H 已有结果 | 撤下正文表和展开，正文一处指向附录 H | 保留近邻机制证据，释放正文篇幅 |
+| 编辑后表面 | 原主文表 5 | 表体逐字迁入附录 I，编号 S19，§4.4 引用配对比较 | 资产复用证据保持完整 |
+| 自由空间 | §4.5 展开 C／F 与射线损失数值 | 既有附录 D／J 保持；观测保持标签移至 §4.4 | 避免非核心展开与失效引用 |
+| 指标实现 | 颜色域、SSIM 和 LPIPS 生产配置未独立核验 | 继续在实验方案与来源记录中列为待核验 | 不以公共默认设置冒充实际评价器 |
+
+### 实际中英文前后对照
+
+组件表图注原文：
+
+```tex
+\caption{\textbf{Component ablations on Waymo.} $T=8$, with shared recovery, codec, and target views. Full SDs are in Appendix G.}
+\caption{\textbf{Waymo 组件消融。}$T=8$，恢复模块、codec 与目标视图相同。完整 SD 见附录 G。}
+```
+
+修改后：
+
+```tex
+\caption{\textbf{Component ablations on Waymo.} $T=8$ timestamps (24 images), with shared recovery, codec, and target views. Full metrics and SDs are in Appendix G.}
+\caption{\textbf{Waymo 组件消融。}$T=8$ 个时刻（24 张图像），恢复模块、codec 与目标视图相同。完整指标与 SD 见附录 G。}
+```
+
+原组件段落中输入数量只用一处结果概述；附录 G 已有六行完整均值与 SD。本轮新增正文段落如下，数值均取自原作者记录：
+
+```tex
+Fixed checkpoints use nested $T=2,4,8$ inputs (6/12/24 images) over the same time span and target views. At each input count, evidence and queries are reconstructed from the supplied inputs. CCM adds 1.104, 0.738, and 0.627 dB PSNR and reduces LPIPS by 0.041, 0.028, and 0.018 (Table~\ref{tab:ablation-inputs}), with the largest benefit at the sparsest input setting. Appendix G gives the input lists and seed statistics.
+
+固定 checkpoint，在相同时间跨度与目标视图上使用 $T=2,4,8$ 嵌套输入（6／12／24 张图像），每档均从所给输入重新构建证据与查询。CCM 的 PSNR 增益分别为 1.104、0.738 和 0.627 dB，LPIPS 分别降低 0.041、0.028 和 0.018（表~\ref{tab:ablation-inputs}），输入最稀疏时收益最大。输入清单与种子统计见附录 G。
+```
+
+相关工作最后一句原指向 `Sec.~\ref{sec:hidden-completion}`／`第~\ref{sec:hidden-completion} 节`，本轮仅改为 `Appendix H`／`附录 H`；其余内容保持。方法中的观测保持引用继续有效，标签移至保留的 §4.4 观测保持段。
+
+完整逐行差异见[本轮差异](../../_archive/drivecompose/20261104-core-ablation-revision/source-changes.diff)，原始均值及展示选择见[本轮记录](../paper/provenance/core-ablation-revision-20261104.json)。摘要、引言、方法、讨论、总结、书目、所有活动图件及模板逐文件保持；没有执行训练或评价，也没有改变任何实验结果值。
+
+---
+
 ## 2026-11-04 补齐仓库内的论文编译依赖
 
 原问题：上一轮将“不推 PPT 等大文件”扩大为“不上传任何 PDF”，提交 `42ea76f6ef0b49afe0e57c0b7fa712a58bf0d885` 中的 LaTeX 已引用统一命名的五份 PDF，Git 却没有这些文件，新检出无法直接编译。按作者本轮要求，修正版本控制范围，保留 PPT 和论文成品输出在本机。

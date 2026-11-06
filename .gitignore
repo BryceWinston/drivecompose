@@ -21,3 +21,4 @@ paper/build/*/compiler-output.txt
 
 # draw.io automatic save files
 *.dtmp
+*.drawio.bkp

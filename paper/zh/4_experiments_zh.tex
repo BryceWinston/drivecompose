@@ -107,9 +107,10 @@ Ours
 \subsection{状态驱动资产复用}
 \label{sec:ablation-reuse}
 \paragraph{资产编辑。}
-我们在 20 个真实场景上测试固定资产复用，每个场景各含一辆车和一个人体。相机平移 1 m、车辆旋转 $30^\circ$ 及人体换姿均复用固定完成资产。九组训练／生成种子共形成 360 次参与者编辑。五像素结构完整性判据通过 334／360 次（92.78\%）；结构、新增表面纹理、外观身份与局部几何四项联合通过 298／360 次（82.78\%）。五人中至少四人同意的评判规则、失败分解与种子统计见附录 I。
+我们在 20 个真实场景上测试固定资产复用，每个场景各含一辆车和一个人体。相机平移 1 m、车辆旋转 $30^\circ$ 及人体换姿均复用固定完成资产。九组训练／生成种子共形成 360 次参与者编辑。五像素结构完整性判据通过 334／360 次（92.78\%）；结构、新增表面纹理、外观身份与局部几何四项联合通过 298／360 次（82.78\%）。合成场景配对比较、五人中至少四人同意的评判规则、失败分解与种子统计见附录 I。
 
 \paragraph{观测保持。}
+\label{sec:observation-preservation}
 在固定相机与参与者状态下，相对仅已见场景，Ours 严格保持已见高斯参数，输入视角 PSNR 下降 0.029 dB，深度 MAE 增加 2 mm。人体原已见纹理的规范对应线性 RGB MAE 为 0.014。参数与渲染测量见附录 J。
 
 \paragraph{效率。}
@@ -119,79 +120,60 @@ RTX 4090 上（FP16、batch 1、C 规则），构建耗时 $2.66\pm0.11$ s，单
 \FloatBarrier
 \subsection{消融实验}
 \label{sec:ablation-protocol}\label{sec:ablations}\label{sec:ablation-studies}
-w/o GCM 关闭非已见、非天空高斯。w/o CCM 使用各组件独立记忆，保留相同参数与全局日志条件，重新训练阶段三、四。
+Waymo 消融从每条测试序列取一个 29 时刻窗口，使用三相机与七个共享目标时刻（附录 G）。
 
 \paragraph{补全组件。}
-Waymo 组件消融从每条测试序列取一个 29 时刻窗口，使用三相机、$T=2,4,8$ 嵌套输入与七个共享目标（附录 G）。变体共享恢复模块、codec、状态、数据和优化预算。训练均匀采样 $T$，推理使用 24 步 Euler 积分。三个训练种子与三个生成种子全部平均，所有输出保留计分。交换组件上下文使全图／动态 PSNR 分别提高 0.627／0.934 dB（表~\ref{tab:ablation-components}）；Ours 与 w/o CCM 的训练种子 SD 为 0.061 和 0.074 dB。$T=2,4,8$ 时的 PSNR 增益为 1.104、0.738 和 0.627 dB，输入最稀疏时收益最大（附录 G）。CCM 增加 5.1\% 构建时间（附录 K）。
+w/o GCM 关闭非已见、非天空高斯。w/o CCM 使用各组件独立记忆，保留相同参数与全局日志条件，重新训练阶段三、四。变体共享恢复模块、codec、状态、数据和优化预算。训练均匀采样 $T$，推理使用 24 步 Euler 积分。生成版本平均三个训练种子与三个生成种子的全部输出；w/o GCM 为确定性对照。在 $T=8$ 时，交换组件上下文使全图／动态 PSNR 分别提高 0.627／0.934 dB（表~\ref{tab:ablation-components}）。图~\ref{fig:component-ablation} 中，完整模型的信号灯杆轮廓更清晰，树冠纹理更鲜明。行人轮廓与车窗区域的局部形变和重影也更少。隐藏表面配对机制比较与可见率分组结果见附录 H。
 
 \begin{table}[!htbp]
-  \centering
-  \caption{\textbf{Waymo 组件消融。}$T=8$，恢复模块、codec 与目标视图相同。完整 SD 见附录 G。}
+  \centering\small
+  \caption{\textbf{Waymo 组件消融。}$T=8$ 个时刻（24 张图像），恢复模块、codec 与目标视图相同。完整指标与 SD 见附录 G。}
   \label{tab:ablation-components}
-  \small
   \setlength{\tabcolsep}{3pt}
   \renewcommand{\arraystretch}{1.12}
-  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc@{}}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc@{}}
     \toprule
-    \multirow{2}{*}{变体} & \multicolumn{3}{c}{全图} & \multicolumn{2}{c}{动态区域} \\
-    \cmidrule(lr){2-4}\cmidrule(lr){5-6}
-      & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ \\
+    \multirow{2}{*}{变体} & \multicolumn{3}{c}{全图} & 动态区域 \\
+    \cmidrule(lr){2-4}\cmidrule(lr){5-5}
+      & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ & PSNR $\uparrow$ \\
     \midrule
-    w/o GCM & 27.137 & 0.867 & 0.183 & 23.431 & 0.811 \\
-    w/o CCM & 28.286 & 0.893 & 0.147 & 24.683 & 0.849 \\
+    w/o GCM & 27.137 & 0.867 & 0.183 & 23.431 \\
+    w/o CCM & 28.286 & 0.893 & 0.147 & 24.683 \\
     \midrule
-    Ours & \textbf{28.913} & \textbf{0.911} & \textbf{0.129} & \textbf{25.617} & \textbf{0.873} \\
+    Ours & \textbf{28.913} & \textbf{0.911} & \textbf{0.129} & \textbf{25.617} \\
     \bottomrule
   \end{tabular*}
 \end{table}
 
-\paragraph{隐藏表面补全。}
-\label{sec:hidden-completion}
-100 个合成测试场景提供 $\pm2$ m 下的隐藏区域配对评价。场景级潜码生成~\cite{liao2025complete}和跨对象潜码耦合~\cite{wu2026jrm}适配到共享恢复模块、codec、查询布局、输入、监督和采样设置，汇总三个训练种子与三个生成种子。联合补全同时改善外观与表面恢复，相对对象耦合对照的 PSNR、覆盖率和 F-score 分别提高 0.67 dB、2.6 和 3.6 个百分点（表~\ref{tab:completion-mechanisms}）。真实共有支持集上的 RGB 重投影 MAE 相对 w/o CCM 从 0.028 降至 0.019，覆盖率从 86.9\% 升至 92.4\%。机制接口与几何评价见附录 H。
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth]{fig/fig06-component-ablation.pdf}
+  \caption{\textbf{补全组件消融。}每行一个场景，各列依次为 Ours、w/o CCM 和 w/o GCM。彩色框标记各图下方对应的放大区域。}
+  \label{fig:component-ablation}
+\end{figure}
+
+\paragraph{输入时刻数量敏感性。}
+固定 checkpoint，在相同时间跨度与目标视图上使用 $T=2,4,8$ 嵌套输入（6／12／24 张图像），每档均从所给输入重新构建证据与查询。CCM 的 PSNR 增益分别为 1.104、0.738 和 0.627 dB，LPIPS 分别降低 0.041、0.028 和 0.018（表~\ref{tab:ablation-inputs}），输入最稀疏时收益最大。输入清单与种子统计见附录 G。
 
 \begin{table}[!htbp]
 \centering\small
+\caption{\textbf{输入时刻数量敏感性。}固定 checkpoint、时间跨度与目标视图；$T$ 为时间戳数，每时刻含三路图像。完整 SD 见附录 G。}
+\label{tab:ablation-inputs}
 \setlength{\tabcolsep}{3pt}
-\caption{\textbf{隐藏区域补全机制。}100 个合成场景上的任务适配对照，采用 C 规则；覆盖率与 F-score 阈值为 2 cm。}
-\label{tab:completion-mechanisms}
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrr@{}}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}l l c c c@{}}
 \toprule
-机制 & PSNR$\uparrow$ & LPIPS$\downarrow$ & 覆盖率$\uparrow$ & F-score$\uparrow$\\
+$T$ & 变体 & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ \\
 \midrule
-w/o GCM & 16.82 & 0.401 & 61.5\% & 51.7\%\\
-w/o CCM & 21.56 & 0.236 & 89.7\% & 81.3\%\\
-场景潜码 & 22.24 & 0.221 & 91.8\% & 84.1\%\\
-对象耦合 & 22.51 & 0.212 & 92.4\% & 85.0\%\\
-Ours & \textbf{23.18} & \textbf{0.192} & \textbf{95.0\%} & \textbf{88.6\%}\\
+2 & w/o CCM & 25.237 & 0.817 & 0.254 \\
+2 & Ours & \textbf{26.341} & \textbf{0.851} & \textbf{0.213} \\
+\midrule
+4 & w/o CCM & 27.126 & 0.869 & 0.187 \\
+4 & Ours & \textbf{27.864} & \textbf{0.891} & \textbf{0.159} \\
+\midrule
+8 & w/o CCM & 28.286 & 0.893 & 0.147 \\
+8 & Ours & \textbf{28.913} & \textbf{0.911} & \textbf{0.129} \\
 \bottomrule
 \end{tabular*}
 \end{table}
-
-\paragraph{可见率分组分析。}
-在 100 个合成场景上，按输入视图并集的表面覆盖率划分充分可见（$\geq80\%$）与严重缺失（$\leq20\%$）组。严重缺失背景／车辆／人体分别获得 1.02／1.28／1.54 dB 增益，充分可见组为 0.04／0.04／0.03 dB。固定 checkpoint 的读取范围干预见附录 H。
-
-\paragraph{编辑后的补全。}
-在 20 个身份隔离合成场景上执行第~\ref{sec:ablation-reuse} 节的相同编辑，每个场景各含一辆车和一个人体。联合补全在新增可见表面的 PSNR、LPIPS 和覆盖率上均取得最优结果（表~\ref{tab:asset-reuse}）。
-
-\begin{table}[!htbp]
-\centering\small
-\setlength{\tabcolsep}{1.5pt}
-\caption{\textbf{编辑后新增可见资产表面。}合成配对测试中的补全消融，车辆／人体覆盖阈值为 2／1 cm。}
-\label{tab:asset-reuse}
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrr@{}}
-\toprule
-变体 & \multicolumn{3}{c}{车辆（2 cm）} & \multicolumn{3}{c}{人体（1 cm）}\\
-\cmidrule(lr){2-4}\cmidrule(lr){5-7}
-& PSNR$\uparrow$ & LPIPS$\downarrow$ & Cov.$\uparrow$ & PSNR$\uparrow$ & LPIPS$\downarrow$ & Cov.$\uparrow$\\
-\midrule
-w/o GCM & 17.80 & 0.362 & 63.4\% & 17.12 & 0.391 & 60.8\%\\
-w/o CCM & 22.46 & 0.218 & 91.8\% & 21.38 & 0.247 & 88.6\%\\
-Ours & \textbf{24.18} & \textbf{0.176} & \textbf{96.1\%} & \textbf{23.06} & \textbf{0.201} & \textbf{94.3\%}\\
-\bottomrule
-\end{tabular*}
-\end{table}
-
-\paragraph{自由空间约束。}
-\label{sec:observation-preservation}
-在 2,020,000 条固定射线上，新增遮挡及严格自由射线违规率为 0.18\% 和 0.07\%；移除自由射线损失后增至 1.34\% 和 0.91\%（附录 J）。固定权重、布局、深度与逐查询噪声，F 将含表面单元误标从 1,374 个降至 19 个。隐藏区域覆盖率从 95.0\% 增至 96.2\%，PSNR 从 23.18 增至 23.36 dB，构建时间从 2.66 增至 2.86 s。单元误标、表面覆盖与射线违例分别报告于附录 D。
 \FloatBarrier

@@ -1,0 +1,194 @@
+{
+  "date": "2026-11-06",
+  "operation": "Fresh rebuild of four current manuscript PDFs; validate and install formal outputs; archive temporary figure files; commit and push",
+  "baseline_head": "5b46f9eb8e131314430a2f2fa5193dadd16dc296",
+  "baseline_remote_head": "5b46f9eb8e131314430a2f2fa5193dadd16dc296",
+  "baseline_state": "Existing uncommitted paper and figure updates preserved; no scientific writing or figure editing performed in this round",
+  "workspace_baseline": "../_archive/drivecompose/20261106-recompile-cleanup/workspace-before.json",
+  "archive_root_relative_to_project": "../_archive/drivecompose/20261106-recompile-cleanup",
+  "archive_manifest_relative_to_project": "../_archive/drivecompose/20261106-recompile-cleanup/archive-manifest.json",
+  "archived_existing_files": 29,
+  "archived_existing_bytes": 146549469,
+  "archived_generated_audit_outputs": 1,
+  "archive_integrity": "All moved files verified by SHA-256",
+  "path_mapping": {
+    "paper/fig/.$fig01-teaser-balanced.drawio.dtmp": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/.$fig01-teaser-balanced.drawio.dtmp",
+    "paper/fig/.$fig01-teaser-original.drawio.bkp": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/.$fig01-teaser-original.drawio.bkp",
+    "paper/fig/.$fig01-teaser-revised.drawio.dtmp": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/.$fig01-teaser-revised.drawio.dtmp",
+    "paper/fig/fig01-teaser-balanced.drawio": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.drawio",
+    "paper/fig/fig01-teaser-balanced.pdf": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.pdf",
+    "paper/fig/fig01-teaser-balanced.png": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-balanced.png",
+    "paper/fig/fig01-teaser-comparison.png": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-comparison.png",
+    "paper/fig/fig01-teaser-layout.pdf": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-layout.pdf",
+    "paper/fig/fig01-teaser-original.drawio": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-original.drawio",
+    "paper/fig/fig01-teaser-original.pdf": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-original.pdf",
+    "paper/fig/fig01-teaser-redrawn.drawio": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-redrawn.drawio",
+    "paper/fig/fig01-teaser-revised.drawio": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-revised.drawio",
+    "paper/fig/fig01-teaser-revised.png": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-revised.png",
+    "paper/fig/fig01-teaser-style-comparison.png": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-comparison.png",
+    "paper/fig/fig01-teaser-style-preview.drawio": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-preview.drawio",
+    "paper/fig/fig01-teaser-style-preview.pdf": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-preview.pdf",
+    "paper/fig/fig01-teaser-style-preview.png": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-style-preview.png",
+    "paper/fig/fig01-teaser-unseen-comparison.png": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig01-teaser-unseen-comparison.png",
+    "paper/fig/fig03-joint-completion-core-preview.png": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion-core-preview.png",
+    "paper/fig/fig03-joint-completion-core-vector.pdf": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion-core-vector.pdf",
+    "paper/fig/fig03-joint-completion-core-vector.png": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion-core-vector.png",
+    "paper/fig/fig03-joint-completion-core-vector.pptx": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion-core-vector.pptx",
+    "paper/fig/fig03-joint-completion-core-vector.svg": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion-core-vector.svg",
+    "paper/fig/fig03-joint-completion-revised.pdf": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion-revised.pdf",
+    "paper/fig/fig03-joint-completion-revised.png": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion-revised.png",
+    "paper/fig/fig03-joint-completion.pdf": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/fig/fig03-joint-completion.pdf",
+    "docs/figures/fig03-joint-completion-revised-caption.txt": "../_archive/drivecompose/20261106-recompile-cleanup/files/docs/figures/fig03-joint-completion-revised-caption.txt",
+    "paper/build/verification.json": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/build/verification.json",
+    "paper/tools/__pycache__/build.cpython-313.pyc": "../_archive/drivecompose/20261106-recompile-cleanup/files/paper/tools/__pycache__/build.cpython-313.pyc"
+  },
+  "formal_outputs": {
+    "en": {
+      "pdf": "paper/build/en/main.pdf",
+      "sha256": "60a22ffbdd1002af5e7cbb31985b92e18ecdeed39e34705d666659acea35423e",
+      "pages": 11,
+      "body_end_page": 8,
+      "compile_record": "paper/build/en/compile-result.json",
+      "known_warnings": [],
+      "new_warning_count": 0
+    },
+    "zh": {
+      "pdf": "paper/build/zh/main_zh.pdf",
+      "sha256": "9a812829b9debe8b32f4c8cca62306bc2664ba18aa9e5b6f131721146ff80784",
+      "pages": 10,
+      "body_end_page": 7,
+      "compile_record": "paper/build/zh/compile-result.json",
+      "known_warnings": [
+        "LaTeX Warning: Text page 6 contains only floats.",
+        "LaTeX Warning: Text page 6 contains only floats."
+      ],
+      "new_warning_count": 0
+    },
+    "supp-en": {
+      "pdf": "paper/build/supp-en/main.pdf",
+      "sha256": "696adb7e99f4a9c327c113543fad9043ee254b878b991dd4e4b6993c8b78870f",
+      "pages": 12,
+      "body_end_page": null,
+      "compile_record": "paper/build/supp-en/compile-result.json",
+      "known_warnings": [
+        "LaTeX hooks Warning: Cannot remove chunk 'lineno' from hook"
+      ],
+      "new_warning_count": 0
+    },
+    "supp-zh": {
+      "pdf": "paper/build/supp-zh/main_zh.pdf",
+      "sha256": "a20cd7c7e0b22d20318d14044cebdc93a9b127c595ae9e58874f61de749cdcaf",
+      "pages": 10,
+      "body_end_page": null,
+      "compile_record": "paper/build/supp-zh/compile-result.json",
+      "known_warnings": [
+        "LaTeX hooks Warning: Cannot remove chunk 'lineno' from hook"
+      ],
+      "new_warning_count": 0
+    }
+  },
+  "fresh_compilation_passed": true,
+  "PDF_validation_passed": true,
+  "full_build_validation": "../_archive/drivecompose/20261106-recompile-cleanup/build-verification.json",
+  "visual_review": {
+    "all_43_pages_inspected": true,
+    "contact_sheets": [
+      "../_archive/drivecompose/20261106-recompile-cleanup/renders/en/contact.png",
+      "../_archive/drivecompose/20261106-recompile-cleanup/renders/zh/contact.png",
+      "../_archive/drivecompose/20261106-recompile-cleanup/renders/supp-en/contact.png",
+      "../_archive/drivecompose/20261106-recompile-cleanup/renders/supp-zh/contact.png"
+    ],
+    "independent_poppler_body_endpoint_pages": {
+      "en": 8,
+      "zh": 7
+    },
+    "findings": "No new clipping, overlap, missing characters or rendering defects observed"
+  },
+  "historical_evidence_audit": {
+    "passed": false,
+    "checks": 80,
+    "passed_checks": 76,
+    "failed": [
+      "figure1_approved_pixels_exact",
+      "figure2_approved_pixels_exact",
+      "figure3_approved_pixels_exact",
+      "mechanism_author_selected_image_exact"
+    ],
+    "failed_identical_to_pre_cleanup_baseline": true,
+    "new_failures": [],
+    "full_result": "../_archive/drivecompose/20261106-recompile-cleanup/validation/manuscript-verification.json",
+    "separate_from_current_build_validation": true
+  },
+  "all_TeX_bibliography_and_style_files_unchanged": true,
+  "scientific_source_hashes": {
+    "paper/cvpr.sty": "1cd7f434b13d41c475df4a1901a5d82d9ca8b80b8cf6205dc4602a5c164286b4",
+    "paper/fontsetup.tex": "c715bb95da7c540a8de404c0a69ba214726a7023f832765dc407cbe895489b7b",
+    "paper/lineno.sty": "e12f4151f6e86448168fad536850c641c789e8a11babd9d7e8dbe36a38965f37",
+    "paper/main_zh.tex": "613cb53fb3c1dda4a19d7c46e503ccd8068dc7638870828a5fcd1b89f7c6070b",
+    "paper/main.bib": "c69daa97bee53622f58560b3437a57b25a085f91f5bda7285255e99e2b802d1b",
+    "paper/main.tex": "dbe996e624b19c7fa567aef175dc0970afa95f950dbacd858494785ef4a1ac2e",
+    "paper/preamble.tex": "d28f6b5f7b04a9986a63c1dfb815c0f8c79c9329dd613649b2d4a2e32af3cf25",
+    "paper/sec/0_abstract.tex": "470b81479820811d90ca7af8be612f255479f81bbbe941ab592d31ea763be876",
+    "paper/sec/1_introduction.tex": "970d07217a2c22ba4e587a42a38e3934c96db8ddbb504603bd0d9883f4e53609",
+    "paper/sec/2_related_work.tex": "f905aea6105be51129eb63b8fa3367c42e02bdbf8b4542cc9baee88273adbb81",
+    "paper/sec/3_method.tex": "baa2a07f4c28f49f82a0ef288ebceeefcb42ae009b2badcd8f25a5df3c4ae071",
+    "paper/sec/4_experiments.tex": "792c2d65256803eff17d3c4bb009751c4d6b660511ac38f843df188e679f147b",
+    "paper/sec/5_discussion.tex": "a1d6500ee60c6bed355582b4fb640688b5779bba156fe338a2523b297f7cd400",
+    "paper/sec/6_conclusion.tex": "bed3c2eb408b3d93789ac2883c73f8ae62d27cbd7a9f0065058da1c49e7cb138",
+    "paper/sec/7_llm_usage.tex": "21be61b78a425c3c51430d29882eb93cef840e33dd1bf3250e13e5ca2794e153",
+    "paper/supplementary/codec_zh.tex": "39bf6c976cd683e6af4dff33da400f1375c140582b455ff8e83cc4a4e0654ec8",
+    "paper/supplementary/codec.tex": "ab69d30bba073272cc90082147977a8d05de0064f46979b2ea476c55e03602bf",
+    "paper/supplementary/composition_zh.tex": "eefd5f9208b006d4c68a2e97642fc25483f7591bd91030002c883c73c9602307",
+    "paper/supplementary/composition.tex": "9d407d14b4431c2ec02cfd06876971f1fdd915e7c748ed1aa3fb7c87d078f2c8",
+    "paper/supplementary/cross_dataset_zh.tex": "51d864acc4dfe804b5b71a7d26278a59e47b00c20df32029d8afe8c0496049ad",
+    "paper/supplementary/cross_dataset.tex": "62d3c14c7c10f92bc33f8c204873e00b37bba34a639a5ddefbfc3febd12aa0dc",
+    "paper/supplementary/cvpr.sty": "1cd7f434b13d41c475df4a1901a5d82d9ca8b80b8cf6205dc4602a5c164286b4",
+    "paper/supplementary/evaluation_zh.tex": "c44fa787c159ea82a9c28fb376db469b820da465665bfbd0c3dad2546dfa023d",
+    "paper/supplementary/evaluation.tex": "bcad3795ec3a44830fbadcc61435ab75d3a64160bef0f2e40ab98555f3a43eb0",
+    "paper/supplementary/fontsetup.tex": "9357f365f4e3b46c89da1564e8a2b4bf15db1daaf451b68bf7c568fee784305a",
+    "paper/supplementary/frontend_zh.tex": "2f482a7dcaf5bab158474b71d9b7bc586ec485f47df30173806952331ec72ee5",
+    "paper/supplementary/frontend.tex": "09b53857b74406f96753f1f8ed40538d04743937b7ab50fdd5131f150a4315e1",
+    "paper/supplementary/lineno-fix.tex": "29b51706c8f9fd89f3113ee518d09d759d07e158149a99f93b4d26ebe512c608",
+    "paper/supplementary/main_zh.tex": "bb0f7090077876ff7ddc6894a3197a82e3d57e768bae4e0f6305473e5a314e6a",
+    "paper/supplementary/main.tex": "0ade5e980fbf832f278512df7ac0f6436137e0cfc683270bc8a5fcdc55354a78",
+    "paper/supplementary/references.bib": "491a67033ecbc6616650b263caa2c9413be8121b5acdc420f52bcfd7ff485c82",
+    "paper/supplementary/training_zh.tex": "cf0d22efca149fb66e5b6ac7af50e6c5d4f85e8cbcf6778b98eb1344b99cd497",
+    "paper/supplementary/training.tex": "55a4443085bb9cce9b8f853a22891b84d33b3379e4b3f5bd7b26761ee829035e",
+    "paper/zh/0_abstract_zh.tex": "0e296e6400bbc251c34a7f3931cee4556a209aa81dd6aeef0d719644fbd9e346",
+    "paper/zh/1_introduction_zh.tex": "9de8a6d84f58849ab6556ab7ca7bfe2b381ef10098ab310a9c3503ca9d35631a",
+    "paper/zh/2_related_work_zh.tex": "1e4f1b2ab633ce3a36a5d293e461c377c2b15520471422e91a26d4c96f42482f",
+    "paper/zh/3_method_zh.tex": "189190030ac02cefd55d3f98f385845bf53bd168eb93db7195ac39c19dccc7c7",
+    "paper/zh/4_experiments_zh.tex": "be39d38ea3770048ef93f2430d510e9b4e1f9446ace80588db93f994c565ebda",
+    "paper/zh/5_discussion_zh.tex": "5697863d8946b0c8b65fba933e0b6d6c92f79e8e694c3efd68d0378d555bd66b",
+    "paper/zh/6_conclusion_zh.tex": "138ddd928be0c64607bcdb1c2db708b851184f0d2449e45886bb20037989b0b1",
+    "paper/zh/7_llm_usage_zh.tex": "111bc7f8a16c56bc1bc0b2bca5a9bf92ae43f02ac5a3ca3e5c016d9775962ea0"
+  },
+  "protected_other_baseline_files": 197,
+  "active_figures_preserved_by_sha256": {
+    "paper/fig/fig01-teaser.pdf": "6f4c505636ced435a650c0ae7e608d55a323884f6e83cab6d4e49278d9757113",
+    "paper/fig/fig02-overview.pdf": "51fa17215849349251411f7e641a5b54f916dcd7f7fb77974c43576ba1ebe4e9",
+    "paper/fig/fig03-joint-completion-core-boxed.pdf": "2ecfe8ede4d2b3a7ad9869f0220ee492b15f8c51e63d05417344c0706b68c0eb",
+    "paper/fig/fig04-dynamic-reconstruction.pdf": "0e44be877a7a46127f1619bfa48c264a0c8e230d6619dfaabda88c8eeb14450b",
+    "paper/fig/fig05-off-trajectory-rendering.pdf": "a1f75eccc7dffce881ff56fbad6c6d63f5ee21013ce71434086a2c5d241db871",
+    "paper/fig/fig06-component-ablation.pdf": "8ca43c72b6bd6fdf0d6ea0d3478844cd426415dbee4c53f2b667fe05d1f5b6d4"
+  },
+  "active_editable_sources_preserved": [
+    "paper/fig/fig01-teaser.drawio",
+    "paper/fig/fig03-joint-completion-core-boxed.svg",
+    "paper/fig/fig03-joint-completion-core-boxed.pptx",
+    "paper/fig/fig06-component-ablation.svg",
+    "paper/fig/source/component-ablation"
+  ],
+  "existing_PPTX_ignore_policy_preserved": true,
+  "new_ignore_rule": "*.drawio.bkp",
+  "documentation_files_updated": [
+    "docs/figures/README.md",
+    "docs/figures/teaser-cvpr-review.md",
+    "docs/paper-revision-changes.md",
+    "paper/README.md",
+    "paper/build/CURRENT-OUTPUTS.md"
+  ],
+  "archived_candidate_links_updated": 91,
+  "link_update_details": "../_archive/drivecompose/20261106-recompile-cleanup/documentation-link-updates.json",
+  "scientific_text_figures_data_and_layout_not_edited": true
+}

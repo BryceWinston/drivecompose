@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="924" viewBox="0 0 1536 924">
+<title>DriveCompose joint latent completion</title>
+<desc>Editable vector primitives and text; reconstructed from the approved core preview, without the CCM heading.</desc>
+<defs>
+<linearGradient id="gradient26" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BCE3F8"/><stop offset="1" stop-color="#ADD9F4"/></linearGradient>
+<linearGradient id="gradient27" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BCE3F8"/><stop offset="1" stop-color="#ADD9F4"/></linearGradient>
+<linearGradient id="gradient28" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BCE3F8"/><stop offset="1" stop-color="#ADD9F4"/></linearGradient>
+<linearGradient id="gradient36" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE1BA"/><stop offset="1" stop-color="#FFDBAA"/></linearGradient>
+<linearGradient id="gradient37" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE1BA"/><stop offset="1" stop-color="#FFDBAA"/></linearGradient>
+<linearGradient id="gradient38" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE1BA"/><stop offset="1" stop-color="#FFDBAA"/></linearGradient>
+<linearGradient id="gradient46" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C7F1DD"/><stop offset="1" stop-color="#B4EAD2"/></linearGradient>
+<linearGradient id="gradient47" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C7F1DD"/><stop offset="1" stop-color="#B4EAD2"/></linearGradient>
+<linearGradient id="gradient48" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C7F1DD"/><stop offset="1" stop-color="#B4EAD2"/></linearGradient>
+<linearGradient id="gradient56" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F5EEFC"/><stop offset="1" stop-color="#EDE0FC"/></linearGradient>
+<linearGradient id="gradient58" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D1BAF2"/><stop offset="1" stop-color="#C4A3EB"/></linearGradient>
+<linearGradient id="gradient59" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D1BAF2"/><stop offset="1" stop-color="#C4A3EB"/></linearGradient>
+<linearGradient id="gradient60" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D1BAF2"/><stop offset="1" stop-color="#C4A3EB"/></linearGradient>
+<linearGradient id="gradient65" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9BB0BC"/><stop offset="1" stop-color="#8AA2B1"/></linearGradient>
+<linearGradient id="gradient81" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9BB0BC"/><stop offset="1" stop-color="#8AA2B1"/></linearGradient>
+<linearGradient id="gradient96" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4F9FD"/><stop offset="1" stop-color="#E7F0F7"/></linearGradient>
+</defs>
+<rect id="canvas" width="1536" height="924" fill="white"/>
+<g id="component-frame">
+<path id="features.frame" d="M124.00000 18.00000 L552.00000 18.00000 C560.83656 18.00000 568.00000 25.16344 568.00000 34.00000 L568.00000 427.00000 C568.00000 435.83656 560.83656 443.00000 552.00000 443.00000 L124.00000 443.00000 C115.16344 443.00000 108.00000 435.83656 108.00000 427.00000 L108.00000 34.00000 C108.00000 25.16344 115.16344 18.00000 124.00000 18.00000 Z" fill="#FFFFFF" stroke="#8CA1B2" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="sampling-feedback">
+<path id="sampling.feedback.shaft" d="M972.00000 715.00000 L972.00000 858.00000 C972.00000 873.00000 965.00000 879.00000 950.00000 879.00000 L158.00000 879.00000 C142.00000 879.00000 134.00000 871.00000 134.00000 854.00000 L134.00000 750.00000 C134.00000 733.00000 142.00000 727.00000 150.00000 727.00000" fill="none" stroke="#FF8500" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="sampling.feedback.head" d="M178.00000 727.00000 L149.00000 711.00000 L149.00000 743.00000 Z" fill="#FF8500" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<text id="sampling.repeat.mult" x="627.00000" y="854.00000" font-family="Times New Roman,Times,serif" font-size="72" font-style="normal" fill="#FF8500">×</text>
+<text id="sampling.repeat.N" x="675.60547" y="855.00000" font-family="Times New Roman,Times,serif" font-size="80" font-style="italic" fill="#FF8500">N</text>
+</g>
+<g id="latent-input-route">
+<path id="latent.feature-input.shaft" d="M178.00000 691.00000 L77.00000 691.00000 C64.00000 691.00000 58.00000 685.00000 58.00000 672.00000 L58.00000 263.00000 C58.00000 250.00000 65.00000 244.00000 79.00000 244.00000 L74.00000 244.00000" fill="none" stroke="#858585" stroke-width="5.3" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.feature-input.head" d="M98.00000 244.00000 L74.00000 229.00000 L74.00000 259.00000 Z" fill="#858585" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="memory-read">
+<path id="memory.read.shaft" d="M578.00000 183.00000 C701.00000 107.00000 860.00000 108.00000 967.00000 172.00000" fill="none" stroke="#050505" stroke-width="4.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="memory.read.head" d="M986.00000 185.00000 L949.00000 181.00000 L968.00000 153.00000 Z" fill="#050505" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<text id="memory.read.label.base" x="720.00000" y="93.00000" font-family="Times New Roman,Times,serif" font-size="68" font-style="normal" fill="#050505">Attn</text>
+<text id="memory.read.label.sub" x="842.89258" y="107.00000" font-family="Times New Roman,Times,serif" font-size="46" font-style="italic" fill="#050505">r</text>
+</g>
+<g id="memory-write">
+<path id="memory.write.shaft" d="M986.00000 288.00000 C898.00000 358.00000 745.00000 362.00000 602.00000 305.00000" fill="none" stroke="#050505" stroke-width="4.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="memory.write.head" d="M578.00000 295.00000 L616.00000 291.00000 L603.00000 324.00000 Z" fill="#050505" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<text id="memory.write.label.base" x="729.00000" y="407.00000" font-family="Times New Roman,Times,serif" font-size="68" font-style="normal" fill="#050505">Attn</text>
+<text id="memory.write.label.sub" x="851.89258" y="421.00000" font-family="Times New Roman,Times,serif" font-size="46" font-style="italic" fill="#050505">w</text>
+</g>
+<g id="masked-velocity">
+<path id="velocity.masked.shaft" d="M578.00000 400.00000 C699.00000 400.00000 760.00000 474.00000 760.00000 599.00000" fill="none" stroke="#050505" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="velocity.masked.head" d="M760.00000 632.00000 L742.00000 598.00000 L778.00000 598.00000 Z" fill="#050505" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<text id="velocity.mask.u" x="817.00000" y="547.00000" font-family="Times New Roman,Times,serif" font-size="80" font-style="italic" fill="#050505">u</text>
+<ellipse id="velocity.mask.product.ring" cx="899" cy="529" rx="26" ry="26" fill="none" stroke="#050505" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse id="velocity.mask.product.dot" cx="899" cy="529" rx="4.8" ry="4.8" fill="#050505" stroke="none" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text id="velocity.symbol.base" x="946.00000" y="547.00000" font-family="Times New Roman,Times,serif" font-size="80" font-style="italic" fill="#050505">v</text>
+<text id="velocity.symbol.sub" x="983.50781" y="563.00000" font-family="Times New Roman,Times,serif" font-size="52" font-style="italic" fill="#050505">θ</text>
+</g>
+<g id="sampling-dataflow">
+<path id="sampling.current-to-step.shaft" d="M512.00000 705.00000 L600.00000 705.00000" fill="none" stroke="#050505" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="sampling.current-to-step.head" d="M630.00000 705.00000 L600.00000 689.00000 L600.00000 721.00000 Z" fill="#050505" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="sampling.step-to-result.shaft" d="M890.00000 705.00000 L996.00000 705.00000" fill="none" stroke="#050505" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="sampling.step-to-result.head" d="M1026.00000 705.00000 L996.00000 689.00000 L996.00000 721.00000 Z" fill="#050505" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="component-background">
+<path id="component.background.token0" d="M277.00000 76.00000 L330.00000 76.00000 C336.62742 76.00000 342.00000 81.37258 342.00000 88.00000 L342.00000 141.00000 C342.00000 147.62742 336.62742 153.00000 330.00000 153.00000 L277.00000 153.00000 C270.37258 153.00000 265.00000 147.62742 265.00000 141.00000 L265.00000 88.00000 C265.00000 81.37258 270.37258 76.00000 277.00000 76.00000 Z" fill="url(#gradient26)" stroke="#009EFB" stroke-width="4.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.background.token1" d="M368.00000 76.00000 L421.00000 76.00000 C427.62742 76.00000 433.00000 81.37258 433.00000 88.00000 L433.00000 141.00000 C433.00000 147.62742 427.62742 153.00000 421.00000 153.00000 L368.00000 153.00000 C361.37258 153.00000 356.00000 147.62742 356.00000 141.00000 L356.00000 88.00000 C356.00000 81.37258 361.37258 76.00000 368.00000 76.00000 Z" fill="url(#gradient27)" stroke="#009EFB" stroke-width="4.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.background.token2" d="M460.00000 76.00000 L513.00000 76.00000 C519.62742 76.00000 525.00000 81.37258 525.00000 88.00000 L525.00000 141.00000 C525.00000 147.62742 519.62742 153.00000 513.00000 153.00000 L460.00000 153.00000 C453.37258 153.00000 448.00000 147.62742 448.00000 141.00000 L448.00000 88.00000 C448.00000 81.37258 453.37258 76.00000 460.00000 76.00000 Z" fill="url(#gradient28)" stroke="#009EFB" stroke-width="4.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.background.local-arc" d="M305.00000 70.00000 C330.00000 23.00000 459.00000 22.00000 486.00000 70.00000" fill="none" stroke="#009EFB" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.background.local-center" d="M395.00000 36.00000 L395.00000 54.00000" fill="none" stroke="#009EFB" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.background.local-head-left" d="M304.00000 71.00000 L308.00000 50.00000 L324.00000 60.00000 Z" fill="#009EFB" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.background.local-head-mid" d="M395.00000 72.00000 L385.00000 52.00000 L405.00000 52.00000 Z" fill="#009EFB" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.background.local-head-right" d="M487.00000 71.00000 L467.00000 60.00000 L482.00000 49.00000 Z" fill="#009EFB" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<text id="component.background.label.base" x="145.00000" y="138.00000" font-family="Times New Roman,Times,serif" font-size="84" font-style="italic" fill="#050505">X</text>
+<text id="component.background.label.sub" x="198.31055" y="154.00000" font-family="Times New Roman,Times,serif" font-size="52" font-style="italic" fill="#050505">b</text>
+</g>
+<g id="component-rigid">
+<path id="component.rigid.token0" d="M277.00000 207.00000 L330.00000 207.00000 C336.62742 207.00000 342.00000 212.37258 342.00000 219.00000 L342.00000 272.00000 C342.00000 278.62742 336.62742 284.00000 330.00000 284.00000 L277.00000 284.00000 C270.37258 284.00000 265.00000 278.62742 265.00000 272.00000 L265.00000 219.00000 C265.00000 212.37258 270.37258 207.00000 277.00000 207.00000 Z" fill="url(#gradient36)" stroke="#FF8500" stroke-width="4.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.rigid.token1" d="M368.00000 207.00000 L421.00000 207.00000 C427.62742 207.00000 433.00000 212.37258 433.00000 219.00000 L433.00000 272.00000 C433.00000 278.62742 427.62742 284.00000 421.00000 284.00000 L368.00000 284.00000 C361.37258 284.00000 356.00000 278.62742 356.00000 272.00000 L356.00000 219.00000 C356.00000 212.37258 361.37258 207.00000 368.00000 207.00000 Z" fill="url(#gradient37)" stroke="#FF8500" stroke-width="4.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.rigid.token2" d="M460.00000 207.00000 L513.00000 207.00000 C519.62742 207.00000 525.00000 212.37258 525.00000 219.00000 L525.00000 272.00000 C525.00000 278.62742 519.62742 284.00000 513.00000 284.00000 L460.00000 284.00000 C453.37258 284.00000 448.00000 278.62742 448.00000 272.00000 L448.00000 219.00000 C448.00000 212.37258 453.37258 207.00000 460.00000 207.00000 Z" fill="url(#gradient38)" stroke="#FF8500" stroke-width="4.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.rigid.local-arc" d="M305.00000 201.00000 C330.00000 154.00000 459.00000 153.00000 486.00000 201.00000" fill="none" stroke="#FF8500" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.rigid.local-center" d="M395.00000 167.00000 L395.00000 185.00000" fill="none" stroke="#FF8500" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.rigid.local-head-left" d="M304.00000 202.00000 L308.00000 181.00000 L324.00000 191.00000 Z" fill="#FF8500" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.rigid.local-head-mid" d="M395.00000 203.00000 L385.00000 183.00000 L405.00000 183.00000 Z" fill="#FF8500" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.rigid.local-head-right" d="M487.00000 202.00000 L467.00000 191.00000 L482.00000 180.00000 Z" fill="#FF8500" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<text id="component.rigid.label.base" x="145.00000" y="269.00000" font-family="Times New Roman,Times,serif" font-size="84" font-style="italic" fill="#050505">X</text>
+<text id="component.rigid.label.sub" x="198.31055" y="285.00000" font-family="Times New Roman,Times,serif" font-size="52" font-style="italic" fill="#050505">r</text>
+</g>
+<g id="component-human">
+<path id="component.human.token0" d="M277.00000 341.00000 L330.00000 341.00000 C336.62742 341.00000 342.00000 346.37258 342.00000 353.00000 L342.00000 406.00000 C342.00000 412.62742 336.62742 418.00000 330.00000 418.00000 L277.00000 418.00000 C270.37258 418.00000 265.00000 412.62742 265.00000 406.00000 L265.00000 353.00000 C265.00000 346.37258 270.37258 341.00000 277.00000 341.00000 Z" fill="url(#gradient46)" stroke="#00C681" stroke-width="4.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.human.token1" d="M368.00000 341.00000 L421.00000 341.00000 C427.62742 341.00000 433.00000 346.37258 433.00000 353.00000 L433.00000 406.00000 C433.00000 412.62742 427.62742 418.00000 421.00000 418.00000 L368.00000 418.00000 C361.37258 418.00000 356.00000 412.62742 356.00000 406.00000 L356.00000 353.00000 C356.00000 346.37258 361.37258 341.00000 368.00000 341.00000 Z" fill="url(#gradient47)" stroke="#00C681" stroke-width="4.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.human.token2" d="M460.00000 341.00000 L513.00000 341.00000 C519.62742 341.00000 525.00000 346.37258 525.00000 353.00000 L525.00000 406.00000 C525.00000 412.62742 519.62742 418.00000 513.00000 418.00000 L460.00000 418.00000 C453.37258 418.00000 448.00000 412.62742 448.00000 406.00000 L448.00000 353.00000 C448.00000 346.37258 453.37258 341.00000 460.00000 341.00000 Z" fill="url(#gradient48)" stroke="#00C681" stroke-width="4.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.human.local-arc" d="M305.00000 335.00000 C330.00000 288.00000 459.00000 287.00000 486.00000 335.00000" fill="none" stroke="#00C681" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.human.local-center" d="M395.00000 301.00000 L395.00000 319.00000" fill="none" stroke="#00C681" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.human.local-head-left" d="M304.00000 336.00000 L308.00000 315.00000 L324.00000 325.00000 Z" fill="#00C681" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.human.local-head-mid" d="M395.00000 337.00000 L385.00000 317.00000 L405.00000 317.00000 Z" fill="#00C681" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="component.human.local-head-right" d="M487.00000 336.00000 L467.00000 325.00000 L482.00000 314.00000 Z" fill="#00C681" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<text id="component.human.label.base" x="145.00000" y="403.00000" font-family="Times New Roman,Times,serif" font-size="84" font-style="italic" fill="#050505">X</text>
+<text id="component.human.label.sub" x="198.31055" y="419.00000" font-family="Times New Roman,Times,serif" font-size="52" font-style="italic" fill="#050505">h</text>
+</g>
+<g id="shared-memory">
+<path id="memory.bank" d="M1011.00000 172.00000 L1451.00000 172.00000 C1459.28427 172.00000 1466.00000 178.71573 1466.00000 187.00000 L1466.00000 285.00000 C1466.00000 293.28427 1459.28427 300.00000 1451.00000 300.00000 L1011.00000 300.00000 C1002.71573 300.00000 996.00000 293.28427 996.00000 285.00000 L996.00000 187.00000 C996.00000 178.71573 1002.71573 172.00000 1011.00000 172.00000 Z" fill="url(#gradient56)" stroke="#843AFF" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<text id="memory.symbol" x="1023.00000" y="263.00000" font-family="Times New Roman,Times,serif" font-size="90" font-style="italic" fill="#050505">M</text>
+<path id="memory.token0" d="M1136.00000 198.00000 L1188.00000 198.00000 C1194.62742 198.00000 1200.00000 203.37258 1200.00000 210.00000 L1200.00000 262.00000 C1200.00000 268.62742 1194.62742 274.00000 1188.00000 274.00000 L1136.00000 274.00000 C1129.37258 274.00000 1124.00000 268.62742 1124.00000 262.00000 L1124.00000 210.00000 C1124.00000 203.37258 1129.37258 198.00000 1136.00000 198.00000 Z" fill="url(#gradient58)" stroke="#843BFF" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="memory.token1" d="M1223.00000 198.00000 L1275.00000 198.00000 C1281.62742 198.00000 1287.00000 203.37258 1287.00000 210.00000 L1287.00000 262.00000 C1287.00000 268.62742 1281.62742 274.00000 1275.00000 274.00000 L1223.00000 274.00000 C1216.37258 274.00000 1211.00000 268.62742 1211.00000 262.00000 L1211.00000 210.00000 C1211.00000 203.37258 1216.37258 198.00000 1223.00000 198.00000 Z" fill="url(#gradient59)" stroke="#843BFF" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="memory.token2" d="M1310.00000 198.00000 L1362.00000 198.00000 C1368.62742 198.00000 1374.00000 203.37258 1374.00000 210.00000 L1374.00000 262.00000 C1374.00000 268.62742 1368.62742 274.00000 1362.00000 274.00000 L1310.00000 274.00000 C1303.37258 274.00000 1298.00000 268.62742 1298.00000 262.00000 L1298.00000 210.00000 C1298.00000 203.37258 1303.37258 198.00000 1310.00000 198.00000 Z" fill="url(#gradient60)" stroke="#843BFF" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse id="memory.ellipsis0" cx="1401" cy="234" rx="4.7" ry="4.7" fill="#050505" stroke="none" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse id="memory.ellipsis1" cx="1420" cy="234" rx="4.7" ry="4.7" fill="#050505" stroke="none" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse id="memory.ellipsis2" cx="1439" cy="234" rx="4.7" ry="4.7" fill="#050505" stroke="none" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+</g>
+<g id="latent-current">
+<path id="latent.current.frame" d="M202.00000 646.00000 L488.00000 646.00000 C495.73199 646.00000 502.00000 652.26801 502.00000 660.00000 L502.00000 751.00000 C502.00000 758.73199 495.73199 765.00000 488.00000 765.00000 L202.00000 765.00000 C194.26801 765.00000 188.00000 758.73199 188.00000 751.00000 L188.00000 660.00000 C188.00000 652.26801 194.26801 646.00000 202.00000 646.00000 Z" fill="#F8FBFD" stroke="#426B8B" stroke-width="3.3" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.current.observed" d="M221.00000 665.00000 L274.00000 665.00000 C280.62742 665.00000 286.00000 670.37258 286.00000 677.00000 L286.00000 734.00000 C286.00000 740.62742 280.62742 746.00000 274.00000 746.00000 L221.00000 746.00000 C214.37258 746.00000 209.00000 740.62742 209.00000 734.00000 L209.00000 677.00000 C209.00000 670.37258 214.37258 665.00000 221.00000 665.00000 Z" fill="url(#gradient65)" stroke="#426B8B" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse id="latent.current.observed-dot" cx="247.5" cy="705" rx="11.5" ry="11.5" fill="#050505" stroke="none" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.current.unknown" d="M315.00000 665.00000 L372.00000 665.00000 C378.62742 665.00000 384.00000 670.37258 384.00000 677.00000 L384.00000 734.00000 C384.00000 740.62742 378.62742 746.00000 372.00000 746.00000 L315.00000 746.00000 C308.37258 746.00000 303.00000 740.62742 303.00000 734.00000 L303.00000 677.00000 C303.00000 670.37258 308.37258 665.00000 315.00000 665.00000 Z" fill="#FCFDFE" stroke="#4D6E8B" stroke-width="3.7" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.current.unknown-hatch.0" d="M310.00000 678.00000 L316.00000 672.00000" fill="none" stroke="#4D6E8B" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.current.unknown-hatch.1" d="M310.00000 695.00000 L333.00000 672.00000" fill="none" stroke="#4D6E8B" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.current.unknown-hatch.2" d="M310.00000 712.00000 L350.00000 672.00000" fill="none" stroke="#4D6E8B" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.current.unknown-hatch.3" d="M310.00000 729.00000 L367.00000 672.00000" fill="none" stroke="#4D6E8B" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.current.unknown-hatch.4" d="M377.00000 679.00000 L317.00000 739.00000" fill="none" stroke="#4D6E8B" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.current.unknown-hatch.5" d="M377.00000 696.00000 L334.00000 739.00000" fill="none" stroke="#4D6E8B" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.current.unknown-hatch.6" d="M377.00000 713.00000 L351.00000 739.00000" fill="none" stroke="#4D6E8B" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.current.unknown-hatch.7" d="M377.00000 730.00000 L368.00000 739.00000" fill="none" stroke="#4D6E8B" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.current.free" d="M413.00000 665.00000 L475.00000 665.00000 C481.07513 665.00000 486.00000 669.92487 486.00000 676.00000 L486.00000 735.00000 C486.00000 741.07513 481.07513 746.00000 475.00000 746.00000 L413.00000 746.00000 C406.92487 746.00000 402.00000 741.07513 402.00000 735.00000 L402.00000 676.00000 C402.00000 669.92487 406.92487 665.00000 413.00000 665.00000 Z" fill="#FFFFFF" stroke="#818181" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="14 10"/>
+<text id="latent.current.free-zero" x="422.50000" y="732.00000" font-family="Times New Roman,Times,serif" font-size="86" font-style="normal" fill="#050505">0</text>
+<text id="latent.current.label.base" x="317.04248" y="620.00000" font-family="Times New Roman,Times,serif" font-size="85" font-style="italic" fill="#050505">z</text>
+<text id="latent.current.label.super" x="357.12109" y="580.00000" font-family="Times New Roman,Times,serif" font-size="57" font-style="italic" fill="#050505">j</text>
+</g>
+<g id="latent-result">
+<path id="latent.result.frame" d="M1050.00000 646.00000 L1342.00000 646.00000 C1349.73199 646.00000 1356.00000 652.26801 1356.00000 660.00000 L1356.00000 751.00000 C1356.00000 758.73199 1349.73199 765.00000 1342.00000 765.00000 L1050.00000 765.00000 C1042.26801 765.00000 1036.00000 758.73199 1036.00000 751.00000 L1036.00000 660.00000 C1036.00000 652.26801 1042.26801 646.00000 1050.00000 646.00000 Z" fill="#F8FBFD" stroke="#426B8B" stroke-width="3.3" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.result.observed" d="M1071.00000 665.00000 L1124.00000 665.00000 C1130.62742 665.00000 1136.00000 670.37258 1136.00000 677.00000 L1136.00000 734.00000 C1136.00000 740.62742 1130.62742 746.00000 1124.00000 746.00000 L1071.00000 746.00000 C1064.37258 746.00000 1059.00000 740.62742 1059.00000 734.00000 L1059.00000 677.00000 C1059.00000 670.37258 1064.37258 665.00000 1071.00000 665.00000 Z" fill="url(#gradient81)" stroke="#426B8B" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse id="latent.result.observed-dot" cx="1097.5" cy="705" rx="11.5" ry="11.5" fill="#050505" stroke="none" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.result.unknown" d="M1168.00000 665.00000 L1225.00000 665.00000 C1231.62742 665.00000 1237.00000 670.37258 1237.00000 677.00000 L1237.00000 734.00000 C1237.00000 740.62742 1231.62742 746.00000 1225.00000 746.00000 L1168.00000 746.00000 C1161.37258 746.00000 1156.00000 740.62742 1156.00000 734.00000 L1156.00000 677.00000 C1156.00000 670.37258 1161.37258 665.00000 1168.00000 665.00000 Z" fill="#EFFAFF" stroke="#009FFF" stroke-width="3.7" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.result.unknown-hatch.0" d="M1163.00000 675.00000 L1166.00000 672.00000" fill="none" stroke="#009FFF" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.result.unknown-hatch.1" d="M1163.00000 692.00000 L1183.00000 672.00000" fill="none" stroke="#009FFF" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.result.unknown-hatch.2" d="M1163.00000 709.00000 L1200.00000 672.00000" fill="none" stroke="#009FFF" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.result.unknown-hatch.3" d="M1163.00000 726.00000 L1217.00000 672.00000" fill="none" stroke="#009FFF" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.result.unknown-hatch.4" d="M1230.00000 676.00000 L1167.00000 739.00000" fill="none" stroke="#009FFF" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.result.unknown-hatch.5" d="M1230.00000 693.00000 L1184.00000 739.00000" fill="none" stroke="#009FFF" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.result.unknown-hatch.6" d="M1230.00000 710.00000 L1201.00000 739.00000" fill="none" stroke="#009FFF" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.result.unknown-hatch.7" d="M1230.00000 727.00000 L1218.00000 739.00000" fill="none" stroke="#009FFF" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="latent.result.free" d="M1269.00000 665.00000 L1331.00000 665.00000 C1337.07513 665.00000 1342.00000 669.92487 1342.00000 676.00000 L1342.00000 735.00000 C1342.00000 741.07513 1337.07513 746.00000 1331.00000 746.00000 L1269.00000 746.00000 C1262.92487 746.00000 1258.00000 741.07513 1258.00000 735.00000 L1258.00000 676.00000 C1258.00000 669.92487 1262.92487 665.00000 1269.00000 665.00000 Z" fill="#FFFFFF" stroke="#818181" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="14 10"/>
+<text id="latent.result.free-zero" x="1278.50000" y="732.00000" font-family="Times New Roman,Times,serif" font-size="86" font-style="normal" fill="#050505">0</text>
+<text id="latent.result.label.base" x="1156.95142" y="620.00000" font-family="Times New Roman,Times,serif" font-size="85" font-style="italic" fill="#050505">z</text>
+<text id="latent.result.label.super" x="1197.03003" y="580.00000" font-family="Times New Roman,Times,serif" font-size="57" font-style="italic" fill="#050505">N</text>
+</g>
+<g id="projection">
+<path id="projection.frame" d="M653.00000 642.00000 L867.00000 642.00000 C874.17970 642.00000 880.00000 647.82030 880.00000 655.00000 L880.00000 754.00000 C880.00000 761.17970 874.17970 767.00000 867.00000 767.00000 L653.00000 767.00000 C645.82030 767.00000 640.00000 761.17970 640.00000 754.00000 L640.00000 655.00000 C640.00000 647.82030 645.82030 642.00000 653.00000 642.00000 Z" fill="url(#gradient96)" stroke="#426B8B" stroke-width="3.3" stroke-linejoin="round" stroke-linecap="round"/>
+<text id="projection.label.base" x="684.00000" y="729.00000" font-family="Times New Roman,Times,serif" font-size="96" font-style="normal" fill="#050505">Π</text>
+<text id="projection.label.sub" x="755.32812" y="745.00000" font-family="Times New Roman,Times,serif" font-size="58" font-style="italic" fill="#050505">m,f</text>
+</g>
+</svg>

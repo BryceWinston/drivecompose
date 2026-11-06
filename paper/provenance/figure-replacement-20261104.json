@@ -12,12 +12,26 @@
       "source_copied_without_modification": true
     },
     "fig:joint-completion": {
-      "active_path": "paper/fig/drivecompose-joint-completion.pdf",
-      "source": "docs/figures/joint-completion-vector/figure3-drawio.pdf",
-      "sha256": "93a923a7ffe450b28aa9a5fe315b41d6bcbac7d37d3fdab5d25bc6964b018444",
+      "active_path": "paper/fig/fig03-joint-completion-core-boxed.pdf",
+      "source": "paper/fig/fig03-joint-completion-core-boxed.pdf",
+      "sha256": "2ecfe8ede4d2b3a7ad9869f0220ee492b15f8c51e63d05417344c0706b68c0eb",
       "source_copied_without_modification": true,
-      "native_source": "docs/figures/joint-completion-vector/figure3-drawio.drawio",
-      "native_sha256": "582e3684907f5872d09e9739ded4727293d54a06e0c244a7bc459f1a2d2f156c"
+      "native_source": "paper/fig/fig03-joint-completion-core-boxed.svg",
+      "native_sha256": "8b1f1fc10a72eccf2e2d9b86afc5b02d9fe2e0fb68203d8ef753846b21099868",
+      "previous_author_selected_pdf_sha256": "93a923a7ffe450b28aa9a5fe315b41d6bcbac7d37d3fdab5d25bc6964b018444",
+      "current_revision": "paper/provenance/figure3-boxed-adoption-20261106.json",
+      "native_source_status": "Author-approved boxed core SVG; all figure objects are editable vector/text primitives.",
+      "previous_active_before_boxed_adoption": {
+        "active_path": "paper/fig/fig03-joint-completion.pdf",
+        "source": "docs/figures/joint-completion-vector/figure3-drawio.pdf",
+        "sha256": "6978ecdd8aaadf84fbac991163a7b60a5a119ce4e10b81e981eaa97f3a819ffd",
+        "source_copied_without_modification": false,
+        "native_source": "docs/figures/joint-completion-vector/figure3-drawio.drawio",
+        "native_sha256": "582e3684907f5872d09e9739ded4727293d54a06e0c244a7bc459f1a2d2f156c",
+        "previous_author_selected_pdf_sha256": "93a923a7ffe450b28aa9a5fe315b41d6bcbac7d37d3fdab5d25bc6964b018444",
+        "current_revision": "paper/provenance/figure3-compact-layout-20261105.json",
+        "native_source_status": "The matching draw.io source recorded previously is unavailable in the checkout; historical variants are preserved. Current revision directly edits the author-selected native-vector PDF."
+      }
     }
   },
   "supplement_mechanism_figure": false,
@@ -1056,5 +1070,6 @@
     "paper/zh/5_discussion_zh.tex": "5697863d8946b0c8b65fba933e0b6d6c92f79e8e694c3efd68d0378d555bd66b",
     "paper/zh/6_conclusion_zh.tex": "138ddd928be0c64607bcdb1c2db708b851184f0d2449e45886bb20037989b0b1",
     "paper/zh/7_llm_usage_zh.tex": "111bc7f8a16c56bc1bc0b2bca5a9bf92ae43f02ac5a3ca3e5c016d9775962ea0"
-  }
+  },
+  "updated": "2026-11-05"
 }

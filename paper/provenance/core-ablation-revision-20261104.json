@@ -1,0 +1,830 @@
+{
+  "date": "2026-11-04",
+  "baseline_commit": "edcd19c6c8b63d5ae8b242044fedf2f83838762b",
+  "baseline_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-core-ablation-revision\\baseline",
+  "authorization": "User approved reducing the current main ablations to component contributions and input-timestamp sensitivity, preserving supplementary evidence.",
+  "source_results": "ablation-standard-metrics-20261029.json",
+  "component_columns": [
+    "variant",
+    "PSNR",
+    "SSIM",
+    "LPIPS",
+    "dynamic PSNR"
+  ],
+  "main_tables": [
+    "tab:ablation-components",
+    "tab:ablation-inputs"
+  ],
+  "main_numeric_cells_per_language": 30,
+  "dynamic_ssim_retained_in": "supplementary/evaluation.tex and evaluation_zh.tex, tab:seed-components",
+  "retained_extended_evidence": {
+    "hidden_mechanisms_and_visibility": "Appendix H, existing tables retained",
+    "edited_asset_surfaces": "Appendix I, tab:asset-reuse moved verbatim from main text",
+    "free_space_rules_and_losses": "Appendices D and J, existing results retained",
+    "seed_variation_and_cost": "Appendices G and K, existing results retained"
+  },
+  "metric_implementation_status": "No production image-metric evaluator or configuration was independently located and verified in this repository. Color domain, SSIM implementation and LPIPS backend/normalization remain author verification items; no implementation choices or recomputed values were invented.",
+  "evidence_type": "Presentation and organization of existing author-provided aggregates; no training or evaluation run.",
+  "verification": {
+    "passed": true,
+    "existing_checks": 75,
+    "revision_checks": 107,
+    "details": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261104-core-ablation-revision\\verification.json"
+  },
+  "outputs": {
+    "en": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "pages": 11,
+      "labels": {
+        "fig:teaser": {
+          "number": "1",
+          "page": 1
+        },
+        "fig:title-teaser": {
+          "number": "1",
+          "page": 1
+        },
+        "sec:introduction": {
+          "number": "1",
+          "page": 1
+        },
+        "sec:related": {
+          "number": "2",
+          "page": 2
+        },
+        "fig:overview": {
+          "number": "2",
+          "page": 3
+        },
+        "sec:method": {
+          "number": "3",
+          "page": 3
+        },
+        "sec:representation": {
+          "number": "3.1",
+          "page": 3
+        },
+        "eq:world": {
+          "number": "1",
+          "page": 3
+        },
+        "eq:generative-reconstruction": {
+          "number": "2",
+          "page": 3
+        },
+        "sec:visual-encoding": {
+          "number": "3.2",
+          "page": 3
+        },
+        "sec:queries": {
+          "number": "3.2",
+          "page": 4
+        },
+        "eq:query-placement": {
+          "number": "3",
+          "page": 4
+        },
+        "eq:aggregation": {
+          "number": "5",
+          "page": 4
+        },
+        "fig:joint-completion": {
+          "number": "3",
+          "page": 4
+        },
+        "sec:codec": {
+          "number": "3.3",
+          "page": 4
+        },
+        "sec:completion": {
+          "number": "3.3",
+          "page": 4
+        },
+        "eq:memory-exchange": {
+          "number": "7",
+          "page": 4
+        },
+        "eq:flow-path": {
+          "number": "8",
+          "page": 5
+        },
+        "eq:flow-loss": {
+          "number": "9",
+          "page": 5
+        },
+        "eq:sampling": {
+          "number": "10",
+          "page": 5
+        },
+        "sec:decoding": {
+          "number": "3.3",
+          "page": 5
+        },
+        "sec:composition": {
+          "number": "3.4",
+          "page": 5
+        },
+        "eq:simulation": {
+          "number": "11",
+          "page": 5
+        },
+        "sec:training": {
+          "number": "3.5",
+          "page": 5
+        },
+        "sec:experiments": {
+          "number": "4",
+          "page": 5
+        },
+        "sec:experimental_setup": {
+          "number": "4.1",
+          "page": 5
+        },
+        "fig:dynamic-reconstruction": {
+          "number": "4",
+          "page": 6
+        },
+        "sec:temporal_evaluation": {
+          "number": "4.2",
+          "page": 6
+        },
+        "tab:regions_current": {
+          "number": "1",
+          "page": 6
+        },
+        "fig:waymo-left-shift": {
+          "number": "5",
+          "page": 7
+        },
+        "sec:spatial_evaluation": {
+          "number": "4.3",
+          "page": 7
+        },
+        "tab:spatial_current": {
+          "number": "2",
+          "page": 7
+        },
+        "sec:ablation-reuse": {
+          "number": "4.4",
+          "page": 7
+        },
+        "sec:observation-preservation": {
+          "number": "4.4",
+          "page": 7
+        },
+        "sec:ablation-protocol": {
+          "number": "4.5",
+          "page": 7
+        },
+        "sec:ablations": {
+          "number": "4.5",
+          "page": 7
+        },
+        "sec:ablation-studies": {
+          "number": "4.5",
+          "page": 7
+        },
+        "tab:ablation-components": {
+          "number": "3",
+          "page": 8
+        },
+        "tab:ablation-inputs": {
+          "number": "4",
+          "page": 8
+        },
+        "sec:discussion": {
+          "number": "5",
+          "page": 8
+        },
+        "sec:conclusion": {
+          "number": "6",
+          "page": 8
+        },
+        "sec:main-text-end": {
+          "number": "6",
+          "page": 8
+        }
+      },
+      "sha256": "0c6818a84a718ba9065fb1431ce14195529c44cacf200be13bc3ebc13bdf0340",
+      "formal_output_installed": true,
+      "main_text_end": 8,
+      "rendered_pages": [
+        7,
+        8
+      ]
+    },
+    "zh": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+      "pages": 10,
+      "labels": {
+        "fig:teaser": {
+          "number": "1",
+          "page": 1
+        },
+        "fig:title-teaser": {
+          "number": "1",
+          "page": 1
+        },
+        "sec:introduction": {
+          "number": "1",
+          "page": 1
+        },
+        "sec:related": {
+          "number": "2",
+          "page": 2
+        },
+        "sec:method": {
+          "number": "3",
+          "page": 2
+        },
+        "sec:representation": {
+          "number": "3.1",
+          "page": 2
+        },
+        "eq:world": {
+          "number": "1",
+          "page": 2
+        },
+        "eq:generative-reconstruction": {
+          "number": "2",
+          "page": 2
+        },
+        "sec:visual-encoding": {
+          "number": "3.2",
+          "page": 2
+        },
+        "sec:queries": {
+          "number": "3.2",
+          "page": 2
+        },
+        "fig:overview": {
+          "number": "2",
+          "page": 3
+        },
+        "eq:query-placement": {
+          "number": "3",
+          "page": 3
+        },
+        "eq:aggregation": {
+          "number": "5",
+          "page": 3
+        },
+        "sec:codec": {
+          "number": "3.3",
+          "page": 3
+        },
+        "sec:completion": {
+          "number": "3.3",
+          "page": 3
+        },
+        "fig:joint-completion": {
+          "number": "3",
+          "page": 4
+        },
+        "eq:memory-exchange": {
+          "number": "7",
+          "page": 4
+        },
+        "eq:flow-path": {
+          "number": "8",
+          "page": 4
+        },
+        "eq:flow-loss": {
+          "number": "9",
+          "page": 4
+        },
+        "eq:sampling": {
+          "number": "10",
+          "page": 4
+        },
+        "sec:decoding": {
+          "number": "3.3",
+          "page": 4
+        },
+        "sec:composition": {
+          "number": "3.4",
+          "page": 4
+        },
+        "eq:simulation": {
+          "number": "11",
+          "page": 4
+        },
+        "sec:training": {
+          "number": "3.5",
+          "page": 4
+        },
+        "sec:experiments": {
+          "number": "4",
+          "page": 4
+        },
+        "sec:experimental_setup": {
+          "number": "4.1",
+          "page": 5
+        },
+        "sec:temporal_evaluation": {
+          "number": "4.2",
+          "page": 5
+        },
+        "tab:regions_current": {
+          "number": "1",
+          "page": 5
+        },
+        "sec:spatial_evaluation": {
+          "number": "4.3",
+          "page": 5
+        },
+        "tab:spatial_current": {
+          "number": "2",
+          "page": 5
+        },
+        "sec:ablation-reuse": {
+          "number": "4.4",
+          "page": 5
+        },
+        "sec:observation-preservation": {
+          "number": "4.4",
+          "page": 5
+        },
+        "fig:dynamic-reconstruction": {
+          "number": "4",
+          "page": 6
+        },
+        "fig:waymo-left-shift": {
+          "number": "5",
+          "page": 6
+        },
+        "sec:ablation-protocol": {
+          "number": "4.5",
+          "page": 7
+        },
+        "sec:ablations": {
+          "number": "4.5",
+          "page": 7
+        },
+        "sec:ablation-studies": {
+          "number": "4.5",
+          "page": 7
+        },
+        "tab:ablation-components": {
+          "number": "3",
+          "page": 7
+        },
+        "tab:ablation-inputs": {
+          "number": "4",
+          "page": 7
+        },
+        "sec:discussion": {
+          "number": "5",
+          "page": 7
+        },
+        "sec:conclusion": {
+          "number": "6",
+          "page": 7
+        },
+        "sec:main-text-end": {
+          "number": "6",
+          "page": 7
+        }
+      },
+      "sha256": "9d6585fb0f54bdfcb52b837cb036431377d4cb6189ff7dbfb7c988ac4c34bebc",
+      "formal_output_installed": true,
+      "main_text_end": 7,
+      "rendered_pages": [
+        7
+      ]
+    },
+    "supp-en": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\supp-en\\main.pdf",
+      "pages": 12,
+      "labels": {
+        "sec:supp-generalization": {
+          "number": "A",
+          "page": 1
+        },
+        "tab:generalization": {
+          "number": "S1",
+          "page": 1
+        },
+        "sec:supp-training": {
+          "number": "B",
+          "page": 1
+        },
+        "eq:target-samples": {
+          "number": "S1",
+          "page": 1
+        },
+        "eq:complete-code": {
+          "number": "S2",
+          "page": 1
+        },
+        "tab:data-splits": {
+          "number": "S2",
+          "page": 2
+        },
+        "eq:codec-loss": {
+          "number": "S3",
+          "page": 2
+        },
+        "eq:reconstruction-loss": {
+          "number": "S5",
+          "page": 2
+        },
+        "eq:adaptation": {
+          "number": "S6",
+          "page": 2
+        },
+        "tab:network-config": {
+          "number": "S3",
+          "page": 3
+        },
+        "tab:recovery-weights": {
+          "number": "S4",
+          "page": 3
+        },
+        "sec:supp-composition": {
+          "number": "C",
+          "page": 3
+        },
+        "eq:rigid": {
+          "number": "S8",
+          "page": 3
+        },
+        "eq:simulation": {
+          "number": "S10",
+          "page": 3
+        },
+        "sec:supp-queries": {
+          "number": "D",
+          "page": 3
+        },
+        "tab:training-schedule": {
+          "number": "S5",
+          "page": 4
+        },
+        "eq:query-placement": {
+          "number": "S11",
+          "page": 4
+        },
+        "eq:aggregation": {
+          "number": "S13",
+          "page": 4
+        },
+        "eq:free-space": {
+          "number": "S14",
+          "page": 4
+        },
+        "eq:footprint-free": {
+          "number": "S16",
+          "page": 5
+        },
+        "sec:supp-codec": {
+          "number": "E",
+          "page": 5
+        },
+        "eq:child-center": {
+          "number": "S17",
+          "page": 5
+        },
+        "sec:supp-protocol": {
+          "number": "F",
+          "page": 5
+        },
+        "tab:free-space-audit": {
+          "number": "S6",
+          "page": 6
+        },
+        "tab:free-space-downstream": {
+          "number": "S7",
+          "page": 6
+        },
+        "eq:depth-alignment": {
+          "number": "S18",
+          "page": 6
+        },
+        "sec:supp-ablations": {
+          "number": "G",
+          "page": 6
+        },
+        "tab:baseline-resources": {
+          "number": "S8",
+          "page": 7
+        },
+        "tab:adapter-effect": {
+          "number": "S9",
+          "page": 7
+        },
+        "sec:supp-hidden": {
+          "number": "H",
+          "page": 7
+        },
+        "eq:geometry-metrics": {
+          "number": "S21",
+          "page": 7
+        },
+        "tab:shared-inputs": {
+          "number": "S10",
+          "page": 8
+        },
+        "tab:temporal-groups": {
+          "number": "S11",
+          "page": 8
+        },
+        "tab:depth-scale": {
+          "number": "S12",
+          "page": 8
+        },
+        "tab:seed-components": {
+          "number": "S13",
+          "page": 9
+        },
+        "tab:seed-inputs": {
+          "number": "S14",
+          "page": 9
+        },
+        "tab:hidden-regions": {
+          "number": "S15",
+          "page": 9
+        },
+        "tab:reprojection": {
+          "number": "S16",
+          "page": 9
+        },
+        "tab:visibility": {
+          "number": "S17",
+          "page": 9
+        },
+        "tab:context-read": {
+          "number": "S18",
+          "page": 9
+        },
+        "sec:supp-reuse": {
+          "number": "I",
+          "page": 9
+        },
+        "tab:asset-reuse": {
+          "number": "S19",
+          "page": 10
+        },
+        "tab:edit-failures": {
+          "number": "S20",
+          "page": 10
+        },
+        "tab:edit-seeds": {
+          "number": "S21",
+          "page": 10
+        },
+        "tab:real-edit-quality": {
+          "number": "S22",
+          "page": 11
+        },
+        "sec:supp-preservation": {
+          "number": "J",
+          "page": 11
+        },
+        "sec:supp-timing": {
+          "number": "K",
+          "page": 11
+        },
+        "tab:preservation": {
+          "number": "S23",
+          "page": 12
+        },
+        "tab:timing-stages": {
+          "number": "S24",
+          "page": 12
+        },
+        "tab:reuse-time": {
+          "number": "S25",
+          "page": 12
+        }
+      },
+      "sha256": "8e9f81f8b87fc134b31c1c7731efd6739d5ab9096aebbe4a60740f41558ccec5",
+      "formal_output_installed": true,
+      "table_count": 25,
+      "rendered_pages": [
+        9,
+        10,
+        11
+      ]
+    },
+    "supp-zh": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\supp-zh\\main_zh.pdf",
+      "pages": 10,
+      "labels": {
+        "sec:supp-generalization": {
+          "number": "A",
+          "page": 1
+        },
+        "tab:generalization": {
+          "number": "S1",
+          "page": 1
+        },
+        "sec:supp-training": {
+          "number": "B",
+          "page": 1
+        },
+        "eq:target-samples": {
+          "number": "S1",
+          "page": 1
+        },
+        "eq:complete-code": {
+          "number": "S2",
+          "page": 1
+        },
+        "eq:codec-loss": {
+          "number": "S3",
+          "page": 1
+        },
+        "eq:reconstruction-loss": {
+          "number": "S5",
+          "page": 1
+        },
+        "tab:data-splits": {
+          "number": "S2",
+          "page": 2
+        },
+        "tab:network-config": {
+          "number": "S3",
+          "page": 2
+        },
+        "tab:recovery-weights": {
+          "number": "S4",
+          "page": 2
+        },
+        "eq:adaptation": {
+          "number": "S6",
+          "page": 2
+        },
+        "sec:supp-composition": {
+          "number": "C",
+          "page": 2
+        },
+        "tab:training-schedule": {
+          "number": "S5",
+          "page": 3
+        },
+        "eq:rigid": {
+          "number": "S8",
+          "page": 3
+        },
+        "eq:simulation": {
+          "number": "S10",
+          "page": 3
+        },
+        "sec:supp-queries": {
+          "number": "D",
+          "page": 3
+        },
+        "eq:query-placement": {
+          "number": "S11",
+          "page": 3
+        },
+        "eq:aggregation": {
+          "number": "S13",
+          "page": 4
+        },
+        "eq:free-space": {
+          "number": "S14",
+          "page": 4
+        },
+        "eq:footprint-free": {
+          "number": "S16",
+          "page": 4
+        },
+        "sec:supp-codec": {
+          "number": "E",
+          "page": 4
+        },
+        "eq:child-center": {
+          "number": "S17",
+          "page": 4
+        },
+        "sec:supp-protocol": {
+          "number": "F",
+          "page": 4
+        },
+        "tab:free-space-audit": {
+          "number": "S6",
+          "page": 5
+        },
+        "tab:free-space-downstream": {
+          "number": "S7",
+          "page": 5
+        },
+        "eq:depth-alignment": {
+          "number": "S18",
+          "page": 5
+        },
+        "sec:supp-ablations": {
+          "number": "G",
+          "page": 5
+        },
+        "sec:supp-hidden": {
+          "number": "H",
+          "page": 5
+        },
+        "tab:baseline-resources": {
+          "number": "S8",
+          "page": 6
+        },
+        "tab:adapter-effect": {
+          "number": "S9",
+          "page": 6
+        },
+        "eq:geometry-metrics": {
+          "number": "S21",
+          "page": 6
+        },
+        "tab:shared-inputs": {
+          "number": "S10",
+          "page": 7
+        },
+        "tab:temporal-groups": {
+          "number": "S11",
+          "page": 7
+        },
+        "tab:depth-scale": {
+          "number": "S12",
+          "page": 7
+        },
+        "sec:supp-reuse": {
+          "number": "I",
+          "page": 7
+        },
+        "tab:seed-components": {
+          "number": "S13",
+          "page": 8
+        },
+        "tab:seed-inputs": {
+          "number": "S14",
+          "page": 8
+        },
+        "tab:hidden-regions": {
+          "number": "S15",
+          "page": 8
+        },
+        "tab:reprojection": {
+          "number": "S16",
+          "page": 8
+        },
+        "tab:visibility": {
+          "number": "S17",
+          "page": 8
+        },
+        "tab:context-read": {
+          "number": "S18",
+          "page": 8
+        },
+        "tab:asset-reuse": {
+          "number": "S19",
+          "page": 8
+        },
+        "tab:edit-failures": {
+          "number": "S20",
+          "page": 8
+        },
+        "tab:edit-seeds": {
+          "number": "S21",
+          "page": 9
+        },
+        "sec:supp-preservation": {
+          "number": "J",
+          "page": 9
+        },
+        "sec:supp-timing": {
+          "number": "K",
+          "page": 9
+        },
+        "tab:real-edit-quality": {
+          "number": "S22",
+          "page": 10
+        },
+        "tab:preservation": {
+          "number": "S23",
+          "page": 10
+        },
+        "tab:timing-stages": {
+          "number": "S24",
+          "page": 10
+        },
+        "tab:reuse-time": {
+          "number": "S25",
+          "page": 10
+        }
+      },
+      "sha256": "8a8ed2f8b815e233dae0d2a1b1804cb75b079f85d668ca8c0c538e6bc5c1c737",
+      "formal_output_installed": true,
+      "table_count": 25,
+      "rendered_pages": [
+        7,
+        8,
+        9,
+        10
+      ]
+    }
+  },
+  "visual_review": "Main experiment/conclusion pages and affected supplementary asset/observation pages reviewed. No new clipping or overlaps observed.",
+  "preview_status": "Built-in compile could not display the PDF because it exceeds 20 MiB; native project compiler used for formal PDFs.",
+  "formal_english_installation_pending": false,
+  "metric_implementation_followup": "Actual production settings remain unverified; documentation tracks this without adding inferred settings to the manuscript."
+}

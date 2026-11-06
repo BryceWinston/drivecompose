@@ -1,0 +1,259 @@
+{
+  "date": "2026-11-05",
+  "status": "superseded_candidate_preserved",
+  "user_instruction": "Tighten whitespace in the supplied local-attention region.",
+  "source_candidate": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-figure3-symbol-compact\\before.pdf",
+  "source_sha256": "5b88cc872d3bc68bc3e5bb72b2cdcb92320f928253bcd53af0a9b3751baedeb4",
+  "candidate": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\fig\\fig03-joint-completion-revised.pdf",
+  "candidate_sha256": "9537dcd52f4e051a1635f6fbbb8cd893106339ce041ca1dca9ca54f515a460b0",
+  "panel_before": [
+    18.12395477294922,
+    118.96945190429688,
+    379.3018493652344,
+    369.66937255859375
+  ],
+  "panel_after": [
+    53.12396240234375,
+    118.96945190429688,
+    314.3018493652344,
+    357.66937255859375
+  ],
+  "panel_width_reduction_percent": 27.69,
+  "panel_area_reduction_percent": 31.15,
+  "symbol_to_tokens_gap_points_before": 87.81884765625,
+  "symbol_to_tokens_gap_points_after": 32.81884765625,
+  "operations": "Inward frame offsets: left +35, right -65, bottom -12; token rows -65 horizontally with row offsets 0/-6/-12; symbols -10 horizontally; heading -15/-6; brace and affected connectors adjusted.",
+  "glyphs_font_sizes_colors_and_connection_topology_unchanged": true,
+  "vector_drawings": 113,
+  "native_text_objects": 30,
+  "raster_images": 0,
+  "canvas_size_unchanged": true,
+  "pixel_checks": {
+    "1": {
+      "pixels_outside_local_module_and_affected_connectors_identical": true
+    },
+    "2": {
+      "pixels_outside_local_module_and_affected_connectors_identical": true
+    }
+  },
+  "modified_paints": [
+    {
+      "seq": 4,
+      "drawing": 3
+    },
+    {
+      "seq": 5,
+      "drawing": 3
+    },
+    {
+      "seq": 6,
+      "drawing": 4
+    },
+    {
+      "seq": 7,
+      "drawing": 4
+    },
+    {
+      "seq": 8,
+      "drawing": 5
+    },
+    {
+      "seq": 9,
+      "drawing": 5
+    },
+    {
+      "seq": 10,
+      "drawing": 6
+    },
+    {
+      "seq": 11,
+      "drawing": 6
+    },
+    {
+      "seq": 12,
+      "drawing": 7
+    },
+    {
+      "seq": 13,
+      "drawing": 8
+    },
+    {
+      "seq": 14,
+      "drawing": 8
+    },
+    {
+      "seq": 15,
+      "drawing": 9
+    },
+    {
+      "seq": 16,
+      "drawing": 9
+    },
+    {
+      "seq": 17,
+      "drawing": 10
+    },
+    {
+      "seq": 18,
+      "drawing": 11
+    },
+    {
+      "seq": 19,
+      "drawing": 11
+    },
+    {
+      "seq": 20,
+      "drawing": 12
+    },
+    {
+      "seq": 21,
+      "drawing": 12
+    },
+    {
+      "seq": 22,
+      "drawing": 13
+    },
+    {
+      "seq": 23,
+      "drawing": 13
+    },
+    {
+      "seq": 24,
+      "drawing": 14
+    },
+    {
+      "seq": 25,
+      "drawing": 14
+    },
+    {
+      "seq": 26,
+      "drawing": 15
+    },
+    {
+      "seq": 27,
+      "drawing": 16
+    },
+    {
+      "seq": 28,
+      "drawing": 16
+    },
+    {
+      "seq": 29,
+      "drawing": 17
+    },
+    {
+      "seq": 30,
+      "drawing": 17
+    },
+    {
+      "seq": 31,
+      "drawing": 18
+    },
+    {
+      "seq": 32,
+      "drawing": 19
+    },
+    {
+      "seq": 33,
+      "drawing": 19
+    },
+    {
+      "seq": 34,
+      "drawing": 20
+    },
+    {
+      "seq": 35,
+      "drawing": 20
+    },
+    {
+      "seq": 36,
+      "drawing": 21
+    },
+    {
+      "seq": 37,
+      "drawing": 21
+    },
+    {
+      "seq": 38,
+      "drawing": 22
+    },
+    {
+      "seq": 39,
+      "drawing": 22
+    },
+    {
+      "seq": 40,
+      "drawing": 23
+    },
+    {
+      "seq": 41,
+      "drawing": 24
+    },
+    {
+      "seq": 42,
+      "drawing": 24
+    },
+    {
+      "seq": 43,
+      "drawing": 25
+    },
+    {
+      "seq": 44,
+      "drawing": 25
+    },
+    {
+      "seq": 45,
+      "drawing": 26
+    },
+    {
+      "seq": 46,
+      "drawing": 27
+    },
+    {
+      "seq": 47,
+      "drawing": 27
+    },
+    {
+      "seq": 48,
+      "drawing": 28
+    },
+    {
+      "seq": 80,
+      "drawing": 47
+    },
+    {
+      "seq": 111,
+      "drawing": 63
+    },
+    {
+      "seq": 182,
+      "drawing": 107
+    },
+    {
+      "seq": 183,
+      "drawing": 108
+    },
+    {
+      "seq": 184,
+      "drawing": 108
+    }
+  ],
+  "caption_unchanged": true,
+  "original_figure_and_manuscript_pdfs_unchanged": true,
+  "protected_original_files_unchanged": 68,
+  "paper_recompiled": false,
+  "comparison_pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-figure3-symbol-compact\\comparison.pdf",
+  "visual_review": {
+    "renderer": "Poppler pdftoppm",
+    "images": [
+      "candidate-poppler.png",
+      "comparison.png"
+    ],
+    "result": "Symbols and token rows are closer with unchanged glyph sizes and token dimensions. The narrowed frame and shortened brace have clear margins; adjusted external connectors meet the same targets without clipping or overlap. The local before/after comparison uses equal scale."
+  },
+  "caption_and_original_files_unchanged": true,
+  "symbol_to_tokens_gap_reduction_percent": 62.63,
+  "preserved_candidate": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-figure3-global-revision\\before.pdf",
+  "superseded_by": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\provenance\\figure3-global-revision-candidate-20261105.json",
+  "note": "The candidate path now refers to the globally revised independent candidate; the recorded earlier hash is retained by before.pdf."
+}

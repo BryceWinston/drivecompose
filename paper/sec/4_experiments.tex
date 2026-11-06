@@ -106,9 +106,10 @@ Ours
 \subsection{State-driven asset reuse}
 \label{sec:ablation-reuse}
 \paragraph{Asset edits.}
-We test fixed-asset reuse on twenty real scenes, each containing one vehicle and one human. A 1 m camera shift, $30^\circ$ vehicle rotation, and human pose change reuse fixed completed assets. Nine training/generation-seed combinations yield 360 actor edits. The five-pixel structural-integrity criterion passes 334/360 (92.78\%); 298/360 (82.78\%) jointly pass structure, newly visible texture, appearance identity, and local geometry checks. Appendix I reports the four-of-five rating rule, failure breakdown, and seed statistics.
+We test fixed-asset reuse on twenty real scenes, each containing one vehicle and one human. A 1 m camera shift, $30^\circ$ vehicle rotation, and human pose change reuse fixed completed assets. Nine training/generation-seed combinations yield 360 actor edits. The five-pixel structural-integrity criterion passes 334/360 (92.78\%); 298/360 (82.78\%) jointly pass structure, newly visible texture, appearance identity, and local geometry checks. Appendix I reports paired synthetic comparisons, the four-of-five rating rule, failure breakdown, and seed statistics.
 
 \paragraph{Observation preservation.}
+\label{sec:observation-preservation}
 Compared with the observed-only scene at fixed cameras and actor states, Ours preserves observed Gaussian parameters exactly, while input-view PSNR decreases by 0.029 dB and depth MAE increases by 2 mm. Previously observed human texture has canonical linear-RGB MAE 0.014. Appendix J reports parameter and rendering measurements.
 
 \paragraph{Efficiency.}
@@ -116,79 +117,60 @@ On an RTX 4090 (FP16, batch 1, rule C), construction takes $2.66\pm0.11$ s, sing
 
 \subsection{Ablation studies}
 \label{sec:ablation-protocol}\label{sec:ablations}\label{sec:ablation-studies}
-The w/o GCM control disables non-observed, non-sky Gaussians. The w/o CCM control uses isolated per-component memories with the same parameters and global log context, retraining Stages~\mbox{3--4}.
+Waymo ablations use one 29-timestamp window per test sequence, three cameras, and seven shared target timestamps (Appendix G).
 
 \paragraph{Completion components.}
-Waymo ablations use one 29-timestamp window per test sequence, three cameras, nested $T=2,4,8$ inputs, and seven shared targets (Appendix G). Variants share recovery, codec, states, data, and optimization budgets. Training samples $T$ uniformly; inference uses 24 Euler steps. We average three training and three generation seeds, retaining every output in the scores. Exchanging component context adds 0.627/0.934 dB full-image/dynamic PSNR (Table~\ref{tab:ablation-components}); training-seed SDs are 0.061 and 0.074 dB for Ours and w/o CCM. PSNR gains are 1.104, 0.738, and 0.627 dB at $T=2,4,8$, with the largest benefit at the sparsest input setting (Appendix G). CCM adds 5.1\% construction time (Appendix K).
+The w/o GCM control disables non-observed, non-sky Gaussians. The w/o CCM control uses isolated per-component memories with the same parameters and global log context, retraining Stages~\mbox{3--4}. Variants share recovery, codec, states, data, and optimization budgets. Training samples $T$ uniformly; inference uses 24 Euler steps. The learned variants average three training and three generation seeds, retaining every output; w/o GCM is deterministic. At $T=8$, exchanging component context adds 0.627/0.934 dB full-image/dynamic PSNR (Table~\ref{tab:ablation-components}). Figure~\ref{fig:component-ablation} shows cleaner traffic-signal contours and sharper foliage detail with the full model. Pedestrian silhouettes and vehicle windows have fewer distortions and ghosting artifacts. Appendix H reports paired hidden-surface mechanism comparisons and visibility-stratified results.
 
 \begin{table}[!htbp]
-  \centering
-  \caption{\textbf{Component ablations on Waymo.} $T=8$, with shared recovery, codec, and target views. Full SDs are in Appendix G.}
+  \centering\small
+  \caption{\textbf{Component ablations on Waymo.} $T=8$ timestamps (24 images), with shared recovery, codec, and target views. Full metrics and SDs are in Appendix G.}
   \label{tab:ablation-components}
-  \small
   \setlength{\tabcolsep}{3pt}
   \renewcommand{\arraystretch}{1.12}
-  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc@{}}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc@{}}
     \toprule
-    \multirow{2}{*}{Variant} & \multicolumn{3}{c}{Full image} & \multicolumn{2}{c}{Dynamic regions} \\
-    \cmidrule(lr){2-4}\cmidrule(lr){5-6}
-      & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ & PSNR $\uparrow$ & SSIM $\uparrow$ \\
+    \multirow{2}{*}{Variant} & \multicolumn{3}{c}{Full image} & Dynamic \\
+    \cmidrule(lr){2-4}\cmidrule(lr){5-5}
+      & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ & PSNR $\uparrow$ \\
     \midrule
-    w/o GCM & 27.137 & 0.867 & 0.183 & 23.431 & 0.811 \\
-    w/o CCM & 28.286 & 0.893 & 0.147 & 24.683 & 0.849 \\
+    w/o GCM & 27.137 & 0.867 & 0.183 & 23.431 \\
+    w/o CCM & 28.286 & 0.893 & 0.147 & 24.683 \\
     \midrule
-    Ours & \textbf{28.913} & \textbf{0.911} & \textbf{0.129} & \textbf{25.617} & \textbf{0.873} \\
+    Ours & \textbf{28.913} & \textbf{0.911} & \textbf{0.129} & \textbf{25.617} \\
     \bottomrule
   \end{tabular*}
 \end{table}
 
-\paragraph{Hidden-surface completion.}
-\label{sec:hidden-completion}
-One hundred synthetic test scenes provide paired hidden-region evaluation at $\pm2$ m. We adapt scene-level latent generation~\cite{liao2025complete} and cross-object latent coupling~\cite{wu2026jrm} to shared recovery, codec, query layout, inputs, supervision, and sampling. Three training and three generation seeds are averaged. Joint completion improves both appearance and surface recovery, with gains of 0.67 dB PSNR, 2.6 points coverage, and 3.6 points F-score over object coupling (Table~\ref{tab:completion-mechanisms}). On real common support, RGB reprojection MAE falls from 0.028 to 0.019 versus w/o CCM while coverage rises from 86.9\% to 92.4\%. Appendix H gives the mechanism interfaces and geometry evaluation.
+\paragraph{Input-timestamp sensitivity.}
+Fixed checkpoints use nested $T=2,4,8$ inputs (6/12/24 images) over the same time span and target views. At each input count, evidence and queries are reconstructed from the supplied inputs. CCM adds 1.104, 0.738, and 0.627 dB PSNR and reduces LPIPS by 0.041, 0.028, and 0.018 (Table~\ref{tab:ablation-inputs}), with the largest benefit at the sparsest input setting. Appendix G gives the input lists and seed statistics.
 
 \begin{table}[!htbp]
 \centering\small
+\caption{\textbf{Input-timestamp sensitivity.} Fixed checkpoints, time span, and target views; $T$ counts timestamps, each with three images. Full SDs are in Appendix G.}
+\label{tab:ablation-inputs}
 \setlength{\tabcolsep}{3pt}
-\caption{\textbf{Hidden-region completion mechanisms.} Task-adapted controls on 100 synthetic scenes, rule C. Coverage (Cov.) and F-score use 2 cm.}
-\label{tab:completion-mechanisms}
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrr@{}}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}l l c c c@{}}
 \toprule
-Mechanism & PSNR$\uparrow$ & LPIPS$\downarrow$ & Cov.$\uparrow$ & F-score$\uparrow$\\
+$T$ & Variant & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ \\
 \midrule
-w/o GCM & 16.82 & 0.401 & 61.5\% & 51.7\%\\
-w/o CCM & 21.56 & 0.236 & 89.7\% & 81.3\%\\
-Scene latent & 22.24 & 0.221 & 91.8\% & 84.1\%\\
-Object coupling & 22.51 & 0.212 & 92.4\% & 85.0\%\\
-Ours & \textbf{23.18} & \textbf{0.192} & \textbf{95.0\%} & \textbf{88.6\%}\\
+2 & w/o CCM & 25.237 & 0.817 & 0.254 \\
+2 & Ours & \textbf{26.341} & \textbf{0.851} & \textbf{0.213} \\
+\midrule
+4 & w/o CCM & 27.126 & 0.869 & 0.187 \\
+4 & Ours & \textbf{27.864} & \textbf{0.891} & \textbf{0.159} \\
+\midrule
+8 & w/o CCM & 28.286 & 0.893 & 0.147 \\
+8 & Ours & \textbf{28.913} & \textbf{0.911} & \textbf{0.129} \\
 \bottomrule
 \end{tabular*}
 \end{table}
 
-\paragraph{Visibility-stratified analysis.}
-On the 100 synthetic scenes, input-union surface coverage defines well-observed ($\geq80\%$) and severely missing ($\leq20\%$) groups. CCM adds 1.02/1.28/1.54 dB for severely missing background/vehicle/human regions, versus 0.04/0.04/0.03 dB for well-observed regions. Appendix H reports fixed-checkpoint read-scope interventions.
-
-\paragraph{Completion after editing.}
-We apply the edits in Sec.~\ref{sec:ablation-reuse} to twenty identity-disjoint synthetic scenes, each containing one vehicle and one human. Joint completion gives the best PSNR, LPIPS, and surface coverage for newly visible surfaces (Table~\ref{tab:asset-reuse}).
-
-\begin{table}[!htbp]
-\centering\small
-\setlength{\tabcolsep}{1.5pt}
-\caption{\textbf{Newly visible asset surfaces after editing.} Completion ablations in paired synthetic tests; vehicle/human coverage thresholds are 2/1 cm.}
-\label{tab:asset-reuse}
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrr@{}}
-\toprule
-Variant & \multicolumn{3}{c}{Vehicle (2 cm)} & \multicolumn{3}{c}{Human (1 cm)}\\
-\cmidrule(lr){2-4}\cmidrule(lr){5-7}
-& PSNR$\uparrow$ & LPIPS$\downarrow$ & Cov.$\uparrow$ & PSNR$\uparrow$ & LPIPS$\downarrow$ & Cov.$\uparrow$\\
-\midrule
-w/o GCM & 17.80 & 0.362 & 63.4\% & 17.12 & 0.391 & 60.8\%\\
-w/o CCM & 22.46 & 0.218 & 91.8\% & 21.38 & 0.247 & 88.6\%\\
-Ours & \textbf{24.18} & \textbf{0.176} & \textbf{96.1\%} & \textbf{23.06} & \textbf{0.201} & \textbf{94.3\%}\\
-\bottomrule
-\end{tabular*}
-\end{table}
-
-\paragraph{Free-space constraints.}
-\label{sec:observation-preservation}
-On 2,020,000 fixed rays, added-occlusion and strict free-ray violation rates are 0.18\% and 0.07\%; removing the free-ray loss raises them to 1.34\% and 0.91\% (Appendix J). With weights, layout, depth, and per-query noise fixed, F reduces occupied-cell mislabels from 1,374 to 19. Hidden-region coverage rises from 95.0\% to 96.2\%, PSNR from 23.18 to 23.36 dB, and construction time from 2.66 to 2.86 s. Appendix D separates cell errors, surface coverage, and ray violations.
-\FloatBarrier
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth]{fig/fig06-component-ablation.pdf}
+  \caption{\textbf{Completion component ablations.} Rows show two scenes; columns are Ours, w/o CCM, and w/o GCM. Colored boxes mark the regions enlarged below each view.}
+  \label{fig:component-ablation}
+\end{figure}
+% The main-text barrier keeps this float ahead of the usage statement and references.

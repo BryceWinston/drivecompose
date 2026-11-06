@@ -1,0 +1,495 @@
+{
+  "date": "2026-11-05",
+  "request": "重生成上排右侧局部；按作者反馈纠正空间位置及人体未观测面的分布。",
+  "status": "adopted_into_main_manuscripts",
+  "baseline_selected_pdf": "paper/fig/fig01-teaser.pdf",
+  "baseline_selected_pdf_sha256": "9b6c15f90670f6386ececf763b865685633b2a9dab8ee8acbeff9ca946f93847",
+  "native_source": "paper/fig/fig01-teaser-original.drawio",
+  "native_source_sha256": "05fe93a91a09496c72b3be1c2038d1ae17fc2a4b4f41122f129767bd3dba8324",
+  "output_drawio": "paper/fig/fig01-teaser.drawio",
+  "output_pdf": "paper/fig/fig01-teaser.pdf",
+  "preview": "paper/fig/fig01-teaser-preview.png",
+  "output_hashes": {
+    "paper/fig/fig01-teaser.pdf": "7fe29dcf25a2a0d2f549fea4ec6d966dcedcbe4dc0a52448313372238024f750",
+    "paper/fig/fig01-teaser.drawio": "2c3b2fc8784bb70ec01678735bf15cf8c63d8b34a525ee37e446b4e153e18b2a",
+    "paper/fig/fig01-teaser-preview.png": "e0fb15cb45c5bdfea3bc787437ced8125f395278e1bca21c3dd5afd3887d2ddf"
+  },
+  "canvas": [
+    1350,
+    690
+  ],
+  "changes": [
+    "One input split spine and two explicit gaps in the panel frames.",
+    "One arrow into a gray bracket around the three parallel reuse states.",
+    "Three short native bidirectional links to the shared context, positioned above the original scene.",
+    "Consistent left-to-right primary arrows and a separate camera-state input.",
+    "a/b captions at upper-left; side-by-side vehicle comparison with aligned lower captions.",
+    "Original redundant Joint completion heading consolidated into b caption; redundant Also note removed.",
+    "Replaced only scene-unseen with an Image Gen schematic registered to the existing camera-view illustration; corrected the human unknown front surfaces using the reference gold/purple split."
+  ],
+  "source_art_modified": true,
+  "lossless_crop_count": 8,
+  "source_photos_unchanged": 6,
+  "native_camera_glyph": true,
+  "all_native_claim": false,
+  "editability": "81 objects: 67 native or group objects and 14 independent raster fields (13 retained original fields, one regenerated schematic scene).",
+  "review": {
+    "changed_cell_ids": [
+      "scene-unseen"
+    ],
+    "all_other_80_objects_identical": true,
+    "all_geometry_identical": true,
+    "native_pixels_outside_replaced_image_with_10px_export_guard_identical": true,
+    "pixel_difference_bbox": [
+      1706,
+      127,
+      2150,
+      347
+    ],
+    "allowed_difference_box_px": [
+      1701,
+      120,
+      2162,
+      356
+    ],
+    "pdf_text_unchanged": true,
+    "pdf_page_size": [
+      0.0,
+      0.0,
+      972.9599609375,
+      498.0
+    ],
+    "pdf_image_count": 14,
+    "raw_audit_hard": 6,
+    "raw_audit_warning": 1,
+    "audit_findings_identical_to_previous_revision": true,
+    "inherited_raster_background_false_positives": 6,
+    "new_hard_findings": 0,
+    "original_pdf_and_drawio_preserved": true,
+    "selected_figure_unchanged": true,
+    "schematic_not_empirical": true,
+    "human_surface_assignment": "Reference gold/newly exposed front and image-left surfaces are white missing areas; purple observed image-right/back surfaces remain lavender.",
+    "spatial_reference": "Existing reuse-camera.png; foreground wall left pillar, van on right facing left, walker upper left on same zebra crossing.",
+    "asset_source_pixels": [
+      1981,
+      794
+    ],
+    "asset_placement_width_mm": 34.925,
+    "effective_dpi": 1440.7272727272727,
+    "native_renderer_screenshot": "renderer-retry.png",
+    "verdict": "pass for requested standalone scene replacement; final native and PDF renders visually checked; six prior background-bbox false positives retained transparently."
+  },
+  "evidence_directory": "../_archive/drivecompose/20261105-teaser-coordinated",
+  "selected_figure_replaced": true,
+  "paper_recompiled": true,
+  "commit_or_push": false,
+  "revision": 9,
+  "refinement": {
+    "date": "2026-11-05",
+    "lower_content_scale": 0.92,
+    "title": "Own row at x300, y251; same left edge, font size and 9-unit upper inset as (a).",
+    "new_body_top": 287,
+    "input_port_y": 460.88,
+    "upper_panel_pixel_identical": true,
+    "all_14_image_resources_preserved": true,
+    "all_text_preserved": true,
+    "page_metadata_persisted": true,
+    "baseline_and_evidence": "../_archive/drivecompose/20261105-teaser-title-row",
+    "verification": "../_archive/drivecompose/20261105-teaser-title-row/verification.json"
+  },
+  "subtitle_refinement": {
+    "lower_title": "(b) Joint completion and reuse",
+    "reuse_subtitle": "Same assets, new states",
+    "alignment": "Both lower subtitles inherit the corresponding upper geometry and style, with exactly 228 source units vertical offset.",
+    "changed_cells": [
+      "ppt-text-89-source",
+      "ppt-text-52-source"
+    ],
+    "all_other_objects_unchanged": true,
+    "baseline_and_evidence": "../_archive/drivecompose/20261105-teaser-subtitle-alignment"
+  },
+  "original_for_comparison": {
+    "path": "paper/fig/fig01-teaser-original.pdf",
+    "sha256": "6183604dca2eae5cfa7a65e7e65c64599ee84be00640159bc7f0b3ac487326a5",
+    "same_bytes_as_initial_user_file": true,
+    "source_backup": "../_archive/drivecompose/20261105-teaser-compact-framing/baseline/fig01-teaser.pdf",
+    "native_original": "paper/fig/fig01-teaser-original.drawio",
+    "native_original_unchanged": true,
+    "comparison_preview": "paper/fig/fig01-teaser-comparison.png"
+  },
+  "header_hierarchy": {
+    "a": "(a) Previous methods: state changes expose missing surfaces",
+    "b": "(b) Ours: joint completion enables asset reuse across states",
+    "marked_subtitles_removed": true,
+    "alignment": "Same left edge, font, single-line height and panel-relative upper inset; text frames widened to 1022."
+  },
+  "arrow_clearance": {
+    "objects": [
+      "observed-flow",
+      "renderer-flow",
+      "reuse-flow",
+      "unseen-flow"
+    ],
+    "gaps": [
+      {
+        "id": "observed-flow",
+        "start": [
+          528,
+          140
+        ],
+        "end": [
+          550,
+          140
+        ],
+        "leftGap": 8,
+        "rightGap": 8
+      },
+      {
+        "id": "renderer-flow",
+        "start": [
+          811,
+          140
+        ],
+        "end": [
+          842,
+          140
+        ],
+        "leftGap": 8,
+        "rightGap": 8
+      },
+      {
+        "id": "unseen-flow",
+        "start": [
+          1018,
+          140
+        ],
+        "end": [
+          1042,
+          140
+        ],
+        "leftGap": 8,
+        "rightGap": 8
+      },
+      {
+        "id": "reuse-flow",
+        "start": [
+          899.36,
+          460.88
+        ],
+        "end": [
+          965.6,
+          460.88
+        ],
+        "leftGap": 14.72,
+        "rightGap": 14.72
+      }
+    ],
+    "all_other_93_objects_unchanged": true,
+    "evidence": "../_archive/drivecompose/20261105-teaser-arrow-clearance"
+  },
+  "previous_header_hierarchy": {
+    "large_title": "(b) DriveCompose",
+    "left_subtitle": "Joint completion",
+    "right_subtitle": "Asset reuse",
+    "all_three_aligned_with_upper_counterparts": true,
+    "large_title_font": 22.5,
+    "subtitle_font": 19,
+    "line_1_y": 251,
+    "line_2_y": 281,
+    "upper_corresponding_lines_y": [
+      23,
+      53
+    ],
+    "evidence": "../_archive/drivecompose/20261105-teaser-three-heading-hierarchy"
+  },
+  "label_removal": {
+    "removed_cells": [
+      "ppt-text-104-source",
+      "ppt-text-21-source",
+      "ppt-text-24-source",
+      "ppt-text-35-source",
+      "ppt-text-45-source",
+      "joint-completion-subtitle",
+      "ppt-text-52-source",
+      "ppt-text-99-source",
+      "ppt-text-100-source",
+      "ppt-text-101-source",
+      "ppt-text-83-source",
+      "ppt-text-84-source",
+      "ppt-text-86-source",
+      "ppt-text-88-source",
+      "ppt-frame-85-source",
+      "ppt-frame-87-source"
+    ],
+    "removed_text": {
+      "ppt-text-104-source": "Multi-view sequence",
+      "ppt-text-21-source": "Time",
+      "ppt-text-24-source": "Example frames",
+      "ppt-text-35-source": "Aggregated observed surfaces",
+      "ppt-text-45-source": "Unseen regions exposed",
+      "joint-completion-subtitle": "Joint completion",
+      "ppt-text-52-source": "Asset reuse",
+      "ppt-text-99-source": "Camera<br>view",
+      "ppt-text-100-source": "Vehicle<br>rotation",
+      "ppt-text-101-source": "Human<br>pose",
+      "ppt-text-83-source": "After aggregating all inputs",
+      "ppt-text-84-source": "After joint completion",
+      "ppt-text-86-source": "Observed",
+      "ppt-text-88-source": "Completed"
+    },
+    "removed_legend_swatches": 2,
+    "all_other_79_objects_unchanged": true,
+    "evidence": "../_archive/drivecompose/20261105-teaser-label-removal"
+  },
+  "heading_refinement": {
+    "old": {
+      "ppt-text-49-source": "(a) Previous methods: observation-only reconstruction",
+      "ppt-text-89-source": "(b) Ours: joint completion for state-driven asset reuse"
+    },
+    "new": {
+      "ppt-text-49-source": "(a) Previous methods: state changes expose missing surfaces",
+      "ppt-text-89-source": "(b) Ours: joint completion enables asset reuse across states"
+    },
+    "source_support": [
+      "paper/main.tex:30",
+      "paper/sec/3_method.tex:143"
+    ],
+    "all_other_objects_unchanged": true,
+    "evidence": "../_archive/drivecompose/20261105-teaser-heading-refinement"
+  },
+  "regenerated_asset": {
+    "cell_id": "scene-unseen",
+    "path": "paper/fig/source/fig01-scene-unseen-regenerated.png",
+    "sha256": "2b88263496c78996c3b7ef5f836d7b6d6b1c48e4b5dfbc66c14e3e0a7d0edf53",
+    "role": "AI-generated explanatory schematic, not an empirical result",
+    "backend": "built-in image_gen",
+    "white_background": true,
+    "pixels": [
+      1981,
+      794
+    ],
+    "source_identity_and_spatial_template": "../_archive/drivecompose/20261105-teaser-coordinated/assets/reuse-camera.png",
+    "observed_style_reference": "../_archive/drivecompose/20261105-teaser-coordinated/assets/scene-observed.png",
+    "baseline_asset": "../_archive/drivecompose/20261105-teaser-unseen-regeneration/baseline/scene-unseen.png",
+    "prompt_chain": [
+      "../_archive/drivecompose/20261105-teaser-unseen-regeneration/spatial-correction-prompt.txt",
+      "../_archive/drivecompose/20261105-teaser-unseen-regeneration/human-surface-correction-prompt.txt"
+    ],
+    "feedback_applied": [
+      "First attempted generation rejected by author for changed spatial positions; never inserted.",
+      "Second geometry-based candidate corrected locally because human visible/missing sides were reversed.",
+      "Final scene uses reference gold human surfaces as white missing regions, retaining the reference purple observed surfaces."
+    ],
+    "first_attempt": "../_archive/drivecompose/20261105-teaser-unseen-regeneration/rejected-attempt.json",
+    "geometry_unchanged": [
+      1050,
+      80,
+      270,
+      132.01892744479494
+    ],
+    "effective_dpi_at_34_925mm_width": 1440.7272727272727,
+    "local_comparison": "paper/fig/fig01-teaser-unseen-comparison.png",
+    "evidence": "../_archive/drivecompose/20261105-teaser-unseen-regeneration",
+    "final_review": "Space follows the corresponding camera-change illustration: wall pillar at left end, van on right facing left, person upper-left on the same crosswalk. Human observed/unobserved surface assignment now follows the same camera-view reference."
+  },
+  "previous_review_revision_7": {
+    "changed_heading_labels": {
+      "ppt-text-49-source": "(a) Previous methods: state changes expose missing surfaces",
+      "ppt-text-89-source": "(b) Ours: joint completion enables asset reuse across states"
+    },
+    "all_other_79_objects_identical": true,
+    "all_geometry_and_styles_identical": true,
+    "all_14_original_images_and_all_arrows_unchanged": true,
+    "native_pixels_outside_headings_identical": true,
+    "raw_audit_hard": 6,
+    "inherited_raster_background_false_positives": 6,
+    "new_hard_findings": 0,
+    "review": "scoped informed self_review",
+    "verdict": "pass for requested heading wording and unchanged target rendering",
+    "final_pdf_text_difference_matches_two_headings": true,
+    "final_pdf_images": 14,
+    "original_preserved": true
+  },
+  "adoption": {
+    "date": "2026-11-05",
+    "user_instruction": "用这版替换论文中的teaser",
+    "approved_candidate": "paper/fig/fig01-teaser-balanced.pdf",
+    "approved_candidate_sha256": "7fe29dcf25a2a0d2f549fea4ec6d966dcedcbe4dc0a52448313372238024f750",
+    "active_pdf_exact_copy": true,
+    "native_source_exact_copy": true,
+    "baseline_selected_pdf_sha256": "9b6c15f90670f6386ececf763b865685633b2a9dab8ee8acbeff9ca946f93847",
+    "main_entries_unchanged": true,
+    "captions_unchanged": true,
+    "sole_source_text_change": "paper/sec/7_llm_usage.tex: add the actual Image Gen schematic revision; Chinese existing statement already covers it.",
+    "build_outputs": {
+      "en": {
+        "path": "paper/build/en/main.pdf",
+        "sha256": "593542e17c861266a6921d04ece364dae98174ac07843b2ad32741f58c17fcc6",
+        "pages": 11,
+        "body_end_page": 8,
+        "first_page_teaser_verified": true
+      },
+      "zh": {
+        "path": "paper/build/zh/main_zh.pdf",
+        "sha256": "c94ceed14750fb8c6f27d6a058e31c19eab42206c58f0be1ae4ea34d76989e13",
+        "pages": 10,
+        "body_end_page": 7,
+        "first_page_teaser_verified": true
+      }
+    },
+    "originals_preserved": true,
+    "supplementary_pdfs_unchanged": true,
+    "inspection": {
+      "en": {
+        "pages": 11,
+        "baseline_pages": 11,
+        "page_summaries": [
+          {
+            "page": 1,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. DriveCompose: Compositional Generative Reconstruction of Driving Scenes v",
+            "text_end": "49]. However, driving images reveal only 025 the surfaces visible from the recorded viewpoints and actor 026 configurations [1, 31]. Moving a camera, turning a vehicle, 027 or changing a pedestrian’s pose exposes previously unob- 028 served regions (Fig. 1). Reconstructing scenes for these op- 029 1"
+          },
+          {
+            "page": 2,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. erations therefore requires completing the missing geometry 030 and appea",
+            "text_end": "generate driving imagery conditioned on scene 123 structure or control [8, 10, 37]. StreetCrafter uses gener- 124 ated views to supervise dynamic Gaussian reconstruction, 125 and HorizonForge combines scene editing with video diffu- 126 sion [38, 44]. WorldSplat generates Gaussians and refines 127 2"
+          },
+          {
+            "page": 3,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. Multi-view images E Encoder Features Geometry + motion Depth Rigid pose H",
+            "text_end": "ills the unknown 163 codes within this layout, and decoding preserves their com- 164 ponent identities and motion bindings. 165 3.2. Visual recovery and canonical aggregation 166 The Driving Log Encoder extracts patch features from each 167 image and exchanges pooled context across cameras and 168 3"
+          },
+          {
+            "page": 4,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. timestamps [7, 34]. Geometry heads predict camera-axis 169 depth, normals",
+            "text_end": "X), (6) 235 U = eX + Attnw(LN(eX), M′, M′). (7) 236 Here eX concatenates local tokens; attention arguments 237 are queries, keys, and values. Memory first reads all lo- 238 cal groups, then supplies the updated scene context to each 239 group’s tokens. A residual feed-forward update follows U. 240 4"
+          },
+          {
+            "page": 5,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. Flow time modulates local normalization, and learned to- 241 kens plus lo",
+            "text_end": "argets. A shared state adapter assigns ownership 326 and canonicalizes predicted Gaussians for rigid and skeletal 327 placement. Methods share context RGB, calibration, ego 328 poses, vehicle boxes/root tracks, and target human joints; 329 shape and binding come from context. Test-time weights 330 5"
+          },
+          {
+            "page": 6,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. Figure 4. Conditional dynamic reconstruction. Rows show five examples; co",
+            "text_end": "trinsics, and timestamps [6, 51]. Gaussian 351 renders are compared before diffusion refinement. Each di- 352 rection contains 121,200 images and 6,060 20-frame videos 353 at 10 Hz, referenced to recordings from the same clips, cam- 354 eras, and timestamps. Left/right FID and FVD are computed 355 6"
+          },
+          {
+            "page": 7,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. STORM DGGT StreetForward Ours GT Figure 5. Off-trajectory rendering with ",
+            "text_end": "eps. The learned variants average three training and 395 three generation seeds, retaining every output; w/o GCM is 396 deterministic. At T = 8, exchanging component context 397 adds 0.627/0.934 dB full-image/dynamic PSNR (Table 3). 398 Figure 6 shows cleaner traﬀic-signal contours and sharper 399 7"
+          },
+          {
+            "page": 8,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. foliage detail with the full model. Pedestrian silhouettes and 400 vehicl",
+            "text_end": "Vora, 441 Venice Erin Liong, Qiang Xu, Anush Krishnan, Yu Pan, Gi- 442 ancarlo Baldan, and Oscar Beijbom. nuScenes: A Multi- 443 modal Dataset for Autonomous Driving. In Proceedings of 444 the IEEE/CVF Conference on Computer Vision and Pattern 445 Recognition (CVPR), pages 11621–11631, 2020. 1 446 8"
+          },
+          {
+            "page": 9,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. [2] David Charatan, Sizhe Lester Li, Andrea Tagliasacchi, and 447 Vincent",
+            "text_end": "of 555 the IEEE/CVF Conference on Computer Vision and Pattern 556 Recognition (CVPR), pages 27519–27530, 2025. 2 557 [22] Ben Mildenhall, Pratul P. Srinivasan, Matthew Tancik, 558 Jonathan T. Barron, Ravi Ramamoorthi, and Ren Ng. NeRF: 559 Representing Scenes as Neural Radiance Fields for View 560 9"
+          },
+          {
+            "page": 10,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. Synthesis. In European Conference on Computer Vision 561 (ECCV), 2020. 2 ",
+            "text_end": " 669 pact Structured Latents for 3D Generation. In Proceedings 670 of the IEEE/CVF Conference on Computer Vision and Pat- 671 tern Recognition (CVPR), pages 14419–14429, 2026. 2 672 [43] Yunzhi Yan, Haotong Lin, Chenxu Zhou, Weijie Wang, 673 Haiyang Sun, Kun Zhan, Xianpeng Lang, Xiaowei Zhou, 674 10"
+          },
+          {
+            "page": 11,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. and Sida Peng. Street Gaussians: Modeling Dynamic Urban 675 Scenes with G",
+            "text_end": ", Qing Shuai, Ailing Zeng, 722 Hao Zhu, Shifeng Chen, Yujiu Yang, Xun Cao, and Wei Liu. 723 IDOL: Instant Photorealistic 3D Human Creation from a Sin- 724 gle Image. In Proceedings of the IEEE/CVF Conference 725 on Computer Vision and Pattern Recognition (CVPR), pages 726 26308–26319, 2025. 2 727 11"
+          }
+        ],
+        "new_teaser_headings_on_first_page": true,
+        "regenerated_asset_present": [
+          [
+            34,
+            1981,
+            794
+          ]
+        ],
+        "regenerated_asset_pixel_identical": true,
+        "compiler_exit_code": 0,
+        "body_end_page": 8,
+        "warnings": [],
+        "warnings_same_as_baseline": true,
+        "source_and_figure_baseline_preserved_except_allowed": true
+      },
+      "zh": {
+        "pages": 10,
+        "baseline_pages": 10,
+        "page_summaries": [
+          {
+            "page": 1,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. DriveCompose：通过联合补全实现驾驶场景的可组合生成式重建 Anonymous CVPR submission t₀ t₁ t₂ ⋮ ⋮",
+            "text_end": "多帧图像，直接预测驾驶场 024 景的三维几何与高斯表示[3, 6, 45, 48]。运动与可见性 025 估计对齐动态对象，聚合输入序列中可见的表面。整个 026 序列都未观测到的表面，需要通过几何与外观的生成 027 先验推断。 028 生成式重建通过资产先验、高斯补全或生成视图 029 推断未观测内容[17, 44, 47, 51]。可组合重建将背景 030 与运动对象分开表示，支持车辆移动和人体姿态控 031 制[5, 43, 49]。在这些组件表示中进行补全，可以使生 032 成表面保留所属对象的运动绑定。可见背景与其他对 033 象则为部分可见组件的补全提供场景上下文。 034 1"
+          },
+          {
+            "page": 2,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. 我们提出DriveCompose，将背景、车辆与人体联合 035 补全为可复用的高斯组件（图2）。背景采用世界坐标， 036 刚体资产采用各自的局",
+            "text_end": ". (2) 115 查询布局为每个潜码指定空间位置和所属组件。补 116 全在这一布局中生成未知潜码，解码后仍保留其组件 117 身份与运动绑定。 118 3.2. 视觉恢复与规范聚合 119 Driving Log Encoder 从各图像提取patch 特征，并在相 120 机与时间戳之间交换池化上下文[7, 34]。几何预测头输 121 出相机光轴深度、法线、置信度、语义和实例归属，将 122 图像特征关联到三维表面及其所属组件。轨迹级身份 123 槽将持久身份、尺寸和人体体型与逐帧变化的根位姿、 124 关节旋转分开表示。网络结构与状态参数化细节见补 125 充材料附录D。 126 2"
+          },
+          {
+            "page": 3,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. Multi-view images E Encoder Features Geometry + motion Depth Rigid pose H",
+            "text_end": "编码器将129 维聚合特征及空间 156 支撑[hi; qi; δi] 输入带LayerNorm 的135 →128 →128 157 MLP。各类型均使用D = 128 维潜码，以便联合补全， 158 同时保留查询类型、归属和坐标系。部分与完整分支共 159 享此映射，掩码和置信度单独作为补全条件。未观测潜 160 码置零，已见码记为zobs。 161 跨组件记忆。生成式补全模块（Generative Completion 162 Module，GCM）由场景条件流Transformer 与约束采样 163 组成（图3）。我们采用DiT 风格的Transformer [26] 参 164 3"
+          },
+          {
+            "page": 4,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. C, τ Local attention Background Rigid Human X̃ M M′ U Velocity head 0 0 z",
+            "text_end": "录B。 225 4. 实验 226 Waymo 实验评价重建精度与轨迹外渲染质量，隐藏表 227 面配对测试与参与者编辑则评价联合补全及固定资产 228 复用。主结果采用中心射线规则C，足迹规则F 单独进 229 行受控比较。补充材料附录A 报告nuScenes 零样本迁 230 移。 231 4.1. 实验设置 232 数据与监督。 Waymo 的798 条训练序列拆为740 条 233 训练和58 条开发序列，202 条验证序列用于测试。合 234 成训练使用10,000 个场景、80 张地图、10,000 辆车和 235 2,500 个人体身份。源地图、车辆基础模型与人体身份 236 4"
+          },
+          {
+            "page": 5,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. 先划分，再生成外观／动作变体；真实日志按路段、采 237 集片段及可识别身份隔离。完整划分规模与监督见附 238 录B。 239 基线。 STOR",
+            "text_end": "相机与参与者状态下，相对仅已见 279 场景，Ours 严格保持已见高斯参数，输入视角PSNR 下 280 降0.029 dB，深度MAE 增加2 mm。人体原已见纹理的 281 规范对应线性RGB MAE 为0.014。参数与渲染测量见 282 附录J。 283 效率。 RTX 4090 上（FP16、batch 1、C 规则），构 284 建耗时2.66 ± 0.11 s，单相机装配与240 × 160 渲染耗 285 时7.8 ± 0.4 ms，峰值显存14.2 GB。复用已构建资产， 286 1,000 次输出的总成本摊销为每图10.46 ms。计时条件 287 见附录K。 288 5"
+          },
+          {
+            "page": 6,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. Figure 4. 动态场景条件重建。每行一个样例，依次为真实目标、DGGT、STORM、StreetForward 与Ours。 STORM D",
+            "text_end": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. Figure 4. 动态场景条件重建。每行一个样例，依次为真实目标、DGGT、STORM、StreetForward 与Ours。 STORM DGGT StreetForward Ours GT Figure 5. 相机左移2 m 的离轨渲染。各列依次为GT、STORM、DGGT、StreetForward 与Ours。GT 为原轨迹记录图像。 6"
+          },
+          {
+            "page": 7,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. 4.5. 消融实验 289 Waymo 消融从每条测试序列取一个29 时刻窗口，使用 290 三相机与七个共享目标时刻（附录G）。 291 补全组",
+            "text_end": " for Scalable Generalizable 3D Reconstruction. In 339 Proceedings of the IEEE/CVF Conference on Computer Vi- 340 sion and Pattern Recognition (CVPR), pages 19457–19467, 341 2024. 2 342 [3] Xiaoxue Chen, Ziyi Xiong, Yuantao Chen, Gen Li, Nan 343 Wang, Hongcheng Luo, Long Chen, Haiyang Sun, Bing 344 7"
+          },
+          {
+            "page": 8,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. Wang, Guang Chen, Hongyang Li, Ya-Qin Zhang, Hangjun 345 Ye, and Hao Zhao",
+            "text_end": "de. Neural Scene Graphs for Dynamic Scenes. 454 In Proceedings of the IEEE/CVF Conference on Computer 455 Vision and Pattern Recognition (CVPR), pages 2856–2865, 456 2021. 2 457 [24] Jinhyung Park, Navyata Sanghvi, Erica Weng, Shawn 458 Hunt, Shinya Tanaka, Hironobu Fujiyoshi, and Kris Kitani. 459 8"
+          },
+          {
+            "page": 9,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. Grounded Latents for Entity-Centric 4D Scene Generation. 460 In Proceedin",
+            "text_end": "570 with Controllable Video Diffusion Models. In Proceedings of 571 the IEEE/CVF Conference on Computer Vision and Pattern 572 Recognition (CVPR), pages 822–832, 2025. 1, 2 573 [45] Jiawei Yang, Jiahui Huang, Boris Ivanovic, Yuxiao Chen, 574 Yan Wang, Boyi Li, Yurong You, Apoorva Sharma, Maxi- 575 9"
+          },
+          {
+            "page": 10,
+            "text_start": "CVPR CVPR CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE. milian Igl, Peter Karkus, Danfei Xu, Yue Wang, and Marco 576 Pavone. STOR",
+            "text_end": ", Qing Shuai, Ailing Zeng, 613 Hao Zhu, Shifeng Chen, Yujiu Yang, Xun Cao, and Wei Liu. 614 IDOL: Instant Photorealistic 3D Human Creation from a Sin- 615 gle Image. In Proceedings of the IEEE/CVF Conference 616 on Computer Vision and Pattern Recognition (CVPR), pages 617 26308–26319, 2025. 2 618 10"
+          }
+        ],
+        "new_teaser_headings_on_first_page": true,
+        "regenerated_asset_present": [
+          [
+            36,
+            1981,
+            794
+          ]
+        ],
+        "regenerated_asset_pixel_identical": true,
+        "compiler_exit_code": 0,
+        "body_end_page": 7,
+        "warnings": [
+          "LaTeX Warning: Text page 6 contains only floats.",
+          "LaTeX Warning: Text page 6 contains only floats."
+        ],
+        "warnings_same_as_baseline": true,
+        "source_and_figure_baseline_preserved_except_allowed": true
+      }
+    },
+    "evidence": "../_archive/drivecompose/20261105-teaser-adoption",
+    "commit_or_push": false
+  }
+}

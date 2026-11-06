@@ -1,5 +1,203 @@
 # DriveCompose 的论文立意与叙事改进建议
 
+## 2026 年 11 月 5 日 CVPR 录用论文叙事对照
+
+**当前稿件的主线已经成立：相机或参与者状态变化暴露未观测表面，联合补全构建可组合内容，固定资产随后支持状态驱动复用。优先改进的是设计理由和证据的呈现位置。** 引言应把共享场景上下文与保留组件运动绑定连接起来，方法应让读者看清局部注意力与跨组件交换的分工，实验应将已有结果提炼为明确的技术判断。
+
+本轮只提出意见和候选表达，未修改中英文论文、图表、实验值或正式 PDF。审阅对象为 2026-11-05 当前工作树，包含作者已有的未提交修改。以下判断以当前源文和最新证据记录为准；后面的 2026-10-21 审查保留为历史，不代表当前仍存在相同缺口。
+
+### 调研样本及可借鉴之处
+
+选取与本文任务或设计最相关的六篇 CVPR 主会录用论文，核验 CVF 发表记录，并读取项目已保存、带 CVF 录用版本水印的 PDF。重点对照摘要、引言、相关方法和分析段落。下表是对这些样本的写作判断，不是 CVPR 官方写作规则，也不用于推断录用原因。
+
+| 论文及原始来源 | 本轮重点位置，页码从 PDF 首页计 | 叙事方式 | 对 DriveCompose 的具体启发 |
+| --- | --- | --- | --- |
+| [DGGT，CVPR 2026](https://openaccess.thecvf.com/content/CVPR2026/papers/Chen_DGGT_Feedforward_4D_Reconstruction_of_Dynamic_Driving_Scenes_using_Unposed_CVPR_2026_paper.pdf) | 第 1–2 页摘要、引言；第 8 页分析与结论 | 用相机位姿由输入转为输出这一设计选择贯穿问题和系统能力；寿命参数与细化模块分别对应不同的结果现象。 | 为整体框架建立一个能被复述的设计判断。保留 DriveCompose 的标定输入和多步补全设定，明确自己的改变发生在补全内容的组织和交互方式上。 |
+| [HorizonForge，CVPR 2026](https://openaccess.thecvf.com/content/CVPR2026/papers/Wang_HorizonForge_Driving_Scene_Editing_with_Any_Trajectories_and_Any_Vehicles_CVPR_2026_paper.pdf) | 第 1–3 页摘要、引言、概述；第 7–8 页 §4.2 | 引言同时建立真实感与控制需求；方法中的表示选择、时序建模分别由消融回答。引言还直接提炼实验形成的设计认识。 | 将“共享组件上下文在哪些条件下更有用”写成发现；用固定资产复用及其成本解释输出表示的用途。 |
+| [StreetCrafter，CVPR 2025](https://openaccess.thecvf.com/content/CVPR2025/papers/Yan_StreetCrafter_Street_View_Synthesis_with_Controllable_Video_Diffusion_Models_CVPR_2025_paper.pdf) | 第 1–3 页摘要、引言、方法概述；第 8 页分析与结论 | 先指出偏离轨迹后的观测不足和生成模型控制不足，再解释几何条件为何适合作为像素级控制信号；蒸馏由渲染延迟这一新需求引出。 | 用用途和约束引出设计。说明规范表示如何保留绑定、组件交换如何提供补全上下文，再介绍实现。 |
+| [ReconDreamer，CVPR 2025](https://openaccess.thecvf.com/content/CVPR2025/papers/Ni_ReconDreamer_Crafting_World_Models_for_Driving_Scene_Reconstruction_via_Online_CVPR_2025_paper.pdf) | 第 1–2 页摘要、引言；第 5 页 §3.3；第 8 页结论 | 将一般的新轨迹问题收窄到较大偏移下的伪影与恢复困难，随后解释渐进更新如何回应这一条件。 | 保留 DriveCompose 的具体操作入口；在既定实验范围内说明缺少哪些观测、采用哪种补全，以及如何检验。 |
+| [VGGT，CVPR 2025](https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_VGGT_Visual_Geometry_Grounded_Transformer_CVPR_2025_paper.pdf) | 第 1–2 页摘要、引言；第 4 页 §3.2；第 7 页 §4.5 | 多项输出由统一的前馈几何估计问题统领；注意力设计先交代作用，多任务消融进一步说明哪些输出对学习更有帮助。 | GCM、CCM、codec 和运动绑定应服从同一个输入到输出的解释。消融应报告作用差异，不能只说所有组件都有效。 |
+| [Fast3R，CVPR 2025](https://openaccess.thecvf.com/content/CVPR2025/papers/Yang_Fast3R_Towards_3D_Reconstruction_of_1000_Images_in_One_Forward_CVPR_2025_paper.pdf) | 第 1–3 页摘要、引言、模型定义；第 6 页效率与位姿结果 | 从成对处理的计算负担和上下文限制引出多视图联合处理；贡献中既有模型，也有随视图数量变化的实证规律。 | 第三条贡献可直接写稀疏输入与低可见率下的收益规律。技术名词后面应接信息如何交换、由此解决什么问题。 |
+
+这些论文的开篇和贡献形式并不一致：VGGT 很快进入方法能力，Fast3R 用较多篇幅解释近邻瓶颈，HorizonForge 强调编辑任务与评测。适合沿用的是“具体障碍 → 有理由的技术选择 → 对应证据”的联系，不需要统一段数、贡献数量或宣传性措辞。
+
+### 当前已经写好的内容
+
+- **摘要及引言的具体入口应保留。** 相机移动、车辆转向和人体换姿使隐藏表面成为可理解的问题，不需要再补一段泛泛的自动驾驶背景。
+- **引言对前馈恢复的判断已经克制、准确。** “整个输入序列都未观测到的表面需要生成先验”清楚地区分了聚合证据与推断缺失内容，不应改成现有方法都无法补全或编辑。
+- **方法的主要结构可以沿用。** 输入条件、世界背景与规范资产、观测聚合、联合补全、状态装配和训练已经闭合。双坐标用途、观测潜码恢复及逐查询解码都有解释，不需要重写整个方法节。
+- **实验的关键区别应原样保留。** 主重建与消融的输入不同；规则 C 与 F 单列；真实编辑的结构完整性与四项联合质量分开；参数保持与渲染变化分开。这些条件决定结果如何理解。
+- **输入数量敏感性已有好的结果句。** §4.5 已明确指出 T=2 时收益最大，适合用作整篇论文提炼发现的依据。讨论中的具体人体失败条件也应保留。
+
+### 优先修改一 引言明确设计问题
+
+位置：[英文引言第 8 行](E:/Users/changan/Desktop/论文/pre-research/drivecompose/paper/sec/1_introduction.tex:8)，对应中文引言第三段。当前前两句分别介绍生成式重建和可组合重建，后两句分别说明绑定和上下文；两种能力与本文联合补全之间的联系还可以更直接。局部替换最后两句即可，前两句及引文保持。
+
+**原文：**
+
+> Completing these component representations lets generated surfaces retain their actors' motion bindings. The visible background and other actors provide scene context for completing a partially observed component.
+
+**建议表达：**
+
+> A partially observed component can draw on the visible background and other actors for completion. The challenge is to share this scene context while retaining the component identities and motion bindings needed for subsequent edits.
+
+**中文对应：**
+
+> 部分可见的组件可以利用可见背景与其他参与者进行补全。关键在于共享这些场景上下文，同时保留后续编辑所需的组件身份与运动绑定。
+
+这样，下一段的联合补全和跨组件记忆就有了明确的任务来源。该表达只连接已有方法事实，不声称独立补全必然失败，也不把局部注意力与记忆结构各自包装成独立贡献。写法参考 StreetCrafter 对条件信号用途的解释，以及 Fast3R 从上下文问题引出交互设计的方式。
+
+### 优先修改二 方法说明局部与跨组件交互的分工
+
+位置：[方法第 88 行](E:/Users/changan/Desktop/论文/pre-research/drivecompose/paper/sec/3_method.tex:88)，§3.3 的跨组件记忆段。当前段落已经给出输入、分组和公式；需要补的是读取公式前的设计目的。无需重写前端或增加一个新模块。
+
+**原文：**
+
+> Local self-attention processes these groups separately. Cross-component memory (CCM) then exchanges context across groups:
+
+**建议表达：**
+
+> Local self-attention models structure within each group. Cross-component memory (CCM) exchanges intermediate features across groups, providing scene context during completion while keeping component codes separate:
+
+**中文对应：**
+
+> 局部自注意力建模各组内部的结构。跨组件记忆交换组间的中间特征，在保持组件潜码分离的同时，为补全过程提供场景上下文：
+
+原有读入、写回公式和后续变量说明保持。这一改动突出“局部结构建模”和“补全过程中的组间信息交换”两种作用，参考 VGGT 对注意力设计的解释方式。这里的“分离”指组件归属和表示组织，不意味着统计独立。
+
+尤其要保留实验中的事实：**w/o CCM 仍具有相同的全局日志条件。** 因而本文比较的是跨组件中间特征交换的增量作用，不能将其写成“有全局信息”相对“完全没有全局信息”的优势。
+
+### 优先修改三 消融先写发现 再给比较条件
+
+位置：[实验第 123 行](E:/Users/changan/Desktop/论文/pre-research/drivecompose/paper/sec/4_experiments.tex:123)，§4.5 的 Completion components 段。当前前半段连续交代控制组、冻结条件、预算、训练与采样，主要结果位于段落后半。可把原有结果句提前，让读者先知道本段回答什么问题，再读控制条件。
+
+**原文中的结果句：**
+
+> At $T=8$, exchanging component context adds 0.627/0.934 dB full-image/dynamic PSNR (Table~\ref{tab:ablation-components}).
+
+**建议用作段首：**
+
+> At $T=8$, cross-component exchange improves full-image and dynamic-region PSNR by 0.627 and 0.934 dB, respectively (Table~\ref{tab:ablation-components}).
+
+**中文对应：**
+
+> 在 $T=8$ 时，跨组件交互使全图和动态区域 PSNR 分别提高 0.627 和 0.934 dB。
+
+随后保留现有 w/o GCM 与 w/o CCM 定义、相同参数和全局日志条件、Stages 3–4 重训、共享恢复与 codec、数据预算、Euler 步数及种子统计。图 6 的具体视觉分析保持。此处的收益来自结果位置变化，不需要替换全部句式。
+
+[第 153 行](E:/Users/changan/Desktop/论文/pre-research/drivecompose/paper/sec/4_experiments.tex:153) 的输入数量敏感性段已经写出稀疏输入下收益最大，建议保留。两段合起来应让读者记住：跨组件交换产生可测增益，而且这种增益随可用观测减少而增大。后一个判断限于本稿 T=2/4/8 的受控设置，不能改成任意稀疏条件下的普遍保证。
+
+### 优先修改四 给核心隐藏表面证据一个正文落点
+
+当前引言和贡献提到匹配机制与可见率评价，结论也概括隐藏几何和外观改善；主文 §4.5 对这部分只给出附录指引。核心数值均已在附录 H，无需恢复刚迁出的整张表。
+
+位置：[实验第 123 行末句](E:/Users/changan/Desktop/论文/pre-research/drivecompose/paper/sec/4_experiments.tex:123)，证据见[附录 H 第 174–241 行](E:/Users/changan/Desktop/论文/pre-research/drivecompose/paper/supplementary/evaluation.tex:174)。建议以一句关键结果替换笼统的附录指引。
+
+**原文：**
+
+> Appendix H reports paired hidden-surface mechanism comparisons and visibility-stratified results.
+
+**建议表达：**
+
+> On 100 synthetic test scenes, hidden-region PSNR exceeds a task-adapted object-coupling control by 0.67 dB; Appendix H reports the matched comparison and visibility analysis.
+
+**中文对应：**
+
+> 在 100 个合成测试场景上，隐藏区域 PSNR 比任务适配的对象耦合对照高 0.67 dB；匹配比较与可见率分析见附录 H。
+
+这里的对照是通过共享恢复模块、codec、查询布局、输入、训练数据和 24 步采样接口实现的机制适配，数值为 23.18 对 22.51 dB。不能写成超过 JRM 原论文的公开成绩。可见率结果仍留在附录：低覆盖背景、车辆和人体分别提高 1.02、1.28、1.54 dB，充分观测区域仅提高 0.03–0.04 dB。这些结果为“收益集中于观测不足区域”提供解释。
+
+若英文页数紧张，优先保留上述一句关键比较，不在正文同时展开隐藏机制表、可见率表和读取诊断。HorizonForge 将实验转换为设计认识、VGGT 在消融中指出不同任务的作用差异，都说明这种短结果句比泛泛的“更多实验见附录”更有信息。
+
+### 后续同步一 第三条贡献写出发现
+
+位置：[引言第 19 行](E:/Users/changan/Desktop/论文/pre-research/drivecompose/paper/sec/1_introduction.tex:19)。当前“通过什么评价验证什么”仍偏向实验安排；Fast3R 的贡献给出了随视图数量变化的规律，HorizonForge 也在引言明确提炼设计认识。DriveCompose 已有相应结果，可以直接陈述。
+
+**原文：**
+
+> We establish the contribution of shared scene context through matched completion mechanisms and visibility-stratified evaluations, and demonstrate state-driven reuse with real actor edits.
+
+**建议表达：**
+
+> We show that cross-component exchange provides its largest gains with sparse inputs and in poorly observed regions, through matched completion controls and visibility-stratified evaluation.
+
+**中文对应：**
+
+> 匹配补全对照与可见率分组评价表明，跨组件交互在稀疏输入和低观测覆盖区域中收益最大。
+
+稀疏输入的证据来自 Waymo 的 T=2/4/8；低覆盖区域的证据来自合成可见率分组，二者不得混为同一组实验。真实编辑仍支撑第一条贡献中的资产复用能力，§4.4 和附录 I 的结果完整保留。三条贡献分别承担框架、关键机制、实证认识三个任务即可，数量无需调整。
+
+### 后续同步二 摘要结果句与核心主张对应
+
+位置：[摘要第 2 行最后两句](E:/Users/changan/Desktop/论文/pre-research/drivecompose/paper/sec/0_abstract.tex:2)。前面的具体问题、规范聚合和绑定解释可以保留；末尾目前只概括重建更好、能够编辑，没有选出直接支撑联合补全的关键证据。
+
+**原文：**
+
+> Experiments on Waymo show higher reconstruction accuracy and better off-trajectory rendering quality than feed-forward reconstruction baselines. Actor editing experiments further demonstrate that completed vehicles and humans can be reused across motion and pose changes.
+
+**建议表达：**
+
+> Experiments on Waymo show improved reconstruction and off-trajectory rendering quality over the feed-forward baselines. On 100 synthetic scenes, hidden-region PSNR exceeds a task-adapted object-coupling control by 0.67 dB. Across 360 actor edits in twenty real scenes, 82.78% pass all four quality criteria, covering structure, new-surface texture, appearance identity, and local geometry.
+
+**中文对应：**
+
+> Waymo 实验表明，相比前馈基线，DriveCompose 提高了重建与轨迹外渲染质量。在 100 个合成场景上，隐藏区域 PSNR 比任务适配的对象耦合对照高 0.67 dB。在二十个真实场景的 360 次参与者编辑中，82.78% 同时通过结构、新可见表面纹理、外观身份和局部几何四项质量检查。
+
+选择这两项核心结果，是因为它们分别回答联合补全是否改善隐藏内容，以及完成的资产是否支持编辑后的质量要求。Waymo 全图和动态区域 PSNR 仍在正文报告，不需要把所有主表数字放进摘要。360 次编辑来自二十个场景与九组种子，不能表述为 360 个独立场景；82.78% 是四项联合通过率，92.78% 是结构完整性通过率。
+
+### 后续同步三 结论收束到已建立的认识
+
+位置：[结论第 4 行](E:/Users/changan/Desktop/论文/pre-research/drivecompose/paper/sec/6_conclusion.tex:4)。现有内容准确，但最后一句罗列 Waymo、配对指标和评价类型，信息已在实验中给出。若实施前面的修改，可用同一条技术认识收束，避免再列一次实验清单。
+
+**原文：**
+
+> DriveCompose jointly completes world-space background and canonical actor latents, preserving component identity and motion bindings for state-driven reuse. Shared scene context improves hidden geometry and appearance over task-adapted scene-latent and object-coupling controls. Fixed Gaussian assets support camera shifts, vehicle rotation, and human pose edits. Waymo reconstruction, paired surface metrics, and multidimensional real-edit ratings establish completion quality and state-driven reuse.
+
+**候选表达：**
+
+> DriveCompose jointly completes background and canonical actor representations, preserving their identities and motion bindings for reuse. Matched completion comparisons and visibility analyses show that sharing component context improves hidden-surface reconstruction, with larger benefits in poorly observed regions. The resulting Gaussian assets support camera shifts, vehicle rotations, and human pose edits without regenerating the scene.
+
+**中文对应：**
+
+> DriveCompose 联合补全背景与规范参与者表示，保留其身份和运动绑定以支持复用。匹配补全比较与可见率分析表明，共享组件上下文改善了隐藏表面重建，收益在低观测覆盖区域中更大。得到的高斯资产无需重新生成场景，即可用于相机平移、车辆旋转和人体换姿。
+
+这属于候选段落级收束，优先级低于前四项；不应仅为换一种表达而执行。固定照明、有限覆盖和人体形变范围等具体边界继续在讨论中说明，不将已测试编辑扩大为任意姿态、完整闭环仿真或物理正确性。
+
+### 相关工作与术语处理
+
+当前 Related work 的四组已经覆盖恢复、可组合表示、补全和图像/视频生成，第三、四组也明确了本文的补全单位与持久三维内容。**这轮没有充分理由重排该节或再增加一批引文。** DGGT 本身也具有高斯级编辑能力，StreetCrafter 还可以蒸馏为动态三维表示；不能用“近邻只能生成视频、均不能编辑”来建立差异。差异应落在输入设定、生成/补全对象、规范车辆与人体绑定、跨组件交互，以及本文实际测试的复用范围。
+
+| 稳定术语 | 本轮采用的含义 | 表达要求 |
+| --- | --- | --- |
+| Joint completion | 在共享条件模型中补全背景与规范参与者潜码 | 不等同于所有组件被合并成没有归属的单一场景潜码。 |
+| Cross-component memory（CCM） | 局部组之间读入与写回中间特征的记忆机制 | 与全局日志条件分开描述，后者在 w/o CCM 中仍保留。 |
+| Canonical asset | 保留组件身份、局部几何和刚体/骨架绑定的资产 | 不与逐帧高斯图或重新生成的视频混称。 |
+| State-driven reuse | 固定已完成内容，改变相机与资产放置/关节状态后装配渲染 | 不扩展为行为策略、动力学预测或闭环效果。 |
+| Off-trajectory distribution quality | 相对原轨迹参考总体的 FID/FVD | 不表述为新视角成对 GT 精度，也不单独证明隐藏几何正确。 |
+| Structural integrity / joint quality acceptance | 92.78% 的结构通过率 / 82.78% 的四项联合通过率 | 结果名称、检查条件和分母保持区分。 |
+
+### 修改顺序与证据核对
+
+建议顺序为：先改引言的两句连接和方法的两句设计解释，再调整消融结果句的位置并补正文关键结果，最后决定是否同步贡献、摘要和结论。章节、图表、协议和结果均可沿用，无需新增实验才能完成这些文字改进。全部为建议，实际采用后还需同步中文并检查英文正文篇幅。
+
+| 可用于文字的判断 | 当前证据位置 | 适用范围 |
+| --- | --- | --- |
+| Waymo 重建优于当前前馈基线 | 主文表 1；全图/动态 PSNR 相对 DGGT 分别 +1.154/+2.340 dB | 作者提供结果，共享条件重建协议。 |
+| CCM 具有增量作用 | 主文表 3，T=8；全图/动态 PSNR +0.627/+0.934 dB | 共享恢复与 codec；w/o CCM 保留全局日志条件。 |
+| 观测更稀疏时收益更大 | 主文表 4，T=2/4/8；PSNR 增益为 1.104/0.738/0.627 dB | 同时间跨度、目标视图和固定 checkpoint；每种输入重建证据与查询。 |
+| 隐藏表面补全优于匹配机制对照 | 附录 H；23.18 对 22.51/22.24 dB | 100 个合成测试场景，任务适配的对象耦合/场景潜码对照；不作为原论文公开成绩比较。 |
+| 收益集中于低覆盖区域 | 附录 H 可见率表；低覆盖 +1.02/+1.28/+1.54 dB，充分观测 +0.03–0.04 dB | 与零输入覆盖的隐藏区域评价区分，低覆盖组允许最多 20% 输入覆盖。 |
+| 同一资产支持测试范围内的真实编辑 | 主文 §4.4，附录 I；298/360 四项联合通过，334/360 结构通过 | 二十个场景，九组种子；人体大关节弯折、自遮挡和宽松衣物边界失败保留。 |
+| 参数保持与渲染影响需要区分 | 主文 §4.4，附录 J；参数差为零，输入视角 PSNR −0.029 dB、深度 MAE +2 mm | 固定原相机与参与者状态，相对 observed-only 参考。 |
+
+数值从当前主稿、补充和作者证据记录转录，并核对上述差值与通过率；本轮未开展新的训练、评测或原始运行审计。此前作者确认原始材料已具备的状态保持，不将旧缺口记录重新判为当前材料缺失。
+
+本轮基线、六篇 PDF 的来源及哈希、逐页文本和阅读记录保存在项目外归档 [`20261105-cvpr-narrative-review`](../../_archive/drivecompose/20261105-cvpr-narrative-review/)。基线 HEAD 为 `5b46f9eb8e131314430a2f2fa5193dadd16dc296`，审阅实际采用未提交工作树。中英文论文和正式 PDF 的未改动核验随同归档。
+
+## 2026 年 10 月 21 日历史审查
+
+以下保留当时的原始分析与候选方案。当前题名、证据状态、章节位置和修改建议以上方 2026-11-05 审查及现行稿件为准。
+
 题名更新（2026-10-26）：当前采用 **DriveCompose: Compositional Generative Reconstruction of Driving Scenes via Joint Completion**，中文为 **DriveCompose：通过联合补全实现驾驶场景的可组合生成式重建**。下文保留 2026-10-21 审查时的候选标题及比较理由。
 
 审查日期：2026 年 10 月 21 日。对象为当前中英文稿、项目方法与训练文档、主张证据表，以及 DGGT 原文。目标沿用项目的 CVPR 定位。本报告提出修改方案，没有改写论文、修改实验数值或运行训练。

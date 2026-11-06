@@ -1,11 +1,12 @@
 {
   "language": "zh",
+  "material": "main",
   "command": [
-    "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1016.6573.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
+    "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1029.7803.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
     "-X",
     "compile",
     "--outdir",
-    "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\zh",
+    "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261106-recompile-cleanup\\candidate-build\\zh",
     "--outfmt",
     "pdf",
     "--print",
@@ -15,13 +16,41 @@
     "main_zh.tex"
   ],
   "exit_code": 0,
-  "started_at": "2026-11-04T08:41:19.208104+00:00",
-  "finished_at": "2026-11-04T08:41:37.060496+00:00",
-  "elapsed_seconds": 17.86,
-  "fontconfig_file": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\tools\\fontconfig.conf",
+  "started_at": "2026-11-06T06:04:38.070240+00:00",
+  "finished_at": "2026-11-06T06:04:51.763314+00:00",
+  "elapsed_seconds": 13.692,
+  "fontconfig_file": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\tools\\fontconfig.conf",
   "source_sha256": "613cb53fb3c1dda4a19d7c46e503ccd8068dc7638870828a5fcd1b89f7c6070b",
-  "pdf": "C:\\Users\\changan\\Desktop\\CVPR27\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+  "input_source_hashes": {
+    "paper/fontsetup.tex": "c715bb95da7c540a8de404c0a69ba214726a7023f832765dc407cbe895489b7b",
+    "paper/main.tex": "dbe996e624b19c7fa567aef175dc0970afa95f950dbacd858494785ef4a1ac2e",
+    "paper/main_zh.tex": "613cb53fb3c1dda4a19d7c46e503ccd8068dc7638870828a5fcd1b89f7c6070b",
+    "paper/preamble.tex": "d28f6b5f7b04a9986a63c1dfb815c0f8c79c9329dd613649b2d4a2e32af3cf25",
+    "paper/main.bib": "c69daa97bee53622f58560b3437a57b25a085f91f5bda7285255e99e2b802d1b",
+    "paper/cvpr.sty": "1cd7f434b13d41c475df4a1901a5d82d9ca8b80b8cf6205dc4602a5c164286b4",
+    "paper/lineno.sty": "e12f4151f6e86448168fad536850c641c789e8a11babd9d7e8dbe36a38965f37",
+    "paper/zh/0_abstract_zh.tex": "0e296e6400bbc251c34a7f3931cee4556a209aa81dd6aeef0d719644fbd9e346",
+    "paper/zh/1_introduction_zh.tex": "9de8a6d84f58849ab6556ab7ca7bfe2b381ef10098ab310a9c3503ca9d35631a",
+    "paper/zh/2_related_work_zh.tex": "1e4f1b2ab633ce3a36a5d293e461c377c2b15520471422e91a26d4c96f42482f",
+    "paper/zh/3_method_zh.tex": "189190030ac02cefd55d3f98f385845bf53bd168eb93db7195ac39c19dccc7c7",
+    "paper/zh/4_experiments_zh.tex": "be39d38ea3770048ef93f2430d510e9b4e1f9446ace80588db93f994c565ebda",
+    "paper/zh/5_discussion_zh.tex": "5697863d8946b0c8b65fba933e0b6d6c92f79e8e694c3efd68d0378d555bd66b",
+    "paper/zh/6_conclusion_zh.tex": "138ddd928be0c64607bcdb1c2db708b851184f0d2449e45886bb20037989b0b1",
+    "paper/zh/7_llm_usage_zh.tex": "111bc7f8a16c56bc1bc0b2bca5a9bf92ae43f02ac5a3ca3e5c016d9775962ea0"
+  },
+  "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
   "pdf_exists": true,
   "pdf_written_this_run": true,
-  "pdf_sha256": "c33259ae48da3152d075fa72acf191476fdc44c72f81e02ef27cb174b0c0dcb4"
+  "pdf_sha256": "9a812829b9debe8b32f4c8cca62306bc2664ba18aa9e5b6f131721146ff80784",
+  "compiler_pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261106-recompile-cleanup\\candidate-build\\zh\\main_zh.pdf",
+  "formal_output_installed_this_run": true,
+  "formal_output_installed_at_utc": "2026-11-06T06:08:17.852162+00:00",
+  "page_count": 10,
+  "known_warnings": [
+    "LaTeX Warning: Text page 6 contains only floats.",
+    "LaTeX Warning: Text page 6 contains only floats."
+  ],
+  "new_warning_count": 0,
+  "verification_record": "paper/provenance/recompile-cleanup-20261106.json",
+  "body_end_page": 7
 }

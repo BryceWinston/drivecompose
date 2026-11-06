@@ -1,0 +1,255 @@
+{
+  "date": "2026-11-06",
+  "status": "approved_boxed_figure_adopted_and_bilingual_papers_recompiled",
+  "user_request": "Adopt boxed Figure 3 in both manuscripts, leave captions unchanged, recompile and review layout.",
+  "active_figure": "paper/fig/fig03-joint-completion-core-boxed.pdf",
+  "active_figure_sha256": "2ecfe8ede4d2b3a7ad9869f0220ee492b15f8c51e63d05417344c0706b68c0eb",
+  "previous_paper_figure": "paper/fig/fig03-joint-completion.pdf",
+  "previous_paper_figure_sha256": "6978ecdd8aaadf84fbac991163a7b60a5a119ce4e10b81e981eaa97f3a819ffd",
+  "original_and_all_previous_figure_assets_preserved": true,
+  "source_changes": [
+    {
+      "language": "en",
+      "source": "paper/sec/3_method.tex",
+      "before_sha256": "e08238bdbf9222bb06149b2710ea283a27bd39f086e1b0f3b24a1bfe273f8594",
+      "after_sha256": "4a8ce2b9738aac0e0b0a6a9c7c3c7843490aa957db99f5fd04f725febf7c675b",
+      "only_asset_reference_changed": true,
+      "caption_unchanged": true
+    },
+    {
+      "language": "zh",
+      "source": "paper/zh/3_method_zh.tex",
+      "before_sha256": "07cd460d67895ac26fb1decf2d570e3347ae081f5f5153c483c7ca3706ba669e",
+      "after_sha256": "189190030ac02cefd55d3f98f385845bf53bd168eb93db7195ac39c19dccc7c7",
+      "only_asset_reference_changed": true,
+      "caption_unchanged": true
+    }
+  ],
+  "caption_lines_unchanged": {
+    "en": "  \\caption{\\textbf{Joint latent completion.} CCM reads local features and writes back shared context; projected flow updates only unknown codes.}",
+    "zh": "  \\caption{\\textbf{联合潜空间补全。}CCM 读入局部特征并回写共享上下文，投影约束流更新只改变未知码。}"
+  },
+  "technical_prose_equations_tables_and_other_figures_unchanged": true,
+  "source_snapshot": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261106-figure3-boxed-adoption\\baseline.json",
+  "baseline_directory": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261106-figure3-boxed-adoption\\before",
+  "compile_backend": "Existing project Tectonic / XeTeX compiler, with the same fontconfig and untrusted mode.",
+  "compiler": "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1029.7803.0_x64__2p2nqsd0c76g0\\app\\resources\\tectonic\\tectonic.exe",
+  "documents": {
+    "en": {
+      "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261106-figure3-boxed-adoption\\build\\en\\main.pdf",
+      "sha256": "a4eb4afe6409dc96edfb55b3a5a5c61b2adfad4f4bbb7359d6a1a8b8096a2901",
+      "pages": 11,
+      "figure3_page": 4,
+      "figure3_number": 3,
+      "body_end_page": 8,
+      "full_conclusion_matched": true,
+      "figure3_rect_pt": [
+        317.25000612566424,
+        71.99833677751599,
+        553.5021198824361,
+        214.11874895932405
+      ],
+      "figure3_width_mm": 83.34449568641674,
+      "figure3_height_mm": 50.136923186360065,
+      "approved_figure_drawings_matched": 83,
+      "approved_figure_text_objects_matched": 24,
+      "figure3_raster_images": 0,
+      "caption_source_and_rendered_text_unchanged": true,
+      "final_log_warnings": [],
+      "previous_final_log_warnings": [],
+      "new_final_log_warnings": [],
+      "all_main_figures_and_tables_within_body": true,
+      "labels": {
+        "fig:teaser": {
+          "number": "1",
+          "page": 1
+        },
+        "fig:title-teaser": {
+          "number": "1",
+          "page": 1
+        },
+        "fig:overview": {
+          "number": "2",
+          "page": 3
+        },
+        "fig:joint-completion": {
+          "number": "3",
+          "page": 4
+        },
+        "fig:dynamic-reconstruction": {
+          "number": "4",
+          "page": 6
+        },
+        "tab:regions_current": {
+          "number": "1",
+          "page": 6
+        },
+        "fig:waymo-left-shift": {
+          "number": "5",
+          "page": 7
+        },
+        "tab:spatial_current": {
+          "number": "2",
+          "page": 7
+        },
+        "tab:ablation-components": {
+          "number": "3",
+          "page": 8
+        },
+        "fig:component-ablation": {
+          "number": "6",
+          "page": 8
+        },
+        "tab:ablation-inputs": {
+          "number": "4",
+          "page": 8
+        }
+      },
+      "review_pages": [
+        3,
+        4,
+        5,
+        8
+      ],
+      "view_directory": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261106-figure3-boxed-adoption\\views\\en"
+    },
+    "zh": {
+      "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261106-figure3-boxed-adoption\\build\\zh\\main_zh.pdf",
+      "sha256": "afb7e504374cea68611c99b02a8e86e4f35e3e225850b8474f14bfa8236ffc60",
+      "pages": 10,
+      "figure3_page": 4,
+      "figure3_number": 3,
+      "body_end_page": 7,
+      "full_conclusion_matched": true,
+      "figure3_rect_pt": [
+        58.50000261099957,
+        71.99833623020422,
+        294.75216701059486,
+        214.11877887683576
+      ],
+      "figure3_width_mm": 83.34451355207945,
+      "figure3_height_mm": 50.13693393367279,
+      "approved_figure_drawings_matched": 83,
+      "approved_figure_text_objects_matched": 24,
+      "figure3_raster_images": 0,
+      "caption_source_and_rendered_text_unchanged": true,
+      "final_log_warnings": [
+        "LaTeX Warning: Text page 6 contains only floats.",
+        "LaTeX Warning: Text page 6 contains only floats."
+      ],
+      "previous_final_log_warnings": [
+        "LaTeX Warning: Text page 6 contains only floats.",
+        "LaTeX Warning: Text page 6 contains only floats."
+      ],
+      "new_final_log_warnings": [],
+      "all_main_figures_and_tables_within_body": true,
+      "labels": {
+        "fig:teaser": {
+          "number": "1",
+          "page": 1
+        },
+        "fig:title-teaser": {
+          "number": "1",
+          "page": 1
+        },
+        "fig:overview": {
+          "number": "2",
+          "page": 3
+        },
+        "fig:joint-completion": {
+          "number": "3",
+          "page": 4
+        },
+        "tab:regions_current": {
+          "number": "1",
+          "page": 5
+        },
+        "tab:spatial_current": {
+          "number": "2",
+          "page": 5
+        },
+        "fig:dynamic-reconstruction": {
+          "number": "4",
+          "page": 6
+        },
+        "fig:waymo-left-shift": {
+          "number": "5",
+          "page": 6
+        },
+        "tab:ablation-components": {
+          "number": "3",
+          "page": 7
+        },
+        "fig:component-ablation": {
+          "number": "6",
+          "page": 7
+        },
+        "tab:ablation-inputs": {
+          "number": "4",
+          "page": 7
+        }
+      },
+      "review_pages": [
+        3,
+        4,
+        5,
+        7
+      ],
+      "view_directory": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261106-figure3-boxed-adoption\\views\\zh"
+    }
+  },
+  "formal_outputs": {
+    "en": {
+      "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "sha256": "a4eb4afe6409dc96edfb55b3a5a5c61b2adfad4f4bbb7359d6a1a8b8096a2901",
+      "pages": 11,
+      "body_end_page": 8,
+      "figure3_page": 4,
+      "compile_result": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\compile-result.json"
+    },
+    "zh": {
+      "pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+      "sha256": "afb7e504374cea68611c99b02a8e86e4f35e3e225850b8474f14bfa8236ffc60",
+      "pages": 10,
+      "body_end_page": 7,
+      "figure3_page": 4,
+      "compile_result": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\compile-result.json"
+    }
+  },
+  "visual_review": {
+    "renderer": "Poppler pdftoppm of the exact newly compiled PDFs",
+    "scope": "Figure 3, neighboring pages, complete conclusion pages, and the existing Chinese float-only results page.",
+    "views": {
+      "layout": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261106-figure3-boxed-adoption\\layout-preview.png",
+      "en_contact": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261106-figure3-boxed-adoption\\views\\en-contact-sheet.png",
+      "zh_contact": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261106-figure3-boxed-adoption\\views\\zh-contact-sheet.png"
+    },
+    "verdict": "pass_for_requested_figure_adoption_and_layout_review",
+    "observations": "Figure 3 stays on page 4 in both languages, with original captions and single-column width. The boxed grouping and arrow clearances remain readable. No new clipping, overlap or awkward page break was observed. Figure 2 is complete in both actual PDFs and Poppler renders. The complete conclusions stay within pages 8/7.",
+    "preview_renderer_note": "One intermediate PyMuPDF contact-sheet rendering omitted the Chinese overview. Poppler verified the actual PDF content, and final review previews were regenerated with Poppler. The actual document was not missing the overview."
+  },
+  "checker": {
+    "checks": 80,
+    "failed_before": [
+      "fig:joint-completion:editable_source_matches_record",
+      "figure1_approved_pixels_exact",
+      "figure2_approved_pixels_exact",
+      "figure3_approved_pixels_exact",
+      "mechanism_author_selected_image_exact"
+    ],
+    "failed_after": [
+      "figure1_approved_pixels_exact",
+      "figure2_approved_pixels_exact",
+      "figure3_approved_pixels_exact",
+      "mechanism_author_selected_image_exact"
+    ],
+    "new_failures": [],
+    "resolved_this_run": [
+      "fig:joint-completion:editable_source_matches_record"
+    ],
+    "remaining_failures_are_preexisting_historical_figure_provenance_checks": true
+  },
+  "no_new_final_log_warnings": true,
+  "supplements_unchanged_and_not_recompiled": true,
+  "formal_outputs_verified_by_sha256": true
+}

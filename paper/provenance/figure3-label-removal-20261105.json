@@ -1,0 +1,159 @@
+{
+  "date": "2026-11-05",
+  "status": "complete",
+  "author_instruction": "Also delete the text shown in the five supplied screenshots.",
+  "baseline_head": "5b46f9eb8e131314430a2f2fa5193dadd16dc296",
+  "baseline_archive": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-figure3-remove-labels\\baseline",
+  "baseline_figure_sha256": "2a19c18a3f83b040f5dd928204a917647c62bbe97e8d4bb55dea37b472ad7a0e",
+  "active_figure": "paper/fig/fig03-joint-completion.pdf",
+  "active_figure_sha256": "11067cccfea969be42d62b4c18c7fde29c4d9ea6eb90dd0fc70cc4cbefc77135",
+  "previous_revision": "paper/provenance/figure3-legend-removal-20261105.json",
+  "removed_labels": [
+    "Cross-component context",
+    "Shared memory",
+    "Fixed query layout",
+    "Constrained update",
+    "(unknown only)",
+    "after S"
+  ],
+  "removed_native_text_objects": {
+    "Cross-component context": {
+      "start": 285,
+      "end": 437,
+      "content": "BT\n/F4 56 Tf\n1 0 0 -1 49 71 Tm\n<00260055> Tj\n64.285156 0 Td <0052005600560010004600520050005300520051004800510057000300460052005100570048005B0057> Tj\nET"
+    },
+    "Fixed query layout": {
+      "start": 48397,
+      "end": 48510,
+      "content": "BT\n/F4 48 Tf\n1 0 0 -1 194 665 Tm\n<0029004C005B0048004700030054005800480055005C0003004F0044005C005200580057> Tj\nET"
+    },
+    "Shared memory": {
+      "start": 68049,
+      "end": 68164,
+      "content": "BT\n/F4 54 Tf\n1 0 0 -1 656 127 Tm\n<0036004B00440055> Tj\n110.056641 0 Td <00480047000300500048005000520055005C> Tj\nET"
+    },
+    "Constrained update": {
+      "start": 135427,
+      "end": 135540,
+      "content": "BT\n/F4 54 Tf\n1 0 0 -1 404 743 Tm\n<0026005200510056005700550044004C0051004800470003005800530047004400570048> Tj\nET"
+    },
+    "after S": {
+      "start": 192392,
+      "end": 192468,
+      "content": "BT\n/F5 48 Tf\n1 0 0 -1 1072.67188 904 Tm\n<0044004900570048005500030036> Tj\nET"
+    },
+    "(unknown only)": {
+      "start": 192705,
+      "end": 192802,
+      "content": "BT\n/F4 48 Tf\n1 0 0 -1 739 829 Tm\n<000B00580051004E00510052005A0051000300520051004F005C000C> Tj\nET"
+    }
+  },
+  "method": "Delete only the six complete native BT/ET text objects; retain all other content-stream bytes, page bounds and drawing geometry.",
+  "native_text_objects_before": 31,
+  "native_text_objects_after": 25,
+  "vector_drawings_before_and_after": 113,
+  "raster_images": 0,
+  "pixel_verification": {
+    "1": {
+      "pixels_outside_six_label_regions_identical": true,
+      "changed_color_channels": 53436
+    },
+    "2": {
+      "pixels_outside_six_label_regions_identical": true,
+      "changed_color_channels": 188118
+    }
+  },
+  "all_remaining_text_objects_byte_identical": true,
+  "all_vector_drawing_properties_identical": true,
+  "page_bounds_unchanged": true,
+  "protected_file_count": 58,
+  "baseline_manuscript_check": {
+    "checks": 80,
+    "passed": 75,
+    "failed": [
+      "fig:joint-completion:editable_source_matches_record",
+      "figure1_approved_pixels_exact",
+      "figure2_approved_pixels_exact",
+      "mechanism_author_selected_image_exact",
+      "figure3_approved_pixels_exact"
+    ]
+  },
+  "outputs": {
+    "en": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\en\\main.pdf",
+      "sha256": "a95ab259196cbe9f309256e21ccee817a5b9779fe047c886bfce4dc6bf24899b",
+      "page_count": 11,
+      "figure_page": 4,
+      "body_last_page": 8,
+      "compiler_warnings": [],
+      "only_six_target_labels_removed": true,
+      "removed_text_tokens": {
+        "memory": 1,
+        "context": 1,
+        "Cross-component": 1,
+        "after": 1,
+        "query": 1,
+        "layout": 1,
+        "Fixed": 1,
+        "Shared": 1,
+        "Constrained": 1,
+        "update": 1,
+        "S": 1,
+        "(unknown": 1,
+        "only)": 1
+      },
+      "added_text_tokens": {}
+    },
+    "zh": {
+      "path": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\build\\zh\\main_zh.pdf",
+      "sha256": "d370ef7e89349f618c9f62de9f4e018e737c034ffd02c3c95aeccebbd914ccb3",
+      "page_count": 10,
+      "figure_page": 4,
+      "body_last_page": 7,
+      "compiler_warnings": [],
+      "only_six_target_labels_removed": true,
+      "removed_text_tokens": {
+        "Cross-component": 1,
+        "context": 1,
+        "Fixed": 1,
+        "query": 1,
+        "layout": 1,
+        "Shared": 1,
+        "memory": 1,
+        "Constrained": 1,
+        "update": 1,
+        "S": 1,
+        "after": 1,
+        "(unknown": 1,
+        "only)": 1
+      },
+      "added_text_tokens": {}
+    }
+  },
+  "preserved_files_unchanged": 58,
+  "manuscript_check_after": {
+    "passed": false,
+    "checks": 80,
+    "failed": [
+      "fig:joint-completion:editable_source_matches_record",
+      "figure1_approved_pixels_exact",
+      "figure2_approved_pixels_exact",
+      "mechanism_author_selected_image_exact",
+      "figure3_approved_pixels_exact"
+    ],
+    "bibliography_entries": 52,
+    "math_blocks": 9
+  },
+  "new_manuscript_check_failures": [],
+  "visual_review": {
+    "renderer": "Poppler pdftoppm",
+    "views": [
+      "after-poppler.png",
+      "en-page4.png",
+      "zh-page4.png"
+    ],
+    "result": "All six requested labels absent; all formula symbols and other native objects preserved; no clipping or overlaps."
+  },
+  "screenshot_evidence": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-figure3-remove-labels\\user-inputs",
+  "unrelated_manuscript_sources_figures_and_supplement_pdfs_unchanged": true
+}

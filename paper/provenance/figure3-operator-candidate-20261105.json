@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-05",
+  "status": "superseded_by_symbol_candidate",
+  "source_figure": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\fig\\fig03-joint-completion.pdf",
+  "source_sha256_unchanged": "6978ecdd8aaadf84fbac991163a7b60a5a119ce4e10b81e981eaa97f3a819ffd",
+  "candidate_figure": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\fig\\fig03-joint-completion-revised.pdf",
+  "candidate_sha256": "7412b4eae8a89d124ef24c0a7b2bde596ea247087752d13d5d6a78c6a7852a53",
+  "active_paper_figure_replaced": false,
+  "manuscripts_recompiled_or_replaced": false,
+  "caption_applied_to_manuscript": false,
+  "candidate_caption_file": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\docs\\figures\\fig03-joint-completion-revised-caption.txt",
+  "change": "Replace only the Projection text object with a native Pi operator and italic m,f subscript.",
+  "caption_changes": "Define representative local groups and the observed/unknown/free-space glyphs; explain constrained restoration outside the diagram.",
+  "drawings_before_and_after": 113,
+  "text_objects_before": 25,
+  "text_objects_after": 26,
+  "all_other_original_text_objects_identical": true,
+  "raster_images": 0,
+  "pixel_checks": {
+    "1": {
+      "pixels_outside_projection_label_box_identical": true
+    },
+    "2": {
+      "pixels_outside_projection_label_box_identical": true
+    }
+  },
+  "protected_original_files_unchanged": 63,
+  "publication_width_mm": 83.33956697447118,
+  "comparison_pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-figure3-operator-candidate\\comparison.pdf",
+  "review_basis": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-figure3-mechanism-audit\\mechanism-audit.json",
+  "visual_review": {
+    "renderer": "Poppler pdftoppm",
+    "views": [
+      "candidate-poppler.png",
+      "comparison.png"
+    ],
+    "result": "Pi with m,f subscript is centered inside the original operator box; no clipping or overlap. Original and candidate are shown at the same 83.34-mm width with explanations only in captions."
+  },
+  "source_figure_unchanged": true,
+  "current_main_pdfs_unchanged": true,
+  "manuscript_caption_sources_unchanged": true,
+  "superseded_by": "paper/provenance/figure3-symbol-candidate-20261105.json",
+  "archived_candidate_pdf": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-figure3-symbol-candidate\\baseline\\paper\\fig\\fig03-joint-completion-revised.pdf",
+  "archived_expanded_caption_draft": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-figure3-symbol-candidate\\baseline\\docs\\figures\\fig03-joint-completion-revised-caption.txt",
+  "caption_update_withdrawn_by_author": true
+}

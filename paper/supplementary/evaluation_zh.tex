@@ -289,6 +289,27 @@ CCM 在严重缺失的背景、车辆和人体区域分别增加 1.02、1.28 和
 \section{状态驱动资产复用}
 \label{sec:supp-reuse}
 
+\paragraph{合成场景配对编辑。}
+20 个身份隔离合成测试场景各含一辆车和一个人体，相机平移 1 m、车辆旋转 $30^\circ$ 及人体换姿均复用固定完成资产。联合补全在新增可见表面的 PSNR、LPIPS 和覆盖率上均取得最优结果（表~\ref{tab:asset-reuse}）。
+
+\begin{table}[!htbp]
+\centering\small
+\setlength{\tabcolsep}{1.5pt}
+\caption{\textbf{编辑后新增可见资产表面。}合成配对测试中的补全消融，车辆／人体覆盖阈值为 2／1 cm。}
+\label{tab:asset-reuse}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrr@{}}
+\toprule
+变体 & \multicolumn{3}{c}{车辆（2 cm）} & \multicolumn{3}{c}{人体（1 cm）}\\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+& PSNR$\uparrow$ & LPIPS$\downarrow$ & Cov.$\uparrow$ & PSNR$\uparrow$ & LPIPS$\downarrow$ & Cov.$\uparrow$\\
+\midrule
+w/o GCM & 17.80 & 0.362 & 63.4\% & 17.12 & 0.391 & 60.8\%\\
+w/o CCM & 22.46 & 0.218 & 91.8\% & 21.38 & 0.247 & 88.6\%\\
+Ours & \textbf{24.18} & \textbf{0.176} & \textbf{96.1\%} & \textbf{23.06} & \textbf{0.201} & \textbf{94.3\%}\\
+\bottomrule
+\end{tabular*}
+\end{table}
+
 \begin{table}[!htbp]
 \centering\small
 \caption{训练种子 0、生成种子 7 的真实参与者编辑结构完整性。各资产列表示通过数量。}

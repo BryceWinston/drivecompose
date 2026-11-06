@@ -1,0 +1,276 @@
+{
+  "date": "2026-11-05",
+  "request": "作者提供原稿 PPT，要求直接转换至 draw.io，先保持原稿布局。",
+  "source_pptx": "E:\\Users\\changan\\Downloads\\feishu\\fig01-teaser.pptx",
+  "source_pptx_sha256": "610b31c35ba550a9b0319982e24ba47d9d261d76854525631445a58d7119f4b5",
+  "output": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\drivecompose\\paper\\fig\\fig01-teaser-original.drawio",
+  "output_sha256": "0956eb0f27191ce0399771a1fe1fbd100d1e5a624ad6e5be377edf764354bd77",
+  "output_bytes": 19230915,
+  "layout": "ORIGINAL_PPT; not the adjusted PDF layout",
+  "canvas": [
+    1350,
+    708.75
+  ],
+  "source_object_count": 68,
+  "source_geometry_mismatches": [],
+  "source_text_mismatches": [],
+  "counts": {
+    "total": 95,
+    "native_or_composite": 80,
+    "pictures": 15,
+    "vertices": 72,
+    "edges": 23,
+    "groups": 0,
+    "texts": 29,
+    "locked_plain_canvas_backgrounds": 1,
+    "editable_objects": 94
+  },
+  "preserved_files_sha256": {
+    "E:\\Users\\changan\\Downloads\\feishu\\fig01-teaser.pptx": "610b31c35ba550a9b0319982e24ba47d9d261d76854525631445a58d7119f4b5",
+    "paper/fig/fig01-teaser.pdf": "6183604dca2eae5cfa7a65e7e65c64599ee84be00640159bc7f0b3ac487326a5",
+    "paper/fig/fig01-teaser-layout.pdf": "d51b5eccbdf24ac23724ea143fc5a536e7b9efe661801589332c7450ff1c2383",
+    "paper/provenance/teaser-layout-20261105.json": "86da97976ba255671320dfe0845e411790813c40ef9201e27466d39cd610a84d"
+  },
+  "construction": "Objects constructed visibly by draw.io native graph API in original PPT coordinates, then saved. Post-save page metadata only was repaired and the exact final file reopened and rendered.",
+  "raster_asset_policy": {
+    "original_ppt_images_retained_byte_exact": 14,
+    "main_scene_derivative": 1,
+    "main_scene_note": "Only the baked annotation layer was cleaned from the main schematic image; its original scene composition is retained, with labels, colored relations and shared-context marks rebuilt as separate native objects in original coordinates.",
+    "main_cleanup_backend": "Built-in Image Gen, precise-object-edit; not applied to empirical photographs.",
+    "main_cleanup_prompt": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\cleanup-prompt.txt",
+    "main_cleanup_asset": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\assets\\joint-scene-clean.png",
+    "main_cleanup_asset_sha256": "7e4543ac992ac2ad3c17f9aaa2181a5fb53beb87c1c534a1d190977cae308d27",
+    "original_main_scene": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\pptx-media\\image10.png",
+    "empirical_input_photographs": "Six source JPEG input frames retained byte-exact; no generative changes to empirical photographs.",
+    "image_embedding_checks": [
+      {
+        "id": "ppt-art-5-background",
+        "source": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\pptx-media\\image2.jpeg",
+        "embedded_bytes_exact": true
+      },
+      {
+        "id": "ppt-art-7-background",
+        "source": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\pptx-media\\image3.jpeg",
+        "embedded_bytes_exact": true
+      },
+      {
+        "id": "ppt-art-9-background",
+        "source": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\pptx-media\\image4.jpeg",
+        "embedded_bytes_exact": true
+      },
+      {
+        "id": "ppt-art-12-background",
+        "source": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\pptx-media\\image5.jpeg",
+        "embedded_bytes_exact": true
+      },
+      {
+        "id": "ppt-art-14-background",
+        "source": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\pptx-media\\image6.jpeg",
+        "embedded_bytes_exact": true
+      },
+      {
+        "id": "ppt-art-16-background",
+        "source": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\pptx-media\\image7.jpeg",
+        "embedded_bytes_exact": true
+      },
+      {
+        "id": "ppt-art-106-background",
+        "source": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\pptx-media\\image1.png",
+        "embedded_bytes_exact": true
+      },
+      {
+        "id": "ppt-art-40-background",
+        "source": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\pptx-media\\image8.png",
+        "embedded_bytes_exact": true
+      },
+      {
+        "id": "ppt-art-105-background",
+        "source": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\pptx-media\\image9.png",
+        "embedded_bytes_exact": true
+      },
+      {
+        "id": "ppt-art-107-background",
+        "source": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\assets\\joint-scene-clean.png",
+        "embedded_bytes_exact": true
+      },
+      {
+        "id": "ppt-art-110-background",
+        "source": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\pptx-media\\image13.png",
+        "embedded_bytes_exact": true
+      },
+      {
+        "id": "ppt-art-111-background",
+        "source": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\pptx-media\\image14.png",
+        "embedded_bytes_exact": true
+      },
+      {
+        "id": "ppt-art-112-background",
+        "source": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\pptx-media\\image15.png",
+        "embedded_bytes_exact": true
+      },
+      {
+        "id": "ppt-art-108-background",
+        "source": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\pptx-media\\image11.png",
+        "embedded_bytes_exact": true
+      },
+      {
+        "id": "ppt-art-109-background",
+        "source": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\pptx-media\\image12.png",
+        "embedded_bytes_exact": true
+      }
+    ],
+    "all_images_self_contained": true,
+    "raster_declarations": [
+      {
+        "id": "ppt-art-5-background",
+        "area_ratio": 0.0062,
+        "raster_reason": "Original high-resolution photographic field from the author PPT.",
+        "source_is_tightly_cropped": "true",
+        "atomic_raster_unit": "true",
+        "contains_reconstructable_content": "false",
+        "decomposition_note": "One photograph is retained. Its border, time label and flow marks are independent editable cells."
+      },
+      {
+        "id": "ppt-art-7-background",
+        "area_ratio": 0.0062,
+        "raster_reason": "Original high-resolution photographic field from the author PPT.",
+        "source_is_tightly_cropped": "true",
+        "atomic_raster_unit": "true",
+        "contains_reconstructable_content": "false",
+        "decomposition_note": "One photograph is retained. Its border, time label and flow marks are independent editable cells."
+      },
+      {
+        "id": "ppt-art-9-background",
+        "area_ratio": 0.0062,
+        "raster_reason": "Original high-resolution photographic field from the author PPT.",
+        "source_is_tightly_cropped": "true",
+        "atomic_raster_unit": "true",
+        "contains_reconstructable_content": "false",
+        "decomposition_note": "One photograph is retained. Its border, time label and flow marks are independent editable cells."
+      },
+      {
+        "id": "ppt-art-12-background",
+        "area_ratio": 0.0062,
+        "raster_reason": "Original high-resolution photographic field from the author PPT.",
+        "source_is_tightly_cropped": "true",
+        "atomic_raster_unit": "true",
+        "contains_reconstructable_content": "false",
+        "decomposition_note": "One photograph is retained. Its border, time label and flow marks are independent editable cells."
+      },
+      {
+        "id": "ppt-art-14-background",
+        "area_ratio": 0.0062,
+        "raster_reason": "Original high-resolution photographic field from the author PPT.",
+        "source_is_tightly_cropped": "true",
+        "atomic_raster_unit": "true",
+        "contains_reconstructable_content": "false",
+        "decomposition_note": "One photograph is retained. Its border, time label and flow marks are independent editable cells."
+      },
+      {
+        "id": "ppt-art-16-background",
+        "area_ratio": 0.0062,
+        "raster_reason": "Original high-resolution photographic field from the author PPT.",
+        "source_is_tightly_cropped": "true",
+        "atomic_raster_unit": "true",
+        "contains_reconstructable_content": "false",
+        "decomposition_note": "One photograph is retained. Its border, time label and flow marks are independent editable cells."
+      },
+      {
+        "id": "ppt-art-106-background",
+        "area_ratio": 0.0323,
+        "raster_reason": "Original continuous rendered scene artwork from the author PPT.",
+        "source_is_tightly_cropped": "true",
+        "atomic_raster_unit": "true",
+        "contains_reconstructable_content": "false",
+        "decomposition_note": "One continuous scene artwork is retained. All external captions, boxes and flow marks are separate editable cells."
+      },
+      {
+        "id": "ppt-art-40-background",
+        "area_ratio": 0.0009,
+        "raster_reason": "One original author camera pictogram retained as artwork.",
+        "source_is_tightly_cropped": "true",
+        "atomic_raster_unit": "true",
+        "contains_reconstructable_content": "false",
+        "decomposition_note": "This is one camera illustration. The adjacent camera-change text is an independent editable object."
+      },
+      {
+        "id": "ppt-art-105-background",
+        "area_ratio": 0.0393,
+        "raster_reason": "Original continuous rendered scene artwork from the author PPT.",
+        "source_is_tightly_cropped": "true",
+        "atomic_raster_unit": "true",
+        "contains_reconstructable_content": "false",
+        "decomposition_note": "One continuous scene artwork is retained. All external captions, boxes and flow marks are separate editable cells."
+      },
+      {
+        "id": "ppt-art-107-background",
+        "area_ratio": 0.1787,
+        "raster_reason": "A continuous textured 3D scene; its text tags and semantic relations are reconstructed as native objects.",
+        "source_is_tightly_cropped": "true",
+        "atomic_raster_unit": "true",
+        "contains_reconstructable_content": "false",
+        "decomposition_note": "The original scene composition is retained, while baked labels, colored curves and context symbols are removed from the artwork and rebuilt as native cells."
+      },
+      {
+        "id": "ppt-art-110-background",
+        "area_ratio": 0.0323,
+        "raster_reason": "Original continuous rendered scene artwork from the author PPT.",
+        "source_is_tightly_cropped": "true",
+        "atomic_raster_unit": "true",
+        "contains_reconstructable_content": "false",
+        "decomposition_note": "One continuous scene artwork is retained. All external captions, boxes and flow marks are separate editable cells."
+      },
+      {
+        "id": "ppt-art-111-background",
+        "area_ratio": 0.0323,
+        "raster_reason": "Original continuous rendered scene artwork from the author PPT.",
+        "source_is_tightly_cropped": "true",
+        "atomic_raster_unit": "true",
+        "contains_reconstructable_content": "false",
+        "decomposition_note": "One continuous scene artwork is retained. All external captions, boxes and flow marks are separate editable cells."
+      },
+      {
+        "id": "ppt-art-112-background",
+        "area_ratio": 0.0323,
+        "raster_reason": "Original continuous rendered scene artwork from the author PPT.",
+        "source_is_tightly_cropped": "true",
+        "atomic_raster_unit": "true",
+        "contains_reconstructable_content": "false",
+        "decomposition_note": "One continuous scene artwork is retained. All external captions, boxes and flow marks are separate editable cells."
+      },
+      {
+        "id": "ppt-art-108-background",
+        "area_ratio": 0.0087,
+        "raster_reason": "Original continuous rendered scene artwork from the author PPT.",
+        "source_is_tightly_cropped": "true",
+        "atomic_raster_unit": "true",
+        "contains_reconstructable_content": "false",
+        "decomposition_note": "One continuous scene artwork is retained. All external captions, boxes and flow marks are separate editable cells."
+      },
+      {
+        "id": "ppt-art-109-background",
+        "area_ratio": 0.0087,
+        "raster_reason": "Original continuous rendered scene artwork from the author PPT.",
+        "source_is_tightly_cropped": "true",
+        "atomic_raster_unit": "true",
+        "contains_reconstructable_content": "false",
+        "decomposition_note": "One continuous scene artwork is retained. All external captions, boxes and flow marks are separate editable cells."
+      }
+    ]
+  },
+  "evidence": {
+    "reconstruction_spec": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\original-reconstruction-spec.json",
+    "live_snapshot": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\live-original-with-background.drawio",
+    "native_file_verification": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\file-verification.json",
+    "reopened_editability": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\reopened-editability.json",
+    "drawio_audit": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\final-file-audit.json",
+    "review": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\final-review.json",
+    "preview": "E:\\Users\\changan\\Desktop\\论文\\pre-research\\_archive\\drivecompose\\20261105-teaser-drawio\\fig01-teaser-original-preview.png"
+  },
+  "scope_guards": {
+    "original_ppt_and_both_pdfs_unchanged": true,
+    "paper_sources_not_edited": true,
+    "paper_not_rebuilt": true,
+    "git_commit_or_push": false
+  }
+}

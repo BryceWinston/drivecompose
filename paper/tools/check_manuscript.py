@@ -99,11 +99,13 @@ def blank_ablation_tables(source: str) -> tuple[bool, bool]:
     return results[0], results[1]
 
 
-def reported_ablation_tables(source: str, record: dict) -> dict[str, bool]:
+def reported_ablation_tables(source: str, record: dict,
+                             displayed_component_columns: list[str] | None = None) -> dict[str, bool]:
     """Compare result cells (including blanks), variant names and input counts."""
     tables = re.findall(r"\\begin\{table\*?\}(.*?)\\end\{table\*?\}", source, re.S)
     labels = {
         label: ("tab:seed-inputs" if label == "tab:ablation-inputs"
+                and r"\label{tab:ablation-inputs}" not in source
                 and r"\label{tab:seed-inputs}" in source else label)
         for label in record["tables"]
     }
@@ -112,6 +114,11 @@ def reported_ablation_tables(source: str, record: dict) -> dict[str, bool]:
     checks = {"ablation_table_count": len(selected) == len(record["tables"])}
     parsed = {}
     for label, expected in record["tables"].items():
+        expected_rows = expected["rows"]
+        if label == "tab:ablation-components" and displayed_component_columns is not None:
+            indices = [expected["columns"].index(column)
+                       for column in displayed_component_columns]
+            expected_rows = [[row[index] for index in indices] for row in expected_rows]
         matches = [table for table in selected if "\\label{" + labels[label] + "}" in table]
         rows = []
         if len(matches) == 1:
@@ -135,8 +142,9 @@ def reported_ablation_tables(source: str, record: dict) -> dict[str, bool]:
                         cells = [cells[1], input_t, *cells[2:]]
                     rows.append(cells)
         parsed[label] = rows
-        checks[label + ":expected_cells_exact"] = rows == expected["rows"]
-    component_columns = record["tables"]["tab:ablation-components"]["columns"]
+        checks[label + ":expected_cells_exact"] = rows == expected_rows
+    component_columns = (displayed_component_columns
+                         or record["tables"]["tab:ablation-components"]["columns"])
     input_columns = record["tables"]["tab:ablation-inputs"]["columns"]
     shared_metrics = [column for column in input_columns[2:] if column in component_columns]
     components = {row[0]: row for row in parsed.get("tab:ablation-components", [])
@@ -192,6 +200,25 @@ def main() -> int:
         results_path = standard_metrics_path
     results_record = (json.loads(results_path.read_text(encoding="utf-8"))
                       if results_path.is_file() else None)
+    presentation_path = provenance / "core-ablation-revision-20261104.json"
+    presentation_record = (json.loads(presentation_path.read_text(encoding="utf-8"))
+                           if presentation_path.is_file() else None)
+    component_figure_path = provenance / "component-ablation-figure-20261105.json"
+    component_figure_record = (json.loads(component_figure_path.read_text(encoding="utf-8"))
+                               if component_figure_path.is_file() else None)
+    if component_figure_record:
+        for kind in ("pdf", "svg"):
+            asset = ROOT / component_figure_record[kind]
+            checks[f"component_ablation:{kind}_matches_record"] = (
+                asset.is_file()
+                and digest(asset.read_bytes()) == component_figure_record[kind + "_sha256"]
+            )
+        source_dir = ROOT / component_figure_record["source_dir"]
+        checks["component_ablation:source_images_exact"] = all(
+            (source_dir / item["file"]).is_file()
+            and digest((source_dir / item["file"]).read_bytes()) == item["sha256"]
+            for item in component_figure_record["sources"]
+        )
     frozen = [
         "cvpr.sty", "lineno.sty",
         "ieeenat_fullname.bst", "preamble.tex",
@@ -353,6 +380,8 @@ def main() -> int:
                     "fig04-dynamic-reconstruction.pdf": "fig:dynamic-reconstruction",
                     "fig05-off-trajectory-rendering.pdf": "fig:waymo-left-shift",
                 }
+                if component_figure_record:
+                    current_figures[Path(component_figure_record["pdf"]).name] = "fig:component-ablation"
                 for name, label in current_figures.items():
                     checks[f"{language}:{label}:active_once"] = (
                         text.count("{fig/" + name + "}") == 1
@@ -364,7 +393,7 @@ def main() -> int:
         if framework_record:
             required = ["sec:experiments", "sec:ablation-protocol", "sec:ablation-studies",
                         "sec:ablation-reuse", "tab:ablation-components", "tab:ablation-inputs"]
-            if revised_layout:
+            if revised_layout and not presentation_record:
                 required.remove("tab:ablation-inputs")
             empty_image_slots = results_record["empty_image_slots"] if results_record else 16
             if empty_image_slots:
@@ -381,7 +410,17 @@ def main() -> int:
                     (ROOT / "supplementary" / supplement).read_text(encoding="utf-8"))
             if results_record:
                 checks.update({language + ":" + key: value for key, value in
-                               reported_ablation_tables(table_source, results_record).items()})
+                               reported_ablation_tables(
+                                   table_source, results_record,
+                                   presentation_record["component_columns"]
+                                   if presentation_record else None).items()})
+                if presentation_record:
+                    main_tables = re.findall(
+                        r"\\begin\{table\*?\}(.*?)\\end\{table\*?\}", scoped_source, re.S)
+                    checks[language + ":two_core_ablation_tables_in_main"] = (
+                        len(main_tables) == 2
+                        and all(any(r"\label{" + label + "}" in body for body in main_tables)
+                                for label in presentation_record["main_tables"]))
                 if results_path == standard_metrics_path:
                     checks[language + ":standard_ablation_metrics"] = all(
                         metric in scoped_source for metric in ("PSNR", "SSIM", "LPIPS"))
@@ -413,6 +452,17 @@ def main() -> int:
                     and scoped_source.count(r"\dcablationcell{") == empty_image_slots
                     and r"\includegraphics" not in scoped_source
                     and r"\fbox{\rule{0pt}{#2}\rule{.90\linewidth}{0pt}}" in scoped_source
+                )
+            elif component_figure_record:
+                component_figures = [body for body in re.findall(
+                    r"\\begin\{figure\}(.*?)\\end\{figure\}", scoped_source, re.S)
+                    if r"\label{fig:component-ablation}" in body]
+                checks[language + ":component_ablation_single_column"] = (
+                    len(component_figures) == 1
+                    and r"\includegraphics[width=\linewidth]{" + component_figure_record["pdf"] + "}" in component_figures[0]
+                    and r"\ref{fig:component-ablation}" in scoped_source
+                    and r"\begin{figure*}" not in scoped_source
+                    and r"\dcablationcell" not in scoped_source
                 )
             else:
                 checks[language + ":ablation_figure_removed"] = all(
@@ -500,7 +550,10 @@ def main() -> int:
         )
         details["ablation_figure_removed"] = bool(
             results_record and results_record.get("ablation_figure_removed")
+            and not component_figure_record
         )
+        if component_figure_record:
+            details["qualitative_component_ablation_record"] = str(component_figure_path.relative_to(ROOT))
         details["experiment_contract"] = str(
             (results_path if results_record else framework_path).relative_to(ROOT))
     details["checks"] = checks

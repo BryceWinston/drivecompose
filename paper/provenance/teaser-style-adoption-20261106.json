@@ -1,0 +1,158 @@
+{
+  "date": "2026-11-06",
+  "request": "用这版替换",
+  "status": "adopted_and_recompiled",
+  "accepted_candidate_revision": 4,
+  "accepted_candidate_record": "paper/provenance/teaser-style-preview-20261106.json",
+  "baseline_head": "5b46f9eb8e131314430a2f2fa5193dadd16dc296",
+  "actual_baseline": "Current uncommitted working tree; preserved in external baseline directory, not reconstructed from HEAD",
+  "evidence_directory": "../_archive/drivecompose/20261106-teaser-context-adoption",
+  "accepted_candidate_bytes_unchanged": true,
+  "formal_outputs": {
+    "paper/fig/fig01-teaser.pdf": "6f4c505636ced435a650c0ae7e608d55a323884f6e83cab6d4e49278d9757113",
+    "paper/fig/fig01-teaser.drawio": "a996a9d0b888b52e5379ed4ad456a58b69f8c4151d0324b66907a6278c5e3df5",
+    "paper/fig/fig01-teaser-preview.png": "a21d696468234ad3d7fe1bd6de1498bac63af62a5ddd745edcadc1cb9dfc14b7",
+    "paper/build/en/main.pdf": "42682c776fe149b0424d80c1bdcd9796aaa0e95d007082f81e38d4fb1c615185",
+    "paper/build/zh/main_zh.pdf": "a01fc6f9487160fd176072f2fb8ab8c02574d54c03d6a7e27db003c8c873e3b8"
+  },
+  "baseline_hashes": {
+    "paper/fig/fig01-teaser.pdf": "7fe29dcf25a2a0d2f549fea4ec6d966dcedcbe4dc0a52448313372238024f750",
+    "paper/fig/fig01-teaser.drawio": "2c3b2fc8784bb70ec01678735bf15cf8c63d8b34a525ee37e446b4e153e18b2a",
+    "paper/fig/fig01-teaser-preview.png": "e0fb15cb45c5bdfea3bc787437ced8125f395278e1bca21c3dd5afd3887d2ddf",
+    "paper/build/en/main.pdf": "6c9601fbcbbd8b926bab8db28e5988d50c74303f8c8bf8de8c23cd586ff145b7",
+    "paper/build/zh/main_zh.pdf": "afb7e504374cea68611c99b02a8e86e4f35e3e225850b8474f14bfa8236ffc60",
+    "paper/build/en/compile-result.json": "37f4209ecb8ed741913a2d21ddb04aa73c6cc78be36c732a7e68fb193ae2d46b",
+    "paper/build/zh/compile-result.json": "65d3e57fc6677c1656503502fa7c84f63308fc37579e7ee3c48abb082af747e6",
+    "paper/build/CURRENT-OUTPUTS.md": "5cd9700494c74b20110408e9ab98d0904d5876c77324ede7178b00e3655ff47c",
+    "paper/README.md": "8734b204c2f41e0747a8e454665802077278a4392286d030bdcce35ea36915f9",
+    "docs/paper-revision-changes.md": "ebf4745fd8fca2edfccd8312c030ac1412b546a0d73cef3073638010a99dc917",
+    "docs/figures/README.md": "08244b261fc3e2bf850b1f9e8794fbd0f2e790143cd0c59b7b1b23a06cf3a38d",
+    "paper/provenance/teaser-style-preview-20261106.json": "351ade7dd6e0c52e4c09f0f2040e9578b674545b237c430fe5895ad8e8343d97",
+    "paper/provenance/figure-layout.json": "c2c4796fe4c3fffc5e8bc8e3129543b1d61ed591b4a43ddb51af4219a849b74c",
+    "paper/provenance/figure-replacement-20261104.json": "37d3876902b4d322f4e0df7e2a71cae64201213160177e26c9e0fabdd22c5dba",
+    "paper/provenance/teaser-coordinated-preview-20261105.json": "937fc01f0f6bbe54d0cd8a1e5d674d20f2f89f009a74b14f59d171d2ea606e39",
+    "paper/build/verification.json": "ea9931ad34fb6f888b38e4c264b66367a70157849a1437a62323915082deb35f",
+    "paper/fig/fig01-teaser-style-preview.pdf": "6f4c505636ced435a650c0ae7e608d55a323884f6e83cab6d4e49278d9757113",
+    "paper/fig/fig01-teaser-style-preview.drawio": "a996a9d0b888b52e5379ed4ad456a58b69f8c4151d0324b66907a6278c5e3df5",
+    "paper/fig/fig01-teaser-style-preview.png": "a21d696468234ad3d7fe1bd6de1498bac63af62a5ddd745edcadc1cb9dfc14b7"
+  },
+  "native_object_counts": {
+    "total": 68,
+    "native_or_composite": 54,
+    "pictures": 14
+  },
+  "native_audit": {
+    "hard": 0,
+    "warnings": 1,
+    "warning_review": "One irreducible original scene image; no native text or connectors inside its raster"
+  },
+  "figure_pdf_rect": [
+    0,
+    0,
+    1038,
+    498
+  ],
+  "source_files_modified": [],
+  "all_43_tex_bib_style_files_unchanged": true,
+  "all_other_figures_candidates_originals_and_supplementary_unchanged": true,
+  "all_14_figure_images_present_with_identical_decoded_pixels_in_each_manuscript": true,
+  "compiled_verification": {
+    "en": {
+      "exit_code": 0,
+      "pdf_written_this_run": true,
+      "sha256": "42682c776fe149b0424d80c1bdcd9796aaa0e95d007082f81e38d4fb1c615185",
+      "page_count": 11,
+      "body_end_page": 8,
+      "figure_table_page_map_unchanged": true,
+      "figure_table_pages": {
+        "fig:teaser": 1,
+        "fig:title-teaser": 1,
+        "fig:overview": 3,
+        "fig:joint-completion": 4,
+        "fig:dynamic-reconstruction": 6,
+        "tab:regions_current": 6,
+        "fig:waymo-left-shift": 7,
+        "tab:spatial_current": 7,
+        "tab:ablation-components": 8,
+        "tab:ablation-inputs": 8,
+        "fig:component-ablation": 8
+      },
+      "pages_changed_vs_actual_baseline": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "final_log_warnings": [],
+      "baseline_log_warnings": [],
+      "new_warning_count": 0,
+      "all_sources_unchanged": true
+    },
+    "zh": {
+      "exit_code": 0,
+      "pdf_written_this_run": true,
+      "sha256": "a01fc6f9487160fd176072f2fb8ab8c02574d54c03d6a7e27db003c8c873e3b8",
+      "page_count": 10,
+      "body_end_page": 7,
+      "figure_table_page_map_unchanged": true,
+      "figure_table_pages": {
+        "fig:teaser": 1,
+        "fig:title-teaser": 1,
+        "fig:overview": 3,
+        "fig:joint-completion": 4,
+        "tab:regions_current": 5,
+        "tab:spatial_current": 5,
+        "fig:dynamic-reconstruction": 6,
+        "fig:waymo-left-shift": 6,
+        "tab:ablation-components": 7,
+        "fig:component-ablation": 7,
+        "tab:ablation-inputs": 7
+      },
+      "pages_changed_vs_actual_baseline": [
+        1,
+        2
+      ],
+      "final_log_warnings": [
+        "LaTeX Warning: Text page 6 contains only floats.",
+        "LaTeX Warning: Text page 6 contains only floats."
+      ],
+      "baseline_log_warnings": [
+        "LaTeX Warning: Text page 6 contains only floats.",
+        "LaTeX Warning: Text page 6 contains only floats."
+      ],
+      "new_warning_count": 0,
+      "all_sources_unchanged": true
+    }
+  },
+  "original_pdf": "paper/fig/fig01-teaser-original.pdf",
+  "original_drawio": "paper/fig/fig01-teaser-original.drawio",
+  "pre_adoption_figure_and_manuscripts_backup": "../_archive/drivecompose/20261106-teaser-context-adoption/baseline",
+  "paper_recompiled": true,
+  "commit_or_push": false,
+  "visual_review": "Native candidate checked earlier; both manuscript first pages, full contact sheets and independent Poppler first pages reviewed; no clipping/overlap introduced. Typography and caption source unchanged.",
+  "existing_checker": {
+    "checks": 80,
+    "passed": 76,
+    "baseline_failed": [
+      "figure1_approved_pixels_exact",
+      "figure2_approved_pixels_exact",
+      "mechanism_author_selected_image_exact",
+      "figure3_approved_pixels_exact"
+    ],
+    "current_failed": [
+      "figure1_approved_pixels_exact",
+      "figure2_approved_pixels_exact",
+      "mechanism_author_selected_image_exact",
+      "figure3_approved_pixels_exact"
+    ],
+    "new_failures": [],
+    "interpretation": "Four pre-existing historical figure-source checks; unchanged by this adoption."
+  }
+}

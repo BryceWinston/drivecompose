@@ -76,9 +76,9 @@ The masks $m_i$, $f_i$, and $u_i$ distinguish observed surfaces, ray-labeled fre
 
 Type-specific encoders map the 129-dimensional aggregate and its spatial support, $[\mathbf h_i;\mathbf q_i;\boldsymbol\delta_i]$, through a $135\!\rightarrow\!128\!\rightarrow\!128$ MLP with LayerNorm. All types use $D=128$ codes, allowing joint completion while retaining query type, ownership, and frame. Partial and complete branches share this map; masks and confidence condition completion separately. Unobserved codes are zeroed, and observed codes are denoted $\mathbf z^{\rm obs}$.
 
-\begin{figure}[t]
+\begin{figure}[!htbp]
   \centering
-  \includegraphics[width=\linewidth]{fig/fig03-joint-completion.pdf}
+  \includegraphics[width=\linewidth]{fig/fig03-joint-completion-core-boxed.pdf}
   \caption{\textbf{Joint latent completion.} CCM reads local features and writes back shared context; projected flow updates only unknown codes.}
   \label{fig:joint-completion}
 \end{figure}
