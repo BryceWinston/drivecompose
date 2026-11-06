@@ -1,0 +1,504 @@
+{
+  "source": "Author message in this chat responding to R1-M1 through R1-m2",
+  "evidence_type": "author-provided method specifications, training resources, and aggregate empirical results",
+  "target_construction": {
+    "layout": "Partial-input QueryBundle.blocks order and within-block indices; fixed positions, scales, types, ownership and human binding",
+    "surface_targets": "positive-area intersections between complete owning-component mesh and fixed query cell",
+    "sample_count": "max(1,ceil(64*A_f/delta_min^2))",
+    "sample_seed": "asset, query and triangle identifiers",
+    "base_views": [
+      8,
+      3
+    ],
+    "additional_views": "local isolated views for uncovered fragments",
+    "rendering": "fixed illumination and original materials; RGB, axial depth, instances and triangle IDs",
+    "full_features": 129,
+    "visual_features": 128,
+    "residual_clip": [
+      -1,
+      1
+    ],
+    "aggregation": "valid-view weighted average per sample, then fragment-area average",
+    "empty_features": "129 zeros with explicit zero-opacity supervision; distinct from ray-voted free labels",
+    "sky": "complete environment map and zero residual",
+    "encoder": [
+      135,
+      128,
+      128
+    ],
+    "normalization": "LayerNorm",
+    "latent_dimension": 128,
+    "target_freezing": "Recovery and codec frozen after Stage 2; fixed complete targets for Stage 3",
+    "sample_validity": "Every unknown query has valid geometry, appearance and binding targets"
+  },
+  "network": {
+    "visual_width": 128,
+    "patch": 16,
+    "heads": 4,
+    "image_layers": 1,
+    "summary_layers": 2,
+    "identity_slots": 24,
+    "shape_dimensions": 10,
+    "joints": 17,
+    "gcm_width": 128,
+    "gcm_layers": 4,
+    "gcm_heads": 4,
+    "memory_tokens": 16,
+    "children_per_query": 4,
+    "parameters_per_child": 23,
+    "appearance_parameters": 12,
+    "background_grid": [
+      20,
+      12,
+      6
+    ],
+    "rigid_grid": [
+      8,
+      4,
+      4
+    ],
+    "sky_grid_per_face": [
+      4,
+      4
+    ],
+    "additional_supports": "observed anchors and human template",
+    "euler_steps": 24
+  },
+  "training": {
+    "stage_steps": [
+      86208,
+      57472,
+      114944,
+      28736
+    ],
+    "global_batches": [
+      32,
+      32,
+      32,
+      8
+    ],
+    "initial_lrs": [
+      0.0002,
+      0.0003,
+      0.0001,
+      3e-05
+    ],
+    "total_steps": 287360,
+    "hardware": "8 x A100 80 GB",
+    "precision": "FP16",
+    "optimizer": "AdamW",
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "weight_decay": 0.01,
+    "lr_schedule": "warmup followed by cosine decay",
+    "stage_gpu_hours": [
+      278.6,
+      184.3,
+      326.9,
+      211.7
+    ],
+    "single_checkpoint_gpu_hours": 1001.5,
+    "three_gcm_seeds_gpu_hours": 2078.7,
+    "stage1_losses": [
+      "depth",
+      "normals",
+      "semantics",
+      "instances",
+      "root translation",
+      "root rotation",
+      "dimensions",
+      "shape",
+      "joints",
+      "confidence"
+    ],
+    "stage1_weights": [
+      1,
+      0.2,
+      0.1,
+      0.1,
+      0.5,
+      0.2,
+      0.1,
+      0.1,
+      0.2,
+      0.1
+    ],
+    "stage2_weights": {
+      "rgb": 1,
+      "depth": 0.1,
+      "silhouette": 0.2,
+      "empty": 0.05,
+      "scale": 0.001
+    },
+    "stage4_weights": {
+      "flow": 1,
+      "rgb": 1,
+      "depth": 0.1,
+      "free": 0.05,
+      "ground": 0.1,
+      "contact": 0.1,
+      "penetration": 0.1
+    },
+    "stage4_synthetic_real_ratio": [
+      1,
+      3
+    ],
+    "waymo_splits": [
+      740,
+      58,
+      202
+    ]
+  },
+  "free_space": {
+    "performance_tables_version": "center-ray voting",
+    "audit_version": "full projected footprint, listed separately",
+    "confidence_threshold": 0.8,
+    "depth_tolerance": [
+      0.15,
+      0.02
+    ],
+    "min_votes": 2,
+    "audit_scenes": 100,
+    "rows": [
+      [
+        "Thin structures",
+        18437,
+        614,
+        9
+      ],
+      [
+        "Occlusion boundaries",
+        27619,
+        587,
+        7
+      ],
+      [
+        "Other regions",
+        53128,
+        173,
+        3
+      ],
+      [
+        "Total",
+        99184,
+        1374,
+        19
+      ]
+    ],
+    "occupied_error_percent": [
+      1.385,
+      0.019
+    ],
+    "free_counts": [
+      47286,
+      32871
+    ],
+    "free_contamination_percent": [
+      2.906,
+      0.058
+    ],
+    "ground_truth_depth_center_errors": 934,
+    "continuous_ground_truth_footprint_errors": 0,
+    "footprint_rule": "max cell vertex depth below min footprint depth minus tolerance; outward-rounded footprint with valid depth/confidence and no sky/ego pixels"
+  },
+  "baseline_resources": [
+    [
+      "STORM",
+      234816,
+      16,
+      916.7
+    ],
+    [
+      "DGGT",
+      212672,
+      16,
+      1128.4
+    ],
+    [
+      "StreetForward",
+      246144,
+      8,
+      1036.9
+    ],
+    [
+      "Ours",
+      287360,
+      "by stage",
+      1001.5
+    ],
+    [
+      "w/o CCM",
+      287360,
+      "as Ours",
+      977.1
+    ]
+  ],
+  "comparison": "All methods retrained from random initialization on the same real logs, synthetic scenes and complete assets with native objectives; Ours also uses cell-empty and template-binding targets",
+  "adapter": {
+    "type": "deterministic contribution-weighted instance voting, rigid inverse transform and template/barycentric inverse skinning",
+    "rgb_round_trip_max": 4e-06,
+    "native_adapted_psnr": [
+      [
+        "STORM",
+        26.492,
+        26.38,
+        -0.112
+      ],
+      [
+        "DGGT",
+        27.538,
+        27.41,
+        -0.128
+      ],
+      [
+        "StreetForward",
+        27.094,
+        27.01,
+        -0.084
+      ]
+    ]
+  },
+  "external_asset_comparison": {
+    "baseline": "GenAssets-RGB-MV, locally adapted multiview RGB-conditioned variant",
+    "description": "retains asset latent representation and generator with weighted view-condition pooling",
+    "context_images": 12,
+    "synthetic_test_scenes": 20,
+    "vehicle_rotation_degrees": 30,
+    "training_seed": 0,
+    "generation_seed": 7,
+    "training_stage_steps": [
+      68736,
+      137472
+    ],
+    "training_total_steps": 206208,
+    "gpu_hours": 1194.6,
+    "rows": [
+      [
+        "w/o GCM",
+        17.8,
+        0.362,
+        63.4
+      ],
+      [
+        "GenAssets-RGB-MV",
+        23.37,
+        0.194,
+        94.7
+      ],
+      [
+        "w/o CCM",
+        22.46,
+        0.218,
+        91.8
+      ],
+      [
+        "Ours",
+        24.18,
+        0.176,
+        96.1
+      ]
+    ],
+    "metrics": [
+      "PSNR",
+      "LPIPS",
+      "coverage_percent_at_2cm"
+    ]
+  },
+  "geometry_evaluation": {
+    "opacity_min": 0.01,
+    "spatial_truncation_sigma": 3,
+    "orthographic_directions": 6,
+    "pixel_size_max_m": 0.001,
+    "surface_accumulated_opacity": 0.5,
+    "tsdf_voxel_m": 0.002,
+    "tsdf_truncation_m": 0.008,
+    "surface_samples_each": 65536,
+    "distance": "BVH point-to-triangle, nonsquared Euclidean",
+    "coordinates": "original metric scale and alignment",
+    "actor_coverage_thresholds_m": [
+      0.02,
+      0.01
+    ],
+    "outside_support_reference_surfaces": "included in coverage denominator",
+    "averaging": "compute per scene and seed before averaging"
+  },
+  "real_reprojection": {
+    "rgb": "linear",
+    "reference_geometry": "independent, evaluator-only",
+    "shared_reference_fraction_percent": 58.7,
+    "rows": [
+      [
+        "w/o GCM",
+        0.022,
+        0.024,
+        62.1
+      ],
+      [
+        "w/o CCM",
+        0.028,
+        0.041,
+        86.9
+      ],
+      [
+        "Ours",
+        0.019,
+        0.029,
+        92.4
+      ]
+    ],
+    "metrics": [
+      "common_support_MAE",
+      "own_support_MAE",
+      "own_coverage_percent"
+    ]
+  },
+  "real_edits": {
+    "scenes": 20,
+    "rating": "two method-blinded evaluators, third adjudicator, >=5 pixel continuous holes/detachment/tears",
+    "seed0_gen7": [
+      [
+        "w/o GCM",
+        14,
+        10,
+        60.0
+      ],
+      [
+        "w/o CCM",
+        18,
+        15,
+        82.5
+      ],
+      [
+        "Ours",
+        20,
+        17,
+        92.5
+      ]
+    ],
+    "seed_rows": [
+      [
+        0,
+        7,
+        20,
+        17
+      ],
+      [
+        0,
+        17,
+        20,
+        18
+      ],
+      [
+        0,
+        27,
+        19,
+        17
+      ],
+      [
+        1,
+        7,
+        20,
+        18
+      ],
+      [
+        1,
+        17,
+        19,
+        17
+      ],
+      [
+        1,
+        27,
+        20,
+        18
+      ],
+      [
+        2,
+        7,
+        20,
+        17
+      ],
+      [
+        2,
+        17,
+        20,
+        18
+      ],
+      [
+        2,
+        27,
+        19,
+        17
+      ]
+    ],
+    "total_successes": [
+      177,
+      157,
+      334
+    ],
+    "total_edits": [
+      180,
+      180,
+      360
+    ],
+    "success_percent": [
+      98.33,
+      87.22,
+      92.78
+    ],
+    "training_seed_sample_SD_percentage_points": 0.48,
+    "cluster_unit": "scene, retaining all 18 edits",
+    "failure_counts_by_affected_scene": [
+      9,
+      8,
+      6,
+      3
+    ],
+    "scene_cluster_percentile_CI95_percent": [
+      85.28,
+      99.17
+    ],
+    "canonical_texture_linear_rgb_MAE": 0.014
+  },
+  "depth_evaluation": {
+    "alignment": "positive per-frame median(d_gt/d_pred) on a fixed valid LiDAR mask, no shift",
+    "rows": [
+      [
+        "STORM",
+        0.178,
+        0.741,
+        0.226,
+        0.683
+      ],
+      [
+        "DGGT",
+        0.249,
+        0.668,
+        0.327,
+        0.572
+      ],
+      [
+        "StreetForward",
+        0.197,
+        0.759,
+        0.254,
+        0.694
+      ],
+      [
+        "Ours",
+        0.095,
+        0.877,
+        0.121,
+        0.842
+      ]
+    ],
+    "metrics": [
+      "aligned_AbsRel",
+      "aligned_delta1",
+      "unaligned_AbsRel",
+      "unaligned_delta1"
+    ]
+  }
+}

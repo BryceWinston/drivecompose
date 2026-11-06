@@ -1,0 +1,49 @@
+{
+  "source": "Author message in current chat: Table 1 full-image SSIM",
+  "after": {
+    "STORM": "0.782",
+    "DGGT": "0.875",
+    "StreetForward": "0.819",
+    "Ours": "0.903"
+  },
+  "author_followups": [
+    "Update supplementary material as well",
+    "Make supplementary SSIM consistent with main Table 1"
+  ],
+  "supplementary_presentation": {
+    "table": "S11 / tab:temporal-groups",
+    "full_image_ssim": "Report a method-level aggregate column spanning both time rows, equal to main Table 1",
+    "group_metrics_preserved": [
+      "Full-image PSNR",
+      "Dynamic PSNR/SSIM",
+      "Depth AbsRel/delta1"
+    ],
+    "removed_active_cells": "Superseded full-image SSIM group cells are retained only in baseline and original author source; no new group values inferred",
+    "other_supplementary_metrics": "Unchanged"
+  },
+  "superseded_group_ssim": {
+    "table_label": "tab:temporal-groups",
+    "ratio": "3:1",
+    "STORM": {
+      "existing_group_weighted": "0.780",
+      "new_main": "0.782",
+      "difference": "0.002"
+    },
+    "DGGT": {
+      "existing_group_weighted": "0.870",
+      "new_main": "0.875",
+      "difference": "0.005"
+    },
+    "StreetForward": {
+      "existing_group_weighted": "0.820",
+      "new_main": "0.819",
+      "difference": "-0.001"
+    },
+    "Ours": {
+      "existing_group_weighted": "0.903",
+      "new_main": "0.903",
+      "difference": "0.000"
+    },
+    "action": "Resolved for current presentation by reporting only the author-provided method aggregate; no current full-image group SSIM is claimed."
+  }
+}

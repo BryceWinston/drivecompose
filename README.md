@@ -26,7 +26,7 @@ DriveCompose 从多相机驾驶日志恢复背景、刚体资产和可驱动人�
 - [完整架构与流程图](docs/architecture.md)
 - [Mermaid 数据流程图：简化版与详细版](docs/data-flow.md)
 - [CVPR 论文定位、总览图与消融实验方案](docs/paper-positioning.md)
-- [当前方法总览图与设计说明](docs/figures/overview/README.md)
+- [当前论文图件与正式图源](docs/figures/README.md)
 - [表示、坐标和张量契约](docs/representations.md)
 - [分解与补全的算法细节](docs/algorithm.md)
 - [分阶段训练与损失](docs/training.md)
@@ -38,7 +38,7 @@ DriveCompose 从多相机驾驶日志恢复背景、刚体资产和可驱动人�
 
 `src/`、`configs/`、`tests/` 和 `examples/` 分别保存实现、配置、数值检查和使用示例；`docs/` 保存当前设计与流程图，`paper/` 保存双语 LaTeX 工程。论文图仅在 `paper/fig/` 保存活动文件，设计文档通过链接引用。
 
-旧图候选、制作过程、MOSAIC 原包、语言终校前备份及历史排版截图已移至项目外的 [2026-10-20 归档](../_archive/drivecompose/20261020-cleanup/README.md)。文件位置与哈希见 [归档索引](paper/provenance/README.md)，后续生成的缓存和编译中间文件仍由 `.gitignore` 排除。
+仓库只保留长期源码、当前技术文档、论文源文、正式图件和成品。作者数据见 [数据说明](paper/data/README.md)。临时文件生成与提交前检查按 [AGENTS.md](AGENTS.md) 执行。
 
 `src/drivecompose/` 中的数值核心使用 NumPy；`networks/`、`training.py` 与 `pipeline.py` 使用 PyTorch。
 

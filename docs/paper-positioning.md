@@ -1,6 +1,6 @@
 # DriveCompose：CVPR 论文定位、方法与实验方案
 
-更新：2026-10-19。用户条件：目标 CVPR；Waymo 798 个训练场景、202 个验证场景；64 张 H20。本文是基于当前源码与近邻检索形成的研究方案，未填入未执行的实验结果。检索记录见 [paper-literature-audit.md](paper-literature-audit.md)。
+本文保存研究问题和设计动机；当前数据规模、配置与实测结果以论文及 `paper/EVIDENCE.md` 为准。文献归属由 `paper/main.bib` 维护。
 
 ## 1. 推荐的论文主线
 

@@ -1,235 +1,43 @@
-## 2026-11-06 全图 SSIM 后续同步
-
-最新 Table 1 全图 SSIM 及补充 S11 已同步，四份正式 PDF 已重编。S11 的全图 SSIM 为方法级汇总，其余指标按时间组保留。见[当前成品](build/CURRENT-OUTPUTS.md)和[本轮记录](provenance/table1-full-ssim-20261106.json)。
-
----
-
-## 2026-11-06 审稿后结果已同步至四份正式稿
-
-双语正文与补充已采用作者最新实验结果，统一删除表中方法名 -A；nuScenes 仅报均值。主表 Ours 为 28.63 dB 全图、25.17 dB 动态 PSNR，离轨比较纳入完整生成式基线，并准确保留 FreeGen 与 Asset Harvester 的分项优势。固定参考区域、扩展编辑、状态敏感性、分辨率、C/F、稠密注意力、记忆容量、重复与训练成本均已写入。
-
-四份正式 PDF 已真实重编：英文／中文主稿 11／10 页，完整正文与结论止于第 8／7 页；英文／中文补充 15／13 页，表 S1–S39 齐全。670 项本轮检查通过，49 页已渲染并复核受影响版面，无未定义引用、缺字或溢出。既有四项历史图源失败单独保留，图件字节保持。
-
-见[当前成品](build/CURRENT-OUTPUTS.md)、[逐项前后对照](../docs/paper-revision-changes.md)、[作者结果](provenance/review-results-20261106.json)和[最终验收](provenance/review-result-update-20261106-verification.json)。
-
----
-
-## 2026-11-06 四份材料重新编译并归档临时文件
-
-已按当前工作区源文件重新编译并核验中英文主稿与补充材料，再替换四份正式 PDF。英文／中文主稿共 11／10 页，完整正文止于第 8／7 页；英文／中文补充材料共 12／10 页，表 S1–S25 完整。43 页已渲染复核，最终日志无新增警告、缺字、未定义引用或溢出。
-
-论文文字、图注、数值、模板及当前活动图件保持。旧候选、原稿副本、自动备份及缓存共 29 份已移至[仓库外归档](../../_archive/drivecompose/20261106-recompile-cleanup/)；活动 Teaser PDF／draw.io、加框图 3 PDF／SVG／PPTX、组件消融图及六张原始结果图保留。旧正文中的候选路径按[迁移清单](../../_archive/drivecompose/20261106-recompile-cleanup/archive-manifest.json)追溯。
-
-80 项历史审计中 76 项通过，4 项旧图源核验与清理前一致；该审计与本轮通过的编译、当前资源、完整正文和排版检查分别记录。详见[本轮验收](provenance/recompile-cleanup-20261106.json)、[修改对照](../docs/paper-revision-changes.md)及[正式输出](build/CURRENT-OUTPUTS.md)。
-
----
-
-## 2026-11-06 简化版 Teaser 已正式采用
-
-作者确认的[新版 Teaser](fig/fig01-teaser.pdf)已逐字节替换正式图，匹配的[可编辑 draw.io](fig/fig01-teaser.drawio)与[预览](fig/fig01-teaser-preview.png)同步更新：加宽画布，输入箭头停在框外，删除三个组件标签及连线，Shared scene context 和向量居中于主场景上方。原稿和替换前正式版均保留。
-
-[英文主稿](build/en/main.pdf)和[中文主稿](build/zh/main_zh.pdf)均已真实重编并写回正式路径，分别11／10页，完整正文止于第8／7页。正文、图注源文、其余图件和补充材料保持；首页与全稿缩略图已复核，无新增编译警告。[当前输出](build/CURRENT-OUTPUTS.md)、[实际对照](../docs/paper-revision-changes.md)和[本轮采用及验收](provenance/teaser-style-adoption-20261106.json)可追溯。
-
----
-
-## 2026-11-06 英文图表位置调整
-
-参考 6 篇 CVPR 2025／2026 正式录用论文，已将图 3 放入第 4 页 §3.3；第 8 页两张定量消融表及分析集中左栏，图 6 位于右栏顶部。正文、图注、数据、图件尺寸与模板保持。英文正式稿真实重编，11 页总 PDF，完整技术正文、结论和全部图表仍止于第 8 页；29 项本轮核验通过。中文及两版补充材料保持。
-
-详细来源、前后对照和历史检查情况见本轮修改记录与 `paper/provenance/figure-table-layout-20261106.json`。全部中间文件与真实基线存于 `pre-research/_archive/drivecompose/20261106-cvpr-float-layout/`。
-
----
-
-## 2026-11-06 确认的加框版图 3 已替换中英文主稿
-
-按作者确认，将中英文方法源文中图 3 的插图路径由 `fig/fig03-joint-completion.pdf` 切换为 `fig/fig03-joint-completion-core-boxed.pdf`。只改两处路径，原中英文图注、图号、单栏宽度、技术正文和公式保持；原图及所有候选继续保留。
-
-两版均已真实重编并替换正式输出：[英文主稿](build/en/main.pdf)、[中文主稿](build/zh/main_zh.pdf)。图 3 仍在两版第 4 页，约 83.34 × 50.14 mm；相比原图同宽放置约减少 3.46 mm 高度。英文／中文仍共 11／10 页，完整正文止于第 8／7 页。
-
-已检查图 3、前后页、完整总结页及中文第 6 页的既有结果浮动页。批准图中的 83 条矢量绘制、24 个原生文字和 16 处矢量渐变均在两版编译 PDF 中匹配；图注源文和渲染文字均保持。Poppler 复核没有新增裁切、重叠或浮动异常，无新增最终编译警告。全量检查器 80 项中既有历史图源失败由 5 项减为 4 项，没有新增失败；旧图源问题未在本轮扩展处理。
-
-[中英文第 4 页排版预览](../../_archive/drivecompose/20261106-figure3-boxed-adoption/layout-preview.png)与[本轮采用、编译及验收](provenance/figure3-boxed-adoption-20261106.json)可直接核对。两版补充材料及其他图件未改，未重编补充材料。编译中间文件和真实修改前基线保存在外部归档。
-
----
-
-## 2026-11-05 确认版 Teaser 入稿
-
-两版首页已采用作者确认的 [Teaser PDF](fig/fig01-teaser.pdf)，对应[可编辑 draw.io](fig/fig01-teaser.drawio)。英文、中文主稿均已真实重编并替换正式输出，共 11／10 页，正文仍止于第 8／7 页。原稿与确认候选保留，其他技术正文和图件保持；英文工具说明补记实际 Image Gen 用途。见[当前输出](build/CURRENT-OUTPUTS.md)、[修改对照](../docs/paper-revision-changes.md)及[来源与验收](provenance/teaser-coordinated-preview-20261105.json)。
-
----
-
-## 2026-11-05 单栏组件消融图与对应分析入稿
-
-中英文主稿 §4.5 已加入单栏图 6 与两句视觉分析；英文／中文 PDF 共 11／10 页，完整正文仍止于第 8／7 页。图与组件表分别位于第 8／7 页。已有数值与协议保持，两版补充材料未改。
-
-[六张原图](fig/source/component-ablation/)、[图 6 PDF](fig/fig06-component-ablation.pdf)、[可编辑 SVG](fig/fig06-component-ablation.svg)与[生成脚本](tools/make_component_ablation.py)均在工程内。图源重建：在 `paper/` 运行 `python tools/make_component_ablation.py`（Pillow、PyMuPDF；默认使用 Windows Times New Roman，可通过 `--font-file` 指定字体）。[修改对照](../docs/paper-revision-changes.md)、[来源与验收](provenance/component-ablation-figure-20261105.json)。
-
----
-
-## 2026-11-04 正文消融收拢为两组核心实验
-
-正文消融现为两段、两张表：组件贡献与输入数量敏感性。完整隐藏机制、可见率、编辑后表面及自由空间证据保留在补充材料；所有既有结果值保持。中英文主稿及两版补充材料均已编译、核验并更新至原正式路径。英文／中文主稿共 11／10 页，完整正文止于第 8／7 页；英文／中文补充材料共 12／10 页。
-
-75 项既有稿件检查及 107 项本轮源文、数据保留与编译核验通过；四份最终日志无未定义引用、缺字或溢出。补充表编号连续为 S1–S25。受影响正文与补充页已渲染复核。详见[当前输出](build/CURRENT-OUTPUTS.md)、[修改对照](../docs/paper-revision-changes.md)与[来源记录](provenance/core-ablation-revision-20261104.json)。
-
----
-
-## 2026-11-04 源码协作与编译
-
-已同步同事提交 `edcd19c`，保留补充材料、正式引文、使用说明与新机制矢量图。当前编译必需的五份图件 PDF 统一位于 `fig/` 并纳入 Git，拉取后无需另行复制文件。PPT、重编后的论文成品 PDF 和历史素材不随本次提交上传。来源和可编辑文件见[图件索引](../docs/figures/README.md)。
-
-安装含 XeLaTeX、BibTeX、latexmk 的 TeX Live 或 MiKTeX 后，在仓库根目录执行以下命令即可构建中英文主稿及补充材料。样式、书目和图件都在仓库内；字体使用 TeX 发行版提供的 TeX Gyre 和 Fandol 文件。
-
-```powershell
-cd paper
-latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=build/en' main.tex
-latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=build/zh' main_zh.tex
-cd supplementary
-latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=../build/supp-en' main.tex
-latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=../build/supp-zh' main_zh.tex
-```
-
-已有 Tectonic 时，也可使用下文的构建方式。`tools/check_manuscript.py` 是需要历史归档的证据审计，不是编译前置步骤；论文编译不依赖仓库外归档。
-
-本次已从仅含待提交 Git 文件的独立快照，用 Tectonic 在全新输出目录编译四份论文。主稿与补充材料共 43 页，逐页文本和 72 dpi 渲染均与本机最终稿一致；日志无未定义引用、缺字或溢出。验收见[布局与协作构建记录](provenance/figure-layout.json)。
-
-## 2026-11-04 远端图件修订记录
-
-两版主稿已直接采用作者指定的总览 PDF 和修订后的 draw.io 机制矢量 PDF，图 2 位于第 3 页，图 3 位于第 4 页。两版均已重新编译并复核排版：英文共 11 页、完整正文止于第 8 页；中文共 10 页、正文止于第 7 页。73 项稿件结构检查及 21 项本轮核验通过。来源与哈希见[图件替换记录](provenance/figure-replacement-20261104.json)，当前输出见 [CURRENT-OUTPUTS.md](build/CURRENT-OUTPUTS.md)。
-
-## 2026-11-02 修订记录
-
-已按作者统一证据同步中英文主稿及补充材料，保留原数据规模、240×160 评价和 C 主规则；F 为独立对照。新增机制比较与真实编辑四项联合质量，原有图件保持，本轮不放新增结果图。正式路径与页数见 [当前 PDF](build/CURRENT-OUTPUTS.md)，逐处变化见 [修改对照](../docs/paper-revision-changes.md)。
-
----
-
 # DriveCompose 双语论文工程
 
-**当前版本：** 2026-10-29：两张消融表已写入作者提供的 33 个通用指标结果，双语分析与来源记录同步。54 项稿件检查及双语编译通过；英文正文止于第 8 页。当前 PDF 及核验入口见 [CURRENT-OUTPUTS.md](build/CURRENT-OUTPUTS.md)。
-
-**2026-10-28 修订记录：** 按用户指定主流程完成中英文正文及补充材料修订。视觉编码、规范空间特征聚合、潜表示编码、联合潜空间补全、分类型高斯解码与场景组合分节解释，观测检查从方法主线移除；Obs-Reg 与 Pass 在实验中保留必要定义。中文同步补齐英文已有的实验设置和主结果表。52 条参考文献均完成真实性核验，3 条书目信息修正或补全。英文完整正文在第 8 页内，参考文献从第 9 页开始。
-
-## 独立补充材料（2026-10-25）
-
-原英文 4.4 跨数据集泛化及表 3 已完整迁入 `supplementary/cross_dataset.tex`，并补齐中文 `cross_dataset_zh.tex`。两版补充材料均采用与主稿相同的 CVPR 双栏样式，编号为附录 A、表 S1。`supplementary/` 是独立可编译项目，复用主稿的 `cvpr.sty`、`fontsetup.tex`、`ieeenat_fullname.bst`，`references.bib` 仅包含本补充材料实际引用的三条主书目记录。
-
-在 `paper/supplementary/` 下执行：
-
-```powershell
-latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=../build/supp-en' main.tex
-latexmk -xelatex -interaction=nonstopmode -halt-on-error '-outdir=../build/supp-zh' main_zh.tex
-```
-
-正式输出为 `build/supp-en/main.pdf`、`build/supp-zh/main_zh.pdf`；主稿仍使用 `build/en/main.pdf`、`build/zh/main_zh.pdf`。后续更新模板或这些参考文献时须同时核对两个项目。主稿的 8 页压缩目前仅形成[具体方案](../docs/paper-revision-workflow.md)，尚未执行 Method 等章节的压缩。
-
-目标会议：CVPR 2027。更新日期：2026-10-23。
-
-本工程由用户提供的 MOSAIC 压缩包迁移而来。当前题名为 **DriveCompose: Compositional Generative Reconstruction of Driving Scenes via Joint Completion**，中文题名为 **DriveCompose：通过联合补全实现驾驶场景的可组合生成式重建**。非实验正文按生成式重建框架组织，覆盖视觉恢复、规范聚合、结构潜表示、条件流、类型解码、状态装配与四阶段训练。
-
-非实验正文及图注已完成一轮中英文自然表达终校；修改前的版本保存在项目外的 [语言终校前备份](../../_archive/drivecompose/20261020-cleanup/files/paper/archive/language-before-20261020.zip)。
-
-**当前消融状态：已写入用户提供的两组结果及中英文分析。** 两张表包含 29 个结果数值及 1 个未报告指标，覆盖 Ours、w/o GCM、w/o CCM 组件消融及 Ours、w/o CCM 在 2/4/8 时刻下的输入数量敏感性；明确三路相机、24 步补全及 $[0,1]$ 线性 RGB 尺度。两表的 T=8 数值一致，消融定性图（原图 3）及其引用已删除。数据及来源见 [消融结果记录](provenance/ablation-results-20261023.json)，既有协议见 [最终消融方案](../docs/evaluation_plan.md)。本次按用户汇总结果回填，没有重新执行实验或独立核验原始日志。非消融内容不在本次修改范围内；此前空结果框架和实验迁入记录保留为历史。
+固定题名：**DriveCompose: Compositional Generative Reconstruction of Driving Scenes via Joint Completion**。
 
 ## 文件入口
 
-- `main.tex`：英文入口；`sec/`：英文各章节。
-- `main_zh.tex`：中文入口；`zh/`：中文各章节，采用与英文相同的方法符号与结构。
-- `main.bib`：两版共用的 84 条当前引用。用户 DOCX 的 75 条全部纳入，9 条与原书目重复、新增 66 条；文档之外的 9 条项目近邻工作保留。逐条引用位置见 [引用接入记录](provenance/reference-integration-20261021.md)。
-- `fig/fig01-teaser.drawio` / `fig/fig01-teaser.pdf`：作者确认的当前可编辑 draw.io 与原生 PDF，作为两版首页图 1；文字和箭头原生可编辑，场景为独立位图。最初原稿保留为 `fig01-teaser-original.drawio` / `fig01-teaser-original.pdf`。
-- `fig/fig02-overview.pptx` / `fig/fig02-overview.pdf`：图 2；保留本机可编辑 PPT，PDF 采用同事本次同步的作者指定原件，原样改名。
-- `fig/fig03-joint-completion.pdf`：图 3；采用同事本次同步的修正后机制矢量图。原生 draw.io 源稿及原始导出保存在同步归档，入口见[图件索引](../docs/figures/README.md)。
-- `fig/fig04-dynamic-reconstruction.pdf`：原 PNG 的无损 PDF 封装；实验图像像素保持。
-- [图件索引](../docs/figures/README.md)：五张正式图统一放在 `fig/`，按 `figNN-英文短名` 命名，文件哈希及归档见[布局记录](provenance/figure-layout.json)。
-- [结构参考与改写依据](provenance/structure-study-20261020.md)：四篇录用论文的章节观察和本轮采用的安排。
-- `fig/fig05-off-trajectory-rendering.pdf`：当前双语空间外推对比图，由原 `fig/assets/Shift.pdf` 原样改名，PDF 字节保持不变。
-- `sec/4_experiments.tex` / `zh/4_experiments_zh.tex`：同步消融协议、结果表与分析；原消融定性图已删除。
-- `provenance/source-manifest.json`：原始来源哈希及实验冻结清单，内容保持迁移时的版本。
-- [归档索引](provenance/README.md)：MOSAIC 原包、迁移报告、终校备份与历史编译检查记录。
-- `EVIDENCE.md`：主张、代码依据与材料缺口；`REFERENCES.md`：引用核验记录。
-- `build/en/main.pdf` / `build/zh/main_zh.pdf`：中英文唯一当前构建路径；两版均已重新编译。实际构建状态以各目录的 `compile-result.json` 为准。临时合并目录和旧输出已移至项目外归档，见 [构建目录整理记录](provenance/build-directory-cleanup-20261021.json)。
+| 材料 | 英文入口 | 中文入口 |
+|---|---|---|
+| 主稿 | `main.tex`、`sec/` | `main_zh.tex`、`zh/` |
+| 补充材料 | `supplementary/main.tex` | `supplementary/main_zh.tex` |
 
-## 编译与检查
+主稿共用 `main.bib`，补充材料使用 `supplementary/references.bib`。已采用图件及必要素材见[图件说明](../docs/figures/README.md)；作者原始数据和后续确认见[数据说明](data/README.md)与[证据位置](EVIDENCE.md)。协作与提交规则以根目录 [AGENTS.md](../AGENTS.md) 为准。
 
-推荐 XeLaTeX；`fontsetup.tex` 为两版加载 Times 兼容的 TeX Gyre Termes，中文采用 Fandol 宋体/黑体/楷体。字体通过 TeX 文件名读取，避免依赖本机系统字体配置。两版均使用共享 BibTeX 文件和原 CVPR 样式。
+## 编译
 
-以英文为例，在本目录执行：
+使用已有 Tectonic 运行时，在仓库根目录执行：
 
 ```powershell
-xelatex -interaction=nonstopmode -halt-on-error main.tex
-bibtex main
-xelatex -interaction=nonstopmode -halt-on-error main.tex
-xelatex -interaction=nonstopmode -halt-on-error main.tex
+python -B paper/tools/build.py --material all
 ```
 
-中文将 `main` 替换为 `main_zh`。也可用 Tectonic 的内置 BibTeX 流程，分别指定输出目录：
+`--language en` 或 `--language zh` 选择语言；`--material main` 或 `--material supplementary` 选择材料。默认编译目录位于仓库外；`--out-root` 可指定另一个仓库外目录。编译日志、辅助文件和结果 JSON 仅写入该目录。成功后只复制正式 PDF；`--no-install` 用于只编译候选。
+
+使用 XeLaTeX／latexmk 时，从主稿或补充项目目录构建，把 `-outdir` 指向仓库外目录；检查页面后只复制正式 PDF 到下列约定位置。正文、样式、书目与正式图件均包含在工程中。
+
+## 正式成品
+
+- [英文主稿](build/en/main.pdf)
+- [中文主稿](build/zh/main_zh.pdf)
+- [英文补充材料](build/supp-en/main.pdf)
+- [中文补充材料](build/supp-zh/main_zh.pdf)
+
+`build/` 仅保留这四份成品。重新生成后核对完整结论所在页、全部图表、引用、缺字、裁切与重叠；标题页或总页数不能代替正文终止位置。
+
+## 提交前检查
 
 ```powershell
-New-Item -ItemType Directory -Force build/en, build/zh
-tectonic -X compile --keep-logs --keep-intermediates --outdir build/en main.tex
-tectonic -X compile --keep-logs --keep-intermediates --outdir build/zh main_zh.tex
+python -B paper/tools/check_manuscript.py --staged
 ```
 
-本机可直接执行 `python tools/build.py`。脚本依次查找环境变量 `CODEX_TECTONIC_PATH`、PATH 和 Windows 上已安装的 Codex 所带 Tectonic，并将中英文 PDF 和日志分别保存在 `build/en/`、`build/zh/`。字体配置由 `tools/fontconfig.conf` 提供；已有 `FONTCONFIG_FILE` 时沿用该设置。`compile-result.json` 记录本次执行时间、退出码、PDF 哈希及是否实际写入新输出，避免将历史 PDF 误认为本次编译结果。
+该工具检查当前依赖、书目与交叉引用、双语方法公式、作者输入及当前 SSIM 确认，同时检查工作区和 Git 暂存区。报告默认保存在仓库外；它不代替实验复现、统计核验或 PDF 视觉检查。
 
-这一本地构建入口可在应用内置编译接口尚未完成沙箱初始化时使用；它不改变应用设置，也不替代内置预览的初始化步骤。
-
-`tools/check_manuscript.py` 优先读取 `provenance/ablation-standard-metrics-20261029.json`，逐格核对两张消融表的版本、输入数量与作者提供的 33 个结果值，检查通用指标、旧指标删除、T=8 跨表一致性及双语公式。新指标数值来自作者于 2026-10-29 提供的汇总结果，旧自定义指标仅保留历史溯源。原实验归档、依赖图哈希、会议年份、引用和方法公式检查继续保留。归档位置由 `provenance/archive-map.json` 指定；缺少归档时检查会报错，论文编译不依赖外部归档。
-
-来源清单保留旧路径和原哈希，当前文档链接的改动另行记录。校验时，已更新的两份设计文档与其整理前快照核对，其余设计与实现文件仍与原清单核对；检查结果分别列出历史证据完整性和当前文档变化。当前构建目录仅保留主稿及补充材料的四份正式 PDF、四份 `compile-result.json` 和 `CURRENT-OUTPUTS.md`。图件布局与本轮验收见 `provenance/figure-layout.json`；历史检查、预览、基线快照、编译辅助文件及文本日志已归档。历史检查与编译中间文件移至项目外，旧路径及归档位置见 [整理记录](provenance/build-directory-cleanup-20261021.json)。
-
-## 模板状态
-
-两版 `confYear` 均为 2027，保留匿名 review 模式和待填写的论文 ID。2026-10-20 检查时，[CVPR 官方 author-kit 的 main.tex](https://raw.githubusercontent.com/cvpr-org/author-kit/main/main.tex) 仍标记 2026。本次保留压缩包内的原样式，不将修改年份表述为已经采用官方 2027 模板；正式投稿时再核对对应届次模板与要求。
-
-2026-10-20 非实验改写：中英文按同一层级重整摘要至结论，方法保留六个编号二级节，短主题采用行内粗体标题。实验源文件及依赖图冻结；实验之后的浮动边界只用于避免讨论、结论被浮动图拆开。详见本轮结构记录；当时的 `build/revision-check.json` 现按 [整理记录](provenance/build-directory-cleanup-20261021.json) 归档。
-
-## 2026-10-21 生成式重建改写
-
-本轮采用 DGGT 的任务动机、整体设计、表示与模块解释、训练过程的叙述顺序，未复制原句或实验结论。中英文非实验正文和图注同步；实验正文与依赖图按字节冻结。完整记录见 [改写记录](provenance/revision-20261021.md)。
-
-重新构建本轮输出：
-
-```powershell
-python tools/build.py
-python tools/check_manuscript.py
-```
-
-当前统一使用默认 `build/en/`、`build/zh/` 路径。`--out-root` 仅在需要单独的临时输出时使用，历史版本保存在项目外归档。
-
-## 2026-10-21 文献接入与实验迁入
-
-75 条文献均在中英文正文中实际引用，相关工作按七个主题组织；引言加入驾驶数据来源，方法加入图像 patch 与注意力的基础引用。新增内容完成双语对应和自然表达检查，完整方法、公式及技术细节保留。按用户要求暂不约束篇幅，也不通过排版压缩页数。
-
-本轮修改以已推送的 `a2cdacc` 为基线，留在工作区等待用户确认，再提交和推送。修改前的构建产物、源稿、文献页面与临时检查材料保存在项目外 `pre-research/_archive/drivecompose/20261021-reference-integration/`。
-
-## 英文实验图片恢复（2026-10-21 历史步骤，现已撤销）
-
-原英文实验文件只有数值表格，没有图环境或图片加载命令；中文实验文件则直接加载了三张来源图。现通过独立的图片补充文件为英文加入相同图件，并保留 PointForward 来源和图中“Ours”的归属说明。实验原文与数值未修改。修复及渲染对照见 [检查记录](provenance/experiment-figure-fix-20261021.md)。
-
-## 实验全部留空（2026-10-21 历史步骤，已由消融框架替代）
-
-按用户“实验部分全部留空”的指令，中英文实验仅保留章节标题和 `sec:experiments` 标签。实验文字、表格、图片、引用及额外图片段落均不再进入 PDF；其他章节、方法公式、书目和总览图未改动。此前的实验导入与图片恢复记录是历史记录，以 [本次状态](provenance/experiments-empty-20261021.json) 为准。原始内容、移出文件和修改前 PDF 保存在项目外 `pre-research/_archive/drivecompose/20261021-source-experiment-match/`。
-
-本次两版编译均成功；阅读器关闭后，已将实验留空版替换至 `build/en/main.pdf` 与 `build/zh/main_zh.pdf`。编译记录的 `pdf` 字段指向当前输出，`compiler_pdf` 保存编译器原始输出位置。临时文件名已移至项目外归档。
-
-## 消融设置与空结果框架（2026-10-21 历史步骤）
-
-按最终方案写入中英文实验章节：完整方法及 A1/A2/A3/A7 对照、嵌套输入与固定目标、指标和重复规则。表 1 为五行组件对照，表 2 为 A0/A2 在 2/4/8 时刻下的六行对照；图 2 保留两行机制裁剪和一行状态复用，共 16 个空图片槽。数值格、实际图片和结果分析均留空，不包含性能结论。
-
-旧留空版本及修改前 PDF 已备份至项目外 `pre-research/_archive/drivecompose/20261021-ablation-manuscript/`。核验脚本按新状态检查空结果格、空图片槽、双语实验公式和引用依赖，历史归档哈希检查继续保留。正式训练和真实渲染尚未执行。
-
-## 消融结果回填（2026-10-23 历史步骤）
-
-按用户提供的数值同步填写中英文两张消融表，按各指标实际最优值标粗；输入敏感性表只在相同 T 下比较。分析覆盖生成补全的覆盖率收益、跨组件潜码交换、显式世界坐标条件、硬/软观测约束的质量权衡，以及输入减少时跨组件交换的绝对收益变化。汇总值不附加未提供的方差或显著性结论。修改前源稿和 PDF 备份至项目外 `pre-research/_archive/drivecompose/20261023-ablation-results/`。
-
-## 消融条目精简（2026-10-23 历史步骤）
-
-按用户要求删除无世界坐标和软观测两组对照及其表格行、图示列与分析，正文、图注和两张表均改用 Full、No completion、Independent 名称，取消 A+数字编号。组件表保留三行，按保留版本重新标粗最优值；输入数量敏感性表保留六行及原数值。两版共用相同消融设置，各含 30 个结果数值和 12 个空图片槽。修改前文件保存在项目外 pre-research/_archive/drivecompose/20261023-ablation-simplification/。
-
-## 消融表格重排（2026-10-23）
-
-组件变体统一为 w/o GCM、w/o CCM 和 Ours；GCM 与 CCM 在方法节分别定义为生成式补全模块（Generative Completion Module）与跨组件记忆模块（Cross-Component Memory）。按用户要求将 w/o GCM 的 Obs-Reg 改为横线（未报告），删除对应零退化描述，最优值比较排除该单元格。两张表均使用等宽单栏布局、单行表头（指标名、单位与方向同行）；组件表分隔消融版本与完整模型，输入敏感性表按 T=2/4/8 分组并合并重复 T。其余 29 个数值保持不变。调研依据及布局取舍见 provenance/ablation-table-design-20261023.json；修改前文件与渲染检查位于项目外 pre-research/_archive/drivecompose/20261023-ablation-table-design/。
-
-## 删除图 3（2026-10-23 当前状态）
-
-按用户要求，中英文稿删除消融与复用占位图（原图 3）及其正文引用。消融表格、数值、单行表头和组件命名保持不变。修改前文件保存在项目外 pre-research/_archive/drivecompose/20261023-remove-figure3/。
+图 6 可从六张结果原图重建：在 `paper/` 下执行 `python -B tools/make_component_ablation.py`。预览和生成清单通过参数写到仓库外。

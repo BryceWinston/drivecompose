@@ -2,23 +2,52 @@ __pycache__/
 *.py[cod]
 .venv/
 *.egg-info/
+node_modules/
+**/.build/
+.pytest_cache/
 dist/
 checkpoints/
 outputs/
+/tmp/
+/.tmp/
+/_archive/
+/reviews/
+/paper/provenance/
+/docs/paper-revision-changes.md
+/docs/paper-revision-workflow.md
 
-# Local editable slide sources and generated caches; figure PDFs are tracked.
-paper/fig/*.pptx
-node_modules/
-**/.build/
+# Editable PPT sources may remain local; adopted SVG/draw.io/PDF sources are tracked.
+/paper/fig/*.pptx
+
+# Compiler, editor and execution intermediates.
 *.aux
 *.bbl
 *.blg
 *.brf
 *.log
 *.out
+*.xdv
+*.fls
+*.fdb_latexmk
 *.synctex.gz
-paper/build/*/compiler-output.txt
-
-# draw.io automatic save files
 *.dtmp
 *.drawio.bkp
+*.bak
+*.tmp
+compiler-output.txt
+compile-result.json
+
+# Only the four formal manuscript PDFs belong in paper/build.
+/paper/build/*
+!/paper/build/en/
+!/paper/build/zh/
+!/paper/build/supp-en/
+!/paper/build/supp-zh/
+/paper/build/en/*
+/paper/build/zh/*
+/paper/build/supp-en/*
+/paper/build/supp-zh/*
+!/paper/build/en/main.pdf
+!/paper/build/zh/main_zh.pdf
+!/paper/build/supp-en/main.pdf
+!/paper/build/supp-zh/main_zh.pdf

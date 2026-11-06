@@ -1,7 +1,8 @@
 """Build the single-column component-ablation figure from the six source PNGs.
 
 Requires Pillow and PyMuPDF. Images are embedded without image adjustments.
-Run from paper/: python tools/make_component_ablation.py --preview OUTPUT.png
+Run from paper/: python -B tools/make_component_ablation.py
+Optional preview and manifest outputs must be outside the repository.
 """
 
 from __future__ import annotations
@@ -145,6 +146,9 @@ def main():
     parser.add_argument("--font-file", type=Path, default=Path(r"C:\Windows\Fonts\times.ttf"))
     parser.add_argument("--manifest", type=Path)
     args = parser.parse_args()
+    for label, path in [('preview', args.preview), ('manifest', args.manifest)]:
+        if path is not None and path.resolve().is_relative_to(ROOT.parent):
+            parser.error(f'{label} must be written outside the repository')
     items, sources = build(args.source_dir)
     export(items, args.output, args.preview, args.font_file)
     if args.manifest:

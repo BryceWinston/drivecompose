@@ -1,13 +1,12 @@
+# Build artifacts are kept outside the repository; only final PDFs are installed.
+# The project-wide output policy is defined in ../.gitignore and ../AGENTS.md.
 *.aux
 *.bbl
 *.blg
 *.brf
 *.log
 *.out
-*.synctex.gz
 *.xdv
-build/**/compiler-output.txt
-
-# Local manuscript review and revision intermediates
-/build/review/
-/build/revision-*/
+*.fls
+*.fdb_latexmk
+*.synctex.gz

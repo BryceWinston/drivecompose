@@ -1,3 +1,7 @@
 # Keep document bytes intact across Windows checkouts and temporary saves.
 *.pdf binary
 *.pptx binary
+
+# Preserve raw author-input bytes used by the structured-data source hash.
+paper/data/*.txt -text
+paper/data/*.json text eol=lf
