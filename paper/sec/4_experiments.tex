@@ -1,6 +1,6 @@
 \section{Experiments}
 \label{sec:experiments}
-Waymo experiments test reconstruction accuracy and off-trajectory rendering quality. Paired hidden-surface tests and actor edits examine joint completion and reuse of fixed assets. Main results use center-ray rule C; footprint rule F is a separate controlled comparison. Appendix A reports zero-shot transfer to nuScenes.
+Waymo experiments test reconstruction accuracy and off-trajectory rendering quality. Paired hidden-surface tests and actor edits examine joint completion and reuse of fixed assets. Main results use center-ray rule C; the supplementary material compares footprint rule F and reports zero-shot transfer to nuScenes.
 
 % Queue the qualitative comparisons before their discussion pages.
 \begin{figure*}[t]
@@ -19,24 +19,24 @@ Waymo experiments test reconstruction accuracy and off-trajectory rendering qual
 \subsection{Experimental setup}
 \label{sec:experimental_setup}
 \paragraph{Data and supervision.}
-We divide Waymo's 798 training sequences into 740 training and 58 development sequences, evaluating on 202 validation sequences. Synthetic training uses 10,000 scenes, 80 maps, 10,000 vehicles, and 2,500 human identities. Source maps, vehicle models, and human identities are split before creating appearance/motion variants; real logs are separated by road segment, capture, and identifiable actors. Appendix B gives all split sizes and supervision.
+We divide Waymo's 798 training sequences into 740 training and 58 development sequences, evaluating on 202 validation sequences. Synthetic training uses 10,000 scenes, 80 maps, 10,000 vehicles, and 2,500 human identities. Source maps, vehicle models, and human identities are split before creating appearance/motion variants; real logs are separated by road segment, capture, and identifiable actors.
 
 \paragraph{Baselines.}
-STORM, DGGT, and StreetForward~\cite{yang2025storm,chen2025dggt,yu2026streetforward} are retrained from random initialization on the same real logs, synthetic scenes, and complete assets. Each uses its native supervision; Ours also uses cell-empty and template-binding targets. A shared state adapter assigns ownership and canonicalizes predicted Gaussians for rigid and skeletal placement. Methods share context RGB, calibration, ego poses, vehicle boxes/root tracks, and target human joints; shape and binding come from context. Test-time weights are fixed. DGGT denotes its Gaussian branch (DGGT-G); Appendix F reports training costs, adaptation, and state sensitivity.
+STORM, DGGT, and StreetForward~\cite{yang2025storm,chen2025dggt,yu2026streetforward} are retrained from random initialization on the same real logs, synthetic scenes, and complete assets. Each uses its native supervision; Ours also uses cell-empty and template-binding targets. A shared state adapter assigns ownership and canonicalizes predicted Gaussians for rigid and skeletal placement. Methods share context RGB, calibration, ego poses, vehicle boxes/root tracks, and target human joints; shape and binding come from context. Test-time weights are fixed. DGGT denotes its Gaussian branch (DGGT-G).
 
 \paragraph{Sampling and metrics.}
-Each test sequence supplies 200 frames, forming 2,020 disjoint 20-frame clips at 10 Hz. Three front cameras provide context at $\{0,5,10,15\}$~\cite{yang2025storm}; the remaining 12 interpolation and four extrapolation frames give 96,960 targets. Extrapolation renders supplied states. We evaluate $240\times160$ images~\cite{huang2026instantnurec} using full/dynamic PSNR and SSIM, and depth AbsRel/$\delta_1$ at valid LiDAR points. Depth is aligned per frame for evaluation; Appendix F also reports unaligned results. Frames, clips, then sequences are averaged with equal sequence weight.
+Each test sequence supplies 200 frames, forming 2,020 disjoint 20-frame clips at 10 Hz. Three front cameras provide context at $\{0,5,10,15\}$~\cite{yang2025storm}; the remaining 12 interpolation and four extrapolation frames give 96,960 targets. Extrapolation renders supplied states. We evaluate $240\times160$ images~\cite{huang2026instantnurec} using full/dynamic PSNR and SSIM, and depth AbsRel/$\delta_1$ at valid LiDAR points. Depth is aligned per frame for evaluation. Frames, clips, then sequences are averaged with equal sequence weight.
 
 \subsection{Dynamic scene reconstruction}
 \label{sec:temporal_evaluation}
-DriveCompose leads all six Waymo metrics (Table~\ref{tab:regions_current}), exceeding DGGT by 1.28 and 1.68 dB in full-image and dynamic-region PSNR. Results aggregate interpolation and extrapolation at $3{:}1$; Appendix F reports both groups. Figure~\ref{fig:dynamic-reconstruction} shows clearer actor silhouettes and street structure.
+DriveCompose leads all six Waymo metrics (Table~\ref{tab:regions_current}), exceeding DGGT by 1.28 and 1.68 dB in full-image and dynamic-region PSNR. With context-predicted instead of supplied actor states, dynamic-region PSNR drops to 23.83 dB but still exceeds DGGT by 1.14 dB (Appendix~F). Figure~\ref{fig:dynamic-reconstruction} shows clearer actor silhouettes and street structure.
 \begin{table}[!htbp]
 \centering
 \footnotesize
 \setlength{\tabcolsep}{1.3pt}
 \renewcommand{\arraystretch}{1.08}
 \setlength{\belowcaptionskip}{5pt}
-\caption{\textbf{Conditional reconstruction on Waymo.} Interpolation and extrapolation are aggregated at $3{:}1$; Appendix F reports both groups.}
+\caption{\textbf{Conditional reconstruction on Waymo.} Interpolation and extrapolation are aggregated at $3{:}1$.}
 \label{tab:regions_current}
 \begin{tabular}{@{}lcccccc@{}}
 \toprule
@@ -55,9 +55,9 @@ Ours & \textbf{28.63} & \textbf{0.903} & \textbf{25.17} & \textbf{0.867} & \text
 
 \subsection{Off-trajectory rendering}
 \label{sec:spatial_evaluation}
-We shift cameras laterally by $\pm1$, $\pm2$, and $\pm4$ m while fixing orientation, intrinsics, and timestamps~\cite{chi2026pointforward,zhu2025worldsplat}. We compare Gaussian branches and full generative pipelines. Each direction contains 121,200 images and 6,060 20-frame videos at 10 Hz, referenced to recordings from the same clips, cameras, and timestamps. Left/right FID and FVD are computed separately, then averaged (Table~\ref{tab:spatial_current}; Appendix H).
+We shift cameras laterally by $\pm1$, $\pm2$, and $\pm4$ m while fixing orientation, intrinsics, and timestamps~\cite{chi2026pointforward,zhu2025worldsplat}. We compare Gaussian branches and full generative pipelines. Each direction contains 121,200 images and 6,060 20-frame videos at 10 Hz, referenced to recordings from the same clips, cameras, and timestamps. Left/right FID and FVD are computed separately, then averaged (Table~\ref{tab:spatial_current}).
 
-Full generative controls include DGGT-Full, STORM+Difix~\cite{wu2025difix3d}, and FreeGen~\cite{chen2026freegen}. Ours leads in 1 m FID and 4 m FVD; FreeGen leads in the other four entries (Table~\ref{tab:spatial_current}). On a fixed reference region, Ours lowers MAE/LPIPS over FreeGen by 0.0014/0.005 (Appendix H). Figure~\ref{fig:waymo-left-shift} shows shifted renders.
+Full generative controls include DGGT-Full and STORM+Difix~\cite{wu2025difix3d}. Ours leads all six entries (Table~\ref{tab:spatial_current}) and has the lowest MAE/LPIPS on a fixed reference region (Appendix~H). Figure~\ref{fig:waymo-left-shift} shows shifted renders.
 
 \begin{table}[!htbp]
 \centering
@@ -86,9 +86,8 @@ StreetForward & 84.67 & 883.29 & 103.79 & 1103.67 & 125.31 & 1589.43 \\
 \midrule
 DGGT-Full & 36.47 & 592.63 & 46.81 & 743.17 & 69.23 & 997.41 \\
 STORM+Difix & 33.19 & 578.43 & 42.87 & 723.61 & 65.31 & 945.27 \\
-FreeGen & 29.14 & \textbf{541.73} & \textbf{37.06} & \textbf{669.27} & \textbf{55.93} & 847.61 \\
 \midrule
-Ours & \textbf{28.52} & 544.27 & 37.43 & 673.17 & 58.19 & \textbf{817.13} \\
+Ours & \textbf{28.52} & \textbf{544.27} & \textbf{37.43} & \textbf{673.17} & \textbf{58.19} & \textbf{817.13} \\
 \bottomrule
 \end{tabular}%
 }
@@ -98,25 +97,25 @@ Ours & \textbf{28.52} & 544.27 & 37.43 & 673.17 & 58.19 & \textbf{817.13} \\
 \subsection{State-driven asset reuse}
 \label{sec:ablation-reuse}
 \paragraph{Asset edits.}
-We test fixed-asset reuse on twenty real scenes, each containing one vehicle and one human. A 1 m camera shift, $30^\circ$ vehicle rotation, and human pose change reuse fixed completed assets. Nine training/generation-seed combinations yield 360 actor edits. Structural integrity passes 334/360 (92.78\%); 298/360 (82.78\%) jointly pass structure, new-surface texture, identity, and geometry, exceeding Asset Harvester~\cite{cao2026assetharvester} by 2.50 percentage points. The latter leads identity preservation by 0.83 points. Across six edit levels, joint acceptance is 74.54\%, a 4.91-point gain (Appendix I).
+We test fixed-asset reuse on twenty real scenes, each containing one vehicle and one human. A 1 m camera shift, $30^\circ$ vehicle rotation, and human pose change reuse fixed completed assets. Nine training/generation-seed combinations yield 360 vehicle and human edits; camera shifts are scored separately. Structural integrity passes 334/360 (92.78\%); 298/360 (82.78\%) jointly pass structure, new-surface texture, identity, and geometry, compared with 80.28\% for Asset Harvester~\cite{cao2026assetharvester}, which leads identity preservation by 0.83 points. Across six edit levels, joint acceptance is 74.54\%, 4.91 points above Asset Harvester (Appendix~I).
 
 \paragraph{Observation preservation.}
 \label{sec:observation-preservation}
-Compared with the observed-only scene at fixed cameras and actor states, Ours preserves observed Gaussian parameters exactly, while input-view PSNR decreases by 0.03 dB and depth MAE increases by 2 mm. Previously observed human texture has canonical linear-RGB MAE 0.014. Appendix J reports parameter and rendering measurements.
+Compared with the observed-only scene at fixed cameras and actor states, Ours preserves observed Gaussian parameters exactly, while input-view PSNR decreases by 0.03 dB and depth MAE increases by 2 mm. Previously observed human texture has canonical linear-RGB MAE 0.014.
 
 \paragraph{Efficiency.}
-On an RTX 4090 (FP16, batch 1, rule C), construction takes $2.66\pm0.11$ s, single-camera composition/rendering $7.8\pm0.4$ ms at $240\times160$, and peak memory 14.2 GB. Reusing the constructed assets amortizes the total cost over 1,000 outputs to 10.46 ms each. Appendix K compares resolution and cost.
+On an RTX 4090 (FP16, batch 1, rule C), construction takes $2.66\pm0.11$ s, single-camera composition/rendering $7.8\pm0.4$ ms at $240\times160$, and peak memory 14.2 GB. Reusing the constructed assets amortizes the total cost over 1,000 outputs to 10.46 ms each. At $480\times320$ input and output, Ours exceeds every external method by at least 1.49 dB full-image PSNR and renders one image in 13.71 ms, versus 161.87 ms for DGGT-Full (Appendix~K).
 
 \subsection{Ablation studies}
 \label{sec:ablation-protocol}\label{sec:ablations}\label{sec:ablation-studies}
-Waymo ablations use one 29-timestamp window per test sequence, three cameras, and seven shared target timestamps (Appendix G).
+Waymo ablations use one 29-timestamp window per test sequence, three cameras, and seven shared target timestamps.
 
 \paragraph{Completion components.}
-The w/o GCM control disables non-observed, non-sky Gaussians. The w/o CCM control uses isolated per-component memories with the same parameters and global log context, retraining Stages~\mbox{3--4}. Variants share recovery, codec, states, data, and optimization budgets. Training samples $T$ uniformly; inference uses 24 Euler steps. The learned variants average three training and three generation seeds, retaining every output; w/o GCM is deterministic. At $T=8$, exchanging component context adds 0.627/0.934 dB full-image/dynamic PSNR (Table~\ref{tab:ablation-components}). Figure~\ref{fig:component-ablation} shows cleaner traffic-signal contours and sharper foliage detail with the full model. Pedestrian silhouettes and vehicle windows have fewer distortions and ghosting artifacts. Appendix H reports paired hidden-surface mechanism comparisons and visibility-stratified results.
+The w/o GCM control disables non-observed, non-sky Gaussians. The w/o CCM control uses isolated per-component memories with the same parameters and global log context, retraining Stages~\mbox{3--4}. Variants share recovery, codec, states, data, and optimization budgets. Training samples $T$ uniformly; inference uses 24 Euler steps. The learned variants average three training and three generation seeds, retaining every output; w/o GCM is deterministic. At $T=8$, exchanging component context adds 0.627/0.934 dB full-image/dynamic PSNR (Table~\ref{tab:ablation-components}). Figure~\ref{fig:component-ablation} shows cleaner traffic-signal contours and sharper foliage detail with the full model. Pedestrian silhouettes and vehicle windows have fewer distortions and ghosting artifacts. On 100 synthetic scenes with paired hidden-surface references, shared context exceeds task-adapted object-coupling and scene-latent completion by 0.67 and 0.94 dB hidden-region PSNR, and its gain rises from 0.03--0.05 dB on well-observed surfaces to 1.02--1.53 dB on severely missing ones. With matched queries, dense attention is 0.05 dB higher, while CCM completes $1.93\times$ faster with 42.71\% lower peak memory (Appendix~H).
 
 \begin{table}[!htbp]
   \centering\small
-  \caption{\textbf{Component ablations on Waymo.} $T=8$ timestamps (24 images), with shared recovery, codec, and target views. Full metrics and SDs are in Appendix G.}
+  \caption{\textbf{Component ablations on Waymo.} $T=8$ timestamps (24 images), with shared recovery, codec, and target views. Full metrics and SDs are in Appendix~G.}
   \label{tab:ablation-components}
   \setlength{\tabcolsep}{3pt}
   \renewcommand{\arraystretch}{1.12}
@@ -135,11 +134,11 @@ The w/o GCM control disables non-observed, non-sky Gaussians. The w/o CCM contro
 \end{table}
 
 \paragraph{Input-timestamp sensitivity.}
-Fixed checkpoints use nested $T=2,4,8$ inputs (6/12/24 images) over the same time span and target views. At each input count, evidence and queries are reconstructed from the supplied inputs. CCM adds 1.104, 0.738, and 0.627 dB PSNR and reduces LPIPS by 0.041, 0.028, and 0.018 (Table~\ref{tab:ablation-inputs}), with the largest benefit at the sparsest input setting. Appendix G gives the input lists and seed statistics.
+Fixed checkpoints use nested $T=2,4,8$ inputs (6/12/24 images) over the same time span and target views. At each input count, evidence and queries are reconstructed from the supplied inputs. CCM adds 1.104, 0.738, and 0.627 dB PSNR and reduces LPIPS by 0.041, 0.028, and 0.018 (Table~\ref{tab:ablation-inputs}), with the largest benefit at the sparsest input setting.
 
 \begin{table}[!htbp]
 \centering\small
-\caption{\textbf{Input-timestamp sensitivity.} Fixed checkpoints, time span, and target views; $T$ counts timestamps, each with three images. Full SDs are in Appendix G.}
+\caption{\textbf{Input-timestamp sensitivity.} Fixed checkpoints, time span, and target views; $T$ counts timestamps, each with three images.}
 \label{tab:ablation-inputs}
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.08}

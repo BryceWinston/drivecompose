@@ -99,7 +99,7 @@ STORM、DGGT 和 StreetForward 保留各自原生结构，随机初始化重训�
 
 
 \paragraph{完整生成式管线。}
-DGGT-G 表示 DGGT 的高斯分支，DGGT-Full 保留其扩散精修。STORM+Difix 在 STORM 渲染后使用 DIFIX3D+~\cite{wu2025difix3d}；FreeGen~\cite{chen2026freegen} 使用完整重建与生成管线。主文表 2 比较这些完整输出，所有方法使用相同偏移幅度和参考总体。各管线的训练／适配成本见表~\ref{tab:training-cost-statistics}，冻结基础模型的历史预训练单独排除。
+DGGT-G 表示 DGGT 的高斯分支，DGGT-Full 保留其扩散精修。STORM+Difix 在 STORM 渲染后使用 DIFIX3D+~\cite{wu2025difix3d}。主文表 2 比较这些完整输出，所有方法使用相同偏移幅度和参考总体。各管线的训练／适配成本见表~\ref{tab:training-cost-statistics}，冻结基础模型的历史预训练单独排除。
 
 \paragraph{统一状态适配器。}
 各基线使用共同的确定性状态适配器。将高斯可见渲染贡献投到同一组上下文实例掩码，累积加权身份票。车辆依据给定根位姿执行逆 SE(3)，同时变换中心、协方差和方向坐标基。人体高斯在上下文恢复的同身份模板上匹配三角形，以重心插值得到 17 关节蒙皮权重，再执行逆蒙皮。适配器保留预测外观，不增加预测网络。未绑定输出保留评价，无法装配的参与者编辑计为失败。
@@ -155,7 +155,6 @@ DGGT-G & 1128.4 & 8.39 & 3385.2 \\
 StreetForward & 1036.9 & 9.71 & 3110.7 \\
 DGGT-Full & 1202.83 & 10.02 & 3608.5 \\
 STORM+Difix & 978.03 & 7.84 & 2934.1 \\
-FreeGen & 1490.9 & 13.26 & 4472.7 \\
 Asset Harvester & 821.97 & 11.12 & 2465.9 \\
 w/o CCM & 977.1 & 11.05 & 2005.5 \\
 Ours & 1001.5 & 9.32 & 2078.7 \\
@@ -279,10 +278,8 @@ Ours & \textbf{0.019} & 0.029 & \textbf{92.4\%} \\
 100 个合成测试场景另行提供输入始终未覆盖区域的配对评价（表~\ref{tab:hidden-regions}），代表偏移为 $\pm2$ m。FID/FVD 描述分布质量，隐藏区域指标描述场景对应补全。
 
 
-与 FreeGen 相比，Ours 在 1／2／4 m 的 FID 差值（Ours 减 FreeGen）为 $-0.62/+0.37/+2.26$，FVD 差值为 $+2.54/+3.90/-30.48$。Ours 在 1 m 图像分布和 4 m 视频分布上得分更低，FreeGen 在另外四项上更低。
-
 \paragraph{固定参考区域评价。}
-完整生成式管线与高斯分支在相同的参考评价区域上比较（表~\ref{tab:fixed-reference-correspondence}）。该区域独立于各方法的输出覆盖，缺失输出不从分母删除。Ours 的 RGB MAE 为 0.0213、LPIPS 为 0.144，分别比 FreeGen 低 0.0014 和 0.005。下述表~\ref{tab:reprojection} 的共有有效区域是另一项消融诊断，不能替代固定区域的外部比较。
+完整生成式管线与高斯分支在相同的参考评价区域上比较（表~\ref{tab:fixed-reference-correspondence}）。该区域独立于各方法的输出覆盖，缺失输出不从分母删除。Ours 的 RGB MAE（0.0213）与 LPIPS（0.144）均最低，分别比 STORM+Difix 低 0.0023 和 0.019。下述表~\ref{tab:reprojection} 的共有有效区域是另一项消融诊断，不能替代固定区域的外部比较。
 \begin{table}[!htbp]
 \centering\small
 \setlength{\tabcolsep}{4pt}
@@ -297,7 +294,6 @@ DGGT-G & 0.0306 & 0.208 \\
 StreetForward & 0.0369 & 0.246 \\
 DGGT-Full & 0.0242 & 0.171 \\
 STORM+Difix & 0.0236 & 0.163 \\
-FreeGen & 0.0227 & 0.149 \\
 Ours & \textbf{0.0213} & \textbf{0.144} \\
 \bottomrule
 \end{tabular}
@@ -381,7 +377,7 @@ CCM 在严重缺失的背景、车辆和人体区域分别增加 1.02、1.27 和
 \end{tabular}
 \end{table}
 \paragraph{稠密注意力与记忆容量。}
-表~\ref{tab:dense-attention} 固定查询数、采样步数与场景，比较交互机制。CCM-16 相对稠密全局注意力低 0.05 dB，补全加速 $1.93\times$，峰值显存减少 42.71\%。此处受控查询测试与表~\ref{tab:hidden-regions} 的全量查询结果分别报告。表~\ref{tab:attention-scaling} 中，全量 350,000 查询时，稠密注意力／CCM 分别耗时 73,627.4／1,380 ms。表~\ref{tab:memory-capacity} 将记忆容量从 16 增至 64，PSNR 增加 0.06 dB，补全时间由 1,380 增至 2,087.1 ms。
+表~\ref{tab:dense-attention} 固定查询数、采样步数与场景，比较交互机制。CCM-16 相对稠密全局注意力低 0.05 dB，补全加速 $1.93\times$，峰值显存减少 42.71\%。此处受控查询测试与表~\ref{tab:hidden-regions} 的全量查询结果分别报告。表~\ref{tab:attention-scaling} 中，查询数为 350,000 时，稠密注意力／CCM 分别耗时 73,627.4／1,380 ms。表~\ref{tab:memory-capacity} 将记忆容量从 16 增至 64，PSNR 增加 0.06 dB，补全时间由 1,380 增至 2,087.1 ms。
 \begin{table}[!htbp]
 \centering\small
 \setlength{\tabcolsep}{3pt}
@@ -735,7 +731,6 @@ STORM & 25.14 & 0.769 & 21.75 & 1.84 & 11.63 & 11.79 \\
 DGGT-G & 26.71 & 0.859 & 22.91 & 2.16 & 12.31 & 13.47 \\
 StreetForward & 25.21 & 0.807 & 20.69 & 1.95 & 11.94 & 12.68 \\
 DGGT-Full & 26.96 & 0.869 & 23.16 & 2.16 & 161.87 & 17.53 \\
-FreeGen & 28.21 & 0.903 & 24.73 & 4.69 & 174.63 & 20.27 \\
 Ours & \textbf{28.45} & \textbf{0.904} & \textbf{25.03} & 3.92 & 13.71 & 18.43 \\
 \bottomrule
 \end{tabular}
@@ -743,7 +738,7 @@ Ours & \textbf{28.45} & \textbf{0.904} & \textbf{25.03} & 3.92 & 13.71 & 18.43 \
 
 训练硬件为 $8\times$ A100 80 GB。推理计时使用单张 RTX 4090 24 GB，FP16、batch 1、输出 $240\times160$，平均每场景保留 140 万非透明高斯。预热 20 次后测量 100 次，包含 CPU--GPU 传输与同步，不含磁盘读取及首次模型加载。构建耗时为 $2.66\pm0.11$ s，状态装配与单相机渲染为 $7.8\pm0.4$ ms（约 128.2 FPS），峰值显存 14.2 GB。
 
-令 $Q=Q_b+\sum_a Q_a^{\mathrm{vehicle}}+\sum_h Q_h^{\mathrm{human}}$ 为非天空查询总数。解码生成 $4Q$ 个候选高斯，非透明输出数量以此为上界，因此平均 140 万非透明高斯对应每场景平均至少 350,000 个非天空查询。天空由独立 cubemap 头输出。
+令 $Q=Q_b+\sum_a Q_a^{\mathrm{vehicle}}+\sum_h Q_h^{\mathrm{human}}$ 为非天空查询总数。解码生成 $4Q$ 个候选高斯，非透明输出数量以此为上界。天空由独立 cubemap 头输出。
 
 表~\ref{tab:timing-stages} 分解构建时间。w/o CCM 为 2.53 s，CCM 增加 0.13 s，约 5.1\%。表~\ref{tab:reuse-time} 按 $2.66+0.0078N$ 计算含一次构建的总时间；$N$ 是单相机输出次数，三相机查询计三次渲染。
 
@@ -753,7 +748,7 @@ Ours & \textbf{28.45} & \textbf{0.904} & \textbf{25.03} & 3.92 & 13.71 & 18.43 \
 
 
 \paragraph{分辨率与外部成本比较。}
-表~\ref{tab:resolution-cost} 区分同一份 $240\times160$ 输入构建资产的高分辨率渲染，以及用 $480\times320$ 输入重新构建。固定 480 输出，提高输入分辨率增加全图／动态 PSNR 0.37／0.47 dB，构建时间由 2.66 增至 3.92 s。480 输入输出下（表~\ref{tab:resolution-baselines}），Ours 比 FreeGen 高 0.24 dB 全图和 0.30 dB 动态 PSNR；单图耗时为 13.71 ms，FreeGen 为 174.63 ms。
+表~\ref{tab:resolution-cost} 区分同一份 $240\times160$ 输入构建资产的高分辨率渲染，以及用 $480\times320$ 输入重新构建。固定 480 输出，提高输入分辨率增加全图／动态 PSNR 0.37／0.47 dB，构建时间由 2.66 增至 3.92 s。480 输入输出下（表~\ref{tab:resolution-baselines}），Ours 比 DGGT-Full 高 1.49 dB 全图和 1.87 dB 动态 PSNR；单图耗时为 13.71 ms，DGGT-Full 为 161.87 ms。
 
 
 

@@ -7,7 +7,7 @@ DriveCompose 在世界与规范坐标系中聚合观测，联合补全潜码，�
 \subsection{问题定义}
 \label{sec:representation}
 
-输入是同步图像日志 $\mathbf I_{t,v}$、时间戳、相机内参及相机到传感器支架的标定。受控评价给定支架位姿、实例身份、车辆框与根轨迹，以及目标人体关节。人体体型与绑定由上下文恢复，重建不使用目标 RGB 或测试 LiDAR。坐标约定与图像预处理见补充材料附录 D。
+输入是同步图像日志 $\mathbf I_{t,v}$、时间戳、相机内参及相机到传感器支架的标定。受控评价给定支架位姿、实例身份、车辆框与根轨迹，以及目标人体关节。人体体型与绑定由上下文恢复，重建不使用目标 RGB 或测试 LiDAR。
 
 输出为可组合高斯场景
 
@@ -33,7 +33,7 @@ DriveCompose 在世界与规范坐标系中聚合观测，联合补全潜码，�
 \subsection{视觉恢复与规范聚合}
 \label{sec:visual-encoding}
 
-Driving Log Encoder 从各图像提取 patch 特征，并在相机与时间戳之间交换池化上下文~\cite{dosovitskiy2021vit,vaswani2017attention}。几何预测头输出相机光轴深度、法线、置信度、语义和实例归属，将图像特征关联到三维表面及其所属组件。轨迹级身份槽将持久身份、尺寸和人体体型与逐帧变化的根位姿、关节旋转分开表示。网络结构与状态参数化细节见补充材料附录 D。
+Driving Log Encoder 从各图像提取 patch 特征，并在相机与时间戳之间交换池化上下文~\cite{dosovitskiy2021vit,vaswani2017attention}。几何预测头输出相机光轴深度、法线、置信度、语义和实例归属，将图像特征关联到三维表面及其所属组件。轨迹级身份槽将持久身份、尺寸和人体体型与逐帧变化的根位姿、关节旋转分开表示。
 
 \label{sec:queries}
 
@@ -57,7 +57,7 @@ Driving Log Encoder 从各图像提取 patch 特征，并在相机与时间戳�
 \label{eq:query-placement}
 \end{equation}
 
-其中，$\bar{\mathbf q}_i$ 为齐次坐标，$\operatorname{xyz}$ 提取欧氏坐标，$\mathbf A_i(t)$ 为加权蒙皮变换。投影得到查询深度 $z_{i,t,v}$，并采样图像特征 $\boldsymbol\phi_{i,t,v}$、深度 $d_{i,t,v}$ 和置信度 $c_{i,t,v}$，按置信度及归一化深度残差 $r=(d-z)/(\eta_{\rm abs}+\eta_{\rm rel}d)$ 为观测赋权。指示量 $a_{i,t,v}$ 选择同一实例中可见且深度一致的观测（附录 D）：
+其中，$\bar{\mathbf q}_i$ 为齐次坐标，$\operatorname{xyz}$ 提取欧氏坐标，$\mathbf A_i(t)$ 为加权蒙皮变换。投影得到查询深度 $z_{i,t,v}$，并采样图像特征 $\boldsymbol\phi_{i,t,v}$、深度 $d_{i,t,v}$ 和置信度 $c_{i,t,v}$，按置信度及归一化深度残差 $r=(d-z)/(\eta_{\rm abs}+\eta_{\rm rel}d)$ 为观测赋权。指示量 $a_{i,t,v}$ 选择同一实例中可见且深度一致的观测：
 
 \begin{align}
 w_{i,t,v}&=a_{i,t,v}c_{i,t,v}\exp(-r_{i,t,v}^2/2),\\
@@ -66,7 +66,7 @@ w_{i,t,v}&=a_{i,t,v}c_{i,t,v}\exp(-r_{i,t,v}^2/2),\\
 \label{eq:aggregation}
 \end{align}
 
-掩码 $m_i$、$f_i$ 和 $u_i$ 区分已见表面、射线标记的自由空间和未知内容，满足 $m_i+f_i+u_i=1$。置信度取有效观测中的最大值；两条可靠深度射线投票确立自由空间标签。主协议采用中心射线规则 C，足迹规则 F 检查单元的完整投影范围。天空特征利用相机旋转与天空语义，按观察方向聚合。两种规则及其下游影响见附录 D。
+掩码 $m_i$、$f_i$ 和 $u_i$ 区分已见表面、射线标记的自由空间和未知内容，满足 $m_i+f_i+u_i=1$。置信度取有效观测中的最大值；两条可靠深度射线投票确立自由空间标签。主协议采用中心射线规则 C，足迹规则 F 检查单元的完整投影范围。天空特征利用相机旋转与天空语义，按观察方向聚合。
 
 \subsection{联合潜空间补全}
 \label{sec:codec}
@@ -85,7 +85,7 @@ w_{i,t,v}&=a_{i,t,v}c_{i,t,v}\exp(-r_{i,t,v}^2/2),\\
 
 \paragraph{跨组件记忆。}
 
-生成式补全模块（Generative Completion Module，GCM）由场景条件流 Transformer 与约束采样组成（图~\ref{fig:joint-completion}）。我们采用 DiT 风格的 Transformer~\cite{peebles2023dit} 参数化补全速度场，并通过流匹配训练~\cite{lipman2022flowmatching}。输入结合当前潜码、已见潜码、掩码、置信度、类型、两种坐标描述、单元尺度和池化日志特征。背景按空间邻域分组，每个资产构成一个局部组，天空方向按立方体贴图面分组。局部自注意力分别处理各组，跨组件记忆（Cross-Component Memory，CCM）随后在各组之间交换上下文：
+生成式补全模块（Generative Completion Module，GCM）由场景条件流 Transformer 与约束采样组成（图~\ref{fig:joint-completion}）。我们采用 DiT 风格的 Transformer~\cite{peebles2023dit} 参数化补全速度场，并通过流匹配训练~\cite{lipman2022flowmatching}。输入结合当前潜码、已见潜码、掩码、置信度、类型、两种坐标描述、单元尺度和池化日志特征。背景按空间邻域分组，每个资产构成一个局部组，天空方向按立方体贴图面分组。局部自注意力分别处理各组，跨组件记忆（Cross-Component Memory，CCM）随后沿用诱导集合注意力~\cite{lee2019settransformer,jaegle2021perceiver}，通过可学习记忆 token 在各组之间交换上下文：
 
 \begin{align}
 \mathbf M'&=\mathbf M+\operatorname{Attn}_{r}
@@ -133,14 +133,14 @@ w_{i,t,v}&=a_{i,t,v}c_{i,t,v}\exp(-r_{i,t,v}^2/2),\\
 \paragraph{分类型高斯解码。}
 \label{sec:decoding}
 
-背景、刚体和人体高斯解码器分别将每个查询独立映射为中心位于其支撑单元内的 $K=4$ 个子高斯。人体子高斯继承查询的蒙皮权重；刚体子高斯共用所属资产的刚体变换。不透明度乘以 $1-f_i$，使自由空间查询不能产生可见高斯。独立天空头在观测支持的方向域 $V_{\rm sky}$ 内预测立方体贴图颜色。高斯与外观参数化详见补充材料附录 E。
+背景、刚体和人体高斯解码器分别将每个查询独立映射为中心位于其支撑单元内的 $K=4$ 个子高斯。人体子高斯继承查询的蒙皮权重；刚体子高斯共用所属资产的刚体变换。不透明度乘以 $1-f_i$，使自由空间查询不能产生可见高斯。独立天空头在观测支持的方向域 $V_{\rm sky}$ 内预测立方体贴图颜色。
 
 各查询独立解码，因此冻结编解码器并保留已见潜码即可保持已见高斯参数。自由射线损失约束新增高斯对可见性与透明度混合的影响，第~\ref{sec:observation-preservation} 节给出实测。
 
 \subsection{状态驱动场景组合}
 \label{sec:composition}
 
-时刻 $k$ 的状态 $s_k$ 指定自车位姿、活动资产、刚体变换，以及人体根位姿与关节姿态。刚体变换更新规范高斯的中心和协方差，人体关节姿态通过存储的蒙皮权重使高斯变形，补全表面因此随相应身体部位运动。具体变换见补充材料附录 C。渲染器合成背景、活动资产和有效天空：
+时刻 $k$ 的状态 $s_k$ 指定自车位姿、活动资产、刚体变换，以及人体根位姿与关节姿态。刚体变换更新规范高斯的中心和协方差，人体关节姿态通过存储的蒙皮权重使高斯变形，补全表面因此随相应身体部位运动。渲染器合成背景、活动资产和有效天空：
 
 \begin{equation}
 o_k=\mathcal R(\operatorname{Compose}(\mathcal W,s_k),\mathcal C_k).

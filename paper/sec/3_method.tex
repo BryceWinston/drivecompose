@@ -7,7 +7,7 @@ DriveCompose aggregates observations in world and canonical coordinates, jointly
 \subsection{Problem formulation}
 \label{sec:representation}
 
-The input is a synchronized image log $\mathbf I_{t,v}$ with timestamps, camera intrinsics, and camera-to-rig calibration. The controlled evaluations provide rig poses, instance identities, vehicle boxes and root trajectories, and target human joints. Human shape and binding are recovered from context; no target RGB or test LiDAR enters reconstruction. Coordinate conventions and image preprocessing are detailed in Appendix D of the supplementary material.
+The input is a synchronized image log $\mathbf I_{t,v}$ with timestamps, camera intrinsics, and camera-to-rig calibration. The controlled evaluations provide rig poses, instance identities, vehicle boxes and root trajectories, and target human joints. Human shape and binding are recovered from context; no target RGB or test LiDAR enters reconstruction.
 
 The output is a compositional Gaussian scene
 
@@ -33,7 +33,7 @@ The query layout assigns each latent code to a spatial location and scene compon
 \subsection{Visual recovery and canonical aggregation}
 \label{sec:visual-encoding}
 
-The Driving Log Encoder extracts patch features from each image and exchanges pooled context across cameras and timestamps~\cite{dosovitskiy2021vit,vaswani2017attention}. Geometry heads predict camera-axis depth, normals, confidence, semantics, and instance assignments, linking image features to 3D surfaces and their owning components. Trajectory-level identity slots separate persistent identity, dimensions, and human shape from frame-dependent root poses and joint rotations. Architectural details and state parameterization are given in Appendix D of the supplementary material.
+The Driving Log Encoder extracts patch features from each image and exchanges pooled context across cameras and timestamps~\cite{dosovitskiy2021vit,vaswani2017attention}. Geometry heads predict camera-axis depth, normals, confidence, semantics, and instance assignments, linking image features to 3D surfaces and their owning components. Trajectory-level identity slots separate persistent identity, dimensions, and human shape from frame-dependent root poses and joint rotations.
 
 \label{sec:queries}
 
@@ -57,7 +57,7 @@ To aggregate evidence for the same surface across time, we place each canonical 
 \label{eq:query-placement}
 \end{equation}
 
-Here $\bar{\mathbf q}_i$ is homogeneous, $\operatorname{xyz}$ extracts Euclidean coordinates, and $\mathbf A_i(t)$ is the weighted skinning transform. Projection gives query depth $z_{i,t,v}$ and samples image features $\boldsymbol\phi_{i,t,v}$, depth $d_{i,t,v}$, and confidence $c_{i,t,v}$. We weight observations by confidence and normalized depth residual $r=(d-z)/(\eta_{\rm abs}+\eta_{\rm rel}d)$. The indicator $a_{i,t,v}$ selects visible, depth-consistent observations of the same instance (Appendix D):
+Here $\bar{\mathbf q}_i$ is homogeneous, $\operatorname{xyz}$ extracts Euclidean coordinates, and $\mathbf A_i(t)$ is the weighted skinning transform. Projection gives query depth $z_{i,t,v}$ and samples image features $\boldsymbol\phi_{i,t,v}$, depth $d_{i,t,v}$, and confidence $c_{i,t,v}$. We weight observations by confidence and normalized depth residual $r=(d-z)/(\eta_{\rm abs}+\eta_{\rm rel}d)$. The indicator $a_{i,t,v}$ selects visible, depth-consistent observations of the same instance:
 
 \begin{align}
 w_{i,t,v}&=a_{i,t,v}c_{i,t,v}\exp(-r_{i,t,v}^2/2),\\
@@ -66,7 +66,7 @@ w_{i,t,v}&=a_{i,t,v}c_{i,t,v}\exp(-r_{i,t,v}^2/2),\\
 \label{eq:aggregation}
 \end{align}
 
-The masks $m_i$, $f_i$, and $u_i$ distinguish observed surfaces, ray-labeled free space, and unknown content, with $m_i+f_i+u_i=1$. Confidence is the maximum over valid observations; two reliable depth-ray votes establish a free-space label. Our main protocol uses center-ray voting (C); the footprint alternative (F) tests the projected cell extent. Sky features are aggregated by viewing direction using camera rotation and sky semantics. Appendix D reports both rules and their downstream effects.
+The masks $m_i$, $f_i$, and $u_i$ distinguish observed surfaces, ray-labeled free space, and unknown content, with $m_i+f_i+u_i=1$. Confidence is the maximum over valid observations; two reliable depth-ray votes establish a free-space label. Our main protocol uses center-ray voting (C); the footprint alternative (F) tests the projected cell extent. Sky features are aggregated by viewing direction using camera rotation and sky semantics.
 
 \subsection{Joint latent completion}
 \label{sec:codec}
@@ -85,7 +85,7 @@ Type-specific encoders map the 129-dimensional aggregate and its spatial support
 
 \paragraph{Cross-component memory.}
 
-Our generative completion module (GCM) combines a scene-conditioned flow transformer with constrained sampling (Fig.~\ref{fig:joint-completion}). We parameterize its completion velocity with a DiT-style transformer~\cite{peebles2023dit} trained by flow matching~\cite{lipman2022flowmatching}. Its input combines current and observed codes, masks, confidence, type, both coordinate descriptions, cell scales, and pooled log features. Background groups follow spatial neighborhoods, each asset forms a local group, and sky directions are grouped by cubemap face. Local self-attention processes these groups separately. Cross-component memory (CCM) then exchanges context across groups:
+Our generative completion module (GCM) combines a scene-conditioned flow transformer with constrained sampling (Fig.~\ref{fig:joint-completion}). We parameterize its completion velocity with a DiT-style transformer~\cite{peebles2023dit} trained by flow matching~\cite{lipman2022flowmatching}. Its input combines current and observed codes, masks, confidence, type, both coordinate descriptions, cell scales, and pooled log features. Background groups follow spatial neighborhoods, each asset forms a local group, and sky directions are grouped by cubemap face. Local self-attention processes these groups separately. Cross-component memory (CCM) then exchanges context across groups through learnable memory tokens, following induced set attention~\cite{lee2019settransformer,jaegle2021perceiver}:
 
 \begin{align}
 \mathbf M'&=\mathbf M+\operatorname{Attn}_{r}
@@ -133,14 +133,14 @@ After every step, $\Pi_{m,f}$ restores observed codes and clears free-space code
 \paragraph{Type-specific Gaussian decoding.}
 \label{sec:decoding}
 
-Background, rigid, and human Gaussian decoders independently map each query to $K=4$ child Gaussians whose centers lie in its support cell. Human children inherit the query's skinning weights; rigid children share their asset's rigid transform. Opacity is multiplied by $1-f_i$, so free queries cannot produce visible Gaussians. A separate sky head predicts cubemap colors within the observation-supported domain $V_{\rm sky}$. Gaussian and appearance parameterizations are detailed in Appendix E of the supplementary material.
+Background, rigid, and human Gaussian decoders independently map each query to $K=4$ child Gaussians whose centers lie in its support cell. Human children inherit the query's skinning weights; rigid children share their asset's rigid transform. Opacity is multiplied by $1-f_i$, so free queries cannot produce visible Gaussians. A separate sky head predicts cubemap colors within the observation-supported domain $V_{\rm sky}$.
 
 Because decoding is query-wise, freezing the codec and retaining observed codes preserves observed Gaussian parameters. Free-ray losses constrain the visibility and alpha-compositing effects of added Gaussians, measured in Sec.~\ref{sec:observation-preservation}.
 
 \subsection{State-driven scene composition}
 \label{sec:composition}
 
-At time step $k$, state $s_k$ specifies the ego pose, active assets, rigid transforms, and human root and joint poses. Rigid transforms update canonical Gaussian centers and covariances. Human joint poses deform them through the stored skinning weights, so completed surfaces move with the corresponding body parts. Appendix C gives the transformations. The renderer composites the background, active assets, and valid sky:
+At time step $k$, state $s_k$ specifies the ego pose, active assets, rigid transforms, and human root and joint poses. Rigid transforms update canonical Gaussian centers and covariances. Human joint poses deform them through the stored skinning weights, so completed surfaces move with the corresponding body parts. The renderer composites the background, active assets, and valid sky:
 
 \begin{equation}
 o_k=\mathcal R(\operatorname{Compose}(\mathcal W,s_k),\mathcal C_k).
@@ -153,4 +153,4 @@ The background and canonical assets remain fixed; new camera and actor states re
 \label{sec:training}
 We train recovery and the codec before learning the completion prior and adapting the GCM through rendering. Complete targets use the partial input's query layout $\mathcal Q$, including its cell scales, component ownership, and human bindings. Complete meshes supply surface samples within each cell. Multiview rendering and the frozen visual encoder produce $\mathbf h_i^{\rm full}$, which the shared type-specific encoder maps to $\mathbf z_{1,i}=E_{k_i}([\mathbf h_i^{\rm full};\mathbf q_i;\boldsymbol\delta_i])$. Surface-free cells receive zero features and opacity supervision.
 
-After codec fitting, recovery and the codec remain frozen. Stage 3 learns from complete synthetic targets at every unknown query. Stage 4 updates only the GCM, mixing complete synthetic samples and the 740 real training logs at $1{:}3$. The four stages use 287,360 updates in total; Appendix B gives target construction, network sizes, and training settings.
+After codec fitting, recovery and the codec remain frozen. Stage 3 learns from complete synthetic targets at every unknown query. Stage 4 updates only the GCM, mixing complete synthetic samples and the 740 real training logs at $1{:}3$. The four stages use 287,360 updates in total; Appendix~B gives target construction, network sizes, and training settings.

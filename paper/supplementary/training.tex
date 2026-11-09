@@ -28,7 +28,7 @@ Human identities & 2,500 & 250 & 250 & Shape, texture, template, skeleton, skinn
 
 
 \paragraph{Complete targets on a fixed layout.}
-Partial input establishes $\mathcal Q$. Both branches use the same query positions, scales, types, order, component ownership, and human bindings, following the block order and within-block indices of \texttt{QueryBundle.blocks}. Complete meshes are queried on this fixed support. For each non-sky query, the owning component's mesh is expressed in the query frame and intersected with its cell $B_i$. Positive-area triangle intersections supply surface targets. A cell with no intersecting surface receives a surface-free target after asset completeness checks.
+Partial input establishes $\mathcal Q$. Both branches use the same query positions, scales, types, order, component ownership, and human bindings, following the same block order and within-block indices as the partial input. Complete meshes are queried on this fixed support. For each non-sky query, the owning component's mesh is expressed in the query frame and intersected with its cell $B_i$. Positive-area triangle intersections supply surface targets. A cell with no intersecting surface receives a surface-free target after asset completeness checks.
 
 For an intersecting triangle fragment $f$ of area $A_f$, we draw
 \begin{equation}

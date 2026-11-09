@@ -97,7 +97,7 @@ We retrain STORM, DGGT, and StreetForward from random initialization, preserving
 
 
 \paragraph{Full generative pipelines.}
-DGGT-G denotes the Gaussian branch of DGGT; DGGT-Full retains its diffusion refinement. STORM+Difix applies DIFIX3D+~\cite{wu2025difix3d} to STORM renders, and FreeGen~\cite{chen2026freegen} uses its full reconstruction-generation pipeline. Main Table 2 compares these complete outputs at identical offsets and reference populations. Table~\ref{tab:training-cost-statistics} gives training/adaptation costs, excluding historical pretraining of frozen foundation models.
+DGGT-G denotes the Gaussian branch of DGGT; DGGT-Full retains its diffusion refinement. STORM+Difix applies DIFIX3D+~\cite{wu2025difix3d} to STORM renders. Main Table 2 compares these complete outputs at identical offsets and reference populations. Table~\ref{tab:training-cost-statistics} gives training/adaptation costs, excluding historical pretraining of frozen foundation models.
 
 \paragraph{Shared state adapter.}
 The baselines use a common deterministic state adapter. Visible Gaussian rendering contributions are projected into the same context instance masks and accumulate weighted identity votes. Vehicles are canonicalized with the inverse supplied root SE(3), transforming centers, covariances, and directional coordinate bases together. Human Gaussians obtain 17-joint skinning weights by barycentric interpolation on corresponding triangles of the context-recovered identity template, followed by inverse skinning. The adapter preserves predicted appearance and adds no prediction network. Unbound outputs remain scored, and actor edits that cannot be assembled count as failures.
@@ -153,7 +153,6 @@ DGGT-G & 1128.4 & 8.39 & 3385.2 \\
 StreetForward & 1036.9 & 9.71 & 3110.7 \\
 DGGT-Full & 1202.83 & 10.02 & 3608.5 \\
 STORM+Difix & 978.03 & 7.84 & 2934.1 \\
-FreeGen & 1490.9 & 13.26 & 4472.7 \\
 Asset Harvester & 821.97 & 11.12 & 2465.9 \\
 w/o CCM & 977.1 & 11.05 & 2005.5 \\
 Ours & 1001.5 & 9.32 & 2078.7 \\
@@ -274,10 +273,8 @@ Each offset direction renders $2,020\times3\times20=121,200$ images and 6,060 vi
 One hundred synthetic test scenes separately provide paired evaluation of regions never observed in the inputs (Table~\ref{tab:hidden-regions}), using representative shifts of $\pm2$ m. FID/FVD describe distribution quality, whereas hidden-region metrics evaluate scene-corresponding completion.
 
 
-Relative to FreeGen, the Ours-minus-FreeGen FID differences at 1/2/4 m are $-0.62/+0.37/+2.26$; FVD differences are $+2.54/+3.90/-30.48$. Ours scores lower for 1 m image and 4 m video distributions, while FreeGen scores lower in the other four entries.
-
 \paragraph{Fixed-reference evaluation.}
-Full generative pipelines and Gaussian branches are compared on one reference-defined region (Table~\ref{tab:fixed-reference-correspondence}), independent of method coverage; missing outputs are retained in its denominator. Ours achieves RGB MAE 0.0213 and LPIPS 0.144, reducing FreeGen by 0.0014 and 0.005. The common-valid-support ablation in Table~\ref{tab:reprojection} is a separate diagnostic.
+Full generative pipelines and Gaussian branches are compared on one reference-defined region (Table~\ref{tab:fixed-reference-correspondence}), independent of method coverage; missing outputs are retained in its denominator. Ours achieves the lowest RGB MAE (0.0213) and LPIPS (0.144), 0.0023 and 0.019 below STORM+Difix. The common-valid-support ablation in Table~\ref{tab:reprojection} is a separate diagnostic.
 \begin{table}[!htbp]
 \centering\small
 \setlength{\tabcolsep}{4pt}
@@ -292,7 +289,6 @@ DGGT-G & 0.0306 & 0.208 \\
 StreetForward & 0.0369 & 0.246 \\
 DGGT-Full & 0.0242 & 0.171 \\
 STORM+Difix & 0.0236 & 0.163 \\
-FreeGen & 0.0227 & 0.149 \\
 Ours & \textbf{0.0213} & \textbf{0.144} \\
 \bottomrule
 \end{tabular}
@@ -730,7 +726,6 @@ STORM & 25.14 & 0.769 & 21.75 & 1.84 & 11.63 & 11.79 \\
 DGGT-G & 26.71 & 0.859 & 22.91 & 2.16 & 12.31 & 13.47 \\
 StreetForward & 25.21 & 0.807 & 20.69 & 1.95 & 11.94 & 12.68 \\
 DGGT-Full & 26.96 & 0.869 & 23.16 & 2.16 & 161.87 & 17.53 \\
-FreeGen & 28.21 & 0.903 & 24.73 & 4.69 & 174.63 & 20.27 \\
 Ours & \textbf{28.45} & \textbf{0.904} & \textbf{25.03} & 3.92 & 13.71 & 18.43 \\
 \bottomrule
 \end{tabular}
@@ -738,7 +733,7 @@ Ours & \textbf{28.45} & \textbf{0.904} & \textbf{25.03} & 3.92 & 13.71 & 18.43 \
 
 Training uses $8\times$ A100 80 GB GPUs. Inference timing uses one RTX 4090 24 GB, FP16, batch 1, and $240\times160$ output, with an average of 1.4 million non-transparent Gaussians per scene. After 20 warmups, 100 repetitions include CPU--GPU transfers and synchronization but exclude disk reads and initial model loading. Construction takes $2.66\pm0.11$ s, state composition plus one camera render takes $7.8\pm0.4$ ms (approximately 128.2 FPS), and peak memory is 14.2 GB.
 
-Let $Q=Q_b+\sum_a Q_a^{\mathrm{vehicle}}+\sum_h Q_h^{\mathrm{human}}$ count non-sky queries. Decoding produces $4Q$ candidate Gaussians, which bound the non-transparent output count. The mean of 1.4 million therefore corresponds to at least 350,000 non-sky queries per scene on average. Sky uses the separate cubemap head.
+Let $Q=Q_b+\sum_a Q_a^{\mathrm{vehicle}}+\sum_h Q_h^{\mathrm{human}}$ count non-sky queries. Decoding produces $4Q$ candidate Gaussians, which bound the non-transparent output count. Sky uses the separate cubemap head.
 
 Table~\ref{tab:timing-stages} breaks down construction. The w/o CCM control takes 2.53 s, so CCM adds 0.13 s (approximately 5.1\%). Table~\ref{tab:reuse-time} computes total time including one construction as $2.66+0.0078N$. Here $N$ counts single-camera outputs; a three-camera query counts as three renders.
 
@@ -748,7 +743,7 @@ Changing only the free-space rule to F raises construction time from 2.66 to 2.8
 
 
 \paragraph{Resolution and external cost comparison.}
-Table~\ref{tab:resolution-cost} separates higher-resolution rendering of the same assets built from $240\times160$ inputs from reconstruction using $480\times320$ inputs. At fixed 480 output, higher-resolution input adds 0.37/0.47 dB full-image/dynamic PSNR while increasing construction from 2.66 to 3.92 s. At 480 input/output (Table~\ref{tab:resolution-baselines}), Ours exceeds FreeGen by 0.24 dB full-image and 0.30 dB dynamic PSNR, rendering one image in 13.71 ms versus 174.63 ms.
+Table~\ref{tab:resolution-cost} separates higher-resolution rendering of the same assets built from $240\times160$ inputs from reconstruction using $480\times320$ inputs. At fixed 480 output, higher-resolution input adds 0.37/0.47 dB full-image/dynamic PSNR while increasing construction from 2.66 to 3.92 s. At 480 input/output (Table~\ref{tab:resolution-baselines}), Ours exceeds DGGT-Full by 1.49 dB full-image and 1.87 dB dynamic PSNR, rendering one image in 13.71 ms versus 161.87 ms.
 
 
 

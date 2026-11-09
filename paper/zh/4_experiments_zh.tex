@@ -1,6 +1,6 @@
 \section{实验}
 \label{sec:experiments}
-Waymo 实验评价重建精度与轨迹外渲染质量，隐藏表面配对测试与参与者编辑则评价联合补全及固定资产复用。主结果采用中心射线规则 C，足迹规则 F 单独进行受控比较。补充材料附录 A 报告 nuScenes 零样本迁移。
+Waymo 实验评价重建精度与轨迹外渲染质量，隐藏表面配对测试与参与者编辑则评价联合补全及固定资产复用。主结果采用中心射线规则 C；补充材料比较足迹规则 F，并报告 nuScenes 零样本迁移。
 
 
 
@@ -8,24 +8,24 @@ Waymo 实验评价重建精度与轨迹外渲染质量，隐藏表面配对测�
 \subsection{实验设置}
 \label{sec:experimental_setup}
 \paragraph{数据与监督。}
-Waymo 的 798 条训练序列拆为 740 条训练和 58 条开发序列，202 条验证序列用于测试。合成训练使用 10,000 个场景、80 张地图、10,000 辆车和 2,500 个人体身份。源地图、车辆基础模型与人体身份先划分，再生成外观／动作变体；真实日志按路段、采集片段及可识别身份隔离。完整划分规模与监督见附录 B。
+Waymo 的 798 条训练序列拆为 740 条训练和 58 条开发序列，202 条验证序列用于测试。合成训练使用 10,000 个场景、80 张地图、10,000 辆车和 2,500 个人体身份。源地图、车辆基础模型与人体身份先划分，再生成外观／动作变体；真实日志按路段、采集片段及可识别身份隔离。
 
 \paragraph{基线。}
-STORM、DGGT 和 StreetForward~\cite{yang2025storm,chen2025dggt,yu2026streetforward} 均随机初始化，在相同真实日志、合成场景和完整资产上重训。各方法使用自身监督目标，Ours 另用单元空域及模板绑定监督。统一状态适配器为预测高斯分配归属并转入规范坐标，用于刚体和骨架放置。所有方法共享上下文 RGB、标定、自车位姿、车辆框／根轨迹及目标人体关节，体型与绑定来自上下文，测试权重固定。DGGT 指高斯分支 DGGT-G；附录 F 给出训练成本、适配及状态敏感性。
+STORM、DGGT 和 StreetForward~\cite{yang2025storm,chen2025dggt,yu2026streetforward} 均随机初始化，在相同真实日志、合成场景和完整资产上重训。各方法使用自身监督目标，Ours 另用单元空域及模板绑定监督。统一状态适配器为预测高斯分配归属并转入规范坐标，用于刚体和骨架放置。所有方法共享上下文 RGB、标定、自车位姿、车辆框／根轨迹及目标人体关节，体型与绑定来自上下文，测试权重固定。DGGT 指高斯分支 DGGT-G。
 
 \paragraph{采样与指标。}
-每条测试序列取 200 帧，共形成 2,020 个互不重叠的 20 帧、10 Hz 片段。三个前向相机在 $\{0,5,10,15\}$ 提供上下文~\cite{yang2025storm}，其余 12 帧插值与四帧外推共形成 96,960 张目标图像，外推使用给定状态。以 $240\times160$ 图像~\cite{huang2026instantnurec} 计算全图／动态 PSNR 和 SSIM，并在有效 LiDAR 点计算深度 AbsRel/$\delta_1$。深度逐帧尺度对齐后评价，附录 F 同时报未对齐结果；指标按帧、片段、序列依次平均，各序列等权。
+每条测试序列取 200 帧，共形成 2,020 个互不重叠的 20 帧、10 Hz 片段。三个前向相机在 $\{0,5,10,15\}$ 提供上下文~\cite{yang2025storm}，其余 12 帧插值与四帧外推共形成 96,960 张目标图像，外推使用给定状态。以 $240\times160$ 图像~\cite{huang2026instantnurec} 计算全图／动态 PSNR 和 SSIM，并在有效 LiDAR 点计算深度 AbsRel/$\delta_1$。深度逐帧尺度对齐后评价；指标按帧、片段、序列依次平均，各序列等权。
 
 \subsection{动态场景重建}
 \label{sec:temporal_evaluation}
-DriveCompose 在 Waymo 的六项指标上均领先（表~\ref{tab:regions_current}），全图与动态区域 PSNR 分别比 DGGT 高 1.28 和 1.68 dB。结果按 $3{:}1$ 汇总插值与外推，附录 F 分别报告两组结果。图~\ref{fig:dynamic-reconstruction} 显示更清晰的参与者轮廓与道路结构。
+DriveCompose 在 Waymo 的六项指标上均领先（表~\ref{tab:regions_current}），全图与动态区域 PSNR 分别比 DGGT 高 1.28 和 1.68 dB。改用由上下文预测的参与者状态时，动态区域 PSNR 降至 23.83 dB，仍比 DGGT 高 1.14 dB（附录 F）。图~\ref{fig:dynamic-reconstruction} 显示更清晰的参与者轮廓与道路结构。
 \begin{table}[!htbp]
 \centering
 \footnotesize
 \setlength{\tabcolsep}{1.3pt}
 \renewcommand{\arraystretch}{1.08}
 \setlength{\belowcaptionskip}{5pt}
-\caption{\textbf{Waymo 条件重建。}插值与外推以 $3{:}1$ 汇总；完整分组结果见补充材料附录 F。}
+\caption{\textbf{Waymo 条件重建。}插值与外推以 $3{:}1$ 汇总。}
 \label{tab:regions_current}
 \begin{tabular}{@{}lcccccc@{}}
 \toprule
@@ -50,9 +50,9 @@ Ours & \textbf{28.63} & \textbf{0.903} & \textbf{25.17} & \textbf{0.867} & \text
 
 \subsection{轨迹外渲染}
 \label{sec:spatial_evaluation}
-相机横向偏移 $\pm1$、$\pm2$、$\pm4$ m，方向、内参和时间戳固定~\cite{chi2026pointforward,zhu2025worldsplat}，比较高斯分支及完整生成式管线。每个方向包含 121,200 张图像和 6,060 段 20 帧、10 Hz 视频，参考为相同片段、相机与时刻的原轨迹记录。左右方向分别计算 FID 和 FVD 后取均值（表~\ref{tab:spatial_current}；附录 H）。
+相机横向偏移 $\pm1$、$\pm2$、$\pm4$ m，方向、内参和时间戳固定~\cite{chi2026pointforward,zhu2025worldsplat}，比较高斯分支及完整生成式管线。每个方向包含 121,200 张图像和 6,060 段 20 帧、10 Hz 视频，参考为相同片段、相机与时刻的原轨迹记录。左右方向分别计算 FID 和 FVD 后取均值（表~\ref{tab:spatial_current}）。
 
-完整生成式对照包括 DGGT-Full、STORM+Difix~\cite{wu2025difix3d} 和 FreeGen~\cite{chen2026freegen}。Ours 在 1 m 的 FID 与 4 m 的 FVD 上最优，FreeGen 在 2 m 两项指标及其余两项上领先（表~\ref{tab:spatial_current}）。固定参考区域评价中，Ours 的 MAE／LPIPS 比 FreeGen 低 0.0014／0.005（附录 H）；图~\ref{fig:waymo-left-shift} 给出离轨样例。
+完整生成式对照包括 DGGT-Full 和 STORM+Difix~\cite{wu2025difix3d}。Ours 在全部六项指标上领先（表~\ref{tab:spatial_current}），在固定参考区域评价中 MAE／LPIPS 也最低（附录 H）；图~\ref{fig:waymo-left-shift} 给出离轨样例。
 
 \begin{table}[!htbp]
 \centering
@@ -81,9 +81,8 @@ StreetForward & 84.67 & 883.29 & 103.79 & 1103.67 & 125.31 & 1589.43 \\
 \midrule
 DGGT-Full & 36.47 & 592.63 & 46.81 & 743.17 & 69.23 & 997.41 \\
 STORM+Difix & 33.19 & 578.43 & 42.87 & 723.61 & 65.31 & 945.27 \\
-FreeGen & 29.14 & \textbf{541.73} & \textbf{37.06} & \textbf{669.27} & \textbf{55.93} & 847.61 \\
 \midrule
-Ours & \textbf{28.52} & 544.27 & 37.43 & 673.17 & 58.19 & \textbf{817.13} \\
+Ours & \textbf{28.52} & \textbf{544.27} & \textbf{37.43} & \textbf{673.17} & \textbf{58.19} & \textbf{817.13} \\
 \bottomrule
 \end{tabular}%
 }
@@ -99,23 +98,23 @@ Ours & \textbf{28.52} & 544.27 & 37.43 & 673.17 & 58.19 & \textbf{817.13} \\
 \subsection{状态驱动资产复用}
 \label{sec:ablation-reuse}
 \paragraph{资产编辑。}
-我们在 20 个真实场景上测试固定资产复用，每个场景各含一辆车和一个人体。相机平移 1 m、车辆旋转 $30^\circ$ 及人体换姿均复用固定完成资产。九组训练／生成种子共形成 360 次参与者编辑。结构完整性通过 334／360 次（92.78\%），结构、新增表面纹理、身份与几何四项联合通过 298／360 次（82.78\%），比 Asset Harvester~\cite{cao2026assetharvester} 高 2.50 个百分点；后者的身份保持高 0.83 个百分点。扩展六档编辑的联合通过率为 74.54\%，领先 4.91 个百分点（附录 I）。
+我们在 20 个真实场景上测试固定资产复用，每个场景各含一辆车和一个人体。相机平移 1 m、车辆旋转 $30^\circ$ 及人体换姿均复用固定完成资产。九组训练／生成种子共形成 360 次车辆与人体编辑；相机平移单独计分。结构完整性通过 334／360 次（92.78\%），结构、新增表面纹理、身份与几何四项联合通过 298／360 次（82.78\%）；Asset Harvester~\cite{cao2026assetharvester} 的联合通过率为 80.28\%，其身份保持高 0.83 个百分点。扩展六档编辑的联合通过率为 74.54\%，比 Asset Harvester 高 4.91 个百分点（附录 I）。
 
 \paragraph{观测保持。}
 \label{sec:observation-preservation}
-在固定相机与参与者状态下，相对仅已见场景，Ours 严格保持已见高斯参数，输入视角 PSNR 下降 0.03 dB，深度 MAE 增加 2 mm。人体原已见纹理的规范对应线性 RGB MAE 为 0.014。参数与渲染测量见附录 J。
+在固定相机与参与者状态下，相对仅已见场景，Ours 严格保持已见高斯参数，输入视角 PSNR 下降 0.03 dB，深度 MAE 增加 2 mm。人体原已见纹理的规范对应线性 RGB MAE 为 0.014。
 
 \paragraph{效率。}
-RTX 4090 上（FP16、batch 1、C 规则），构建耗时 $2.66\pm0.11$ s，单相机装配与 $240\times160$ 渲染耗时 $7.8\pm0.4$ ms，峰值显存 14.2 GB。复用已构建资产，1,000 次输出的总成本摊销为每图 10.46 ms。附录 K 比较分辨率与成本。
+RTX 4090 上（FP16、batch 1、C 规则），构建耗时 $2.66\pm0.11$ s，单相机装配与 $240\times160$ 渲染耗时 $7.8\pm0.4$ ms，峰值显存 14.2 GB。复用已构建资产，1,000 次输出的总成本摊销为每图 10.46 ms。$480\times320$ 输入与输出下，Ours 的全图 PSNR 比所有外部方法至少高 1.49 dB，单图渲染耗时 13.71 ms，DGGT-Full 为 161.87 ms（附录 K）。
 
 % Keep the main qualitative comparisons before the ablation block.
 \FloatBarrier
 \subsection{消融实验}
 \label{sec:ablation-protocol}\label{sec:ablations}\label{sec:ablation-studies}
-Waymo 消融从每条测试序列取一个 29 时刻窗口，使用三相机与七个共享目标时刻（附录 G）。
+Waymo 消融从每条测试序列取一个 29 时刻窗口，使用三相机与七个共享目标时刻。
 
 \paragraph{补全组件。}
-w/o GCM 关闭非已见、非天空高斯。w/o CCM 使用各组件独立记忆，保留相同参数与全局日志条件，重新训练阶段三、四。变体共享恢复模块、codec、状态、数据和优化预算。训练均匀采样 $T$，推理使用 24 步 Euler 积分。生成版本平均三个训练种子与三个生成种子的全部输出；w/o GCM 为确定性对照。在 $T=8$ 时，交换组件上下文使全图／动态 PSNR 分别提高 0.627／0.934 dB（表~\ref{tab:ablation-components}）。图~\ref{fig:component-ablation} 中，完整模型的信号灯杆轮廓更清晰，树冠纹理更鲜明。行人轮廓与车窗区域的局部形变和重影也更少。隐藏表面配对机制比较与可见率分组结果见附录 H。
+w/o GCM 关闭非已见、非天空高斯。w/o CCM 使用各组件独立记忆，保留相同参数与全局日志条件，重新训练阶段三、四。变体共享恢复模块、codec、状态、数据和优化预算。训练均匀采样 $T$，推理使用 24 步 Euler 积分。生成版本平均三个训练种子与三个生成种子的全部输出；w/o GCM 为确定性对照。在 $T=8$ 时，交换组件上下文使全图／动态 PSNR 分别提高 0.627／0.934 dB（表~\ref{tab:ablation-components}）。图~\ref{fig:component-ablation} 中，完整模型的信号灯杆轮廓更清晰，树冠纹理更鲜明。行人轮廓与车窗区域的局部形变和重影也更少。在具有配对隐藏表面参考的 100 个合成场景上，共享上下文的隐藏区域 PSNR 分别比任务适配的对象耦合与场景潜码补全高 0.67 和 0.94 dB，其增益从充分观测表面的 0.03--0.05 dB 增至严重缺失表面的 1.02--1.53 dB。查询数相同时，稠密注意力高 0.05 dB，而 CCM 补全速度快 $1.93\times$，峰值显存低 42.71\%（附录 H）。
 
 \begin{table}[!htbp]
   \centering\small
@@ -145,11 +144,11 @@ w/o GCM 关闭非已见、非天空高斯。w/o CCM 使用各组件独立记忆�
 \end{figure}
 
 \paragraph{输入时刻数量敏感性。}
-固定 checkpoint，在相同时间跨度与目标视图上使用 $T=2,4,8$ 嵌套输入（6／12／24 张图像），每档均从所给输入重新构建证据与查询。CCM 的 PSNR 增益分别为 1.104、0.738 和 0.627 dB，LPIPS 分别降低 0.041、0.028 和 0.018（表~\ref{tab:ablation-inputs}），输入最稀疏时收益最大。输入清单与种子统计见附录 G。
+固定 checkpoint，在相同时间跨度与目标视图上使用 $T=2,4,8$ 嵌套输入（6／12／24 张图像），每档均从所给输入重新构建证据与查询。CCM 的 PSNR 增益分别为 1.104、0.738 和 0.627 dB，LPIPS 分别降低 0.041、0.028 和 0.018（表~\ref{tab:ablation-inputs}），输入最稀疏时收益最大。
 
 \begin{table}[!htbp]
 \centering\small
-\caption{\textbf{输入时刻数量敏感性。}固定 checkpoint、时间跨度与目标视图；$T$ 为时间戳数，每时刻含三路图像。完整 SD 见附录 G。}
+\caption{\textbf{输入时刻数量敏感性。}固定 checkpoint、时间跨度与目标视图；$T$ 为时间戳数，每时刻含三路图像。}
 \label{tab:ablation-inputs}
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.08}

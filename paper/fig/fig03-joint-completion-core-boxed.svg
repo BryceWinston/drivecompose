@@ -27,7 +27,7 @@
 <path id="sampling.feedback.shaft" d="M972.00000 715.00000 L972.00000 858.00000 C972.00000 873.00000 965.00000 879.00000 950.00000 879.00000 L158.00000 879.00000 C142.00000 879.00000 134.00000 871.00000 134.00000 854.00000 L134.00000 750.00000 C134.00000 733.00000 142.00000 727.00000 150.00000 727.00000" fill="none" stroke="#FF8500" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
 <path id="sampling.feedback.head" d="M178.00000 727.00000 L149.00000 711.00000 L149.00000 743.00000 Z" fill="#FF8500" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
 <text id="sampling.repeat.mult" x="627.00000" y="854.00000" font-family="Times New Roman,Times,serif" font-size="72" font-style="normal" fill="#FF8500">×</text>
-<text id="sampling.repeat.N" x="675.60547" y="855.00000" font-family="Times New Roman,Times,serif" font-size="80" font-style="italic" fill="#FF8500">N</text>
+<text id="sampling.repeat.N" x="675.60547" y="855.00000" font-family="Times New Roman,Times,serif" font-size="80" font-style="italic" fill="#FF8500">S</text>
 </g>
 <g id="latent-input-route">
 <path id="latent.feature-input.shaft" d="M178.00000 691.00000 L77.00000 691.00000 C64.00000 691.00000 58.00000 685.00000 58.00000 672.00000 L58.00000 263.00000 C58.00000 250.00000 65.00000 244.00000 79.00000 244.00000 L74.00000 244.00000" fill="none" stroke="#858585" stroke-width="5.3" stroke-linejoin="round" stroke-linecap="round"/>
@@ -140,7 +140,7 @@
 <path id="latent.result.free" d="M1269.00000 665.00000 L1331.00000 665.00000 C1337.07513 665.00000 1342.00000 669.92487 1342.00000 676.00000 L1342.00000 735.00000 C1342.00000 741.07513 1337.07513 746.00000 1331.00000 746.00000 L1269.00000 746.00000 C1262.92487 746.00000 1258.00000 741.07513 1258.00000 735.00000 L1258.00000 676.00000 C1258.00000 669.92487 1262.92487 665.00000 1269.00000 665.00000 Z" fill="#FFFFFF" stroke="#818181" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="14 10"/>
 <text id="latent.result.free-zero" x="1278.50000" y="732.00000" font-family="Times New Roman,Times,serif" font-size="86" font-style="normal" fill="#050505">0</text>
 <text id="latent.result.label.base" x="1156.95142" y="620.00000" font-family="Times New Roman,Times,serif" font-size="85" font-style="italic" fill="#050505">z</text>
-<text id="latent.result.label.super" x="1197.03003" y="580.00000" font-family="Times New Roman,Times,serif" font-size="57" font-style="italic" fill="#050505">N</text>
+<text id="latent.result.label.super" x="1197.03003" y="580.00000" font-family="Times New Roman,Times,serif" font-size="57" font-style="italic" fill="#050505">S</text>
 </g>
 <g id="projection">
 <path id="projection.frame" d="M653.00000 642.00000 L867.00000 642.00000 C874.17970 642.00000 880.00000 647.82030 880.00000 655.00000 L880.00000 754.00000 C880.00000 761.17970 874.17970 767.00000 867.00000 767.00000 L653.00000 767.00000 C645.82030 767.00000 640.00000 761.17970 640.00000 754.00000 L640.00000 655.00000 C640.00000 647.82030 645.82030 642.00000 653.00000 642.00000 Z" fill="url(#gradient96)" stroke="#426B8B" stroke-width="3.3" stroke-linejoin="round" stroke-linecap="round"/>
