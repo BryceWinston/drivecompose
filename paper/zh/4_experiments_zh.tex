@@ -1,6 +1,6 @@
 \section{实验}
 \label{sec:experiments}
-Waymo 实验评价重建精度与轨迹外渲染质量，隐藏表面配对测试与参与者编辑则评价联合补全及固定资产复用。主结果采用中心射线规则 C；补充材料比较足迹规则 F，并报告 nuScenes 零样本迁移。
+Waymo 实验评价重建精度与轨迹外渲染质量，隐藏表面配对测试与参与者编辑则评价联合补全及固定资产复用。补充材料报告 nuScenes 零样本迁移。
 
 
 
@@ -18,7 +18,7 @@ STORM、DGGT 和 StreetForward~\cite{yang2025storm,chen2025dggt,yu2026streetforw
 
 \subsection{动态场景重建}
 \label{sec:temporal_evaluation}
-DriveCompose 在 Waymo 的六项指标上均领先（表~\ref{tab:regions_current}），全图与动态区域 PSNR 分别比 DGGT 高 1.28 和 1.68 dB。改用由上下文预测的参与者状态时，动态区域 PSNR 降至 23.83 dB，仍比 DGGT 高 1.14 dB（附录 F）。图~\ref{fig:dynamic-reconstruction} 显示更清晰的参与者轮廓与道路结构。
+DriveCompose 的全图与动态区域 PSNR 分别比 DGGT 高 1.28 和 1.68 dB，SSIM 与深度精度也均领先（表~\ref{tab:regions_current}；图~\ref{fig:dynamic-reconstruction}）。改用由上下文预测的参与者状态时，动态区域 PSNR 降至 23.83 dB，仍比 DGGT 高 1.14 dB（附录 F）。
 \begin{table}[!htbp]
 \centering
 \footnotesize
@@ -44,7 +44,7 @@ Ours & \textbf{28.63} & \textbf{0.903} & \textbf{25.17} & \textbf{0.867} & \text
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{fig/fig04-dynamic-reconstruction.pdf}
-  \caption{\textbf{动态场景条件重建。}每行一个样例，依次为真实目标、DGGT、STORM、StreetForward 与 Ours。}
+  \caption{\textbf{Waymo 动态场景条件重建。}DriveCompose 恢复了更清晰的参与者轮廓与街景结构。}
   \label{fig:dynamic-reconstruction}
 \end{figure*}
 
@@ -52,7 +52,7 @@ Ours & \textbf{28.63} & \textbf{0.903} & \textbf{25.17} & \textbf{0.867} & \text
 \label{sec:spatial_evaluation}
 相机横向偏移 $\pm1$、$\pm2$、$\pm4$ m，方向、内参和时间戳固定~\cite{chi2026pointforward,zhu2025worldsplat}，比较高斯分支及完整生成式管线。每个方向包含 121,200 张图像和 6,060 段 20 帧、10 Hz 视频，参考为相同片段、相机与时刻的原轨迹记录。左右方向分别计算 FID 和 FVD 后取均值（表~\ref{tab:spatial_current}）。
 
-完整生成式对照包括 DGGT-Full 和 STORM+Difix~\cite{wu2025difix3d}。Ours 在全部六项指标上领先（表~\ref{tab:spatial_current}），在固定参考区域评价中 MAE／LPIPS 也最低（附录 H）；图~\ref{fig:waymo-left-shift} 给出离轨样例。
+完整生成式对照包括 DGGT-Full 和 STORM+Difix~\cite{wu2025difix3d}。DriveCompose 在三档相机偏移下的 FID 和 FVD 均低于所有对照方法（表~\ref{tab:spatial_current}；图~\ref{fig:waymo-left-shift}）。固定参考区域评价进一步检验场景对应，DriveCompose 的 RGB MAE 和 LPIPS 均最低（附录 H）。
 
 \begin{table}[!htbp]
 \centering
@@ -90,7 +90,7 @@ Ours & \textbf{28.52} & \textbf{544.27} & \textbf{37.43} & \textbf{673.17} & \te
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{fig/fig05-off-trajectory-rendering.pdf}
-  \caption{\textbf{相机左移 2 m 的离轨渲染。}各列依次为 GT、STORM、DGGT、StreetForward 与 Ours。GT 为原轨迹记录图像。}
+  \caption{\textbf{Waymo 离轨渲染。}原轨迹记录与相机左移 2 m 的渲染比较。DriveCompose 减少了车辆与街景结构附近的空洞和畸变。}
   \label{fig:waymo-left-shift}
 \end{figure*}
 
@@ -98,7 +98,7 @@ Ours & \textbf{28.52} & \textbf{544.27} & \textbf{37.43} & \textbf{673.17} & \te
 \subsection{状态驱动资产复用}
 \label{sec:ablation-reuse}
 \paragraph{资产编辑。}
-我们在 20 个真实场景上测试固定资产复用，每个场景各含一辆车和一个人体。相机平移 1 m、车辆旋转 $30^\circ$ 及人体换姿均复用固定完成资产。九组训练／生成种子共形成 360 次车辆与人体编辑；相机平移单独计分。结构完整性通过 334／360 次（92.78\%），结构、新增表面纹理、身份与几何四项联合通过 298／360 次（82.78\%）；Asset Harvester~\cite{cao2026assetharvester} 的联合通过率为 80.28\%，其身份保持高 0.83 个百分点。扩展六档编辑的联合通过率为 74.54\%，比 Asset Harvester 高 4.91 个百分点（附录 I）。
+同一组补全资产用于相机平移 1 m、车辆旋转 $30^\circ$ 及人体换姿。在每场景各含一辆车和一个人体的 20 个真实场景中，360 次参与者编辑的结构、新增表面纹理、身份与几何四项联合通过率为 82.78\%，Asset Harvester~\cite{cao2026assetharvester} 为 80.28\%。参与者编辑的结构完整性通过率为 92.78\%；Asset Harvester 的身份保持高 0.83 个百分点。扩展六档编辑的联合通过率为 74.54\%，比 Asset Harvester 高 4.91 个百分点。相机平移单独评价，种子协议与详细计数见附录 I。
 
 \paragraph{观测保持。}
 \label{sec:observation-preservation}
@@ -114,7 +114,10 @@ RTX 4090 上（FP16、batch 1、C 规则），构建耗时 $2.66\pm0.11$ s，单
 Waymo 消融从每条测试序列取一个 29 时刻窗口，使用三相机与七个共享目标时刻。
 
 \paragraph{补全组件。}
-w/o GCM 关闭非已见、非天空高斯。w/o CCM 使用各组件独立记忆，保留相同参数与全局日志条件，重新训练阶段三、四。变体共享恢复模块、codec、状态、数据和优化预算。训练均匀采样 $T$，推理使用 24 步 Euler 积分。生成版本平均三个训练种子与三个生成种子的全部输出；w/o GCM 为确定性对照。在 $T=8$ 时，交换组件上下文使全图／动态 PSNR 分别提高 0.627／0.934 dB（表~\ref{tab:ablation-components}）。图~\ref{fig:component-ablation} 中，完整模型的信号灯杆轮廓更清晰，树冠纹理更鲜明。行人轮廓与车窗区域的局部形变和重影也更少。在具有配对隐藏表面参考的 100 个合成场景上，共享上下文的隐藏区域 PSNR 分别比任务适配的对象耦合与场景潜码补全高 0.67 和 0.94 dB，其增益从充分观测表面的 0.03--0.05 dB 增至严重缺失表面的 1.02--1.53 dB。查询数相同时，稠密注意力高 0.05 dB，而 CCM 补全速度快 $1.93\times$，峰值显存低 42.71\%（附录 H）。
+w/o GCM 关闭非已见、非天空高斯。w/o CCM 使用各组件独立记忆，保留相同参数与全局日志条件，重新训练阶段三、四。变体共享恢复模块、codec、状态、数据和优化预算，采样与种子汇总协议见附录 G。在 $T=8$ 时，交换组件上下文使全图与动态区域 PSNR 分别提高 0.627 和 0.934 dB（表~\ref{tab:ablation-components}；图~\ref{fig:component-ablation}）。
+
+\paragraph{跨组件上下文。}
+共享上下文的收益随输入表面覆盖率降低而增大。在 100 个合成场景中，相对 w/o CCM 的 PSNR 增益从充分观测区域的 0.03--0.05 dB 增至严重缺失区域的 1.02--1.53 dB。在配对隐藏区域测试中，共享上下文的 PSNR 分别比任务适配的对象耦合与场景潜码补全高 0.67 和 0.94 dB。查询数相同时，稠密注意力高 0.05 dB，而 CCM 补全速度快 $1.93\times$，峰值显存低 42.71\%（附录 H）。
 
 \begin{table}[!htbp]
   \centering\small
@@ -139,7 +142,7 @@ w/o GCM 关闭非已见、非天空高斯。w/o CCM 使用各组件独立记忆�
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth]{fig/fig06-component-ablation.pdf}
-  \caption{\textbf{补全组件消融。}每行一个场景，各列依次为 Ours、w/o CCM 和 w/o GCM。彩色框标记各图下方对应的放大区域。}
+  \caption{\textbf{补全组件消融。}完整模型减少了行人轮廓与车窗处的畸变和重影，并恢复了更清晰的植被细节。彩色框标记对应的放大区域。}
   \label{fig:component-ablation}
 \end{figure}
 

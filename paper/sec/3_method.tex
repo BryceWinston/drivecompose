@@ -74,7 +74,7 @@ The masks $m_i$, $f_i$, and $u_i$ distinguish observed surfaces, ray-labeled fre
 
 \paragraph{Latent encoding.}
 
-Type-specific encoders map the 129-dimensional aggregate and its spatial support, $[\mathbf h_i;\mathbf q_i;\boldsymbol\delta_i]$, through a $135\!\rightarrow\!128\!\rightarrow\!128$ MLP with LayerNorm. All types use $D=128$ codes, allowing joint completion while retaining query type, ownership, and frame. Partial and complete branches share this map; masks and confidence condition completion separately. Unobserved codes are zeroed, and observed codes are denoted $\mathbf z^{\rm obs}$.
+Type-specific encoders map the aggregated visual evidence and spatial support, $[\mathbf h_i;\mathbf q_i;\boldsymbol\delta_i]$, into latent codes. All types use $D=128$ codes, allowing joint completion while retaining query type, ownership, and frame. Partial and complete branches share this map; masks and confidence condition completion separately. Unobserved codes are zeroed, and observed codes are denoted $\mathbf z^{\rm obs}$.
 
 \begin{figure}[!htbp]
   \centering
@@ -153,4 +153,4 @@ The background and canonical assets remain fixed; new camera and actor states re
 \label{sec:training}
 We train recovery and the codec before learning the completion prior and adapting the GCM through rendering. Complete targets use the partial input's query layout $\mathcal Q$, including its cell scales, component ownership, and human bindings. Complete meshes supply surface samples within each cell. Multiview rendering and the frozen visual encoder produce $\mathbf h_i^{\rm full}$, which the shared type-specific encoder maps to $\mathbf z_{1,i}=E_{k_i}([\mathbf h_i^{\rm full};\mathbf q_i;\boldsymbol\delta_i])$. Surface-free cells receive zero features and opacity supervision.
 
-After codec fitting, recovery and the codec remain frozen. Stage 3 learns from complete synthetic targets at every unknown query. Stage 4 updates only the GCM, mixing complete synthetic samples and the 740 real training logs at $1{:}3$. The four stages use 287,360 updates in total; Appendix~B gives target construction, network sizes, and training settings.
+After codec fitting, recovery and the codec remain frozen. Stage 3 learns from complete synthetic targets at every unknown query. Stage 4 updates only the GCM, mixing complete synthetic samples and the 740 real training logs at $1{:}3$. Appendix~B gives target construction, network sizes, and training settings.

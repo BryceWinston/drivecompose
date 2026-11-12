@@ -54,11 +54,11 @@ Test-scene optimization & None for any method \\
 \begin{table*}[!t]
 \centering\small
 \setlength{\tabcolsep}{4pt}
-\caption{Temporal interpolation and conditional extrapolation. Full-image SSIM is the method-level aggregate from main Table 1 and spans both time groups; other metrics are group-specific. Dynamic columns report PSNR/SSIM; depth reports scale-aligned AbsRel/$\delta_1$.}
+\caption{Temporal interpolation and conditional extrapolation. Overall full-image SSIM aggregates both time groups; all other metrics are group-specific. Depth is scale-aligned.}
 \label{tab:temporal-groups}
 \begin{tabular}{@{}lccccc@{}}
 \toprule
-Method & Time group & Full PSNR & Overall full SSIM & Dynamic region & Depth \\
+Method & Time group & Full PSNR & Overall full SSIM & \shortstack{Dynamic region\\PSNR/SSIM} & \shortstack{Depth\\AbsRel/$\delta_1$} \\
 \midrule
 STORM & Interp. & 26.18 & \multirow{2}{*}{0.782} & 22.86/0.629 & 0.186/0.747 \\
 STORM & Extrap. & 24.62 &  & 20.94/0.581 & 0.218/0.691 \\
@@ -189,7 +189,7 @@ $\sigma_p=10$ cm, $\sigma_R=6^\circ$ & 21.18 & 22.06 & 20.01 & 22.19 & 22.91 & 0
 \begin{table*}[!t]
 \centering\small
 \setlength{\tabcolsep}{4pt}
-\caption{Full seed statistics for component ablations.}
+\caption{Component ablations: mean $\pm$ training SD (mean generation SD).}
 \label{tab:seed-components}
 \begin{tabular}{@{}lccc@{}}
 \toprule
@@ -206,7 +206,7 @@ Dynamic SSIM & 0.811 $\pm$ 0 & 0.849 $\pm$ 0.002 (0.0010) & \textbf{0.873 $\pm$ 
 \begin{table*}[!t]
 \centering\small
 \setlength{\tabcolsep}{4pt}
-\caption{Input-timestamp sensitivity with fixed checkpoints; $T=8$ reuses the component results.}
+\caption{Input-timestamp sensitivity with fixed checkpoints: mean $\pm$ training SD (mean generation SD).}
 \label{tab:seed-inputs}
 \begin{tabular}{@{}lcccc@{}}
 \toprule
@@ -222,7 +222,7 @@ $T$ & Variant & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ \\
 \end{tabular}
 \end{table*}
 
-The two learned variants use training seeds $\{0,1,2\}$ and generation seeds $\{7,17,27\}$ for each checkpoint, giving nine combinations. We first average generation seeds, then frames, windows, sequences, and training seeds equally, without best-of-three selection. In Tables~\ref{tab:seed-components} and~\ref{tab:seed-inputs}, each entry is the mean $\pm$ sample SD of the three training-seed means; parentheses give the average sample SD across generation seeds. Zero variation for w/o GCM describes deterministic inference with shared, fixed recovery and codec.
+The two learned variants use training seeds $\{0,1,2\}$ and generation seeds $\{7,17,27\}$ for each checkpoint, giving nine combinations. We first average generation seeds, then frames, windows, sequences, and training seeds equally. In Tables~\ref{tab:seed-components} and~\ref{tab:seed-inputs}, each entry is the mean $\pm$ sample SD of the three training-seed means; parentheses give the average sample SD across generation seeds. Zero variation for w/o GCM describes deterministic inference with shared, fixed recovery and codec. The $T=8$ entries in Table~\ref{tab:seed-inputs} are the corresponding results in Table~\ref{tab:seed-components}.
 
 
 
@@ -268,7 +268,7 @@ Ours & \textbf{0.019} & 0.029 & \textbf{92.4\%} \\
 \end{tabular}
 \end{table}
 
-Each offset direction renders $2,020\times3\times20=121,200$ images and 6,060 videos; both directions total 242,400 images and 12,120 videos per offset magnitude and group. Videos contain 20 frames at 10 Hz and never concatenate clips. The reference population consists of original-trajectory recordings from the same test clips, cameras, and timestamps. FID uses a fixed Inception-v3 with 2,048-dimensional features; FVD uses a fixed I3D with 1,024-dimensional features. Left and right scores are computed separately and averaged, without pooling the two populations first. GT in the main off-trajectory figure denotes the original-trajectory image.
+Each offset direction renders $2,020\times3\times20=121,200$ images and 6,060 videos; both directions total 242,400 images and 12,120 videos per offset magnitude and group. Videos contain 20 frames at 10 Hz and never concatenate clips. The reference population consists of original-trajectory recordings from the same test clips, cameras, and timestamps. FID uses a fixed Inception-v3 with 2,048-dimensional features; FVD uses a fixed I3D with 1,024-dimensional features. Left and right scores are computed separately and averaged, without pooling the two populations first.
 
 One hundred synthetic test scenes separately provide paired evaluation of regions never observed in the inputs (Table~\ref{tab:hidden-regions}), using representative shifts of $\pm2$ m. FID/FVD describe distribution quality, whereas hidden-region metrics evaluate scene-corresponding completion.
 
@@ -278,7 +278,7 @@ Full generative pipelines and Gaussian branches are compared on one reference-de
 \begin{table}[!htbp]
 \centering\small
 \setlength{\tabcolsep}{4pt}
-\caption{Scene correspondence on a fixed reference region: 202 sequences and bidirectional 2 m shifts. Every method uses the same reference evaluation region; missing outputs remain scored.}
+\caption{Scene correspondence on a fixed reference region: 202 sequences and bidirectional 2 m shifts.}
 \label{tab:fixed-reference-correspondence}
 \begin{tabular}{@{}lrr@{}}
 \toprule
@@ -311,7 +311,7 @@ Coverage is reference-surface recall $R_\tau$. We compute metrics per scene and 
 Independent reference geometry establishes correspondences between recorded and off-trajectory views. Dynamic actors are transformed with shared states. The reference evaluator removes occlusion-ambiguous correspondences for every method; finite outputs and rendering coverage determine method validity. Test LiDAR is used only by the evaluator. Linear-RGB MAE is measured on both each method's valid subset and their intersection, which covers 58.7\% of the reference set (Table~\ref{tab:reprojection}). CCM reduces common-support MAE from 0.028 to 0.019 and raises overall coverage from 86.9\% to 92.4\% relative to w/o CCM.
 
 \paragraph{Task-adapted completion mechanisms.}
-The scene-latent control adapts the scene-level Gaussian latent generation mechanism of CompleteSplat~\cite{liao2025complete}; the object-coupling control adapts JRM's cross-object latent coupling~\cite{wu2026jrm}. Both operate through the shared recovery module, codec, query layout, and state interface. They replace the completion interaction mechanism while using the same input evidence, training data, supervision, and 24-step sampling setup. The shared recovery and codec stay fixed. The completion training schedule is given in Appendix B, and comparison scores average three training and three generation seeds without sample selection.
+The scene-latent control adapts the scene-level Gaussian latent generation mechanism of CompleteSplat~\cite{liao2025complete}; the object-coupling control adapts JRM's cross-object latent coupling~\cite{wu2026jrm}. Both operate through the shared recovery module, codec, query layout, and state interface. They replace the completion interaction mechanism while using the same input evidence, training data, supervision, and 24-step sampling setup. The shared recovery and codec stay fixed. The completion training schedule is given in Appendix B, and comparison scores average three training and three generation seeds.
 
 Table~\ref{tab:hidden-regions} uses the same 100 synthetic test scenes and 12,000 shifted target images per seed combination. Each learned variant produces 108,000 outputs across nine seed combinations; scene-wise scores include all views, frames, and seeds. Over the object-coupling control, CCM adds 0.67 dB PSNR, reduces LPIPS by 0.020, and increases coverage and F-score by 2.6 and 3.6 percentage points. The PSNR gain over the scene-latent control is 0.94 dB. Surface evaluation uses original metric coordinates, 65,536 area-uniform samples from each mesh, and a shared 2 cm point-to-triangle threshold.
 
@@ -330,7 +330,7 @@ CCM adds 1.02, 1.27, and 1.53 dB for severely missing background, vehicle, and h
 \paragraph{Read-scope interventions on Waymo.}
 Table~\ref{tab:context-read} uses the same 202 Waymo windows as the main $T=8$ ablation. Each 29-timestamp window uses $\{0,4,8,12,16,20,24,28\}$ from three cameras (24 inputs), with targets $\{2,6,10,14,18,22,26\}$ (4,242 images per seed combination). Training seeds $\{0,1,2\}$ and generation seeds $\{7,17,27\}$ give nine combinations. Recovery, codec, query layout, target states, and 24-step sampling are fixed.
 
-Reading only background, other vehicles, or other humans applies inference-time masks to the same Ours checkpoints, without separate retraining. Local attention and the global log condition remain unchanged. The w/o CCM endpoint uses the per-component-memory control retrained with the same budget. Thus 28.286 and 28.913 dB reuse the main ablation endpoints, while 28.721, 28.574, and 28.352 dB measure read interventions under that Waymo protocol. Waymo read interventions and synthetic visibility scores are reported separately; component gains overlap.
+Reading only background, other vehicles, or other humans applies inference-time masks to the same Ours checkpoints, without separate retraining. Local attention and the global log condition remain unchanged. The w/o CCM endpoint uses the per-component-memory control retrained with the same budget. The w/o CCM and Ours endpoints reuse the corresponding results in main Table~3. Waymo read interventions and synthetic visibility scores are reported separately; component gains overlap.
 
 \begin{table}[!htbp]
 \centering\small
@@ -456,7 +456,7 @@ Ours & \textbf{24.18} & \textbf{0.176} & \textbf{96.1\%} & \textbf{23.06} & \tex
 
 \begin{table}[!htbp]
 \centering\small
-\caption{Structural integrity of real actor edits with training seed 0 and generation seed 7. Columns give successes.}
+\caption{Structural integrity of real actor edits with training seed 0 and generation seed 7.}
 \label{tab:edit-failures}
 \begin{tabular}{@{}lrrr@{}}
 \toprule
@@ -527,7 +527,7 @@ Table~\ref{tab:real-edit-quality} scores 360 actor edits from twenty scenes and 
 
 
 \paragraph{External asset baselines and rater agreement.}
-Table~\ref{tab:real-edit-baselines} compares baselines adapted to the asset-edit interface, including Asset Harvester~\cite{cao2026assetharvester}. Deterministic baselines average three trained versions, yielding $20\times2\times3=120$ edits; generative versions use three training and three generation seeds, yielding 360. Ours reaches 82.78\% joint acceptance, 2.50 percentage points above Asset Harvester, which leads identity preservation by 0.83 points. Table~\ref{tab:edit-training-sd} reports training SD for joint acceptance separately from structural-integrity SD above. Table~\ref{tab:rater-agreement} covers $3\times120+3\times360=1440$ outputs across six methods; repetitions and outputs do not increase the 20 independent scenes.
+Table~\ref{tab:real-edit-baselines} compares baselines adapted to the asset-edit interface, including Asset Harvester~\cite{cao2026assetharvester}. Deterministic baselines average three trained versions, yielding $20\times2\times3=120$ edits; generative versions use three training and three generation seeds, yielding 360. Ours reaches 82.78\% joint acceptance, 2.50 percentage points above Asset Harvester, which leads identity preservation by 0.83 points. Table~\ref{tab:edit-training-sd} reports training SD for joint acceptance separately from structural-integrity SD above. Table~\ref{tab:rater-agreement} covers $3\times120+3\times360=1440$ outputs across six methods; the 20 scenes are the independent sampling units, with seeds and outputs treated as within-scene repetitions.
 \begin{table*}[!htbp]
 \centering\small
 \setlength{\tabcolsep}{3pt}
@@ -550,7 +550,7 @@ Ours & \textbf{334/360 (92.78\%)} & \textbf{320/360 (88.89\%)} & 344/360 (95.56\
 \begin{table}[!htbp]
 \centering\small
 \setlength{\tabcolsep}{4pt}
-\caption{Training SD of basic-protocol joint acceptance, in percentage points. The independent scene count is 20.}
+\caption{Training SD of basic-protocol joint acceptance, in percentage points.}
 \label{tab:edit-training-sd}
 \begin{tabular}{@{}lr@{}}
 \toprule
@@ -569,7 +569,7 @@ Ours & 1.27 \\
 \begin{table}[!htbp]
 \centering\small
 \setlength{\tabcolsep}{4pt}
-\caption{Rater agreement over 1,440 output entries from six methods and 20 independent scenes. Repeat mean and SD are reported separately.}
+\caption{Rater agreement over 1,440 outputs from six methods on 20 scenes.}
 \label{tab:rater-agreement}
 \begin{tabular}{@{}lrrr@{}}
 \toprule
@@ -587,7 +587,7 @@ Geometry, Fleiss $\kappa$ & 0.75 & 0.75 & 0.001 \\
 \paragraph{Extended state and view protocol.}
 The 360-edit quality evaluation uses fixed target-state and view lists. The expanded protocol applies vehicle yaw changes of $30^\circ$, $60^\circ$, and $90^\circ$, and human maximum non-root joint rotation differences of $15^\circ$, $30^\circ$, and $45^\circ$ at fixed root placement. Twenty scenes and nine seed combinations yield $20\times9\times(3+3)=1,080$ actor edits. Three predefined target views per edit give 3,240 images. Each seed reuses one completed asset across all states, with the five-pixel criterion defined at $240\times160$ resolution.
 
-Deterministic baselines have $20\times3=60$ edits per level and 360 overall; generative versions have $20\times9=180$ per level and 1,080 overall. The three target views per edit do not count as independent edits. Tables~\ref{tab:extended-edit-counts} and~\ref{tab:extended-edit-summary} report level-wise counts and aggregates. Ours passes structure in 943/1,080 edits (87.31\%) and all four criteria in 805/1,080 (74.54\%), the latter 4.91 percentage points above Asset Harvester.
+Deterministic baselines have $20\times3=60$ edits per level and 360 overall; generative versions have $20\times9=180$ per level and 1,080 overall. The three predefined target views belong to the same edit. Tables~\ref{tab:extended-edit-counts} and~\ref{tab:extended-edit-summary} report level-wise counts and aggregates. Ours passes structure in 943/1,080 edits (87.31\%) and all four criteria in 805/1,080 (74.54\%), the latter 4.91 percentage points above Asset Harvester.
 \begin{table*}[!htbp]
 \centering\small
 \setlength{\tabcolsep}{3pt}
@@ -633,11 +633,11 @@ Ours & 1,080 & \textbf{943} & \textbf{87.31} & \textbf{805} & \textbf{74.54} & 1
 \begin{table*}[!htbp]
 \centering\small
 \setlength{\tabcolsep}{4pt}
-\caption{Input-observation preservation; depth MAE is in mm. Previously measured RGB MAE is retained; unavailable entries are --. C/F and the two C ablations use the same 2,020,000 fixed rays.}
+\caption{Input-observation preservation under completion and constraint ablations. C/F and the two C ablations use 2,020,000 fixed rays; -- denotes unreported measurements.}
 \label{tab:preservation}
 \begin{tabular}{@{}lrrrrrr@{}}
 \toprule
-Configuration & Parameter $\Delta$ & PSNR & RGB MAE & Depth mm & Occlusion & Violation \\
+Configuration & Parameter $\Delta$ & PSNR & RGB MAE & Depth MAE (mm) & Occlusion & Violation \\
 \midrule
 Observed only & 0 & 30.42 & 0.0187 & 120 & 0 & 0 \\
 w/o CCM & 0 & 30.368 & 0.0190 & 123 & 0.24\% & 0.09\% \\

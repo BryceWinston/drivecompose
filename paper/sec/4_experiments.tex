@@ -1,18 +1,18 @@
 \section{Experiments}
 \label{sec:experiments}
-Waymo experiments test reconstruction accuracy and off-trajectory rendering quality. Paired hidden-surface tests and actor edits examine joint completion and reuse of fixed assets. Main results use center-ray rule C; the supplementary material compares footprint rule F and reports zero-shot transfer to nuScenes.
+Waymo experiments test reconstruction accuracy and off-trajectory rendering quality. Paired hidden-surface tests and actor edits examine joint completion and reuse of fixed assets. The supplementary material reports zero-shot transfer to nuScenes.
 
 % Queue the qualitative comparisons before their discussion pages.
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{fig/fig04-dynamic-reconstruction.pdf}
-  \caption{\textbf{Conditional dynamic reconstruction.} Rows show five examples; columns are ground truth, DGGT, STORM, StreetForward, and Ours.}
+  \caption{\textbf{Conditional dynamic reconstruction on Waymo.} DriveCompose recovers clearer actor silhouettes and street structure.}
   \label{fig:dynamic-reconstruction}
 \end{figure*}
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{fig/fig05-off-trajectory-rendering.pdf}
-  \caption{\textbf{Off-trajectory rendering with a 2 m leftward shift.} Columns show GT, STORM, DGGT, StreetForward, and Ours. GT is the original-trajectory image.}
+  \caption{\textbf{Off-trajectory rendering on Waymo.} Original-trajectory recordings and renders with a 2 m leftward camera shift. DriveCompose reduces holes and distortions around vehicles and street structures.}
   \label{fig:waymo-left-shift}
 \end{figure*}
 
@@ -29,7 +29,7 @@ Each test sequence supplies 200 frames, forming 2,020 disjoint 20-frame clips at
 
 \subsection{Dynamic scene reconstruction}
 \label{sec:temporal_evaluation}
-DriveCompose leads all six Waymo metrics (Table~\ref{tab:regions_current}), exceeding DGGT by 1.28 and 1.68 dB in full-image and dynamic-region PSNR. With context-predicted instead of supplied actor states, dynamic-region PSNR drops to 23.83 dB but still exceeds DGGT by 1.14 dB (Appendix~F). Figure~\ref{fig:dynamic-reconstruction} shows clearer actor silhouettes and street structure.
+DriveCompose improves full-image and dynamic-region PSNR over DGGT by 1.28 and 1.68 dB, respectively, and also leads in SSIM and depth accuracy (Table~\ref{tab:regions_current}; Fig.~\ref{fig:dynamic-reconstruction}). With context-predicted instead of supplied actor states, dynamic-region PSNR drops to 23.83 dB but still exceeds DGGT by 1.14 dB (Appendix~F).
 \begin{table}[!htbp]
 \centering
 \footnotesize
@@ -57,7 +57,7 @@ Ours & \textbf{28.63} & \textbf{0.903} & \textbf{25.17} & \textbf{0.867} & \text
 \label{sec:spatial_evaluation}
 We shift cameras laterally by $\pm1$, $\pm2$, and $\pm4$ m while fixing orientation, intrinsics, and timestamps~\cite{chi2026pointforward,zhu2025worldsplat}. We compare Gaussian branches and full generative pipelines. Each direction contains 121,200 images and 6,060 20-frame videos at 10 Hz, referenced to recordings from the same clips, cameras, and timestamps. Left/right FID and FVD are computed separately, then averaged (Table~\ref{tab:spatial_current}).
 
-Full generative controls include DGGT-Full and STORM+Difix~\cite{wu2025difix3d}. Ours leads all six entries (Table~\ref{tab:spatial_current}) and has the lowest MAE/LPIPS on a fixed reference region (Appendix~H). Figure~\ref{fig:waymo-left-shift} shows shifted renders.
+Full generative controls include DGGT-Full and STORM+Difix~\cite{wu2025difix3d}. DriveCompose achieves lower FID and FVD than all compared methods at each of the three camera offsets (Table~\ref{tab:spatial_current}; Fig.~\ref{fig:waymo-left-shift}). Fixed-reference evaluation further tests scene correspondence, where DriveCompose obtains the lowest RGB MAE and LPIPS (Appendix~H).
 
 \begin{table}[!htbp]
 \centering
@@ -97,7 +97,7 @@ Ours & \textbf{28.52} & \textbf{544.27} & \textbf{37.43} & \textbf{673.17} & \te
 \subsection{State-driven asset reuse}
 \label{sec:ablation-reuse}
 \paragraph{Asset edits.}
-We test fixed-asset reuse on twenty real scenes, each containing one vehicle and one human. A 1 m camera shift, $30^\circ$ vehicle rotation, and human pose change reuse fixed completed assets. Nine training/generation-seed combinations yield 360 vehicle and human edits; camera shifts are scored separately. Structural integrity passes 334/360 (92.78\%); 298/360 (82.78\%) jointly pass structure, new-surface texture, identity, and geometry, compared with 80.28\% for Asset Harvester~\cite{cao2026assetharvester}, which leads identity preservation by 0.83 points. Across six edit levels, joint acceptance is 74.54\%, 4.91 points above Asset Harvester (Appendix~I).
+The same completed assets are reused for a 1 m camera shift, a $30^\circ$ vehicle rotation, and a human pose change. On twenty real scenes, each containing one vehicle and one human, 82.78\% of 360 actor edits jointly pass structure, new-surface texture, identity, and geometry, compared with 80.28\% for Asset Harvester~\cite{cao2026assetharvester}. Structural integrity passes 92.78\% of actor edits; Asset Harvester leads identity preservation by 0.83 percentage points. Across six edit levels, joint acceptance is 74.54\%, 4.91 points above Asset Harvester. Camera shifts are evaluated separately; Appendix~I gives the seed protocol and detailed counts.
 
 \paragraph{Observation preservation.}
 \label{sec:observation-preservation}
@@ -111,7 +111,10 @@ On an RTX 4090 (FP16, batch 1, rule C), construction takes $2.66\pm0.11$ s, sing
 Waymo ablations use one 29-timestamp window per test sequence, three cameras, and seven shared target timestamps.
 
 \paragraph{Completion components.}
-The w/o GCM control disables non-observed, non-sky Gaussians. The w/o CCM control uses isolated per-component memories with the same parameters and global log context, retraining Stages~\mbox{3--4}. Variants share recovery, codec, states, data, and optimization budgets. Training samples $T$ uniformly; inference uses 24 Euler steps. The learned variants average three training and three generation seeds, retaining every output; w/o GCM is deterministic. At $T=8$, exchanging component context adds 0.627/0.934 dB full-image/dynamic PSNR (Table~\ref{tab:ablation-components}). Figure~\ref{fig:component-ablation} shows cleaner traffic-signal contours and sharper foliage detail with the full model. Pedestrian silhouettes and vehicle windows have fewer distortions and ghosting artifacts. On 100 synthetic scenes with paired hidden-surface references, shared context exceeds task-adapted object-coupling and scene-latent completion by 0.67 and 0.94 dB hidden-region PSNR, and its gain rises from 0.03--0.05 dB on well-observed surfaces to 1.02--1.53 dB on severely missing ones. With matched queries, dense attention is 0.05 dB higher, while CCM completes $1.93\times$ faster with 42.71\% lower peak memory (Appendix~H).
+The w/o GCM control disables non-observed, non-sky Gaussians. The w/o CCM control uses isolated per-component memories with the same parameters and global log context, retraining Stages~\mbox{3--4}. Variants share recovery, codec, states, data, and optimization budgets; Appendix~G specifies sampling and seed aggregation. At $T=8$, exchanging component context adds 0.627 and 0.934 dB in full-image and dynamic-region PSNR, respectively (Table~\ref{tab:ablation-components}; Fig.~\ref{fig:component-ablation}).
+
+\paragraph{Cross-component context.}
+The benefit of shared context increases as input surface coverage decreases. Compared with w/o CCM, the PSNR gain rises from 0.03--0.05 dB on well-observed regions to 1.02--1.53 dB on severely missing regions in 100 synthetic scenes. On paired hidden-region tests, shared context exceeds task-adapted object-coupling and scene-latent completion by 0.67 and 0.94 dB, respectively. With matched queries, dense attention is 0.05 dB higher, while CCM completes $1.93\times$ faster with 42.71\% lower peak memory (Appendix~H).
 
 \begin{table}[!htbp]
   \centering\small
@@ -161,7 +164,7 @@ $T$ & Variant & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ \\
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth]{fig/fig06-component-ablation.pdf}
-  \caption{\textbf{Completion component ablations.} Rows show two scenes; columns are Ours, w/o CCM, and w/o GCM. Colored boxes mark the regions enlarged below each view.}
+  \caption{\textbf{Completion component ablations.} The full model reduces distortions and ghosting in pedestrian silhouettes and vehicle windows, and recovers sharper foliage detail. Colored boxes mark the enlarged regions.}
   \label{fig:component-ablation}
 \end{figure}
 % The main-text barrier keeps this float ahead of the usage statement and references.
