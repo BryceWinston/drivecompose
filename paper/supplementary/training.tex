@@ -8,7 +8,8 @@ Counts in Table~\ref{tab:data-splits} include only data passing quality checks. 
 
 The synthetic test split supplies 100 scenes for paired hidden-surface evaluation and 20 scenes for asset editing. Fixed-asset reuse is also evaluated on 20 real scenes (Appendices H and I).
 
-\begin{table*}[!t]
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{Data and supervision. Scene maps and independent assets are split by source identity.}
@@ -24,7 +25,8 @@ Vehicle assets & 10,000 & 1,000 & 1,000 & Canonical geometry, materials, dimensi
 Human identities & 2,500 & 250 & 250 & Shape, texture, template, skeleton, skinning and joint states \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
+\begin{multicols}{2}
 
 
 \paragraph{Complete targets on a fixed layout.}
@@ -47,7 +49,8 @@ Surface-free cells use a 129-dimensional zero feature and explicit zero-opacity 
 \end{equation}
 The 135-dimensional input passes through a $135\rightarrow128\rightarrow128$ MLP and LayerNorm. Biases allow a zero feature to encode a nonzero latent. Hard projection separately enforces zero free-space codes during completion.
 
-\begin{table*}[t]
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \caption{Network and support configuration. Observed anchors and canonical human-template queries augment the base grids.}
 \label{tab:network-config}
@@ -65,12 +68,13 @@ Base supports & Background $20\times12\times6$ ($5\times5\times3$ m cells); rigi
 Sampling & 24 explicit Euler steps with observed-code restoration and free-space clearing after each step \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
+\begin{multicols}{2}
 
 \paragraph{Stage 1: visual recovery.}
 Real training logs and synthetic scenes supervise the image encoder, geometry heads, identity slots, and state heads. Real depth comes from training LiDAR, and vehicle states come from annotations. Confidence-weighted real semantic and human-joint auxiliary labels complement synthetic shape, skeleton, binding, and joint supervision. One trajectory-level matching assigns slots to identities and is reused across timestamps. Confidence is trained or calibrated against depth, occlusion, and reprojection reliability. Table~\ref{tab:recovery-weights} lists the loss weights.
 
-\begin{table}[t]
+\begin{table}[H]
 \centering\small
 \caption{Stage 1 supervision weights.}
 \label{tab:recovery-weights}
@@ -124,12 +128,8 @@ The flow term uses complete synthetic samples; each observation or geometry term
 \end{align}
 where $[x]_+=\max(x,0)$. Frozen decoding and hard code restoration preserve the observed anchors.
 
-\paragraph{Optimization and inference.}
-Table~\ref{tab:training-schedule} gives the four-stage schedule. Training uses eight A100 80 GB GPUs, FP16, and AdamW with $\beta=(0.9,0.95)$ and weight decay 0.01. Each stage uses warmup followed by cosine learning-rate decay. The 58 development sequences select checkpoints; the 202 validation sequences form the test set. The four stages total 287,360 updates and 1,001.5 GPU hours, including method-specific target preprocessing. Stage costs are 278.6, 184.3, 326.9, and 211.7 GPU hours. Three GCM training seeds share recovery and the codec, giving a combined cost of 2,078.7 GPU hours. The w/o CCM control reuses Stages 1--2 and retrains Stages 3--4 with the same budget. The deterministic w/o GCM control uses the fixed recovery module and codec.
-
-At inference, the log is encoded once. Its query layout and observed codes remain fixed throughout 24 Euler steps, after which type-specific decoders produce assets for repeated state composition.
-
-\begin{table*}[t]
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \caption{Four-stage training schedule. R: recovery; C: codec; G: GCM. $D_R$: real training logs; $D_S$: synthetic scenes; $D_A$: complete assets. Batch sizes are global.}
 \label{tab:training-schedule}
@@ -143,4 +143,10 @@ Completion prior & G & R, C & Complete $D_S,D_A$ & 114,944 & 32 & $10^{-4}$ \\
 Rendering adaptation & G & R, C & $D_S:D_R=1:3$ & 28,736 & 8 & $3\times10^{-5}$ \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
+\begin{multicols}{2}
+
+\paragraph{Optimization and inference.}
+Table~\ref{tab:training-schedule} gives the four-stage schedule. Training uses eight A100 80 GB GPUs, FP16, and AdamW with $\beta=(0.9,0.95)$ and weight decay 0.01. Each stage uses warmup followed by cosine learning-rate decay. The 58 development sequences select checkpoints; the 202 validation sequences form the test set. The four stages total 287,360 updates and 1,001.5 GPU hours, including method-specific target preprocessing. Stage costs are 278.6, 184.3, 326.9, and 211.7 GPU hours. Three GCM training seeds share recovery and the codec, giving a combined cost of 2,078.7 GPU hours. The w/o CCM control reuses Stages 1--2 and retrains Stages 3--4 with the same budget. The deterministic w/o GCM control uses the fixed recovery module and codec.
+
+At inference, the log is encoded once. Its query layout and observed codes remain fixed throughout 24 Euler steps, after which type-specific decoders produce assets for repeated state composition.

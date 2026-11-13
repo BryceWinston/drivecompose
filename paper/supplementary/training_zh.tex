@@ -8,7 +8,8 @@
 
 合成测试划分中，100 个场景用于隐藏表面的配对评价，20 个场景用于资产编辑；另在 20 个真实场景上评价固定资产复用（附录 H 和 I）。
 
-\begin{table*}[!t]
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{数据与监督来源。场景地图和独立资产均按源身份划分。}
@@ -24,7 +25,8 @@ Waymo 序列 & 740 & 58 & 202 & 图像、标定、自车位姿、LiDAR、车辆�
 独立人体身份 & 2,500 & 250 & 250 & 身份体型、纹理、规范模板、骨架、蒙皮及关节状态 \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
+\begin{multicols}{2}
 
 
 \paragraph{固定布局上的完整目标。}
@@ -47,7 +49,8 @@ n_f=\max\!\left(1,\left\lceil\frac{64A_f}{\delta_{\min}^{\,2}}\right\rceil\right
 \end{equation}
 135 维输入依次通过 $135\rightarrow128\rightarrow128$ MLP 与 LayerNorm。编码器偏置允许零特征映射为非零潜码；补全过程的硬投影另行将自由空间潜码清零。
 
-\begin{table*}[t]
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \caption{网络与空间支撑配置。基础网格另保留观测锚点和规范人体模板查询。}
 \label{tab:network-config}
@@ -65,12 +68,13 @@ n_f=\max\!\left(1,\left\lceil\frac{64A_f}{\delta_{\min}^{\,2}}\right\rceil\right
 采样 & 24 步显式 Euler，每步恢复已见潜码并清零自由空间潜码 \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
+\begin{multicols}{2}
 
 \paragraph{阶段一：视觉恢复。}
 真实训练日志与合成场景监督图像编码器、几何预测头、身份槽和状态头。真实深度来自训练 LiDAR，车辆状态来自标注；带置信度的真实语义及人体关节辅助标签，与合成体型、骨架、绑定和关节监督共同训练恢复模块。整条轨迹执行一次身份匹配，并在各时刻复用。置信度根据深度、遮挡和重投影可靠性训练或校准，各项权重见表~\ref{tab:recovery-weights}。
 
-\begin{table}[t]
+\begin{table}[H]
 \centering\small
 \caption{阶段一监督权重。}
 \label{tab:recovery-weights}
@@ -124,12 +128,8 @@ Flow 项使用完整合成样本，观测和几何项分别使用具有对应监
 \end{align}
 其中 $[x]_+=\max(x,0)$。冻结解码器和潜码硬恢复共同保持已见锚点。
 
-\paragraph{优化与推理。}
-四阶段设置见表~\ref{tab:training-schedule}。训练使用八张 A100 80 GB、FP16 和 AdamW，$\beta=(0.9,0.95)$，weight decay 为 0.01；各阶段预热后采用余弦学习率衰减。58 条开发序列用于选模，202 条验证序列用于测试。四阶段共更新 287,360 步，消耗 1,001.5 GPU 小时，包含方法专用目标预处理。各阶段成本依次为 278.6、184.3、326.9 和 211.7 GPU 小时。三个 GCM 训练种子共享恢复模块与 codec，总成本为 2,078.7 GPU 小时。w/o CCM 复用阶段一、二，以相同预算重训阶段三、四；确定性的 w/o GCM 使用固定恢复模块和 codec。
-
-推理时对日志编码一次，在 24 步 Euler 积分中固定查询布局与已见潜码，再由分类型解码器生成资产，供不同状态反复装配。
-
-\begin{table*}[t]
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \caption{四阶段训练设置。R 为恢复模块，C 为 codec，G 为 GCM。$D_R$ 表示真实训练日志，$D_S$ 为合成场景，$D_A$ 为完整资产。batch 为全局大小。}
 \label{tab:training-schedule}
@@ -143,4 +143,10 @@ Flow 项使用完整合成样本，观测和几何项分别使用具有对应监
 渲染适配 & G & R, C & $D_S:D_R=1:3$ & 28,736 & 8 & $3\times10^{-5}$ \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
+\begin{multicols}{2}
+
+\paragraph{优化与推理。}
+四阶段设置见表~\ref{tab:training-schedule}。训练使用八张 A100 80 GB、FP16 和 AdamW，$\beta=(0.9,0.95)$，weight decay 为 0.01；各阶段预热后采用余弦学习率衰减。58 条开发序列用于选模，202 条验证序列用于测试。四阶段共更新 287,360 步，消耗 1,001.5 GPU 小时，包含方法专用目标预处理。各阶段成本依次为 278.6、184.3、326.9 和 211.7 GPU 小时。三个 GCM 训练种子共享恢复模块与 codec，总成本为 2,078.7 GPU 小时。w/o CCM 复用阶段一、二，以相同预算重训阶段三、四；确定性的 w/o GCM 使用固定恢复模块和 codec。
+
+推理时对日志编码一次，在 24 步 Euler 积分中固定查询布局与已见潜码，再由分类型解码器生成资产，供不同状态反复装配。

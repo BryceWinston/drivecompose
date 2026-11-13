@@ -67,7 +67,8 @@ z^{\max}_{i,t,v}<\min_{p\in\Omega_{i,t,v}}
 \end{equation}
 满足全部条件的视图投票，其余视图弃权。两票规则、已见表面优先及硬清零机制保持一致。
 
-\begin{table*}[t]
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \caption{100 个合成场景的自由空间分类错误。错误指包含参考表面的单元被标为自由空间；各类别互斥。}
 \label{tab:free-space-audit}
@@ -85,14 +86,15 @@ z^{\max}_{i,t,v}<\min_{p\in\Omega_{i,t,v}}
 含表面污染／自由标签 & & 2.906\% & 0.058\% \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
+\begin{multicols}{2}
 
 足迹判据将占据单元误标从 1,374 个降至 19 个（表~\ref{tab:free-space-audit}）。使用参考深度时，中心判据仍误标 934 个占据单元，将一部分错误定位到单元的横向覆盖。连续参考深度的完整足迹下界在该审计集合中误标为零；离散估计深度下的 19 个剩余错误主要位于亚像素结构和深度边界。
 
 \paragraph{从掩码标签到重建表面。}
 两种规则从首次硬清零前的同一中间状态出发，固定权重、查询布局、输入深度、后处理与逐查询随机噪声。在 202 条 Waymo 序列上，F 将全图／动态 PSNR 提高 0.03／0.04 dB；在相同的 100 场景隐藏区域评价上，F 将 PSNR 提高 0.18 dB、覆盖率提高 1.2 个百分点、F-score 提高 1.3 个百分点（表~\ref{tab:free-space-downstream}）。薄结构、遮挡边界与人体隐藏表面覆盖率分别提高 2.7、2.2 和 1.0 个百分点。人体语义切片可与结构切片重叠，分别计分。这里的覆盖率统一采用 2 cm 点到网格阈值，人体资产编辑仍采用 1 cm。
 
-\begin{table}[t]
+\begin{table}[H]
 \centering\small
 \caption{\textbf{自由空间规则的下游影响。}相同 checkpoint 和逐查询噪声，汇总九组种子；覆盖率与 F-score 阈值为 2 cm。}
 \label{tab:free-space-downstream}

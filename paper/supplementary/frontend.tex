@@ -67,7 +67,8 @@ z^{\max}_{i,t,v}<\min_{p\in\Omega_{i,t,v}}
 \end{equation}
 Other views abstain. The two-vote rule, observed-surface priority, and hard clearing are retained.
 
-\begin{table*}[t]
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \caption{Free-space classification errors on 100 synthetic scenes. Errors count cells containing reference surfaces that are labeled free; categories are mutually exclusive.}
 \label{tab:free-space-audit}
@@ -85,14 +86,15 @@ Number of free labels & & 47,286 & 32,871 \\
 Surface contamination / free labels & & 2.906\% & 0.058\% \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
+\begin{multicols}{2}
 
 The footprint rule reduces occupied-cell errors from 1,374 to 19 (Table~\ref{tab:free-space-audit}). With reference depth, center-ray voting still mislabels 934 occupied cells, localizing an error source to lateral cell coverage. Continuous reference-depth footprint bounds yield zero such errors on this audit set. The remaining 19 errors with discrete estimated depth arise mainly at subpixel structures and depth boundaries.
 
 \paragraph{From mask labels to reconstructed surfaces.}
 The two rules start from the same intermediate state before the first hard clearing. We fix weights, query layout, input depth, postprocessing, and per-query random noise. On 202 Waymo sequences, F improves full-image/dynamic PSNR by 0.03/0.04 dB; on the same 100-scene hidden-region evaluation, it improves hidden PSNR by 0.18 dB, coverage by 1.2 percentage points, and F-score by 1.3 points (Table~\ref{tab:free-space-downstream}). Thin structures, occlusion boundaries, and human surfaces gain 2.7, 2.2, and 1.0 points of hidden-surface coverage. Human semantic slices can overlap the structural slices and are scored separately. All coverage entries here use a 2 cm point-to-mesh threshold; human asset editing uses 1 cm.
 
-\begin{table}[t]
+\begin{table}[H]
 \centering\small
 \caption{\textbf{Downstream effects of free-space voting.} Shared checkpoints and per-query noise, with nine seed combinations. Coverage and F-score use 2 cm.}
 \label{tab:free-space-downstream}

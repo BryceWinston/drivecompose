@@ -1,7 +1,14 @@
+\Needspace{6\baselineskip}
 \section{重建协议与基线}
 \label{sec:supp-protocol}
 
-\begin{table*}[t]
+主比较评价给定相机及参与者状态下的重建，最后四帧评价条件时间外推。表~\ref{tab:shared-inputs} 列出测试条件。目标人体关节来自独立离线标注／拟合，人体体型和绑定由上下文恢复，测试 LiDAR 专用于评价。测试时全部网络权重固定。
+
+\paragraph{训练资源。}
+STORM、DGGT 和 StreetForward 保留各自原生结构，随机初始化重训。这三种基线与 Ours 使用相同真实训练日志 $D_R$、合成场景 $D_S$ 和完整资产 $D_A$。基线通过自身目标接收 RGB、深度、轮廓及完整资产目标视图监督，Ours 另用单元空域和模板绑定监督。各方法在固定预算内训练，并在共同开发集上选择 checkpoint（表~\ref{tab:baseline-resources}）。CCM 消融匹配恢复模块、codec、数据和优化预算，以测量组件交换的贡献。
+
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \caption{单个完整 checkpoint 的训练资源，包含方法专用目标预处理。Ours 和 w/o CCM 均计入共享恢复模块与 codec 的成本。}
 \label{tab:baseline-resources}
@@ -16,8 +23,23 @@ Ours & 完整四阶段 & 287,360 & 分阶段 & 1,001.5 \\
 w/o CCM & 共享 R/C，重训 GCM 先验及适配 & 287,360 & 同 Ours & 977.1 \\
 \bottomrule
 \end{tabular}
-\end{table*}
-\begin{table}[t]
+\end{table}
+\begin{multicols}{2}
+
+\paragraph{完整生成式管线。}
+DGGT-G 表示 DGGT 的高斯分支，DGGT-Full 保留其扩散精修。STORM+Difix 在 STORM 渲染后使用 DIFIX3D+~\cite{wu2025difix3d}。主文表 2 比较这些完整输出，所有方法使用相同偏移幅度和参考总体。各管线的训练／适配成本见表~\ref{tab:training-cost-statistics}，冻结基础模型的历史预训练单独排除。
+
+\paragraph{统一状态适配器。}
+各基线使用共同的确定性状态适配器。将高斯可见渲染贡献投到同一组上下文实例掩码，累积加权身份票。车辆依据给定根位姿执行逆 SE(3)，同时变换中心、协方差和方向坐标基。人体高斯在上下文恢复的同身份模板上匹配三角形，以重心插值得到 17 关节蒙皮权重，再执行逆蒙皮。适配器保留预测外观，不增加预测网络。未绑定输出保留评价，无法装配的参与者编辑计为失败。
+
+
+
+\end{multicols}
+\noindent\begin{minipage}[t]{0.48\textwidth}
+同一高斯集合经逆变换和正变换后，最大线性 RGB 差低于 $4\times10^{-6}$。将原生时变表示转换为固定规范资产的跨时刻重建变化见表~\ref{tab:adapter-effect}，适配后列用于正文主比较。
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\captionsetup{type=table}
 \centering\small
 \caption{转为固定规范资产对重建的影响，PSNR 单位为 dB。}
 \label{tab:adapter-effect}
@@ -31,8 +53,10 @@ StreetForward & 26.02 & 25.88 & -0.14 \\
 Ours & -- & 28.63 & -- \\
 \bottomrule
 \end{tabular}
-\end{table}
-\begin{table*}[!t]
+\end{minipage}
+\par\medskip
+
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{DriveCompose、STORM、DGGT 和 StreetForward 的共同测试条件。}
@@ -50,8 +74,13 @@ Ours & -- & 28.63 & -- \\
 测试场景优化 & 全部关闭 \\
 \bottomrule
 \end{tabular}
-\end{table*}
-\begin{table*}[!t]
+\end{table}
+\begin{multicols}{2}
+
+每条测试序列取前 200 个有效同步帧，形成 10 个不重叠的 20 帧片段，共 2,020 个片段。三相机上下文索引为 $\{0,5,10,15\}$，其余 12 帧插值产生 72,720 张图像，$\{16,17,18,19\}$ 四帧外推产生 24,240 张图像，共 96,960 张。全部目标时刻具有有效动态掩码和深度评价样本。表~\ref{tab:temporal-groups} 的分组指标按插值／外推 $3{:}1$ 汇总；全图 SSIM 单独列为与正文表 1 一致的方法级汇总值。深度尺度对齐仅用于评价，不反馈给重建或渲染。
+
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{时间插值与条件外推。整体全图 SSIM 汇总两个时间组，其余指标按时间组报告；深度采用尺度对齐。}
@@ -70,8 +99,18 @@ Ours & 插值 & \textbf{28.96} & \multirow{2}{*}{\textbf{0.903}} & \textbf{25.61
 Ours & 外推 & \textbf{27.64} &  & \textbf{23.85/0.843} & \textbf{0.105/0.857} \\
 \bottomrule
 \end{tabular}
-\end{table*}
-\begin{table}[!htbp]
+\end{table}
+\begin{multicols}{2}
+
+\paragraph{深度尺度与米制评价。}
+对齐深度列在固定有效 LiDAR 掩码 $M_t$ 上估计逐帧正尺度：
+\begin{equation}
+s_t=\operatorname{median}_{p\in M_t}\frac{d_t(p)}{\widehat d_t(p)}.
+\label{eq:depth-alignment}
+\end{equation}
+拟合量为单一尺度。表~\ref{tab:depth-scale} 的对齐与未对齐深度使用相同掩码，按帧、片段和序列依次汇总。尺度对齐在深度评价器内执行；重建、装配、表面距离和 RGB 重投影使用原始米制坐标。
+
+\begin{table}[H]
 \centering\small
 \caption{逐帧尺度对齐与未对齐深度评价。}
 \label{tab:depth-scale}
@@ -89,42 +128,10 @@ Ours & \textbf{0.093} & \textbf{0.881} & \textbf{0.119} & \textbf{0.847} \\
 \end{tabular}
 \end{table}
 
+\paragraph{训练重复与共享成本。}
+表~\ref{tab:main-training-seeds} 与主表使用相同的 202 条序列、2,020 个片段和每组 96,960 张目标图像；29 时刻消融仍按附录 G 的独立协议统计。Ours 与 w/o CCM 共享阶段一、二的 462.9 GPU 小时。各三种子管线分别为 $462.9+3(1001.5-462.9)=2078.7$ 与 $462.9+3(977.1-462.9)=2005.5$ GPU 小时；两者共同去重总成本为 $2078.7+2005.5-462.9=3621.3$ GPU 小时（表~\ref{tab:training-cost-statistics}）。
 
-
-主比较评价给定相机及参与者状态下的重建，最后四帧评价条件时间外推。表~\ref{tab:shared-inputs} 列出测试条件。目标人体关节来自独立离线标注／拟合，人体体型和绑定由上下文恢复，测试 LiDAR 专用于评价。测试时全部网络权重固定。
-
-\paragraph{训练资源。}
-STORM、DGGT 和 StreetForward 保留各自原生结构，随机初始化重训。这三种基线与 Ours 使用相同真实训练日志 $D_R$、合成场景 $D_S$ 和完整资产 $D_A$。基线通过自身目标接收 RGB、深度、轮廓及完整资产目标视图监督，Ours 另用单元空域和模板绑定监督。各方法在固定预算内训练，并在共同开发集上选择 checkpoint（表~\ref{tab:baseline-resources}）。CCM 消融匹配恢复模块、codec、数据和优化预算，以测量组件交换的贡献。
-
-
-
-\paragraph{完整生成式管线。}
-DGGT-G 表示 DGGT 的高斯分支，DGGT-Full 保留其扩散精修。STORM+Difix 在 STORM 渲染后使用 DIFIX3D+~\cite{wu2025difix3d}。主文表 2 比较这些完整输出，所有方法使用相同偏移幅度和参考总体。各管线的训练／适配成本见表~\ref{tab:training-cost-statistics}，冻结基础模型的历史预训练单独排除。
-
-\paragraph{统一状态适配器。}
-各基线使用共同的确定性状态适配器。将高斯可见渲染贡献投到同一组上下文实例掩码，累积加权身份票。车辆依据给定根位姿执行逆 SE(3)，同时变换中心、协方差和方向坐标基。人体高斯在上下文恢复的同身份模板上匹配三角形，以重心插值得到 17 关节蒙皮权重，再执行逆蒙皮。适配器保留预测外观，不增加预测网络。未绑定输出保留评价，无法装配的参与者编辑计为失败。
-
-同一高斯集合经逆变换和正变换后，最大线性 RGB 差低于 $4\times10^{-6}$。将原生时变表示转换为固定规范资产的跨时刻重建变化见表~\ref{tab:adapter-effect}，适配后列用于正文主比较。
-
-
-
-
-
-每条测试序列取前 200 个有效同步帧，形成 10 个不重叠的 20 帧片段，共 2,020 个片段。三相机上下文索引为 $\{0,5,10,15\}$，其余 12 帧插值产生 72,720 张图像，$\{16,17,18,19\}$ 四帧外推产生 24,240 张图像，共 96,960 张。全部目标时刻具有有效动态掩码和深度评价样本。表~\ref{tab:temporal-groups} 的分组指标按插值／外推 $3{:}1$ 汇总；全图 SSIM 单独列为与正文表 1 一致的方法级汇总值。深度尺度对齐仅用于评价，不反馈给重建或渲染。
-
-
-
-\paragraph{深度尺度与米制评价。}
-对齐深度列在固定有效 LiDAR 掩码 $M_t$ 上估计逐帧正尺度：
-\begin{equation}
-s_t=\operatorname{median}_{p\in M_t}\frac{d_t(p)}{\widehat d_t(p)}.
-\label{eq:depth-alignment}
-\end{equation}
-拟合量为单一尺度。表~\ref{tab:depth-scale} 的对齐与未对齐深度使用相同掩码，按帧、片段和序列依次汇总。尺度对齐在深度评价器内执行；重建、装配、表面距离和 RGB 重投影使用原始米制坐标。
-
-
-
-\begin{table}[!htbp]
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{主重建全图 PSNR 的三次训练重复；SD 为三个训练均值的样本标准差。}
@@ -141,7 +148,7 @@ Ours & 28.66 & 28.54 & 28.69 & 28.63 & 0.08 \\
 \end{tabular}
 \end{table}
 
-\begin{table}[!htbp]
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{训练／适配成本（GPU 小时），含单 checkpoint 均值、训练 SD 及三种子管线总成本；冻结基础模型的历史预训练不计入。}
@@ -162,12 +169,11 @@ Ours & 1001.5 & 9.32 & 2078.7 \\
 \end{tabular}
 \end{table}
 
-\paragraph{训练重复与共享成本。}
-表~\ref{tab:main-training-seeds} 与主表使用相同的 202 条序列、2,020 个片段和每组 96,960 张目标图像；29 时刻消融仍按附录 G 的独立协议统计。Ours 与 w/o CCM 共享阶段一、二的 462.9 GPU 小时。各三种子管线分别为 $462.9+3(1001.5-462.9)=2078.7$ 与 $462.9+3(977.1-462.9)=2005.5$ GPU 小时；两者共同去重总成本为 $2078.7+2005.5-462.9=3621.3$ GPU 小时（表~\ref{tab:training-cost-statistics}）。
-
 \paragraph{状态输入敏感性。}
 表~\ref{tab:state-sensitivity} 固定目标视图，比较给定状态、上下文预测状态及两档状态扰动。上下文预测的 MPJPE 为 54.3 mm，关节旋转误差为 $4.87^\circ$；Ours 的动态 PSNR 从 25.17 降至 23.83 dB，下降 1.34 dB，仍比 DGGT／w/o CCM 高 1.14／0.85 dB。两档扰动下，相对 DGGT 的增益为 1.29／0.85 dB，相对 w/o CCM 为 0.87／0.72 dB。
-\begin{table*}[!htbp]
+
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{3pt}
 \caption{状态输入敏感性；202 条序列，相同目标视图，全部为动态 PSNR（dB）。$\sigma_p$／$\sigma_R$ 为位置／旋转扰动标准差。}
@@ -182,13 +188,17 @@ $\sigma_p=5$ cm, $\sigma_R=3^\circ$ & 21.97 & 22.94 & 20.87 & 23.36 & 24.23 & 1.
 $\sigma_p=10$ cm, $\sigma_R=6^\circ$ & 21.18 & 22.06 & 20.01 & 22.19 & 22.91 & 0.85 & 0.72 \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
+\begin{multicols}{2}
 
-
+\Needspace{6\baselineskip}
 \section{消融协议与种子统计}
 \label{sec:supp-ablations}
 
-\begin{table*}[!t]
+两个学习版本使用训练种子 $\{0,1,2\}$，每个 checkpoint 评价生成种子 $\{7,17,27\}$，形成九组结果。先平均生成种子，再按帧、窗口、序列及训练种子等权汇总。表~\ref{tab:seed-components} 和表~\ref{tab:seed-inputs} 每格为均值 $\pm$ 三个训练种子均值的样本 SD，括号内为生成种子的平均样本 SD。w/o GCM 的零波动对应固定共享恢复模块和 codec 后的确定性推理。表~\ref{tab:seed-inputs} 的 $T=8$ 项与表~\ref{tab:seed-components} 的对应结果相同。
+
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{组件消融：均值 $\pm$ 训练 SD（平均生成 SD）。}
@@ -204,8 +214,9 @@ $\sigma_p=10$ cm, $\sigma_R=6^\circ$ & 21.18 & 22.06 & 20.01 & 22.19 & 22.91 & 0
 动态 SSIM & 0.811 $\pm$ 0 & 0.849 $\pm$ 0.002 (0.0010) & \textbf{0.873 $\pm$ 0.002 (0.0008)} \\
 \bottomrule
 \end{tabular}
-\end{table*}
-\begin{table*}[!t]
+\end{table}
+
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{固定权重的输入时刻数量敏感性：均值 $\pm$ 训练 SD（平均生成 SD）。}
@@ -222,26 +233,24 @@ $T$ & 版本 & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ \\
 8 & Ours & \textbf{28.913 $\pm$ 0.061 (0.028)} & \textbf{0.911 $\pm$ 0.001 (0.0005)} & \textbf{0.129 $\pm$ 0.002 (0.0011)} \\
 \bottomrule
 \end{tabular}
-\end{table*}
-
-
-
-
-两个学习版本使用训练种子 $\{0,1,2\}$，每个 checkpoint 评价生成种子 $\{7,17,27\}$，形成九组结果。先平均生成种子，再按帧、窗口、序列及训练种子等权汇总。表~\ref{tab:seed-components} 和表~\ref{tab:seed-inputs} 每格为均值 $\pm$ 三个训练种子均值的样本 SD，括号内为生成种子的平均样本 SD。w/o GCM 的零波动对应固定共享恢复模块和 codec 后的确定性推理。表~\ref{tab:seed-inputs} 的 $T=8$ 项与表~\ref{tab:seed-components} 的对应结果相同。
-
-
-
-
+\end{table}
+\begin{multicols}{2}
 
 每条测试序列取一个 29 时刻窗口，共 202 个。$\mathcal T_2=\{0,28\}$、$\mathcal T_4=\{0,8,20,28\}$、$\mathcal T_8=\{0,4,\ldots,28\}$ 共享 $\{2,6,\ldots,26\}$ 七个目标时刻及三相机，每组共 4,242 张目标图像。两个学习版本、三个 $T$、九个种子组合共 54 组、229,068 张预测图像。w/o GCM 另有 4,242 张，总计 233,310 张。
 
 不可渲染数为学习版本 $0/10,908$ 个窗口实例、w/o GCM $0/202$。低质量、空洞和接触错误均保留计分。所有变体共享图像预处理、$240\times160$ 分辨率、标注动态掩码以及按序列等权的汇总方式。训练均匀采样 $T\in\{2,4,8\}$，推理均使用 24 步 Euler 积分；超参数只在开发集选择。
 
 在 $T=2,4,8$ 时，CCM 分别将全图 PSNR 提高 1.104、0.738 和 0.627 dB，LPIPS 降低 0.041、0.028 和 0.018（表~\ref{tab:seed-inputs}）。输入最稀疏时收益最大。
+
+\Needspace{6\baselineskip}
 \section{轨迹外渲染与补全分析}
 \label{sec:supp-hidden}
 
-\begin{table}[!htbp]
+每个偏移方向渲染 $2,020\times3\times20=121,200$ 张图像及 6,060 段视频；每种偏移幅度、每组双向合计 242,400 张图像和 12,120 段视频。每段 20 帧、10 Hz，不跨片段拼接。参考集合是同一测试片段、相机和时间戳的原轨迹记录。FID 使用固定 Inception-v3 的 2,048 维特征，FVD 使用固定 I3D 的 1,024 维特征。左右方向分别计算再平均，不先混合左右样本。
+
+100 个合成测试场景另行提供输入始终未覆盖区域的配对评价（表~\ref{tab:hidden-regions}），代表偏移为 $\pm2$ m。FID/FVD 描述分布质量，隐藏区域指标描述场景对应补全。
+
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{合成隐藏区域的配对评价。}
@@ -258,7 +267,11 @@ Ours & \textbf{23.18} & \textbf{0.192} & \textbf{95.0\%} & \textbf{88.6\%} \\
 \bottomrule
 \end{tabular}
 \end{table}
-\begin{table}[t]
+
+\paragraph{固定参考区域评价。}
+完整生成式管线与高斯分支在相同的参考评价区域上比较（表~\ref{tab:fixed-reference-correspondence}）。该区域独立于各方法的输出覆盖，缺失输出不从分母删除。Ours 的 RGB MAE（0.0213）与 LPIPS（0.144）均最低，分别比 STORM+Difix 低 0.0023 和 0.019。下述表~\ref{tab:reprojection} 的共有有效区域是另一项消融诊断。
+
+\begin{table}[H]
 \centering\small
 \caption{线性 RGB 重投影误差及覆盖率，共有支持集占参考集合的 58.7\%。}
 \label{tab:reprojection}
@@ -273,14 +286,7 @@ Ours & \textbf{0.019} & 0.029 & \textbf{92.4\%} \\
 \end{tabular}
 \end{table}
 
-每个偏移方向渲染 $2,020\times3\times20=121,200$ 张图像及 6,060 段视频；每种偏移幅度、每组双向合计 242,400 张图像和 12,120 段视频。每段 20 帧、10 Hz，不跨片段拼接。参考集合是同一测试片段、相机和时间戳的原轨迹记录。FID 使用固定 Inception-v3 的 2,048 维特征，FVD 使用固定 I3D 的 1,024 维特征。左右方向分别计算再平均，不先混合左右样本。
-
-100 个合成测试场景另行提供输入始终未覆盖区域的配对评价（表~\ref{tab:hidden-regions}），代表偏移为 $\pm2$ m。FID/FVD 描述分布质量，隐藏区域指标描述场景对应补全。
-
-
-\paragraph{固定参考区域评价。}
-完整生成式管线与高斯分支在相同的参考评价区域上比较（表~\ref{tab:fixed-reference-correspondence}）。该区域独立于各方法的输出覆盖，缺失输出不从分母删除。Ours 的 RGB MAE（0.0213）与 LPIPS（0.144）均最低，分别比 STORM+Difix 低 0.0023 和 0.019。下述表~\ref{tab:reprojection} 的共有有效区域是另一项消融诊断。
-\begin{table}[!htbp]
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{固定参考区域上的场景对应正确性：202 条序列、双向 2 m 偏移。}
@@ -298,7 +304,6 @@ Ours & \textbf{0.0213} & \textbf{0.144} \\
 \bottomrule
 \end{tabular}
 \end{table}
-
 
 \paragraph{预测表面与几何指标。}
 采用渲染与融合构造表面。不透明度至少为 0.01 的高斯在 $3\sigma$ 内求值，在共同评价域分块渲染六轴正交视图，块内投影像素尺度不超过 1 mm。沿射线累计不透明度，首次达到 0.5 的位置定义表面深度；累计不足阈值时记为无预测表面。深度经 2 mm 体素、8 mm 截断距离的稀疏 TSDF 融合，在有效支撑体素中提取网格，未知区域保持开放。原生神经场采用相同累计不透明度阈值、融合和距离评价。
@@ -320,11 +325,6 @@ F_\tau&=\frac{2P_\tau R_\tau}{P_\tau+R_\tau}.
 
 表~\ref{tab:hidden-regions} 使用相同的 100 个合成测试场景，每组种子含 12,000 张偏移目标图像。每个学习版本的九组种子共生成 108,000 张输出，场景统计保留全部视角、帧和种子结果。相对对象耦合对照，CCM 将 PSNR 提高 0.67 dB、LPIPS 降低 0.020，覆盖率与 F-score 分别提高 2.6 和 3.6 个百分点；相对场景潜码对照，PSNR 提高 0.94 dB。表面评价在原始米制坐标中进行，预测与参考网格各取 65,536 个面积均匀采样点，采用相同的 2 cm 点到三角网格距离阈值。
 
-
-
-
-
-
 \paragraph{合成可见率分组评价。}
 表~\ref{tab:visibility} 与配对隐藏区域评价共享 100 个合成测试场景、$\pm2$ m 横移、输入、checkpoint 和生成样本。每场景取一个 20 帧、三相机片段，在 $\{0,5,10,15\}$ 输入 12 张图像。目标覆盖两个偏移方向、全部 20 时刻和三相机，每种子组合共 12,000 张图像。输入时刻也参与评价，因为横移相机不同于输入相机。三个训练种子和三个生成种子直接复用已训练权重，不在这些场景上适配。
 
@@ -332,12 +332,7 @@ F_\tau&=\frac{2P_\tau R_\tau}{P_\tau+R_\tau}.
 
 CCM 在严重缺失的背景、车辆和人体区域分别增加 1.02、1.27 和 1.53 dB（表~\ref{tab:visibility}），中间可见组增加 0.58、0.72 和 0.84 dB，充分观测组增加 0.04、0.05 和 0.03 dB。收益随输入缺失程度增大。
 
-\paragraph{Waymo 读取范围干预。}
-表~\ref{tab:context-read} 沿用主消融 $T=8$ 的 202 个 Waymo 窗口。每个 29 时刻窗口以三相机输入 $\{0,4,8,12,16,20,24,28\}$（24 张），目标为 $\{2,6,10,14,18,22,26\}$（每种子组合 4,242 张）。训练种子 $\{0,1,2\}$ 与生成种子 $\{7,17,27\}$ 形成九组，恢复模块、codec、查询布局、目标状态及 24 步采样均固定。
-
-仅背景、仅其他车辆和仅其他人体均为同一组 Ours checkpoint 的推理期读取遮罩，不分别重训；局部注意力和全局日志条件保持不变。w/o CCM 仍使用同预算重训的独立记忆对照。w/o CCM 与 Ours 端点复用正文表 3 的对应结果。Waymo 读取干预与合成可见率结果分别报告，各组件收益重叠。
-
-\begin{table}[!htbp]
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{按组件和可见性分组的 PSNR。}
@@ -359,7 +354,12 @@ CCM 在严重缺失的背景、车辆和人体区域分别增加 1.02、1.27 和
 \end{tabular}
 \end{table}
 
-\begin{table}[!htbp]
+\paragraph{Waymo 读取范围干预。}
+表~\ref{tab:context-read} 沿用主消融 $T=8$ 的 202 个 Waymo 窗口。每个 29 时刻窗口以三相机输入 $\{0,4,8,12,16,20,24,28\}$（24 张），目标为 $\{2,6,10,14,18,22,26\}$（每种子组合 4,242 张）。训练种子 $\{0,1,2\}$ 与生成种子 $\{7,17,27\}$ 形成九组，恢复模块、codec、查询布局、目标状态及 24 步采样均固定。
+
+仅背景、仅其他车辆和仅其他人体均为同一组 Ours checkpoint 的推理期读取遮罩，不分别重训；局部注意力和全局日志条件保持不变。w/o CCM 仍使用同预算重训的独立记忆对照。w/o CCM 与 Ours 端点复用正文表 3 的对应结果。Waymo 读取干预与合成可见率结果分别报告，各组件收益重叠。
+
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{CCM 读取范围诊断。}
@@ -376,9 +376,11 @@ CCM 在严重缺失的背景、车辆和人体区域分别增加 1.02、1.27 和
 \bottomrule
 \end{tabular}
 \end{table}
+
 \paragraph{稠密注意力与记忆容量。}
 表~\ref{tab:dense-attention} 固定查询数、采样步数与场景，比较交互机制。CCM-16 相对稠密全局注意力低 0.05 dB，补全加速 $1.93\times$，峰值显存减少 42.71\%。此处受控查询测试与表~\ref{tab:hidden-regions} 的全量查询结果分别报告。表~\ref{tab:attention-scaling} 中，查询数为 350,000 时，稠密注意力／CCM 分别耗时 73,627.4／1,380 ms。表~\ref{tab:memory-capacity} 将记忆容量从 16 增至 64，PSNR 增加 0.06 dB，补全时间由 1,380 增至 2,087.1 ms。
-\begin{table}[!htbp]
+
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{3pt}
 \caption{相同 16,384 个查询与 24 步采样下的补全机制；100 个合成场景。补全时间为 ms，峰值显存为 GB。独立／稠密分别表示组件独立记忆／稠密全局注意力。}
@@ -396,7 +398,7 @@ CCM-16 & 22.44 & 0.209 & 93.46 & \textbf{187.2} & 3.97 \\
 \end{tabular}
 \end{table}
 
-\begin{table}[!htbp]
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{3pt}
 \caption{100 个固定输入的查询规模测试；稠密注意力与 CCM 在每一行使用相同查询数。时间为 ms，峰值显存为 GB。}
@@ -414,7 +416,7 @@ CCM-16 & 22.44 & 0.209 & 93.46 & \textbf{187.2} & 3.97 \\
 \end{tabular}
 \end{table}
 
-\begin{table}[!htbp]
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{100 个合成场景、全量查询的记忆容量实验。时间为补全 ms，显存为峰值 GB。}
@@ -431,14 +433,15 @@ Tokens & PSNR $\uparrow$ & LPIPS $\downarrow$ & Cov. (\%) $\uparrow$ & ms & GB \
 \end{tabular}
 \end{table}
 
-
+\Needspace{6\baselineskip}
 \section{状态驱动资产复用}
 \label{sec:supp-reuse}
 
 \paragraph{合成场景配对编辑。}
 20 个身份隔离合成测试场景各含一辆车和一个人体，相机平移 1 m、车辆旋转 $30^\circ$ 及人体换姿均复用固定完成资产。联合补全在新增可见表面的六项指标上均最优（表~\ref{tab:asset-reuse}），比 Asset Harvester 的车辆／人体 PSNR 高 0.14／0.35 dB、覆盖率高 0.37／0.89 个百分点。
 
-\begin{table*}[!htbp]
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{编辑后新增可见资产表面。20 个身份隔离合成场景；车辆／人体覆盖阈值为 2／1 cm。}
@@ -456,10 +459,15 @@ Asset Harvester & 24.04 & 0.181 & 95.73\% & 22.71 & 0.215 & 93.41\% \\
 Ours & \textbf{24.18} & \textbf{0.176} & \textbf{96.1\%} & \textbf{23.06} & \textbf{0.201} & \textbf{94.3\%} \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
+\begin{multicols}{2}
 
+20 个真实和 20 个身份隔离的合成测试场景各含一个受测车辆与人体。评价原始状态、相机横移 1 m、车辆绕根位置与世界竖直轴旋转 $30^\circ$，以及根位置固定的人体换姿。各操作在固定照明下复用相同完成资产与生成种子，并保持外观固定。完整参考几何按附录 H 定义新增可见表面。
 
-\begin{table}[!htbp]
+\paragraph{真实场景编辑判定。}
+训练种子 0、生成种子 7 共形成四十次编辑（表~\ref{tab:edit-failures}）。两名不知方法身份的评估者独立检查预设目标视图，分歧由第三人裁决。评价分辨率下，连续空洞、表面脱离或关节撕裂达到五像素即判结构完整性失败。Ours 的二十次车辆旋转全部成功，人体编辑成功十七次；三次人体失败涉及大幅肘弯、腿部自遮挡和宽松衣物边界。车辆尺寸与人体体型参数保持固定，人体原已见纹理经规范对应后的线性 RGB MAE 为 0.014。
+
+\begin{table}[H]
 \centering\small
 \caption{训练种子 0、生成种子 7 的真实参与者编辑结构完整性。}
 \label{tab:edit-failures}
@@ -473,7 +481,11 @@ Ours & \textbf{20/20} & \textbf{17/20} & \textbf{92.5\%} \\
 \bottomrule
 \end{tabular}
 \end{table}
-\begin{table}[!htbp]
+
+\paragraph{种子波动与场景聚类。}
+三个训练种子 $\{0,1,2\}$ 与三个生成种子 $\{7,17,27\}$ 在相同二十个真实场景上形成 360 次编辑（表~\ref{tab:edit-seeds}）。车辆成功 177/180 次（98.33\%），人体 157/180 次（87.22\%），总体 334/360 次（92.78\%）。三个训练种子结构完整性均值的样本 SD 为 0.48 个百分点。场景聚类 bootstrap 每次保留被抽中场景的全部十八次编辑，结构完整性的 95\% 区间为 85.28--99.17\%。26 次失败集中在四个场景，分别为 9、8、6 和 3 次。
+
+\begin{table}[H]
 \centering\small
 \caption{跨训练与生成种子的结构完整性通过数量。每行评价二十辆车和二十个人体。}
 \label{tab:edit-seeds}
@@ -495,7 +507,14 @@ Ours & \textbf{20/20} & \textbf{17/20} & \textbf{92.5\%} \\
 \bottomrule
 \end{tabular}
 \end{table}
-\begin{table*}[t]
+
+\paragraph{新增纹理、身份与几何。}
+新增可见表面在全部输入观测中不可见，在编辑后变得可见；通过规范表面对应与可见性测试确定。五名独立评审检查新增表面纹理、外观身份与局部几何，每项至少四人判断通过才计为通过。纹理评价检查模糊、重复、拉伸和接缝；身份评价检查车辆形态与涂装，以及人体服饰、体型和可见身份特征；几何评价检查车轮与车体连接、肢体体积、关节弯折和穿插。
+
+表~\ref{tab:real-edit-quality} 评价二十个场景、九组种子的 360 次参与者编辑，相机平移不增加参与者编辑分母。联合通过按四项判据的逐例交集计算，共通过 298 次（82.78\%）。62 次失败包括 26 次结构失败，以及 36 次结构完整但未通过至少一项其他质量检查的编辑。
+
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \caption{\textbf{C 规则下的真实参与者编辑质量。}二十个场景、九组训练／生成种子、360 次参与者编辑；联合通过为四项判据的逐例交集。}
 \label{tab:real-edit-quality}
@@ -510,30 +529,14 @@ Ours & \textbf{20/20} & \textbf{17/20} & \textbf{92.5\%} \\
 四项同时通过 & 156（86.67\%） & 142（78.89\%） & 298（82.78\%）\\
 \bottomrule
 \end{tabular}
-\end{table*}
-
-20 个真实和 20 个身份隔离的合成测试场景各含一个受测车辆与人体。评价原始状态、相机横移 1 m、车辆绕根位置与世界竖直轴旋转 $30^\circ$，以及根位置固定的人体换姿。各操作在固定照明下复用相同完成资产与生成种子，并保持外观固定。完整参考几何按附录 H 定义新增可见表面。
-
-\paragraph{真实场景编辑判定。}
-训练种子 0、生成种子 7 共形成四十次编辑（表~\ref{tab:edit-failures}）。两名不知方法身份的评估者独立检查预设目标视图，分歧由第三人裁决。评价分辨率下，连续空洞、表面脱离或关节撕裂达到五像素即判结构完整性失败。Ours 的二十次车辆旋转全部成功，人体编辑成功十七次；三次人体失败涉及大幅肘弯、腿部自遮挡和宽松衣物边界。车辆尺寸与人体体型参数保持固定，人体原已见纹理经规范对应后的线性 RGB MAE 为 0.014。
-
-
-
-\paragraph{种子波动与场景聚类。}
-三个训练种子 $\{0,1,2\}$ 与三个生成种子 $\{7,17,27\}$ 在相同二十个真实场景上形成 360 次编辑（表~\ref{tab:edit-seeds}）。车辆成功 177/180 次（98.33\%），人体 157/180 次（87.22\%），总体 334/360 次（92.78\%）。三个训练种子结构完整性均值的样本 SD 为 0.48 个百分点。场景聚类 bootstrap 每次保留被抽中场景的全部十八次编辑，结构完整性的 95\% 区间为 85.28--99.17\%。26 次失败集中在四个场景，分别为 9、8、6 和 3 次。
-
-
-
-\paragraph{新增纹理、身份与几何。}
-新增可见表面在全部输入观测中不可见，在编辑后变得可见；通过规范表面对应与可见性测试确定。五名独立评审检查新增表面纹理、外观身份与局部几何，每项至少四人判断通过才计为通过。纹理评价检查模糊、重复、拉伸和接缝；身份评价检查车辆形态与涂装，以及人体服饰、体型和可见身份特征；几何评价检查车轮与车体连接、肢体体积、关节弯折和穿插。
-
-表~\ref{tab:real-edit-quality} 评价二十个场景、九组种子的 360 次参与者编辑，相机平移不增加参与者编辑分母。联合通过按四项判据的逐例交集计算，共通过 298 次（82.78\%）。62 次失败包括 26 次结构失败，以及 36 次结构完整但未通过至少一项其他质量检查的编辑。
-
-
+\end{table}
+\begin{multicols}{2}
 
 \paragraph{外部资产基线与评分一致性。}
 表~\ref{tab:real-edit-baselines} 比较适配到资产编辑接口的基线，包括 Asset Harvester~\cite{cao2026assetharvester}。确定性基线平均三个训练版本，共 $20\times2\times3=120$ 次编辑；生成式版本包含三个训练与三个生成种子，共 360 次。Ours 联合通过率为 82.78\%，比 Asset Harvester 高 2.50 个百分点；Asset Harvester 在身份保持上高 0.83 个百分点。表~\ref{tab:edit-training-sd} 报告联合通过率的训练 SD，与上方结构完整性的 SD 分开。表~\ref{tab:rater-agreement} 汇总六种方法的 $3\times120+3\times360=1440$ 个输出条目；20 个场景为独立采样单位，种子与输出条目为场景内重复。
-\begin{table*}[!htbp]
+
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{3pt}
 \caption{真实资产编辑；20 个场景，每场景一辆车、一个人体。各格为通过数／编辑数（通过率）。确定性／生成式方法分别评价 120／360 次编辑。}
@@ -550,9 +553,10 @@ Asset Harvester & 331/360 (91.94\%) & 317/360 (88.06\%) & \textbf{347/360 (96.39
 Ours & \textbf{334/360 (92.78\%)} & \textbf{320/360 (88.89\%)} & 344/360 (95.56\%) & \textbf{316/360 (87.78\%)} & \textbf{298/360 (82.78\%)} \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
 
-\begin{table}[!htbp]
+\begin{table}[H]
+\begin{minipage}[t]{0.48\textwidth}
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{基本协议联合通过率的训练 SD，单位为百分点。}
@@ -569,9 +573,8 @@ Asset Harvester & 2.93 \\
 Ours & 1.27 \\
 \bottomrule
 \end{tabular}
-\end{table}
-
-\begin{table}[!htbp]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{六种方法在 20 个场景上生成的 1,440 个输出的评分者一致性。}
@@ -586,14 +589,17 @@ Ours & 1.27 \\
 几何，Fleiss $\kappa$ & 0.75 & 0.75 & 0.001 \\
 \bottomrule
 \end{tabular}
+\end{minipage}
 \end{table}
-
+\begin{multicols}{2}
 
 \paragraph{扩展状态与视角协议。}
 360 次编辑质量评价使用固定目标状态与视角清单。扩展协议设置车辆偏航角变化 $30^\circ$、$60^\circ$、$90^\circ$，人体最大非根关节旋转差 $15^\circ$、$30^\circ$、$45^\circ$，根放置固定。二十个场景与九组种子共形成 $20\times9\times(3+3)=1,080$ 次参与者编辑，每次三个预定义目标视角，共 3,240 幅图像。每个种子在全部状态中复用同一完成资产，五像素判据在 $240\times160$ 分辨率下计算。
 
 确定性基线每档 $20\times3=60$ 次、六档共 360 次编辑；生成式版本每档 $20\times9=180$ 次、六档共 1,080 次。三个预设目标视角归属于同一次编辑。表~\ref{tab:extended-edit-counts} 给出逐档计数，表~\ref{tab:extended-edit-summary} 汇总全部难度。Ours 的结构通过率为 943/1,080（87.31\%），四项联合通过率为 805/1,080（74.54\%），后者比 Asset Harvester 高 4.91 个百分点。
-\begin{table*}[!htbp]
+
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{3pt}
 \caption{扩展编辑完整计数；每格为结构通过数／四项联合通过数。车辆 $30^\circ$ 与人体 $15^\circ$ 对应基本协议。}
@@ -610,9 +616,9 @@ Asset Harvester & 180 & 173/155 & 162/139 & 151/120 & 158/134 & 142/114 & 120/90
 Ours & 180 & 177/156 & 171/147 & 159/132 & 157/142 & 150/126 & 129/102 \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
 
-\begin{table*}[!htbp]
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{3pt}
 \caption{六档编辑汇总；结构与联合通过率为百分数，联合训练 SD 为百分点。}
@@ -629,13 +635,19 @@ Asset Harvester & 1,080 & 906 & 83.89 & 752 & 69.63 & 1.31 \\
 Ours & 1,080 & \textbf{943} & \textbf{87.31} & \textbf{805} & \textbf{74.54} & 1.37 \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
+\begin{multicols}{2}
 
-
+\Needspace{6\baselineskip}
 \section{观测一致性}
 \label{sec:supp-preservation}
 
-\begin{table*}[!htbp]
+固定原始相机、参与者状态及评价像素，以 observed-only 场景为补全前参考（表~\ref{tab:preservation}）。采用潜码投影时已见高斯参数严格保持，但新增高斯会通过遮挡和透明度混合改变渲染。每序列固定 10,000 条射线，总计 2,020,000 条。新增遮挡定义为新增内容在观测表面前 5 cm 之外产生大于 0.01 的累积不透明度；严格自由射线违规要求在表面前 10 cm 之外产生大于 0.05 的累积不透明度。
+
+Ours 的 0.18\% 新增遮挡对应 3,636 条射线，0.07\% 严格违规对应 1,414 条。相对补全前，输入视角 PSNR 下降 0.03 dB，深度 MAE 增加 2 mm。去掉自由射线损失后，两类射线比例升至 1.34\% 和 0.91\%，说明该损失约束了查询级参数保持之外的渲染影响。去掉潜码投影后，已见参数差为 0.0127，严格违规率升至 0.48\%，深度 MAE 为 132.7 mm。
+
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{补全与约束消融下的输入观测保持。C/F 及两个 C 消融使用 2,020,000 条固定射线；-- 表示未报告的测量。}
@@ -652,18 +664,23 @@ C，无 free-ray 损失 & 0 & 29.97 & 0.0208 & 134 & 1.34\% & 0.91\% \\
 C，无潜码投影 & 0.0127 & 30.09 & -- & 132.7 & 0.91\% & 0.48\% \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
+\begin{multicols}{2}
 
-
-固定原始相机、参与者状态及评价像素，以 observed-only 场景为补全前参考（表~\ref{tab:preservation}）。采用潜码投影时已见高斯参数严格保持，但新增高斯会通过遮挡和透明度混合改变渲染。每序列固定 10,000 条射线，总计 2,020,000 条。新增遮挡定义为新增内容在观测表面前 5 cm 之外产生大于 0.01 的累积不透明度；严格自由射线违规要求在表面前 10 cm 之外产生大于 0.05 的累积不透明度。
-
-Ours 的 0.18\% 新增遮挡对应 3,636 条射线，0.07\% 严格违规对应 1,414 条。相对补全前，输入视角 PSNR 下降 0.03 dB，深度 MAE 增加 2 mm。去掉自由射线损失后，两类射线比例升至 1.34\% 和 0.91\%，说明该损失约束了查询级参数保持之外的渲染影响。去掉潜码投影后，已见参数差为 0.0127，严格违规率升至 0.48\%，深度 MAE 为 132.7 mm。
-
-
+\Needspace{6\baselineskip}
 \section{效率与复用成本}
 \label{sec:supp-timing}
 
-\begin{table*}[!t]
+训练硬件为 $8\times$ A100 80 GB。推理计时使用单张 RTX 4090 24 GB，FP16、batch 1、输出 $240\times160$，平均每场景保留 140 万非透明高斯。预热 20 次后测量 100 次，包含 CPU--GPU 传输与同步，不含磁盘读取及首次模型加载。构建耗时为 $2.66\pm0.11$ s，状态装配与单相机渲染为 $7.8\pm0.4$ ms（约 128.2 FPS），峰值显存 14.2 GB。
+
+令 $Q=Q_b+\sum_a Q_a^{\mathrm{vehicle}}+\sum_h Q_h^{\mathrm{human}}$ 为非天空查询总数。解码生成 $4Q$ 个候选高斯，非透明输出数量以此为上界。天空由独立 cubemap 头输出。
+
+表~\ref{tab:timing-stages} 分解构建时间。w/o CCM 为 2.53 s，CCM 增加 0.13 s，约 5.1\%。表~\ref{tab:reuse-time} 按 $2.66+0.0078N$ 计算含一次构建的总时间；$N$ 是单相机输出次数，三相机查询计三次渲染。
+
+仅将自由空间规则改为 F，相同硬件、输入与采样条件下构建耗时从 2.66 增至 2.86 s（7.5\%）。主计时分解与摊销成本采用 C。
+
+\end{multicols}
+\begin{table}[H]
 \begin{minipage}[t]{0.48\textwidth}
 \centering\small
 \setlength{\tabcolsep}{4pt}
@@ -699,9 +716,14 @@ $N$ & 总时间 & 每次查询 \\
 \bottomrule
 \end{tabular}
 \end{minipage}
-\end{table*}
+\end{table}
+\begin{multicols}{2}
 
-\begin{table*}[!htbp]
+\paragraph{分辨率与外部成本比较。}
+表~\ref{tab:resolution-cost} 区分同一份 $240\times160$ 输入构建资产的高分辨率渲染，以及用 $480\times320$ 输入重新构建。固定 480 输出，提高输入分辨率增加全图／动态 PSNR 0.37／0.47 dB，构建时间由 2.66 增至 3.92 s。480 输入输出下（表~\ref{tab:resolution-baselines}），Ours 比 DGGT-Full 高 1.49 dB 全图和 1.87 dB 动态 PSNR；单图耗时为 13.71 ms，DGGT-Full 为 161.87 ms。
+
+\end{multicols}
+\begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{分辨率与成本。240／480／960 分别为 $240\times160$／$480\times320$／$960\times640$。质量使用 202 条序列；成本使用 100 个固定片段，RTX 4090、FP16、batch 1。}
@@ -716,11 +738,7 @@ $N$ & 总时间 & 每次查询 \\
 240→960，同一资产 & 27.56 & 0.885 & 24.01 & 2.66 & 29.17 & 17.61 \\
 \bottomrule
 \end{tabular}
-\end{table*}
-
-\clearpage
-\twocolumn[{\begin{minipage}{\textwidth}
-\captionsetup{type=table}
+\par\medskip
 \centering\small
 \setlength{\tabcolsep}{4pt}
 \caption{$480\times320$ 输入与输出的外部比较；硬件、精度和 batch 与分辨率成本实验相同。}
@@ -736,20 +754,5 @@ DGGT-Full & 26.96 & 0.869 & 23.16 & 2.16 & 161.87 & 17.53 \\
 Ours & \textbf{28.45} & \textbf{0.904} & \textbf{25.03} & 3.92 & 13.71 & 18.43 \\
 \bottomrule
 \end{tabular}
-\end{minipage}\par\vspace{8pt}}]
-
-训练硬件为 $8\times$ A100 80 GB。推理计时使用单张 RTX 4090 24 GB，FP16、batch 1、输出 $240\times160$，平均每场景保留 140 万非透明高斯。预热 20 次后测量 100 次，包含 CPU--GPU 传输与同步，不含磁盘读取及首次模型加载。构建耗时为 $2.66\pm0.11$ s，状态装配与单相机渲染为 $7.8\pm0.4$ ms（约 128.2 FPS），峰值显存 14.2 GB。
-
-令 $Q=Q_b+\sum_a Q_a^{\mathrm{vehicle}}+\sum_h Q_h^{\mathrm{human}}$ 为非天空查询总数。解码生成 $4Q$ 个候选高斯，非透明输出数量以此为上界。天空由独立 cubemap 头输出。
-
-表~\ref{tab:timing-stages} 分解构建时间。w/o CCM 为 2.53 s，CCM 增加 0.13 s，约 5.1\%。表~\ref{tab:reuse-time} 按 $2.66+0.0078N$ 计算含一次构建的总时间；$N$ 是单相机输出次数，三相机查询计三次渲染。
-
-仅将自由空间规则改为 F，相同硬件、输入与采样条件下构建耗时从 2.66 增至 2.86 s（7.5\%）。主计时分解与摊销成本采用 C。
-
-
-
-
-\paragraph{分辨率与外部成本比较。}
-表~\ref{tab:resolution-cost} 区分同一份 $240\times160$ 输入构建资产的高分辨率渲染，以及用 $480\times320$ 输入重新构建。固定 480 输出，提高输入分辨率增加全图／动态 PSNR 0.37／0.47 dB，构建时间由 2.66 增至 3.92 s。480 输入输出下（表~\ref{tab:resolution-baselines}），Ours 比 DGGT-Full 高 1.49 dB 全图和 1.87 dB 动态 PSNR；单图耗时为 13.71 ms，DGGT-Full 为 161.87 ms。
-
-\FloatBarrier
+\end{table}
+\begin{multicols}{2}

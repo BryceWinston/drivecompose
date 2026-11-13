@@ -27,6 +27,7 @@ STORM, DGGT, and StreetForward~\cite{yang2025storm,chen2025dggt,yu2026streetforw
 \paragraph{Sampling and metrics.}
 Each test sequence supplies 200 frames, forming 2,020 disjoint 20-frame clips at 10 Hz. Three front cameras provide context at $\{0,5,10,15\}$~\cite{yang2025storm}; the remaining 12 interpolation and four extrapolation frames give 96,960 targets. Extrapolation renders supplied states. We evaluate $240\times160$ images~\cite{huang2026instantnurec} using full/dynamic PSNR and SSIM, and depth AbsRel/$\delta_1$ at valid LiDAR points. Depth is aligned per frame for evaluation. Frames, clips, then sequences are averaged with equal sequence weight.
 
+\Needspace{10\baselineskip}
 \subsection{Dynamic scene reconstruction}
 \label{sec:temporal_evaluation}
 DriveCompose improves full-image and dynamic-region PSNR over DGGT by 1.28 and 1.68 dB, respectively, and also leads in SSIM and depth accuracy (Table~\ref{tab:regions_current}; Fig.~\ref{fig:dynamic-reconstruction}). With context-predicted instead of supplied actor states, dynamic-region PSNR drops to 23.83 dB but still exceeds DGGT by 1.14 dB (Appendix~F).
@@ -94,6 +95,7 @@ Ours & \textbf{28.52} & \textbf{544.27} & \textbf{37.43} & \textbf{673.17} & \te
 \end{table}
 
 
+\Needspace{15\baselineskip}
 \subsection{State-driven asset reuse}
 \label{sec:ablation-reuse}
 \paragraph{Asset edits.}
@@ -136,6 +138,15 @@ The benefit of shared context increases as input surface coverage decreases. Com
   \end{tabular*}
 \end{table}
 
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth]{fig/fig06-component-ablation.pdf}
+  \caption{\textbf{Completion component ablations.} The full model reduces distortions and ghosting in pedestrian silhouettes and vehicle windows, and recovers sharper foliage detail. Colored boxes mark the enlarged regions.}
+  \label{fig:component-ablation}
+\end{figure}
+
+% Finish the component comparison before introducing the input-count study.
+\FloatBarrier
 \paragraph{Input-timestamp sensitivity.}
 Fixed checkpoints use nested $T=2,4,8$ inputs (6/12/24 images) over the same time span and target views. At each input count, evidence and queries are reconstructed from the supplied inputs. CCM adds 1.104, 0.738, and 0.627 dB PSNR and reduces LPIPS by 0.041, 0.028, and 0.018 (Table~\ref{tab:ablation-inputs}), with the largest benefit at the sparsest input setting.
 
@@ -160,11 +171,3 @@ $T$ & Variant & PSNR $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ \\
 \bottomrule
 \end{tabular*}
 \end{table}
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[width=\linewidth]{fig/fig06-component-ablation.pdf}
-  \caption{\textbf{Completion component ablations.} The full model reduces distortions and ghosting in pedestrian silhouettes and vehicle windows, and recovers sharper foliage detail. Colored boxes mark the enlarged regions.}
-  \label{fig:component-ablation}
-\end{figure}
-% The main-text barrier keeps this float ahead of the usage statement and references.

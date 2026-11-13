@@ -2,8 +2,20 @@
 \label{sec:experiments}
 Waymo 实验评价重建精度与轨迹外渲染质量，隐藏表面配对测试与参与者编辑则评价联合补全及固定资产复用。补充材料报告 nuScenes 零样本迁移。
 
+% Queue the qualitative comparisons before their discussion pages.
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig/fig04-dynamic-reconstruction.pdf}
+  \caption{\textbf{Waymo 动态场景条件重建。}DriveCompose 恢复了更清晰的参与者轮廓与街景结构。}
+  \label{fig:dynamic-reconstruction}
+\end{figure*}
 
-
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{fig/fig05-off-trajectory-rendering.pdf}
+  \caption{\textbf{Waymo 离轨渲染。}原轨迹记录与相机左移 2 m 的渲染比较。DriveCompose 减少了车辆与街景结构附近的空洞和畸变。}
+  \label{fig:waymo-left-shift}
+\end{figure*}
 
 \subsection{实验设置}
 \label{sec:experimental_setup}
@@ -41,17 +53,12 @@ Ours & \textbf{28.63} & \textbf{0.903} & \textbf{25.17} & \textbf{0.867} & \text
 \bottomrule
 \end{tabular}
 \end{table}
-\begin{figure*}[t]
-  \centering
-  \includegraphics[width=\textwidth]{fig/fig04-dynamic-reconstruction.pdf}
-  \caption{\textbf{Waymo 动态场景条件重建。}DriveCompose 恢复了更清晰的参与者轮廓与街景结构。}
-  \label{fig:dynamic-reconstruction}
-\end{figure*}
 
 \subsection{轨迹外渲染}
 \label{sec:spatial_evaluation}
 相机横向偏移 $\pm1$、$\pm2$、$\pm4$ m，方向、内参和时间戳固定~\cite{chi2026pointforward,zhu2025worldsplat}，比较高斯分支及完整生成式管线。每个方向包含 121,200 张图像和 6,060 段 20 帧、10 Hz 视频，参考为相同片段、相机与时刻的原轨迹记录。左右方向分别计算 FID 和 FVD 后取均值（表~\ref{tab:spatial_current}）。
 
+\Needspace{7\baselineskip}
 完整生成式对照包括 DGGT-Full 和 STORM+Difix~\cite{wu2025difix3d}。DriveCompose 在三档相机偏移下的 FID 和 FVD 均低于所有对照方法（表~\ref{tab:spatial_current}；图~\ref{fig:waymo-left-shift}）。固定参考区域评价进一步检验场景对应，DriveCompose 的 RGB MAE 和 LPIPS 均最低（附录 H）。
 
 \begin{table}[!htbp]
@@ -87,13 +94,6 @@ Ours & \textbf{28.52} & \textbf{544.27} & \textbf{37.43} & \textbf{673.17} & \te
 \end{tabular}%
 }
 \end{table}
-\begin{figure*}[t]
-  \centering
-  \includegraphics[width=\textwidth]{fig/fig05-off-trajectory-rendering.pdf}
-  \caption{\textbf{Waymo 离轨渲染。}原轨迹记录与相机左移 2 m 的渲染比较。DriveCompose 减少了车辆与街景结构附近的空洞和畸变。}
-  \label{fig:waymo-left-shift}
-\end{figure*}
-
 
 \subsection{状态驱动资产复用}
 \label{sec:ablation-reuse}
@@ -107,8 +107,6 @@ Ours & \textbf{28.52} & \textbf{544.27} & \textbf{37.43} & \textbf{673.17} & \te
 \paragraph{效率。}
 RTX 4090 上（FP16、batch 1、C 规则），构建耗时 $2.66\pm0.11$ s，单相机装配与 $240\times160$ 渲染耗时 $7.8\pm0.4$ ms，峰值显存 14.2 GB。复用已构建资产，1,000 次输出的总成本摊销为每图 10.46 ms。$480\times320$ 输入与输出下，Ours 的全图 PSNR 比所有外部方法至少高 1.49 dB，单图渲染耗时 13.71 ms，DGGT-Full 为 161.87 ms（附录 K）。
 
-% Keep the main qualitative comparisons before the ablation block.
-\FloatBarrier
 \subsection{消融实验}
 \label{sec:ablation-protocol}\label{sec:ablations}\label{sec:ablation-studies}
 Waymo 消融从每条测试序列取一个 29 时刻窗口，使用三相机与七个共享目标时刻。
@@ -146,6 +144,8 @@ w/o GCM 关闭非已见、非天空高斯。w/o CCM 使用各组件独立记忆�
   \label{fig:component-ablation}
 \end{figure}
 
+% Finish the component comparison before introducing the input-count study.
+\FloatBarrier
 \paragraph{输入时刻数量敏感性。}
 固定 checkpoint，在相同时间跨度与目标视图上使用 $T=2,4,8$ 嵌套输入（6／12／24 张图像），每档均从所给输入重新构建证据与查询。CCM 的 PSNR 增益分别为 1.104、0.738 和 0.627 dB，LPIPS 分别降低 0.041、0.028 和 0.018（表~\ref{tab:ablation-inputs}），输入最稀疏时收益最大。
 
